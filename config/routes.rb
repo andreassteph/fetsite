@@ -26,7 +26,7 @@ end
 
 
 
-get 'rubriken/addmoderator'
+put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
 
 
     resources :home

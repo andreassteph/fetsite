@@ -14,9 +14,15 @@
   <b>Prio:</b>
   <%= @rubrik.prio %>
 </p>
-<%= semantic_form_for @rubrik, :url=> url_for(:action => 'addmoderator') do |f| %>
+
+<b>Moderatoren:</b>
+<% @moderatoren.each do |m|%>
+<%= m.email%>
+<% end%>
+
+<%= semantic_form_for @rubrik, :url=> url_for(:action => 'addmoderator',:id=>@rubrik.id) do |f| %>
 <%= f.inputs do %>
-<%= f.input :moderator, :as => :select, :collection => Hash[User.all.map{|b| [b.email,b.id]}] %>
+<%= f.input :moderator, :as => :select, :collection => Hash[User.all.map{|b| [b.email,b.id]}] ,:label=>"Hinzufügen"%>
 		<% end %>
 		<%= f.action :submit %>
 	<% end %>

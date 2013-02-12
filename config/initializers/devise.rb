@@ -14,7 +14,7 @@ Devise.setup do |config|
   :address              => "smtp.gmail.com",
   :port                 => 587,
   :user_name            => 'testruby12345@gmail.com',
-  :password             => 't12345678',
+  :password             => 'testtest987',
   :authentication       => 'plain',
   :enable_starttls_auto => true  }
   

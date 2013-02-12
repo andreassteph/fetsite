@@ -18,7 +18,9 @@ de:
     studien: "Studien"
     news: "News"
     info: "Information"
-
+  rubrik:
+    moderatoradded: "Neuen Moderator hinzugefügt!"
+    moderatoraddnorights: "Keine Berechtigung neue Moderatoren hinzuzufügen!"
   formtastic:
     titles:
       modul: 

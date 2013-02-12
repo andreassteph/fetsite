@@ -13,6 +13,8 @@ class Ability
     can :read, Modulgruppe
     if user.has_role? "newsadmin"
       can :manage, Modulgruppe
+      can :addmoderator, Modulgruppe
+      can :addmoderator, Rubrik
     end
     # The first argument to `can` is the action you are giving the user permission to do.
     # If you pass :manage it will apply to every action. Other common actions here are

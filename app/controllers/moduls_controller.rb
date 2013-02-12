@@ -83,9 +83,8 @@ class ModulsController < ApplicationController
     @modul = Modul.find(params[:id])
     @modul.destroy
 
-    respond_to do |format|
-      format.html { redirect_to moduls_path() }
-      format.json { head :no_content }
-    end
+
+    redirect_to moduls_path() 
+    
   end
 end
