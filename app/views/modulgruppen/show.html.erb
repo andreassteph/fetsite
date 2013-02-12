@@ -18,9 +18,9 @@
 </div>
 
 	 
-<span class="label">Default</span>
+<span class="label">Aktionen</span>
    <div class="btn-group">
-<%= link_to 'Add Modul', new_modul_path(:modulgruppen_id =>@modulgruppe.id)  %> 
+<%= link_to 'Add Modul', new_modul_path(:modulgruppen_id =>@modulgruppe.id),:class =>"btn"   %> 
 <%= link_to 'Studium', studium_path(@modulgruppe.studium),:class =>"btn" %> 
 <%= link_to 'Edit', edit_modulgruppe_path(@modulgruppe),:class =>"btn" %> 
 <%= link_to 'Back', modulgruppen_path,:class =>"btn" %>
