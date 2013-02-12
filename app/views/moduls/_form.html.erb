@@ -1,0 +1,14 @@
+
+<%= semantic_form_for @modul do |f| %>
+  <%= f.inputs do %>
+   <%= f.input :modulgruppen,:as => :select,      :collection => Hash[Modulgruppe.all.map{|m| [m.studium.name + " " + m.name,m.id]}] %>
+    <%= f.input :name ,:hint=>true%>
+    <%= f.input :desc, :as=>:tinymce_text %>
+    <%= f.input :depend %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>
+<%= tinymce %>

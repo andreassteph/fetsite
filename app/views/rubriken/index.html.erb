@@ -1,0 +1,27 @@
+<h1>Listing rubriken</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Desc</th>
+    <th>Prio</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rubriken.each do |rubrik| %>
+  <tr>
+    <td><%= rubrik.name %></td>
+    <td><%= rubrik.desc %></td>
+    <td><%= rubrik.prio %></td>
+    <td><%= link_to 'Show', rubrik %></td>
+    <td><%= link_to 'Edit', edit_rubrik_path(rubrik) %></td>
+    <td><%= link_to 'Destroy', rubrik, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rubrik', new_rubrik_path %>

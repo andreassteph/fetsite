@@ -1,0 +1,12 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+en:
+  hello: "Hello world"
+
+  home:
+    mtitle: "Menu"
+    hallobeiderfet: "This is the page of Fachschaft Elektrotechnik at TU Wien"
+    home: "Home"
+    studien: "Studies"
+    news: "News"
+    info: "Information"

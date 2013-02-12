@@ -1,0 +1,2 @@
+module StudmodsHelper
+end

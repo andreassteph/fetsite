@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>  <%= @lva.lvanr %>
+  <b>
+  <%= @lva.name %> (<%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std)</b><%= link_to image_tag('edit.png'), edit_lva_path(@lva) %> |
+</p>
+<p>
+  <%= @lva.desc %>
+</p>
+
+<% @lva.modul.each do |modul| %>
+<%= link_to modul.name , modul_path(modul)%> <br>
+	<% modul.modulgruppen.each do |g| %>
+		<% link =g.studium.name + " - " +g.name %>
+		<%= link_to link , modulgruppe_path(g)%><br>
+	<%end%>
+<%end%>
+
+
+<%= link_to 'Back', lvas_path %>

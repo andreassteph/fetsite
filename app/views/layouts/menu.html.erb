@@ -1,0 +1,24 @@
+<%= t 'home.mtitle'%>
+<ul class="nav nav-pills nav-stacked">
+	<li><%= link_to I18n.t(:home,:scope=>'home' ), home_index_url %>
+</li>
+<li><%= link_to I18n.t(:news,:scope=>'home' ),rubriken_path %></li>
+<li><%= link_to I18n.t(:info,:scope=>'home' ) %></li>
+<li><%= link_to I18n.t(:studien,:scope=>'home' ), studien_path %>
+</li>
+
+</ul>
+<% if user_signed_in? %>
+  <li>Logged in as : <%= current_user.email %>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path)  %>  
+  </li>
+<% end %>
+<%if I18n.locale == :en %>
+<%= link_to "Deutsch" ,switch_locale_url(:de)%>
+<% elsif I18n.locale == :de %>
+  <%= link_to "English" ,switch_locale_url(:en)%>
+  <%end %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type: 
+  phase: 1
+  studium_id: 1
+  name: MyString
+
+two:
+  type: 
+  phase: 1
+  studium_id: 1
+  name: MyString

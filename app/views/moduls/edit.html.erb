@@ -1,0 +1,8 @@
+<h1><%= I18n.t "moduls.edit.title"%></h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', modul_path( @modul) %> |
+<% if !@studium.nil? %>
+<%= link_to 'Back', moduls_path(@modul) %>
+<% end%>

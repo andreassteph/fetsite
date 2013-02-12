@@ -1,0 +1,25 @@
+// Place all the styles related to the modulgruppen controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div.modulgruppe_phase_1, div.modulgruppe_phase_2, div.modulgruppe_phase_3
+{padding:10px;
+margin:2px;
+border-radius:10px;
+min-width:13em;
+}
+
+div.modulgruppe_phase_1 , div.modulgruppe_phase_2
+{}
+
+div.modulgruppe_phase_1
+{border: #91B4FF solid 2px;
+
+}
+div.modulgruppe_phase_2
+{border: #FF7575 solid 2px;
+
+}
+div.modulgruppe_phase_3
+{border: #41B300 solid 2px;
+
+}

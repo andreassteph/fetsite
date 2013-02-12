@@ -1,0 +1,11 @@
+<%= semantic_form_for @rubrik do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :desc %>
+    <%= f.input :prio %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

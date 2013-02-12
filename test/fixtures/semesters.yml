@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  nummer: 1
+  ws: false
+  ss: false
+
+two:
+  name: MyString
+  nummer: 1
+  ws: false
+  ss: false

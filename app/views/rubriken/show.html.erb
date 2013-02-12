@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @rubrik.name %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @rubrik.desc %>
+</p>
+
+<p>
+  <b>Prio:</b>
+  <%= @rubrik.prio %>
+</p>
+<%= semantic_form_for @rubrik, :url=> url_for(:action => 'addmoderator') do |f| %>
+<%= f.inputs do %>
+<%= f.input :moderator, :as => :select, :collection => Hash[User.all.map{|b| [b.email,b.id]}] %>
+		<% end %>
+		<%= f.action :submit %>
+	<% end %>
+
+<%= link_to 'Edit', edit_rubrik_path(@rubrik) %> |
+<%= link_to 'Back', rubriken_path %>

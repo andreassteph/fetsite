@@ -1,0 +1,13 @@
+  <%= tinymce_assets %>
+<%= semantic_form_for @studium do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :zahl %>
+    <%= f.input :name,:append=>"NAME" %>
+    <%= f.input :desc, :as=>:tinymce_text %>
+    <%= f.input :typ, :as=>:radio, :collection=>["Bachelor","Master"]%>
+  <% end %>
+<%= tinymce %>
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

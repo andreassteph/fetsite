@@ -1,0 +1,2 @@
+module StudienHelper
+end

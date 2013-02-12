@@ -1,0 +1,55 @@
+Form generator
+
+Usersteuerung und Verwaltung - Rechte verwalten
+
+Beispielsammlung und LVA Übersicht
+    * LVA Objekt
+    * Listen nach Semester und Modul
+    * Beispielupload pro LVA 
+    * Kategorisierung in "offizielle" udn Prüfungen / andere Bsp
+
+Wichtige FAQs und Infos für Studierende               
+    *
+
+                
+Internationalisierung
+    * Übersetzte Welcomepage und Anleitungen
+    * Kalender etc internationalisieren 
+    *        
+Neuigkeiten
+    * Neuigkeiten für Website
+    * "auf Facebook stellen"
+    * An Mailverteiler schicken
+    *             
+Forum
+    * Forum je LVA und Modul
+    * Forum zu anderen Themen
+    * Tauschbörse für Bücher
+    *     
+?Lernpartner Börse
+    * Matchfinding für Prüfungen (zB Datum der angestrebten Prüfung) 
+                 
+INTERN
+
+
+Sitzungs Protokollmanagement
+    * Etherpad integration
+    * Ablage in Datenbank
+    * Volltext Suche
+            
+Kalenderfunktion
+    * gemeinsamer Kalender
+    * ?Veröffentlichte Termine für alle
+        
+HowTos
+    * Kategorisierter und strukturierte HowTo und Doku Datenbank
+    * Wiki Schnittstelle oder Wiki?
+
+            
+Versionsverfolgung
+
+
+
+Tiny MCE
+http://rubydoc.info/gems/tinymce-rails/3.5.8/frames
+integrieren

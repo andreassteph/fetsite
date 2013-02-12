@@ -1,0 +1,35 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ *  require 'bootstrap'
+ */
+
+@import 'bootstrap';
+@import 'bootstrap-responsive';
+h1 
+{font-size: 23px}
+h2 
+{font-size: 19px}
+body,html
+{padding:0;margin:0;}
+
+div.header 
+{display: block; 
+background: url('/assets/fet_logo_2.png') rgb(200,200,200) no-repeat;
+background-position:15px center; 
+height:60px; 
+padding-left:160px;
+padding-top:0px;
+overflow:hidden
+}
+
+

@@ -1,0 +1,27 @@
+<h1>Listing neuigkeiten</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Datum</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @neuigkeiten.each do |neuigkeit| %>
+  <tr>
+    <td><%= neuigkeit.title %></td>
+    <td><%= neuigkeit.text %></td>
+    <td><%= neuigkeit.datum %></td>
+    <td><%= link_to 'Show', neuigkeit %></td>
+    <td><%= link_to 'Edit', edit_neuigkeit_path(neuigkeit) %></td>
+    <td><%= link_to 'Destroy', neuigkeit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Neuigkeit', new_neuigkeit_path %>

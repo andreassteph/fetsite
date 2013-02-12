@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<div class ="modulgruppe_phase_<%= @modulgruppe.phase %>">
+<h1>
+  <%= @modulgruppe.name %>
+</h1>
+<p>
+  <b><%= link_to "Studium: "+@modulgruppe.studium.name, studium_path(@modulgruppe.studium) %></b>
+  
+</p><p>
+  <b><%= I18n.t "modulgruppe.typ"%>:</b>
+  <%= @modulgruppe.typ %>
+</p>
+
+
+<% @modulgruppe.moduls.each do |modul| %>
+<%= render modul%>
+<% end %>
+</div>
+
+	 
+<span class="label">Default</span>
+   <div class="btn-group">
+<%= link_to 'Add Modul', new_modul_path(:modulgruppen_id =>@modulgruppe.id)  %> 
+<%= link_to 'Studium', studium_path(@modulgruppe.studium),:class =>"btn" %> 
+<%= link_to 'Edit', edit_modulgruppe_path(@modulgruppe),:class =>"btn" %> 
+<%= link_to 'Back', modulgruppen_path,:class =>"btn" %>
+    </div>

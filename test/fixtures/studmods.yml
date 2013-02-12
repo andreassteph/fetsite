@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  studium_id: 1
+  modul_id: 1
+
+two:
+  studium_id: 1
+  modul_id: 1

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  desc: MyText
+  ects: 
+  lvanr: 
+  stunden: 1.5
+
+two:
+  name: MyString
+  desc: MyText
+  ects: 
+  lvanr: 
+  stunden: 1.5
