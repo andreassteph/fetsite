@@ -9,6 +9,8 @@ de:
   studien:
     list: "Studien der Fakultät Elektrotechnik"
     new: "Neues Studium"
+    newmodulgroup: "Neue Modulgruppe"
+    allestudien: "Alle Studien"
   modul:
     edit: 
       title: "Bearbeite Modul"

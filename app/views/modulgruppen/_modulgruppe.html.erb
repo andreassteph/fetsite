@@ -1,8 +1,17 @@
-<div class="modulgruppe_phase_<%= modulgruppe.phase %>">
-<h2><%=  link_to modulgruppe.name, modulgruppe_path(modulgruppe) %><%= link_to image_tag('edit.png').html_safe+"Edit", edit_modulgruppe_path(modulgruppe),:class=>"btn" %></h2> 
-<%= modulgruppe.desc%>
+<div class="modulgruppe_phase_<%= modulgruppe.phase %>" >
+<h2><%=  link_to modulgruppe.name, modulgruppe_path(modulgruppe) %> 
+	</h2> 
 
+<%= modulgruppe.desc%>
 <%= render :partial=>'moduls/kurz', :collection=>modulgruppe.moduls, :as=>:modul%>
 <br>
+
+   <%= link_to '<i class="icon-pencil"></i>'.html_safe+I18n.t("common.edit"), edit_modulgruppe_path(modulgruppe) %>
+ <!-- dropdown menu links -->
+
+    </ul>
+ 
+
+	</span>
 </div>
 

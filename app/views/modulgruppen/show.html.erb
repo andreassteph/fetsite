@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+
+<ul class="breadcrumb">
+<li>
+<%= link_to @modulgruppe.studium.name, studium_path(@modulgruppe.studium) %> <span class="divider">/</span></li>
+
+
+</ul><p id="notice"><%= notice %></p>
 <div class ="modulgruppe_phase_<%= @modulgruppe.phase %>">
 <h1>
   <%= @modulgruppe.name %>
@@ -20,8 +26,7 @@
 	 
 <span class="label"><%= I18n.t("common.actions")%></span>
    <div class="btn-group">
-<%= link_to I18n.t("modulgruppe.addmodul"), new_modul_path(:modulgruppen_id =>@modulgruppe.id),:class =>"btn"   %> 
+<%= link_to '<i class="icon-plus-sign"></i>'.html_safe+I18n.t("modulgruppe.addmodul"), new_modul_path(:modulgruppen_id =>@modulgruppe.id),:class =>"btn"   %> 
 <%= link_to I18n.t("modulgruppe.studium"), studium_path(@modulgruppe.studium),:class =>"btn" %> 
 <%= link_to I18n.t("common.edit"), edit_modulgruppe_path(@modulgruppe),:class =>"btn" %> 
-
     </div>

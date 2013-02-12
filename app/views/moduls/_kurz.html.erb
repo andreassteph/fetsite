@@ -1,9 +1,10 @@
 <div style="border: solid 1px; padding:2px;margin-top:5px;"><p>
-  <b><%= link_to "Modul "+ modul.name , modul_path(modul) %> <%= link_to image_tag("edit.png"), edit_modul_path(modul) %></b>
+  <b><%= link_to "Modul "+ modul.name , modul_path(modul) %> </b>
 </p>
 <p >
   <%= raw(modul.desc) %>
 </p>
 
+<%= link_to '<i class="icon-pencil"></i>'.html_safe+I18n.t("common.edit"), edit_modul_path(modul) %>
 </div>
 

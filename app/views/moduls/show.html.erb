@@ -1,11 +1,14 @@
-<p id="notice"><%= notice %></p>
-
-<%= render @modul %>
 
 <% @modul.modulgruppen.each do |g| %>
-<% link = g.studium.name + " - " +g.name %>
-<%= link_to g.studium.name  , studium_path(g.studium)%> <br />
-<%= link_to link , modulgruppe_path(g)%><br />
+<ul class="breadcrumb">
+<li>
+<%= link_to g.studium.name  , studium_path(g.studium)%> <span class="divider">/</span></li>
+<li><%= link_to g.name , modulgruppe_path(g)%></li>
 <%end%>
+</ul>
+
+<p id="notice"><%= notice %></p>
+<%= render @modul %>
+
 
 <%= link_to 'Add LVA', new_lva_path(:modul_id =>@modul.id) %>
