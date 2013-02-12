@@ -1,5 +1,5 @@
 == Willkommen bei der Fetsite
-Das ist das Webprojekt der Fachschaft Elektrotechnik an der TU Wien, wir bauen 
+Das ist das Webprojekt der Fachschaft Elektrotechnik (FET) an der TU Wien, wir bauen 
 diese Seite auf um Studenten mit Informationen zu versorgen und unsere Services 
 anzubieten.
 Die Dokumentation ist derzeit nur in einem sehr reduzierten Ausmaß verfügbar. 
