@@ -9,14 +9,14 @@ Devise.setup do |config|
   # Configure the class responsible to send e-mails.
  # config.mailer = "Devise::Mailer"
     config.mailer.default_url_options = { :host => 'localhost:3000' }  
-  config.mailer.delivery_method = :smtp
-  config.mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :user_name            => 'testruby12345@gmail.com',
-  :password             => 'testtest987',
-  :authentication       => 'plain',
-  :enable_starttls_auto => true  }
+  config.mailer.delivery_method = :sendmail
+#  config.mailer.smtp_settings = {
+#  :address              => "smtp.gmail.com",
+#  :port                 => 587,
+#  :user_name            => 'testruby12345@gmail.com',
+#  :password             => 'testtest987',
+#  :authentication       => 'plain',
+#  :enable_starttls_auto => true  }
   
   #config.mailer = "confirmmailer"
   # ==> ORM configuration
