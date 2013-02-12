@@ -1,3 +1,10 @@
+== Willkommen bei der Fetsite
+Das ist das Webprojekt der Fachschaft Elektrotechnik an der TU Wien, wir bauen 
+diese Seite auf um Studenten mit Informationen zu versorgen und unsere Services 
+anzubieten.
+Die Dokumentation ist derzeit nur in einem sehr reduzierten Ausmaß verfügbar. 
+Für alle von der FET die hier mitarbeiten, derzeit gibt es auf fetintern eine Doku
+die Teile, die zum Verständnis sinnvoll sind werden sukzessive hier her portiert.
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
