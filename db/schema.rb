@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(:version => 20130124223508) do
     t.decimal  "ects"
     t.string   "lvanr"
     t.decimal  "stunden"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "modul_id"
+    t.integer  "semester_id"
   end
 
   create_table "lvas_moduls", :id => false, :force => true do |t|
@@ -83,10 +84,9 @@ ActiveRecord::Schema.define(:version => 20130124223508) do
   create_table "moduls", :force => true do |t|
     t.string   "name"
     t.text     "desc"
+    t.text     "depend"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.text     "depend"
-    t.integer  "studium_id"
   end
 
   create_table "neuigkeiten", :force => true do |t|
@@ -120,8 +120,8 @@ ActiveRecord::Schema.define(:version => 20130124223508) do
   create_table "semesters", :force => true do |t|
     t.string   "name"
     t.integer  "nummer"
-    t.boolean  "ws"
-    t.boolean  "ss"
+    t.integer  "studium_id"
+    t.string   "ssws"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20130124223508) do
   create_table "studien", :force => true do |t|
     t.string   "zahl"
     t.string   "name"
+    t.text     "shortdesc"
     t.text     "desc"
     t.string   "typ"
     t.datetime "created_at", :null => false
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20130124223508) do
   create_table "studium_translations", :force => true do |t|
     t.string   "locale"
     t.text     "desc"
+    t.text     "shortdesc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "studien_id"
