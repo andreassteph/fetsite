@@ -44,7 +44,7 @@ class RubrikenController < ApplicationController
       
       response_notice= I18n.t("rubrik/moderatoradded")
     else
-      response_notice= I18n.t("rubrik/moderatoraddnorights"
+      response_notice= I18n.t("rubrik/moderatoraddnorights")
     end
     respond_to do |format|
       format.html { redirect_to @rubrik,:notice => response_notice }

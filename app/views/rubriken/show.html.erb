@@ -1,31 +1,39 @@
 <p id="notice"><%= notice %></p>
+<div class="row-fluid">
+<span class="span12">
+  <h1><%= @rubrik.name %></h1>
 
 <p>
-  <b>Name:</b>
-  <%= @rubrik.name %>
-</p>
 
-<p>
-  <b>Desc:</b>
   <%= @rubrik.desc %>
 </p>
-
-<p>
-  <b>Prio:</b>
-  <%= @rubrik.prio %>
-</p>
-
-<b>Moderatoren:</b>
+<b>Moderatoren:</b><i>
 <% @moderatoren.each do |m|%>
-<%= m.email%>
-<% end%>
+<%= m.email%>,
+<% end%></i>
+</span>
+</div>
 
+<% @rubrik.neuigkeiten.each_slice(2) do |row| %>
+<div class="row-fluid">
+<% row.each do |neuigkeit| %>
+<div class="span6 min-width:13em;">
+<%= render neuigkeit %>
+</div>
+<% end %>
+</div>
+<% end %>
+
+
+<div class="row-fluid">
+<span class="span12">
 <%= semantic_form_for @rubrik, :url=> url_for(:action => 'addmoderator',:id=>@rubrik.id) do |f| %>
 <%= f.inputs do %>
-<%= f.input :moderator, :as => :select, :collection => Hash[User.all.map{|b| [b.email,b.id]}] ,:label=>"Hinzufügen"%>
-		<% end %>
-		<%= f.action :submit %>
-	<% end %>
+<%= f.input :moderator, :as => :select, :collection => Hash[User.all.map{|b| [b.email,b.id]}] ,:label=>"Hinzufuegen"%>
+<% end %>
+<%= f.action :submit %>
+<% end %>
 
 <%= link_to 'Edit', edit_rubrik_path(@rubrik) %> |
 <%= link_to 'Back', rubriken_path %>
+</span></div>
