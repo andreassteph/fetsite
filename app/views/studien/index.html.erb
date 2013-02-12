@@ -1,30 +1,13 @@
 <h1><%= I18n.t("studien.list") %></h1>
 
-<table class="table-striped">
-  <tr>
-    <th>Zahl</th>
-    <th>Name</th>
-    <th>Desc</th>
-    <th>Typ</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @studien.each do |studium| %>
 
-  <tr>
-    <td><%= studium.zahl %></td>
-    <td><%= studium.name %></td>
-  
-    <td><%= studium.typ %></td>
-    <td><%= link_to 'Show', studium_path(studium) %></td>
-    <td><%= link_to 'Edit', edit_studium_path(studium) %></td>
-    <td><%= link_to 'Destroy', studium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
 
+    <h2><%= link_to studium.zahl + " "+ studium.typ+" " + studium.name, studium_path(studium) %></h2>
+  
 <% end %>
-</table>
+
 
 <br />
 
