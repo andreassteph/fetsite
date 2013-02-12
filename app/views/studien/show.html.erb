@@ -1,28 +1,13 @@
-
+<div class="container-fluid">
 <p id="notice"><%= notice %></p>
 <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
   <%= raw(@studium.desc) %>
-<% [1, 2 ,3].each do |ph| %>
 
-	<% ph_mod = @studium.modulgruppen.where(:phase=>ph)
-	if ph_mod.count==1 
-		width=12
-		slice=1
-	elsif ph_mod.count <= 4 
-		width=6
-		slice=2
-	else 
-		width=4
-		slice=3
-	end
-	
-	
-	%>
-
-<% ph_mod.each_slice(slice) do |row| %>
+<% @studienphasen.each do |sp| %>
+<% sp[:modulgruppen].each do |row| %>
 <div class="row-fluid">
 <% row.each do |modulgruppe| %>
-<div class="span<%= width%> min-width:13em;">
+<div class="span<%= sp[:width]%> min-width:13em;">
 <%= render modulgruppe %>
 </div>
 <% end %>
@@ -31,8 +16,9 @@
 <% end %>
 </div>
  <div class="row-fluid">
-<div class="span12">
-<%= link_to 'New Modulgruppe', new_studium_modulgruppe_path(@studium) %> |
-<%= link_to 'Edit', edit_studium_path(@studium) %> |
+<span class="span12">
+<%= link_to 'New Modulgruppe', new_studium_modulgruppe_path(@studium),:class=>"btn" %> |
+<%= link_to I18n.t("common.edit"), edit_studium_path(@studium) ,:class=>"btn"%> |
 <%= link_to '<i class="icon-list"></i> Alle Studien'.html_safe, studien_path,:class=>"btn",:raw=>true %>
+</span>
 </div></div>

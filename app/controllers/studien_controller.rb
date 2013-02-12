@@ -6,11 +6,24 @@ class StudienController < ApplicationController
   end
 
   def show
-      @studium= Studium.find(params[:id])  
- end
+    @studium= Studium.find(params[:id])
+    @studienphasen=[]
+   [1, 2 ,3].each do |ph| 
+     modulgruppen_phase=@studium.modulgruppen.where(:phase=>ph)
 
-  # GET /studia/new
-  # GET /studia/new.json
+     if modulgruppen_phase.count==1 
+      opts={:width=>12, :slice=>1}
+     elsif modulgruppen_phase.count <= 4 
+      opts={:width=>6, :slice=>2}
+     else 
+      opts={:width=>4, :slice=>3}
+     end  
+     modulgruppen =[]
+    modulgruppen_phase.each_slice(opts[:slice]) do |s| modulgruppen<<s end
+    @studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
+  end
+ end
+ 
   def new
     @studium = Studium.new
   end
