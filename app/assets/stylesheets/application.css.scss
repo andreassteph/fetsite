@@ -12,7 +12,7 @@
  *= require_tree .
  *  require 'bootstrap'
  */
-
+$linkColor: #03006E;
 @import 'bootstrap';
 @import 'bootstrap-responsive';
 h1 
@@ -24,7 +24,7 @@ body,html
 
 div.header 
 {display: block; 
-background: url('/assets/fet_logo_2.png') rgb(200,200,200) no-repeat;
+background: url('/assets/fet_logo_3.png') rgb(129,97,51) no-repeat;
 background-position:15px center; 
 height:60px; 
 padding-left:160px;
