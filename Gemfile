@@ -6,7 +6,7 @@ gem 'rails', '3.2.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'execjs'
+gem 'execjs', '~>1.4.0' 
 
 
 # Gems used only for assets and not required
@@ -14,7 +14,7 @@ gem 'execjs'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-gem 'bootstrap-sass','~> 2.2.0'
+  gem 'bootstrap-sass','~> 2.2.0'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
    gem 'therubyracer', :platforms => :ruby
 
@@ -40,16 +40,24 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 # Formbuilder for easier form generation
-gem 'formtastic'
+gem 'formtastic', '~>2.2.1'
 gem 'formtastic-bootstrap'
-gem "tinymce-rails"
+gem "tinymce-rails" , '>=3.5.8'
 
-gem "globalize3"
+# Internationalisierung
+gem "globalize3"  ,'~>0.3.0'
 
-gem "paper_trail"
+# Version controll
+gem "paper_trail" , '>=2.7.0'
 
-gem "devise"
+# User management
+gem "devise" ,'~>2.2.3'
 
+# Roles for users
 gem "rolify"
 
+# Abilities
 gem "cancan"
+
+# Fileupload
+gem 'paperclip' ,'~>3.4.0'
