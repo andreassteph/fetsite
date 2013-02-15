@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @beispiel.name %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @beispiel.desc %>
+  <%= @beispiel.file.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_beispiel_path(@beispiel) %> |
+<%= link_to 'Back', beispiele_path %>

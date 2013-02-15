@@ -23,4 +23,6 @@ inflect.singular 'modulgruppen', 'modulgruppe'
 inflect.irregular 'modulgruppe', 'modulgruppen'
 inflect.plural 'rubrik', 'rubriken'
 inflect.singular 'rubriken', 'rubrik'
+inflect.plural 'beispiel', 'beispiele'
+inflect.singular 'beispiele', 'beispiel'
 end

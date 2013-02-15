@@ -16,5 +16,7 @@
 <p>
   <%= @lva.desc %>
 </p>
+<% @lva.beispiele.each do |beispiel| %>
+<%= link_to beispiel.name, beispiel.file.url %>
 
-
+<% end%>

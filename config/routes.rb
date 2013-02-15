@@ -2,6 +2,9 @@ Fetsite::Application.routes.draw do
 
 
 
+  resources :beispiele
+
+
   devise_for :users
 scope '(:locale)/admin' do
 resources :users

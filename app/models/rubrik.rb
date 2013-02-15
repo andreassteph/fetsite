@@ -9,7 +9,5 @@ def moderator
    end
 end
 
-def moderator=(id)
-User.find(id).add_role(:newsmoderator, self)
-end
+
 end

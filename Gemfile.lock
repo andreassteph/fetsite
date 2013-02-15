@@ -35,6 +35,7 @@ GEM
       sass (~> 3.2)
     builder (3.0.4)
     cancan (1.6.9)
+    cocaine (0.4.2)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -77,6 +78,12 @@ GEM
     paper_trail (2.7.0)
       activerecord (~> 3.0)
       railties (~> 3.0)
+    paperclip (3.4.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.4.0)
+      mime-types
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -142,17 +149,18 @@ DEPENDENCIES
   bootstrap-sass (~> 2.2.0)
   cancan
   coffee-rails (~> 3.2.1)
-  devise
-  execjs
-  formtastic
+  devise (~> 2.2.3)
+  execjs (~> 1.4.0)
+  formtastic (~> 2.2.1)
   formtastic-bootstrap
-  globalize3
+  globalize3 (~> 0.3.0)
   jquery-rails
-  paper_trail
+  paper_trail (>= 2.7.0)
+  paperclip (~> 3.4.0)
   rails (= 3.2.9)
   rolify
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer
-  tinymce-rails
+  tinymce-rails (>= 3.5.8)
   uglifier (>= 1.0.3)
