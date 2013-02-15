@@ -61,4 +61,4 @@ gem "cancan"
 
 # Fileupload
 gem 'paperclip' ,'~>3.4.0'
-gem 'git''
+gem 'git'
