@@ -8,6 +8,7 @@ Fetsite::Application.routes.draw do
   devise_for :users
 scope '(:locale)/admin' do
 resources :users
+get 'config',:controller=>:config,:action=>:index
 end
 
 
@@ -27,11 +28,7 @@ end
     resources :neuigkeiten
     resources :rubriken
 
-
-
 put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
-
-
     resources :home
 
 

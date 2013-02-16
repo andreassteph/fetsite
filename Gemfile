@@ -5,19 +5,18 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-gem 'execjs', '~>1.4.0' 
+  gem 'sqlite3'
+  gem 'execjs', '~>1.4.0' 
 
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass','~> 2.2.0'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-   gem 'therubyracer', :platforms => :ruby
-
+  gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -39,9 +38,11 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+
 # Formbuilder for easier form generation
 gem 'formtastic', '~>2.2.1'
 gem 'formtastic-bootstrap'
+# TinyMCE
 gem "tinymce-rails" , '>=3.5.8'
 
 # Internationalisierung
@@ -61,4 +62,6 @@ gem "cancan"
 
 # Fileupload
 gem 'paperclip' ,'~>3.4.0'
+
+# Git
 gem 'git'

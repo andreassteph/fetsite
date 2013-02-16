@@ -1,8 +1,14 @@
+<ul class="breadcrumb">
+<li>
+<%= link_to "Admin" , :controller =>"config" , :action => "index"%>
+</li>
+</ul>
 <table class="table">
 	<% @users.each do |user|%>
-<tr>
-	<th>
-	<%= user.email %></th><td><ul>
+<tr><th>Name</th><th>E-Mail</th><th>Rollen</th>
+</tr><tr><td></td>
+	<td>
+	<%= user.email %></td><td><ul>
 	<% user.roles.each do |role| %>
 	<li><%= role.name%></li>
 <% end %></ul></td>
