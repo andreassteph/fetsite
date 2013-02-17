@@ -61,11 +61,7 @@ gem "rolify"
 gem "cancan"
 
 # Fileupload
-<<<<<<< HEAD
+
 gem 'paperclip' ,'~>3.4.0'
 
-# Git
 gem 'git'
-=======
-gem 'paperclip' ,'~>3.4.0'
->>>>>>> parent of 1085698... add GIT gem

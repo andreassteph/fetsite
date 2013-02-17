@@ -4,7 +4,8 @@ class ConfigController < ApplicationController
   end
   def get_git_update
     g = Git.open(".")
-    flash[:notice] =g.remote("github").fetch
-    redirect_to url_for(:action => 'index', :controller => 'config')
+    flash[:notice] =g.status
+#    flash[:notice] =g.remote("github").fetch
+   redirect_to config_url
   end
 end
