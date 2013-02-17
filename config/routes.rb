@@ -5,10 +5,13 @@ Fetsite::Application.routes.draw do
   resources :beispiele
 
 
-  devise_for :users
+devise_for :users
 scope '(:locale)/admin' do
 resources :users
 get 'config',:controller=>:config,:action=>:index
+#get 'config/get_git_update',:controller=>:config,:action=>:get_git_update
+
+
 end
 
 

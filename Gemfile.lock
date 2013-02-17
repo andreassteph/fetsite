@@ -56,6 +56,7 @@ GEM
     formtastic-bootstrap (2.0.0)
       formtastic (~> 2.2)
       formtastic-bootstrap
+    git (1.2.5)
     globalize3 (0.3.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -153,6 +154,7 @@ DEPENDENCIES
   execjs (~> 1.4.0)
   formtastic (~> 2.2.1)
   formtastic-bootstrap
+  git
   globalize3 (~> 0.3.0)
   jquery-rails
   paper_trail (>= 2.7.0)
