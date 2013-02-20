@@ -24,7 +24,7 @@ body,html
 
 div.header 
 {display: block; 
-background: url('/assets/fet_logo_3.png') rgb(129,97,51) no-repeat;
+background: url('/assets/fet_logo_3.png') rgb(205,204,226) no-repeat;
 background-position:15px center; 
 height:60px; 
 padding-left:160px;
@@ -32,4 +32,9 @@ padding-top:0px;
 overflow:hidden
 }
 
+#menudiv
+{
+
+   width:100%;
+}
 

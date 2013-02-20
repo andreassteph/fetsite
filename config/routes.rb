@@ -35,7 +35,7 @@ devise_for :users
     resources :neuigkeiten
     resources :rubriken
 
-put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
+    put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
     resources :home
 
 

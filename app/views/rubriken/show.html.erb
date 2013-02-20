@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+w<p id="notice"><%= notice %></p>
 <div class="row-fluid">
 <span class="span12">
   <h1><%= @rubrik.name %></h1>
@@ -35,5 +35,6 @@
 <% end %>
 
 <%= link_to 'Edit', edit_rubrik_path(@rubrik) %> |
-<%= link_to 'Back', rubriken_path %>
+<%= link_to 'Back', rubriken_path %> | 
+<%= link_to 'Destroy', @rubrik, method: :delete, data: { confirm: 'Are you sure?' } %>
 </span></div>

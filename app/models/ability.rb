@@ -29,13 +29,17 @@ class Ability
     # Remove this line in production environment and for testing user management
     can :manage, :all     
     
-    # Rechteverwaltung für Studien Modul
+    # Rechteverwaltung fï¿½r Studien Modul
     can :read, Modulgruppe
     if user.has_role? "newsadmin"
       can :manage, Modulgruppe
       can :addmoderator, Modulgruppe
       can :addmoderator, Rubrik
     end
+
+
+    # Rechteverwaltung fuer Neuigkeiten
+    can :write, Neuigkeit if user.has_role?("newsmoderator", Neuigkeit.rubrik)
 
   end
 end

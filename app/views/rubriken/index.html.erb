@@ -1,26 +1,18 @@
-<h1>Listing rubriken</h1>
+<h1><%= I18n.t("rubriken.title")%></h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Desc</th>
-    <th>Prio</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @rubriken.each do |rubrik| %>
-  <tr>
-    <td><%= rubrik.name %></td>
-    <td><%= rubrik.desc %></td>
-    <td><%= rubrik.prio %></td>
-    <td><%= link_to 'Show', rubrik %></td>
-    <td><%= link_to 'Edit', edit_rubrik_path(rubrik) %></td>
-    <td><%= link_to 'Destroy', rubrik, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+
+    <%=
+    html="<b>".html_safe + rubrik.name + "</b> <br>".html_safe + rubrik.desc + "<br>".html_safe
+    
+    link_to( html , rubrik )%>
+   
+
 <% end %>
-</table>
+
+
 
 <br />
 
