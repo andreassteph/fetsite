@@ -36,6 +36,7 @@ devise_for :users
     resources :rubriken
 
     put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
+    get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
     resources :home
 
 

@@ -1,4 +1,11 @@
-w<p id="notice"><%= notice %></p>
+
+<ul class="breadcrumb">
+<li>
+<%= link_to "Neuigkeiten"  , rubriken_path%> <span class="divider">/</span></li>
+<li><%= link_to @rubrik.name , rubrik_path(@rubrik)%></li>
+
+</ul>
+<p id="notice"><%= notice %></p>
 <div class="row-fluid">
 <span class="span12">
   <h1><%= @rubrik.name %></h1>
@@ -27,14 +34,8 @@ w<p id="notice"><%= notice %></p>
 
 <div class="row-fluid">
 <span class="span12">
-<%= semantic_form_for @rubrik, :url=> url_for(:action => 'addmoderator',:id=>@rubrik.id) do |f| %>
-<%= f.inputs do %>
-<%= f.input :moderator, :as => :select, :collection => Hash[User.all.map{|b| [b.email,b.id]}] ,:label=>"Hinzufuegen"%>
-<% end %>
-<%= f.action :submit %>
-<% end %>
+<%= link_to 'Verwalten', verwalten_rubrik_path(@rubrik) %> |
 
-<%= link_to 'Edit', edit_rubrik_path(@rubrik) %> |
 <%= link_to 'Back', rubriken_path %> | 
 <%= link_to 'Destroy', @rubrik, method: :delete, data: { confirm: 'Are you sure?' } %>
 </span></div>

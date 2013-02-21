@@ -63,7 +63,10 @@ class RubrikenController < ApplicationController
       end
     end
   end
-
+  def verwalten
+  @rubrik = Rubrik.find(params[:id])
+  @moderatoren=User.with_role(:newsmoderator,@rubrik)
+  end
   # DELETE /rubriken/1
   # DELETE /rubriken/1.json
   def destroy
