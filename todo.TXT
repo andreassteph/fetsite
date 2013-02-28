@@ -53,3 +53,6 @@ Versionsverfolgung
 Tiny MCE
 http://rubydoc.info/gems/tinymce-rails/3.5.8/frames
 integrieren
+
+
+Gollum WIKI Controller schreiben

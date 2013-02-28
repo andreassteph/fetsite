@@ -31,15 +31,15 @@ class Ability
     
     # Rechteverwaltung f�r Studien Modul
     can :read, Modulgruppe
-    if user.has_role? "newsadmin"
-      can :manage, Modulgruppe
-      can :addmoderator, Modulgruppe
-      can :addmoderator, Rubrik
-    end
+    can :manage, Modulgruppe
 
 
+ 
     # Rechteverwaltung fuer Neuigkeiten
-    can :write, Neuigkeit if user.has_role?("newsmoderator", Neuigkeit.rubrik)
+   if user.has_role? "newsadmin"
+      can :addmoderator, Rubrik
+    end    
+  #  can :write, Neuigkeit if user.has_role?("newsmoderator", Neuigkeit.rubrik)
 
   end
 end

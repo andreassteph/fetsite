@@ -1,5 +1,5 @@
 <div style="border: solid 1px; padding:2px;margin-top:5px;"><p>
-  <b><%= link_to "Modul "+ modul.name , modul_path(modul) %> </b>
+  <b><% if !modul.name.nil? %><%= link_to "Modul "+ modul.name , modul_path(modul) %> <%end%></b>
 </p>
 <p >
   <%= raw(modul.desc) %>
