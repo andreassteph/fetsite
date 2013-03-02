@@ -67,6 +67,9 @@ class RubrikenController < ApplicationController
   @rubrik = Rubrik.find(params[:id])
   @moderatoren=User.with_role(:newsmoderator,@rubrik)
   end
+  def alle_verwalten
+  @rubriken =Rubrik.all
+  end
   # DELETE /rubriken/1
   # DELETE /rubriken/1.json
   def destroy
@@ -74,4 +77,6 @@ class RubrikenController < ApplicationController
     @rubrik.destroy
     redirect_to rubriken_url
   end
+
+
 end

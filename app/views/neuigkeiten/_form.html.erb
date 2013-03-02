@@ -1,11 +1,14 @@
+<%= tinymce_assets %>
 <%= semantic_form_for @neuigkeit do |f| %>
   <%= f.inputs do %>
     <%= f.input :title, :placeholder=>"Titel" %>
-    <%= f.input :text %>
+    <%= f.input :text, :as=>:tinymce_text %>
     <%= f.input :datum %>
+    <%= f.input :rubrik, :as=>:radio, :colleciton=>Rubrik.all %>
   <% end %>
 
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>
   <% end %>
 <% end %>
+<%= tinymce %>

@@ -39,7 +39,7 @@ class Ability
 
 
     # Rechteverwaltung fuer Neuigkeiten
-    can :write, Neuigkeit if user.has_role?("newsmoderator", Neuigkeit.rubrik)
+#    can :write, Neuigkeit if user.has_role?("newsmoderator", Neuigkeit.rubrik)
 
   end
 end

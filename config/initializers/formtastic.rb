@@ -7,7 +7,7 @@
 # Formtastic::FormBuilder.default_text_area_height = 5
 
 # Set the default text area width when input is a text. Default is nil.
-# Formtastic::FormBuilder.default_text_area_width = 50
+ Formtastic::FormBuilder.default_text_area_width = 50
 
 # Should all fields be considered "required" by default?
 # Defaults to true.

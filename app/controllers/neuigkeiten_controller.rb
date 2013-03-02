@@ -12,8 +12,9 @@ class NeuigkeitenController < ApplicationController
 
   def new
     @neuigkeit = Neuigkeit.new
-
-  end
+    @rubrik=Rubrik.find(params[:rubrik_id])
+    @neuigkeit.rubrik=@rubrik
+ end
 
 
   def edit

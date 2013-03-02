@@ -1,6 +1,7 @@
+<h1><%= @rubrik.name %></h1>
  <p id="notice"><%= notice %></p>
+<%= render :partial=>'admin_liste', :locals=>{:rubriken => [@rubrik]} %>
  
- <h1><%= @rubrik.name %></h1>
 <table class="table">
 <b>Moderatoren:</b><i>
 <% @moderatoren.each do |m|%>

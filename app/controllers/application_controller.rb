@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
     end
   end
   def default_url_options
-    {locale: I18n.locale}
+    {locale: I18n.locale, host:"128.131.95.212"}
   end
 end

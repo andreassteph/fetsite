@@ -2,27 +2,28 @@ Fetsite::Application.routes.draw do
 
 
 
-  resources :beispiele
-
-
-  devise_for :users
-
-scope '(:locale)/admin' do
-resources :users
-get 'config',:controller=>:config,:action=>:index , :as => 'config'
-get 'config/get_git_update',:controller=>:config,:action=>:get_git_update, :as=>'config_getgitupdate'
-
-
-get 'config/get_git_update',:controller=>:config,:action=>:get_git_update
+ 	 resources :beispiele
+	devise_for :users
+	resources :home, :only=>[:index]
+	#get 'home',:controller=>home,:action=>:index,:as=>"home_index"
+	scope '(:locale)/admin' do
+	resources :users
+	get 'config',:controller=>:config,:action=>:index , :as => 'config'
+	get 'config/get_git_update',:controller=>:config,:action=>:get_git_update, :as=>'config_getgitupdate'
+	get 'config/get_git_update',:controller=>:config,:action=>:get_git_update
 
 
 end
 
 devise_for :users
 
-
-  scope '(:locale)' do
-    
+resources :pages, :except => [:index] do
+	member do
+	post 'preview'
+	end
+end
+get 'pages', :to =>'pages#show'
+scope '(:locale)' do
     resources :studien, :only=>[:show,:new,:edit,:update,:destroy]
     resources :modulgruppen,:only =>[:create,:index]
     resources :studien,:except=>[:show,:new,:edit,:update,:destroy], :shallow=>true do 
@@ -31,10 +32,12 @@ devise_for :users
     resources :semesters
     resources :moduls
     resources :lvas
-    
     resources :neuigkeiten
-    resources :rubriken
+    get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
 
+    resources :rubriken do
+    resources :neuigkeiten, :only=>[:new, :show]
+    end
     put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
     get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
     resources :home
@@ -91,6 +94,7 @@ devise_for :users
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
    root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
