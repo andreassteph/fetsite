@@ -12,3 +12,5 @@
 
 
 <%= link_to 'Add LVA', new_lva_path(:modul_id =>@modul.id) %>
+<%= link_to '<i class="icon-pencil"></i>'.html_safe+ I18n.t("common.edit") , edit_modul_path(@modul) %>
+<%= link_to "Loeschen", [@modul],:method=>:delete ,:data => {:confirm =>"Are you sure" } %>
