@@ -1,0 +1,8 @@
+<table class="table">
+<% rubriken.each do |r| %>
+<% r.neuigkeiten.each do |n| %>
+<tr>
+<td><%= r.name %></td><td><%= n.title %></td></tr>
+<% end 
+end %>
+</table>
