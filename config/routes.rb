@@ -40,7 +40,8 @@ scope '(:locale)' do
     end
     put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
     get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
-    resources :home
+    resources :home, :only=>[:index]
+    get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
 
 
  end

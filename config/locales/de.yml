@@ -4,8 +4,7 @@ de:
   hello: "Hallo Welt"
   common:
     edit: "Bearbeiten"
-    actions: "Aktionen"
-    
+    actions: "Aktionen"    
   studien:
     list: "Studien der Fakultät Elektrotechnik"
     new: "Neues Studium"
@@ -22,11 +21,15 @@ de:
     
   home:
     mtitle: "Menu"
-    hallobeiderfet: "Du bist auf er Seite der Fachschaft Elektrotechnik der TU Wien"
+    willkommen: "Willkommen bei der Fachschaft Elektrotechnik"
+    hallobeiderfet: "auf der Seite der Fachschaft Elektrotechnik an der TU Wien. Wir sind die offizielle Vertretung aller Studierenden auf der Fakultät für Elektrotechnik und Informationstechnik. Wir vertreten eure Interessen in den offiziellen Gremien der Universität. Wir sind bemüht euch in Anliegen des Studiums bestmöglich zu unterstützen und beraten. Außerdem bieten wir ein Rahmenprogramm zum Studium in Form von Veranstaltungen und Festln. Wir freuen uns über Feedback und Anregungen, insbesondere von jenen, die gleich Nägel mit Köpfen machen und unser Team verstärken wollen oder ihre Themen und Meinungen in eine unserer Sitzungen einbringen möchten."
     home: "Startseite"
     studien: "Studien"
     news: "Neuigkeiten"
     info: "Information"
+  
+  rubriken:
+    title: "Neuigkeiten und aktuelle Infos"
   rubrik:
     moderatoradded: "Neuen Moderator hinzugefügt!"
     moderatoraddnorights: "Keine Berechtigung neue Moderatoren hinzuzufügen!"
