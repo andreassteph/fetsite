@@ -68,7 +68,7 @@ class ModulsController < ApplicationController
 
     respond_to do |format|
       if @modul.update_attributes(params[:modul])
-        format.html { redirect_to @modul, notice: 'Modul was successfully updated.' }
+        format.html { redirect_to modul_path(@modul), notice: 'Modul was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,11 +80,13 @@ class ModulsController < ApplicationController
   # DELETE /moduls/1
   # DELETE /moduls/1.json
   def destroy
+    
     @modul = Modul.find(params[:id])
+    modulgruppe=@modul.modulgruppen.first
     @modul.destroy
 
 
-    redirect_to moduls_path() 
+    redirect_to modulgruppe_path(modulgruppe) 
     
   end
 end

@@ -8,7 +8,7 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
  # config.mailer = "Devise::Mailer"
-    config.mailer.default_url_options = { :host => 'localhost:3000' }  
+    config.mailer.default_url_options = { :host => 'glonass.htu.tuwien.ac.at' }  
   config.mailer.delivery_method = :sendmail
 #  config.mailer.smtp_settings = {
 #  :address              => "smtp.gmail.com",
