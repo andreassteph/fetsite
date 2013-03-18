@@ -1,5 +1,5 @@
 class StudienController < ApplicationController
-
+  
   def index
     @studien = Studium.all
    
@@ -10,7 +10,6 @@ class StudienController < ApplicationController
     @studienphasen=[]
    [1, 2 ,3].each do |ph| 
      modulgruppen_phase=@studium.modulgruppen.where(:phase=>ph)
-
      if modulgruppen_phase.count==1 
       opts={:width=>12, :slice=>1}
      elsif modulgruppen_phase.count <= 4 
@@ -21,6 +20,7 @@ class StudienController < ApplicationController
      modulgruppen =[]
     modulgruppen_phase.each_slice(opts[:slice]) do |s| modulgruppen<<s end
     @studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
+    toolbar_elements=[ link_to('<i class="icon-plus"'.html_safe + I18n.t('studien.new') , new_modul_path)]
   end
  end
  

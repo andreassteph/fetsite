@@ -1,7 +1,9 @@
-<h1>Listing moduls</h1>
+<h1>Alle Module der Elektrotechnik</h1>
 
-<table>
+<table class="table" >
   <tr>
+    <th>Studium</th>
+    <th>Modulgruppe</th>
     <th>Name</th>
     <th>Desc</th>
     <th></th>
@@ -11,6 +13,10 @@
 
 <% @moduls.each do |modul| %>
   <tr>
+    <td><%= %></td>
+    <td><%= if !modul.modulgruppen.first.nil? 
+modul.modulgruppen.first[:name] 
+end %> </td>
     <td><%= modul.name %></td>
     <td><%= modul.desc %></td>
     <td><%= link_to 'Show', modul_path(modul) %></td>
