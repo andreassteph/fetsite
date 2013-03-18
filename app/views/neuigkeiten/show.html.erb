@@ -1,20 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @neuigkeit.title %>
-</p>
-
-<p>
-  <b>Text:</b>
-  <%= @neuigkeit.text %>
-</p>
-
+<%= render @neuigkeit %>
 <p>
   <b>Datum:</b>
   <%= @neuigkeit.datum %>
 </p>
 
 
-<%= link_to 'Edit', edit_neuigkeit_path(@neuigkeit) %> |
-<%= link_to 'Back', neuigkeiten_path %>
+<% elements=[link_to('Edit', edit_neuigkeit_path(@neuigkeit))]
+ elements << link_to('Back', rubrik_path(@neuigkeit.rubrik)) %>
+<%= toolbar_html (elements) %>
