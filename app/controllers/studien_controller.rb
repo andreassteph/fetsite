@@ -20,8 +20,10 @@ class StudienController < ApplicationController
      modulgruppen =[]
     modulgruppen_phase.each_slice(opts[:slice]) do |s| modulgruppen<<s end
     @studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
-    toolbar_elements=[ link_to('<i class="icon-plus"'.html_safe + I18n.t('studien.new') , new_modul_path)]
-  end
+    @toolbar_elements=[{:text => '<i class="icon-plus"></i> '.html_safe  + I18n.t('studien.new') , :path => new_modul_path() }]
+    @toolbar_elements<<{:text => '<i class="icon-pencil"></i> '.html_safe + I18n.t('common.edit'),:path=>edit_studium_path(@studium)}
+    #@toolbar_elements<<{:text ='<i class="icon-cross"></i> '.html_safe +I18n.t('common.delete'),path => delete_studium_path(@studium)}
+ end
  end
  
   def new

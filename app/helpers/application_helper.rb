@@ -9,7 +9,7 @@ module ApplicationHelper
   def toolbar_html(elemente)
     html = ""
     	elemente.each do |e| 
-	html =html + e + " | "
+	html = html + link_to(e[:text],e[:path]) + " | "
 	end 
     #html= html + "</ul>"
     raw(html)
