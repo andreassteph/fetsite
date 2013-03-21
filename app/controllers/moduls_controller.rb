@@ -68,7 +68,7 @@ class ModulsController < ApplicationController
 
     respond_to do |format|
       if @modul.update_attributes(params[:modul])
-        format.html { redirect_to modul_path(@modul), notice: 'Modul was successfully updated.' }
+        format.html { redirect_to url_for(@modul), notice: 'Modul was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

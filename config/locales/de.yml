@@ -7,6 +7,7 @@ de:
     actions: "Aktionen"    
   studien:
     list: "Studien der Fakultät Elektrotechnik"
+    anzeigen: "Studium anzeigen"
     new: "Neues Studium"
     newmodulgroup: "Neue Modulgruppe"
     allestudien: "Alle Studien"
