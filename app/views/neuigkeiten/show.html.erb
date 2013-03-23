@@ -1,11 +1,14 @@
+<ul class="breadcrumb">
+<li><%= link_to "Neuigkeiten", rubriken_path %></li>
+<li><span class="divider">/</span></li>
+<li><%= link_to @neuigkeit.rubrik.name , rubrik_path(@neuigkeit.rubrik) %> </li>
+</ul>
 <p id="notice"><%= notice %></p>
+
 <%= render @neuigkeit %>
 <p>
   <b>Datum:</b>
   <%= @neuigkeit.datum %>
 </p>
 
-
-<% elements=[link_to('Edit', edit_neuigkeit_path(@neuigkeit))]
- elements << link_to('Back', rubrik_path(@neuigkeit.rubrik)) %>
-<%= toolbar_html (elements) %>
+<%= toolbar_html (@toolbar_elements) %>

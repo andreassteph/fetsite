@@ -8,10 +8,41 @@ module ApplicationHelper
   end
   def toolbar_html(elemente)
     html = ""
-    	elemente.each do |e| 
-	html = html + link_to(e[:text],e[:path]) + " | "
-	end 
-    #html= html + "</ul>"
+    limiter = " | "
+ 	elemente.each do |e| 
+		if !e[:icon].nil?
+			case e[:icon]
+			when :pencil
+			text = '<i class="icon-pencil"></i>'.html_safe + e[:text]
+			when :plus
+			text ='<i class="icon-plus"></i>'.html_safe+e[:text]
+			else
+			text = e[:text]
+			end
+		else
+			text =e[:text]
+		end
+        	if e[:link].nil? 
+		if !e[:method].nil?
+			if !e[:confirm].nil?
+			html = html + link_to(text,e[:path],:confirm=>e[:confirm],:method=>e[:method])
+			else
+			html = html + link_to(text,e[:path],:method => e[:method])
+			end
+		else
+			if !e[:confirm].nil?
+			html=html + link_to(text,e[:path],:confirm=>e[:confirm])
+			else
+			html= html + link_to(text,e[:path])
+			end
+
+		end 
+		else
+		html = html + e[:link]
+		end
+		
+    		html=html+limiter
+	end
     raw(html)
-  end
+ end
 end

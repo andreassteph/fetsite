@@ -1,5 +1,5 @@
 class NeuigkeitenController < ApplicationController
-
+ before_filter {@toolbar_elements=[]}
   def index
     @neuigkeiten = Neuigkeit.all
   end
@@ -7,7 +7,9 @@ class NeuigkeitenController < ApplicationController
 
   def show
     @neuigkeit = Neuigkeit.find(params[:id])
-
+    if can? :edit, @neuigkeit
+	@toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_neuigkeit_path(@neuigkeit),:icon=>:pencil}
+    end
   end
 
   def new
