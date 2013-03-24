@@ -5,18 +5,24 @@
 <span class="divider">/</span></li>
 <li><%= link_to g.name , modulgruppe_path(g)%><span class="divider">/</span></li>
 <li><%= link_to modul.name , modul_path(modul)%></li>
-<%end%>
+<% end %>
 </ul>
-<%end%>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 <p>  <%= @lva.lvanr %>
   <b>
-  <%= @lva.name %> (<%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std)</b><%= link_to image_tag('edit.png'), edit_lva_path(@lva) %> |
+  <%= @lva.name %> 
+<%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std</b>
+<%= link_to image_tag('edit.png'), edit_lva_path(@lva.id) %> |
 </p>
 <p>
   <%= @lva.desc %>
 </p>
-<% @lva.beispiele.each do |beispiel| %>
-<%= link_to beispiel.name, beispiel.file.url %>
+<%= @lva.objective %>
+<%= # @lva.teachingContent %>
+<%  @lva.beispiele.each do |beispiel| %>
+<%= # link_to beispiel.name, beispiel.file.url %>
 
-<% end%>
+<%  end
+end %>

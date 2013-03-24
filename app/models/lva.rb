@@ -28,9 +28,12 @@ end
    begin 
    @hash=Hash.from_xml(open(url).read)["tuvienna"]
   @person=[] 
-#  @person = @hash["course"]["lecturers"]["oid"]
+  if @hash["course"]["lecturers"]["oid"].is_a? String
+  @person = @hash["course"]["lecturers"]["oid"]
+  else
   @hash["course"]["lecturers"]["oid"].each do |pid|
     @person << Hash.from_xml(open("https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/" + pid.to_s + ".xml").read)["tuvienna"]["person"]
+  end
   end
  rescue OpenURI::HTTPError => e
    end 

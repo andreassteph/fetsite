@@ -11,10 +11,15 @@ link_to "Modul "+name , modul_path(modul) %> </b>
   <%= raw(modul.desc) %>
 </p>
 LVAs: 
+
 <ul>
-<% modul.lvas.each do |lva| %>
-<li><%= link_to lva.lvanr+" "+ lva.name, lva %></li>
+
+<% modul.lvas.each do |lv| %>
+<li>
+<%= link_to  lv.name.to_s, lva_path(lv.id)  %>
+</li>
 <% end %>
+
 </ul>
 
 <% # @toolbar_elements << {:icon=>:pencil,:text=>I18n.t("common.edit"),:path=> edit_modul_path(modul)} %>
