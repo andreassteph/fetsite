@@ -66,6 +66,6 @@ gem 'paperclip' ,'~>3.4.0'
 
 gem 'git'
 gem 'haml'
-gem 'RedCloth'
-gem 'gollum'
+#gem 'RedCloth'
+#gem 'gollum'
 gem 'awesome_nested_set'
