@@ -4,7 +4,8 @@ de:
   hello: "Hallo Welt"
   common:
     edit: "Bearbeiten"
-    actions: "Aktionen"    
+    actions: "Aktionen"
+    delete: "Löschen"    
   studien:
     list: "Studien der Fakultät Elektrotechnik"
     anzeigen: "Studium anzeigen"
