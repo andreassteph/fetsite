@@ -1,17 +1,16 @@
 class LvasController < ApplicationController
   # GET /lvas
-
+ before_filter {@toolbar_elements =[]} 
   def index
     @lvas = Lva.all
-
+    
   end
 
   # GET /lvas/1
 
   def show
     @lva = Lva.find(params[:id])
-
-
+    @toolbar_elements<<{:icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)}
   end
 
   # GET /lvas/new

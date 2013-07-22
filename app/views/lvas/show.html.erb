@@ -10,19 +10,13 @@
 <% end %>
 
 <p id="notice"><%= notice %></p>
-<p>  <%= @lva.lvanr %>
-  <b>
-  <%= @lva.name %> 
-<%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std</b>
-<%= link_to image_tag('edit.png'), edit_lva_path(@lva.id) %> |
+<p>
+	<%= @lva.lvanr %>
+	<b><%= @lva.name %> <%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std</b>
+	
 </p>
 <p>
   <%= @lva.desc %>
 </p>
-<%= @lva.objective %>
-<%= # @lva.teachingContent %>
-<%  @lva.beispiele.each do |beispiel| %>
-<%= # link_to beispiel.name, beispiel.file.url %>
 
-<%  end
-end %>
+<%= toolbar_html(@toolbar_elements) %>
