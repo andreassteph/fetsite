@@ -30,11 +30,12 @@ de:
     news: "Neuigkeiten"
     info: "Information"
   
-  rubriken:
-    title: "Neuigkeiten und aktuelle Infos"
   rubrik:
+    title: "Neuigkeiten und aktuelle Infos"
     moderatoradded: "Neuen Moderator hinzugefügt!"
     moderatoraddnorights: "Keine Berechtigung neue Moderatoren hinzuzufügen!"
+    new: "Neue Rubrik"
+    edit: "Rubrik bearbeiten"
   formtastic:
     titles:
       modul: 
