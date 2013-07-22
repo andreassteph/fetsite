@@ -1,2 +1,2 @@
-module LvasHelper
+module LvasHelper # :nodoc:
 end

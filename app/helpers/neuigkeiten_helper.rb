@@ -1,2 +1,2 @@
-module NeuigkeitenHelper
+module NeuigkeitenHelper # :nodoc:
 end
