@@ -15,7 +15,7 @@
   <tr>
     <td><%= modulgruppe.typ %></td>
     <td><%= modulgruppe.phase %></td>
-    <td><%= modulgruppe.studium.name %></td>
+    <td><%= modulgruppe.studium.name unless modulgruppe.studium.nil? %></td>
     <td><%= modulgruppe.name %></td>
     <td><%= link_to 'Show', modulgruppe %></td>
     <td><%= link_to 'Edit', edit_modulgruppe_path(modulgruppe) %></td>
