@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module ApplicationHelper - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>helpers/application_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-current_url">#current_url</a>
+    
+    <li><a href="#method-i-switch_locale_url">#switch_locale_url</a>
+    
+    <li><a href="#method-i-toolbar_html">#toolbar_html</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Beispiel.html">Beispiel</a>
+  
+    <li><a href="./BeispieleController.html">BeispieleController</a>
+  
+    <li><a href="./BeispieleHelper.html">BeispieleHelper</a>
+  
+    <li><a href="./ConfigController.html">ConfigController</a>
+  
+    <li><a href="./Confirmmailer.html">Confirmmailer</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./Lva.html">Lva</a>
+  
+    <li><a href="./LvasController.html">LvasController</a>
+  
+    <li><a href="./Modul.html">Modul</a>
+  
+    <li><a href="./Modulgruppe.html">Modulgruppe</a>
+  
+    <li><a href="./ModulgruppenController.html">ModulgruppenController</a>
+  
+    <li><a href="./ModulgruppenHelper.html">ModulgruppenHelper</a>
+  
+    <li><a href="./ModulsController.html">ModulsController</a>
+  
+    <li><a href="./ModulsHelper.html">ModulsHelper</a>
+  
+    <li><a href="./Neuigkeit.html">Neuigkeit</a>
+  
+    <li><a href="./NeuigkeitenController.html">NeuigkeitenController</a>
+  
+    <li><a href="./PagesHelper.html">PagesHelper</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./Rubrik.html">Rubrik</a>
+  
+    <li><a href="./RubrikenController.html">RubrikenController</a>
+  
+    <li><a href="./RubrikenHelper.html">RubrikenHelper</a>
+  
+    <li><a href="./Semester.html">Semester</a>
+  
+    <li><a href="./SemestersController.html">SemestersController</a>
+  
+    <li><a href="./SemestersHelper.html">SemestersHelper</a>
+  
+    <li><a href="./StudienController.html">StudienController</a>
+  
+    <li><a href="./StudienHelper.html">StudienHelper</a>
+  
+    <li><a href="./Studium.html">Studium</a>
+  
+    <li><a href="./StudmodsHelper.html">StudmodsHelper</a>
+  
+    <li><a href="./TinymceTextInput.html">TinymceTextInput</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ApplicationHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-current_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_url</span><span
+            class="method-args">(overwrite={})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="current_url-source">
+            <pre><span class="ruby-comment"># File helpers/application_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_url</span>(<span class="ruby-identifier">overwrite</span>={})
+  <span class="ruby-identifier">url_for</span>  <span class="ruby-value">:params</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">overwrite</span>).<span class="ruby-identifier">except</span>(<span class="ruby-value">:controller</span>,<span class="ruby-value">:action</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- current_url-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- current_url-method -->
+
+    
+      <div id="method-i-switch_locale_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">switch_locale_url</span><span
+            class="method-args">(target_locale)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="switch_locale_url-source">
+            <pre><span class="ruby-comment"># File helpers/application_helper.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">switch_locale_url</span>(<span class="ruby-identifier">target_locale</span>)
+  <span class="ruby-identifier">current_url</span>({<span class="ruby-value">:locale=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">target_locale</span>}) .<span class="ruby-identifier">sub</span> <span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-constant">I18n</span>.<span class="ruby-identifier">locale</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;/&quot;</span>, <span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">target_locale</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;/&quot;</span>
+ 
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- switch_locale_url-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- switch_locale_url-method -->
+
+    
+      <div id="method-i-toolbar_html" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">toolbar_html</span><span
+            class="method-args">(elemente)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="toolbar_html-source">
+            <pre><span class="ruby-comment"># File helpers/application_helper.rb, line 9</span>
+ <span class="ruby-keyword">def</span> <span class="ruby-identifier">toolbar_html</span>(<span class="ruby-identifier">elemente</span>)
+   <span class="ruby-identifier">html</span> = <span class="ruby-string">&quot;&quot;</span>
+   <span class="ruby-identifier">limiter</span> = <span class="ruby-string">&quot; | &quot;</span>
+       <span class="ruby-identifier">elemente</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> 
+               <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">e</span>[<span class="ruby-value">:icon</span>].<span class="ruby-identifier">nil?</span>
+                       <span class="ruby-keyword">case</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">:icon</span>]
+                       <span class="ruby-keyword">when</span> <span class="ruby-value">:pencil</span>
+                       <span class="ruby-identifier">text</span> = <span class="ruby-string">'&lt;i class=&quot;icon-pencil&quot;&gt;&lt;/i&gt;'</span>.<span class="ruby-identifier">html_safe</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">:text</span>]
+                       <span class="ruby-keyword">when</span> <span class="ruby-value">:plus</span>
+                       <span class="ruby-identifier">text</span> =<span class="ruby-string">'&lt;i class=&quot;icon-plus&quot;&gt;&lt;/i&gt;'</span>.<span class="ruby-identifier">html_safe</span><span class="ruby-operator">+</span><span class="ruby-identifier">e</span>[<span class="ruby-value">:text</span>]
+                       <span class="ruby-keyword">else</span>
+                       <span class="ruby-identifier">text</span> = <span class="ruby-identifier">e</span>[<span class="ruby-value">:text</span>]
+                       <span class="ruby-keyword">end</span>
+               <span class="ruby-keyword">else</span>
+                       <span class="ruby-identifier">text</span> =<span class="ruby-identifier">e</span>[<span class="ruby-value">:text</span>]
+               <span class="ruby-keyword">end</span>
+               <span class="ruby-keyword">if</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">:link</span>].<span class="ruby-identifier">nil?</span> 
+               <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">e</span>[<span class="ruby-value">:method</span>].<span class="ruby-identifier">nil?</span>
+                       <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">e</span>[<span class="ruby-value">:confirm</span>].<span class="ruby-identifier">nil?</span>
+                       <span class="ruby-identifier">html</span> = <span class="ruby-identifier">html</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">text</span>,<span class="ruby-identifier">e</span>[<span class="ruby-value">:path</span>],<span class="ruby-value">:confirm=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>[<span class="ruby-value">:confirm</span>],<span class="ruby-value">:method=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>[<span class="ruby-value">:method</span>])
+                       <span class="ruby-keyword">else</span>
+                       <span class="ruby-identifier">html</span> = <span class="ruby-identifier">html</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">text</span>,<span class="ruby-identifier">e</span>[<span class="ruby-value">:path</span>],<span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">:method</span>])
+                       <span class="ruby-keyword">end</span>
+               <span class="ruby-keyword">else</span>
+                       <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">e</span>[<span class="ruby-value">:confirm</span>].<span class="ruby-identifier">nil?</span>
+                       <span class="ruby-identifier">html</span>=<span class="ruby-identifier">html</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">text</span>,<span class="ruby-identifier">e</span>[<span class="ruby-value">:path</span>],<span class="ruby-value">:confirm=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">e</span>[<span class="ruby-value">:confirm</span>])
+                       <span class="ruby-keyword">else</span>
+                       <span class="ruby-identifier">html</span>= <span class="ruby-identifier">html</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">link_to</span>(<span class="ruby-identifier">text</span>,<span class="ruby-identifier">e</span>[<span class="ruby-value">:path</span>])
+                       <span class="ruby-keyword">end</span>
+
+               <span class="ruby-keyword">end</span> 
+               <span class="ruby-keyword">else</span>
+               <span class="ruby-identifier">html</span> = <span class="ruby-identifier">html</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>[<span class="ruby-value">:link</span>]
+               <span class="ruby-keyword">end</span>
+               
+               <span class="ruby-identifier">html</span>=<span class="ruby-identifier">html</span><span class="ruby-operator">+</span><span class="ruby-identifier">limiter</span>
+       <span class="ruby-keyword">end</span>
+   <span class="ruby-identifier">raw</span>(<span class="ruby-identifier">html</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- toolbar_html-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- toolbar_html-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
