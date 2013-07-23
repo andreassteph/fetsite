@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: modulgruppen
+#
+#  id         :integer          not null, primary key
+#  typ        :string(255)
+#  phase      :integer
+#  name       :string(255)
+#  desc       :text
+#  studium_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Modulgruppe < ActiveRecord::Base
   attr_accessible :name, :phase, :typ,:desc, :studium_id
   belongs_to :studium, :foreign_key => "studium_id"

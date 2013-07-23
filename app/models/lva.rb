@@ -1,4 +1,19 @@
-##
+# == Schema Information
+#
+# Table name: lvas
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  desc        :text
+#  ects        :decimal(, )
+#  lvanr       :string(255)
+#  stunden     :decimal(, )
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  modul_id    :integer
+#  semester_id :integer
+#
+# == Information
 # Author:: Andreas Stephanides
 # License:: GPL
 # Dieses Model repräsentiert eine LVA. Die notwendigen Informationen können mit TISS (dem Online System der TU Wien) synchronisiert werden

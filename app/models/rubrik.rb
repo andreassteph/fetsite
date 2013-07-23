@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: rubriken
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  desc       :text
+#  prio       :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Rubrik < ActiveRecord::Base
   attr_accessible :desc, :name, :prio
   has_many :neuigkeiten, :class_name => "Neuigkeit"

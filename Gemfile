@@ -69,3 +69,4 @@ gem 'haml'
 #gem 'RedCloth'
 #gem 'gollum'
 gem 'awesome_nested_set'
+gem 'annotate', ">=2.5.0"
