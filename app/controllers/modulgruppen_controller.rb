@@ -44,9 +44,9 @@ class ModulgruppenController < ApplicationController
   def create
     @modulgruppe = Modulgruppe.new(params[:modulgruppe])
    if !params[:studium_id].nil?
-      @studium=Studium.find(params[:studium_id]) 
+      @studium=Studium.find_by_id(params[:studium_id]) 
     else
-      @studium=Studium.find(params[:modulgruppe][:studium_id]) 
+      @studium=Studium.find_by_id(params[:modulgruppe][:studium_id]) 
    end
     respond_to do |format|
       if @modulgruppe.save
