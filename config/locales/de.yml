@@ -20,6 +20,7 @@ de:
     typ: "Typ"
     addmodul: "Neues Modul hinzufügen"
     studium: "Studium"
+    new: "Neue Modulgruppe"
     
   home:
     mtitle: "Menu"
@@ -49,3 +50,18 @@ de:
           name: "Name"
           desc: "Beschreibung"
           depend: "Voraussetzungen"
+  activerecord:
+    errors:
+      models:
+        modulgruppe:
+          attributes:
+            studium_id:
+              blank: "Bitte wählen Sie ein Studium aus"
+            typ:
+              inclusion: "Bitte wählen Sie einen Typ aus"
+            phase:
+              not_a_number: "Die Phase muss eine Nummer sein"            
+              inclusion: "Bitte wählen sie eine gültige Zahl für die Phase"
+            name:
+              blank: "Bitte geben sie einen Namen ein"
+              taken: "Der Name ist schon vergeben (Hier ist ein Bug)"
