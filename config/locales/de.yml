@@ -15,12 +15,18 @@ de:
   modul:
     edit: 
       title: "Bearbeite Modul"
+    show:
+      title: "Auflistung aller Module"
+      link: "Alle Module auflisten"
       
   modulgruppe:
     typ: "Typ"
     addmodul: "Neues Modul hinzufügen"
     studium: "Studium"
     new: "Neue Modulgruppe"
+    show: 
+      title: "Auflistung aller Modulgruppen"
+      link: "Modulgruppen auflisten"
     
   home:
     mtitle: "Menu"
@@ -65,3 +71,16 @@ de:
             name:
               blank: "Bitte geben sie einen Namen ein"
               taken: "Der Name ist schon vergeben (Hier ist ein Bug)"
+        lva:
+          attributes:
+            modul: 
+              blank: "Wählen Sie zumindest ein Modul aus"
+            name:
+              blank: "Geben Sie bitte den Namen der LVA an"
+            ects:
+              blank: "Geben Sie die ECTS der LVA an"
+            stunden:
+              blank: "Geben Sie die Stunden der LVA an"
+            lvanr:
+              invalid: "Geben Sie eine LVA-Nummer in richtigem Format an. Wenn die LVA noch keine Nummer hat, so geben sie 000 an."
+

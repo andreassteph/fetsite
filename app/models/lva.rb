@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 #
 # Table name: lvas
@@ -24,9 +25,12 @@ class Lva < ActiveRecord::Base
 
   translates :desc,  :fallbacks_for_empty_translations => true
   
-  validates :lvanr, :presence=>true; # LVA Nr vorhanden?
-  validates :ects, :presence=>true;  # ECTS vorhanden?
-
+  validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]$/} # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht existent
+  
+  validates_presence_of :ects  # ECTS vorhanden?
+  validates_presence_of :name # Name Eingetragen?
+  validates_presence_of :stunden # Stunden Eingetragen?
+  validates_presence_of :modul # Zugehöriges Modul eingetragen? (zumindest eines)
 private
 
 ##

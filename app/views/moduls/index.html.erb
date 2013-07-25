@@ -1,9 +1,8 @@
-<h1>Alle Module der Elektrotechnik</h1>
+<h1><%= I18n.t("modul.show.title") %></h1>
 
 <table class="table" >
   <tr>
-    <th>Studium</th>
-    <th>Modulgruppe</th>
+    <th>Modulgruppe (Studium)</th>
     <th>Name</th>
     <th>Desc</th>
     <th></th>
@@ -11,12 +10,19 @@
     <th></th>
   </tr>
 
-<% @moduls.each do |modul| %>
+<% @moduls.sort_by{|n| n[:name]}.each do |modul| %>
   <tr>
-    <td><%= %></td>
-    <td><%= if !modul.modulgruppen.first.nil? 
-modul.modulgruppen.first[:name] 
-end %> </td>
+  <td>  
+    <%modul.modulgruppen.sort_by{|n| n[:name]}.each do |m|%> 
+    
+    
+    <%=m.name unless m.nil? %> (<%=m.studium.name unless m.studium.nil? %>)
+    <!-- Modulgruppenname falls existiert    (Studium falls existiert) -->
+    <br>
+    <% end %>
+
+   </td>
+ 
     <td><%= modul.name %></td>
     <td><%= modul.desc %></td>
     <td><%= link_to 'Show', modul_path(modul) %></td>
@@ -27,6 +33,7 @@ end %> </td>
 </table>
 
 <br />
-<% if !@studium.nil? %>
+<% #if !@studium.nil? %>
 <%= link_to 'New Modul', new_modul_path() %>
-<% end%>
+<% #end%>
+

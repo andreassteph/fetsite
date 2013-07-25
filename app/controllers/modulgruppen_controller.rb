@@ -5,19 +5,20 @@ class ModulgruppenController < ApplicationController
   load_and_authorize_resource
   def index
     @modulgruppen = Modulgruppe.all
- if !params[:studium_id].nil?
-  @studium=Studium.find(params[:studium_id])
-  end
-
+    if !params[:studium_id].nil?
+      @studium=Studium.find(params[:studium_id])
+    else
+      @studium=Studium.first
+    end
   end
 
   # GET /modulgruppen/1
 
   def show
     @modulgruppe = Modulgruppe.find(params[:id])
- if !params[:studium_id].nil?
-  @studium=Studium.find(params[:studium_id])
-  end
+    if !params[:studium_id].nil?
+      @studium=Studium.find(params[:studium_id])
+    end
 
   end
 
@@ -25,9 +26,15 @@ class ModulgruppenController < ApplicationController
 
   def new
     @modulgruppe = Modulgruppe.new
- if !params[:studium_id].nil?
-  @studium=Studium.find(params[:studium_id])
-  end
+    if !params[:studium_id].nil?
+      @studium=Studium.find(params[:studium_id])
+    else
+      @studium=Studium.first
+    end
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @modulgruppe }
+    end
 
   end
 
@@ -35,26 +42,26 @@ class ModulgruppenController < ApplicationController
   def edit
     @modulgruppe = Modulgruppe.find(params[:id])
     if !params[:studium_id].nil?
-  @studium=Studium.find(params[:studium_id])
-  end
+      @studium=Studium.find(params[:studium_id])
+    end
   end
 
   # POST /modulgruppen
 
   def create
     @modulgruppe = Modulgruppe.new(params[:modulgruppe])
-   if !params[:studium_id].nil?
+    if !params[:studium_id].nil?
       @studium=Studium.find_by_id(params[:studium_id]) 
     else
       @studium=Studium.find_by_id(params[:modulgruppe][:studium_id]) 
-   end
+    end
     respond_to do |format|
       if @modulgruppe.save
         format.html { redirect_to @modulgruppe, notice: 'Modulgruppe was successfully created.' }
 
       else
         format.html { render action: "new" }
-       
+        
       end
     end
   end
@@ -66,10 +73,10 @@ class ModulgruppenController < ApplicationController
     respond_to do |format|
       if @modulgruppe.update_attributes(params[:modulgruppe])
         format.html { redirect_to @modulgruppe, notice: 'Modulgruppe was successfully updated.' }
-       
+        
       else
         format.html { render action: "edit" }
- 
+        
       end
     end
   end

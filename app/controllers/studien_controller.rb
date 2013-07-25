@@ -5,6 +5,8 @@ class StudienController < ApplicationController
   def index
     @studien = Studium.all
     @toolbar_elements<<{:icon =>:plus, :text=> I18n.t('studien.new') ,:path=>new_studium_path }
+    @toolbar_elements<<{:text=> I18n.t('modulgruppe.show.link') ,:path=>modulgruppen_path }
+    @toolbar_elements<<{:text=> I18n.t('modul.show.link') ,:path=>moduls_path }
  end
 
   def show
