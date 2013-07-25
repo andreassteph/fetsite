@@ -3,7 +3,7 @@
 
 FactoryGirl.define do  
   factory :studium do
-    zahl  "066 506"
+    zahl  "066.506"
     name  "Automatisierung"
     desc  "TEST DESC"
     typ "Master"
