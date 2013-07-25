@@ -5,10 +5,11 @@ class ModulgruppenController < ApplicationController
   load_and_authorize_resource
   def index
     @modulgruppen = Modulgruppe.all
- if !params[:studium_id].nil?
+  if !params[:studium_id].nil?
   @studium=Studium.find(params[:studium_id])
+  else
+  @studium=Studium.first
   end
-
   end
 
   # GET /modulgruppen/1
@@ -25,9 +26,15 @@ class ModulgruppenController < ApplicationController
 
   def new
     @modulgruppe = Modulgruppe.new
- if !params[:studium_id].nil?
+  if !params[:studium_id].nil?
   @studium=Studium.find(params[:studium_id])
+  else
+  @studium=Studium.first
   end
+  respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @modulgruppe }
+    end
 
   end
 
