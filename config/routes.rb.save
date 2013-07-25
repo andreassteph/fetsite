@@ -2,7 +2,7 @@ Fetsite::Application.routes.draw do
 
 
 
- 	 resources :beispiele
+ 	 
 	devise_for :users
 	resources :home, :only=>[:index]
 	#get 'home',:controller=>home,:action=>:index,:as=>"home_index"
@@ -39,6 +39,7 @@ scope '(:locale)' do
     put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
     get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
     resources :home
+    resources :beispiele
 
 
  end
