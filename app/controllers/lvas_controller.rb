@@ -9,7 +9,7 @@ class LvasController < ApplicationController
   # GET /lvas/1
 
   def show
-    @lva = Lva.find(params[:id])
+    @lva = Lva.find_by_id(params[:id])
     @toolbar_elements<<{:icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)}
   end
 

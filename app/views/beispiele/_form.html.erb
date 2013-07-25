@@ -2,7 +2,8 @@
   <%= f.inputs do %>
     <%= f.input :name %>
     <%= f.input :desc %>
-    <%= f.input :file , :as=>:file %>
+    <%= f.file_field :beispieldatei %>
+    <%= f.hidden_field :beispieldatei_cache %>
     <%= f.input :lva, :as=>:radio, :collection => Lva.all%>
   <% end %>
 

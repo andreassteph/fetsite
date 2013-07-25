@@ -3,14 +3,15 @@ class ModulsController < ApplicationController
   # GET /moduls.json
   def index
    @moduls = Modul.all
-   if !params[:studium_id].nil?
-   @studium=Studium.find(params[:studium_id])
-   end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @moduls }
+   if @moduls
+    if !params[:studium_id].nil?
+     @studium=Studium.find_by_id(params[:studium_id])
+     end
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @moduls }
+      end
     end
-
   end
 
   # GET /moduls/1

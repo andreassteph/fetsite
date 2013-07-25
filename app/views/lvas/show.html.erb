@@ -18,5 +18,11 @@
 <p>
   <%= @lva.desc %>
 </p>
+<ul>
+<% @lva.beispiele.each do |b|%>
 
+<li><%= render b%></li>
+
+<% end %>
+</ul>
 <%= toolbar_html(@toolbar_elements) %>
