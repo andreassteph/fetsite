@@ -5,16 +5,12 @@ class CreateBeispiele < ActiveRecord::Migration
       t.text  :desc
       t.integer :lva_id
       t.timestamps
+      t.string :beispieldatei
     end
-    add_attachment :beispiele, :file
-    Beispiel.create_translation_table!({
-      :desc => :text,
-    })
-    add_column :beispiel_translations, :beispiele_id, :integer
-    remove_column :beispiel_translations, :beispiel_id
+    
   end
   def down
-    Beispiel.drop_translation_table! #:migrate_data => true
+    # Beispiel.drop_translation_table! #:migrate_data => true
     drop_table :beispiele
     
   end
