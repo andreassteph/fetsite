@@ -15,3 +15,8 @@
 /log/*.log
 /tmp
 /config/initializers/devise.rb
+
+/console
+/server
+/public/uploads/
+*~
