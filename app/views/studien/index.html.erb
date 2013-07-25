@@ -1,7 +1,7 @@
 <h1><%= I18n.t("studien.list") %></h1>
 
 
-<% @studien.each do |studium| %>
+<% @studien.sort_by{|z| z[:zahl]}.each do |studium| %>
 
 
     <h2><%= link_to studium.zahl + " "+ studium.typ+" " + studium.name, studium_path(studium) %></h2>

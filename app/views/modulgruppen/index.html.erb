@@ -11,7 +11,7 @@
     <th></th>
   </tr>
 
-<% @modulgruppen.each do |modulgruppe| %>
+<% @modulgruppen.sort_by{|n| n[:name]}.each do |modulgruppe| %>
   <tr>
     <td><%= modulgruppe.typ %></td>
     <td><%= modulgruppe.phase %></td>

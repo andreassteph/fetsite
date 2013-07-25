@@ -10,10 +10,10 @@
     <th></th>
   </tr>
 
-<% @moduls.each do |modul| %>
+<% @moduls.sort_by{|n| n[:name]}.each do |modul| %>
   <tr>
   <td>  
-    <%modul.modulgruppen.each do |m|%> 
+    <%modul.modulgruppen.sort_by{|n| n[:name]}.each do |m|%> 
     
     
     <%=m.name unless m.nil? %> (<%=m.studium.name unless m.studium.nil? %>)
