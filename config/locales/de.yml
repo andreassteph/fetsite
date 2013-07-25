@@ -27,7 +27,9 @@ de:
     show: 
       title: "Auflistung aller Modulgruppen"
       link: "Modulgruppen auflisten"
-    
+  neuigkeit:
+    new:
+      title: "Neue Neuigkeit"
   home:
     mtitle: "Menu"
     willkommen: "Willkommen bei der Fachschaft Elektrotechnik"
