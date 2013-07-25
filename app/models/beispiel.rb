@@ -16,8 +16,7 @@
 
 class Beispiel < ActiveRecord::Base
   has_paper_trail
-  attr_accessible :desc, :name, :file, :lva_id
-  has_attached_file :file
+  attr_accessible :desc, :name, :lva_id, :beispieldatei, :beispieldatei_cache
   belongs_to :lva
-  translates :desc,  :fallbacks_for_empty_translations => true
+  mount_uploader :beispieldatei, BeispieldateiUploader
 end
