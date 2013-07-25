@@ -1,4 +1,4 @@
-<h1>Listing modulgruppen</h1>
+<h1><%= I18n.t("modulgruppe.show.title")%></h1>
 
 <table>
   <tr>
@@ -11,7 +11,7 @@
     <th></th>
   </tr>
 
-<% @modulgruppen.each do |modulgruppe| %>
+<% @modulgruppen.sort_by{|n| n[:name]}.each do |modulgruppe| %>
   <tr>
     <td><%= modulgruppe.typ %></td>
     <td><%= modulgruppe.phase %></td>
@@ -24,7 +24,7 @@
 <% end %>
 </table>
 
-<br />
+<br>
 <% if !@studium.nil? %>
-<%= link_to 'New Modulgruppe', new_modulgruppe_path %>
+<%= link_to 'New Modulgruppe', new_studium_modulgruppe_path(@studium) %>
 <% end%>

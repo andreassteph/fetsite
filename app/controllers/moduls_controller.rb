@@ -4,12 +4,13 @@ class ModulsController < ApplicationController
   def index
    @moduls = Modul.all
    if !params[:studium_id].nil?
-  @studium=Studium.find(params[:studium_id])
-  end
+   @studium=Studium.find(params[:studium_id])
+   end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @moduls }
     end
+
   end
 
   # GET /moduls/1
@@ -27,8 +28,10 @@ class ModulsController < ApplicationController
   # GET /moduls/new.json
   def new
     @modul = Modul.new
-    modulgruppe=Modulgruppe.find(params[:modulgruppen_id])
-    @modul.modulgruppen<<modulgruppe
+    modulgruppe=Modulgruppe.find_by_id(params[:modulgruppen_id])
+    if !modulgruppe.nil?
+		@modul.modulgruppen<<modulgruppe 
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @modul }
