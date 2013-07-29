@@ -2,11 +2,11 @@ class ModulsController < ApplicationController
   # GET /moduls
   # GET /moduls.json
   def index
-   @moduls = Modul.all
-   if @moduls
-    if !params[:studium_id].nil?
-     @studium=Studium.find_by_id(params[:studium_id])
-     end
+    @moduls = Modul.all
+    if @moduls
+      if !params[:studium_id].nil?
+        @studium=Studium.find_by_id(params[:studium_id])
+      end
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @moduls }
@@ -19,7 +19,7 @@ class ModulsController < ApplicationController
   def show
     @modul = Modul.find(params[:id])
 
-      respond_to do |format|
+    respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @modul }
     end
@@ -31,7 +31,7 @@ class ModulsController < ApplicationController
     @modul = Modul.new
     modulgruppe=Modulgruppe.find_by_id(params[:modulgruppen_id])
     if !modulgruppe.nil?
-		@modul.modulgruppen<<modulgruppe 
+      @modul.modulgruppen<<modulgruppe 
     end
     respond_to do |format|
       format.html # new.html.erb
@@ -42,27 +42,27 @@ class ModulsController < ApplicationController
   # GET /moduls/1/edit
   def edit
     @modul = Modul.find(params[:id])
-     if !params[:studium_id].nil?
-  @studium=Studium.find(params[:studium_id])
-  end
+    if !params[:studium_id].nil?
+      @studium=Studium.find(params[:studium_id])
+    end
   end
 
   # POST /moduls
   # POST /moduls.json
   def create
     @modul = Modul.new(params[:modul])
-   
     
-   respond_to do |format|
-     if @modul.save
+    
+    respond_to do |format|
+      if @modul.save
         format.html { redirect_to modulgruppe_path(@modul.modulgruppen.first), notice: 'Modul was successfully created.' }
         format.json { render json: @modul, status: :created, location: @modul }
-     else
+      else
         format.html { render action: "new" }
         format.json { render json: @modul.errors, status: :unprocessable_entity }
-     end
-     end
-   
+      end
+    end
+    
   end
 
   # PUT /moduls/1
