@@ -17,10 +17,10 @@
 
 class Lva < ActiveRecord::Base
   has_paper_trail # Versionsverfolgung
-  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids
-  
+  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids
   has_and_belongs_to_many :modul # Gehört zu einem Modul
-  has_and_belongs_to_many :semester # Gehört zu einem Semester( derzeit nicht implementiert)
+  has_and_belongs_to_many :semester
+  #Gehört zu einem Semester( derzeit nicht implementiert)
   has_many :beispiele , :class_name => "Beispiel"
 
   translates :desc,  :fallbacks_for_empty_translations => true

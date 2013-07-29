@@ -1,5 +1,6 @@
 <%= semantic_form_for @lva do |f| %>
   <%= f.inputs do %>
+    <%= f.input :semester, :collection=>Semester.all.sort_by{|n| [:name]}%>
     <%= f.input :modul %> 
     <%= f.input :name %>
     <%= f.input :ects %>

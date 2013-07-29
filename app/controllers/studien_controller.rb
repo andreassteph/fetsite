@@ -7,23 +7,35 @@ class StudienController < ApplicationController
     @toolbar_elements<<{:icon =>:plus, :text=> I18n.t('studien.new') ,:path=>new_studium_path }
     @toolbar_elements<<{:text=> I18n.t('modulgruppe.show.link') ,:path=>modulgruppen_path }
     @toolbar_elements<<{:text=> I18n.t('modul.show.link') ,:path=>moduls_path }
- end
+  end
 
   def show
     @studium= Studium.find(params[:id])
+    @sem = params[:sem]
+    if @sem.nil?
+      @sem = 'true'
+    end
+    if @sem == 'true'
+      @change = 'false'
+    else
+      @change = 'true'
+    end
+       
+    
+    
     @studienphasen=[]
     [1, 2 ,3].each do |ph| 
-     	modulgruppen_phase=@studium.modulgruppen.where(:phase=>ph)
-     	if modulgruppen_phase.count==1 
-      		opts={:width=>12, :slice=>1}
-     	elsif modulgruppen_phase.count <= 4 
-      		opts={:width=>6, :slice=>2}
-     	else 
-      		opts={:width=>4, :slice=>3}
-     	end  
-     	modulgruppen =[]
+      modulgruppen_phase=@studium.modulgruppen.where(:phase=>ph)
+      if modulgruppen_phase.count==1 
+        opts={:width=>12, :slice=>1}
+      elsif modulgruppen_phase.count <= 4 
+        opts={:width=>6, :slice=>2}
+      else 
+        opts={:width=>4, :slice=>3}
+      end  
+      modulgruppen =[]
     	modulgruppen_phase.each_slice(opts[:slice]) do |s| 
-    	modulgruppen<<s 
+    	modulgruppen<<s #
     	end
     	@studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
     end    
@@ -32,7 +44,6 @@ class StudienController < ApplicationController
     @toolbar_elements<<{:text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>"Sure?" }
  end
 
- 
   def new
     @studium = Studium.new
   end
@@ -45,6 +56,7 @@ class StudienController < ApplicationController
 
   def create
     @studium = Studium.new(params[:studium])
+    Semester.batch_add @studium.name, @studium.typ, @studium.semester
     respond_to do |format|
       if @studium.save
         format.html { redirect_to url_for(@studium), notice: 'Studium was successfully created.' }

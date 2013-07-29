@@ -13,8 +13,9 @@
 #
 
 class Studium < ActiveRecord::Base
-  attr_accessible :desc, :name, :typ, :zahl
+  attr_accessible :desc, :name, :typ, :zahl, :semester
   has_many :modulgruppen, inverse_of: :studium, :class_name => "Modulgruppe"
+  has_many :semester, :dependent => :destroy
   
   validates :typ, :inclusion => {:in => ["Bachelor","Master"] }
   validates :name, :uniqueness => true, :presence=>true
