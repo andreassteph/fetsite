@@ -5,12 +5,12 @@
 <% @studium.semester.each do |sem| %>
   <div class="row-fluid">
     <% if sem.nummer > 0 %>
-    <h2><%= sem.nummer.to_s + ". Semester" %></h2>
+      <h2><%= sem.nummer.to_s + ". Semester" %></h2>
     <% else %>
     <h2> Ohne Zuordnung </h2>
     <% end %>
     <div class="span<%= sem[:width]%> min-width:13em;">
-      <%= render :partial=>'lvas/lva_semester', :collection=>sem.lvas.sort_by{|n| [:name]}, :as=>:lva%>
+      <ul><%= render :partial=>'lvas/lva_semester', :collection=>sem.lvas.sort_by{|n| n[:name]}, :as=>:lva%></ul>
     </div>
 <% end %>
 </div>

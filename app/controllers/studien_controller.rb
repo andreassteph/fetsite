@@ -41,7 +41,7 @@ class StudienController < ApplicationController
     	end
     	@studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
     end    
-    @toolbar_elements=[{:icon =>:plus ,:text=> I18n.t('studien.new') , :path => new_studium_modulgruppe_path(@studium) }]
+    @toolbar_elements=[{:icon =>:plus ,:text=> I18n.t('studien.new') , :path => new_studium_path(@studium) }]
     @toolbar_elements<<{:icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_studium_path(@studium)}
     @toolbar_elements<<{:text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>"Sure?" }
  end

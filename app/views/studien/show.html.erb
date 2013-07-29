@@ -16,7 +16,6 @@
       <span class="span12">
 	<%= link_to '<i class="icon-plus-sign"></i>'.html_safe+I18n.t("studien.newmodulgroup"), new_studium_modulgruppe_path(@studium),:class=>"btn" %> |
 	<%= link_to '<i class="icon-pencil"></i>'.html_safe+I18n.t("common.edit"), edit_studium_path(@studium) ,:class=>"btn"%>
-	<%= link_to 'Destroy', @studium, method: :delete, data: { confirm: 'Are you sure?' } %>
       </span>
     </div>
 
