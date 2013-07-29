@@ -10,7 +10,7 @@
     <h2> Ohne Zuordnung </h2>
     <% end %>
     <div class="span<%= sem[:width]%> min-width:13em;">
-      <%= render :partial=>'lvas/lva_semester', :collection=>sem.lvas, :as=>:lva%>
+      <%= render :partial=>'lvas/lva_semester', :collection=>sem.lvas.sort_by{|n| [:name]}, :as=>:lva%>
     </div>
 <% end %>
 </div>
