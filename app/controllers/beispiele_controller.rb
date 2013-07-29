@@ -25,7 +25,7 @@ class BeispieleController < ApplicationController
   # GET /beispiele/new.json
   def new
     @beispiel = Beispiel.new
-
+    @beispiel.lva_id = params[:lva_id]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @beispiel }

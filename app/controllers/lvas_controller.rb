@@ -11,14 +11,15 @@ class LvasController < ApplicationController
   def show
     @lva = Lva.find_by_id(params[:id])
     @toolbar_elements<<{:icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)}
+    @toolbar_elements<<{:icon=>:plus, :text => "Neues Beispiel", :path=> new_beispiel_path(:lva_id =>@lva.id)}
   end
 
   # GET /lvas/new
   # GET /lvas/new.json
   def new
     @lva = Lva.new
-    modul=Modul.find(params[:modul_id])
-    @lva.modul<<modul # 
+    modul=Modul.find_by_id(params[:modul_id])
+    @lva.modul<<modul unless modul.nil?
     
   end
 
@@ -31,7 +32,7 @@ class LvasController < ApplicationController
   # POST /lvas.json
   def create
     @lva = Lva.new(params[:lva])
-    Lva.add_semesters(@lva)
+    @lva.add_semesters
     respond_to do |format|
       if @lva.save
         
