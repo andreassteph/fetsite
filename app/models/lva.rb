@@ -31,7 +31,17 @@ class Lva < ActiveRecord::Base
   validates_presence_of :name # Name Eingetragen?
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen? (zumindest eines)
-private
+  def self.add_semesters(l)
+    if l.semester.empty?
+      for m in l.modul
+        for mg in m.modulgruppen
+          l.semester << mg.studium.semester.last
+        end
+      end
+    end
+    
+  end
+  private
 
 ##
 # Lade Daten aus TISS und füge diese in die Datenbank ein. 
