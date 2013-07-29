@@ -1,12 +1,16 @@
 
-    <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
-  </div>
-  <%= raw(@studium.desc) %>
-<% @studium.semester.each do |sem| %>
-<div class="row-fluid">
-<h2><%= sem.nummer.to_s + ". Semester" %></h2>
-	  <div class="span<%= sem[:width]%> min-width:13em;">
-<%= render :partial=>'lvas/lva_semester', :collection=>sem.lvas, :as=>:lva%>
+<h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
 </div>
+<%= raw(@studium.desc) %>
+<% @studium.semester.each do |sem| %>
+  <div class="row-fluid">
+    <% if sem.nummer > 0 %>
+    <h2><%= sem.nummer.to_s + ". Semester" %></h2>
+    <% else %>
+    <h2> Ohne Zuordnung </h2>
+    <% end %>
+    <div class="span<%= sem[:width]%> min-width:13em;">
+      <%= render :partial=>'lvas/lva_semester', :collection=>sem.lvas, :as=>:lva%>
+    </div>
 <% end %>
 </div>

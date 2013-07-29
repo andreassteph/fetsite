@@ -18,7 +18,6 @@ class Semester < ActiveRecord::Base
   belongs_to :studium, :foreign_key => "studium_id"
   validates :name, :presence => true
   validates :nummer, :presence => true
-  validates :ssws, :presence => true
   class << self
     def batch_add(name, type, target)
       if type == "Bachelor"
@@ -38,6 +37,12 @@ class Semester < ActiveRecord::Base
         semester.save
         target << semester
       end
+      semester = Semester.new()
+      semester.name = "Ohne Zuordnung"
+      semester.nummer = 0
+      semester.ssws = "WS"
+      semester.save
+      target << semester
     end
 
     def batch_destroy(studium)
