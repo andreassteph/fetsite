@@ -31,10 +31,10 @@ class LvasController < ApplicationController
   # POST /lvas.json
   def create
     @lva = Lva.new(params[:lva])
-   
+    Lva.add_semesters(@lva)
     respond_to do |format|
       if @lva.save
-        Lva.add_semesters(@lva)
+        
         format.html { redirect_to @lva, notice: 'Lva was successfully created.' }
         
       else

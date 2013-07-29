@@ -32,10 +32,13 @@ class Lva < ActiveRecord::Base
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen? (zumindest eines)
   def self.add_semesters(l)
-    if l.semester.empty?
-      for m in l.modul
-        for mg in m.modulgruppen
-          l.semester << mg.studium.semester.last
+
+    for m in l.modul
+      for mg in m.modulgruppen
+       hits = mg.studium.semester.all.map{|x| x.lvas}.collect{|x| x.find_by_id(l.id)}.compact
+
+        if hits.empty?
+          l.semester << mg.studium.semester.where(:nummer => 0)
         end
       end
     end
