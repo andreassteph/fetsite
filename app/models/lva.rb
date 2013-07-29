@@ -31,14 +31,14 @@ class Lva < ActiveRecord::Base
   validates_presence_of :name # Name Eingetragen?
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen? (zumindest eines)
-  def self.add_semesters(l)
+  def add_semesters
+    # Diese Methode fügt die Instanz automatisch zu allen Studien als "Ohne Semesterempfehlung" (Semester 0) zu, bei denen die Instanz im Studium noch nicht vorkommt.
+    for m in self.modul
+      for mg in m.modulgruppen # Über alle Module und alle Modulgruppen iterieren
+       hits = mg.studium.semester.all.map{|x| x.lvas}.collect{|x| x.find_by_id(self.id)}.compact # Alle einträge in allen semestern mit gleicher LVa-ID suchen und alle nils entfernen
 
-    for m in l.modul
-      for mg in m.modulgruppen
-       hits = mg.studium.semester.all.map{|x| x.lvas}.collect{|x| x.find_by_id(l.id)}.compact
-
-        if hits.empty?
-          l.semester << mg.studium.semester.where(:nummer => 0)
+        if hits.empty? # wurde gar kein eintrag gefunden ?
+          self.semester << mg.studium.semester.where(:nummer => 0) # auf nummer null eintragen
         end
       end
     end
