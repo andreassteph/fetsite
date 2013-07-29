@@ -2,28 +2,24 @@
   <div class="row-fluid">
     <p id="notice"><%= notice %></p>
 
-    <%= link_to '<i class="icon-list"></i>'.html_safe+ I18n.t("studien.allestudien"), studien_path,:raw=>true %>|<%= link_to "Ansicht wechseln", studium_path(@studium, :sem => @change)%>
+    <%= link_to '<i class="icon-list"></i>'.html_safe+ I18n.t("studien.allestudien"), studien_path,:raw=>true %>|<%= link_to "Zu "+@link+ "  wechseln", studium_path(@studium, :sem => @change)%>
+
+    <% if @sem=='false'%>
+      <%= render :partial => "studien/studien", @collection => @studium, :as=>:studium%>
+    <% else %>
+      <%= render :partial =>"studien/semesteransicht", @collection => @studium, :as=>:studium%>
+    <% end %>
+    <br>
 
 
-<%= @sem %>
-<% if @sem=='false'%>
-<% @change = 'true' %>
-<%= render :partial => "studien/studien", @collection => @studium, :as=>:studium%>
-<% else %>
-<%= render :partial =>"studien/semesteransicht", @collection => @studium, :as=>:studium%>
-<% @change = 'false' %>
-<% end %>
-<br>
+    <div class="row-fluid">
+      <span class="span12">
+	<%= link_to '<i class="icon-plus-sign"></i>'.html_safe+I18n.t("studien.newmodulgroup"), new_studium_modulgruppe_path(@studium),:class=>"btn" %> |
+	<%= link_to '<i class="icon-pencil"></i>'.html_safe+I18n.t("common.edit"), edit_studium_path(@studium) ,:class=>"btn"%>
+	<%= link_to 'Destroy', @studium, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </span>
+    </div>
 
 
-  <div class="row-fluid">
-    <span class="span12">
-      <%= link_to '<i class="icon-plus-sign"></i>'.html_safe+I18n.t("studien.newmodulgroup"), new_studium_modulgruppe_path(@studium),:class=>"btn" %> |
-      <%= link_to '<i class="icon-pencil"></i>'.html_safe+I18n.t("common.edit"), edit_studium_path(@studium) ,:class=>"btn"%>
-      <%= link_to 'Destroy', @studium, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </span>
   </div>
-
-
-</div>
-<%= toolbar_html(@toolbar_elements) %>
+  <%= toolbar_html(@toolbar_elements) %>

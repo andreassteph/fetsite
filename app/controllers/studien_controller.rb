@@ -16,8 +16,10 @@ class StudienController < ApplicationController
       @sem = 'true'
     end
     if @sem == 'true'
+      @link = "Modulansicht"
       @change = 'false'
     else
+      @link = "Semesteransicht"
       @change = 'true'
     end
        
