@@ -18,8 +18,8 @@ class LvasController < ApplicationController
   def new
     @lva = Lva.new
     modul=Modul.find(params[:modul_id])
-    @lva.modul<<modul
-   
+    @lva.modul<<modul # 
+    
   end
 
   # GET /lvas/1/edit
@@ -31,14 +31,20 @@ class LvasController < ApplicationController
   # POST /lvas.json
   def create
     @lva = Lva.new(params[:lva])
-  
+    if @lva.semester.nil?
+      for m in @lva.modul
+        for mg in m.modulgruppen
+          @lva.semester << mg.studium.semester.last
+        end
+      end
+    end
     respond_to do |format|
       if @lva.save
         format.html { redirect_to @lva, notice: 'Lva was successfully created.' }
-      
+        
       else
         format.html { render action: "new" }
-      
+        
       end
     end
   end
@@ -47,7 +53,13 @@ class LvasController < ApplicationController
   # PUT /lvas/1.json
   def update
     @lva = Lva.find(params[:id])
-
+    if @lva.semester.nil?
+      for m in @lva.modul
+        for mg in m.modulgruppen
+          @lva.semester << mg.studium.semester.last
+        end
+      end
+      end
     respond_to do |format|
       if @lva.update_attributes(params[:lva])
         format.html { redirect_to @lva, notice: 'Lva was successfully updated.' }
