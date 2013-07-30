@@ -25,10 +25,10 @@ class Lva < ActiveRecord::Base
 
   translates :desc,  :fallbacks_for_empty_translations => true
   
-  validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]$/} # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht existent
-  
+  validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
   validates_presence_of :ects  # ECTS vorhanden?
-  validates_presence_of :name # Name Eingetragen?
+  validates :name, :presence=>true
+  validates :name,  :uniqueness=>true# Name Eingetragen?
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen? (zumindest eines)
   def add_semesters
