@@ -1,6 +1,6 @@
 
 <div class="lva_semester">
-<li><b>  <%= link_to lva.name + " " + lva.lvanr.to_s, lva_path(lva) %> </b><br>
-<%= lva.ects %> ECTS/ <%= lva.stunden %> Std </li>
+  <%= link_to lva.name + " / " + lva.lvanr.to_s, lva_path(lva) %>
+<%= lva.ects %> ECTS/ <%= lva.stunden %> Std <%=  " / " + lva.beispiele.count.to_s + " Beispiele"%> 
 </div class="lva_semester"> 
 <% #toolbar_html(@toolbar_elements) %>

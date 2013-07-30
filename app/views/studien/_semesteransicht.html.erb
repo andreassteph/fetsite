@@ -10,7 +10,11 @@
     <h2> Ohne Zuordnung </h2>
     <% end %>
     <div class="span<%= sem[:width]%> min-width:13em;">
-      <ul><%= render :partial=>'lvas/lva_semester', :collection=>sem.lvas.sort_by{|n| n[:name]}, :as=>:lva%></ul>
+<ul>      
+<% sem.lvas.sort_by{|n| n[:name]}.each do |l| %>
+      <li><%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
+<%end%>
+</ul>
     </div>
 <% end %>
 </div>

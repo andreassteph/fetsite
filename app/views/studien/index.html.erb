@@ -2,12 +2,9 @@
 
 
 <% @studien.sort_by{|z| z[:zahl]}.each do |studium| %>
-<div>
-
-  <h2><%= link_to studium.zahl + " "+ studium.typ+" " + studium.name, studium_path(studium, :sem=>"true") %></h2>
-  (<%= link_to "Modulansicht", studium_path(studium, :sem=>"false") %>)
-  
-</div>  
+<ul>
+<li><%= render studium%></li>
+</ul>
 <% end %>
 
 
