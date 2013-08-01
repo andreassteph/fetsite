@@ -1,5 +1,5 @@
 class StudienController < ApplicationController
- before_filter {@toolbar_elements =[]} 
+  before_filter {@toolbar_elements =[]} 
 
 
   def index
@@ -12,19 +12,12 @@ class StudienController < ApplicationController
 
   def show
     @studium= Studium.find(params[:id])
-    @sem = params[:sem]
+    @sem = 'false'
     if @sem.nil?
       @sem = 'true'
     end
-    if @sem == 'true'
-      @link = "Modulansicht"
-      @change = 'false'
-    else
-      @link = "Semesteransicht"
-      @change = 'true'
-    end
-       
-    
+    @text = 'Zu Semesteransicht wechseln'
+    @path = studium_semesteransicht_path(@studium)
     
     @studienphasen=[]
     [1, 2 ,3].each do |ph| 
@@ -37,15 +30,15 @@ class StudienController < ApplicationController
         opts={:width=>4, :slice=>3}
       end  
       modulgruppen =[]
-    	modulgruppen_phase.each_slice(opts[:slice]) do |s| 
+      modulgruppen_phase.each_slice(opts[:slice]) do |s| 
     	modulgruppen<<s #
-    	end
-    	@studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
+      end
+      @studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
     end    
     @toolbar_elements=[{:icon =>:plus ,:text=> I18n.t('studien.new') , :path => new_studium_path(@studium) }]
     @toolbar_elements<<{:icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_studium_path(@studium)}
     @toolbar_elements<<{:text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>"Sure?" }
- end
+  end
 
   def new
     @studium = Studium.new
@@ -53,8 +46,8 @@ class StudienController < ApplicationController
 
   def edit
     @studium = Studium.find(params[:id])
-	@toolbar_elements=[{:text => I18n.t('studien.anzeigen') , :path => url_for(@studium) }]
-	@toolbar_elements<<{:text =>I18n.t('studien.allestudien'),:path=>studien_path(@studium)}
+    @toolbar_elements=[{:text => I18n.t('studien.anzeigen') , :path => url_for(@studium) }]
+    @toolbar_elements<<{:text =>I18n.t('studien.allestudien'),:path=>studien_path(@studium)}
   end
 
   def create
@@ -73,18 +66,27 @@ class StudienController < ApplicationController
   def update
     @studium = Studium.find(params[:id])
     
-      if @studium.update_attributes(params[:studium])
-         redirect_to url_for(@studium), notice: 'Studium was successfully updated.' 
-      else
-         render action: "edit" 
-  
-      end
+    if @studium.update_attributes(params[:studium])
+      redirect_to url_for(@studium), notice: 'Studium was successfully updated.' 
+    else
+      render action: "edit" 
+      
+    end
     
   end
-
+  def semesteransicht
+    @sem = 'true'
+    @studium = Studium.find(params[:id])
+    if @studium.nil?
+      @studium = Studium.first
+    end
+    @text = 'Zu Modulgruppenansicht wechseln'
+    @path = studium_path(@studium)
+  end
+  
   def destroy
-    	@studium = Studium.find(params[:id])
-    	@studium.destroy
-	redirect_to studien_url
+    @studium = Studium.find(params[:id])
+    @studium.destroy
+    redirect_to studien_url
   end
 end

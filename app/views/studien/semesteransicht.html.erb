@@ -1,0 +1,21 @@
+<%= render :partial=>'studien/navigation'%>
+<div>
+  <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
+  <%= raw(@studium.desc) %>
+  <% @studium.semester.each do |sem| %>
+    <div class="row-fluid">
+      <% if sem.nummer > 0 %>
+	<h2><%= sem.nummer.to_s + ". Semester" %></h2>
+      <% else %>
+	<h2> Ohne Zuordnung </h2>
+      <% end %>
+      <div class="span<%= sem[:width]%> min-width:13em;">
+	<ul>      
+	  <% sem.lvas.sort_by{|n| n[:name]}.each do |l| %>
+	    <li><%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
+	      <%end%>
+	</ul>
+      </div>
+      <% end %>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 <div class="studium">
-<b ><%= link_to studium.name + " " + studium.zahl.to_s, studium_path(studium)%></b>(<%=link_to "Modulgruppenansicht", studium_path(studium, :sem=>'false')%>)<br>
+<b ><%= link_to studium.name + " " + studium.zahl.to_s, studium_semesteransicht_path(studium)%></b>(<%=link_to "Modulgruppenansicht",studium_path(studium) %>)<br>
 <div>
 <b>Typ: </b><%= studium.typ%>
 </div>

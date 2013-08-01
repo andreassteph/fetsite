@@ -19,17 +19,21 @@ Fetsite::Application.routes.draw do
   end
   get 'pages', :to =>'pages#show'
   scope '(:locale)' do
+    
     resources :studien, :only=>[:show,:new,:edit,:update,:destroy]
     resources :modulgruppen,:only =>[:create,:index]
+    
     resources :studien,:except=>[:show,:new,:edit,:update,:destroy], :shallow=>true do 
       resources :modulgruppen, :path => "(:locale)/modulgruppen"
+      
     end
+    get 'studien/:id/semesteransicht', :controller=>:studien, :action=>:semesteransicht, :as=>'studium_semesteransicht'
     resources :semesters
     resources :moduls
     resources :lvas
     resources :neuigkeiten
     get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
-
+    
     resources :rubriken do
       resources :neuigkeiten, :only=>[:new, :show]
     end
