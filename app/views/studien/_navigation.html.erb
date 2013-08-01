@@ -1,10 +1,20 @@
-<%= link_to '<i class="icon-list"></i>'.html_safe+ I18n.t("studien.allestudien"), studien_path,:raw=>true %> / 
-<% Studium.all.each do |s| %>
-  <% if @sem=='true' %>
-    <%= link_to s.name + " / ", studium_semesteransicht_path(s) %>
-  <% else %>
-    <%= link_to s.name + " / ", studium_path(s) %>
-  <% end %>
-<% end %>
 
-<%= link_to  @text, @path%>
+<ul class="breadcrumb">
+<li>  <%= link_to '<i class="icon-list"></i>'.html_safe+ I18n.t("studien.allestudien"), studien_path,:raw=>true %>
+      <span class="divider">/</span></li>
+<li> <%= link_to  @text, @path%>
+      <span class="divider">/</span></li>
+<br>
+  <% Studium.all.each do |s| %>
+    <li>
+      <% if @sem=='true' %>
+	<%= link_to s.name, studium_semesteransicht_path(s) %>
+      <% else %>
+	<%= link_to s.name, studium_path(s) %>
+      <% end %>
+      <span class="divider">/</span></li>
+    </li>
+  <% end %>
+
+</ul>
+

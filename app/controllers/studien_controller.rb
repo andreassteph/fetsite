@@ -52,7 +52,7 @@ class StudienController < ApplicationController
 
   def create
     @studium = Studium.new(params[:studium])
-    Semester.batch_add @studium.name, @studium.typ, @studium.semester
+    @studium.batch_add_semester
     respond_to do |format|
       if @studium.save
         format.html { redirect_to url_for(@studium), notice: 'Studium was successfully created.' }
@@ -65,7 +65,7 @@ class StudienController < ApplicationController
 
   def update
     @studium = Studium.find(params[:id])
-    
+
     if @studium.update_attributes(params[:studium])
       redirect_to url_for(@studium), notice: 'Studium was successfully updated.' 
     else
