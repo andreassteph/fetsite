@@ -35,7 +35,7 @@ class Lva < ActiveRecord::Base
     # Diese Methode fügt die Instanz automatisch zu allen Studien als "Ohne Semesterempfehlung" (Semester 0) zu, bei denen die Instanz im Studium noch nicht vorkommt.
     for m in self.modul
       for mg in m.modulgruppen # Über alle Module und alle Modulgruppen iterieren
-       hits = mg.studium.semester.all.map{|x| x.lvas}.collect{|x| x.find_by_id(self.id)}.compact # Alle einträge in allen semestern mit gleicher LVa-ID suchen und alle nils entfernen
+        hits = mg.studium.semester.all.map{|x| x.lvas}.collect{|x| x.find_by_id(self.id)}.compact # Alle einträge in allen semestern mit gleicher LVa-ID suchen und alle nils entfernen
 
         if hits.empty? # wurde gar kein eintrag gefunden ?
           self.semester << mg.studium.semester.where(:nummer => 0) # auf nummer null eintragen
@@ -46,23 +46,23 @@ class Lva < ActiveRecord::Base
   end
   private
 
-##
-# Lade Daten aus TISS und füge diese in die Datenbank ein. 
-def load_tissdata
-  url= "https://tiss.tuwien.ac.at/api/course/"+ self.lvanr.to_s+"-2012W"
-  begin 
-    @hash=Hash.from_xml(open(url).read)["tuvienna"]
-    @person=[] 
-    if @hash["course"]["lecturers"]["oid"].is_a? String
-      @person = @hash["course"]["lecturers"]["oid"]
-    else
-      @hash["course"]["lecturers"]["oid"].each do |pid|
-        @person << Hash.from_xml(open("https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/" + pid.to_s + ".xml").read)["tuvienna"]["person"]
+  ##
+  # Lade Daten aus TISS und füge diese in die Datenbank ein. 
+  def load_tissdata
+    url= "https://tiss.tuwien.ac.at/api/course/"+ self.lvanr.to_s+"-2012W"
+    begin 
+      @hash=Hash.from_xml(open(url).read)["tuvienna"]
+      @person=[] 
+      if @hash["course"]["lecturers"]["oid"].is_a? String
+        @person = @hash["course"]["lecturers"]["oid"]
+      else
+        @hash["course"]["lecturers"]["oid"].each do |pid|
+          @person << Hash.from_xml(open("https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/" + pid.to_s + ".xml").read)["tuvienna"]["person"]
+        end
       end
-    end
-  rescue OpenURI::HTTPError => e
-  end 
-end
+    rescue OpenURI::HTTPError => e
+    end 
+  end
 
 
 
