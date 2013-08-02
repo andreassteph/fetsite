@@ -16,14 +16,4 @@
       </div>
     <% end %>
   <% end %>
-
-    <div class="row-fluid">
-      <span class="span12">
-	<%= link_to '<i class="icon-plus-sign"></i>'.html_safe+I18n.t("studien.newmodulgroup"), new_studium_modulgruppe_path(:studium_id=>@studium.id),:class=>"btn" %> |
-	<%= link_to '<i class="icon-pencil"></i>'.html_safe+I18n.t("common.edit"), edit_studium_path(@studium) ,:class=>"btn"%>
-      </span>
-    </div>
-
-
-  </div>
-  <%= toolbar_html(@toolbar_elements) %>
+<%= render :partial=>'layouts/pretty_toolbar' %>

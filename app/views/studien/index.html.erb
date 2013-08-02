@@ -2,13 +2,14 @@
 
 
 <% @studien.sort_by{|z| z[:zahl]}.each do |studium| %>
-<ul>
-<li><%= render studium%></li>
-</ul>
+  <ul>
+    <li><%= render studium%></li>
+  </ul>
 <% end %>
 
 
 <br />
 <% link_to I18n.t("studien.new"), new_studium_path %>
 <% link_to I18n.t("modulgruppe.show"), modulgruppen_path %>
-<%= toolbar_html(@toolbar_elements) %>
+<%= render :partial=>'layouts/pretty_toolbar'%>
+<% #toolbar_html(@toolbar_elements) %>
