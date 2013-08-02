@@ -11,8 +11,8 @@
 
 <p id="notice"><%= notice %></p>
 <p>
-	<%= @lva.lvanr %>
-	<b><%= @lva.name %> <%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std</b>
+
+	<h2><%= @lva.lvanr %><%= @lva.name %> <%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std</h2>
 	
 </p>
 <p>
@@ -25,4 +25,4 @@
 
 <% end %>
 </ul>
-<%= toolbar_html(@toolbar_elements) %>
+<%= render 'layouts/pretty_toolbar' %>

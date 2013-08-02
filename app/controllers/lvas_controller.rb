@@ -10,8 +10,9 @@ class LvasController < ApplicationController
 
   def show
     @lva = Lva.find_by_id(params[:id])
-    @toolbar_elements<<{:icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)}
-    @toolbar_elements<<{:icon=>:plus, :text => "Neues Beispiel", :path=> new_beispiel_path(:lva_id =>@lva.id)}
+   
+    @toolbar_elements<<{:hicon=>'icon-plus-sign', :icon=>:plus, :text => "Neues Beispiel", :path=> new_beispiel_path(:lva_id =>@lva.id)}
+     @toolbar_elements<<{:hicon=>'icon-pencil', :icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)}
   end
 
   # GET /lvas/new

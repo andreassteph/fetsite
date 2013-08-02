@@ -18,7 +18,7 @@ class Studium < ActiveRecord::Base
   
   validates :typ, :inclusion => {:in => ["Bachelor","Master"] }
   validates :name, :uniqueness => true, :presence=>true
-  validates :zahl, :format=>{:with=>/^0(33|66)[0-9]{3}$/}, :uniqueness => true 
+  validates :zahl, :presence=>true, :format=>{:with=>/^0(33|66)[0-9]{3}$/}, :uniqueness => true 
   translates :desc,:shortdesc, :versioning =>true,:fallbacks_for_empty_translations => true
   
   def batch_add_semester

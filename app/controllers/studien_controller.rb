@@ -48,9 +48,10 @@ class StudienController < ApplicationController
 
   def create
     @studium = Studium.new(params[:studium])
-    @studium.batch_add_semester
+    
     respond_to do |format|
       if @studium.save
+        @studium.batch_add_semester
         format.html { redirect_to url_for(@studium), notice: 'Studium was successfully created.' }
       else
         format.html { render action: "new" }
