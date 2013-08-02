@@ -1,10 +1,8 @@
-
-<h1><%= I18n.t("modul.show.title") %></h1>
+<%= render 'layouts/link_all' %>
+<h1><%= I18n.t("modul.list") %></h1>
 
 <%= render :partial=>'moduls/lang', :collection=>@moduls, :as=>:modul%>
 
-<br />
-<% #if !@studium.nil? %>
-<%= link_to 'New Modul', new_modul_path() %>
-<% #end%>
+<br>
+<%= render 'layouts/pretty_toolbar'%>
 

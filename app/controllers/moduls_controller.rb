@@ -7,6 +7,8 @@ class ModulsController < ApplicationController
       if !params[:studium_id].nil?
         @studium=Studium.find_by_id(params[:studium_id])
       end
+    @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
+
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @moduls }

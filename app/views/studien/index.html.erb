@@ -1,3 +1,4 @@
+<%= render 'layouts/link_all' %>
 <h1><%= I18n.t("studien.list") %></h1>
 
 
@@ -8,8 +9,6 @@
 <% end %>
 
 
-<br />
-<% link_to I18n.t("studien.new"), new_studium_path %>
-<% link_to I18n.t("modulgruppe.show"), modulgruppen_path %>
+<br>
 <%= render :partial=>'layouts/pretty_toolbar'%>
 <% #toolbar_html(@toolbar_elements) %>

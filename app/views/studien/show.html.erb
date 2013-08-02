@@ -16,6 +16,6 @@
       </div>
     <% end %>
   <% end %>
-  <%= render 'layouts/pretty_toolbar'%><br>
-  <%= render 'layouts/pretty_toolbar', :pretty_toolbar=>@toolbar_modulgruppen %>
+  <%= render 'layouts/pretty_toolbar' %><br>
+  <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %>
 </div>

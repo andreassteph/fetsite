@@ -1,7 +1,8 @@
-<h1>Listing lvas</h1>
+<%= render 'layouts/link_all' %>
+<h1><%= I18n.t("lva.list")%></h1>
 <ul>
 <% @lvas.each do |l| %>
 <li><%= render :partial => 'lvas/lva_semester', :locals=> {:lva => l} %>
 <%end%>
 </ul>
-<%= link_to 'New Lva', new_lva_path %>
+<%= render 'layouts/pretty_toolbar' %>

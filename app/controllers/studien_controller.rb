@@ -6,8 +6,6 @@ class StudienController < ApplicationController
     @studien = Studium.all
     @toolbar_elements<<{:icon =>:plus, :hicon=>'icon-plus-sign', :text=> I18n.t('studien.new') ,:path=>new_studium_path }
     # @toolbar_elements<<{:text=> I18n.t('modulgruppe.show.link') ,:path=>modulgruppen_path }
-    @toolbar_elements<<{:hicon=> 'icon-list', :text=> I18n.t('modul.show.link') ,:path=>moduls_path }
-    @toolbar_elements<<{:hicon=> 'icon-list', :text=> 'Alle LVas auflisten', :path=>lvas_path}
   end
 
   def show

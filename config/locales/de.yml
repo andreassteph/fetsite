@@ -15,13 +15,13 @@ de:
     edit: "Studium bearbeiten"
   modul:
     edit: "Modul bearbeiten"
-    show:
-      title: "Auflistung aller Module"
-      link: "Alle Module auflisten"
+    list: "Alle Module"
+    add: "Neues Modul"
   keine:
     beschreibung: "Keine Beschreibung vorhanden"
   lva:
     add: "Lva hinzufügen"
+    list: "Alle Lvas"
   semester:
     ohne: "Ohne Semesterzuordnung"
   modulgruppe:

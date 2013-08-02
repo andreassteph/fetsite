@@ -1,0 +1,11 @@
+
+<ul class="breadcrumb">
+  <li>  <%= link_to_unless_current '<i class="icon-list"></i>'.html_safe+ I18n.t("studien.allestudien"), studien_path,:raw=>true %>
+    <span class="divider">/</span></li>
+
+      <li>  <%= link_to_unless_current '<i class="icon-list"></i>'.html_safe+ I18n.t("modul.list"), moduls_path,:raw=>true %>
+    <span class="divider">/</span></li>
+    <li>  <%= link_to_unless_current '<i class="icon-list"></i>'.html_safe+ I18n.t("lva.list"), lvas_path,:raw=>true %>
+    <span class="divider">/</span></li>
+</ul>
+

@@ -3,7 +3,7 @@ class LvasController < ApplicationController
  before_filter {@toolbar_elements =[]} 
   def index
     @lvas = Lva.all
-    
+    @toolbar_elements=[{:hicon=>'icon-plus-sign',:text =>I18n.t('lva.add'),:path => new_lva_path}]
   end
 
   # GET /lvas/1
