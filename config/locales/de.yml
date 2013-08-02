@@ -10,19 +10,18 @@ de:
     list: "Studien der Fakultät Elektrotechnik"
     anzeigen: "Studium anzeigen"
     new: "Neues Studium"
-    newmodulgroup: "Neue Modulgruppe"
     allestudien: "Alle Studien"
     loeschen: "Dieses Studium löschen"
     edit: "Studium bearbeiten"
   modul:
-    edit: 
-      title: "Bearbeite Modul"
+    edit: "Modul bearbeiten"
     show:
       title: "Auflistung aller Module"
       link: "Alle Module auflisten"
   keine:
     beschreibung: "Keine Beschreibung vorhanden"
-
+  lva:
+    add: "Lva hinzufügen"
   semester:
     ohne: "Ohne Semesterzuordnung"
   modulgruppe:
@@ -30,6 +29,7 @@ de:
     addmodul: "Neues Modul hinzufügen"
     studium: "Studium"
     new: "Neue Modulgruppe"
+    list: "Alle Modulgruppen auflisten"
     show: 
       title: "Auflistung aller Modulgruppen"
       link: "Modulgruppen auflisten"
