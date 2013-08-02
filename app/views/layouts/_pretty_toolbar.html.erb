@@ -1,0 +1,8 @@
+<div class="row-fluid">
+  <span class="span12">
+
+    <% @toolbar_elements.each do |t| %>
+      <%= link_to '<i class="'.html_safe+ t[:hicon].to_s.html_safe + '"></i>'.html_safe+t[:text], t[:path],:class=>"btn" %>
+    <% end %>
+  </span>
+</div>
