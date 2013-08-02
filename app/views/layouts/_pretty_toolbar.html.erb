@@ -1,8 +1,7 @@
-<div class="row-fluid">
-  <span class="span12">
-
-    <% @toolbar_elements.each do |t| %>
-      <%= link_to '<i class="'.html_safe+ t[:hicon].to_s.html_safe + '"></i>'.html_safe+t[:text], t[:path],:class=>"btn" %>
+<% toolbar_elements = !pretty_toolbar.nil? ? pretty_toolbar : @toolbar_elements %>
+<span class="label"><%= I18n.t("common.actions")%></span>
+ <div class="btn-group">
+<% toolbar_elements.each do |t| %>
+      <%= link_to '<i class="'.html_safe+ t[:hicon].to_s.html_safe + '"></i>'.html_safe+t[:text], t[:path], :method=>t[:method], :confirm=>t[:confirm].to_s, :data=>t[:data], :class=>"btn" %>
     <% end %>
-  </span>
 </div>

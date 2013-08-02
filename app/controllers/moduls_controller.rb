@@ -18,11 +18,15 @@ class ModulsController < ApplicationController
   # GET /moduls/1.json
   def show
     @modul = Modul.find(params[:id])
+      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
+    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @modul }
     end
+  
   end
 
   # GET /moduls/new
