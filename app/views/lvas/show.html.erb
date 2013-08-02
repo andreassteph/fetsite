@@ -1,7 +1,7 @@
 <% @lva.modul.each do |modul| %>
 <% modul.modulgruppen.each do |g| %>
 <ul class="breadcrumb">
-<li><%= link_to g.studium.name , studium_path(g.studium)%>
+<li><%= link_to g.studium.name , studium_semesteransicht_path(g.studium)%>
 <span class="divider">/</span></li>
 <li><%= link_to g.name , modulgruppe_path(g)%><span class="divider">/</span></li>
 <li><%= link_to modul.name , modul_path(modul)%></li>
