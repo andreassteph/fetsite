@@ -12,12 +12,16 @@ de:
     new: "Neues Studium"
     newmodulgroup: "Neue Modulgruppe"
     allestudien: "Alle Studien"
+    loeschen: "Dieses Studium löschen"
+    edit: "Studium bearbeiten"
   modul:
     edit: 
       title: "Bearbeite Modul"
     show:
       title: "Auflistung aller Module"
       link: "Alle Module auflisten"
+  keine:
+    beschreibung: "Keine Beschreibung vorhanden"
 
   semester:
     ohne: "Ohne Semesterzuordnung"
