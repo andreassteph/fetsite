@@ -4,18 +4,14 @@ class StudienController < ApplicationController
 
   def index
     @studien = Studium.all
-    @toolbar_elements<<{:icon =>:plus, :text=> I18n.t('studien.new') ,:path=>new_studium_path }
+    @toolbar_elements<<{:icon =>:plus, :hicon=>'icon-plus-sign', :text=> I18n.t('studien.new') ,:path=>new_studium_path }
     # @toolbar_elements<<{:text=> I18n.t('modulgruppe.show.link') ,:path=>modulgruppen_path }
-    @toolbar_elements<<{:text=> I18n.t('modul.show.link') ,:path=>moduls_path }
-    @toolbar_elements<<{:text=> 'Alle LVas auflisten', :path=>lvas_path}
+    @toolbar_elements<<{:hicon=> 'icon-list', :text=> I18n.t('modul.show.link') ,:path=>moduls_path }
+    @toolbar_elements<<{:hicon=> 'icon-list', :text=> 'Alle LVas auflisten', :path=>lvas_path}
   end
 
   def show
     @studium= Studium.find(params[:id])
-    @sem = 'false'
-    if @sem.nil?
-      @sem = 'true'
-    end
     @text = 'Zu Semesteransicht wechseln'
     @path = studium_semesteransicht_path(@studium)
     
@@ -35,9 +31,9 @@ class StudienController < ApplicationController
       end
       @studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
     end    
-    @toolbar_elements=[{:icon =>:plus ,:text=> I18n.t('studien.new') , :path => new_studium_path(@studium) }]
-    @toolbar_elements<<{:icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_studium_path(@studium)}
-    @toolbar_elements<<{:text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>"Sure?" }
+    @toolbar_elements=[{:icon=>:plus, :hicon =>'icon-plus-sign' ,:text=> I18n.t('studien.new') , :path => new_studium_path(@studium) }]
+    @toolbar_elements<<{:icon=>:pencil, :hicon=>'icon-pencil',:text =>I18n.t('common.edit'),:path => edit_studium_path(@studium)}
+    @toolbar_elements<<{:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>"Sure?" }
   end
 
   def new
@@ -82,6 +78,9 @@ class StudienController < ApplicationController
     end
     @text = 'Zu Modulgruppenansicht wechseln'
     @path = studium_path(@studium)
+    @toolbar_elements=[{:icon=>:plus, :hicon =>'icon-plus-sign' ,:text=> I18n.t('studien.new') , :path => new_studium_path(@studium) }]
+    @toolbar_elements<<{:icon=>:pencil, :hicon=>'icon-pencil',:text =>I18n.t('common.edit'),:path => edit_studium_path(@studium)}
+    @toolbar_elements<<{:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>"Sure?" }
   end
   
   def destroy

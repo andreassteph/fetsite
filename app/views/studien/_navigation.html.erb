@@ -1,10 +1,10 @@
 
 <ul class="breadcrumb">
-<li>  <%= link_to '<i class="icon-list"></i>'.html_safe+ I18n.t("studien.allestudien"), studien_path,:raw=>true %>
-      <span class="divider">/</span></li>
-<li> <%= link_to  @text, @path%>
-      <span class="divider">/</span></li>
-<br>
+  <li>  <%= link_to '<i class="icon-list"></i>'.html_safe+ I18n.t("studien.allestudien"), studien_path,:raw=>true %>
+    <span class="divider">/</span></li>
+  <li> <%= link_to  @text, @path%>
+    <span class="divider">/</span></li>
+  <br>
   <% Studium.all.each do |s| %>
     <li>
       <% if @sem=='true' %>
@@ -13,8 +13,8 @@
 	<%= link_to s.name, studium_path(s) %>
       <% end %>
       <span class="divider">/</span></li>
-    </li>
-  <% end %>
+</li>
+<% end %>
 
 </ul>
 
