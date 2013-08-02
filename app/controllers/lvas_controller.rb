@@ -20,7 +20,7 @@ class LvasController < ApplicationController
   def new
     @lva = Lva.new
     modul=Modul.find_by_id(params[:modul_id])
-    @lva.modul<<modul unless modul.nil?
+    @lva.modul<<modul unless modul.nil? #
     
   end
 
@@ -33,10 +33,10 @@ class LvasController < ApplicationController
   # POST /lvas.json
   def create
     @lva = Lva.new(params[:lva])
-    @lva.add_semesters
+ 
     respond_to do |format|
       if @lva.save
-        
+         @lva.add_semesters
         format.html { redirect_to @lva, notice: 'Lva was successfully created.' }
         
       else
@@ -53,7 +53,7 @@ class LvasController < ApplicationController
     
     respond_to do |format|
       if @lva.update_attributes(params[:lva])
-        Lva.add_semesters(@lva)
+        @lva.add_semesters
         format.html { redirect_to @lva, notice: 'Lva was successfully updated.' }
  
       else
