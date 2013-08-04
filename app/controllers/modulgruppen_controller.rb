@@ -56,7 +56,6 @@ class ModulgruppenController < ApplicationController
     else
       @studium=Studium.find_by_id(params[:modulgruppe][:studium_id]) 
     end
- @modulgruppe.studium_id = params[:studium_id]
     respond_to do |format|
          
       if @modulgruppe.save

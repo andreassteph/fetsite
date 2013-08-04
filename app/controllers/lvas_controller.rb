@@ -4,6 +4,9 @@ class LvasController < ApplicationController
   def index
     @lvas = Lva.all
     @toolbar_elements=[{:hicon=>'icon-plus-sign',:text =>I18n.t('lva.add'),:path => new_lva_path}]
+    @tb=[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path},
+         {:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path},
+         {:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}]
   end
 
   # GET /lvas/1
@@ -20,7 +23,7 @@ class LvasController < ApplicationController
   def new
     @lva = Lva.new
     modul=Modul.find_by_id(params[:modul_id])
-    @lva.modul<<modul unless modul.nil?
+    @lva.modul<<modul unless modul.nil? #
     
   end
 
@@ -33,10 +36,10 @@ class LvasController < ApplicationController
   # POST /lvas.json
   def create
     @lva = Lva.new(params[:lva])
-    @lva.add_semesters
+ 
     respond_to do |format|
       if @lva.save
-        
+         @lva.add_semesters
         format.html { redirect_to @lva, notice: 'Lva was successfully created.' }
         
       else
@@ -53,7 +56,7 @@ class LvasController < ApplicationController
     
     respond_to do |format|
       if @lva.update_attributes(params[:lva])
-        Lva.add_semesters(@lva)
+        @lva.add_semesters
         format.html { redirect_to @lva, notice: 'Lva was successfully updated.' }
  
       else
