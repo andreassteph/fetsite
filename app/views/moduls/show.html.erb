@@ -1,23 +1,4 @@
-
-<ul class="breadcrumb">
-  <% @modul.modulgruppen.each do |g| %>
-    <% if !g.nil? %>
-      <li>
-	<% if !g.studium.nil? %>
-	  <%= link_to g.studium.name  , studium_path(g.studium) %> 
-	  
-	<% else %>
-	  <li>Studium fehlt!
-	<% end %>
-	<span class="divider">/</span></li>
-      <li><%= link_to g.name , modulgruppe_path(g)%>
-      <% else %>
-      <li>Modulgruppe Fehlt
-    <%end %>
-     <span class="divider">/</span> </li>
-    <%end%>
-   
-</ul>
+<%= render 'layouts/topbar'%>
 
 <p id="notice"><%= notice %></p>
 <%= render @modul %>

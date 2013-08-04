@@ -1,0 +1,11 @@
+<% topbar = !topbar.nil? ? topbar : @topbar_elements %>
+<ul class="breadcrumb">
+  <% topbar.each do |tb| %>
+    <% if tb[:newline]%>
+      <br>
+    <% else %>
+      <li>
+	<%= link_to_unless_current '<i class="'.html_safe + tb[:hicon].to_s.html_safe + '"></i>'.html_safe+ tb[:text], tb[:path] %><span class="divider">/</span></li>
+    <% end %>
+  <% end %>
+</ul>
