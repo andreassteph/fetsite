@@ -30,18 +30,18 @@ class ModulsController < ApplicationController
 
     
     @topbar_elements = [{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}]
-          
-      @topbar_elements <<{:newline=>true}
+      @tb=[]
     for i in @modul.modulgruppen
+
       if  !i.studium.nil?
-      name =i.studium.name
-      id = i.studium.id
-        else
-         s.name = 'Kein Studium vorhanden'
+        name =i.studium.name
+        id = i.studium.id
+      else
+        s.name = 'Kein Studium vorhanden'
         s.id = nil
-        end
-      @topbar_elements <<{:text=> i.name + ' ('+i.studium.name + ')', :path=>studium_modulgruppen_path(i)}
       end
+      @tb <<{:text=> i.name + ' ('+i.studium.name + ')', :path=>modulgruppe_path(i)} 
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @modul }

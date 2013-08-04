@@ -16,6 +16,14 @@ class LvasController < ApplicationController
    
     @toolbar_elements<<{:hicon=>'icon-plus-sign', :icon=>:plus, :text => "Neues Beispiel", :path=> new_beispiel_path(:lva_id =>@lva.id)}
      @toolbar_elements<<{:hicon=>'icon-pencil', :icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)}
+    @topbar_elements =[{:hicon=>'icon-list', :text=>I18n.t("lva.list"), :path=>lvas_path}]
+    for m in @lva.modul
+      @topbar_elements << {:newline=>true}
+      @topbar_elements << {:text=> '<b>' + m.name + '</b>', :path=>modul_path(m)}
+      for mg in m.modulgruppen
+        @topbar_elements << {:text => mg.studium.name + ' (' + mg.name + ')', :path=>studium_path(mg.studium)}
+        end
+      end
   end
 
   # GET /lvas/new
