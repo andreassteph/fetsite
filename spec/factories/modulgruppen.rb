@@ -6,5 +6,10 @@ FactoryGirl.define do
   phase 1
   name "Pflichtmodule 1"
   desc "ASDFASDF"
+	factory :other_modulgruppe do
+	name "PFlichtmodule 2"
+	desc "sdafaswdfsfr"
+	end
   end
+
 end
