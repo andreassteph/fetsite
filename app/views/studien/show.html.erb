@@ -1,9 +1,10 @@
-<%= render :partial=>'studien/navigation'%>
+<%= render 'layouts/topbar'%>
 <div class="container-fluid">
   <div class="row-fluid">
     <p id="notice"><%= notice %></p>
     <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
   </div>
+  <div>
   <%= raw(@studium.desc) %>
   <% @studienphasen.each do |sp| %>
     <% sp[:modulgruppen].each do |row| %>
@@ -16,6 +17,7 @@
       </div>
     <% end %>
   <% end %>
-  <%= render 'layouts/pretty_toolbar' %><br>
-  <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %>
+   <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %>
+   </div>
+  <%= render 'layouts/pretty_toolbar' %>
 </div>

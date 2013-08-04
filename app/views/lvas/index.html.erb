@@ -1,4 +1,4 @@
-<%= render 'layouts/link_all' %>
+<%= render :partial=>'layouts/topbar', :object=>@tb %>
 <h1><%= I18n.t("lva.list")%></h1>
 <ul>
 <% @lvas.each do |l| %>
