@@ -7,28 +7,45 @@ class ModulsController < ApplicationController
       if !params[:studium_id].nil?
         @studium=Studium.find_by_id(params[:studium_id])
       end
-    @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
+      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
+      @topbar_elements=[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]
+      @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}
+      @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}
 
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @moduls }
       end
     end
+    
   end
 
   # GET /moduls/1
   # GET /moduls/1.json
   def show
     @modul = Modul.find(params[:id])
-      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
+    @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
     @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
 
+    
+    @topbar_elements = [{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}]
+          
+      @topbar_elements <<{:newline=>true}
+    for i in @modul.modulgruppen
+      if  !i.studium.nil?
+      name =i.studium.name
+      id = i.studium.id
+        else
+         s.name = 'Kein Studium vorhanden'
+        s.id = nil
+        end
+      @topbar_elements <<{:text=> i.name + ' ('+i.studium.name + ')', :path=>studium_modulgruppen_path(i)}
+      end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @modul }
     end
-  
   end
 
   # GET /moduls/new
@@ -63,7 +80,7 @@ class ModulsController < ApplicationController
       if @modul.save
         for i in @modul.lvas
           i.add_semesters
-          end
+        end
         format.html { redirect_to modulgruppe_path(@modul.modulgruppen.first), notice: 'Modul was successfully created.' }
         format.json { render json: @modul, status: :created, location: @modul }
       else
@@ -83,7 +100,7 @@ class ModulsController < ApplicationController
       if @modul.update_attributes(params[:modul])
         for i in @modul.lvas
           i.add_semesters
-          end
+        end
         format.html { redirect_to url_for(@modul), notice: 'Modul was successfully updated.' }
         format.json { head :no_content }
       else
@@ -100,8 +117,8 @@ class ModulsController < ApplicationController
     @modul = Modul.find(params[:id])
     modulgruppe=@modul.modulgruppen.first
     for i in @modul.lvas
-          i.add_semesters
-          end
+      i.add_semesters
+    end
     @modul.destroy
 
 

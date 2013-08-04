@@ -4,6 +4,9 @@ class LvasController < ApplicationController
   def index
     @lvas = Lva.all
     @toolbar_elements=[{:hicon=>'icon-plus-sign',:text =>I18n.t('lva.add'),:path => new_lva_path}]
+    @tb=[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path},
+         {:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path},
+         {:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}]
   end
 
   # GET /lvas/1
