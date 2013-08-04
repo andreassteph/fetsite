@@ -37,7 +37,7 @@ class ModulsController < ApplicationController
     @modul = Modul.new
     modulgruppe=Modulgruppe.find_by_id(params[:modulgruppen_id])
     if !modulgruppe.nil?
-      @modul.modulgruppen<<modulgruppe 
+      @modul.modulgruppen<<modulgruppe #
     end
     respond_to do |format|
       format.html # new.html.erb
@@ -61,6 +61,9 @@ class ModulsController < ApplicationController
     
     respond_to do |format|
       if @modul.save
+        for i in @modul.lvas
+          i.add_semesters
+          end
         format.html { redirect_to modulgruppe_path(@modul.modulgruppen.first), notice: 'Modul was successfully created.' }
         format.json { render json: @modul, status: :created, location: @modul }
       else
@@ -78,6 +81,9 @@ class ModulsController < ApplicationController
 
     respond_to do |format|
       if @modul.update_attributes(params[:modul])
+        for i in @modul.lvas
+          i.add_semesters
+          end
         format.html { redirect_to url_for(@modul), notice: 'Modul was successfully updated.' }
         format.json { head :no_content }
       else
@@ -93,6 +99,9 @@ class ModulsController < ApplicationController
     
     @modul = Modul.find(params[:id])
     modulgruppe=@modul.modulgruppen.first
+    for i in @modul.lvas
+          i.add_semesters
+          end
     @modul.destroy
 
 
