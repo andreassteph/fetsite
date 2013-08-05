@@ -25,7 +25,8 @@ class BeispieleController < ApplicationController
   # GET /beispiele/new.json
   def new
     @beispiel = Beispiel.new
-
+    @beispiel.lva = Lva.find(params[:lva_id])
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @beispiel }
@@ -40,8 +41,9 @@ class BeispieleController < ApplicationController
   # POST /beispiele
   # POST /beispiele.json
   def create
+    lvaid=params[:lva_id]
+    params.delete(:lva_id)
     @beispiel = Beispiel.new(params[:beispiel])
-
     respond_to do |format|
       if @beispiel.save
         format.html { redirect_to @beispiel, notice: 'Beispiel was successfully created.' }
