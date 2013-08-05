@@ -9,6 +9,8 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/schema.rb
+/db/structure.sql
 /config/initializers/devise.rb
 
 # Ignore all logfiles and tempfiles.
@@ -16,6 +18,7 @@
 /tmp
 /config/initializers/devise.rb
 /app/doc/*
+
 console
 /server
 /public/uploads/
