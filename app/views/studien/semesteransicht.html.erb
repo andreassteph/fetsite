@@ -5,16 +5,24 @@
     <%= raw(@studium.desc) %>
     <% @studium.semester.each do |sem| %>
 
-      <div class="span5 min-width:13em;">
+      <div class="span12">
 	<div class="modulgruppe_phase_1">
-	  <h2><%= sem.name %></h2>
-	  
-	  <% sem.lvas.sort_by{|n| n[:name]}.each do |l| %>
+	  <div class="container-fluid">
 	    
-	    
-	    <%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
-	    
-	  <% end %>
+	    <h2><%= sem.name %></h2>
+
+	    <% sem.lvas.each_slice(2) do |row| %>
+	      <div class="row-fluid">
+		<% row.each do |l| %>
+		  
+		  <div class="span<%= 12/row.length%>">
+		    <%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
+		  </div>
+	        <% end %>
+	      </div>
+	    <% end %>
+
+	  </div>
 	</div>
       </div>
     <% end %>
