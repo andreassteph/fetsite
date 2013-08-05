@@ -7,6 +7,13 @@ FactoryGirl.define do
     name  "Automatisierung"
     desc  "TEST DESC"
     typ "Master"
+    
+    factory :other_studium do
+		name "Telecommunication"
+		desc "frueher Telekommungikation"
+		zahl "066507"
+		typ "Master"
+	end
   end
  
 end
