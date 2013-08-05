@@ -2,7 +2,6 @@ class BeispieleController < ApplicationController
   # GET /beispiele
   # GET /beispiele.json
   def index
-    @lva = params([:lva])
     @beispiele = Beispiel.all
 
     respond_to do |format|
@@ -14,7 +13,7 @@ class BeispieleController < ApplicationController
   # GET /beispiele/1
   # GET /beispiele/1.json
   def show
-    @lva = lva unless lva.nil?
+    # @lva = params([:lva]) unless params([:lva]).nil?
     @beispiel = Beispiel.find(params[:id])
 
     respond_to do |format|

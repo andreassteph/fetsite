@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <%= render 'layouts/topbar'%>
 <p id="notice"><%= notice %></p>
 <p>
@@ -9,15 +10,15 @@
   <p><h4>Beschreibung</h4>
   <%= @lva.desc %>
 </p>
+  <div class="row-fluid">
 <h4>Beispiele</h4>
-<ul>
   <% @lva.beispiele.each do |b|%>
 
-    <li><%= render b%></li>
+    <%= render b%>
 
   <% end %>
-</ul>
-<h4>Module</h4>
+</div>
+<!-- <h4>Module</h4>
 <ul>
   <% @lva.modul.each do |modul| %>
     <li><b><%= link_to modul.name , modul_path(modul)%></b>
@@ -30,5 +31,6 @@
     </li>
     
   <% end %>
-</ul>
+</ul> -->
 <%= render 'layouts/pretty_toolbar' %>
+</div>
