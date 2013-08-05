@@ -1,29 +1,9 @@
 <h1><%= I18n.t("modulgruppe.show.title")%></h1>
 
-<table>
-  <tr>
-    <th>Type</th>
-    <th>Phase</th>
-    <th>Studium</th>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @modulgruppen.sort_by{|n| n[:name]}.each do |modulgruppe| %>
-  <tr>
-    <td><%= modulgruppe.typ %></td>
-    <td><%= modulgruppe.phase %></td>
-    <td><%= modulgruppe.studium.name unless modulgruppe.studium.nil? %></td>
-    <td><%= modulgruppe.name %></td>
-    <td><%= link_to 'Show', modulgruppe %></td>
-    <td><%= link_to 'Edit', edit_modulgruppe_path(modulgruppe) %></td>
-    <td><%= link_to 'Destroy', modulgruppe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+ <%= render modulgruppe%>
 <% end %>
-</table>
-
 <br>
 <% if !@studium.nil? %>
 <%= link_to 'New Modulgruppe', new_studium_modulgruppe_path(@studium) %>

@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: semesters
@@ -12,6 +13,9 @@
 #
 
 class Semester < ActiveRecord::Base
+  attr_accessible :name, :nummer, :ssws, :lva_ids
   has_and_belongs_to_many :lvas
-  attr_accessible :name, :nummer, :ss, :ws
+  belongs_to :studium, :foreign_key => "studium_id"
+  validates :name, :presence => true
+  validates :nummer, :presence => true
 end

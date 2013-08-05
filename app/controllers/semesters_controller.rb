@@ -4,7 +4,7 @@ class SemestersController < ApplicationController
     @semesters = Semester.all
   end
 
- 
+  
   def show
     @semester = Semester.find(params[:id])
 
@@ -20,6 +20,7 @@ class SemestersController < ApplicationController
 
   def create
     @semester = Semester.new(params[:semester])
+    
 
     respond_to do |format|
       if @semester.save
@@ -45,7 +46,7 @@ class SemestersController < ApplicationController
   def destroy
     @semester = Semester.find(params[:id])
     @semester.destroy
-redirect_to semester_url
+    redirect_to semester_url
     
   end
 end

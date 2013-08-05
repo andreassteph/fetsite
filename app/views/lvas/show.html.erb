@@ -1,30 +1,36 @@
-<% @lva.modul.each do |modul| %>
-<% modul.modulgruppen.each do |g| %>
-<ul class="breadcrumb">
-<li><%= link_to g.studium.name , studium_path(g.studium)%>
-<span class="divider">/</span></li>
-<li><%= link_to g.name , modulgruppe_path(g)%><span class="divider">/</span></li>
-<li><%= link_to modul.name , modul_path(modul)%></li>
-<% end %>
-</ul>
-<% end %>
-
+<%= render 'layouts/topbar'%>
 <p id="notice"><%= notice %></p>
 <p>
-	<%= @lva.lvanr %>
-	<b><%= @lva.name %> <%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std</b>
-	
+
+  <h2><%= @lva.lvanr %><%= @lva.name %> <%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std</h2>
+  
 </p>
-<p>
+
+  <p><h4>Beschreibung</h4>
   <%= @lva.desc %>
 
 <%= link_to "Beispiel neu" , new_beispiel_path(:lva_id=>@lva.id) %>
 </p>
+<h4>Beispiele</h4>
 <ul>
-<% @lva.beispiele.each do |b|%>
+  <% @lva.beispiele.each do |b|%>
 
-<li><%= render b%></li>
+    <li><%= render b%></li>
 
-<% end %>
+  <% end %>
 </ul>
-<%= toolbar_html(@toolbar_elements) %>
+<h4>Module</h4>
+<ul>
+  <% @lva.modul.each do |modul| %>
+    <li><b><%= link_to modul.name , modul_path(modul)%></b>
+	<ul>
+      <% modul.modulgruppen.each do |g| %>
+
+	<li><%= link_to g.studium.name , studium_semesteransicht_path(g.studium)%> (<%=link_to g.name, modulgruppe_path(g)%>)</li>
+      <% end %>
+      </ul>
+    </li>
+    
+  <% end %>
+</ul>
+<%= render 'layouts/pretty_toolbar' %>

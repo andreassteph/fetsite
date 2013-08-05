@@ -1,0 +1,32 @@
+<div style="border: solid 1px; padding:2px"><p>
+  <b><%= 
+if modul.name.nil? 
+name=""
+else
+name=modul.name
+end
+link_to "Modul "+name , modul_path(modul) %> </b>
+</p>
+<p>
+  <%= raw(modul.desc) %>
+</p>
+LVAs: 
+
+<ul>
+
+<% modul.lvas.each do |lv| %>
+<li>
+<%= link_to  lv.name.to_s, lva_path(lv.id)  %>
+</li>
+<% end %>
+
+</ul>
+
+Modulgruppen:
+<ul>
+<% modul.modulgruppen.each do |mg| %>
+<li> <%=mg.name%> (<%= mg.studium.name unless mg.studium.nil?%>)</li>
+<%end%>
+</ul>
+<% # @toolbar_elements << {:icon=>:pencil,:text=>I18n.t("common.edit"),:path=> edit_modul_path(modul)} %>
+</div>

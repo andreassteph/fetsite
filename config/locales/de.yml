@@ -10,20 +10,26 @@ de:
     list: "Studien der Fakultät Elektrotechnik"
     anzeigen: "Studium anzeigen"
     new: "Neues Studium"
-    newmodulgroup: "Neue Modulgruppe"
     allestudien: "Alle Studien"
+    loeschen: "Dieses Studium löschen"
+    edit: "Studium bearbeiten"
   modul:
-    edit: 
-      title: "Bearbeite Modul"
-    show:
-      title: "Auflistung aller Module"
-      link: "Alle Module auflisten"
-      
+    edit: "Modul bearbeiten"
+    list: "Alle Module"
+    add: "Neues Modul"
+  keine:
+    beschreibung: "Keine Beschreibung vorhanden"
+  lva:
+    add: "Lva hinzufügen"
+    list: "Alle Lvas"
+  semester:
+    ohne: "Ohne Semesterzuordnung"
   modulgruppe:
     typ: "Typ"
     addmodul: "Neues Modul hinzufügen"
     studium: "Studium"
     new: "Neue Modulgruppe"
+    list: "Alle Modulgruppen auflisten"
     show: 
       title: "Auflistung aller Modulgruppen"
       link: "Modulgruppen auflisten"
@@ -85,4 +91,17 @@ de:
               blank: "Geben Sie die Stunden der LVA an"
             lvanr:
               invalid: "Geben Sie eine LVA-Nummer in richtigem Format an. Wenn die LVA noch keine Nummer hat, so geben sie 000 an."
+        studium:
+          attributes:
+            zahl:
+              blank: "Geben Sie die Studienkennzahl an"
+              invalid: "Die eingegebene Form stimmt nicht (beginnend mit 033 oder 066, dann 3 Stellen)"
+              taken: "Die Kennzahl wird bereits verwendet"
+            name:
+              blank: "Geben Sie den Namen des Studiums ein"
+              taken: "Der  Name ist bereits vergeben"
+            typ:
+              inclusion: 'Wählen Sie "Bachelor" oder "Master" aus'
+            
+        
 

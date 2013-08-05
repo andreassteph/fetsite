@@ -17,39 +17,52 @@
 
 class Lva < ActiveRecord::Base
   has_paper_trail # Versionsverfolgung
-  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids
-  
+  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids
   has_and_belongs_to_many :modul # Gehört zu einem Modul
-  has_and_belongs_to_many :semester # Gehört zu einem Semester( derzeit nicht implementiert)
+  has_and_belongs_to_many :semester
+  #Gehört zu einem Semester( derzeit nicht implementiert)
   has_many :beispiele , :class_name => "Beispiel"
 
   translates :desc,  :fallbacks_for_empty_translations => true
   
-  validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]$/} # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht existent
-  
+  validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
   validates_presence_of :ects  # ECTS vorhanden?
-  validates_presence_of :name # Name Eingetragen?
+  validates :name, :presence=>true
+  validates :name,  :uniqueness=>true# Name Eingetragen?
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen? (zumindest eines)
-private
+  def add_semesters
+    # Diese Methode fügt die Instanz automatisch zu allen Studien als "Ohne Semesterempfehlung" (Semester 0) zu, bei denen die Instanz im Studium noch nicht vorkommt.
+    for m in self.modul
+      for mg in m.modulgruppen # Über alle Module und alle Modulgruppen iterieren
+        hits = mg.studium.semester.all.map{|x| x.lvas}.collect{|x| x.find_by_id(self.id)}.compact # Alle einträge in allen semestern mit gleicher LVa-ID suchen und alle nils entfernen
 
-##
-# Lade Daten aus TISS und füge diese in die Datenbank ein. 
-def load_tissdata
-  url= "https://tiss.tuwien.ac.at/api/course/"+ self.lvanr.to_s+"-2012W"
-  begin 
-    @hash=Hash.from_xml(open(url).read)["tuvienna"]
-    @person=[] 
-    if @hash["course"]["lecturers"]["oid"].is_a? String
-      @person = @hash["course"]["lecturers"]["oid"]
-    else
-      @hash["course"]["lecturers"]["oid"].each do |pid|
-        @person << Hash.from_xml(open("https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/" + pid.to_s + ".xml").read)["tuvienna"]["person"]
+        if hits.empty? # wurde gar kein eintrag gefunden ?
+          self.semester << mg.studium.semester.where(:nummer => 0) # auf nummer null eintragen
+        end
       end
     end
-  rescue OpenURI::HTTPError => e
-  end 
-end
+    
+  end
+  private
+
+  ##
+  # Lade Daten aus TISS und füge diese in die Datenbank ein. 
+  def load_tissdata
+    url= "https://tiss.tuwien.ac.at/api/course/"+ self.lvanr.to_s+"-2012W"
+    begin 
+      @hash=Hash.from_xml(open(url).read)["tuvienna"]
+      @person=[] 
+      if @hash["course"]["lecturers"]["oid"].is_a? String
+        @person = @hash["course"]["lecturers"]["oid"]
+      else
+        @hash["course"]["lecturers"]["oid"].each do |pid|
+          @person << Hash.from_xml(open("https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/" + pid.to_s + ".xml").read)["tuvienna"]["person"]
+        end
+      end
+    rescue OpenURI::HTTPError => e
+    end 
+  end
 
 
 

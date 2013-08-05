@@ -2,6 +2,7 @@ class BeispieleController < ApplicationController
   # GET /beispiele
   # GET /beispiele.json
   def index
+    @lva = params([:lva])
     @beispiele = Beispiel.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class BeispieleController < ApplicationController
   # GET /beispiele/1
   # GET /beispiele/1.json
   def show
+    @lva = lva unless lva.nil?
     @beispiel = Beispiel.find(params[:id])
 
     respond_to do |format|
@@ -26,7 +28,7 @@ class BeispieleController < ApplicationController
   def new
     @beispiel = Beispiel.new
     @beispiel.lva = Lva.find(params[:lva_id])
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @beispiel }

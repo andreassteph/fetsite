@@ -1,0 +1,17 @@
+<%= render :partial=>'layouts/topbar'%>
+
+<h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
+<%= raw(@studium.desc) %>
+<% @studium.semester.each do |sem| %>
+  <div class="row-fluid">
+    <h2><%= sem.name %></h2>
+    <div class="span<%= sem[:width]%> min-width:13em;">
+      <ul>      
+	<% sem.lvas.sort_by{|n| n[:name]}.each do |l| %>
+	  <li><%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
+	<% end %>
+      </ul>
+    </div>
+<% end %>
+
+<%= render :partial=>'layouts/pretty_toolbar', :locals=>{:elements=>@toolbar_elements} %>

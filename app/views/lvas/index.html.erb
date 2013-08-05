@@ -1,31 +1,8 @@
-<h1>Listing lvas</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Desc</th>
-    <th>Ects</th>
-    <th>Lvanr</th>
-    <th>Stunden</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @lvas.each do |lva| %>
-  <tr>
-    <td><%= lva.name %></td>
-    <td><%= lva.desc %></td>
-    <td><%= lva.ects %></td>
-    <td><%= lva.lvanr %></td>
-    <td><%= lva.stunden %></td>
-    <td><%= link_to 'Show', lva %></td>
-    <td><%= link_to 'Edit', edit_lva_path(lva) %></td>
-    <td><%= link_to 'Destroy', lva, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Lva', new_lva_path %>
+<%= render :partial=>'layouts/topbar', :object=>@tb %>
+<h1><%= I18n.t("lva.list")%></h1>
+<ul>
+<% @lvas.each do |l| %>
+<li><%= render :partial => 'lvas/lva_semester', :locals=> {:lva => l} %>
+<%end%>
+</ul>
+<%= render 'layouts/pretty_toolbar' %>
