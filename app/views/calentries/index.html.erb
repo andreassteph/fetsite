@@ -1,0 +1,29 @@
+<h1>Listing calentries</h1>
+
+<table>
+  <tr>
+    <th>Start</th>
+    <th>Ende</th>
+    <th>Summary</th>
+    <th>Typ</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @calentries.each do |calentry| %>
+  <tr>
+    <td><%= calentry.start %></td>
+    <td><%= calentry.ende %></td>
+    <td><%= calentry.summary %></td>
+    <td><%= calentry.typ %></td>
+    <td><%= link_to 'Show', calentry %></td>
+    <td><%= link_to 'Edit', edit_calentry_path(calentry) %></td>
+    <td><%= link_to 'Destroy', calentry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Calentry', new_calentry_path %>

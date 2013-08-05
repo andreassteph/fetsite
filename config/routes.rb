@@ -1,5 +1,11 @@
 Fetsite::Application.routes.draw do
   
+  resources :calendars
+
+
+  resources :calentries
+
+
   devise_for :users
   resources :home, :only=>[:index]
   #get 'home',:controller=>home,:action=>:index,:as=>"home_index"

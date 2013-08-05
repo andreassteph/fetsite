@@ -1,0 +1,12 @@
+<%= semantic_form_for @calentry do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :start %>
+    <%= f.input :ende %>
+    <%= f.input :summary %>
+    <%= f.input :typ %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>
