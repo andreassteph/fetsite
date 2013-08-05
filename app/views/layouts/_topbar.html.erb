@@ -1,3 +1,11 @@
+<!--
+Verwendung: Aufruf mit 
+< % = render 'layouts/topbar % > verwendet die Elemente die im Controller per @topbar_elements vorgegeben werden. Sonst kann man über
+< % = render :partial=>'layouts/topbar', :object=>@foo % > einen beliebigen array @foo übergeben
+
+-->
+
+
 <% topbar = !topbar.nil? ? topbar : @topbar_elements %>
 <ul class="breadcrumb">
   <% topbar.each do |tb| %>
