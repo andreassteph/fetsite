@@ -31,4 +31,5 @@ inflect.plural 'thema', 'themen'
 inflect.singular 'themen', 'thema'
 inflect.plural 'frage', 'fragen'
 inflect.singular 'fragen', 'frage'
+
 end

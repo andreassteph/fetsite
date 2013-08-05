@@ -1,0 +1,5 @@
+class Thema < ActiveRecord::Base
+  attr_accessible :text, :title
+  has_many :fragen
+  belongs_to :themengruppe
+end

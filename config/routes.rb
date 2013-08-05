@@ -1,5 +1,17 @@
 Fetsite::Application.routes.draw do
   
+  resources :fragen
+
+
+  resources :attachments
+
+
+  resources :themen
+
+
+  resources :themengruppen
+
+
   devise_for :users
   resources :home, :only=>[:index]
   #get 'home',:controller=>home,:action=>:index,:as=>"home_index"

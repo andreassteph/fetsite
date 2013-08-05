@@ -1,0 +1,2 @@
+module FragenHelper
+end

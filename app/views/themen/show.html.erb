@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @thema.title %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @thema.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_thema_path(@thema) %> |
+<%= link_to 'Back', themen_path %>
