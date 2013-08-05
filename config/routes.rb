@@ -1,4 +1,4 @@
-Fetsite::Application.routes.draw do
+ Fetsite::Application.routes.draw do
   
   devise_for :users
   resources :home, :only=>[:index]
@@ -20,28 +20,31 @@ Fetsite::Application.routes.draw do
   get 'pages', :to =>'pages#show'
   scope '(:locale)' do
     
-    resources :studien, :only=>[:show,:new,:edit,:update,:destroy]
-    resources :modulgruppen,:only =>[:create,:index]
-    
-    resources :studien,:except=>[:show,:new,:edit,:update,:destroy], :shallow=>true do 
-      resources :modulgruppen, :path => "(:locale)/modulgruppen"
-      
-    end
-    get 'studien/:id/semesteransicht', :controller=>:studien, :action=>:semesteransicht, :as=>'studium_semesteransicht'
-    resources :semesters
-    resources :moduls
-    resources :lvas
-    resources :neuigkeiten
-    get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
-    
-    resources :rubriken do
-      resources :neuigkeiten, :only=>[:new, :show]
-    end
-    put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
-    get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
-    resources :home, :only=>[:index]
-    get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
-    resources :beispiele
+    resources :studien, :only=>[:new,:edit,:update,:destroy]
+    scope '(:ansicht)' do
+  resources :studien, :only=>[:show]
+end
+resources :modulgruppen,:only =>[:create,:index]
+
+resources :studien,:except=>[:show,:new,:edit,:update,:destroy], :shallow=>true do 
+  resources :modulgruppen, :path => "(:locale)/modulgruppen"
+  
+end
+#    get 'studien/(:ansicht)/:id', :controller=>:studien, :action=>:show, :as=>'studium_ansicht'
+resources :semesters
+resources :moduls
+resources :lvas
+resources :neuigkeiten
+get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
+
+resources :rubriken do
+  resources :neuigkeiten, :only=>[:new, :show]
+end
+put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
+get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
+resources :home, :only=>[:index]
+get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
+resources :beispiele
 
   end
 
