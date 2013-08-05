@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs">
+  <% if @studium.nil? %>
+    <li class="active">
+      <% else %>
+  <li>
+    <% end %>
+    <%= link_to "Alle Studien", studien_path %> </li>
+  <% for s in Studium.all %>
+    <% if !@studium.nil? && s == @studium %>
+      <li class="active">
+	<%= link_to s.name, studium_path(s) %>
+      </li>
+    <% else %>
+      <li> <%= link_to s.name, studium_path(s) %></li>
+    <% end %>
+  <% end %>
+ 
+</ul>
