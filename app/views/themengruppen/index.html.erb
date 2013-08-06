@@ -9,17 +9,17 @@
     <th></th>
   </tr>
 
-<% @themengruppen.each do |themagruppen| %>
+<% @themengruppen.each do |themengruppe| %>
   <tr>
-    <td><%= themagruppen.title %></td>
-    <td><%= themagruppen.text %></td>
-    <td><%= link_to 'Show', themagruppen %></td>
-    <td><%= link_to 'Edit', edit_themagruppen_path(themagruppen) %></td>
-    <td><%= link_to 'Destroy', themagruppen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= themengruppe.title %></td>
+    <td><%= themengruppe.text %></td>
+    <td><%= link_to 'Show', themengruppe %></td>
+    <td><%= link_to 'Edit', edit_themengruppe_path(themengruppe) %></td>
+    <td><%= link_to 'Destroy', themengruppe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Themengruppe', new_themagruppen_path %>
+<%= link_to 'New Themengruppe', new_themengruppe_path %>

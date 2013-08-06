@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>
+<p>
+  <b>Title:</b>
   <%= @frage.title %>
-</h1>
+</p>
 
 <p>
+  <b>Text:</b>
   <%= @frage.text %>
 </p>
 
