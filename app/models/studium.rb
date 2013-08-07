@@ -12,7 +12,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 class Studium < ActiveRecord::Base
-  attr_accessible :desc, :name, :typ, :zahl
+  attr_accessible :desc, :name, :typ, :zahl, :semester
   has_many :modulgruppen, inverse_of: :studium, :class_name => "Modulgruppe", :dependent => :destroy
   has_many :semester, :dependent => :destroy
   

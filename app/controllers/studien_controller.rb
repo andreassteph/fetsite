@@ -99,74 +99,76 @@ class StudienController < ApplicationController
       @module=Modul.all
       @lvas=Lva.all
       @beispiele=Beispiel.all
+    else
+      if !@new_params[:studium].nil?
+        @studien = [Studium.find(@new_params[:studium])]
       else
-    if !@new_params[:studium].nil?
-      @studien = [Studium.find(@new_params[:studium])]
-    else
-      @studien = Studium.all
-    end
-    if !@new_params[:modulgruppe].nil?
-      @modulgruppen = [Modulgruppe.find(@new_params[:modulgruppe])]
-      temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
-      @studien=@studien.select{|k| temp.include?(k)}
+        @studien = Studium.all
+      end
+      if !@new_params[:modulgruppe].nil?
+        @modulgruppen = [Modulgruppe.find(@new_params[:modulgruppe])]
+        temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
 
-    else
-      @modulgruppen = Modulgruppe.all
-      temp = @studien.map{|x| x.modulgruppen}.flatten.uniq # Studien forcen Modulgruppen
-      @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+      else
+        @modulgruppen = Modulgruppe.all
+        temp = @studien.map{|x| x.modulgruppen}.flatten.uniq # Studien forcen Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+      end
+      if !@new_params[:modul].nil?
+        @module = [Modul.find(@new_params[:modul])]
+        temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+        temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
+        
+      else
+        @module = Modul.all
+        temp = @modulgruppen.map{|x| x.moduls}.flatten.uniq
+        @module=@module.select{|k| temp.include?(k)}
+      end
+      if !@new_params[:lva].nil?
+        @lvas = [Lva.find(@new_params[:lva])]
+        temp = @lvas.map{|x| x.modul}.flatten.uniq
+        @module=@module.select{|k| temp.include?(k)}
+        temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+        temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
+      else
+        @lvas = Lva.all
+        temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
+        @lvas=@lvas.select{|k| temp.include?(k)}
+      end
+      if !@new_params[:beispiel].nil?
+        @beispiele = [Beispiel.find(@new_params[:beispiel])]
+        temp = @lvas.map{|x| x.beispiele}.flatten.uniq #Force Force Lvas
+        @lvas=@lvas.select{|k| temp.include?(k)}
+        temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
+        @module=@module.select{|k| temp.include?(k)}
+        temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+        temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
+        
+        
+      else
+        @beispiele = Beispiel.all
+        temp = @lvas.map{|x| x.beispiele}.flatten.uniq # Force beispiel
+        @beispiele=@beispiele.select{|k| temp.include?(k)}
+      end
     end
-    if !@new_params[:modul].nil?
-      @module = [Modul.find(@new_params[:modul])]
-      temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
-      @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
-      temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
-      @studien=@studien.select{|k| temp.include?(k)}
-      
-    else
-      @module = Modul.all
-      temp = @modulgruppen.map{|x| x.moduls}.flatten.uniq
-      @module=@module.select{|k| temp.include?(k)}
-    end
-    if !@new_params[:lva].nil?
-      @lvas = [Lva.find(@new_params[:lva])]
-      temp = @lvas.map{|x| x.modul}.flatten.uniq
-      @module=@module.select{|k| temp.include?(k)}
-      temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
-      @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
-      temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
-      @studien=@studien.select{|k| temp.include?(k)}
-    else
-      @lvas = Lva.all
-      temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
-      @lvas=@lvas.select{|k| temp.include?(k)}
-    end
-    if !@new_params[:beispiel].nil?
-      @beispiele = [Beispiel.find(@new_params[:beispiel])]
-      temp = @lvas.map{|x| x.beispiele}.flatten.uniq #Force Force Lvas
-      @lvas=@lvas.select{|k| temp.include?(k)}
-      temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
-      @module=@module.select{|k| temp.include?(k)}
-      temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
-      @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
-      temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
-      @studien=@studien.select{|k| temp.include?(k)}
-      
-      
-    else
-      @beispiele = Beispiel.all
-      temp = @lvas.map{|x| x.beispiele}.flatten.uniq # Force beispiel
-      @beispiele=@beispiele.select{|k| temp.include?(k)}
-    end
-end
 
     @messages = []
     for s in @studien
 
       if s.valid?
         @messages << s.name + ' hat keine Modulgruppe' if s.modulgruppen.count == 0
+        
       else
-        @messages << s.name + ': '
+        @messages << '<font color="red"><b>'+s.name + ': '
         @messages << s.errors.full_messages
+        @messages << '</font></b>'
       end
     end
     for mg in @modulgruppen
@@ -174,8 +176,9 @@ end
       if mg.valid?
         @messages << mg.name +  ' hat kein Modul' if mg.moduls.count == 0
       else
-        @messages << mg.name + ': '
+        @messages << '<font color="red"><b>'+mg.name + ': '
         @messages << mg.errors.full_messages
+        @messages << '</font></b>'
       end
     end
     for m in @module
@@ -184,31 +187,43 @@ end
         @messages << m.name + ' hat keine Modulgruppe' if m.modulgruppen.count == 0
         @messages << m.name + ' hat keine Lvas' if m.lvas.count == 0
       else
-        @messages << m.name + ': '
+        @messages << '<font color="red"><b>'+m.name + ': '
         @messages << m.errors.full_messages
+        @messages << '</font></b>'
       end
     end
     for lva in @lvas
       
       if lva.valid?
         @messages << lva.name + ' hat keine Module' if lva.modul.count == 0
-        
+        for s in @studien
+          stu_sem = s.semester.map{|l| l.lvas}.flatten.uniq.index(lva)
+          stu_mod = s.modulgruppen.map{|m| m.moduls}.flatten.map{|l| l.lvas}.flatten.uniq.index(lva)
+          if (stu_sem.nil? && !stu_mod.nil?) 
+            @messages << lva.name + ' erscheint nicht in der Semesteransicht von ' +s.name + ' aber in der Modulgruppenansicht'
+          end
+          if (!stu_sem.nil? && stu_mod.nil?)
+            @messages << lva.name + ' erscheint in der Semesteransicht von ' +s.name + ' aber nicht in der Modulgruppenansicht'
+          end
+        end
       else
-        @messages << lva.name + ': '
+        @messages << '<font color="red"><b>'+lva.name + ': '
         @messages << lva.errors.full_messages
+        @messages << '</font></b>'
       end
     end
     for b in @beispiele
       if b.valid?
         @messages << b.name + ' hat keine Lva' if lva.moduls
       else
-        @messages << b.name + ': '
+        @messages << '<font color="red"><b>'+b.name + ': '
         @messages << b.errors.full_messages
+        @messages << '</font></b>'
       end
     end
     render 'studien/verwalten'
   end
-  
+
   def default_url_options
     {:ansicht=> params[:ansicht],
       :studium=> params[:studium],

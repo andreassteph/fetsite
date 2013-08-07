@@ -1,7 +1,7 @@
 <div class="btn-toolbar">
   <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-      <%= params[:studium].nil? ? "Studium" : Studium.find(params[:studium]).name %>
+      <%= params[:studium].nil? ? I18n.t("filter.studium") : Studium.find(params[:studium]).name %>
       <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
@@ -13,7 +13,7 @@
   </div>
   <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-      <%= params[:modulgruppe].nil? ? "Modulgruppe" : Modulgruppe.find(params[:modulgruppe]).name %>
+      <%= params[:modulgruppe].nil? ? I18n.t("filter.modulgruppe") : Modulgruppe.find(params[:modulgruppe]).name %>
 
       <span class="caret"></span>
     </a>
@@ -26,7 +26,7 @@
   </div>
   <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-      <%= params[:modul].nil? ? "Modul" : Modul.find(params[:modul]).name %>
+      <%= params[:modul].nil? ? I18n.t("filter.modul") : Modul.find(params[:modul]).name %>
 
       <span class="caret"></span>
     </a>
@@ -39,7 +39,7 @@
   </div>
   <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-      <%= params[:lva].nil? ? "LVA" : Lva.find(params[:lva]).name %>
+      <%= params[:lva].nil? ? I18n.t("filter.lva") : Lva.find(params[:lva]).name %>
 
       <span class="caret"></span>
     </a>
@@ -51,7 +51,7 @@
     </ul>    </div>
   <div class="btn-group">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-      <%= params[:beispiel].nil? ? "Beispiele" : Beispiel.find(params[:beispiel]).name %>
+      <%= params[:beispiel].nil? ? I18n.t("filter.beispiel") : Beispiel.find(params[:beispiel]).name %>
 
       <span class="caret"></span>
     </a>
@@ -62,6 +62,7 @@
       <% end %>
     </ul>
   </div>
-  <%= link_to 'Alle Filter Löschen', studien_verwalten_path(:studium=>nil, :modulgruppe=>nil, :modul=>nil, :lva=>nil, :beispiel=>nil), :class=>"btn" %>
+  <%= link_to I18n.t("filter.reset"), studien_verwalten_path(:studium=>nil, :modulgruppe=>nil, :modul=>nil, :lva=>nil, :beispiel=>nil), :class=>"btn" %>
 </div>
-</div>
+
+
