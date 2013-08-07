@@ -1,6 +1,6 @@
 class StudienController < ApplicationController
   before_filter {@toolbar_elements =[]} 
-
+  #  before_filter :authorize, :only => :verwalten
 
   def index
     @studien = Studium.all
@@ -39,7 +39,7 @@ class StudienController < ApplicationController
     @toolbar_modulgruppen =[ {:hicon=>'icon-plus-sign', :text=> I18n.t('modulgruppe.new'), :path=>new_studium_modulgruppe_path(@studium)},
                              {:hicon=>'icon-list', :text => I18n.t('modulgruppe.list'), :path=>modulgruppen_path}]
     
-    if params[:ansicht] == 'semesteransicht'
+    if params[:ansicht] != 'modulgruppenansicht'
       @text = 'Zu Modulansicht wechseln'
       @flip = 'modulgruppenansicht'
       render 'semesteransicht'
@@ -90,39 +90,47 @@ class StudienController < ApplicationController
     @studium.destroy
     redirect_to studien_url
   end
-  def default_url_options
-    {ansicht: params[:ansicht]}.merge(super)
-  end
 
   def verwalten
-
-    if !(params[:modul]).nil?
-      modul = Modul.find(params[:modul])
-      @modulgruppen = modul.modulgruppen
-      @studien =  @modulgruppen.map{|x| x.studium}.flatten.uniq
-      @module = [modul]
-      @lvas =  @module.map{|x| x.lvas}.flatten.uniq
-      @beispiele = @lvas.map{|x| x.beispiele}.flatten.uniq
-      @title = 'Modul: ' + modul.name
-    elsif !(params[:studium]).nil?
-      studium = Studium.find(params[:studium])
-      @studien = [studium]
-      @modulgruppen =  studium.modulgruppen.uniq
-      @module = studium.modulgruppen.map{|x| x.moduls}.flatten.uniq
-      @lvas =  @module.map{|x| x.lvas}.flatten.uniq
-      @beispiele = @lvas.map{|x| x.beispiele}.flatten
-      @title = 'Studium: ' + studium.name
-    elsif !(params[:lva]).nil?
-
-    elsif !(params[:beispiel]).nil?
-
+    @new_params={:studium=>params[:studium], :modulgruppe=>params[:modulgruppe], :modul=>params[:modul], :lva=>params[:lva], :beispiel=>params[:beispiel]}
+    
+    if !@new_params[:studium].nil?
+      @studien = [Studium.find(@new_params[:studium])]
     else
       @studien = Studium.all
+    end
+    if !@new_params[:modulgruppe].nil?
+      @modulgruppen = [Modulgruppe.find(@new_params[:modulgruppe])]
+      
+    else
       @modulgruppen = Modulgruppe.all
+    end
+    if !@new_params[:modul].nil?
+      @module = [Modul.find(@new_params[:modul])]
+    else
       @module = Modul.all
+    end
+    if !@new_params[:lva].nil?
+      @lvas = [Lva.find(@new_params[:lva])]
+    else
       @lvas = Lva.all
+    end
+    if !@new_params[:beispiel].nil?
+      @beispiele = [Beispiel.find(@new_params[:beispiel])]
+    else
       @beispiele = Beispiel.all
     end
+    
     render 'studien/verwalten'
+  end
+  
+  def default_url_options
+    {:ansicht=> params[:ansicht],
+     :studium=> params[:studium],
+     :modulgruppe=> params[:modulgruppe],
+    :modul=>params[:modul],
+    :lva=>params[:lva],
+    :beispiel=>params[:beispiel]}.merge(super)
+
   end
 end

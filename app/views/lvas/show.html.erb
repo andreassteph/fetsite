@@ -25,7 +25,7 @@
 	<ul>
       <% modul.modulgruppen.each do |g| %>
 
-	<li><%= link_to g.studium.name , studium_semesteransicht_path(g.studium)%> (<%=link_to g.name, modulgruppe_path(g)%>)</li>
+	<li><%= link_to g.studium.name , studium_path(g.studium)%> (<%=link_to g.name, modulgruppe_path(g)%>)</li>
       <% end %>
       </ul>
     </li>
