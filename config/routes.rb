@@ -30,7 +30,7 @@ resources :studien,:except=>[:show,:new,:edit,:update,:destroy], :shallow=>true 
   resources :modulgruppen, :path => "(:locale)/modulgruppen"
   
 end
-#    get 'studien/(:ansicht)/:id', :controller=>:studien, :action=>:show, :as=>'studium_ansicht'
+    get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
 resources :semesters
 resources :moduls
 resources :lvas

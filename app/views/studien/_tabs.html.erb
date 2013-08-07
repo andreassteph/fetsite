@@ -1,18 +1,24 @@
 <ul class="nav nav-tabs">
-  <% if @studium.nil? %>
+  <% if request.fullpath == studien_path%>
     <li class="active">
-      <% else %>
-  <li>
-    <% end %>
-    <%= link_to "Alle Studien", studien_path %> </li>
-  <% for s in Studium.all %>
-    <% if !@studium.nil? && s == @studium %>
-      <li class="active">
-	<%= link_to s.name, studium_path(s) %>
-      </li>
     <% else %>
-      <li> <%= link_to s.name, studium_path(s) %></li>
-    <% end %>
+    <li>
   <% end %>
- 
+  <%= link_to "Alle Studien", studien_path %> </li>
+<% for s in Studium.all %>
+  <% if !@studium.nil? && s == @studium %>
+    <li class="active">
+      <%= link_to s.name, s %>
+    </li>
+  <% else %>
+    <li> <%= link_to s.name, s %></li>
+  <% end %>
+<% end %>
+<% if request.fullpath == studien_verwalten_path %>
+  <li class="active">
+  <% else %>
+  <li>
+<% end %>
+<%= link_to "Verwaltung", studien_verwalten_path %>
+</li>
 </ul>

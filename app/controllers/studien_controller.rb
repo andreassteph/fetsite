@@ -42,7 +42,7 @@ class StudienController < ApplicationController
     if params[:ansicht] == 'semesteransicht'
       @text = 'Zu Modulansicht wechseln'
       @flip = 'modulgruppenansicht'
-        render 'semesteransicht'
+      render 'semesteransicht'
     else
       @text = 'Zu Semesteransicht wechseln'
       @flip = 'semesteransicht'
@@ -92,5 +92,37 @@ class StudienController < ApplicationController
   end
   def default_url_options
     {ansicht: params[:ansicht]}.merge(super)
+  end
+
+  def verwalten
+
+    if !(params[:modul]).nil?
+      modul = Modul.find(params[:modul])
+      @modulgruppen = modul.modulgruppen
+      @studien =  @modulgruppen.map{|x| x.studium}.flatten.uniq
+      @module = [modul]
+      @lvas =  @module.map{|x| x.lvas}.flatten.uniq
+      @beispiele = @lvas.map{|x| x.beispiele}.flatten.uniq
+      @title = 'Modul: ' + modul.name
+    elsif !(params[:studium]).nil?
+      studium = Studium.find(params[:studium])
+      @studien = [studium]
+      @modulgruppen =  studium.modulgruppen.uniq
+      @module = studium.modulgruppen.map{|x| x.moduls}.flatten.uniq
+      @lvas =  @module.map{|x| x.lvas}.flatten.uniq
+      @beispiele = @lvas.map{|x| x.beispiele}.flatten
+      @title = 'Studium: ' + studium.name
+    elsif !(params[:lva]).nil?
+
+    elsif !(params[:beispiel]).nil?
+
+    else
+      @studien = Studium.all
+      @modulgruppen = Modulgruppe.all
+      @module = Modul.all
+      @lvas = Lva.all
+      @beispiele = Beispiel.all
+    end
+    render 'studien/verwalten'
   end
 end
