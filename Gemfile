@@ -75,3 +75,5 @@ group :development, :test do
 gem 'factory_girl_rails'
 gem 'rspec-rails'
 end
+
+gem "simple_calendar", "~> 0.1.9"

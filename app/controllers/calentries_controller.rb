@@ -18,7 +18,7 @@ class CalentriesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @calentry }
-      format.ics  { render 'show.ics.erb',}
+      format.ics  { render 'show.ics.erb'}
     end
   end
 

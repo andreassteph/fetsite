@@ -9,7 +9,16 @@
   <b>Public:</b>
   <%= @calendar.public %>
 </p>
+<p>
+<ul>
+<% @calendar.calentries.each do |entry| %>
+<%= entry.summary+ "- " + entry.start.to_s %>
+<% end %>
 
+<%= calendar @calendar.calentries do |entry| %>
+  <div><%= link_to entry.name, entry %></div>
+<% end %>
 
+<%= link_to 'New Entry', new_calentry_path %>
 <%= link_to 'Edit', edit_calendar_path(@calendar) %> |
 <%= link_to 'Back', calendars_path %>
