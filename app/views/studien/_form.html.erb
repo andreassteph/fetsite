@@ -1,13 +1,28 @@
+<div class="container-fluid">
   <%= tinymce_assets %>
-<%= semantic_form_for @studium do |f| %>
+  <%= semantic_form_for @studium do |f| %>
+  <div class="span9">
   <%= f.inputs do %>
-    <%= f.input :zahl %>
-    <%= f.input :name,:append=>"NAME" %>
+
+  <div class="row-fluid">
+    <div class="span6">
+      <%= f.input :name,:append=>"NAME" %>
+    </div>
+    <div class="span3">
+      <%= f.input :zahl %>
+    </div>
+    <div class="span3">
+      <%= f.input :typ, :as=>:select, :include_blank=>false, :collection=>["Bachelor","Master"]%>
+    </div>
+  </div>
+  <div class="row-fluid">
     <%= f.input :desc, :as=>:tinymce_text %>
-    <%= f.input :typ, :as=>:radio, :collection=>["Bachelor","Master"]%>
+  </div>
   <% end %>
-<%= tinymce %>
+  <%= tinymce %>
   <%= f.actions do %>
-    <%= f.action :submit, :as => :input %>
+  <%= f.action :submit, :as => :input %>
   <% end %>
-<% end %>
+  </div>
+  <% end %>
+</div>

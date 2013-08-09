@@ -51,15 +51,10 @@ class ModulgruppenController < ApplicationController
   def create
     @modulgruppe = Modulgruppe.new(params[:modulgruppe])
     
-    if !params[:studium_id].nil?
-      @studium=Studium.find_by_id(params[:studium_id]) 
-    else
-      @studium=Studium.find_by_id(params[:modulgruppe][:studium_id]) 
-    end
     respond_to do |format|
          
       if @modulgruppe.save
-        format.html { redirect_to @studium, notice: 'Modulgruppe was successfully created.' }
+        format.html { redirect_to @modulgruppe.studium, notice: 'Modulgruppe was successfully created.' }
 
       else
         format.html { render action: "new" }
