@@ -5,17 +5,16 @@ form.formtastic textarea {
 width:90%;
 height:20em;
 }
-form.formtastic .stringish label {
-font-weight: bold;
-}
-form.formtastic .choice-group label {
-font-weight: bold;
-}
-form.formtastic fieldset div.control-group{}
+
 
 div.form-group {
 border-width: 1px;
 border-style: dashed;
 padding: 10px;
 border-radius: 10px;
+}
+div.verwalten-block {
+border-width: 1px;
+border-style: solid;
+padding: 5px;
 }
