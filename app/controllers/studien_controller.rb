@@ -92,7 +92,7 @@ class StudienController < ApplicationController
   end
 
   def verwalten
-    @new_params={:studium=>params[:studium], :modulgruppe=>params[:modulgruppe], :modul=>params[:modul], :lva=>params[:lva], :beispiel=>params[:beispiel]}
+    @new_params={:std_verw=>params[:std_verw], :mg_verw=>params[:mg_verw], :m_verw=>params[:m_verw], :lva_verw=>params[:lva_verw], :b_verw=>params[:b_verw]}
     if @new_params.values.compact.empty?
       @studien=Studium.all
       @modulgruppen=Modulgruppe.all
@@ -100,13 +100,13 @@ class StudienController < ApplicationController
       @lvas=Lva.all
       @beispiele=Beispiel.all
     else
-      if !@new_params[:studium].nil?
-        @studien = [Studium.find(@new_params[:studium])]
+      if !@new_params[:std_verw].nil?
+        @studien = [Studium.find(@new_params[:std_verw])]
       else
         @studien = Studium.all
       end
-      if !@new_params[:modulgruppe].nil?
-        @modulgruppen = [Modulgruppe.find(@new_params[:modulgruppe])]
+      if !@new_params[:mg_verw].nil?
+        @modulgruppen = [Modulgruppe.find(@new_params[:mg_verw])]
         temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
         @studien=@studien.select{|k| temp.include?(k)}
 
@@ -115,8 +115,8 @@ class StudienController < ApplicationController
         temp = @studien.map{|x| x.modulgruppen}.flatten.uniq # Studien forcen Modulgruppen
         @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
       end
-      if !@new_params[:modul].nil?
-        @module = [Modul.find(@new_params[:modul])]
+      if !@new_params[:m_verw].nil?
+        @module = [Modul.find(@new_params[:m_verw])]
         temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
         @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
         temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
@@ -127,8 +127,8 @@ class StudienController < ApplicationController
         temp = @modulgruppen.map{|x| x.moduls}.flatten.uniq
         @module=@module.select{|k| temp.include?(k)}
       end
-      if !@new_params[:lva].nil?
-        @lvas = [Lva.find(@new_params[:lva])]
+      if !@new_params[:lva_verw].nil?
+        @lvas = [Lva.find(@new_params[:lva_verw])]
         temp = @lvas.map{|x| x.modul}.flatten.uniq
         @module=@module.select{|k| temp.include?(k)}
         temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
@@ -140,8 +140,8 @@ class StudienController < ApplicationController
         temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
         @lvas=@lvas.select{|k| temp.include?(k)}
       end
-      if !@new_params[:beispiel].nil?
-        @beispiele = [Beispiel.find(@new_params[:beispiel])]
+      if !@new_params[:b_verw].nil?
+        @beispiele = [Beispiel.find(@new_params[:b_verw])]
         temp = @lvas.map{|x| x.beispiele}.flatten.uniq #Force Force Lvas
         @lvas=@lvas.select{|k| temp.include?(k)}
         temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
@@ -226,11 +226,11 @@ class StudienController < ApplicationController
 
   def default_url_options
     {:ansicht=> params[:ansicht],
-      :studium=> params[:studium],
-      :modulgruppe=> params[:modulgruppe],
-      :modul=>params[:modul],
-      :lva=>params[:lva],
-      :beispiel=>params[:beispiel]}.merge(super)
+      :std_verw=> params[:std_verw],
+      :mg_verw=> params[:mg_verw],
+      :m_verw=>params[:m_verw],
+      :lva_verw=>params[:lva_verw],
+      :b_verw=>params[:b_verw]}.merge(super)
 
   end
 end
