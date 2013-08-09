@@ -1,15 +1,30 @@
+<div class="container-fluid">
+  <%= semantic_form_for @modul do |f| %>
 
-<%= semantic_form_for @modul do |f| %>
   <%= f.inputs do %>
-   <% # f.input :modulgruppen,:as => :select,      :collection => Hash[Modulgruppe.all.map{|m| [m.studium.name + " " + m.name,m.id]}] %>
-   <%= f.input :modulgruppen %>
-    <%= f.input :name ,:hint=>true%>
-    <%= f.input :desc, :as=>:tinymce_text %>
-    <%= f.input :depend %>
+  <div class="row-fluid">
+    <div class="span9">
+      <%= f.input :name ,:hint=>true%>
+       <div class="row-fluid">
+    <div class="span8">
+      <%= f.input :desc, :as=>:tinymce_text %>
+    </div>
+    <div class="span4">
+      <%= f.input :depend %>
+    </div>
+  </div>
+    </div>
+    <div class="span3">
+      <%= f.input :modulgruppen,:as => :check_boxes, :collection => Hash[Modulgruppe.all.map{|m| [m.studium.name + " " + m.name,m.id]}.sort] %>
+    </div>
+  </div>
+ 
   <% end %>
 
   <%= f.actions do %>
-    <%= f.action :submit, :as => :input %>
+  <%= f.action :submit, :as => :input %>
   <% end %>
-<% end %>
+
+  <% end %>
+</div>
 <%= tinymce %>
