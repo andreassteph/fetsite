@@ -91,7 +91,10 @@ de:
             stunden:
               blank: "Geben Sie die Stunden der LVA an"
             lvanr:
-              invalid: "Geben Sie eine LVA-Nummer in richtigem Format an. Wenn die LVA noch keine Nummer hat, so geben sie 000 an."
+              invalid: "Geben Sie eine Nummer im Format 000.000 an."
+              blank: "Geben sie eine Lva-Nr an"
+              taken: "Die Lva-Nummer ist bereits vergeben"
+              
         studium:
           attributes:
             zahl:
@@ -118,4 +121,7 @@ de:
   verwalten:
     fehler:
       keine: "Keine Fehlermeldungen oder Warnungen"
-
+  support:
+    array:
+      two_words_connector: ', '
+  
