@@ -42,7 +42,7 @@ class BeispieleController < ApplicationController
   # POST /beispiele.json
   def create
     @beispiel = Beispiel.new(params[:beispiel])
-
+    
     respond_to do |format|
       if @beispiel.save
         format.html { redirect_to @beispiel, notice: 'Beispiel was successfully created.' }
