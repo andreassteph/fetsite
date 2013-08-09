@@ -1,32 +1,29 @@
 <div class="container-fluid">
   <div class="span9">
-  <%= semantic_form_for @beispiel, :html => { :multipart => true } do |f| %>
+    <%= semantic_form_for @beispiel, :html => { :multipart => true } do |f| %>
 
     <%= f.inputs do %>
-      <div class="row-fluid">
-    <div class="span4">
-      <%= f.file_field :beispieldatei %>
-      <%= f.hidden_field :beispieldatei_cache %>
-    </div>
-    <div class="span3"> 
-      <%= f.input :lva, :as=>:select, :collection => Lva.all%>
+    <%= f.hidden_field :beispieldatei_cache %>
 
+    <%= f.file_field :beispieldatei, :wrapper_html=>{:class=>"span4"}%>
+    <div class="row-fluid">
+      <%= f.input :name, :wrapper_html=>{:class=>'span6'} %>
+      <%= f.input :lva, :as=>:select, :collection => Lva.all, :wrapper_html=>{:class=>'span6'}%>
+
+      
+      <% end %>
     </div>
-    <div class="span5">
-      <%= f.input :name %>
-    </div>
-      </div>
     
     <div class="row-fluid">
       <%= f.input :desc %>
     </div>
     <% end %>    
 
-  <%= f.actions do %>
-  <%= f.action :submit, :as => :input %>
+    <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
 
-  <% end %>
+    <% end %>
 
-  <% end %>
-</div>
+    <% end %>
+  </div>
 </div>

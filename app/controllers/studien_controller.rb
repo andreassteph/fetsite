@@ -214,7 +214,7 @@ class StudienController < ApplicationController
     end
     for b in @beispiele
       if b.valid?
-        @messages << b.name + ' hat keine Lva' if lva.moduls
+        @messages << b.name + ' hat keine Lva' if b.lva.nil?
       else
         @messages << '<font color="red"><b>'+b.name + ': '
         @messages << b.errors.full_messages
