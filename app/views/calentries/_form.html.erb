@@ -1,6 +1,6 @@
 <%= semantic_form_for @calentry do |f| %>
   <%= f.inputs do %>
-    <%= f.input :start %>
+    <%= f.input :start , :as => :date_string %>
     <%= f.input :ende %>
     <%= f.input :summary %>
     <%= f.input :calendar, :as=> :radio %>
