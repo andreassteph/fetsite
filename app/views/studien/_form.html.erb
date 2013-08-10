@@ -1,9 +1,8 @@
 <div class="container-fluid">
   <%= tinymce_assets %>
   <%= semantic_form_for @studium do |f| %>
-  <div class="span9">
-  <%= f.inputs do %>
 
+  <%= f.inputs do %>
   <div class="row-fluid">
     <div class="span6">
       <%= f.input :name,:append=>"NAME" %>
@@ -18,11 +17,12 @@
   <div class="row-fluid">
     <%= f.input :desc, :as=>:tinymce_text %>
   </div>
+
   <% end %>
   <%= tinymce %>
   <%= f.actions do %>
   <%= f.action :submit, :as => :input %>
   <% end %>
-  </div>
+
   <% end %>
 </div>
