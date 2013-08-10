@@ -1,25 +1,25 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Start:</b>
-  <%= @calentry.start %>
-</p>
-
-<p>
-  <b>Ende:</b>
-  <%= @calentry.ende %>
-</p>
-
-<p>
-  <b>Summary:</b>
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+  <b>
   <%= @calentry.summary %>
-</p>
+  </b>
 
-<p>
-  <b>Typ:</b>
+</div>
+</div>
+<div class="row-fluid">
+<div class="span9">
+  <%= I18n.l @calentry.start %>
+  <%= " bis " unless @calentry.ende.nil? %>
+  <%= I18n.l @calentry.ende %>
+  </div>
+  <div class="span3">
   <%= @calentry.typ %>
-</p>
+</div></div>
 
-
+ <div class="row-fluid">
+ <div class="span12">
 <%= link_to 'Edit', edit_calentry_path(@calentry) %> |
 <%= link_to 'Back', calentries_path %>
+</div></div></div>

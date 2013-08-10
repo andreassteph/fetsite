@@ -3,7 +3,6 @@ class CalendarsController < ApplicationController
   # GET /calendars.json
   def index
     @calendars = Calendar.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @calendars }
@@ -18,6 +17,7 @@ class CalendarsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @calendar }
+      format.ics  { render 'show.ics.erb'}
     end
   end
 
