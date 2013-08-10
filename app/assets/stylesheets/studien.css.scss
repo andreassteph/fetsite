@@ -1,3 +1,18 @@
 // Place all the styles related to the studia controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div.verwalten-block {
+border-width: 1px;
+border-style: solid;
+padding: 5px;
+border-radius:10px;
+margin: 2px;
+}
+div.studien-semester {
+border-width: 1px;
+border-style: solid;
+padding: 5px;
+border-radius:10px;
+border-color: blue;
+margin: 2px;
+}
