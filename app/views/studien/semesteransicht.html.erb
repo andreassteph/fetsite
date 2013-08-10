@@ -14,7 +14,7 @@
 	<div class="studien-semester">
 	  <div class="container-fluid">
 	    
-	    <h2><%= sem.name %></h2>
+	    <h2><%= sem.name %> <%= link_to 'Lvas hinzufügen/entfernen', edit_semester_path(sem)%></h2>
 
 	    <% sem.lvas.each_slice(4) do |row| %>
 	      <div class="row-fluid">
