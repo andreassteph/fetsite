@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729085446) do
+ActiveRecord::Schema.define(:version => 20130810214456) do
+
+  create_table "attachments", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "thema_id"
+  end
 
   create_table "beispiele", :force => true do |t|
     t.string   "name"
@@ -20,6 +27,50 @@ ActiveRecord::Schema.define(:version => 20130729085446) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.string   "beispieldatei"
+  end
+
+  create_table "calendars", :force => true do |t|
+    t.string   "name"
+    t.boolean  "public"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "picture"
+  end
+
+  create_table "calendars_calentries", :id => false, :force => true do |t|
+    t.integer "calentry_id"
+    t.integer "calendar_id"
+  end
+
+  add_index "calendars_calentries", ["calendar_id"], :name => "index_calendars_calentries_on_calendar_id"
+  add_index "calendars_calentries", ["calentry_id", "calendar_id"], :name => "index_calendars_calentries_on_calentry_id_and_calendar_id"
+
+  create_table "calentries", :force => true do |t|
+    t.datetime "start"
+    t.datetime "ende"
+    t.string   "summary"
+    t.integer  "typ"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "frage_translations", :force => true do |t|
+    t.string   "locale"
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "fragen_id"
+  end
+
+  add_index "frage_translations", ["locale"], :name => "index_frage_translations_on_locale"
+
+  create_table "fragen", :force => true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "thema_id"
   end
 
   create_table "lva_translations", :force => true do |t|
@@ -160,6 +211,43 @@ ActiveRecord::Schema.define(:version => 20130729085446) do
   end
 
   add_index "studium_translations", ["locale"], :name => "index_studium_translations_on_locale"
+
+  create_table "thema_translations", :force => true do |t|
+    t.string   "locale"
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "themen_id"
+  end
+
+  add_index "thema_translations", ["locale"], :name => "index_thema_translations_on_locale"
+
+  create_table "themen", :force => true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "themengruppe_id"
+  end
+
+  create_table "themengruppe_translations", :force => true do |t|
+    t.string   "locale"
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "themengruppen_id"
+  end
+
+  add_index "themengruppe_translations", ["locale"], :name => "index_themengruppe_translations_on_locale"
+
+  create_table "themengruppen", :force => true do |t|
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
