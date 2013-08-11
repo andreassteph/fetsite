@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Start:</b>
+  <%= @calentry.start %>
+</p>
+
+<p>
+  <b>Ende:</b>
+  <%= @calentry.ende %>
+</p>
+
+<p>
+  <b>Summary:</b>
+  <%= @calentry.summary %>
+</p>
+
+<p>
+  <b>Typ:</b>
+  <%= @calentry.typ %>
+</p>
+
+
+<%= link_to 'Edit', edit_calentry_path(@calentry) %> |
+<%= link_to 'Back', calentries_path %>

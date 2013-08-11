@@ -1,0 +1,14 @@
+<h1>Listing calendars</h1>
+
+<% @calendars.each do |calendar| %>
+    <div class="media">
+	<a class="pull-left" href="#">
+	    <img class="media-object img-circle" src="<%= calendar.picture.thumb.url %>"/>
+	</a>
+	<div class="media-body">
+	    <h4><%= link_to calendar.name, calendar %></h4>
+	</div>
+    </div>
+<% end %>
+
+<%= link_to 'New Calendar', new_calendar_path %>
