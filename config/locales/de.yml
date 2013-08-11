@@ -105,7 +105,6 @@ de:
               blank: "Geben Sie den Namen des Studiums ein"
               taken: "Der  Name ist bereits vergeben"
             typ:
-<<<<<<< HEAD
               inclusion: 'Wählen Sie "Bachelor" oder "Master" aus'
         modul:
           attributes:
@@ -124,11 +123,7 @@ de:
       keine: "Keine Fehlermeldungen oder Warnungen"
   support:
     array:
-      two_words_connector: ', '
-  
-=======
-              inclusion: 'Wählen Sie "Bachelor" oder "Master" aus'       
-  
+      two_words_connector: ', '         
   date:
     abbr_day_names:
     - So
@@ -324,4 +319,4 @@ de:
       long: ! '%A, %d. %B %Y, %H:%M Uhr'
       short: ! '%d.%m.%Y, %H:%M Uhr'
     pm: nachmittags
->>>>>>> a5a02e065a319d162c5a280605c2c0d3c15643ca
+
