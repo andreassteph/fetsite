@@ -5,7 +5,14 @@
   <div class="row-fluid">
     <div class="span8">
       <h1><%= @lva.name %></h1>
-      
+      <h2>Prüfungsinformation</h2>
+      <div class="lva-beschreibung">
+	<%= @lva.pruefungsinformation %>
+      </div>
+      <h2>Lernaufwand</h2>
+      <div class="lva-beschreibung">
+	<%= @lva.lernaufwand %>
+      </div>
       <h2>Beschreibung</h2>
       <div class="lva-beschreibung">
 	<%= @lva.desc %>

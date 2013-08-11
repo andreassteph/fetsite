@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130810214456) do
+ActiveRecord::Schema.define(:version => 20130811191150) do
 
   create_table "attachments", :force => true do |t|
     t.string   "name"
@@ -90,10 +90,12 @@ ActiveRecord::Schema.define(:version => 20130810214456) do
     t.decimal  "ects"
     t.string   "lvanr"
     t.decimal  "stunden"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "modul_id"
     t.integer  "semester_id"
+    t.text     "pruefungsinformation"
+    t.text     "lernaufwand"
   end
 
   create_table "lvas_moduls", :id => false, :force => true do |t|
