@@ -17,7 +17,7 @@
 
 class Lva < ActiveRecord::Base
   has_paper_trail # Versionsverfolgung
-  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids
+  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand
   has_and_belongs_to_many :modul # Gehört zu einem Modul
   has_and_belongs_to_many :semester
   #Gehört zu einem Semester( derzeit nicht implementiert)
