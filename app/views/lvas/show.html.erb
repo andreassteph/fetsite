@@ -1,36 +1,47 @@
 <div class="container-fluid">
-<%= render 'studien/tabs'%>
-<p id="notice"><%= notice %></p>
-<p>
+  <%= render 'studien/tabs'%>
+  <p id="notice"><%= notice %></p>
 
-  <h2><%= @lva.lvanr %><%= @lva.name %> <%= @lva.ects %> ECTS/ <%= @lva.stunden %> Std</h2>
-  
-</p>
-
-  <p><h4>Beschreibung</h4>
-  <%= @lva.desc %>
-</p>
   <div class="row-fluid">
-<h4>Beispiele</h4>
+    <div class="span8">
+      <h1><%= @lva.name %></h1>
+      
+<h2>Beschreibung</h2>
+<div class="lva-beschreibung">
+  <%= @lva.desc %>
+</div>
+<div class="row-fluid">
+  <h2>Beispiele</h2>
   <% @lva.beispiele.each do |b|%>
-
+  <div class="lva-beispiele">
     <%= render b%>
-
+  </div>
   <% end %>
 </div>
-<h4>Module</h4>
-<ul>
-  <% @lva.modul.each do |modul| %>
+</div>
+<div class="span4">
+  <ul>
+	<li><b>LVA-Nummer:</b> <%=@lva.lvanr %></li>
+	<li><b>ECTS:</b> <%=@lva.ects %></li>
+	<li><b>Stunden:</b> <%=@lva.ects %></li>
+</ul>
+  <h2>Module</h2>
+  <ul>
+    <% @lva.modul.each do |modul| %>
     <li><b><%= link_to modul.name , modul_path(modul)%></b>
-	<ul>
-      <% modul.modulgruppen.each do |g| %>
+      <ul>
+	<% modul.modulgruppen.each do |g| %>
 
 	<li><%= link_to g.studium.name , studium_path(g.studium)%> (<%=link_to g.name, modulgruppe_path(g)%>)</li>
-      <% end %>
+	<% end %>
       </ul>
     </li>
     
-  <% end %>
-</ul>
+    <% end %>
+  </ul>
+</div>
+</div>
+
+
 <%= render 'layouts/pretty_toolbar' %>
 </div>
