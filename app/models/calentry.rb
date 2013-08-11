@@ -11,6 +11,9 @@ class Calentry < ActiveRecord::Base
   def start_time
     start
   end
+  def start1
+    start.to_date
+  end
   def name
 	summary
   end

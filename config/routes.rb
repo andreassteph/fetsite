@@ -1,9 +1,6 @@
 Fetsite::Application.routes.draw do
   
-  resources :calendars
-
-
-  resources :calentries
+ 
 
 
   devise_for :users
@@ -48,7 +45,8 @@ Fetsite::Application.routes.draw do
     resources :home, :only=>[:index]
     get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
     resources :beispiele
-
+	resources :calendars
+	resources :calentries
   end
 
   # The priority is based upon order of creation:

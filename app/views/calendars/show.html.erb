@@ -10,7 +10,7 @@
 <ul class="list-group">
 <% @calendar.calentries.each do |entry| %>
 <li class="list-group-item">
-<%= link_to entry.summary+ " - " + I18n.l(entry.start), entry %>
+<%= link_to entry.summary+ " - " + I18n.l(entry.start1), entry %>
 </li>
 <% end %>
 </ul>
