@@ -9,6 +9,8 @@
 
   <p><h4>Beschreibung</h4>
   <%= @lva.desc %>
+
+<%= link_to "Beispiel neu" , new_beispiel_path(:lva_id=>@lva.id) %>
 </p>
   <div class="row-fluid">
 <h4>Beispiele</h4>
