@@ -15,8 +15,6 @@
 	  <li><%= link_to I18n.t(:info,:scope=>'home' ) %></li>
 	  <li><%= link_to I18n.t(:studien,:scope=>'home' ), studien_path %></li>
 	  <li><%= link_to "Kalender", calendars_path %></li>
-	  <li><%= link_to "wiki intern", page_path(1) %>
-	  </li>
 	  <% if user_signed_in? %>
 	  <li>Logged in as : <%= current_user.email %>
 	    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
