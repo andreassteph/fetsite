@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811191150) do
+ActiveRecord::Schema.define(:version => 20130812070544) do
 
   create_table "attachments", :force => true do |t|
     t.string   "name"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20130811191150) do
     t.integer  "semester_id"
     t.text     "pruefungsinformation"
     t.text     "lernaufwand"
+    t.string   "typ"
   end
 
   create_table "lvas_moduls", :id => false, :force => true do |t|

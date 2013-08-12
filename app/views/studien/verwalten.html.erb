@@ -3,14 +3,14 @@
   <div class="row-fluid">
     <div class="span9">
       
-      <h1><%= I18n.t("studien.verwaltung") %></h1>   <%= link_to I18n.t("filter.reset"), studien_verwalten_path(:std_verw=>nil, :mg_verw=>nil, :m_verw=>nil, :lva_verw=>nil, :b_verw=>nil), :class=>"btn" %>
-      <%= I18n.t("filter.explanation").html_safe %>
+      <h1><%= I18n.t("studien.verwaltung.title") %></h1> 
+      <%= I18n.t("studien.verwaltung.explanation").html_safe %>
       <h2>Studien </h2>
       <div class="verwalten-block">
 	
 	|
 	<% @studien.each do |s| %>
-	<%= link_to s.name, s %> <%= (s.valid?) ? "Gültig" : "Problemfall" %> | <% end %>
+	<%= (s.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to s.name, s %> | <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_studium_path(s)%> ||<% end %>
 	<div class="btn-toolbar">
 	  <div class="btn-group">
 	    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -36,7 +36,7 @@
 	  <h2>Modulgruppen </h2>
 	  <div class="verwalten-block">
 	    <% @modulgruppen.each do |mg| %>
-	    <%= link_to mg.name, mg %> | <%= (mg.valid?) ? "Gültig" : "Problemfall" %><br>
+	    	<%= (mg.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to mg.name, mg %> | <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_modulgruppe_path(mg)%><br>
 	    <% end %>
 	    <div class="btn-toolbar">
 	      <div class="btn-group">
@@ -65,8 +65,8 @@
 	    
 	    
 	    <% @module.each do |m| %>
-	    <%= link_to m.name, m %>  
-	    | <%= (m.valid?) ? "Gültig" : "Problemfall" %><br>
+	    <%= (m.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to m.name, m %>  
+	    |  <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_modul_path(m)%><br>
 	    <% end %>
 	    <div class="btn-toolbar">
 	      <div class="btn-group">
@@ -93,8 +93,8 @@
 	    
 
 	    <% @lvas.each do |lva| %>
-	    <%= link_to lva.name, lva %> |	      
-	    <%= (lva.valid?) ? "Gültig" : "Problemfall" %><br>
+	    <%= (lva.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %><%= link_to lva.name, lva %> |	      
+	     <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_lva_path(lva)%><br>
 	    
 	    <% end %>
 	    <div class="btn-toolbar">
@@ -123,11 +123,12 @@
       </div>
     </div>
     <div class="span3">
+        <%= link_to I18n.t("filter.reset"), studien_verwalten_path(:std_verw=>nil, :mg_verw=>nil, :m_verw=>nil, :lva_verw=>nil, :b_verw=>nil), :class=>"btn" %>
       <h2>Error Log</h2>
       <ul>
-	<li><b>Red</b>: Error, Solve immediately</li>
-	<li><b>Black</b>: Warning, should be solved</li>
-	<li><b>Green</b>: Everything is fine</li>
+	<li><font color="red"><b>Red</b></font>: Error, Solve immediately</li>
+	<li>Black: Warning, should be solved</li>
+	<li><font color="green"><b>Green</b></font>: Everything is fine</li>
       </ul>
       <div class="verwalten-block">
 	<ul>
@@ -144,7 +145,7 @@
 
 
 	<% @beispiele.each do |b| %>
-	<%= link_to b.name, b %>
+<%= (b.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %>	<%= link_to b.name, b %> |  <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_beispiel_path(b)%>
 	<% end %>
 	<div class="btn-toolbar">
 	  <div class="btn-group">

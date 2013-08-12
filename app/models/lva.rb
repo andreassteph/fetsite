@@ -16,8 +16,9 @@
 #
 
 class Lva < ActiveRecord::Base
+  ERLAUBTE_TYPEN = ['VO', 'UE', 'VU', 'LU', 'SE', 'andere'];
   has_paper_trail # Versionsverfolgung
-  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand
+  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ
   has_and_belongs_to_many :modul # Gehört zu einem Modul
   has_and_belongs_to_many :semester
   #Gehört zu einem Semester( derzeit nicht implementiert)
@@ -27,8 +28,8 @@ class Lva < ActiveRecord::Base
   
   validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
   validates_presence_of :ects  # ECTS vorhanden?
-  validates :name, :presence=>true
-  validates :name,  :uniqueness=>true# Name Eingetragen?
+  validates :name, :presence=>true, :uniqueness=>true# Name Eingetragen?
+  validates :typ, :presence=>true, :inclusion=> ERLAUBTE_TYPEN
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen? (zumindest eines)
   def add_semesters
