@@ -13,7 +13,12 @@ de:
     allestudien: "Alle Studien"
     loeschen: "Dieses Studium löschen"
     edit: "Studium bearbeiten"
-    verwaltung: "Studien verwalten"
+    verwaltung:
+      title: "Studien verwalten"
+      explanation: "<ul>
+      <li>Klick auf den Namen eines Objektes führt zu dessen Ansicht, ein Klick auf edit direkt zum Bearbeitungsformular</li>
+      <li>Per Dropdown-Menü kann nach einzelnen Objekten gefiltert werden. Die Filter können kombiniert werden, wobei nur erlaubte Kombinationen möglich sind. <b>Solange validation-Fehler (im Log rot und fett) auftreten, keine Filter verwenden</b></li>
+      </ul>"
   modul:
     edit: "Modul bearbeiten"
     list: "Alle Module"
@@ -114,7 +119,7 @@ de:
             modulgruppen:
               blank: "Wählen Sie zumindest eine Modulgruppe aus"
   filter:
-    explanation: "Per Dropdown-Menü kann nach einzelnen Objekten gefiltert werden. Die Filter können kombiniert werden, wobei nur erlaubte Kombinationen möglich sind. <b>Solange validation-Fehler (im Log rot und fett) auftreten, keine Filter verwenden</b>"
+    
     studium: "Studium"
     modulgruppe: "Modulgruppe"
     modul: "Modul"

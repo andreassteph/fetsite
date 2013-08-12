@@ -2,22 +2,27 @@
 <h1><%=@modul.name %></h1>
 
 
-<h2>Beschreibung </h2>
+
+<div class="row-fluid">
+  <div class="span8">
+<h2>Beschreibung </h2>    
 <p>
   <%= raw(@modul.desc) %>
 </p>
-<h2>Lvas</h2>
-<% @modul.lvas.each_slice(3) do |row| %>
-<div class="row-fluid">
-<% row.each do |lv| %>
-<div class="span4">
-<%= render 'lvas/lva_semester', :lva=>lv%>
-</div>
-<% end %>
-</div>
 
-<% end %>
-<h2>Modulgruppen</h2>
+</div>
+<div class="span4">
+  <h2>Modulgruppen</h2>
 <% @modul.modulgruppen.each do |mg| %>
 <%= render 'modulgruppen/kurz', :modulgruppe=>mg %><br>
 <% end %>
+
+<h2>Lvas</h2>
+<% @modul.lvas.each_slice(3) do |row| %>
+<% row.each do |lv| %>
+<%= render 'lvas/lva_semester', :lva=>lv%>
+<% end %>
+
+<% end %>
+
+  </div></div>
