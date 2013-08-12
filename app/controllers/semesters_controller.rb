@@ -16,6 +16,7 @@ class SemestersController < ApplicationController
 
   def edit
     @semester = Semester.find(params[:id])
+    @studium = @semester.studium
   end
 
   def create
@@ -33,7 +34,7 @@ class SemestersController < ApplicationController
 
   def update
     @semester = Semester.find(params[:id])
-
+    @studium= @semester.studium
     respond_to do |format|
       if @semester.update_attributes(params[:semester])
         format.html { redirect_to @semester, notice: 'Semester was successfully updated.' } 

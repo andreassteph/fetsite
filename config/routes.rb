@@ -1,8 +1,4 @@
 Fetsite::Application.routes.draw do
-  
- 
-
-
   devise_for :users
   resources :home, :only=>[:index]
   #get 'home',:controller=>home,:action=>:index,:as=>"home_index"
@@ -12,8 +8,6 @@ Fetsite::Application.routes.draw do
     get 'config/get_git_update',:controller=>:config,:action=>:get_git_update, :as=>'config_getgitupdate'
     get 'config/get_git_update',:controller=>:config,:action=>:get_git_update
   end
-
-  devise_for :users
 
   resources :pages, :except => [:index] do
     member do

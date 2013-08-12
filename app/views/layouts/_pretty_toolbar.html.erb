@@ -1,3 +1,9 @@
+<!--
+Verwendung: Aufruf mit 
+< % = render 'layouts/pretty_toolbar % > verwendet die Elemente die im Controller per @toolbar_elements vorgegeben werden. Sonst kann man über
+< % = render :partial=>'layouts/pretty_toolbar', :object=>@foo % > einen beliebigen array @foo übergeben
+
+-->
 <% toolbar_elements = !pretty_toolbar.nil? ? pretty_toolbar : @toolbar_elements %>
 <span class="label"><%= I18n.t("common.actions")%></span>
  <div class="btn-group">

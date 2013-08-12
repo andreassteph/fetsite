@@ -35,7 +35,7 @@ class Lva < ActiveRecord::Base
     # Diese Methode fügt die Instanz automatisch zu allen Studien als "Ohne Semesterempfehlung" (Semester 0) zu, bei denen die Instanz im Studium noch nicht vorkommt.
     for m in self.modul
       for mg in m.modulgruppen # Über alle Module und alle Modulgruppen iterieren
-        hits = mg.studium.semester.all.map{|x| x.lvas}.collect{|x| x.find_by_id(self.id)}.compact # Alle einträge in allen semestern mit gleicher LVa-ID suchen und alle nils entfernen
+        hits = mg.studium.semester.all.map{|x| x.lvas}.map{|x| x.find_by_id(self.id)}.compact # Alle einträge in allen semestern mit gleicher LVa-ID suchen und alle nils entfernen
 
         if hits.empty? # wurde gar kein eintrag gefunden ?
           self.semester << mg.studium.semester.where(:nummer => 0) # auf nummer null eintragen

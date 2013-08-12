@@ -1,23 +1,27 @@
-<%= render 'layouts/topbar'%>
+
 <div class="container-fluid">
   <div class="row-fluid">
+    <%= render 'studien/tabs' %>
+
     <p id="notice"><%= notice %></p>
-    <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
+    <div class="span6">    <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1></div>
+    <div class="span3 pull-right"><div class="pull-right"><%= link_to @text, studium_path(@studium, :ansicht=>@flip), :class=>"btn" %></div>
+    </div>
   </div>
-  <div>
-  <%= raw(@studium.desc) %>
-  <% @studienphasen.each do |sp| %>
-    <% sp[:modulgruppen].each do |row| %>
-      <div class="row-fluid">
-	<% row.each do |modulgruppe| %>
-	  <div class="span<%= sp[:width]%> min-width:13em;">
-	    <%= render modulgruppe %>
-	  </div>
-	<% end %>
-      </div>
+  <div class="row-fluid">
+    <%= raw(@studium.desc) %>
+    <% @studienphasen.each do |sp| %>
+      <% sp[:modulgruppen].each do |row| %>
+	<div class="row-fluid">
+	  <% row.each do |modulgruppe| %>
+	    <div class="span<%= sp[:width]%> min-width:13em;">
+	      <%= render modulgruppe %>
+	    </div>
+	  <% end %>
+	</div>
+      <% end %>
     <% end %>
-  <% end %>
-   <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %>
-   </div>
+  </div>
+  <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %><br>
   <%= render 'layouts/pretty_toolbar' %>
 </div>

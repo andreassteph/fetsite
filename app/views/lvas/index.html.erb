@@ -1,8 +1,10 @@
+<div class="container-fluid">
 <%= render :partial=>'layouts/topbar', :object=>@tb %>
 <h1><%= I18n.t("lva.list")%></h1>
-<ul>
+<div class="row-fluid">
 <% @lvas.each do |l| %>
-<li><%= render :partial => 'lvas/lva_semester', :locals=> {:lva => l} %>
+<div><%= render :partial => 'lvas/lva_semester', :locals=> {:lva => l} %></div>
 <%end%>
-</ul>
+</div>
 <%= render 'layouts/pretty_toolbar' %>
+</div>

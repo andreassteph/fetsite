@@ -1,8 +1,11 @@
+<div class="container-fluid">
+
 <%= render 'layouts/topbar' %>
 <h1><%= I18n.t("modul.list") %></h1>
-
+  <div class="fluid-row">
 <%= render :partial=>'moduls/lang', :collection=>@moduls, :as=>:modul%>
 
 <br>
+</div>
 <%= render 'layouts/pretty_toolbar'%>
-
+</div>

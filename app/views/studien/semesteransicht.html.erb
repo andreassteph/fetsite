@@ -1,17 +1,40 @@
-<%= render :partial=>'layouts/topbar'%>
 
-<h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
-<%= raw(@studium.desc) %>
-<% @studium.semester.each do |sem| %>
+<div class="container-fluid">
   <div class="row-fluid">
-    <h2><%= sem.name %></h2>
-    <div class="span<%= sem[:width]%> min-width:13em;">
-      <ul>      
-	<% sem.lvas.sort_by{|n| n[:name]}.each do |l| %>
-	  <li><%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
-	<% end %>
-      </ul>
+    <%= render 'studien/tabs' %>
+    <div class="span6">    <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1></div>
+    <div class="span3 pull-right"><div class="pull-right"> <%= link_to @text, studium_path(@studium, :ansicht=>@flip), :class=>"btn" %></div>
     </div>
-<% end %>
+  </div>
+  <%= raw(@studium.desc) %>
 
-<%= render :partial=>'layouts/pretty_toolbar', :locals=>{:elements=>@toolbar_elements} %>
+    <% @studium.semester.each do |sem| %>
+        <div class="row-fluid">
+      <div class="span12">
+	<div class="studien-semester">
+	  <div class="container-fluid">
+	    <div class="row-fluid">
+	      <div class="span8">
+	    <h2><%= sem.name %></h2>
+	    </div>
+	    <div class="span4"><div class="pull-right"><%= link_to 'Lvas hinzufügen/entfernen', edit_semester_path(sem), :class=>"btn"%></div>
+	    </div></div>
+	    <% sem.lvas.each_slice(4) do |row| %>
+	      <div class="row-fluid">
+		<% row.each do |l| %>
+		  
+		  <div class="span3">
+		    <%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
+		  </div>
+	        <% end %>
+	      </div>
+	    <% end %>
+
+	  </div>
+	</div>
+      </div>
+        </div>
+    <% end %>
+
+  <%= render :partial=>'layouts/pretty_toolbar', :locals=>{:elements=>@toolbar_elements} %>
+</div>

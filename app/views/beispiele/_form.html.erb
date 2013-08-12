@@ -1,13 +1,25 @@
-<%= semantic_form_for @beispiel, :html => { :multipart => true } do |f| %>
-  <%= f.inputs do %>
-    <%= f.input :name %>
-    <%= f.input :desc %>
-    <%= f.file_field :beispieldatei %>
-    <%= f.hidden_field :beispieldatei_cache %>
-    <%= f.input :lva, :as=>:select, :collection => Lva.all%>
-  <% end %>
 
-  <%= f.actions do %>
+    <%= semantic_form_for @beispiel, :html => { :multipart => true } do |f| %>
+
+    <%= f.inputs do %>
+    <%= f.hidden_field :beispieldatei_cache %>
+
+    <%= f.file_field :beispieldatei, :wrapper_html=>{:class=>"span4"}%>
+    <div class="row-fluid">
+      <%= f.input :name, :wrapper_html=>{:class=>'span6'} %>
+      <%= f.input :lva, :as=>:select, :collection => Lva.all, :wrapper_html=>{:class=>'span6'}%>
+
+ 
+    </div>
+    
+    <div class="row-fluid">
+      <%= f.input :desc %>
+    </div>
+    <% end %>    
+
+    <%= f.actions do %>
     <%= f.action :submit, :as => :input %>
-  <% end %>
-<% end %>
+
+    <% end %>
+
+    <% end %>

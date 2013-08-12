@@ -1,14 +1,18 @@
-<%= render 'layouts/topbar' %>
-<h1><%= I18n.t("studien.list") %></h1>
+<div class="container-fluid">
+  <%= render 'studien/tabs' %>
+  <div class="row-fluid">
+    <h1><%= I18n.t("studien.list") %></h1>
 
 
-<% @studien.sort_by{|z| z[:zahl]}.each do |studium| %>
-  <ul>
-    <li><%= render studium%></li>
-  </ul>
-<% end %>
+    <% @studien.sort_by{|z| z[:zahl]}.each do |studium| %>
+      <div class="span5">
+	<%= render studium%>
+      </div>
+    <% end %>
 
 
-<br>
-<%= render :partial=>'layouts/pretty_toolbar'%>
-<% #toolbar_html(@toolbar_elements) %>
+    <br>
+
+  </div>
+  <%= render :partial=>'layouts/pretty_toolbar'%>
+</div>

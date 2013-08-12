@@ -5,8 +5,6 @@ form.formtastic textarea {
 width:90%;
 height:20em;
 }
-
-
 div.form-group {
 border-width: 1px;
 border-style: none;
@@ -18,3 +16,9 @@ border-width: 1px;
 border-style: solid;
 padding: 5px;
 }
+
+form.formtastic .input label.control-label {
+font-weight:bold;
+font-size:125%;
+}
+

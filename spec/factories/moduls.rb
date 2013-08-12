@@ -2,5 +2,9 @@
 
 FactoryGirl.define do
   factory :modul do
+    name ""
+    factory :other_modul do
+      name "Modul 1"
+      end
   end
 end

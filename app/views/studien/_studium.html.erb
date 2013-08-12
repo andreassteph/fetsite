@@ -1,9 +1,6 @@
 <div class="studium">
-  <h2><%= link_to studium.name + " " + studium.zahl.to_s, studium_semesteransicht_path(studium)%></h2>
-  <ul>
-    <li><b><%= studium.typ%> </b></li>
-    <li><b>Beschreibung:</b><br>
-      <%= !(studium.desc.to_s == "") ? studium.desc.html_safe :  I18n.t("keine.beschreibung")%></li>
-    <li><%=link_to "Link zur Modulgruppenansicht",studium_path(studium) %> </li>
-  </ul>
+  <h2><%= link_to studium.name + " " + studium.zahl.to_s, studium_path(studium, :ansicht=>'semesteransicht')%></h2>  <p><b><%= studium.typ%> </b></p>
+  <p><b>Beschreibung:</b><br>
+      <%= !(studium.desc.to_s == "") ? studium.desc.html_safe :  I18n.t("keine.beschreibung")%></p>
+  
 </div>

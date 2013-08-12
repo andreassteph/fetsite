@@ -1,3 +1,27 @@
 // Place all the styles related to the lvas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.lva-semester {
+border: solid;
+border-width: 1px;
+margin: 1px;
+padding: 5px;
+border-color: green;
+border-radius: 5px;
+}
+div.lva-sidebar {
+border:solid;
+border-width: 1px;
+margin: 2px;
+padding:5px;
+border-radius:5px;
+}
+div.lva-beispiele {
+border:solid;
+border-width: 1px;
+margin: 2px;
+padding:5px;
+border-radius:5px;
+border-color: green;
+}

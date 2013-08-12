@@ -13,6 +13,7 @@ de:
     allestudien: "Alle Studien"
     loeschen: "Dieses Studium löschen"
     edit: "Studium bearbeiten"
+    verwaltung: "Studien verwalten"
   modul:
     edit: "Modul bearbeiten"
     list: "Alle Module"
@@ -90,7 +91,10 @@ de:
             stunden:
               blank: "Geben Sie die Stunden der LVA an"
             lvanr:
-              invalid: "Geben Sie eine LVA-Nummer in richtigem Format an. Wenn die LVA noch keine Nummer hat, so geben sie 000 an."
+              invalid: "Geben Sie eine Nummer im Format 000.000 an."
+              blank: "Geben sie eine Lva-Nr an"
+              taken: "Die Lva-Nummer ist bereits vergeben"
+              
         studium:
           attributes:
             zahl:
@@ -101,8 +105,26 @@ de:
               blank: "Geben Sie den Namen des Studiums ein"
               taken: "Der  Name ist bereits vergeben"
             typ:
-              inclusion: 'Wählen Sie "Bachelor" oder "Master" aus'       
-  
+              inclusion: 'Wählen Sie "Bachelor" oder "Master" aus'
+        modul:
+          attributes:
+            modulgruppen:
+              blank: "Wählen Sie zumindest eine Modulgruppe aus"
+  filter:
+    explanation: "Per Dropdown-Menü kann nach einzelnen Objekten gefiltert werden. Die Filter können kombiniert werden, wobei nur erlaubte Kombinationen möglich sind. <b>Solange validation-Fehler (im Log rot und fett) auftreten, keine Filter verwenden</b>"
+    studium: "Studium"
+    modulgruppe: "Modulgruppe"
+    modul: "Modul"
+    lva: "Lva"
+    beispiel: "Beispiel"
+    reset: "Alle Filter zurücksetzen"    
+  verwalten:
+    fehler:
+      keine: "Keine Fehlermeldungen oder Warnungen"
+  support:
+    array:
+      two_words_connector: ', '
+
   date:
     abbr_day_names:
     - So
