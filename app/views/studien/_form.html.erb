@@ -1,14 +1,9 @@
 <div class="container-fluid">
   <%= tinymce_assets %>
   <%= semantic_form_for @studium do |f| %>
-<<<<<<< HEAD
 
   <%= f.inputs do %>
-=======
-  <div class="span9">
-  <%= f.inputs do %>
 
->>>>>>> a5a02e065a319d162c5a280605c2c0d3c15643ca
   <div class="row-fluid">
     <div class="span6">
       <%= f.input :name,:append=>"NAME" %>
@@ -23,19 +18,10 @@
   <div class="row-fluid">
     <%= f.input :desc, :as=>:tinymce_text %>
   </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> a5a02e065a319d162c5a280605c2c0d3c15643ca
   <% end %>
   <%= tinymce %>
   <%= f.actions do %>
   <%= f.action :submit, :as => :input %>
-  <% end %>
-<<<<<<< HEAD
-
-=======
-  </div>
->>>>>>> a5a02e065a319d162c5a280605c2c0d3c15643ca
-  <% end %>
+<% end %>
 </div>

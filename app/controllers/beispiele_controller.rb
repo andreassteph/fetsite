@@ -45,10 +45,6 @@ class BeispieleController < ApplicationController
     lvaid=params[:lva_id]
     params.delete(:lva_id)
     @beispiel = Beispiel.new(params[:beispiel])
-<<<<<<< HEAD
-    
-=======
->>>>>>> a5a02e065a319d162c5a280605c2c0d3c15643ca
     respond_to do |format|
       if @beispiel.save
         format.html { redirect_to @beispiel, notice: 'Beispiel was successfully created.' }
