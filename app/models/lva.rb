@@ -17,7 +17,7 @@
 
 class Lva < ActiveRecord::Base
   has_paper_trail # Versionsverfolgung
-  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand
+  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ
   has_and_belongs_to_many :modul # Gehört zu einem Modul
   has_and_belongs_to_many :semester
   #Gehört zu einem Semester( derzeit nicht implementiert)
@@ -29,6 +29,7 @@ class Lva < ActiveRecord::Base
   validates_presence_of :ects  # ECTS vorhanden?
   validates :name, :presence=>true
   validates :name,  :uniqueness=>true# Name Eingetragen?
+  validates :typ, :presence=>true
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen? (zumindest eines)
   def add_semesters
