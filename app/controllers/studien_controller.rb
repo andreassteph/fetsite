@@ -184,10 +184,10 @@ class StudienController < ApplicationController
     for m in @module
       
       if m.valid?
-        @messages << m.name + ' hat keine Modulgruppe' if m.modulgruppen.count == 0
-        @messages << m.name + ' hat keine Lvas' if m.lvas.count == 0
+        @messages << m.name.to_s + ' hat keine Modulgruppe' if m.modulgruppen.count == 0
+        @messages << m.name.to_s + ' hat keine Lvas' if m.lvas.count == 0
       else
-        @messages << '<font color="red"><b>'+m.name + ': '
+        @messages << '<font color="red"><b>'+m.name.to_s + ': '
         @messages << m.errors.full_messages
         @messages << '</font></b>'
       end

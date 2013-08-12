@@ -13,7 +13,12 @@ de:
     allestudien: "Alle Studien"
     loeschen: "Dieses Studium löschen"
     edit: "Studium bearbeiten"
-    verwaltung: "Studien verwalten"
+    verwaltung:
+      title: "Studien verwalten"
+      explanation: "<ul>
+      <li>Klick auf den Namen eines Objektes führt zu dessen Ansicht, ein Klick auf edit direkt zum Bearbeitungsformular</li>
+      <li>Per Dropdown-Menü kann nach einzelnen Objekten gefiltert werden. Die Filter können kombiniert werden, wobei nur erlaubte Kombinationen möglich sind. <b>Solange validation-Fehler (im Log rot und fett) auftreten, keine Filter verwenden</b></li>
+      </ul>"
   modul:
     edit: "Modul bearbeiten"
     list: "Alle Module"
@@ -83,17 +88,20 @@ de:
         lva:
           attributes:
             modul: 
-              blank: "Wählen Sie zumindest ein Modul aus"
+              blank: "Lva muss zumindest einem Modul zugewiesen sein"
             name:
-              blank: "Geben Sie bitte den Namen der LVA an"
+              blank: "Die Lva muss einen Namen haben"
             ects:
-              blank: "Geben Sie die ECTS der LVA an"
+              blank: "Es müssen ECTS eingetragen sein"
             stunden:
-              blank: "Geben Sie die Stunden der LVA an"
+              blank: "Es muss die Studenanzahl eingettragen sein"
             lvanr:
-              invalid: "Geben Sie eine Nummer im Format 000.000 an."
+              invalid: "Die Nummer muss im Format 000.000 eingegeben sein"
               blank: "Geben sie eine Lva-Nr an"
-              taken: "Die Lva-Nummer ist bereits vergeben"
+              taken: "Die Lva-Nummer ist vergeben"
+            typ:
+              blank: "Es muss ein Lva-Typ angegeben sein"
+              inclusion: "Der Typ ist nicht aus der Auswahl der gültigen Typen"
               
         studium:
           attributes:
@@ -111,7 +119,6 @@ de:
             modulgruppen:
               blank: "Wählen Sie zumindest eine Modulgruppe aus"
   filter:
-    explanation: "Per Dropdown-Menü kann nach einzelnen Objekten gefiltert werden. Die Filter können kombiniert werden, wobei nur erlaubte Kombinationen möglich sind. <b>Solange validation-Fehler (im Log rot und fett) auftreten, keine Filter verwenden</b>"
     studium: "Studium"
     modulgruppe: "Modulgruppe"
     modul: "Modul"
@@ -123,8 +130,7 @@ de:
       keine: "Keine Fehlermeldungen oder Warnungen"
   support:
     array:
-      two_words_connector: ', '
-
+      two_words_connector: ', '         
   date:
     abbr_day_names:
     - So
