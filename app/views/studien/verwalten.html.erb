@@ -1,0 +1,172 @@
+<div class="container-fluid">
+  <%= render 'studien/tabs'%>
+  <div class="row-fluid">
+    <div class="span9">
+      
+      <h1><%= I18n.t("studien.verwaltung.title") %></h1> 
+      <%= I18n.t("studien.verwaltung.explanation").html_safe %>
+      <h2>Studien </h2>
+      <div class="verwalten-block">
+	
+	|
+	<% @studien.each do |s| %>
+	<%= (s.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to s.name, s %> | <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_studium_path(s)%> ||<% end %>
+	<div class="btn-toolbar">
+	  <div class="btn-group">
+	    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	      <%= params[:std_verw].nil? ? I18n.t("filter.studium") : Studium.find(params[:std_verw]).name %>
+	      <span class="caret"></span>
+	    </a>  
+	    <ul class="dropdown-menu">
+	      <li> <%= link_to 'Alle Studien', studien_verwalten_path(:std_verw=>nil) %></li>
+	      <% for s in @studien  %>
+	      <li> <%= link_to s.name, studien_verwalten_path(:std_verw=>s)%> </li>
+	      
+	      <% end %>
+	    </ul>
+	    
+	  </div>
+	  <%= link_to 'Neues Studium', new_studium_path, :class=>'btn'%>
+	</div>
+	
+      </div>
+      <div class="row-fluid">
+	
+	<div class="span4">
+	  <h2>Modulgruppen </h2>
+	  <div class="verwalten-block">
+	    <% @modulgruppen.each do |mg| %>
+	    	<%= (mg.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to mg.name, mg %> | <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_modulgruppe_path(mg)%><br>
+	    <% end %>
+	    <div class="btn-toolbar">
+	      <div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		  <%= params[:mg_verw].nil? ? I18n.t("filter.modulgruppe") : Modulgruppe.find(params[:mg_verw]).name %>
+
+		  <span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+		  <li> <%= link_to 'Alle Modulgruppen', studien_verwalten_path(:mg_verw=>nil) %></li>
+		  <% for mg in @modulgruppen  %>
+		  <li> <%= link_to mg.name, studien_verwalten_path(:mg_verw=>mg)%> </li>
+		  <% end %>
+		</ul>
+		
+	      </div>
+	      <%= link_to "Neue Modulgruppe", new_studium_modulgruppe_path(Studium.first), :class=>"btn" unless Studium.first.nil?%>
+	    </div>
+	    
+	    
+	  </div>
+	</div>
+	<div class="span4">
+	  <h2>Module </h2>
+	  <div class="verwalten-block">
+	    
+	    
+	    <% @module.each do |m| %>
+	    <%= (m.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to m.name, m %>  
+	    |  <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_modul_path(m)%><br>
+	    <% end %>
+	    <div class="btn-toolbar">
+	      <div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		  <%= params[:m_verw].nil? ? I18n.t("filter.modul") : Modul.find(params[:m_verw]).name %>
+
+		  <span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+		  <li> <%= link_to 'Alle Module', studien_verwalten_path(:m_verw=>nil) %></li>
+		  <% for m in @module  %>
+		  <li> <%= link_to m.name, studien_verwalten_path(:m_verw=>m)%> </li>
+		  <% end %>
+		</ul>
+		
+	      </div>
+	      <%= link_to "Neues Modul", new_modul_path, :class=>"btn"%>
+	    </div>
+	  </div>
+	</div>
+	<div class="span4">
+	  <h2>Lvas </h2>
+	  <div class="verwalten-block">
+	    
+
+	    <% @lvas.each do |lva| %>
+	    <%= (lva.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %><%= link_to lva.name, lva %> |	      
+	     <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_lva_path(lva)%><br>
+	    
+	    <% end %>
+	    <div class="btn-toolbar">
+	      <div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		  <%= params[:lva_verw].nil? ? I18n.t("filter.lva") : Lva.find(params[:lva_verw]).name %>
+
+		  <span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+		  <li> <%= link_to 'Alle Lvas', studien_verwalten_path(:lva_verw=>nil) %></li>
+		  <% for lva in @lvas  %>
+		  <li> <%= link_to lva.name, studien_verwalten_path(:lva_verw=>lva)%> </li>
+		  <% end %>
+		</ul>
+
+	      </div>
+	      <%= link_to "Neue LVa", new_lva_path, :class=>'btn'%>
+	    </div>
+	  </div>
+	</div>
+
+
+
+
+      </div>
+    </div>
+    <div class="span3">
+        <%= link_to I18n.t("filter.reset"), studien_verwalten_path(:std_verw=>nil, :mg_verw=>nil, :m_verw=>nil, :lva_verw=>nil, :b_verw=>nil), :class=>"btn" %>
+      <h2>Error Log</h2>
+      <ul>
+	<li><font color="red"><b>Red</b></font>: Error, Solve immediately</li>
+	<li>Black: Warning, should be solved</li>
+	<li><font color="green"><b>Green</b></font>: Everything is fine</li>
+      </ul>
+      <div class="verwalten-block">
+	<ul>
+	  <% @messages.flatten.each do |m| %>
+	  <% if !m.strip.empty? %>
+	  <li><%= m.html_safe %></li>
+	  <% end %>
+	  <% end %>
+	</ul>
+	<b><font color="green"><%= I18n.t("verwalten.fehler.keine").html_safe if @messages.empty?%></font></b>
+      </div>
+      <h2>Beispiele </h2>
+      <div class="verwalten-block">
+
+
+	<% @beispiele.each do |b| %>
+<%= (b.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %>	<%= link_to b.name, b %> |  <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_beispiel_path(b)%>
+	<% end %>
+	<div class="btn-toolbar">
+	  <div class="btn-group">
+	    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	      <%= params[:b_verw].nil? ? I18n.t("filter.beispiel") : Beispiel.find(params[:b_verw]).name %>
+
+	      <span class="caret"></span>
+	    </a>
+	    <ul class="dropdown-menu">
+	      <li> <%= link_to 'Alle Beispiele', studien_verwalten_path(:b_verw=>nil) %></li>
+	      <% for b in @beispiele  %>
+	      <li> <%= link_to b.name, studien_verwalten_path(:b_verw=>b)%> </li>
+	      <% end %>
+	    </ul>
+
+	  </div>
+	  <%= link_to "Neues Beispiel", new_beispiel_path, :class=>"btn"%>
+	</div>
+	
+      </div>
+    </div>
+
+  </div>
+</div>

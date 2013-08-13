@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
+
+ <head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fetsite</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   
@@ -15,9 +17,9 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
-	<div class="span2">
+	<div class="span2 earlymax">
 	<div id="menudiv"><%= render :template => 'layouts/menu' %></div>
-	</div>	<div class="span10">
+	</div>	<div class="span10 earlymax">
 	
 			<%= yield %>
 	</div>

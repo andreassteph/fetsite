@@ -10,7 +10,9 @@
   <%= @beispiel.desc %>
   <%= @beispiel.beispieldatei.url %>
 </p>
-
+<p>
+  <%= @beispiel.lva.name %>
+  </p>
 
 <%= link_to 'Edit', edit_beispiel_path(@beispiel) %> |
 <%= link_to 'Back', beispiele_path %>

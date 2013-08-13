@@ -1,6 +1,6 @@
 class StudienController < ApplicationController
   before_filter {@toolbar_elements =[]} 
-
+  #  before_filter :authorize, :only => :verwalten
 
   def index
     @studien = Studium.all
@@ -39,10 +39,10 @@ class StudienController < ApplicationController
     @toolbar_modulgruppen =[ {:hicon=>'icon-plus-sign', :text=> I18n.t('modulgruppe.new'), :path=>new_studium_modulgruppe_path(@studium)},
                              {:hicon=>'icon-list', :text => I18n.t('modulgruppe.list'), :path=>modulgruppen_path}]
     
-    if params[:ansicht] == 'semesteransicht'
+    if params[:ansicht] != 'modulgruppenansicht'
       @text = 'Zu Modulansicht wechseln'
       @flip = 'modulgruppenansicht'
-        render 'semesteransicht'
+      render 'semesteransicht'
     else
       @text = 'Zu Semesteransicht wechseln'
       @flip = 'semesteransicht'
@@ -90,7 +90,147 @@ class StudienController < ApplicationController
     @studium.destroy
     redirect_to studien_url
   end
+
+  def verwalten
+    @new_params={:std_verw=>params[:std_verw], :mg_verw=>params[:mg_verw], :m_verw=>params[:m_verw], :lva_verw=>params[:lva_verw], :b_verw=>params[:b_verw]}
+    if @new_params.values.compact.empty?
+      @studien=Studium.all
+      @modulgruppen=Modulgruppe.all
+      @module=Modul.all
+      @lvas=Lva.all
+      @beispiele=Beispiel.all
+    else
+      if !@new_params[:std_verw].nil?
+        @studien = [Studium.find(@new_params[:std_verw])]
+      else
+        @studien = Studium.all
+      end
+      if !@new_params[:mg_verw].nil?
+        @modulgruppen = [Modulgruppe.find(@new_params[:mg_verw])]
+        temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
+
+      else
+        @modulgruppen = Modulgruppe.all
+        temp = @studien.map{|x| x.modulgruppen}.flatten.uniq # Studien forcen Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+      end
+      if !@new_params[:m_verw].nil?
+        @module = [Modul.find(@new_params[:m_verw])]
+        temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+        temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
+        
+      else
+        @module = Modul.all
+        temp = @modulgruppen.map{|x| x.moduls}.flatten.uniq
+        @module=@module.select{|k| temp.include?(k)}
+      end
+      if !@new_params[:lva_verw].nil?
+        @lvas = [Lva.find(@new_params[:lva_verw])]
+        temp = @lvas.map{|x| x.modul}.flatten.uniq
+        @module=@module.select{|k| temp.include?(k)}
+        temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+        temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
+      else
+        @lvas = Lva.all
+        temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
+        @lvas=@lvas.select{|k| temp.include?(k)}
+      end
+      if !@new_params[:b_verw].nil?
+        @beispiele = [Beispiel.find(@new_params[:b_verw])]
+        temp = @lvas.map{|x| x.beispiele}.flatten.uniq #Force Force Lvas
+        @lvas=@lvas.select{|k| temp.include?(k)}
+        temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
+        @module=@module.select{|k| temp.include?(k)}
+        temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+        temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
+        
+        
+      else
+        @beispiele = Beispiel.all
+        temp = @lvas.map{|x| x.beispiele}.flatten.uniq # Force beispiel
+        @beispiele=@beispiele.select{|k| temp.include?(k)}
+      end
+    end
+
+    @messages = []
+    for s in @studien
+
+      if s.valid?
+        @messages << s.name + ' hat keine Modulgruppe' if s.modulgruppen.count == 0
+        
+      else
+        @messages << '<font color="red"><b>'+s.name + ': '
+        @messages << s.errors.full_messages
+        @messages << '</font></b>'
+      end
+    end
+    for mg in @modulgruppen
+      
+      if mg.valid?
+        @messages << mg.name +  ' hat kein Modul' if mg.moduls.count == 0
+      else
+        @messages << '<font color="red"><b>'+mg.name + ': '
+        @messages << mg.errors.full_messages
+        @messages << '</font></b>'
+      end
+    end
+    for m in @module
+      
+      if m.valid?
+        @messages << m.name.to_s + ' hat keine Modulgruppe' if m.modulgruppen.count == 0
+        @messages << m.name.to_s + ' hat keine Lvas' if m.lvas.count == 0
+      else
+        @messages << '<font color="red"><b>'+m.name.to_s + ': '
+        @messages << m.errors.full_messages
+        @messages << '</font></b>'
+      end
+    end
+    for lva in @lvas
+      
+      if lva.valid?
+        @messages << lva.name + ' hat keine Module' if lva.modul.count == 0
+        for s in @studien
+          stu_sem = s.semester.map{|l| l.lvas}.flatten.uniq.index(lva)
+          stu_mod = s.modulgruppen.map{|m| m.moduls}.flatten.map{|l| l.lvas}.flatten.uniq.index(lva)
+          if (stu_sem.nil? && !stu_mod.nil?) 
+            @messages << lva.name + ' erscheint nicht in der Semesteransicht von ' +s.name + ' aber in der Modulgruppenansicht'
+          end
+          if (!stu_sem.nil? && stu_mod.nil?)
+            @messages << lva.name + ' erscheint in der Semesteransicht von ' +s.name + ' aber nicht in der Modulgruppenansicht'
+          end
+        end
+      else
+        @messages << '<font color="red"><b>'+lva.name + ': '
+        @messages << lva.errors.full_messages
+        @messages << '</font></b>'
+      end
+    end
+    for b in @beispiele
+      if b.valid?
+        @messages << b.name + ' hat keine Lva' if b.lva.nil?
+      else
+        @messages << '<font color="red"><b>'+b.name + ': '
+        @messages << b.errors.full_messages
+        @messages << '</font></b>'
+      end
+    end
+    render 'studien/verwalten'
+  end
+
   def default_url_options
-    {ansicht: params[:ansicht]}.merge(super)
+    {:ansicht=> params[:ansicht],
+      :std_verw=> params[:std_verw],
+      :mg_verw=> params[:mg_verw],
+      :m_verw=>params[:m_verw],
+      :lva_verw=>params[:lva_verw],
+      :b_verw=>params[:b_verw]}.merge(super)
+
   end
 end

@@ -10,7 +10,7 @@
  *
  *= require_self
  *= require_tree .
- *  require 'bootstrap'
+ * require 'bootstrap'
  */
 $linkColor: #03006E;
 @import 'bootstrap';
@@ -30,7 +30,8 @@ border-bottom:1px solid black;
 height:60px; 
 padding-left:160px;
 padding-top:0px;
-overflow:hidden
+overflow:hidden;
+margin-bottom: 20px
 }
 
 #menudiv

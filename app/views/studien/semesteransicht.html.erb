@@ -11,16 +11,19 @@
     <% @studium.semester.each do |sem| %>
         <div class="row-fluid">
       <div class="span12">
-	<div class="modulgruppe_phase_1">
+	<div class="studien-semester">
 	  <div class="container-fluid">
-	    
+	    <div class="row-fluid">
+	      <div class="span8">
 	    <h2><%= sem.name %></h2>
-
-	    <% sem.lvas.each_slice(2) do |row| %>
+	    </div>
+	    <div class="span4"><div class="pull-right"><%= link_to 'Lvas hinzufügen/entfernen', edit_semester_path(sem), :class=>"btn"%></div>
+	    </div></div>
+	    <% sem.lvas.each_slice(4) do |row| %>
 	      <div class="row-fluid">
 		<% row.each do |l| %>
 		  
-		  <div class="span<%= 12/row.length%>">
+		  <div class="span3">
 		    <%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
 		  </div>
 	        <% end %>

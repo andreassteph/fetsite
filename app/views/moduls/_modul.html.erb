@@ -1,26 +1,28 @@
-<div style="border: solid 1px; padding:2px"><p>
-  <b><%= 
-if modul.name.nil? 
-name=""
-else
-name=modul.name
-end
-link_to "Modul "+name , modul_path(modul) %> </b>
-</p>
+
+<h1><%=@modul.name %></h1>
+
+
+
+<div class="row-fluid">
+  <div class="span8">
+<h2>Beschreibung </h2>    
 <p>
-  <%= raw(modul.desc) %>
+  <%= raw(@modul.desc) %>
 </p>
-LVAs: 
 
-<ul>
-
-<% modul.lvas.each do |lv| %>
-<li>
-<%= link_to  lv.name.to_s, lva_path(lv.id)  %>
-</li>
+</div>
+<div class="span4">
+  <h2>Modulgruppen</h2>
+<% @modul.modulgruppen.each do |mg| %>
+<%= render 'modulgruppen/kurz', :modulgruppe=>mg %><br>
 <% end %>
 
-</ul>
+<h2>Lvas</h2>
+<% @modul.lvas.each_slice(3) do |row| %>
+<% row.each do |lv| %>
+<%= render 'lvas/lva_semester', :lva=>lv%>
+<% end %>
 
-<% # @toolbar_elements << {:icon=>:pencil,:text=>I18n.t("common.edit"),:path=> edit_modul_path(modul)} %>
-</div>
+<% end %>
+
+  </div></div>

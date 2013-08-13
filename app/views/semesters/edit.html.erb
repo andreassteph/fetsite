@@ -1,6 +1,3 @@
-<h1>Editing semester</h1>
+    <h1><%=@semester.name%></h1>
+    <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @semester %> |
-<%= link_to 'Back', semesters_path %>

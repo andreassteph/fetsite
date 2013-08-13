@@ -1,11 +1,4 @@
-
-<ul class="breadcrumb">
-<li>
-<%= link_to @modulgruppe.studium.name, studium_path(@modulgruppe.studium) %> <span class="divider">/</span></li>
-
-
 </ul><p id="notice"><%= notice %></p>
-<div class ="modulgruppe_phase_<%= @modulgruppe.phase %>">
 <h1>
   <%= @modulgruppe.name %>
 </h1>
@@ -19,9 +12,8 @@
 
 
 <% @modulgruppe.moduls.each do |modul| %>
-<%= render modul%>
+<%= render 'moduls/kurz', :modul=>modul%>
 <% end %>
-</div>
 
 	 
 <span class="label"><%= I18n.t("common.actions")%></span>
@@ -30,4 +22,4 @@
 <%= link_to I18n.t("modulgruppe.studium"), studium_path(@modulgruppe.studium),:class =>"btn" %> 
 <%= link_to I18n.t("common.edit"), edit_modulgruppe_path(@modulgruppe),:class =>"btn" %> 
 <%= link_to I18n.t("common.delete"),[@modulgruppe], :method=>:delete , :data=>{:confirm=>I18n.t("common.sure")} ,:class=>"btn" %>
-    </div>
+</div>
