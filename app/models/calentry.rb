@@ -8,6 +8,7 @@ class Calentry < ActiveRecord::Base
 		errors.add(:ende, "Es muss ein Endzeitpunkt vorhanden sein")
 	end
   end
+  resourcify
   def start_time
     start
   end
@@ -17,4 +18,5 @@ class Calentry < ActiveRecord::Base
   def name
 	summary
   end
+  
 end

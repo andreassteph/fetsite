@@ -1,6 +1,7 @@
 class CalendarsController < ApplicationController
   # GET /calendars
   # GET /calendars.json
+    load_and_authorize_resource
   def index
     @calendars = Calendar.all
     respond_to do |format|
@@ -79,5 +80,7 @@ class CalendarsController < ApplicationController
       format.html { redirect_to calendars_url }
       format.json { head :no_content }
     end
+  end
+  def verwalten
   end
 end

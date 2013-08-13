@@ -1,0 +1,16 @@
+<ul class="nav nav-tabs">
+ <li <%= (request.fullpath == calendars_path)? 'class="active"' : ''%> >
+ <%= link_to I18n.t 'calendars.alle' , calendars_path %> </li>
+<% for c in Calendar.all %>
+  <li <%= (!@calendar.nil? && c == @calendar) ? 'class="active"' : '' %> title="<%= c.name %>">
+    <%= link_to c.name, c %>
+    </li>
+<% end %>
+<% if request.fullpath == calendars_verwalten_path %>
+  <li class="active pull-right">
+  <% else %>
+  <li class="pull-right">
+<% end %>
+<%= link_to "Verwaltung", calendars_verwalten_path %>
+</li>
+</ul>
