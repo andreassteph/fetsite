@@ -4,7 +4,8 @@
    resources :home, :only=>[:index]
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"
    scope '(:locale)/admin' do
-     resources :users
+     resources :users, :only => [:index]
+     get 'users/:id/add_role/:role', :controller=>:users, :action=>:add_role, :as=>'user_add_role'
      get 'config',:controller=>:config,:action=>:index , :as => 'config'
      get 'config/get_git_update',:controller=>:config,:action=>:get_git_update, :as=>'config_getgitupdate'
      get 'config/get_git_update',:controller=>:config,:action=>:get_git_update

@@ -4,13 +4,13 @@
 </li>
 </ul>
 <table class="table table-striped">
-	<% @users.each do |user|%>
+<% @users.each do |user|%>
 <tr><th>Name</th><th>E-Mail</th><th>Rollen</th>
 </tr><tr><td></td>
-	<td>
+<td>
 	<%= user.email %></td><td><ul>
 	<% user.roles.each do |role| %>
 	<li><%= role.name%></li>
-<% end %></ul></td>
+<% end %></ul></td><td><%= link_to 'MK FETUSER', user_add_role_path(user, "fetadmin")%></td>
 </tr><% end %>
 </table>
