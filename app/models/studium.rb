@@ -21,7 +21,7 @@ class Studium < ActiveRecord::Base
   validates :zahl, :presence=>true, :format=>{:with=>/^0(33|66)[0-9]{3}$/}, :uniqueness => true 
   translates :desc,:shortdesc, :versioning =>true,:fallbacks_for_empty_translations => true
   def title_context
-    return self.abkuerzung.strip.empty? ? self.name : self.abkuerzung
+    return self.abkuerzung.to_s.strip.empty? ? self.name : self.abkuerzung
   end
   
   def batch_add_semester

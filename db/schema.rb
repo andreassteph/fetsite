@@ -13,20 +13,26 @@
 
 ActiveRecord::Schema.define(:version => 20130813145651) do
 
-  create_table "attachments", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "thema_id"
+  create_table "beispiel_translations", :force => true do |t|
+    t.string   "locale"
+    t.text     "desc"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "beispiele_id"
   end
+
+  add_index "beispiel_translations", ["locale"], :name => "index_beispiel_translations_on_locale"
 
   create_table "beispiele", :force => true do |t|
     t.string   "name"
     t.text     "desc"
     t.integer  "lva_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "beispieldatei"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "calendars", :force => true do |t|
@@ -52,25 +58,6 @@ ActiveRecord::Schema.define(:version => 20130813145651) do
     t.integer  "typ"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "frage_translations", :force => true do |t|
-    t.string   "locale"
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "fragen_id"
-  end
-
-  add_index "frage_translations", ["locale"], :name => "index_frage_translations_on_locale"
-
-  create_table "fragen", :force => true do |t|
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "thema_id"
   end
 
   create_table "lva_translations", :force => true do |t|
@@ -104,10 +91,13 @@ ActiveRecord::Schema.define(:version => 20130813145651) do
     t.integer "modul_id"
   end
 
-  create_table "lvas_semesters", :force => true do |t|
+  create_table "lvas_semesters", :id => false, :force => true do |t|
     t.integer "lva_id"
     t.integer "semester_id"
   end
+
+  add_index "lvas_semesters", ["lva_id", "semester_id"], :name => "index_lvas_semesters_on_lva_id_and_semester_id"
+  add_index "lvas_semesters", ["semester_id"], :name => "index_lvas_semesters_on_semester_id"
 
   create_table "modul_translations", :force => true do |t|
     t.integer  "modul_id"
@@ -166,6 +156,18 @@ ActiveRecord::Schema.define(:version => 20130813145651) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "pages", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "pages", ["parent_id"], :name => "index_pages_on_parent_id"
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -215,43 +217,6 @@ ActiveRecord::Schema.define(:version => 20130813145651) do
   end
 
   add_index "studium_translations", ["locale"], :name => "index_studium_translations_on_locale"
-
-  create_table "thema_translations", :force => true do |t|
-    t.string   "locale"
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "themen_id"
-  end
-
-  add_index "thema_translations", ["locale"], :name => "index_thema_translations_on_locale"
-
-  create_table "themen", :force => true do |t|
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.integer  "themengruppe_id"
-  end
-
-  create_table "themengruppe_translations", :force => true do |t|
-    t.string   "locale"
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.integer  "themengruppen_id"
-  end
-
-  add_index "themengruppe_translations", ["locale"], :name => "index_themengruppe_translations_on_locale"
-
-  create_table "themengruppen", :force => true do |t|
-    t.string   "title"
-    t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
