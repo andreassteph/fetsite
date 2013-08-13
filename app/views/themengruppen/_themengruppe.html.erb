@@ -1,0 +1,12 @@
+
+<h3> <%=  link_to themengruppe.title, themengruppe %> </h3>
+<p>
+  <%=themengruppe.text %>
+</p>
+<ul>
+	<% themengruppe.themen.each do |t| %>
+		<li>
+		<%= render t %>
+		</li>
+	<% end %>
+</ul>

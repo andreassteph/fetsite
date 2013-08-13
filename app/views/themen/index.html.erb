@@ -1,0 +1,25 @@
+<h1>Listing themen</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @themen.each do |thema| %>
+  <tr>
+    <td><%= thema.title %></td>
+    <td><%= thema.text %></td>
+    <td><%= link_to 'Show', thema %></td>
+    <td><%= link_to 'Edit', edit_thema_path(thema) %></td>
+    <td><%= link_to 'Destroy', thema, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Thema', new_thema_path %>

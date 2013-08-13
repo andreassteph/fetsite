@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @thema.title %></h1>
+<p>
+  <%= raw(@thema.text) %>
+</p>
+
+
+<%= link_to 'Edit', edit_thema_path(@thema) %> |
+<%= link_to 'Back', themengruppe_path(@thema.themengruppe) %>

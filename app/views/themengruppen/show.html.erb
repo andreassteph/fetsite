@@ -1,0 +1,29 @@
+<h1><%= @themengruppe.title %></h1>
+
+<p>
+  <%= @themengruppe.text %>
+</p>
+
+<div class="accordion" id="accordion1">
+  <% @themengruppe.themen.each do |thema| %>
+	  <div class="accordion-group">
+		<div class="accordion-heading">
+		  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%=thema.id%>">
+			<%= thema.title %>
+		  </a>
+		</div>
+		<div id="collapse<%=thema.id%>" class="accordion-body collapse">
+		  <div class="accordion-inner">
+			<%= render partial: "themen/small", object: thema %>
+		  </div>
+		</div>
+	  </div>
+  <% end %>
+</div>
+
+<%= link_to 'Add Thema', new_themengruppe_thema_path(@themengruppe) %>
+
+<br/><br/>
+
+<%= link_to 'Edit', edit_themengruppe_path(@themengruppe) %> |
+<%= link_to 'Back', themengruppen_path %>
