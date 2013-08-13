@@ -6,10 +6,10 @@
   resources :attachments
 
 
-  resources :themen
+  
 
 
-  resources :themengruppen
+  
 
 
   devise_for :users
@@ -57,6 +57,10 @@ get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'v
 resources :home, :only=>[:index]
 get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
 resources :beispiele
+resources :themen
+resources :themengruppen do
+resources :themen, :only=>[:new, :show]
+end
 
   end
 
