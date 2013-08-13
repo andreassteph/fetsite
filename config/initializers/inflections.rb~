@@ -28,7 +28,7 @@ inflect.singular 'beispiele', 'beispiel'
 inflect.plural 'themengruppe', 'themengruppen'
 inflect.singular 'themengruppen', 'themengruppe'
 inflect.plural /thema$/, 'themen'
-inflect.singular /themen$/, 'thema'
+inflect.singular /^themen$/, 'thema'
 inflect.plural 'frage', 'fragen'
 inflect.singular 'fragen', 'frage'
 end

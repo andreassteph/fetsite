@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @frage.title %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @frage.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_frage_path(@frage) %> |
+<%= link_to 'Back', fragen_path %>

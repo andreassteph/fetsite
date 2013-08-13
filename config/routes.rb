@@ -46,6 +46,10 @@
      resources :home, :only=>[:index]
      get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
      resources :beispiele
+     resources :themen
+	 resources :themengruppen do
+	 resources :themen, :only=>[:new, :show]
+	 end
  
   resources :calendars
   resources :calentries
