@@ -27,13 +27,23 @@ class Ability
     
     # For Debug allow everything
     # Remove this line in production environment and for testing user management
-    can :manage, :all     
-    
+    # can :manage, :all     
+    can [:show, :index], :all
     # Rechteverwaltung f�r Studien Modul
     can :read, Modulgruppe
     can :manage, Modulgruppe
-
-
+    
+    # Rechteverwaltung Kalender 
+    can [:show, :index], Calendar 
+    can [:show], Calentry
+    if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
+    can  [:edit, :update,:new,:create,:verwalten], Calendar
+    can  [:edit, :update,:new,:create,:verwalten], Calentry
+    end
+	if( user.has_role?("fetadmin"))
+	can [:delete],Calendar
+	can [:delete],Calentry
+	end
  
     # Rechteverwaltung fuer Neuigkeiten
 

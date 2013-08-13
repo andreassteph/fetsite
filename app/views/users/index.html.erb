@@ -5,12 +5,17 @@
 </ul>
 <table class="table table-striped">
 <% @users.each do |user|%>
-<tr><th>Name</th><th>E-Mail</th><th>Rollen</th>
-</tr><tr><td></td>
+<tr><th>E-Mail</th><th>Rollen</th><th>Actions</th>
+</tr><tr>
 <td>
 	<%= user.email %></td><td><ul>
 	<% user.roles.each do |role| %>
 	<li><%= role.name%></li>
-<% end %></ul></td><td><%= link_to 'MK FETUSER', user_add_role_path(user, "fetadmin")%></td>
+<% end %></ul></td>
+<td>
+<%= link_to 'MK fetadmin', user_add_role_path(user, "fetadmin")%>
+<%= link_to 'MK fetuser', user_add_role_path(user, "fetuser")%>
+<%= link_to 'doconfirm', user_do_confirm_path(user)%>
+</td>
 </tr><% end %>
 </table>
