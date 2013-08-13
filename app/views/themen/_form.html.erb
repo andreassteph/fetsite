@@ -1,8 +1,11 @@
+<%= tinymce_assets %>
 <%= semantic_form_for @thema do |f| %>
   <%= f.inputs do %>
     <%= f.input :title %>
-    <%= f.input :text %>
+    <%= f.input :themengruppe %>
+    <%= f.input :text, :as=>:tinymce_text%>
   <% end %>
+<%= tinymce %>
 
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>

@@ -25,7 +25,7 @@ class ThemenController < ApplicationController
   # GET /themen/new.json
   def new
     @thema = Thema.new
-
+    @thema.themengruppe = Themengruppe.find(params[:themengruppe_id]) unless params[:themengruppe_id].nil?
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @thema }

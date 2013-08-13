@@ -1,6 +1,6 @@
 class Themengruppe < ActiveRecord::Base
   attr_accessible :text, :title
-  has_many :themen
+  has_many :themen, class_name: 'Thema'
   has_many :fragen, through: :themen
   
   validates :title, :presence => true

@@ -1,5 +1,5 @@
 class Thema < ActiveRecord::Base
-  attr_accessible :text, :title
+  attr_accessible :text, :title, :themengruppe_id
   has_many :fragen
   has_many :attachments
   belongs_to :themengruppe, :foreign_key => "themengruppe_id"

@@ -6,7 +6,7 @@ class TranslateThemen < ActiveRecord::Migration
     }, {
       #:migrate_data => true
     })
-		add_column :thema_translations, :themen_id, :integer
+		add_column :thema_translations, :theman_id, :integer
     remove_column :thema_translations, :thema_id    
  
 		Themengruppe.create_translation_table!({
