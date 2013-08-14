@@ -40,3 +40,14 @@ margin-bottom: 20px
    width:100%;
 }
 
+
+.navbar .nav li {
+min-width:60%;
+
+}
+.navbar .nav .divider {
+border-style: solid;  
+border-width: 1px 0px 0px 0px;
+border-color: grey;
+min-width: 100%;
+}
