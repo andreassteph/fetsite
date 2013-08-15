@@ -27,16 +27,24 @@ class Ability
     
     # For Debug allow everything
     # Remove this line in production environment and for testing user management
-    # can :manage, :all     
-    can [:show, :index], :all
+    can :manage, :all     
+    can [:show, :index], Studium
+    can [:show, :index], Modulgruppe
+    can [:show, :index], Modul
+    can [:show, :index], Lva
+
     # Rechteverwaltung f�r Studien Modul
     can :read, Modulgruppe
-    can :manage, Modulgruppe
     
+
     # Rechteverwaltung Kalender 
-    can [:show, :index], Calendar 
+    can [:show, :index], Calendar, :public => true 
     can [:show], Calentry
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
+
+    can :manage, Modulgruppe
+
+    can [:show,:index], Calendar
     can  [:edit, :update,:new,:create,:verwalten], Calendar
     can  [:edit, :update,:new,:create,:verwalten], Calentry
     end
@@ -49,11 +57,15 @@ class Ability
 
 #    can :write, Neuigkeit if user.has_role?("newsmoderator", Neuigkeit.rubrik)
 
-   if user.has_role? "newsadmin"
+   if user.has_role?("newsadmin") || user.has_role?("fetadmin") 
       can :addmoderator, Rubrik
     end    
-
-
-
+   can [:show, :index], [Rubrik,Neuigkeit]
+   if user.has_role?("newsadmin") || user.has_role?( "fetadmin") || user.has_role?( "fetuser") 
+	  can :manage, Rubrik
+	  can :manage, Neuigkeit
+   end
+  
+  
   end
 end
