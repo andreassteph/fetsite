@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(:version => 20130813145651) do
     t.integer  "thema_id"
   end
 
+  create_table "beispiel_translations", :force => true do |t|
+    t.string   "locale"
+    t.text     "desc"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "beispiele_id"
+  end
+
+  add_index "beispiel_translations", ["locale"], :name => "index_beispiel_translations_on_locale"
+
   create_table "beispiele", :force => true do |t|
     t.string   "name"
     t.text     "desc"
@@ -104,10 +114,13 @@ ActiveRecord::Schema.define(:version => 20130813145651) do
     t.integer "modul_id"
   end
 
-  create_table "lvas_semesters", :force => true do |t|
+  create_table "lvas_semesters", :id => false, :force => true do |t|
     t.integer "lva_id"
     t.integer "semester_id"
   end
+
+  add_index "lvas_semesters", ["lva_id", "semester_id"], :name => "index_lvas_semesters_on_lva_id_and_semester_id"
+  add_index "lvas_semesters", ["semester_id"], :name => "index_lvas_semesters_on_semester_id"
 
   create_table "modul_translations", :force => true do |t|
     t.integer  "modul_id"
@@ -222,7 +235,7 @@ ActiveRecord::Schema.define(:version => 20130813145651) do
     t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "themen_id"
+    t.integer  "theman_id"
   end
 
   add_index "thema_translations", ["locale"], :name => "index_thema_translations_on_locale"
