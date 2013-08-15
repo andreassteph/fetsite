@@ -1,0 +1,22 @@
+
+de:
+  neuigkeit:
+    new:
+      title: "Neue Neuigkeit"
+  rubriken:
+    alle: "Alle Rubriken"
+  rubrik:
+    title: "Neuigkeiten und aktuelle Infos"
+    moderatoradded: "Neuen Moderator hinzugefügt!"
+    moderatoraddnorights: "Keine Berechtigung neue Moderatoren hinzuzufügen!"
+    new: "Neue Rubrik"
+    edit: "Rubrik bearbeiten"
+    
+  activerecord:
+    errors:
+      models:
+        neuigkeit:
+          attributes:
+            title:
+              blank: "Bitte einen Titel angeben"    
+
