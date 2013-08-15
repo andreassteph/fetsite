@@ -13,11 +13,19 @@
 	<li><%= role.name%></li>
 <% end %></ul></td>
 <td>
-<ul>
-<li><%= link_to 'MK fetadmin', user_add_role_path(user, "fetadmin")%></li>
-<li><%= link_to 'MK fetuser', user_add_role_path(user, "fetuser")%></li>
-<li><%= link_to 'doconfirm', user_do_confirm_path(user)%></li>
-</ul>
+
+<div class="btn-group">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Action
+    <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+		<li><%= link_to 'Rolle: fetadmin', user_add_role_path(user, "fetadmin")%></li>
+		<li><%= link_to 'Rolle: fetuser', user_add_role_path(user, "fetuser")%></li>
+		<li><%= link_to 'Confirm Account', user_do_confirm_path(user)%></li>
+    <!-- dropdown menu links -->
+    </ul>
+</div>
 </td>
 </tr><% end %>
 </table>
