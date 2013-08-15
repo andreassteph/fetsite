@@ -13,9 +13,11 @@
 	<li><%= role.name%></li>
 <% end %></ul></td>
 <td>
-<%= link_to 'MK fetadmin', user_add_role_path(user, "fetadmin")%>
-<%= link_to 'MK fetuser', user_add_role_path(user, "fetuser")%>
-<%= link_to 'doconfirm', user_do_confirm_path(user)%>
+<ul>
+<li><%= link_to 'MK fetadmin', user_add_role_path(user, "fetadmin")%></li>
+<li><%= link_to 'MK fetuser', user_add_role_path(user, "fetuser")%></li>
+<li><%= link_to 'doconfirm', user_do_confirm_path(user)%></li>
+</ul>
 </td>
 </tr><% end %>
 </table>
