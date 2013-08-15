@@ -1,5 +1,6 @@
 class RubrikenController < ApplicationController
   before_filter {@toolbar_elements=[]}
+   load_and_authorize_resource
   def index
     @rubriken = Rubrik.all
  
