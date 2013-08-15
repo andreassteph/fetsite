@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs">
+ <li <%= (request.fullpath == rubriken_path)? 'class="active"' : ''%> >
+ <%= link_to I18n.t 'rubriken.alle' , calendars_path %> </li>
+<% for r in Rubrik.all %>
+  <li <%= (!@rubrik.nil? && r == @rubrik) ? 'class="active"' : '' %> title="<%= r.name %>">
+    <%= link_to r.name, r %>
+    </li>
+<% end %>
+<% if can? :verwalten, Rubrik%>
+<% if request.fullpath == rubriken_verwalten_path %>
+  <li class="active pull-right">
+  <% else %>
+  <li class="pull-right">
+<% end %>
+<%= link_to "Verwaltung", rubriken_verwalten_path %>
+</li>
+<% end %>
+</ul>

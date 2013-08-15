@@ -6,6 +6,8 @@
    scope '(:locale)/admin' do
      resources :users, :only => [:index]
      get 'users/:id/add_role/:role', :controller=>:users, :action=>:add_role, :as=>'user_add_role'
+     get 'users/:id/do_confirm', :controller=>:users, :action=>:do_confirm, :as=>'user_do_confirm'
+
      get 'config',:controller=>:config,:action=>:index , :as => 'config'
      get 'config/get_git_update',:controller=>:config,:action=>:get_git_update, :as=>'config_getgitupdate'
      get 'config/get_git_update',:controller=>:config,:action=>:get_git_update
@@ -43,6 +45,8 @@
      end
      put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
      get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
+     get 'rubriken/verwalten',:controller=>:rubriken,:action=>:alle_verwalten, :as=>'rubriken_verwalten'
+     
      resources :home, :only=>[:index]
      get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
      resources :beispiele
@@ -52,6 +56,8 @@
 	 end
  
   resources :calendars
+  get 'verwalten/calendars', :controller=>:calendars, :action=>:verwalten, :as=>'calendars_verwalten'
+     
   resources :calentries
    end
 

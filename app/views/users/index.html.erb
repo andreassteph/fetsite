@@ -5,12 +5,27 @@
 </ul>
 <table class="table table-striped">
 <% @users.each do |user|%>
-<tr><th>Name</th><th>E-Mail</th><th>Rollen</th>
-</tr><tr><td></td>
+<tr><th>E-Mail</th><th>Rollen</th><th>Actions</th>
+</tr><tr>
 <td>
 	<%= user.email %></td><td><ul>
 	<% user.roles.each do |role| %>
 	<li><%= role.name%></li>
-<% end %></ul></td><td><%= link_to 'MK FETUSER', user_add_role_path(user, "fetadmin")%></td>
+<% end %></ul></td>
+<td>
+
+<div class="btn-group">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Action
+    <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+		<li><%= link_to 'Rolle: fetadmin', user_add_role_path(user, "fetadmin")%></li>
+		<li><%= link_to 'Rolle: fetuser', user_add_role_path(user, "fetuser")%></li>
+		<li><%= link_to 'Confirm Account', user_do_confirm_path(user)%></li>
+    <!-- dropdown menu links -->
+    </ul>
+</div>
+</td>
 </tr><% end %>
 </table>

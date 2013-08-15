@@ -1,6 +1,7 @@
+
+
+<%= render 'tabs' %>
 <h1><%= I18n.t("rubrik.title")%></h1>
-
-
 <% @rubriken.each do |rubrik| %>
 
 
@@ -16,4 +17,4 @@
 
 <br />
 
-<%= link_to 'New Rubrik', new_rubrik_path %>
+<%= link_to 'New Rubrik', new_rubrik_path unless cannot?(:new, Rubrik) %>

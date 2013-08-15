@@ -1,5 +1,6 @@
 class NeuigkeitenController < ApplicationController
  before_filter {@toolbar_elements=[]}
+  load_and_authorize_resource
   def index
     @neuigkeiten = Neuigkeit.all
   end
@@ -14,8 +15,8 @@ class NeuigkeitenController < ApplicationController
 
   def new
     @neuigkeit = Neuigkeit.new
-    @rubrik=Rubrik.find(params[:rubrik_id])
-    @neuigkeit.rubrik=@rubrik
+    @rubrik=Rubrik.find(params[:rubrik_id]) unless params[:rubrik_id].nil?
+    @neuigkeit.rubrik=@rubrik unless @rubrik.nil?
  end
 
 
@@ -25,7 +26,7 @@ class NeuigkeitenController < ApplicationController
 
   def create
     @neuigkeit = Neuigkeit.new(params[:neuigkeit])
-
+	@rubrik = @neuigkeit.rubrik
     respond_to do |format|
       if @neuigkeit.save
         format.html { redirect_to @neuigkeit, notice: 'Neuigkeit was successfully created.' }
