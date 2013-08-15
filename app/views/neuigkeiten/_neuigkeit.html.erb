@@ -1,5 +1,5 @@
 <h2><%= link_to neuigkeit.title,neuigkeit_path(neuigkeit)  %></h2>
 <%= if !neuigkeit.author.nil? 
-       neuigkeit.author.name 
+       neuigkeit.author.email 
 end %>
 <p><%= raw(neuigkeit.text) %></p>
