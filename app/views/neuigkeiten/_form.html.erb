@@ -5,6 +5,7 @@
     <%= f.input :text, :as=>:tinymce_text %>
     <%= f.input :datum %>
     <%= f.input :rubrik, :as=>:radio, :collection=>Rubrik.all %>
+    <%= f.input :author, :as=>:radio %>
   <% end %>
 
   <%= f.actions do %>

@@ -27,6 +27,7 @@ class NeuigkeitenController < ApplicationController
   def create
     @neuigkeit = Neuigkeit.new(params[:neuigkeit])
 	@rubrik = @neuigkeit.rubrik
+ 
     respond_to do |format|
       if @neuigkeit.save
         format.html { redirect_to @neuigkeit, notice: 'Neuigkeit was successfully created.' }
@@ -41,7 +42,7 @@ class NeuigkeitenController < ApplicationController
 
   def update
     @neuigkeit = Neuigkeit.find(params[:id])
-
+ 
     respond_to do |format|
       if @neuigkeit.update_attributes(params[:neuigkeit])
         format.html { redirect_to @neuigkeit, notice: 'Neuigkeit was successfully updated.' }
