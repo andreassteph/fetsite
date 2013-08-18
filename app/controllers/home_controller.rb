@@ -4,5 +4,7 @@ class HomeController < ApplicationController
   def dev
 
   end
-
+  def startdev
+  render 'setup_fetsite_dev'
+  end
 end

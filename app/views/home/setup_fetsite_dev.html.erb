@@ -1,0 +1,32 @@
+<h1>Setup fetsite</h1>
+
+<h2>Git installieren und Repository koperen</h2>
+Falls noch nicht installiert, GIT installieren
+<pre>sudo apt-get install git git-cola</pre>
+Repository auf Github forken und dann auf dem Rechner clonen.
+<pre>git clone https://github.com/<github username>/fetsite</pre>
+<h2>Ruby on Rails installieren </h2>
+Ruby 1.9 installieren wobei wichtig ist, dass die Version 1.9 ist
+<pre>sudo apt-get install ruby1.9</pre>
+Falls mehrere Ruby Versionen installiert ist mit
+<pre> sudo update-alternatives --config ruby</pre>
+überprüfen, dass Ruby 1.9 verwendet wird.
+<pre>sudo apt-get install rubygems1.9</pre>
+<pre>sudo gem install bundler</pre>
+ImageMagick,sqlite3 installieren
+<pre>sudo apt-get install libmagickwand-dev libsqlite3-dev nodejs</pre>
+gegebenenfalls g++ installieren
+<pre>cd fetsite
+sudo bundle install
+</pre>
+Falls Fehler auftreten je nach Fehlermeldung Pakete mit <code>apt-get</code> nach installieren (zB sqlite, ...) - google!
+
+<h2>Datenbank erstellen</h2>
+<pre>rake db:migrate</pre>
+
+<h2>Main - Git Repository hinzufügen</h2>
+<pre>git remote add fetsite https://github.com/fetsite/fetsite</pre>
+<h2>Server Starten</h2>
+<pre>rails server</pre>
+<h2>Website aufrufen</h2>
+<pre>localhost:3000</pre> 
