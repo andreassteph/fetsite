@@ -49,6 +49,7 @@
      
      resources :home, :only=>[:index]
      get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
+     get 'home/startdev', :controller=>:home, :action=>:startdev, :as=>'home_startdev'
      resources :beispiele
      resources :themen
 	 resources :themengruppen do
