@@ -3,13 +3,13 @@ class FixTranslationTables < ActiveRecord::Migration
   Thema::Translation.reset_column_information
   if (!Thema::Translation.column_names.include?('thema_id'))
   add_column :thema_translations, :thema_id,:integer
-  Thema:Translation.update_all("thema_id=theman_id")
+  Thema::Translation.update_all("thema_id=theman_id")
   end
   
   Studium::Translation.reset_column_information
   if (!Studium::Translation.column_names.include?('studium_id'))
   add_column :studium_translations, :studium_id,:integer
-  Studium:Translation.update_all("studium_id=studien_id")
+  Studium::Translation.update_all("studium_id=studien_id")
   end
   
   Themengruppe::Translation.reset_column_information
@@ -31,7 +31,7 @@ class FixTranslationTables < ActiveRecord::Migration
   Neuigkeit::Translation.reset_column_information
   if (!Neuigkeit::Translation.column_names.include?('neuigkeit_id'))
   add_column :neuigkeit_translations, :neuigkeit_id,:integer
- Neuigkeit:Translation.update_all("neuigkeit_id=neuigkeiten_id")
+ Neuigkeit::Translation.update_all("neuigkeit_id=neuigkeiten_id")
   end
   end
 
