@@ -1,3 +1,9 @@
+
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:http://www.example.com/calendarapplication/
+METHOD:PUBLISH
 <% @calendar.calentries.each do |entry| %>
 <%= render entry %>
 <% end %>
+END:VCALENDAR

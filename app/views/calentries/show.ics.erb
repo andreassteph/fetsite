@@ -1,25 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Start:</b>
-  <%= @calentry.start %>
-</p>
-
-<p>
-  <b>Ende:</b>
-  <%= @calentry.ende %>
-</p>
-
-<p>
-  <b>Summary:</b>
-  <%= @calentry.summary %>
-</p>
-
-<p>
-  <b>Typ:</b>
-  <%= @calentry.typ %>
-</p>
-
-
-<%= link_to 'Edit', edit_calentry_path(@calentry) %> |
-<%= link_to 'Back', calentries_path %>
+BEGIN:VEVENT
+UID:4610<%= calentry.id $>@fet.at
+ORGANIZER;CN="Peter Schlechter, Example Inc.":MAILTO:peter@fet.at
+LOCATION:Vienna
+SUMMARY:<%= calentry.summary%>
+DESCRIPTION:<%= calentry.summary%>
+CLASS:PUBLIC
+DTSTART:<%= calentry.start.strftime "%Y%m%dT%H%M%S" %>
+DTEND:<%= calentry.ende.strftime "%Y%m%dT%H%M%S" %>
+DTSTAMP:<%= calentry.start.strftime "%Y%m%dT%H%M%S" %>
+END:VEVENT
