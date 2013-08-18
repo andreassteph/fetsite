@@ -28,6 +28,8 @@ class Ability
     # For Debug allow everything
     # Remove this line in production environment and for testing user management
     can :manage, :all     
+    can :addfetuser, User
+    can :addfetadmin, User
     can [:show, :index], Studium
     can [:show, :index], Modulgruppe
     can [:show, :index], Modul
@@ -39,6 +41,7 @@ class Ability
 
     # Rechteverwaltung Kalender 
     can [:show, :index], Calendar, :public => true 
+    can [:showics], Calendar
     can [:show], Calentry
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
 
