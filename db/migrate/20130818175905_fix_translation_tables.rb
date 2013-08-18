@@ -21,11 +21,7 @@ class FixTranslationTables < ActiveRecord::Migration
   Frage::Translation.reset_column_information
   if (!Frage::Translation.column_names.include?('frage_id'))
   add_column :frage_translations, :frage_id,:integer
-    Frage::Translation.reset_column_information
-  Frage::Translation.all.each do |t|
-  t.frage_id=t.fragen_id
-  t.save
-  end
+  Frage::Translation.update_all("frage_id=fragen_id")
   end
   
   Neuigkeit::Translation.reset_column_information
