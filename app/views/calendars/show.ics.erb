@@ -3,6 +3,7 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:http://www.example.com/calendarapplication/
 METHOD:PUBLISH
+X-WR-TIMEZONE:Vienna
 <% @calendar.calentries.each do |entry| %>
 <%= render entry %>
 <% end %>
