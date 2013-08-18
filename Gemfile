@@ -47,7 +47,7 @@ gem "tinymce-rails" , '>=3.5.8'
 
 # Internationalisierung
 gem "globalize3"  ,'~>0.3.0'
-
+#gem "globalize3" ,:git =>'git://github.com/svenfuchs/globalize3.git'
 # Version controll
 gem "paper_trail" , '>=2.7.0'
 
