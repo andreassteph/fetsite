@@ -10,10 +10,12 @@ class UsersController < ApplicationController
     if (params[:role]=="fetadmin" && can?(:addfetadmin,User))
     @user.add_role(params[:role])
     end
-    
+    redirect_to users_url
     end
     def do_confirm
     @user= User.find(params[:id])
     @user.confirm!
+
+    redirect_to users_url
     end
 end
