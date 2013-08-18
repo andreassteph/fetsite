@@ -5,12 +5,14 @@
 </div>
 </div>
  <div class="row-fluid">
-<p id="notice"><%= notice %></p>
+ <div class="row-fluid"><p id="notice"><%= notice %></p>
 
 <h1>
   <%= '<i class="icon-globe"></i>'.html_safe unless !@calendar.public%>
   <%=  @calendar.name %>
-</h1>
+</h1>  <%= link_to "Link to iCalendar", calendar_path(@calendar, { format: 'ics'}) %>
+</div>
+
  <div class="row-fluid">
 <ul class="list-group">
 <% @calendar.calentries.each do |entry| %>

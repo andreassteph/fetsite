@@ -1,8 +1,8 @@
 <ul class="nav nav-tabs">
- <li <%= (request.fullpath == calendars_path)? 'class="active"' : ''%> >
+ <li <%= (request.fullpath == calendars_path)? 'class="active"'.html_safe : ''%> >
  <%= link_to I18n.t 'calendars.alle' , calendars_path %> </li>
 <% for c in Calendar.all %>
-  <li <%= (!@calendar.nil? && c == @calendar) ? 'class="active"' : '' %> title="<%= c.name %>">
+  <li <%= (!@calendar.nil? && c == @calendar) ? 'class="active"'.html_safe : '' %> title="<%= c.name %>">
     <%= link_to c.name, c %>
     </li>
 <% end %>
