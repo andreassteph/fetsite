@@ -10,7 +10,7 @@
 <h1>
   <%= '<i class="icon-globe"></i>'.html_safe unless !@calendar.public%>
   <%=  @calendar.name %>
-</h1>  <%= link_to "Link to iCalendar", calendar_path(@calendar, { format: 'ics'}) %>
+</h1>  <%= link_to "Link to iCalendar", calendar_path(@calendar, { format: 'ics'})  unless cannot? :showics, @calendar%>
 </div>
 
  <div class="row-fluid">
