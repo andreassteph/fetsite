@@ -1,8 +1,8 @@
 class TranslateModulgruppen < ActiveRecord::Migration
   def self.up
     Modulgruppe.create_translation_table!({
-      :desc => :text,
-      :name => :string
+      :desc => :text#,
+     # :name => :string
     }, {
       :migrate_data => true
     })
