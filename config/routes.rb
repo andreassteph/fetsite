@@ -36,8 +36,10 @@
      get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
     
      resources :fetzneditions
-     resources :fotos
-     resources :galleries
+     resources :fotos, :except=>[:new, :show]
+     resources :galleries do
+     resources :fotos, :only=>[:new,:show]
+     end
      resources :memberships
      resources :gremien
      resources :fetprofiles

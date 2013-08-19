@@ -1,25 +1,31 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @foto.title %>
-</p>
+<div class="container-fluid">
 
-<p>
-  <b>Desc:</b>
-  <%= @foto.desc %>
-</p>
+	
+	<div class="row-fluid">
+	<div class="span12">
+		<%= link_to image_tag(@foto.datei.resized.url),  gallery_foto_path(@foto.gallery,  ((@foto.gallery.fotos[@foto.gallery.fotos.index(@foto)+1].nil?) ? (@foto.gallery.fotos[0].try(:id).to_i) : @foto.gallery.fotos[@foto.gallery.fotos.index(@foto)+1].try(:id).to_i) ) %>
+	</div>
+	</div>
 
-<p>
-  <b>Gallery:</b>
-  <%= @foto.gallery_id %>
-</p>
+	<div class="row-fluid">
+	<div class="span9">
+		<h2><%= @foto.title %></h2>
+		<p><%= @foto.desc %></p>
+	</div>
+	<div class="span3">
+		<p>
+		<%= link_to 'last' , gallery_foto_path(@foto.gallery,  @foto.gallery.fotos[@foto.gallery.fotos.index(@foto)-1].try(:id).to_i) unless @foto.gallery.fotos.index(@foto)==0 %>
+		<%= link_to 'next' , gallery_foto_path(@foto.gallery,  @foto.gallery.fotos[@foto.gallery.fotos.index(@foto)+1].try(:id).to_i) unless @foto.gallery.fotos[@foto.gallery.fotos.index(@foto)+1].nil? %>
+		<%= link_to 'Edit', edit_foto_path(@foto) %> |
+		<%= link_to 'Back', gallery_path(@foto.gallery) %>
+		</p>
+	</div>
+	</div>
+	<div class="row-fluid">
+	<div class="span12">
+		<p id="notice"><%= notice %></p>
+	</div>
+	</div>
+</div>
 
-<p>
-  <b>Datei:</b>
-  <%= @foto.datei %>
-</p>
-
-
-<%= link_to 'Edit', edit_foto_path(@foto) %> |
-<%= link_to 'Back', fotos_path %>
