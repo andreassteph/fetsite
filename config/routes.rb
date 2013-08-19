@@ -1,5 +1,8 @@
  Fetsite::Application.routes.draw do
     
+  resources :fetzneditions
+
+
   resources :fotos
 
 
