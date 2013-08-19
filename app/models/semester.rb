@@ -13,9 +13,23 @@
 #
 
 class Semester < ActiveRecord::Base
-  attr_accessible :name, :nummer, :ssws, :lva_ids
+  attr_accessible :nummer, :ssws, :lva_ids
   has_and_belongs_to_many :lvas
   belongs_to :studium, :foreign_key => "studium_id"
-  validates :name, :presence => true
   validates :nummer, :presence => true
+
+  def name
+    if self.nummer == 0
+      return I18n.t("ohnezuordnung") + " (" + self.studium.name + ")"
+    else
+      return self.nummer.to_s + ". " + self.studium.name
+    end
+  end
+  def name_kurz
+    if self.nummer == 0
+      return I18n.t("ohnezuordnung") + " (" + self.studium.abkuerzung + ")"
+    else
+      return self.nummer.to_s + ". " + self.studium.abkuerzung
+    end
+  end  
 end
