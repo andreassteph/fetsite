@@ -34,25 +34,13 @@
        
      end
      get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
-     
-
+    
      resources :fetzneditions
-
-
      resources :fotos
-
-
      resources :galleries
-
-
      resources :memberships
-
-
      resources :gremien
-
-
      resources :fetprofiles
-
      resources :lecturers
      resources :semesters
      resources :moduls
