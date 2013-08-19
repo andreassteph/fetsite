@@ -36,7 +36,23 @@
 	  	<%= (lec.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to lec.name, lec %> | <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_lecturer_path(lec)%> ||
 	  
 	  <% end %>
-	
+	  <div class="btn-toolbar">
+	      <div class="btn-group">
+		<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		  <%= params[:lec_verw].nil? ? I18n.t("filter.lecturer") : Lecturer.find(params[:lec_verw]).name %>
+
+		  <span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+		  <li> <%= link_to 'Alle Vortragenden', studien_verwalten_path(:lec_verw=>nil) %></li>
+		  <% for lec in @lecturers  %>
+		  <li> <%= link_to lec.name, studien_verwalten_path(:lec_verw=>lec)%> </li>
+		  <% end %>
+		</ul>
+		
+	      </div>
+	      <%= link_to "Neuer Vortragender", new_lecturer_path, :class=>"btn"%>
+	    </div>
       </div>
       <div class="row-fluid">
 	
