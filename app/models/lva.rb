@@ -13,17 +13,17 @@
 #  updated_at  :datetime         not null
 #  modul_id    :integer
 #  semester_id :integer
-#
+ #
 
 class Lva < ActiveRecord::Base
   ERLAUBTE_TYPEN = ['VO', 'UE', 'VU', 'LU', 'SE', 'andere'];
   has_paper_trail # Versionsverfolgung
-  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ
+  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ, :lecturer_ids
   has_and_belongs_to_many :modul # Gehört zu einem Modul
   has_and_belongs_to_many :semester
   #Gehört zu einem Semester( derzeit nicht implementiert)
   has_many :beispiele , :class_name => "Beispiel"
-
+  has_and_belongs_to_many :lecturers
   translates :desc,  :fallbacks_for_empty_translations => true
   
   validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 

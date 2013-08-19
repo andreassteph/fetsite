@@ -1,9 +1,9 @@
 
 <div class="lva-semester">
-  <b><%= link_to lva.name, lva_path(lva)%></b><br>
+ <%=lva.lvanr.to_s %> <b><%= link_to lva.name, lva_path(lva)%></b>  <%= lva.ects %> ECTS / <%= lva.stunden %> Std<br>
+<!--  <div class="hidden-phone">
   Module: /<% lva.modul.each do |m| %> <%= link_to m.name + ' / ', modul_path(m) unless m.modulgruppen.map{|x| x.studium}.index(@studium).nil? && !@studium.nil? %><% end %>
-  <br>
-  <%="LVa-Nr " + lva.lvanr.to_s %>
-  <%= lva.ects %> ECTS / <%= lva.stunden %> Std <% " / " + lva.beispiele.count.to_s + " Beispiele"%> <br>
-  <%= link_to "Edit", edit_lva_path(lva) %> | <%= link_to "Beispiel hinzufügen", new_beispiel_path(:lva_id=>lva.id) %>
+<br>
+  
+   <% " / " + lva.beispiele.count.to_s + " Beispiele"%> </div>-->
 </div class="lva-semester"> 

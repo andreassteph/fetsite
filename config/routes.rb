@@ -1,5 +1,8 @@
  Fetsite::Application.routes.draw do
     
+  resources :lecturers
+
+
    devise_for :users
    resources :home, :only=>[:index]
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"
@@ -34,6 +37,7 @@
        
      end
      get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
+     resources :lecturers
      resources :semesters
      resources :moduls
      resources :lvas
