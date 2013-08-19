@@ -3,7 +3,7 @@ class FixTranslationTables < ActiveRecord::Migration
   Thema::Translation.reset_column_information
   if (!Thema::Translation.column_names.include?('thema_id'))
   add_column :thema_translations, :thema_id,:integer
-  Thema::Translation.update_all("thema_id=theman_id")
+  Thema::Translation.update_all("thema_id=thema_id")
   end
   
   Studium::Translation.reset_column_information
