@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @gremium.name %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @gremium.desc %>
+</p>
+
+<p>
+  <b>Typ:</b>
+  <%= @gremium.typ %>
+</p>
+
+
+<%= link_to 'Edit', edit_gremium_path(@gremium) %> |
+<%= link_to 'Back', gremien_path %>

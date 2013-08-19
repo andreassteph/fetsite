@@ -27,7 +27,7 @@ class Ability
     
     # For Debug allow everything
     # Remove this line in production environment and for testing user management
-    can :manage, :all     
+   # can :manage, :all     
     can :addfetuser, User
     can :addfetadmin, User
     can [:show, :index], Studium
@@ -62,7 +62,7 @@ class Ability
 
    if user.has_role?("newsadmin") || user.has_role?("fetadmin") 
       can :addmoderator, Rubrik
-    end    
+   end    
    can [:show, :index], [Rubrik,Neuigkeit]
    if user.has_role?("newsadmin") || user.has_role?( "fetadmin") || user.has_role?( "fetuser") 
 	  can :manage, Rubrik

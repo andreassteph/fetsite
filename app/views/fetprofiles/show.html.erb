@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Vorname:</b>
+  <%= @fetprofile.vorname %>
+</p>
+
+<p>
+  <b>Nachname:</b>
+  <%= @fetprofile.nachname %>
+</p>
+
+<p>
+  <b>Short:</b>
+  <%= @fetprofile.short %>
+</p>
+
+<p>
+  <b>Fetmailalias:</b>
+  <%= @fetprofile.fetmailalias %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @fetprofile.desc %>
+</p>
+
+<p>
+  <b>Picture:</b>
+  <%= @fetprofile.picture %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @fetprofile.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_fetprofile_path(@fetprofile) %> |
+<%= link_to 'Back', fetprofiles_path %>

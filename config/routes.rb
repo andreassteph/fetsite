@@ -1,7 +1,4 @@
  Fetsite::Application.routes.draw do
-    
-  resources :lecturers
-
 
    devise_for :users
    resources :home, :only=>[:index]
@@ -37,6 +34,25 @@
        
      end
      get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
+     
+
+     resources :fetzneditions
+
+
+     resources :fotos
+
+
+     resources :galleries
+
+
+     resources :memberships
+
+
+     resources :gremien
+
+
+     resources :fetprofiles
+
      resources :lecturers
      resources :semesters
      resources :moduls
@@ -56,14 +72,14 @@
      get 'home/startdev', :controller=>:home, :action=>:startdev, :as=>'home_startdev'
      resources :beispiele
      resources :themen
-	 resources :themengruppen do
-	 resources :themen, :only=>[:new, :show]
-	 end
- 
-  resources :calendars
-  get 'verwalten/calendars', :controller=>:calendars, :action=>:verwalten, :as=>'calendars_verwalten'
+     resources :themengruppen do
+       resources :themen, :only=>[:new, :show]
+     end
      
-  resources :calentries
+     resources :calendars
+     get 'verwalten/calendars', :controller=>:calendars, :action=>:verwalten, :as=>'calendars_verwalten'
+     
+     resources :calentries
    end
 
    # The priority is based upon order of creation:

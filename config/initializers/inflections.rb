@@ -34,4 +34,8 @@ inflect.irregular 'thema', 'themen'
 inflect.plural 'frage', 'fragen'
 inflect.singular 'fragen', 'frage'
 inflect.irregular 'frage', 'fragen'
+inflect.singular 'gremien', 'gremium'
+inflect.irregular 'gremium', 'gremien'
+inflect.plural 'gremium', 'gremien'
+
 end

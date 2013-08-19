@@ -14,7 +14,7 @@ indent_mode=2
 
 [project]
 name=fetsite
-base_path=.
+base_path=/home/andreas/www/fetsite
 description=
 file_patterns=*.rb;*.erb;*.js;*.coffee;*.sass;Gemfile;
 
@@ -23,7 +23,35 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
+current_page=1
+FILE_NAME_0=29;HTML;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fviews%2Fcalendars%2Fshow.html.erb;0;4
+FILE_NAME_1=58;HTML;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fviews%2Fcalendars%2F_tabs.html.erb;0;4
+FILE_NAME_2=1179;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fmodels%2Fability.rb;0;4
+FILE_NAME_3=115;None;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fviews%2Fcalendars%2Fshow.ics.erb;0;4
+FILE_NAME_4=454;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fcontrollers%2Fusers_controller.rb;0;4
+FILE_NAME_5=571;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fconfig%2Finitializers%2Fdevise.rb;0;4
+FILE_NAME_6=627;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fmodels%2Fneuigkeit.rb;0;4
+FILE_NAME_7=421;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fmodels%2Fmodulgruppe.rb;0;4
+FILE_NAME_8=0;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fmodels%2Flva.rb;0;4
+FILE_NAME_9=363;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fmodels%2Fthema.rb;0;4
+FILE_NAME_10=255;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fdb%2Fmigrate%2F20130124000300_translate_lvas.rb;0;4
+FILE_NAME_11=222;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fdb%2Fmigrate%2F20130818161841_translate_neuigkeiten.rb;0;4
+FILE_NAME_12=1383;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fconfig%2Finitializers%2Finflections.rb;0;4
+FILE_NAME_13=1010;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fdb%2Fmigrate%2F20130818175905_fix_translation_tables.rb;0;4
+FILE_NAME_14=615;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fdb%2Fmigrate%2F20130805171433_translate_themen.rb;0;4
+FILE_NAME_15=844;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ftmp%2Ffetsite%2Fdb%2Fmigrate%2F20130818175905_fix_translation_tables.rb;0;4
+FILE_NAME_16=114;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ftmp%2Ffetsite%2Fdb%2Fmigrate%2F20130805171433_translate_themen.rb;0;4
+FILE_NAME_17=191;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ftmp%2Ffetsite%2Fdb%2Fmigrate%2F20130805143719_create_themen.rb;0;4
+FILE_NAME_18=0;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fdb%2Fmigrate%2F20130112110800_create_semesters.rb;0;4
+FILE_NAME_19=0;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fdb%2Fmigrate%2F20130113160023_create_versions.rb;0;4
+FILE_NAME_20=0;HTML;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fviews%2Frubriken%2Fshow.html.erb;0;4
+FILE_NAME_21=161;HTML;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fviews%2Frubriken%2F_tabs.html.erb;0;4
+FILE_NAME_22=439;HTML;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fviews%2Flayouts%2Fapplication.html.erb;0;4
+FILE_NAME_23=0;HTML;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fviews%2Fusers%2Findex.html.erb;0;4
+FILE_NAME_24=3143;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fcontrollers%2Fmoduls_controller.rb;0;4
+FILE_NAME_25=0;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fcontrollers%2Fconfig_controller.rb;0;4
+FILE_NAME_26=0;Ruby;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fcontrollers%2Fmodulgruppen_controller.rb;0;4
+FILE_NAME_27=783;HTML;0;16;1;1;0;%2Fhome%2Fandreas%2Fwww%2Ffetsite%2Fapp%2Fviews%2Flayouts%2Fmenu.html.erb;0;4
 
 [gproject]
 source_patterns=*.rb;*.erb

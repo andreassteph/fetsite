@@ -1,0 +1,29 @@
+<h1>Listing fotos</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Desc</th>
+    <th>Gallery</th>
+    <th>Datei</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fotos.each do |foto| %>
+  <tr>
+    <td><%= foto.title %></td>
+    <td><%= foto.desc %></td>
+    <td><%= foto.gallery_id %></td>
+    <td><%= foto.datei %></td>
+    <td><%= link_to 'Show', foto %></td>
+    <td><%= link_to 'Edit', edit_foto_path(foto) %></td>
+    <td><%= link_to 'Destroy', foto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Foto', new_foto_path %>

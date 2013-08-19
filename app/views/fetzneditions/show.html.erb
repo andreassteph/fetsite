@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @fetznedition.title %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @fetznedition.desc %>
+</p>
+
+<p>
+  <b>Datum:</b>
+  <%= @fetznedition.datum %>
+</p>
+
+<p>
+  <b>Datei:</b>
+  <%= @fetznedition.datei %>
+</p>
+
+
+<%= link_to 'Edit', edit_fetznedition_path(@fetznedition) %> |
+<%= link_to 'Back', fetzneditions_path %>

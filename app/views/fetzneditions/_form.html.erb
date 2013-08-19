@@ -1,0 +1,12 @@
+<%= semantic_form_for @fetznedition do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :title %>
+    <%= f.input :desc %>
+    <%= f.input :datum %>
+    <%= f.input :datei %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

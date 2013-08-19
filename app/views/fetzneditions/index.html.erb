@@ -1,0 +1,29 @@
+<h1>Listing fetzneditions</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Desc</th>
+    <th>Datum</th>
+    <th>Datei</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fetzneditions.each do |fetznedition| %>
+  <tr>
+    <td><%= fetznedition.title %></td>
+    <td><%= fetznedition.desc %></td>
+    <td><%= fetznedition.datum %></td>
+    <td><%= fetznedition.datei %></td>
+    <td><%= link_to 'Show', fetznedition %></td>
+    <td><%= link_to 'Edit', edit_fetznedition_path(fetznedition) %></td>
+    <td><%= link_to 'Destroy', fetznedition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Fetznedition', new_fetznedition_path %>
