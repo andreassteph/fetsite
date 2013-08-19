@@ -19,14 +19,13 @@
 	    </div>
 	    <div class="span4"><div class="pull-right"><%= link_to 'Lvas hinzufügen/entfernen', edit_semester_path(sem), :class=>"btn-small"%></div>
 	    </div></div>
-	    <% sem.lvas.each_slice(4) do |row| %>
+	    <% sem.lvas.each do |lva| %>
 	      <div class="row-fluid">
-		<% row.each do |l| %>
+		
+	
+		    <%= render :partial=>'lvas/lva_semester', :locals =>{:lva => lva}%>
 		  
-		  <div class="span3">
-		    <%= render :partial=>'lvas/lva_semester', :locals =>{:lva => l}%>
-		  </div>
-	        <% end %>
+	        
 	      </div>
 	    <% end %>
 
