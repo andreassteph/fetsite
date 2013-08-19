@@ -44,8 +44,8 @@ class FotosController < ApplicationController
 
     respond_to do |format|
       if @foto.save
-        format.html { redirect_to @foto, notice: 'Foto was successfully created.' }
-        format.json { render json: @foto, status: :created, location: @foto }
+        format.html { redirect_to gallery_foto_path(@foto.gallery,@foto), notice: 'Foto was successfully created.' }
+        format.json { render json: gallery_foto_path(@foto.gallery,@foto), status: :created, location: @foto }
       else
         format.html { render action: "new" }
         format.json { render json: @foto.errors, status: :unprocessable_entity }
@@ -60,7 +60,7 @@ class FotosController < ApplicationController
 
     respond_to do |format|
       if @foto.update_attributes(params[:foto])
-        format.html { redirect_to @foto, notice: 'Foto was successfully updated.' }
+        format.html { redirect_to gallery_foto_path(@foto.gallery,@foto), notice: 'Foto was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

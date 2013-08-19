@@ -14,7 +14,14 @@
   <b>Datum:</b>
   <%= @gallery.datum %>
 </p>
+<% @gallery.fotos.each do |f| %>
+<%= link_to image_tag(f.datei.big_thumb.url,{:class=>"img-polaroid"}) , gallery_foto_path(@gallery,f) %>
 
 
+
+<% end %>
+
+
+<%= link_to 'NewFoto' , new_gallery_foto_path(@gallery)  %> | 
 <%= link_to 'Edit', edit_gallery_path(@gallery) %> |
 <%= link_to 'Back', galleries_path %>
