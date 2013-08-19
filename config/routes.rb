@@ -1,5 +1,20 @@
  Fetsite::Application.routes.draw do
     
+  resources :fotos
+
+
+  resources :galleries
+
+
+  resources :memberships
+
+
+  resources :gremien
+
+
+  resources :fetprofiles
+
+
    devise_for :users
    resources :home, :only=>[:index]
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"

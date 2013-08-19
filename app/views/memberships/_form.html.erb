@@ -1,0 +1,13 @@
+<%= semantic_form_for @membership do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :fetprofile_id %>
+    <%= f.input :gremium_id %>
+    <%= f.input :start %>
+    <%= f.input :stop %>
+    <%= f.input :typ %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

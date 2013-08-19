@@ -1,0 +1,15 @@
+<%= semantic_form_for @fetprofile do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :vorname %>
+    <%= f.input :nachname %>
+    <%= f.input :short %>
+    <%= f.input :fetmailalias %>
+    <%= f.input :desc %>
+    <%= f.input :picture %>
+    <%= f.input :active %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

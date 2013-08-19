@@ -1,0 +1,11 @@
+<%= semantic_form_for @gremium do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :desc %>
+    <%= f.input :typ %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>
