@@ -92,14 +92,16 @@ class StudienController < ApplicationController
   end
 
   def verwalten
-    @new_params={:std_verw=>params[:std_verw], :mg_verw=>params[:mg_verw], :m_verw=>params[:m_verw], :lva_verw=>params[:lva_verw], :b_verw=>params[:b_verw]}
+    @new_params={:std_verw=>params[:std_verw], :mg_verw=>params[:mg_verw], :m_verw=>params[:m_verw], :lva_verw=>params[:lva_verw], :b_verw=>params[:b_verw], :lec_verw=>params[:lec_verw]}
     if @new_params.values.compact.empty?
       @studien=Studium.all
       @modulgruppen=Modulgruppe.all
       @module=Modul.all
       @lvas=Lva.all
       @beispiele=Beispiel.all
+      @lecturers=Lecturer.all
     else
+
       if !@new_params[:std_verw].nil?
         @studien = [Studium.find(@new_params[:std_verw])]
       else
@@ -144,7 +146,7 @@ class StudienController < ApplicationController
         @beispiele = [Beispiel.find(@new_params[:b_verw])]
         temp = @lvas.map{|x| x.beispiele}.flatten.uniq #Force Force Lvas
         @lvas=@lvas.select{|k| temp.include?(k)}
-        temp = @module.map{|x| x.lvas}.flatten.uniq #Force Module
+        temp = @lva.map{|x| x.moduls}.flatten.uniq #Force Module
         @module=@module.select{|k| temp.include?(k)}
         temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
         @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
@@ -157,6 +159,21 @@ class StudienController < ApplicationController
         temp = @lvas.map{|x| x.beispiele}.flatten.uniq # Force beispiel
         @beispiele=@beispiele.select{|k| temp.include?(k)}
       end
+      if !@new_params[:lec_verw].nil?
+          @lecturers=[Lecturer.find(@new_params[:lec_verw])]
+        temp = @lecturers.map{|x| x.lva}.flatten.uniq #Force Force Lvas
+        @lvas=@lvas.select{|k| temp.include?(k)}
+        temp = @lva.map{|x| x.moduls}.flatten.uniq #Force Force Lvas
+        @module=@module.select{|k| temp.include?(k)}
+                temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
+        @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
+         temp = @modulgruppen.map{|x| x.studium}.flatten.uniq # Force Studien
+        @studien=@studien.select{|k| temp.include?(k)}
+        temp = @lvas.map{|x| x.beispiele}.flatten.uniq # Force beispiel
+        @beispiele=@beispiele.select{|k| temp.include?(k)}
+        else
+        @lecturers = @lvas.map{|k| k.lecturers}.flatten.uniq
+        end
     end
 
     @messages = []

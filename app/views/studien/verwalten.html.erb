@@ -28,6 +28,14 @@
 	  </div>
 	  <%= link_to 'Neues Studium', new_studium_path, :class=>'btn'%>
 	</div>
+	  </div>
+	  <h2>Vortragende </h2>
+	<div class="verwalten-block">
+
+	  <% @lecturers.each do |lec| %>
+	  	<%= (lec.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to lec.name, lec %> | <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_lecturer_path(lec)%> ||
+	  
+	  <% end %>
 	
       </div>
       <div class="row-fluid">
