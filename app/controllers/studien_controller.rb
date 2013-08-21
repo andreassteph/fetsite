@@ -161,9 +161,9 @@ class StudienController < ApplicationController
       end
       if !@new_params[:lec_verw].nil?
           @lecturers=[Lecturer.find(@new_params[:lec_verw])]
-        temp = @lecturers.map{|x| x.lva}.flatten.uniq #Force Force Lvas
+        temp = @lecturers.map{|x| x.lvas}.flatten.uniq #Force Force Lvas
         @lvas=@lvas.select{|k| temp.include?(k)}
-        temp = @lva.map{|x| x.moduls}.flatten.uniq #Force Force Lvas
+        temp = @lvas.map{|x| x.modul}.flatten.uniq #Force Force Lvas
         @module=@module.select{|k| temp.include?(k)}
                 temp = @module.map{|x| x.modulgruppen}.flatten.uniq # Force Modulgruppen
         @modulgruppen = @modulgruppen.select{|k| temp.include?(k)}
@@ -247,7 +247,9 @@ class StudienController < ApplicationController
       :mg_verw=> params[:mg_verw],
       :m_verw=>params[:m_verw],
       :lva_verw=>params[:lva_verw],
-      :b_verw=>params[:b_verw]}.merge(super)
+      :b_verw=>params[:b_verw],
+      :lec_verw=>params[:lec_verw]}.merge(super)
+    
 
   end
 end

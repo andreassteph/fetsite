@@ -1,10 +1,28 @@
 <%= semantic_form_for @lecturer do |f| %>
   <%= f.inputs do %>
+<div class="row-fluid">
+  <div class="span6">
     <%= f.input :name %>
     <%= f.input :email %>
-    <%= f.input :oid %>
-    <%= f.input :picture, :as=>:file %>
-    <%= f.input :lvas %>
+    <%= f.input :link %>
+    </div>
+    <div class="span3">
+<p>
+    <label>Bild</label>
+    <%= image_tag(@lecturer.picture.thumb.url) unless @lecturer.picture.nil? %>
+    <%= f.file_field :picture %>
+    <%= f.hidden_field :picture_cache %>
+  </p>
+   <p>
+    <label>
+      <%= f.check_box :remove_picture %>
+      Bild Entfernen
+    </label>
+  </p>
+  </div>
+  <div class="span3">
+    <%= f.input :lvas, :as=>:check_boxes%>
+    </div>
   <% end %>
 
   <%= f.actions do %>
