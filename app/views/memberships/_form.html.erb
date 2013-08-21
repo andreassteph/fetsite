@@ -1,10 +1,9 @@
 <%= semantic_form_for @membership do |f| %>
   <%= f.inputs do %>
-    <%= f.input :fetprofile_id %>
-    <%= f.input :gremium_id %>
+    <%= f.input :gremium, :as=>:radio %>
     <%= f.input :start %>
     <%= f.input :stop %>
-    <%= f.input :typ %>
+    <%= f.input :typ ,:as=>:radio, :collection=>{"mitglied"=>1, "ersatzmitglied"=>2} %>
   <% end %>
 
   <%= f.actions do %>
