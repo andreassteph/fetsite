@@ -25,7 +25,9 @@ class FotosController < ApplicationController
   # GET /fotos/new.json
   def new
     @foto = Foto.new
-
+    @gallery = Gallery.find_by_id(params[:gallery_id])
+    @foto.gallery_id = @gallery.id
+    @foto.datei=@original_filename
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @foto }

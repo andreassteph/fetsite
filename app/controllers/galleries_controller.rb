@@ -25,7 +25,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/new.json
   def new
     @gallery = Gallery.new
-
+    @foto = Foto.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @gallery }
@@ -41,7 +41,7 @@ class GalleriesController < ApplicationController
   # POST /galleries.json
   def create
     @gallery = Gallery.new(params[:gallery])
-
+    @foto = Foto.new
     respond_to do |format|
       if @gallery.save
         format.html { redirect_to @gallery, notice: 'Gallery was successfully created.' }
@@ -57,7 +57,7 @@ class GalleriesController < ApplicationController
   # PUT /galleries/1.json
   def update
     @gallery = Gallery.find(params[:id])
-
+    @foto = Foto.new
     respond_to do |format|
       if @gallery.update_attributes(params[:gallery])
         format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
