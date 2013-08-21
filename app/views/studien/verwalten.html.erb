@@ -5,7 +5,7 @@
       
       <h1><%= I18n.t("studien.verwaltung.title") %></h1> 
       <%= I18n.t("studien.verwaltung.explanation").html_safe %>
-      <h2>Studien </h2>
+      <h2><%= I18n.t "studien.studien"%> </h2>
       <div class="verwalten-block">
 	<div class="row-fluid">
 	  <% @studien.each_slice([(Studium.count/2.0).ceil, 1].max) do |col| %>
@@ -166,7 +166,7 @@
       </ul>
       <div class="verwalten-block">
 	<ul>
-	  <% @messages.flatten.each do |m| %>
+	  <% @messages.flatten.compact.each do |m| %>
 	  <% if !m.strip.empty? %>
 	  <li><%= m.html_safe %></li>
 	  <% end %>
