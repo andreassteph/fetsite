@@ -8,7 +8,7 @@
       <h2>Studien </h2>
       <div class="verwalten-block">
 	<div class="row-fluid">
-	  <% @studien.each_slice((Studium.count/2.0).ceil) do |col| %>
+	  <% @studien.each_slice([(Studium.count/2.0).ceil, 1].max) do |col| %>
 
 	  <div class="span6">
 	    <% col.each do |s| %>
@@ -38,7 +38,7 @@
       <h2>Vortragende </h2>
       <div class="verwalten-block">
 	<div class="row-fluid">
-	  <% @lecturers.each_slice((Lecturer.count/3.0).ceil) do |col| %>
+	  <% @lecturers.each_slice([(Lecturer.count/3.0).ceil, 1].max) do |col| %>
 	  <div class="span4">
 	    <% col.each do |lec| %>
 	    <%= (lec.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to lec.name, lec %> | <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_lecturer_path(lec)%> <br>
