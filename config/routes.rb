@@ -40,9 +40,11 @@
      resources :galleries do
      resources :fotos, :only=>[:new,:show]
      end
-     resources :memberships
+     resources :memberships, :except=>[:new, :show, :edit]
      resources :gremien
-     resources :fetprofiles
+     resources :fetprofiles do
+     resources :memberships, :only=>[:new, :show, :edit]
+     end
      resources :lecturers
      resources :semesters
      resources :moduls
