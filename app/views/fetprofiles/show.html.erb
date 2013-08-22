@@ -16,7 +16,7 @@
 <p>
    <%= "<b>Aktiv</b>".html_safe if @fetprofile.active %>
 </p>
-
+<p><%= link_to 'Destroy', @fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 </div>
 </div>
 

@@ -6,4 +6,5 @@ class Fetprofile < ActiveRecord::Base
   def name
   [vorname, nachname, "(",short,")"].join(" ")
   end
+  scope :active, -> { where(:active=>:true).order(:vorname) } 
 end

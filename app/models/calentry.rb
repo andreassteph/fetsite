@@ -18,5 +18,5 @@ class Calentry < ActiveRecord::Base
   def name
 	summary
   end
-  
+  scope :upcoming, -> { where("start >= ?" , Time.now).where("start <= ?", 8.days.from_now) }
 end
