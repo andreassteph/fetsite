@@ -19,15 +19,19 @@
 
 </div>
 </div>
+
   <div class="row-fluid">
 	  <div class="span12">
-<% @fetprofile.memberships.each do |m| %>
-<%= m.start.to_s %>
-<%= m.gremium.try(:name).to_s %>
-<%= link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) %>
-<% end %>
+<ul>
+	<% @fetprofile.memberships.each do |m| %>
+		<li><%= m.start.to_s %> bis <%= m.stop.to_s %> in <%= m.gremium.try(:name).to_s %>
+		<%= link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) %>
+		</li>
+	<% end %>
+</ul>
 
-<%= link_to 'Edit', new_fetprofile_membership_path(@fetprofile) %> |
+
+<%= link_to 'Neue Mitgliedschaft', new_fetprofile_membership_path(@fetprofile) %> |
 
 <%= link_to 'Edit', edit_fetprofile_path(@fetprofile) %> |
 <%= link_to 'Back', fetprofiles_path %>

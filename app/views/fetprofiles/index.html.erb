@@ -1,21 +1,9 @@
 <h1>Listing fetprofiles</h1>
 
-<table>
-  <tr>
-    <th>Vorname</th>
-    <th>Nachname</th>
-    <th>Short</th>
-    <th>Fetmailalias</th>
-    <th>Desc</th>
-
-    <th>Active</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<ul>
 <% @fetprofiles.each do |fetprofile| %>
-  <tr>
+<li>
+	<%= %>
     <td><%= fetprofile.vorname %></td>
     <td><%= fetprofile.nachname %></td>
     <td><%= fetprofile.short %></td>
@@ -26,9 +14,9 @@
     <td><%= link_to 'Show', fetprofile %></td>
     <td><%= link_to 'Edit', edit_fetprofile_path(fetprofile) %></td>
     <td><%= link_to 'Destroy', fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+</li>
 <% end %>
-</table>
+</ul>
 
 <br />
 
