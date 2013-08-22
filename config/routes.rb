@@ -36,9 +36,8 @@
      get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
     
      resources :fetzneditions
-     resources :fotos, :except=>[:new, :show]
      resources :galleries do
-     resources :fotos, :only=>[:new,:show]
+     resources :fotos
      end
      resources :memberships, :except=>[:new, :show, :edit]
      resources :gremien

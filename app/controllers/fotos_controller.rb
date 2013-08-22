@@ -27,7 +27,6 @@ class FotosController < ApplicationController
     @foto = Foto.new
     @gallery = Gallery.find_by_id(params[:gallery_id])
     @foto.gallery_id = @gallery.id
-    @foto.datei=@original_filename
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @foto }
@@ -44,10 +43,13 @@ class FotosController < ApplicationController
   def create
     @foto = Foto.new(params[:foto])
 
+      @foto.gallery_id = (params[:gallery_id])
+    @gallery = @foto.gallery
     respond_to do |format|
+                @foto.title = @foto.datei
       if @foto.save
         format.html { redirect_to gallery_foto_path(@foto.gallery,@foto), notice: 'Foto was successfully created.' }
-        format.json { render json: gallery_foto_path(@foto.gallery,@foto), status: :created, location: @foto }
+        format.json { render json: gallery_foto_path(@foto.gallery,@foto), status: :created, location: [@gallery, @foto] }
       else
         format.html { render action: "new" }
         format.json { render json: @foto.errors, status: :unprocessable_entity }
@@ -78,7 +80,7 @@ class FotosController < ApplicationController
     @foto.destroy
 
     respond_to do |format|
-      format.html { redirect_to fotos_url }
+      format.html { redirect_to galleries_url }
       format.json { head :no_content }
     end
   end
