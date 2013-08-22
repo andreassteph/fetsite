@@ -8,7 +8,7 @@
         <span class="btn btn-success fileinput-button">
           <i class="icon-plus icon-white"></i>
           <span>Add files...</span>
-          <%= f.file_field :datei %>
+          <%= f.file_field :datei, :multiple=>true%>
 	  <%= f.input :gallery %>
         </span>
         <button type="submit" class="btn btn-primary start">
@@ -132,6 +132,8 @@
         template.addClass('in');
         $('#loading').remove();
       });
+   $('#foto_datei').attr('name', 'foto[datei]');
+  $('#foto_datei').fileupload();
 
   });
 </script>
