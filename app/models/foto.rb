@@ -8,7 +8,7 @@ class Foto < ActiveRecord::Base
     "id" => read_attribute(:id),
     "title" => read_attribute(:title),
     "description" => read_attribute(:desc),
-    "name" => read_attribute(:datei),
+    "name" => read_attribute(:title),
     "size" => datei.size,
     "url" => datei.url,
     "thumbnail_url" => datei.thumb.url,
