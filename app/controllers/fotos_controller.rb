@@ -68,8 +68,12 @@ class FotosController < ApplicationController
 
     respond_to do |format|
       if @foto.update_attributes(params[:foto])
-        format.html { redirect_to gallery_foto_path(@foto.gallery,@foto), notice: 'Foto was successfully updated.' }
-        format.json { head :no_content }
+        format.html {
+          render :json => [@foto.to_jq_upload].to_json,
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json { render json: {files: [@foto.to_jq_upload]}, status: :created, location: [@gallery, @foto] }
       else
         format.html { render action: "edit" }
         format.json { render json: @foto.errors, status: :unprocessable_entity }
