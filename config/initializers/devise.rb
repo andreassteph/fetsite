@@ -7,7 +7,7 @@ Devise.setup do |config|
   config.mailer_sender = "test@example.com"
 
   # Configure the class responsible to send e-mails.
- # config.mailer = "Devise::Mailer"
+  config.mailer = "Devise::Mailer"
     config.mailer.default_url_options = { :host => 'glonass.htu.tuwien.ac.at' }  
   config.mailer.delivery_method = :sendmail
 #  config.mailer.smtp_settings = {
