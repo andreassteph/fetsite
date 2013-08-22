@@ -8,11 +8,10 @@ class Foto < ActiveRecord::Base
     "id" => read_attribute(:id),
     "title" => read_attribute(:title),
     "description" => read_attribute(:desc),
-    "name" => read_attribute(:file),
-    "size" => file.size,
-    "url" => file.url,
-    "thumbnail_url" => file.thumb.url,
-    "delete_url" => foto_path(:id => id),
+    "name" => read_attribute(:datei),
+    "size" => datei.size,
+    "url" => datei.url,
+    "thumbnail_url" => datei.thumb.url,
     "delete_type" => "DELETE" 
    }
   end
