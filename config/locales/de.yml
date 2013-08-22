@@ -16,7 +16,8 @@ de:
     studien: "Studien"
     news: "Neuigkeiten"
     info: "Information"
-
+    mitarbeiter: "Mitarbeiter"
+    fotos: "Fotos"
   formtastic:
     titles:
       modul: 

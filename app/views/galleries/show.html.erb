@@ -33,7 +33,7 @@
 <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
 <% @gallery.fotos.each do |f| %>
 
-<a href="<%= f.datei.url%>" title="<%=f.title%>" data-gallery="gallery">
+<a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery="gallery">
 <%=image_tag(f.datei.big_thumb.url,{:class=>"img-polaroid"}) %></a>
 
 
