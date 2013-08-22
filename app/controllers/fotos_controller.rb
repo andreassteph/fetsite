@@ -46,7 +46,7 @@ class FotosController < ApplicationController
       @foto.gallery_id = (params[:gallery_id])
     @gallery = @foto.gallery
     respond_to do |format|
-                @foto.title = @foto.datei
+      @foto.title = @foto.datei.filename
       if @foto.save
        format.html {
           render :json => [@foto.to_jq_upload].to_json,
