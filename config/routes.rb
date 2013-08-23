@@ -66,6 +66,7 @@
      
     
      resources :beispiele
+     resources :attachment
      resources :themen
      resources :themengruppen do
        resources :themen, :only=>[:new, :show]
