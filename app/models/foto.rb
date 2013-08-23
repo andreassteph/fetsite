@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: fotos
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  desc       :text
+#  gallery_id :integer
+#  datei      :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Foto < ActiveRecord::Base
   attr_accessible :datei, :desc, :gallery_id, :title
   belongs_to :gallery

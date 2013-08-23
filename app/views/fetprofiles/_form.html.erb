@@ -21,11 +21,12 @@
   <%= semantic_fields_for m do |mf| %>
    <div class="row-fluid">
 	   <div class="span1"></div>
+	<%= mf.inputs do %>
    <div class="span3"><%= mf.input :start, :as=>:date %></div>
   <div class="span3"><%= mf.input :stop %></div>
   <div class="span3"><%= mf. input :gremium %></div>
   <div class="span2"><%= mf.input :typ ,:as=>:radio, :collection=>{"mitglied"=>1, "ersatzmitglied"=>2} %></div>
-  
+  <% end %>
   </div>
   <% end %>
 <% end
