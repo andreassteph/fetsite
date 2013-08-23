@@ -10,6 +10,7 @@ class NeuigkeitenController < ApplicationController
     @neuigkeit = Neuigkeit.find(params[:id])
     if can? :edit, @neuigkeit
 	@toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_neuigkeit_path(@neuigkeit),:icon=>:pencil}
+	@toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => neuigkeit_path(@neuigkeit), :method=> :delete,:confirm=>"Sure?" }
     end
   end
 
@@ -26,7 +27,7 @@ class NeuigkeitenController < ApplicationController
 
   def create
     @neuigkeit = Neuigkeit.new(params[:neuigkeit])
-	@rubrik = @neuigkeit.rubrik
+
  
     respond_to do |format|
       if @neuigkeit.save
