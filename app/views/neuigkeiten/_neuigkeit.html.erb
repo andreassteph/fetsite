@@ -1,25 +1,15 @@
 
-<div class="container-fluid">
-  <div class="row-fluid">
-	<div class="span9">
-		<%= neuigkeit.rubrik.name %>
-			</div>
-	<div class="span3"><p>
-		<%= neuigkeit.author.email.to_s unless neuigkeit.try(:author).try(:email).to_s %> 
-		<%= "am "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></p>
+
+<div class="media">
+	<div class="pull-left" href="#">
+		<p><br><%= image_tag neuigkeit.picture.thumb.url  unless neuigkeit.picture.url.nil? %></p>
 	</div>
-  </div>
-  <div class="row-fluid">
-	<div class="span12">
-		<div class="media">
-		<div class="pull-left" href="#">
-			<p><br><%= image_tag neuigkeit.picture.thumb.url %></p>
-		</div>
-		<div class="media-body">
-			<h1><%= link_to neuigkeit.title,neuigkeit_path(neuigkeit)  %></h1>
-			<%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%>
-		</div>
-		</div>
+	<div class="media-body"><div><small><%= neuigkeit.rubrik.name %></small> 
+	<small class="pull-right"><%= "am "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> </div>
+		<h1><%= link_to neuigkeit.title,neuigkeit_path(neuigkeit)  %></h1>
+		<%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%>
+		<%= link_to "more" , neuigkeit_path(neuigkeit) %>
+		<p></p>
 	</div>
-  </div>
 </div>
+
