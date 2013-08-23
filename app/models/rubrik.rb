@@ -13,6 +13,7 @@
 class Rubrik < ActiveRecord::Base
   attr_accessible :desc, :name, :prio
   has_many :neuigkeiten, :class_name => "Neuigkeit"
+  has_many :calentries, :through => :neuigkeiten, :as=>:object
   resourcify
 def moderator
    u=User.with_role(:newsmoderator).first

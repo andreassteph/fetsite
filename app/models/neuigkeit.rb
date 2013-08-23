@@ -20,8 +20,19 @@ class Neuigkeit < ActiveRecord::Base
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
   translates :title,:text, :versioning=>true, :fallbacks_for_empty_translations => true
-
-  scope :published, -> {where("datum >= ?", Time.now.to_date)}
-  scope :recent, -> { where("updated_at >= ? ",Time.now - 7.days)}
-
+  has_one :calentry, :as => :object
+  scope :published, -> {where("datum >= ? AND datum IS NOT NULL", Time.now.to_date)}
+  scope :recent, -> { published.where("updated_at >= ? ",Time.now - 7.days)}
+  def datum_nilsave
+	self.datum.nil? ? Time.now + 42.years : self.datum
+  end
+  def public
+	self.rubrik.public && self.datum >=Time.now.to_date
+  end
+  def publish
+    self.datum = Time.now
+  end
+  def reverse_publish
+    self.datum = nil
+  end
 end

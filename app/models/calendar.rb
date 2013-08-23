@@ -15,4 +15,5 @@ class Calendar < ActiveRecord::Base
   has_and_belongs_to_many :calentries
   mount_uploader :picture, PictureUploader
   resourcify
+  scope :public, -> { where(:public => :true) }
 end
