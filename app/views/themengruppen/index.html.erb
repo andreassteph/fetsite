@@ -1,21 +1,23 @@
 <div class="container-fluid">
-
-  <% @themengruppen.each_slice(2) do |row| %>
-  <div class="row-fluid"> 
-    <% row.each do |themengruppe| %>
-    <div class="span6 equalheight">
-      <div class="themengruppe">
-	<%= render themengruppe %>
-	<p>
-	  <%= link_to 'Edit', edit_themengruppe_path(themengruppe) %>
-	</p>
-      </div>
-    </div>
-    <% end %>
-  </div>
-  <% end %>
+	<% @themengruppen.each_slice(2) do |row| %>
+	<div class="row-fluid"> 
+		<% row.each do |themengruppe| %>
+		<div class="span6 equalheight">
+			<div class="container-fluid">
+				<%= render themengruppe %>
+				<br/>
+				<div class="row-fluid">
+					<%= link_to 'Edit', edit_themengruppe_path(themengruppe) %>
+				</div>
+			</div>
+		<br/>
+		</div>
+		<% end %>
+	</div>
+	<% end %>
 </div>
-<br />
+
+<br/>
 
 <script class="hidden-phone">
 
