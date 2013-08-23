@@ -12,17 +12,24 @@
 
 </div>
 <div class="span4">
+  <div class="lva-sidebar">
   <h2>Modulgruppen</h2>
+  <ul>
 <% @modul.modulgruppen.each do |mg| %>
-<%= render 'modulgruppen/kurz', :modulgruppe=>mg %><br>
+<li>
+<%= render 'modulgruppen/kurz', :modulgruppe=>mg %>
+</li>
 <% end %>
-
+</ul>
 <h2>Lvas</h2>
 <% @modul.lvas.each_slice(3) do |row| %>
+<ul>
 <% row.each do |lv| %>
+<li>
 <%= render 'lvas/lva_semester', :lva=>lv%>
+</li>
 <% end %>
-
+</ul>
 <% end %>
-
+</div>
   </div></div>

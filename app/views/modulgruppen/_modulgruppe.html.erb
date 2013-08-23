@@ -2,8 +2,9 @@
   <h2><%=  link_to modulgruppe.name, modulgruppe_path(modulgruppe) %> 
   </h2> 
 
-  <%= modulgruppe.desc%>
+  <%= modulgruppe.desc%><ul>
   <%= render :partial=>'moduls/kurz', :collection=>modulgruppe.moduls, :as=>:modul%>
+  </ul>
   <br>
 
   <% link_to '<i class="icon-pencil"></i>'.html_safe+I18n.t("common.edit"), edit_modulgruppe_path(modulgruppe) %>
