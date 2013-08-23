@@ -5,7 +5,7 @@
 		<%= neuigkeit.rubrik.name %>
 			</div>
 	<div class="span3"><p>
-		<%= neuigkeit.author.email.to_s unless neuigkeit.rry(:author).try(:email).to_s %> am 
+		<%= neuigkeit.author.email.to_s unless neuigkeit.try(:author).try(:email).to_s %> am 
 		<%= I18n.l neuigkeit.try(:datum).try(:to_date) unless neuigkeit.try(:datum).try(:to_date).nil?  %></p>
 	</div>
   </div>
