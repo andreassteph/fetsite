@@ -20,6 +20,8 @@ class Neuigkeit < ActiveRecord::Base
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
   translates :title,:text, :versioning=>true, :fallbacks_for_empty_translations => true
+
   scope :published, -> {where("datum >= ?", Time.now.to_date)}
-  
+  scope :recent, -> { where("updated_at >= ? ",Time.now - 7.days)}
+
 end
