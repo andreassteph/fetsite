@@ -36,4 +36,8 @@ class Neuigkeit < ActiveRecord::Base
   def reverse_publish
     self.datum = nil
   end
+  def text_first_words
+    md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.text
+    md[:text].split(" ")[1..100].join(" ")+ " ..."
+  end
 end

@@ -19,7 +19,7 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(params[:membership])
-
+    @membership.fetprofile= Fetprofle.find(params[:fetprofile_id])
     respond_to do |format|
       if @membership.save
         format.html { redirect_to @membership.fetprofile, notice: 'Membership was successfully created.' }
