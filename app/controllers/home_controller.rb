@@ -7,4 +7,7 @@ class HomeController < ApplicationController
   def startdev
   render 'setup_fetsite_dev'
   end
+  def linksnotimplemented
+  render 'links_notimplemented'
+  end
 end

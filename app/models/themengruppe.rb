@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: themengruppen
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)
+#  text       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Themengruppe < ActiveRecord::Base
   WORD_COUNT = 50
   attr_accessible :text, :title

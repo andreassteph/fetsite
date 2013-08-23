@@ -10,11 +10,16 @@
  *
  *= require_self
  *= require_tree .
+ *= require jquery.fileupload-ui
  * require 'bootstrap'
+ 
  */
 $linkColor: #03006E;
 @import 'bootstrap';
 @import 'bootstrap-responsive';
+@import 'bootstrap/image-gallery';
+
+
 h1 
 {font-size: 23px}
 h2 

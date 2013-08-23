@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Ability
   include CanCan::Ability
   def initialize(user)
@@ -27,7 +28,7 @@ class Ability
     
     # For Debug allow everything
     # Remove this line in production environment and for testing user management
-   # can :manage, :all     
+    can :manage, :all     
     can :addfetuser, User
     can :addfetadmin, User
     can [:show, :index], Studium

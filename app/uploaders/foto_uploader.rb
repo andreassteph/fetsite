@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class PictureUploader < CarrierWave::Uploader::Base
+class FotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
    include CarrierWave::RMagick
@@ -35,10 +35,12 @@ class PictureUploader < CarrierWave::Uploader::Base
    version :thumb do
      process :resize_to_fill => [64, 64]
    end
-
-  version :portrait do 
-     process :resize_to_fill => [128,192]
-     end
+   version :big_thumb do 
+     process :resize_to_fill => [128, 128]
+   end
+   version :resized do
+	 process :resize_to_fit => [1024, 1024]
+   end
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_white_list

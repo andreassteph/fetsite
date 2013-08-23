@@ -9,6 +9,7 @@
 #  rubrik_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  author_id  :integer
 #
 
 class Neuigkeit < ActiveRecord::Base
@@ -19,4 +20,8 @@ class Neuigkeit < ActiveRecord::Base
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
   translates :title,:text, :versioning=>true, :fallbacks_for_empty_translations => true
+
+  scope :published, -> {where("datum >= ?", Time.now.to_date)}
+  scope :recent, -> { where("updated_at >= ? ",Time.now - 7.days)}
+
 end

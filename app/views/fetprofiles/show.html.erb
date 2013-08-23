@@ -1,40 +1,39 @@
 <p id="notice"><%= notice %></p>
+<div class="container-fluid">
+  <div class="row-fluid">
+	  <div class="span3">
+		<%= image_tag @fetprofile.picture.portrait.url %>
+	</div>
+	<div class="span9">
+<h2><%= @fetprofile.name %></h2>
 
 <p>
-  <b>Vorname:</b>
-  <%= @fetprofile.vorname %>
-</p>
-
-<p>
-  <b>Nachname:</b>
-  <%= @fetprofile.nachname %>
-</p>
-
-<p>
-  <b>Short:</b>
-  <%= @fetprofile.short %>
-</p>
-
-<p>
-  <b>Fetmailalias:</b>
   <%= @fetprofile.fetmailalias %>
 </p>
-
 <p>
-  <b>Desc:</b>
   <%= @fetprofile.desc %>
 </p>
-
 <p>
-  <b>Picture:</b>
-  <%= @fetprofile.picture %>
+   <%= "<b>Aktiv</b>".html_safe if @fetprofile.active %>
 </p>
+<p><%= link_to 'Destroy', @fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+</div>
+</div>
 
-<p>
-  <b>Active:</b>
-  <%= @fetprofile.active %>
-</p>
+  <div class="row-fluid">
+	  <div class="span12">
+<ul>
+	<% @fetprofile.memberships.each do |m| %>
+		<li><%= m.start.to_s %> bis <%= m.stop.to_s %> in <%= m.gremium.try(:name).to_s %>
+		<%= link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) %>
+		</li>
+	<% end %>
+</ul>
 
+
+<%= link_to 'Neue Mitgliedschaft', new_fetprofile_membership_path(@fetprofile) %> |
 
 <%= link_to 'Edit', edit_fetprofile_path(@fetprofile) %> |
 <%= link_to 'Back', fetprofiles_path %>
+</div>
+</div></div>

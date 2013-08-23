@@ -36,11 +36,14 @@
      get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
     
      resources :fetzneditions
+     resources :galleries do
      resources :fotos
-     resources :galleries
-     resources :memberships
+     end
+     resources :memberships, :except=>[:new, :show, :edit]
      resources :gremien
-     resources :fetprofiles
+     resources :fetprofiles do
+     resources :memberships, :only=>[:new, :show, :edit]
+     end
      resources :lecturers
      resources :semesters
      resources :moduls
@@ -59,6 +62,9 @@
      resources :home, :only=>[:index]
      get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
      get 'home/startdev', :controller=>:home, :action=>:startdev, :as=>'home_startdev'
+     get 'home/linksnotimplemented', :controller=>:home, :action=>:linksnotimplemented, :as=>'home_linksnotimplemented'
+     
+    
      resources :beispiele
      resources :attachment
      resources :themen

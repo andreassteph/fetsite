@@ -1,44 +1,12 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 de:
+  ohnezuordnung: "Ohne Zuordnung"
   hello: "Hallo Welt"
   common:
     edit: "Bearbeiten"
     actions: "Aktionen"
     delete: "Löschen"    
-  studien:
-    list: "Studien der Fakultät Elektrotechnik"
-    anzeigen: "Studium anzeigen"
-    new: "Neues Studium"
-    allestudien: "Alle Studien"
-    loeschen: "Dieses Studium löschen"
-    edit: "Studium bearbeiten"
-    verwaltung:
-      title: "Studien verwalten"
-      explanation: "<ul>
-      <li>Klick auf den Namen eines Objektes führt zu dessen Ansicht, ein Klick auf edit direkt zum Bearbeitungsformular</li>
-      <li>Per Dropdown-Menü kann nach einzelnen Objekten gefiltert werden. Die Filter können kombiniert werden, wobei nur erlaubte Kombinationen möglich sind. <b>Solange validation-Fehler (im Log rot und fett) auftreten, keine Filter verwenden</b></li>
-      </ul>"
-  modul:
-    edit: "Modul bearbeiten"
-    list: "Alle Module"
-    add: "Neues Modul"
-  keine:
-    beschreibung: "Keine Beschreibung vorhanden"
-  lva:
-    add: "Lva hinzufügen"
-    list: "Alle Lvas"
-  semester:
-    ohne: "Ohne Semesterzuordnung"
-  modulgruppe:
-    typ: "Typ"
-    addmodul: "Neues Modul hinzufügen"
-    studium: "Studium"
-    new: "Neue Modulgruppe"
-    list: "Alle Modulgruppen auflisten"
-    show: 
-      title: "Auflistung aller Modulgruppen"
-      link: "Modulgruppen auflisten"
 
   home:
     mtitle: "Menu"
@@ -48,7 +16,8 @@ de:
     studien: "Studien"
     news: "Neuigkeiten"
     info: "Information"
-
+    mitarbeiter: "Mitarbeiter"
+    fotos: "Fotos"
   formtastic:
     titles:
       modul: 
@@ -110,16 +79,6 @@ de:
           attributes:
             modulgruppen:
               blank: "Wählen Sie zumindest eine Modulgruppe aus"
-  filter:
-    studium: "Studium"
-    modulgruppe: "Modulgruppe"
-    modul: "Modul"
-    lva: "Lva"
-    beispiel: "Beispiel"
-    reset: "Alle Filter zurücksetzen"    
-  verwalten:
-    fehler:
-      keine: "Keine Fehlermeldungen oder Warnungen"
   support:
     array:
       two_words_connector: ', '  

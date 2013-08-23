@@ -78,3 +78,6 @@ end
 
 gem "simple_calendar", "~> 0.1.9"
 gem 'rmagick'
+
+gem 'bootstrap-addons-rails'
+gem "jquery-fileupload-rails"

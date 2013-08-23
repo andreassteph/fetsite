@@ -1,35 +1,25 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+	  <div class="span12">
 <h1>Listing fetprofiles</h1>
-
-<table>
-  <tr>
-    <th>Vorname</th>
-    <th>Nachname</th>
-    <th>Short</th>
-    <th>Fetmailalias</th>
-    <th>Desc</th>
-    <th>Picture</th>
-    <th>Active</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+</div>
+</div>
 
 <% @fetprofiles.each do |fetprofile| %>
-  <tr>
-    <td><%= fetprofile.vorname %></td>
-    <td><%= fetprofile.nachname %></td>
-    <td><%= fetprofile.short %></td>
-    <td><%= fetprofile.fetmailalias %></td>
-    <td><%= fetprofile.desc %></td>
-    <td><%= fetprofile.picture %></td>
-    <td><%= fetprofile.active %></td>
-    <td><%= link_to 'Show', fetprofile %></td>
-    <td><%= link_to 'Edit', edit_fetprofile_path(fetprofile) %></td>
-    <td><%= link_to 'Destroy', fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<div class="row-fluid">
+	<div class="span3">
+	<%= image_tag fetprofile.picture.portrait.url %>
+	</div>
+	<div class="span9">
+	
+    <h2><%= link_to fetprofile.name, fetprofile %></h2>
+    <p><%= fetprofile.fetmailalias %></p>
+    <p><%= fetprofile.desc %></p>
+    <p><%= fetprofile.active %> </p>
+</div>
+</div>
 <% end %>
-</table>
-
-<br />
-
+<div class="row-fluid">
+<div class="span12">
 <%= link_to 'New Fetprofile', new_fetprofile_path %>
+</div></div></div>

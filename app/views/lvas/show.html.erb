@@ -18,17 +18,11 @@
       </div>
       <div class="row-fluid">
 	<h2>Beispiele</h2>
-  <p><h4>Beschreibung</h4>
-  <%= @lva.desc %>
-
-<%= link_to "Beispiel neu" , new_beispiel_path(:lva_id=>@lva.id) %>
-</p>
-<h4>Beispiele</h4>
-<ul>
-  <% @lva.beispiele.each do |b|%>
+	<ul>
+	  <% @lva.beispiele.each do |b|%>
 
 	  <%= render b%>
-	<% end %>
+	  <% end %>
       </div>
     </div>
     <div class="span4">
@@ -52,6 +46,13 @@
 	  
 	  <% end %>
 	</ul>
+      </div>
+      <div class="lva-sidebar">
+	<h2> <%= I18n.t "lecturers.lecturers" %> </h2>
+	<% @lva.lecturers.each do |lec| %>
+	<%= render :partial=>'lecturers/lec_lva', :object=>lec %>
+
+	<% end %>
       </div>
     </div>
   </div>

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: themen
+#
+#  id              :integer          not null, primary key
+#  title           :string(255)
+#  text            :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  themengruppe_id :integer
+#
+
 class Thema < ActiveRecord::Base
   attr_accessible :text, :title, :themengruppe_id
   has_many :fragen

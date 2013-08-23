@@ -1,15 +1,40 @@
+<div class="container-fluid">
+  
 <%= semantic_form_for @fetprofile do |f| %>
   <%= f.inputs do %>
-    <%= f.input :vorname %>
-    <%= f.input :nachname %>
-    <%= f.input :short %>
-    <%= f.input :fetmailalias %>
-    <%= f.input :desc %>
-    <%= f.input :picture %>
-    <%= f.input :active %>
+    <div class="row-fluid">
+    <div class="span4">
+    <%= f.input :vorname %></div>
+    <div class="span4"><%= f.input :nachname %></div>
+    <div class="span4"><%= f.input :short %>
+   </div> </div>
+     <div class="row-fluid">
+    <div class="span12">   
+    <%= f.input :desc %></div>
+    </div> 
+    <div class="row-fluid">
+    <div class="span4"> <%= f.input :active %></div> 
+    <div class="span4"><%= f.input :picture, :as=>:file %></div>
+    <div class="span4">  <%= f.input :fetmailalias %></div> 
+    </div>
+   <% @fetprofile.memberships.each do |m| %>
+  <%= semantic_fields_for m do |mf| %>
+   <div class="row-fluid">
+	   <div class="span1"></div>
+	<%= mf.inputs do %>
+   <div class="span3"><%= mf.input :start, :as=>:date %></div>
+  <div class="span3"><%= mf.input :stop %></div>
+  <div class="span3"><%= mf. input :gremium %></div>
+  <div class="span2"><%= mf.input :typ ,:as=>:radio, :collection=>{"mitglied"=>1, "ersatzmitglied"=>2} %></div>
   <% end %>
-
+  </div>
+  <% end %>
+<% end
+end %>
+   <div class="row-fluid">
+   <div class="span12">
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>
   <% end %>
 <% end %>
+</div></div></div>

@@ -16,4 +16,8 @@
 //= require_tree .
 //= require tinymce-jquery
 //= require bootstrap
-
+//= require bootstrap/colorpicker
+//= require bootstrap/datepicker
+//= require bootstrap/load-image.min
+//= require bootstrap/image-gallery.min
+//= require jquery-fileupload

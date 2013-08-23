@@ -25,7 +25,8 @@ class FotosController < ApplicationController
   # GET /fotos/new.json
   def new
     @foto = Foto.new
-
+    @gallery = Gallery.find_by_id(params[:gallery_id])
+    @foto.gallery_id = @gallery.id
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @foto }
@@ -42,10 +43,17 @@ class FotosController < ApplicationController
   def create
     @foto = Foto.new(params[:foto])
 
+      @foto.gallery_id = (params[:gallery_id])
+    @gallery = @foto.gallery
     respond_to do |format|
+      @foto.title = @foto.datei.filename
       if @foto.save
-        format.html { redirect_to @foto, notice: 'Foto was successfully created.' }
-        format.json { render json: @foto, status: :created, location: @foto }
+       format.html {
+          render :json => [@foto.to_jq_upload].to_json,
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json { render json: {files: [@foto.to_jq_upload]}, status: :created, location: [@gallery, @foto] }
       else
         format.html { render action: "new" }
         format.json { render json: @foto.errors, status: :unprocessable_entity }
@@ -60,8 +68,12 @@ class FotosController < ApplicationController
 
     respond_to do |format|
       if @foto.update_attributes(params[:foto])
-        format.html { redirect_to @foto, notice: 'Foto was successfully updated.' }
-        format.json { head :no_content }
+        format.html {
+          render :json => [@foto.to_jq_upload].to_json,
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json { render json: {files: [@foto.to_jq_upload]}, status: :created, location: [@gallery, @foto] }
       else
         format.html { render action: "edit" }
         format.json { render json: @foto.errors, status: :unprocessable_entity }
@@ -76,7 +88,7 @@ class FotosController < ApplicationController
     @foto.destroy
 
     respond_to do |format|
-      format.html { redirect_to fotos_url }
+      format.html { redirect_to galleries_url }
       format.json { head :no_content }
     end
   end
