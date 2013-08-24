@@ -16,14 +16,21 @@ class Calentry < ActiveRecord::Base
   has_and_belongs_to_many :calendars
   validates :start, :presence => true
   validates :typ, :presence => true
+  before_save :get_public
+  belongs_to :object, polymorphic: true
+  
   validate do |entry|
 	if entry.ende.nil? 
 		errors.add(:ende, "Es muss ein Endzeitpunkt vorhanden sein")
 	end
   end
-  belongs_to :object, polymorphic: true
+  
   
   resourcify
+  def get_public
+  self.public = (self.try(:object).nil?)? (self.calendars.public.count>0) : object.try(:public)
+  true
+  end
   def start_time
     start
   end
@@ -33,5 +40,6 @@ class Calentry < ActiveRecord::Base
   def name
 	summary
   end
+  scope :public, -> { where(:public => :true) } 
   scope :upcoming, -> { where("start >= ?" , Time.now).where("start <= ?", 8.days.from_now) }
 end

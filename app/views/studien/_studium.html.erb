@@ -1,6 +1,6 @@
 <div class="studium">
   <h2><%= link_to studium.name + " " + studium.zahl.to_s, studium_path(studium, :ansicht=>'semesteransicht')%></h2>  <p><b><%= studium.typ%> </b></p>
-  <p><b>Beschreibung:</b><br>
+  <p><b><%=I18n.t("studien.desc")%>:</b><br>
       <%= !(studium.desc.to_s == "") ? studium.desc.html_safe :  I18n.t("keine.beschreibung")%></p>
   
 </div>

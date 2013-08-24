@@ -4,7 +4,7 @@
     <% else %>
     <li>
   <% end %>
-  <%= link_to "Alle Studien", studien_path %> </li>
+  <%= link_to I18n.t("studien.allestudien"), studien_path %> </li>
 <% for s in Studium.all %>
   <% if !@studium.nil? && s == @studium %>
  
@@ -20,6 +20,6 @@
   <% else %>
   <li class="pull-right">
 <% end %>
-<%= link_to "Verwaltung", studien_verwalten_path %>
+<%= link_to I18n.t("studien.verwaltung.title"), studien_verwalten_path %>
 </li>
 </ul>

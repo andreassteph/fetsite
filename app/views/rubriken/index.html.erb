@@ -1,12 +1,12 @@
 <%= render 'tabs' %>
 <h1><%= I18n.t("rubrik.title")%></h1>
-<% @rubriken.each do |rubrik| %>
 
-<% rubrik.neuigkeiten.recent.each do |n| %>
-<li><%= link_to n.title+"("+rubrik.name+")" , n %> </li>
+<ul class="unstyled"
+<% @neuigkeiten.each do |n| %>
+
+<li><%= render n %> </li>
 <% end %>
-<%= link_to 'Weitere Artikel zu '+rubrik.name.to_s , rubrik %>   
-<% end %>
+</ul>
 
 
 

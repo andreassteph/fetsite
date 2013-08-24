@@ -51,7 +51,8 @@
      resources :neuigkeiten
 		 resources :fragen
      get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
-
+     
+	 get 'neuigkeiten/:id/publish', :controller=>:neuigkeiten, :action=>:publish, :as=>'neuigkeit_publish'
      resources :rubriken do
        resources :neuigkeiten, :only=>[:new, :show]
      end

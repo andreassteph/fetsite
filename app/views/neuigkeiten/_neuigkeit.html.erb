@@ -1,6 +1,15 @@
 
-<h2><%= link_to neuigkeit.title,neuigkeit_path(neuigkeit)  %></h2>
-<%= if !neuigkeit.author.nil? 
-       neuigkeit.author.email 
-end %>
-<p><%= raw(neuigkeit.text) %></p>
+
+<div class="media">
+	<div class="pull-left" href="#">
+		<p><br><%= image_tag neuigkeit.picture.thumb.url  unless neuigkeit.picture.url.nil? %></p>
+	</div>
+	<div class="media-body"><div><small><%= neuigkeit.rubrik.name %></small> 
+	<small class="pull-right"><%= "am "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> </div>
+		<h1><%= link_to neuigkeit.title,neuigkeit_path(neuigkeit)  %></h1>
+		<%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%>
+		<%= link_to "more" , neuigkeit_path(neuigkeit) %>
+		<p></p>
+	</div>
+</div>
+

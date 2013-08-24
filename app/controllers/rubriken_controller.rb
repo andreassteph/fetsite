@@ -3,7 +3,7 @@ class RubrikenController < ApplicationController
    load_and_authorize_resource
   def index
     @rubriken = Rubrik.all
- 
+    @neuigkeiten = Neuigkeit.recent
   end
 
  

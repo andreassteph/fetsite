@@ -1,5 +1,6 @@
 de:
   studien:
+    desc: "Beschreibung"
     studien: "Studien"
     list: "Studien der Fakultät Elektrotechnik"
     anzeigen: "Studium anzeigen"
@@ -21,6 +22,7 @@ de:
     beschreibung: "Keine Beschreibung vorhanden"
   lva:
     add: "Lva hinzufügen"
+    addrem: "Lva hinzufügen/entfernen"
     list: "Alle Lvas"
   semester:
     ohne: "Ohne Semesterzuordnung"

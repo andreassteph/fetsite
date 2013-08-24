@@ -10,6 +10,9 @@ class NeuigkeitenController < ApplicationController
     @neuigkeit = Neuigkeit.find(params[:id])
     if can? :edit, @neuigkeit
 	@toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_neuigkeit_path(@neuigkeit),:icon=>:pencil}
+	@toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => neuigkeit_path(@neuigkeit), :method=> :delete,:confirm=>"Sure?" }
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> "publish",:path => neuigkeit_publish_path(@neuigkeit),:confirm=>"Sure?" }
+
     end
   end
 
@@ -19,14 +22,19 @@ class NeuigkeitenController < ApplicationController
     @neuigkeit.rubrik=@rubrik unless @rubrik.nil?
  end
 
-
+  def publish 
+    @neuigkeit = Neuigkeit.find(params[:id])
+    @neuigkeit.publish
+    @neuigkeit.save
+    redirect_to @neuigkeit
+  end 
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
   end
 
   def create
     @neuigkeit = Neuigkeit.new(params[:neuigkeit])
-	@rubrik = @neuigkeit.rubrik
+
  
     respond_to do |format|
       if @neuigkeit.save
