@@ -1,4 +1,10 @@
-<div class="lva-beispiele">
-<h4><%=link_to beispiel.name, beispiel.beispieldatei.url%></h4>
+
+<div class="row-fluid lva-beispiele">
+  <div class="span5">
+<b><%=link_to beispiel.name, beispiel.beispieldatei.url%></b>  <%= link_to "edit", edit_beispiel_path(beispiel)%></br>
+<%= I18n.t("file.size") + ": " + (beispiel.beispieldatei.size/1024.0).round(2).to_s  %>KiB
+</div>
+<div class="span7">
 <%= beispiel.desc %>
+</div>
 </div>

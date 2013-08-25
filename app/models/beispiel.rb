@@ -13,12 +13,13 @@
 
 class Beispiel < ActiveRecord::Base
   has_paper_trail
-  attr_accessible :desc, :name, :lva_id, :beispieldatei, :beispieldatei_cache
+  attr_accessible :desc, :name, :lva_id, :beispieldatei, :beispieldatei_cache, :datum
   belongs_to :lva
   mount_uploader :beispieldatei, BeispieldateiUploader
   validates :beispieldatei, :presence => true
   validates :name, :presence => true
   validates :lva_id, :presence => true
   validates :lva, :presence => true
+  validates :datum, :presence => true
   
 end
