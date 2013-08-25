@@ -22,7 +22,7 @@ class Neuigkeit < ActiveRecord::Base
   translates :title,:text, :versioning=>true, :fallbacks_for_empty_translations => true
   has_one :calentry, :as => :object
   mount_uploader :picture, PictureUploader
-  scope :published, -> {where("datum >= ? AND datum IS NOT NULL", Time.now.to_date)}
+  scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date)}
   scope :recent, -> { published.where("updated_at >= ? ",Time.now - 7.days)}
   def datum_nilsave
 	self.datum.nil? ? Time.now + 42.years : self.datum
