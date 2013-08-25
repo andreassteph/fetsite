@@ -12,9 +12,9 @@
 
 <p>
   <b>Typ:</b>
-  <%= @gremium.typ %>
+  <%= Gremium::TYPEN[@gremium.typ.to_i].to_s %>
 </p>
 
 
 <%= link_to 'Edit', edit_gremium_path(@gremium) %> |
-<%= link_to 'Back', gremien_path %>
+<%=  link_to 'Back', gremien_path %>

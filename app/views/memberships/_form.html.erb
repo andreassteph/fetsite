@@ -3,7 +3,7 @@
     <%= f.input :gremium, :as=>:radio %>
     <%= f.input :start %>
     <%= f.input :stop %>
-    <%= f.input :typ ,:as=>:radio, :collection=>{"mitglied"=>1, "ersatzmitglied"=>2} %>
+    <%= f.input :typ ,:as=>:radio,:collection=>Membership::TYPEN.invert %>
   <% end %>
 
   <%= f.actions do %>

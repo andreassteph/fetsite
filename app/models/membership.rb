@@ -13,6 +13,7 @@
 #
 
 class Membership < ActiveRecord::Base
+  TYPEN={1=>"Mitglied",2=> "Ersatzmitglied",3=>"VerantwortlicheR"}
   attr_accessible :fetprofile_id, :gremium_id, :start, :stop, :typ
   belongs_to :fetprofile
   belongs_to :gremium

@@ -22,10 +22,10 @@
   <div class="row-fluid">
 	   <div class="span1"></div>
 	
-   <div class="span3"><%= membership.input :start, :as=>:date %></div>
+  <div class="span3"><%= membership.input :start, :as=>:date %></div>
   <div class="span3"><%= membership.input :stop %></div>
   <div class="span3"><%= membership. input :gremium %></div>
-  <div class="span2"><%= membership.input :typ ,:as=>:radio, :collection=>{"mitglied"=>1, "ersatzmitglied"=>2} %></div>
+  <div class="span2"><%= membership.input :typ ,:as=>:radio, :collection=>Membership::TYPEN.invert %></div>
 
   </div>  <% end %>
   <% end %>

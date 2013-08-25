@@ -1,0 +1,6 @@
+
+<%= "seit" if membership.stop.nil? %>
+<%=membership.start.to_s %> 
+<%= " bis "+membership.stop.to_s unless membership.stop.nil? %> 
+<%= Membership::TYPEN[membership.typ.to_i] %>  
+<%= membership.gremium.fall2 %>
