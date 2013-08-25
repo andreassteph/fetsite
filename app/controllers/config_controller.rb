@@ -6,7 +6,7 @@ class ConfigController < ApplicationController
     g = Git.open(".")
 
     flash[:notice] ="Test"
-#    flash[:notice] =g.remote("github").fetch
+    flash[:notice] =g.remote("fetsite").fetch
    redirect_to config_url
 
   end
