@@ -15,12 +15,13 @@
 #
 
 class Fetprofile < ActiveRecord::Base
-  attr_accessible :active, :desc, :fetmailalias, :nachname, :picture, :short, :vorname
+  attr_accessible :active, :desc, :fetmailalias, :nachname, :picture, :short, :vorname,:memberships_attributes
   has_many :memberships
   has_many :gremien, :through=> :membership
   mount_uploader :picture, PictureUploader
   def name
   [vorname, nachname, "(",short,")"].join(" ")
   end
+  accepts_nested_attributes_for :memberships
   scope :active, -> { where(:active=>:true).order(:vorname) } 
 end

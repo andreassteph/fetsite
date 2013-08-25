@@ -1,6 +1,6 @@
  Fetsite::Application.routes.draw do
 
-   devise_for :users
+   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
    resources :home, :only=>[:index]
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"
    scope '(:locale)/admin' do
@@ -39,10 +39,10 @@
      resources :galleries do
      resources :fotos
      end
-     resources :memberships, :except=>[:new, :show, :edit]
+
      resources :gremien
      resources :fetprofiles do
-     resources :memberships, :only=>[:new, :show, :edit]
+     resources :memberships
      end
      resources :lecturers
      resources :semesters

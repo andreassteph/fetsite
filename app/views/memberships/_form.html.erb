@@ -1,4 +1,4 @@
-<%= semantic_form_for @membership do |f| %>
+<%= semantic_form_for [@membership.fetprofile,@membership] do |f| %>
   <%= f.inputs do %>
     <%= f.input :gremium, :as=>:radio %>
     <%= f.input :start %>
