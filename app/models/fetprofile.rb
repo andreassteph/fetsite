@@ -23,5 +23,8 @@ class Fetprofile < ActiveRecord::Base
   [vorname, nachname, "(",short,")"].join(" ")
   end
   accepts_nested_attributes_for :memberships
-  scope :active, -> { where(:active=>:true).order(:vorname) } 
+  scope :active, -> { where(:active=>true).order(:vorname) } 
+  def fetmail
+  fetmailalias.empty? ? short + "@fet.at" : fetmailalias + "@fet.at"
+  end
 end

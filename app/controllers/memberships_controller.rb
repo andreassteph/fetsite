@@ -34,7 +34,7 @@ class MembershipsController < ApplicationController
   # PUT /memberships/1
   # PUT /memberships/1.json
   def update
-    @membership = Membership.find(params[:id])
+    #@membership = Membership.find(params[:id])
 
     respond_to do |format|
       if @membership.update_attributes(params[:membership])

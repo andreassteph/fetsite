@@ -1,5 +1,5 @@
 
-<%= "seit" if membership.stop.nil? %>
+<%= membership.stop.nil? ? "seit " : "von " %>
 <%=membership.start.to_s %> 
 <%= " bis "+membership.stop.to_s unless membership.stop.nil? %> 
 <%= Membership::TYPEN[membership.typ.to_i] %>  

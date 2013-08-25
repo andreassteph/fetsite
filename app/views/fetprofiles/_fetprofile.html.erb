@@ -1,0 +1,12 @@
+
+<div class="media">
+	<div class="pull-left">
+	<%= image_tag fetprofile.picture.portrait.url %>
+	</div>
+	<div class="media-body">
+	
+    <h2><%= link_to fetprofile.name, fetprofile %></h2>
+    <p><%= fetprofile.fetmail %></p>
+    <p><%= fetprofile.desc.split(" ")[1..20].join(" ") %></p>
+    <p><%= fetprofile.active %> </p>
+</div>

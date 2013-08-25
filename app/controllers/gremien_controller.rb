@@ -3,7 +3,7 @@ class GremienController < ApplicationController
   # GET /gremien.json
   def index
     @gremien = Gremium.all
-
+	@gremientabs=Gremium.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @gremien }
@@ -14,7 +14,7 @@ class GremienController < ApplicationController
   # GET /gremien/1.json
   def show
     @gremium = Gremium.find(params[:id])
-
+	@gremientabs=Gremium.order(:typ)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @gremium }

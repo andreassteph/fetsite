@@ -1,20 +1,20 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
+<%= render 'fetprofiles/tabs' %>
+<h1>
   <%= @gremium.name %>
+</h1>
+<p>
+<%= @gremium.desc %>
 </p>
 
+<% @gremium.memberships.order(:typ).active.each do |m| %>
+ <%= image_tag m.fetprofile.picture.portrait %>
+ <%= m.fetprofile.name + " ist" + render(m) %> 
+<% end %>
 <p>
-  <b>Desc:</b>
-  <%= @gremium.desc %>
-</p>
-
-<p>
-  <b>Typ:</b>
   <%= Gremium::TYPEN[@gremium.typ.to_i].to_s %>
 </p>
 
 
 <%= link_to 'Edit', edit_gremium_path(@gremium) %> |
-<%=  link_to 'Back', gremien_path %>
+
