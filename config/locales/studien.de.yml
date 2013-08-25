@@ -47,3 +47,6 @@ de:
       keine: "Keine Fehlermeldungen oder Warnungen"
   lecturers:
     lecturers: "Vortragende"
+  file:
+    size: "Dateigröße"
+    

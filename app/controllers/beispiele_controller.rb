@@ -42,12 +42,13 @@ class BeispieleController < ApplicationController
   # POST /beispiele
   # POST /beispiele.json
   def create
-    lvaid=params[:lva_id]
+    @lva = Lva.find_by_id(params[:lva_id])
     params.delete(:lva_id)
     @beispiel = Beispiel.new(params[:beispiel])
     respond_to do |format|
+      @beispiel.name=@beispiel.beispieldatei.to_s.split('/').last
       if @beispiel.save
-        format.html { redirect_to @beispiel, notice: 'Beispiel was successfully created.' }
+        format.html { redirect_to @beispiel.lva, notice: 'Beispiel was successfully created.' }
         format.json { render json: @beispiel, status: :created, location: @beispiel }
       else
         format.html { render action: "new" }
@@ -60,10 +61,11 @@ class BeispieleController < ApplicationController
   # PUT /beispiele/1.json
   def update
     @beispiel = Beispiel.find(params[:id])
-
+    @beispiel.name=@beispiel.beispieldatei.to_s.split('/').last
+    @lva = @beispiel.lva
     respond_to do |format|
       if @beispiel.update_attributes(params[:beispiel])
-        format.html { redirect_to @beispiel, notice: 'Beispiel was successfully updated.' }
+        format.html { redirect_to @beispiel.lva, notice: 'Beispiel was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
