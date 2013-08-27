@@ -1,6 +1,7 @@
 
 de:
   neuigkeit:
+    publish: "Neuigkeit veröffentlichen"
     new:
       title: "Neue Neuigkeit"
   rubriken:
