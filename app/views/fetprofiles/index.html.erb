@@ -17,16 +17,17 @@
 	</div>
 	<% @fetprofiles.each do |fetprofile| %>
 	<div class="row-fluid">
+	<%= link_to fetprofile do %>
 	<div class="span3">
 	<%= image_tag fetprofile.picture.portrait.url %>
 	</div>
 	<div class="span9">
 	
-    <h2><%= link_to fetprofile.name, fetprofile %></h2>
+    <h2><%= fetprofile.name %></h2>
     <p><%= fetprofile.fetmail %></p>
     <p><%= fetprofile.desc %></p>
-    <p><%= fetprofile.active %> </p>
-</div>
+   
+</div> <% end %>
 </div>
 <% end %>
 <div class="row-fluid">
