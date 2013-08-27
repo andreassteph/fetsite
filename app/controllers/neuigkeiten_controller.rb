@@ -8,27 +8,34 @@ class NeuigkeitenController < ApplicationController
 
   def show
     @neuigkeit = Neuigkeit.find(params[:id])
-    if can? :edit, @neuigkeit
-	@toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil}
-	@toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>"Sure?" }
-    @toolbar_elements << {:hicon=>'icon-plus', :text=> "publish",:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" }
+	if params[:verwalten]
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> "publish",:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :publish, @neuigkeit
+
+	@toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit
+	@toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>"Sure?" } if can? :delete, @neuigkeit
+    else
+    @toolbar_elements << {:text=>I18n.t('common.verwalten'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit,{:verwalten=>true}),:icon=>:pencil} if can? :verwalten, @neuigkeit
 
     end
   end
 
-  def new
+    def new
     @neuigkeit = Neuigkeit.new
     @rubrik=Rubrik.find(params[:rubrik_id]) unless params[:rubrik_id].nil?
     @neuigkeit.rubrik=@rubrik unless @rubrik.nil?
- end
+   end
 
-  def publish 
+   def publish 
     @neuigkeit = Neuigkeit.find(params[:id])
     @neuigkeit.publish
     @neuigkeit.save
+    if params[:verwalten] 
+		redirect_to verwalten_rubrik_path(@neuigkeit.rubrik)
+    end
     redirect_to @neuigkeit
-  end 
-  def edit
+
+   end 
+   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
   end
 
@@ -38,7 +45,7 @@ class NeuigkeitenController < ApplicationController
  
     respond_to do |format|
       if @neuigkeit.save
-        format.html { redirect_to @neuigkeit, notice: 'Neuigkeit was successfully created.' }
+        format.html { redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit was successfully created.' }
      
       else
         format.html { render action: "new" }
