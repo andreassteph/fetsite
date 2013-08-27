@@ -1,27 +1,16 @@
 <h1>Listing galleries</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Desc</th>
-    <th>Datum</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @galleries.each do |gallery| %>
-  <tr>
-    <td><%= gallery.name %></td>
-    <td><%= gallery.desc %></td>
-    <td><%= gallery.datum %></td>
-    <td><%= link_to 'Show', gallery %></td>
-    <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
-    <td><%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<% @galleries.each_slice(2) do |row| %>
+<div class="row-fluid">
+  <% row.each do |gallery| %>
+  <div class="span6">
+    <%=link_to gallery.name, gallery %>
+    <%= gallery.desc %>
+    <%= gallery.datum %>
+    <br>
+    <%= link_to 'Edit', edit_gallery_path(gallery) %> | <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  <% end %>
+</div>
 <% end %>
-</table>
-
-<br />
-
 <%= link_to 'New Gallery', new_gallery_path %>
