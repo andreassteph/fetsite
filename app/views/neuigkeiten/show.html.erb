@@ -22,7 +22,7 @@
 			<p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.url  %></p>
 		</div>
 		<div class="media-body">
-			<h1><%= link_to @neuigkeit.title,neuigkeit_path(@neuigkeit)  %></h1>
+			<h1><%= link_to @neuigkeit.title,rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)  %></h1>
 			<%= raw(@neuigkeit.text) %>
 			<p></p>
 		</div>

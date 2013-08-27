@@ -35,30 +35,53 @@
      end
      get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
     
-     resources :fetzneditions
-     resources :galleries do
-     resources :fotos
-     end
+    resources :fetzneditions
+    resources :galleries do
+		collection do
+			get 'verwalten'
+		end
+		resources :fotos
+    end
 
-     resources :gremien
-     resources :fetprofiles do
-     resources :memberships
-     end
+    resources :gremien, :except=>[:index] do 
+		collection do 
+			get 'verwalten'
+		end
+	end
+    resources :fetprofiles do
+		collection do 
+			get 'verwalten'
+		end
+		resources :memberships, :only => [:new, :edit, :update,:destroy,:create] 
+    end
      resources :lecturers
      resources :semesters
      resources :moduls
      resources :lvas
-     resources :neuigkeiten
-		 resources :fragen
-     get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
-     
-	 get 'neuigkeiten/:id/publish', :controller=>:neuigkeiten, :action=>:publish, :as=>'neuigkeit_publish'
-     resources :rubriken do
-       resources :neuigkeiten, :only=>[:new, :show]
-     end
-     put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
-     get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
-     get 'rubriken/verwalten',:controller=>:rubriken,:action=>:alle_verwalten, :as=>'rubriken_verwalten'
+   
+	resources :fragen
+    # get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
+    #resources :neuigkeiten, :except => [:index] do
+    
+    #end
+    resources :rubriken do
+		collection do 
+			get 'verwalten' , :action => :alle_verwalten
+		end
+		member do
+			get 'verwalten'
+			put 'addmoderator'
+		end
+		resources :neuigkeiten, :except => [:index] do 
+			member do
+				get 'publish'
+			end
+		end
+    end
+    
+    # put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
+    # get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
+    # get 'rubriken/verwalten',:controller=>:rubriken,:action=>:alle_verwalten, :as=>'rubriken_verwalten'
      
      resources :home, :only=>[:index]
      get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'

@@ -1,7 +1,7 @@
 class GremienController < ApplicationController
   # GET /gremien
   # GET /gremien.json
-  def index
+  def verwalten
     @gremien = Gremium.all
 	@gremientabs=Gremium.all
     respond_to do |format|

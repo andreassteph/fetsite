@@ -7,12 +7,12 @@
     </li>
 <% end %>
 <% if can? :verwalten, Rubrik%>
-<% if request.fullpath == rubriken_verwalten_path %>
+<% if request.fullpath == verwalten_rubriken_path %>
   <li class="active pull-right">
   <% else %>
   <li class="pull-right">
 <% end %>
-<%= link_to "Verwaltung", rubriken_verwalten_path %>
+<%= link_to "Verwaltung", verwalten_rubriken_path %>
 </li>
 <% end %>
 </ul>

@@ -1,17 +1,17 @@
 class NeuigkeitenController < ApplicationController
  before_filter {@toolbar_elements=[]}
   load_and_authorize_resource
-  def index
-    @neuigkeiten = Neuigkeit.all
-  end
+  #def index
+  #  @neuigkeiten = Neuigkeit.all
+  #end
 
 
   def show
     @neuigkeit = Neuigkeit.find(params[:id])
     if can? :edit, @neuigkeit
-	@toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_neuigkeit_path(@neuigkeit),:icon=>:pencil}
-	@toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => neuigkeit_path(@neuigkeit), :method=> :delete,:confirm=>"Sure?" }
-    @toolbar_elements << {:hicon=>'icon-plus', :text=> "publish",:path => neuigkeit_publish_path(@neuigkeit),:confirm=>"Sure?" }
+	@toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil}
+	@toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>"Sure?" }
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> "publish",:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" }
 
     end
   end
