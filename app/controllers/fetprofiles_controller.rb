@@ -3,7 +3,7 @@ class FetprofilesController < ApplicationController
   # GET /fetprofiles.json
   def index
     
-    @fetprofiles = Fetprofile.active
+    @fetprofiles = Fetprofile.active.order(:vorname,:nachname)
     @fetprofiles = Fetprofile.order(:vorname,:nachname) if params[:filter]== "all"
 	@gremientabs=Gremium.order(:typ)
     respond_to do |format|
