@@ -8,6 +8,9 @@
     <%= gallery.desc %>
     <%= gallery.datum %>
     <br>
+    <%for f in  gallery.fotos.slice(1..[gallery.fotos.length, 4].min)%>
+    <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid"}) %>
+    <% end %><br>
     <%= link_to 'Edit', edit_gallery_path(gallery) %> | <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
   <% end %>
