@@ -1,19 +1,26 @@
 <h1>Listing galleries</h1>
+ <%= %>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12"> 
+		<% @galleries.each do |gallery| %>
+			<%= link_to gallery do %>
+			<div class="media">
+				<div class="pull-left" href="#">
+					<%= image_tag gallery.fotos.first.datei.big_thumb.url %>
+				</div>
+				<div class="media-body">
+					<h1><%= gallery.datum %> - <%= gallery.name %></h1>
+					<p><%= gallery.desc %>
+					</p>
+				</div>
+			</div>
+			<% end %>
+			<%= link_to 'Edit', edit_gallery_path(gallery) %>
+		<% end %>
+		</div>
+	</div>
+</div
 
-<% @galleries.each_slice(2) do |row| %>
-<div class="row-fluid">
-  <% row.each do |gallery| %>
-  <div class="span6">
-    <h2><%=link_to gallery.name, gallery %></h2>
-    <%= gallery.desc %>
-    <%= gallery.datum %>
-    <br>
-    <%gallery.fotos.slice(1..[gallery.fotos.length, 4].min).each do |f|%>
-    <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid"}) %>
-    <% end %><br>
-    <%= link_to 'Edit', edit_gallery_path(gallery) %> | <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
-  <% end %>
-</div>
-<% end %>
+<br />
 <%= link_to 'New Gallery', new_gallery_path %>

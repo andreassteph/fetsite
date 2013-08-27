@@ -9,6 +9,13 @@
 
 
 <h2>Attachments:</h2>
+<%= render :partial => "themen/select", :object => @thema,:locals =>{ :editor => :true} %>
+
+<%= f.actions do %>
+<%= f.action :submit, :as => :input %>
+<% end %>
+
+<!--
 <% @thema.attachments.each do |attachment| %>
 <ul>
 	<li>
@@ -18,11 +25,9 @@
 </ul>
 <% end %>
 
-  <%= f.actions do %>
-    <%= f.action :submit, :as => :input %>
-  <% end %>
-<% end %>
 
+<% end %>
+-->
 <!--
 
 <script>
@@ -34,4 +39,3 @@ function insertAttachment(url) {
 </script>
 
 -->
-

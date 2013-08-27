@@ -23,13 +23,13 @@
 //= require jquery-fileupload
 
 function insertAttachment(url,name) {
-	var ext = url.split('.').pop();
-	var img_ext = [ "jpg", "png", "bmp" , "jpeg" ];
-	
-	if ( img_ext.indexOf(ext) > -1) {
-		tinymce.activeEditor.setContent(tinymce.activeEditor.getContent({format : 'raw'}) + "<img src=\"" + url + "\" title=\"" + name + "\">");
-	}
-	else {
-		tinymce.activeEditor.setContent(tinymce.activeEditor.getContent({format : 'raw'}) + "<a href=\"" + url + "\">" + name +"</a>");
-	}
+    var ext = url.split('.').pop().toLowerCase();
+    var img_ext = [ "jpg", "png", "bmp" , "jpeg" ];
+    
+    if ( img_ext.indexOf(ext) > -1) {
+	tinymce.activeEditor.setContent(tinymce.activeEditor.getContent({format : 'raw'}) + "<img src=\"" + url + "\" title=\"" + name + "\">");
+    }
+    else {
+	tinymce.activeEditor.setContent(tinymce.activeEditor.getContent({format : 'raw'}) + "<a href=\"" + url + "\">" + name +"</a>");
+    }
 }

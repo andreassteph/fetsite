@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <% select.attachments.each_slice(6) do |row| %>
+  <div class="row-fluid">
+    <% row.each do |attachment|
+       data_ext = attachment.datei.file.extension.downcase %>
+    <div class="span2" align="center">
+      <%= link_to attachment.name, edit_thema_attachment_path(@thema,attachment) %></br>
+      <% if (!["jpg","png","jpeg"].find_index(data_ext).nil?) %>
+      <%= image_tag attachment.datei.thumb.url %>
+      <% else %>
+      <%= image_tag "pdf-logo.jpg" %>
+      <% end %>
+      <% if(editor) %>
+      </br><button type="button" onclick="insertAttachment(<%="\"" + attachment.datei.url + "\""%>,<%="\""+attachment.name+"\""%>)">Insert Me!</button>
+      <% else %>
+      </br><%= link_to 'Destroy',[@thema,attachment], method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  </br>
+  <% end %>
+</div>
+</br>
+<%= link_to 'Neues Attachment', new_thema_attachment_path(@thema) %>
+<br/>
