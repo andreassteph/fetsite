@@ -14,7 +14,7 @@ class Attachment < ActiveRecord::Base
   has_paper_trail
   attr_accessible :name, :datei
   belongs_to :thema
-  mount_uploader :datei, BeispieldateiUploader
+  mount_uploader :datei, AttachmentUploader
   validates :thema, :presence => true
   validates :name, :presence => true
 end
