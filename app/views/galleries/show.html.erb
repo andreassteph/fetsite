@@ -34,7 +34,7 @@
 <% @gallery.fotos.each do |f| %>
 
 <a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery="gallery">
-<%=image_tag(f.datei.big_thumb.url,{:class=>"img-polaroid"}) %></a>
+<%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid"}) %></a>
 
 
 <% end %>

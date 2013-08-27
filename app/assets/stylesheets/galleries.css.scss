@@ -2,35 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.modal.fade {
-    top: -25%;
-    transition: opacity 0.3s linear 0s, top 0.3s ease-out 0s;
-}
-.modal-gallery {
-    max-height: none;
-    outline: medium none;
-    width: auto;
-}
-.modal {
-    color: #333333;
-}
-.hide {
-    display: none;
-}
-.modal {
-    background-clip: padding-box;
-    background-color: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 6px 6px 6px 6px;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-    left: 50%;
-    margin-left: -280px;
-    outline: medium none;
-    position: fixed;
-    top: 10%;;
-    z-index: 1050;
-}
-.fade {
-    opacity: 0;
-    transition: opacity 0.15s linear 0s;
-}
+//.modal.fade {
+//    top: -25%;
+//    transition: opacity 0.3s linear 0s, top 0.3s ease-out 0s;
+//}
+//.modal-gallery {
+//    max-height: none;
+//    outline: medium none;
+//    width: auto;
+//}
+//.modal {
+//    color: #333333;
+//}
+//.hide {
+//    display: none;
+//}
+//.modal {
+//background-clip: padding-box;
+//  background-color: #FFFFFF;
+//    border: 1px solid rgba(0, 0, 0, 0.3);
+//border-radius: 6px 6px 6px 6px;
+//  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+//    left: 50%;
+//    margin-left: -280px;
+//    outline: medium none;
+//    position: fixed;
+//   top: 10%;;
+//    z-index: 1050;
+//}
+//.fade {
+//    opacity: 0;
+//    transition: opacity 0.15s linear 0s;
+//}
