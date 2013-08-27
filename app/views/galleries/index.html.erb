@@ -4,7 +4,7 @@
 <div class="row-fluid">
   <% row.each do |gallery| %>
   <div class="span6">
-    <%=link_to gallery.name, gallery %>
+    <h2><%=link_to gallery.name, gallery %></h2>
     <%= gallery.desc %>
     <%= gallery.datum %>
     <br>
