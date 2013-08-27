@@ -3,7 +3,7 @@
   <%= f.inputs do %>
     <%= f.input :title, :placeholder=>"Titel" %>
     <%= f.input :text, :as=>:tinymce_text %>
-    <% f.input :datum %>
+    <% f.input :datum, :as=>:datepicker %>
     <%= f.input :rubrik, :as=>:radio, :collection=>Rubrik.all %>
     <%= f.input :author, :as=>:radio %>
     <%= f.input :picture, :as=>:file %>
@@ -13,4 +13,5 @@
     <%= f.action :submit, :as => :input %>
   <% end %>
 <% end %>
+<script>$('.datepicker').datepicker()</script>
 <%= tinymce %>
