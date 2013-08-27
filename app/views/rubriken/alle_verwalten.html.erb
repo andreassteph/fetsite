@@ -1,1 +1,5 @@
+
 <%= render :partial=>"admin_liste", :locals=>{:rubriken=>@rubriken} %>
+
+
+<%= link_to 'New Rubrik', new_rubrik_path unless cannot?(:new, Rubrik) %>
