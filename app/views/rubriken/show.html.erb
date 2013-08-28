@@ -32,8 +32,6 @@
 <span class="span12">
 <%= link_to 'Verwalten', verwalten_rubrik_path(@rubrik) %> |
 <%= link_to '<i class="icon-plus-sign"></i>'.html_safe+"Neuer Artikel", new_rubrik_neuigkeit_path(@rubrik) %> 
-<%= link_to 'Back', rubriken_path %> | 
-<%= link_to 'Destroy', @rubrik, method: :delete, data: { confirm: 'Are you sure?' } %>
 </span></div>
 <%= toolbar_html(@toolbar_elements)%>
 

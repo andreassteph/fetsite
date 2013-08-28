@@ -41,7 +41,7 @@ gem 'jquery-rails'
 
 # Formbuilder for easier form generation
 gem 'formtastic', '~>2.2.1'
-gem 'formtastic-bootstrap'
+gem 'formtastic-bootstrap' , :git => "git://github.com/mjbellantoni/formtastic-bootstrap.git"
 # TinyMCE
 gem "tinymce-rails" , '>=3.5.8'
 
@@ -72,7 +72,7 @@ gem 'haml'
 #gem 'gollum'
 gem 'awesome_nested_set'
 gem 'annotate', ">=2.5.0"
-gem 'carrierwave'
+gem 'carrierwave', "~>0.9.0"
 group :development, :test do 
 gem 'factory_girl_rails'
 gem 'rspec-rails'

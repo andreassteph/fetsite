@@ -17,14 +17,14 @@
 <ul class="list-group">
 <% @calendar.calentries.each do |entry| %>
 <li class="list-group-item">
-<%= link_to entry.summary+ " - " + I18n.l(entry.start1), entry %>
+<%= link_to entry.summary.to_s+ " - " + I18n.l(entry.start1), entry %>
 </li>
 <% end %>
 </ul>
 </div>
  <div class="row-fluid">
 <%= calendar @calendar.calentries do |entry| %>
-  <div><%= link_to entry.name, entry %></div>
+  <div><%= link_to entry.name.to_s, entry %></div>
 <% end %>
 </div>
  <div class="row-fluid">

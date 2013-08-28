@@ -13,12 +13,12 @@
 
 
 <% if can?(:verwalten,Gremium) %>
-<% if request.fullpath == gremien_path %>
+<% if request.fullpath == verwalten_gremien_path %>
   <li class="active pull-right">
   <% else %>
   <li class="pull-right">
 <% end %>
-<%= link_to "Verwaltung", gremien_path %>
+<%= link_to "Verwaltung", verwalten_gremien_path %>
 </li>
 <% end %>
 </ul>
