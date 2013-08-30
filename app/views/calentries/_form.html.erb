@@ -3,7 +3,7 @@
   <%= f.inputs do %>
  <div class="row-fluid">
  <div class="span6">
-    <%= f.input :start , :as => :date_string, :append=>'sadf'  %>
+    <%= f.input :start , :as => :datepicker, :append=>'sadf'  %>
  </div>
  <div class="span6">
     <%= f.input :ende , :as => :datepicker %>
@@ -23,9 +23,9 @@
  </div>
  </div>
   <% end %>
+<script>$('.datepicker').datepicker() </script>
   <div class="row-fluid">
-		  <script>$('.datepicker').datepicker()</script>  
-
+		
   <div class="span12">
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>

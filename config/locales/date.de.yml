@@ -32,6 +32,7 @@ de:
     - Samstag
     formats:
       default: ! '%d.%m.%Y'
+      default-picker: ! 'dd.mm.yyyy'
       long: ! '%e. %B %Y'
       short: ! '%e. %b'
     month_names:
