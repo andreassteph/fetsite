@@ -15,73 +15,68 @@
 
    devise_for :users
 
-   resources :pages, :except => [:index] do
-     member do
-       post 'preview'
-     end
-   end
-   get 'pages', :to =>'pages#show'
    scope '(:locale)' do
      
      resources :studien, :only=>[:new,:edit,:update,:destroy]
      scope '(:ansicht)' do
        resources :studien, :only=>[:show]
      end
+     
      resources :modulgruppen,:only =>[:create,:index]
-
+     
      resources :studien,:except=>[:show,:new,:edit,:update,:destroy], :shallow=>true do 
        resources :modulgruppen, :path => "(:locale)/modulgruppen"
        
      end
      get 'verwalten/studien', :controller=>:studien, :action=>:verwalten, :as=>'studien_verwalten'
-    
-    resources :fetzneditions
-    resources :galleries do
-		collection do
-			get 'verwalten'
-		end
-		resources :fotos
-    end
-
-    resources :gremien, :except=>[:index] do 
-		collection do 
-			get 'verwalten'
-		end
-	end
-    resources :fetprofiles do
-		collection do 
-			get 'verwalten'
-		end
-		resources :memberships, :only => [:new, :edit, :update,:destroy,:create] 
-    end
+     
+     resources :fetzneditions
+     resources :galleries do
+       collection do
+         get 'verwalten'
+       end
+       resources :fotos
+     end
+     
+     resources :gremien, :except=>[:index] do 
+       collection do 
+         get 'verwalten'
+       end
+     end
+     resources :fetprofiles do
+       collection do 
+         get 'verwalten'
+       end
+       resources :memberships, :only => [:new, :edit, :update,:destroy,:create] 
+     end
      resources :lecturers
      resources :semesters
      resources :moduls
      resources :lvas
-   
-	resources :fragen
-    # get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
-    #resources :neuigkeiten, :except => [:index] do
+     
+     resources :fragen
+     # get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'
+     #resources :neuigkeiten, :except => [:index] do
     
-    #end
-    resources :rubriken do
-		collection do 
-			get 'verwalten' , :action => :alle_verwalten
-		end
-		member do
-			get 'verwalten'
-			put 'addmoderator'
-		end
-		resources :neuigkeiten, :except => [:index] do 
-			member do
-				get 'publish'
-			end
-		end
-    end
-    
-    # put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
-    # get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
-    # get 'rubriken/verwalten',:controller=>:rubriken,:action=>:alle_verwalten, :as=>'rubriken_verwalten'
+     #end
+     resources :rubriken do
+       collection do 
+         get 'verwalten' , :action => :alle_verwalten
+       end
+       member do
+         get 'verwalten'
+         put 'addmoderator'
+       end
+       resources :neuigkeiten, :except => [:index] do 
+         member do
+           get 'publish'
+         end
+       end
+     end
+     
+     # put 'rubriken/(:id)/addmoderator',:controller=>:rubriken,:action=>:addmoderator
+     # get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
+     # get 'rubriken/verwalten',:controller=>:rubriken,:action=>:alle_verwalten, :as=>'rubriken_verwalten'
      
      resources :home, :only=>[:index]
      get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
@@ -162,3 +157,4 @@
    # Note: This route will make all actions in every controller accessible via GET requests.
    # match ':controller(/:action(/:id))(.:format)'
  end
+ 
