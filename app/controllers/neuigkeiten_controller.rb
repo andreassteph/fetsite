@@ -1,10 +1,6 @@
 class NeuigkeitenController < ApplicationController
   before_filter {@toolbar_elements=[]}
   load_and_authorize_resource
-  #def index
-  #  @neuigkeiten = Neuigkeit.all
-  #end
-
 
   def show
     @neuigkeit = Neuigkeit.find(params[:id])

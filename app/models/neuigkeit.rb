@@ -40,6 +40,6 @@ class Neuigkeit < ActiveRecord::Base
   end
   def text_first_words
     md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.text
-    md[:text].split(" ")[1..100].join(" ")+ " ..."
+    md[:text].split(" ")[0..100].join(" ")+ " ..."
   end
 end
