@@ -1,27 +1,32 @@
 <h1>Listing gremien</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Desc</th>
-    <th>Typ</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div class="container-fluid">
 <% @gremien.each do |gremium| %>
-  <tr>
-    <td><%= gremium.name %></td>
-    <td><%= gremium.desc %></td>
-    <td><%= gremium.typ %></td>
-    <td><%= link_to 'Show', gremium %></td>
-    <td><%= link_to 'Edit', edit_gremium_path(gremium) %></td>
-    <td><%= link_to 'Destroy', gremium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <div class="row-fluid">
+    <div class="span2">
+      <%= gremium.typ %>
+    </div>
+    <div class="span18">
+      <b><%= gremium.name %></b>
+      <%= gremium.desc %>
+    </div>
+    <div span="2">
+      <%= link_to 'Show', gremium %>
+      <%= link_to 'Edit', edit_gremium_path(gremium) %>
+      <%= link_to 'Destroy', gremium, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
 <% end %>
+</div>
+
+
+
+
+
+  <tr></td>
+  </tr>
+
 </table>
 
 <br />
-
+<%= render 'layouts/pretty_toolbar' %>
 <%= link_to 'New Gremium', new_gremium_path %>

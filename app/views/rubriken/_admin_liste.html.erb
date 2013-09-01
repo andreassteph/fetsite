@@ -1,8 +1,23 @@
 <table class="table">
-<% rubriken.each do |r| %>
-<% r.neuigkeiten.each do |n| %>
-<tr>
-<td><%= r.name %></td><td><%= n.title %></td></tr>
-<% end 
-end %>
+  <% neuigkeiten.each do |n| %>
+  <% r = n.rubrik %>
+  <tr>
+    <td><%= r.public%></td>
+    <td><%= r.name %></td>
+    <td>
+      <%= n.title %> 
+     
+    </td> 
+    <td>
+      <%= unless n.datum.nil? 
+	  I18n.l(n.datum) 
+	  else 
+	  link_to "publish", publish_rubrik_neuigkeit_path(r,n) if can?(:publish, n) 
+	  end
+	  %>
+      
+      <%= link_to "edit", edit_rubrik_neuigkeit_path(r,n) if can? :publish, n %>
+    </td>
+  </tr>
+  <% end %>
 </table>

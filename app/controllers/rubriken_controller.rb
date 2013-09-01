@@ -5,7 +5,6 @@ class RubrikenController < ApplicationController
     @rubriken = Rubrik.all
     @neuigkeiten = Neuigkeit.recent
   end
-
  
   def show
     @rubrik = Rubrik.find(params[:id])
@@ -20,7 +19,6 @@ class RubrikenController < ApplicationController
   def edit
     @rubrik = Rubrik.find(params[:id])
   end
-
   
   def create
     @rubrik = Rubrik.new(params[:rubrik])
@@ -51,6 +49,16 @@ class RubrikenController < ApplicationController
       format.html { redirect_to @rubrik,:notice => response_notice }
     end
   end
+
+  def removemoderator
+    rubrik = Rubrik.find(params[:id])
+    m = User.find(params[:moderator])
+    if m.has_role?(:newsmoderator,rubrik) 
+      m.remove_role(:newsmoderator,rubrik)
+    end
+    redirect_to verwalten_rubrik_path(rubrik)
+  end
+
   def update
     @rubrik = Rubrik.find(params[:id])
 
@@ -64,13 +72,24 @@ class RubrikenController < ApplicationController
       end
     end
   end
+
   def verwalten
-  @rubrik = Rubrik.find(params[:id])
-  @moderatoren=User.with_role(:newsmoderator,@rubrik)
-  end
+    @rubrik = Rubrik.find(params[:id])
+    @neuigkeiten_unpublished = @rubrik.neuigkeiten.unpublished
+    @neuigkeiten_published=@rubrik.neuigkeiten.published
+    @moderatoren=User.with_role(:newsmoderator,@rubrik)
+  end  
+
+  # Alle Rubriken verwalten und Sachen einstellen..
   def alle_verwalten
-  @rubriken =Rubrik.all
+    @rubriken =Rubrik.all
+    @neuigkeiten_unpublished = Neuigkeit.unpublished
+    @neuigkeiten_public_published = Neuigkeit.published.public
+
+    @toolbar_elements << {:text=>I18n.t('common.new'),:path=>new_rubrik_path() ,:icon=>:plus} if can? :new, Rubrik
+
   end
+
   # DELETE /rubriken/1
   # DELETE /rubriken/1.json
   def destroy

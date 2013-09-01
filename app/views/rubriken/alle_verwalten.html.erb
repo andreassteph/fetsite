@@ -1,5 +1,15 @@
+<h1>Neuigkeiten Verwaltung</h1>
+<h2>Rubriken</h2>
+<ul>
+  <% @rubriken.each do |r| %>
+  <li> <%= link_to r.name, verwalten_rubrik_path(r)%></li>
+  <% end %>
+</ul>
+<h2>Nicht veröffentlicht</h2>
+<%= render :partial=>"admin_liste", :locals=>{:neuigkeiten=>@neuigkeiten_unpublished} %>
+<h2>Öffentlich veröffentlicht</h2>
+<%= render :partial=>"admin_liste", :locals=>{:neuigkeiten=>@neuigkeiten_public_published} %>
 
-<%= render :partial=>"admin_liste", :locals=>{:rubriken=>@rubriken} %>
+<%= render 'layouts/pretty_toolbar' %>
 
 
-<%= link_to 'New Rubrik', new_rubrik_path unless cannot?(:new, Rubrik) %>

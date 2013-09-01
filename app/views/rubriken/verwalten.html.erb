@@ -1,22 +1,32 @@
 <h1><%= @rubrik.name %></h1>
- <p id="notice"><%= notice %></p>
-<%= render :partial=>'admin_liste', :locals=>{:rubriken => [@rubrik]} %>
- 
+
+<p id="notice"><%= notice %></p>
+<h2>Nicht Veröffentlicht</h2>
+<%= render :partial=>'admin_liste', :locals=>{:neuigkeiten => @neuigkeiten_unpublished} %>
+<h2>Veröffentlicht</h2>
+<%= render :partial=>'admin_liste', :locals=>{:neuigkeiten => @neuigkeiten_published} %>
+
+<b>Moderatoren:</b> 
 <table class="table">
-<b>Moderatoren:</b><i>
-<% @moderatoren.each do |m|%>
-<tr><td>
-<%= m.email%></td><td>Entfernen</td></tr>
-<% end%></i>
+    <% @moderatoren.each do |m|%>
+    <tr>
+      <td>
+	<%= m.email%>
+      </td>
+      <td>
+	<%= link_to "Entfernen" , removemoderator_rubrik_path(:rubrik,{:moderator=>m.id})%>
+      </td>
+    </tr>
+    <% end%>
+</table>
 
-
-
-<%= semantic_form_for @rubrik, :url=> url_for(:action => 'addmoderator',:id=>@rubrik.id) do |f| %>
+<%= semantic_form_for [@rubrik], :url=> url_for(:action => 'addmoderator',:id=>@rubrik.id) do |f| %>
 <%= f.inputs do %>
 <%= f.input :moderator, :as => :select, :collection => Hash[User.all.map{|b| [b.email,b.id]}] ,:label=>"Hinzufuegen"%>
 <% end %>
 <%= f.action :submit %>
 <% end %>
+
 <%= link_to 'Edit', edit_rubrik_path(@rubrik) %> |
 <%= link_to 'Anzeigen', rubrik_path(@rubrik) %>
 <%= link_to 'Destroy', @rubrik, method: :delete, data: { confirm: 'Are you sure?' } %>
