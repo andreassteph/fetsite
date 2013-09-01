@@ -41,7 +41,7 @@ gem 'jquery-rails'
 
 # Formbuilder for easier form generation
 gem 'formtastic', '~>2.2.1'
-gem 'formtastic-bootstrap' , :git => "git://github.com/mjbellantoni/formtastic-bootstrap.git"
+gem 'formtastic-bootstrap', '~>2.1.3' #, :git => "git://github.com/mjbellantoni/formtastic-bootstrap.git"
 # TinyMCE
 gem "tinymce-rails" , '>=3.5.8'
 
