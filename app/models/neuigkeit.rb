@@ -33,7 +33,7 @@ class Neuigkeit < ActiveRecord::Base
 	self.rubrik.public && self.datum >=Time.now.to_date
   end
   def publish
-    self.datum = Time.now
+    self.datum = Date.today
   end
   def reverse_publish
     self.datum = nil
