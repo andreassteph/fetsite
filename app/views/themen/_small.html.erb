@@ -10,7 +10,6 @@
 </p>
 <br/>
 <% end %>
-
-
-
-<%= link_to 'Edit', small %>
+<% @small_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>small}] 
+@small_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('thema.remove'), :path=>small, :method=>:delete,:confirm=>I18n.t('thema.sure')}%>
+<%= render :partial=>'layouts/pretty_toolbar', :object=>@small_elements %>

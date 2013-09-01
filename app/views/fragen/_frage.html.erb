@@ -1,0 +1,8 @@
+<p>
+<b> <%= frage.title %> </b> <br/>
+<%= raw(frage.text) %>
+<br/>
+
+<%= link_to 'Edit', edit_frage_path(frage) %> |
+<%= link_to 'Destroy',frage, method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>

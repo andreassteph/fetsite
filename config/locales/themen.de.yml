@@ -5,3 +5,16 @@ de:
     edit: "Themengruppe bearbeiten"
     remove: "Themengruppe löschen"
     sure: "Sicher, dass Sie diese Themengruppe löschen möchten?"
+  thema:
+    add: "Thema hinzufügen"
+    edit: "Thema bearbeiten"
+    remove: "Thema löschen"
+    sure: "Sicher, dass Sie dieses Thema löschen möchten?"
+  frage:
+    add: "Frage hinzufügen"
+    edit: "Frage bearbeiten"
+    remove: "Frage löschen"
+    sure: "Sicher, dass Sie diese Frage löschen möchten?"
+  attachment:
+    title: "Anhang"
+    add: "Anhang hinzufügen"

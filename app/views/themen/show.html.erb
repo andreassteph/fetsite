@@ -5,23 +5,23 @@
   <%= raw(@thema.text) %>
 </p>
 
-
+<!--
 <%= link_to 'Edit', edit_thema_path(@thema) %> |
 <%= link_to 'Back', themengruppe_path(@thema.themengruppe) %>
+-->
+<%= render :partial=>'layouts/pretty_toolbar' %>
 
 <h2>FAQs:</h2>
 <% @thema.fragen.each do |frage| %>
-<p>
-<b> <%= frage.title %> </b> <br/>
-<%= raw(frage.text) %>
-<br/>
-<%= link_to 'Edit', edit_frage_path(frage) %> |
-<%= link_to 'Destroy',frage, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-</p>
+<%= render frage %>
 <% end %>
+
+<% @frage_elements = [{:icon=>:plus, :hicon=>'icon-plus', :text=>I18n.t('frage.add'), :path=>new_frage_path}] %>
+<%= render :partial=>'layouts/pretty_toolbar', :object=>@frage_elements %>
+<!--
 <%= link_to 'Neue Frage', new_frage_path %> <br/>
+-->
 <br/>
 
-<h2>Attachments:</h2>
-<%= render :partial => "themen/select", :object => @thema, :locals => { :editor => :false }%>
+<h2><%= I18n.t('attachment.title')%>:</h2>
+<%= render :partial => "themen/select", :object => @thema, :locals=>{:editor => :false} %>
