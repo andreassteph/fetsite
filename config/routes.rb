@@ -66,6 +66,7 @@
        member do
          get 'verwalten'
          put 'addmoderator'
+         get 'removemoderator'
        end
        resources :neuigkeiten, :except => [:index] do 
          member do
