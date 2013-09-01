@@ -81,6 +81,4 @@ de:
               blank: "Wählen Sie zumindest eine Modulgruppe aus"
   support:
     array:
-      two_words_connector: ', '  
-  themengruppe:
-    themen: "Themen"
+      two_words_connector: ', '
