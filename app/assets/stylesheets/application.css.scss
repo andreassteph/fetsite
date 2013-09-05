@@ -15,45 +15,65 @@
 
  
  */
+// Colorshema #0A64A4
+$bodyBackground: #FFFFFF;
+$navbarBackground: #FFCE40;
+$navbarBackgroundHighlight:#FFDB73;
+$navbarLinkBackgroundHover:#FFBE00;
+$infoBackground:#65A5D1;
+$infoText:#03406A;
 $linkColor: #03006E;
 @import 'bootstrap';
 @import 'bootstrap-responsive';
 @import 'bootstrap/image-gallery';
 
 
-h1 
-{font-size: 23px}
-h2 
-{font-size: 19px}
-body,html
-{padding:0;margin:0;}
-
-div.header 
-{display: block; 
-background: url('/assets/fet_logo_2.png') rgb(235,235,235) no-repeat;
-background-position:15px center; 
-border-bottom:1px solid black;
-height:60px; 
-padding-left:160px;
-padding-top:0px;
-overflow:hidden;
-margin-bottom: 20px
+h1 { 
+  font-size: 23px
 }
 
-#menudiv
-{
-
-   width:100%;
+h2 { 
+  font-size: 19px
 }
 
+body,html { 
+  padding:0;
+  margin:0;
+
+}
+a:hover {
+  text-decoration:none;
+}
+
+div.header { 
+  display: block; 
+  background: url('/assets/fet_logo_2.png') no-repeat;
+  background-color: #0A64A4;
+  background-position:15px center; 
+  border-bottom:1px solid black; 
+  height:60px; 
+  color:#CFCFCF;
+  padding-left:160px;
+  padding-top:0px;
+  overflow:hidden;
+  margin-bottom: 20px
+}
+
+#menudiv { 
+  width:100%;
+}
+	
 
 .navbar .nav li {
-min-width:60%;
-
+  min-width:60%;
 }
 .navbar .nav .divider {
-border-style: solid;  
-border-width: 1px 0px 0px 0px;
-border-color: grey;
-min-width: 100%;
+  border-style: solid;  
+  border-width: 1px 0px 0px 0px;
+  border-color: grey;
+  min-width: 100%;
+}
+
+#contentdiv{
+  background: #FFFFFF
 }

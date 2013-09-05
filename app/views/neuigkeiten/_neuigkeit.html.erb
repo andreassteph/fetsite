@@ -1,15 +1,18 @@
 
 <%= link_to [neuigkeit.rubrik,neuigkeit] do %>
-<div class="media">
-	<div class="pull-left" href="#">
-		<p><br><%= image_tag neuigkeit.picture.thumb.url  unless neuigkeit.picture.url.nil? %></p>
-	</div>
-	<div class="media-body"><div><small><%= neuigkeit.rubrik.name %></small> 
-	<small class="pull-right"><%= "am "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> </div>
-		<h1><%= neuigkeit.title%></h1>
-		<%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%>
-		<p></p>
-	</div>
+<div class="media neuigkeit_block"> 
+  <div class="pull-left" href="#">
+    <p><br><%= image_tag neuigkeit.picture.thumb.url  unless neuigkeit.picture.url.nil? %>
+    </p>
+  </div>
+  <div class="media-body">
+    <div>
+      <small><%= neuigkeit.rubrik.name %></small> 
+      <small class="pull-right"><%= "am "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> 
+    </div>
+    <h1><%= neuigkeit.title%></h1>
+    <%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%>
+  </div>
 </div>
-
+<br>
 <% end %>
