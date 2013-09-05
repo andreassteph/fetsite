@@ -6,6 +6,8 @@ class NeuigkeitenController < ApplicationController
     @neuigkeit = Neuigkeit.find(params[:id])
 	if params[:verwalten]
           @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :publish, @neuigkeit
+          @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :unpublish, @neuigkeit
+
 
           @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit
           @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>"Sure?" } if can? :delete, @neuigkeit
@@ -20,7 +22,15 @@ class NeuigkeitenController < ApplicationController
     @rubrik=Rubrik.find(params[:rubrik_id]) unless params[:rubrik_id].nil?
     @neuigkeit.rubrik=@rubrik unless @rubrik.nil?
   end
-  
+  def unpublish
+    @neuigkeit = Neuigkeit.find(params[:id])
+    @neuigkeit.reverse_publish
+    @neuigkeit.save
+    if params[:verwalten] 
+      redirect_to verwalten_rubrik_path(@neuigkeit.rubrik)
+    end
+    redirect_to rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)
+  end   
   def publish 
     @neuigkeit = Neuigkeit.find(params[:id])
     @neuigkeit.publish
