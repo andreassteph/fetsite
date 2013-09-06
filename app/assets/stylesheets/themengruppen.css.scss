@@ -9,3 +9,14 @@ min-width:13em;
 border: #91B4FF solid 0px;
 height: 90%
 }
+
+a.themengruppe:hover
+{
+	box-shadow: 1px 1px 2px 2px lightgray;
+}
+
+a.themengruppe
+{
+	padding: 5px;
+	display:block;
+}
