@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<div class="container-fluid">
+<div id="maincontainer" class="container-fluid">
 <div class="row-fluid">
 <div class="header">
 		<h1 style="display:block;float:none">Fachschaft Elektrotechnik</h1>
@@ -24,7 +24,7 @@
 		<div class="row-fluid">
 	<div class="span2 earlymax">
 	<div id="menudiv"><%= render :template => 'layouts/menu' %></div>
-	</div>	<div class="span10 earlymax">
+	</div>	<div class="span10 earlymax" id="contentdiv">
 	
 			<%= yield %>
 	</div>

@@ -71,6 +71,7 @@
        resources :neuigkeiten, :except => [:index] do 
          member do
            get 'publish'
+           get 'unpublish'
          end
        end
      end
