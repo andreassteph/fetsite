@@ -1,37 +1,36 @@
 
 <p id="notice"><%= notice %></p>
+<div>
+  <small> <%= @gallery.datum %> </small>
+  <h1>
+    <%= @gallery.name %>
+  </h1>
 
+</div>
 <p>
-  <b>Name:</b>
-  <%= @gallery.name %>
-</p>
-
-<p>
-  <b>Desc:</b>
   <%= @gallery.desc %>
 </p>
 
-<p>
-  <b>Datum:</b>
-  <%= @gallery.datum %>
-</p>
+
+ 
+
 <!-- modal-gallery is the modal dialog used for the image gallery -->
 <div id="modal-gallery" class="modal hide fade modal-gallery modal-fullscreen modal-loading" tabindex="-1">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h3 class="modal-title"></h3>
-    </div>
-    <div class="modal-body"><div class="modal-image"></div></div>
-    <div class="modal-footer">
-        <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
-        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
-        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
-        <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
-    </div>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3 class="modal-title"></h3>
+  </div>
+  <div class="modal-body"><div class="modal-image"></div></div>
+  <div class="modal-footer">
+    <a class="btn btn-primary modal-next">Next <i class="icon-arrow-right icon-white"></i></a>
+    <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> Previous</a>
+    <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> Slideshow</a>
+    <a class="btn modal-download" target="_blank"><i class="icon-download"></i> Download</a>
+  </div>
 </div>
 
 <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
-<% @gallery.fotos.each do |f| %>
+  <% @gallery.fotos.each do |f| %>
 
 <a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery="gallery">
 <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid"}) %></a>
@@ -40,9 +39,10 @@
 <% end %>
 </div>
 
-<%= link_to 'NewFoto' , new_gallery_foto_path(@gallery)  %> | 
-<%= link_to 'Edit', edit_gallery_path(@gallery) %> |
-<%= link_to 'Back', galleries_path %>
+<%= render 'layouts/pretty_toolbar' %>
+
+
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/load-image.js"></script>

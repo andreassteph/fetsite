@@ -1,3 +1,4 @@
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -16,9 +17,21 @@
  
  */
 // Colorshema #0A64A4
-$bodyBackground: #FFFFFF;
-$navbarBackground: #FFCE40;
-$navbarBackgroundHighlight:#FFDB73;
+$color_prim: #0A64A4;
+$color_prim_light: 0B65A5;
+$color_prim_vlight: 2B85C5;
+$color_cont: FFDB73;
+$color_cont_light:FFDB73;
+
+$white: #FFFFFF;
+
+$bodyBackground: $white;
+$navbarBackground: lighten(#FFCE40,20%);
+//$navbarBackground: #FFFFFF;
+
+$navbarBackgroundHighlight:lighten(#FFDB73,20%);
+//$navbarBackgroundHighlight:#FFFFFF;
+
 $navbarLinkBackgroundHover:#FFBE00;
 $infoBackground:#65A5D1;
 $infoText:#03406A;
@@ -74,6 +87,10 @@ div.header {
   min-width: 100%;
 }
 
+.navbar .navbar-inner {
+border:none;
+box-shadow:none;
+}
 #contentdiv{
   background: #FFFFFF
 }

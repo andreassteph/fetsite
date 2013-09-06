@@ -1,4 +1,7 @@
 class GalleriesController < ApplicationController
+  before_filter {@toolbar_elements=[]}
+  load_and_authorize_resource
+
   # GET /galleries
   # GET /galleries.json
   def index
@@ -14,7 +17,9 @@ class GalleriesController < ApplicationController
   # GET /galleries/1.json
   def show
     @gallery = Gallery.find(params[:id])
-
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> "NewFoto", :path=>new_gallery_foto_path(@gallery)}
+    @toolbar_elements << {:hicon=>'icon-pencil', :text => I18n.t('common.edit'), :path=>edit_gallery_path(@gallery)}
+    @toolbar_elements << {:text=>"Back", :path=>galleries_path()}
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @gallery }
