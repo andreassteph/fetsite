@@ -1,4 +1,4 @@
-<h1>Listing galleries</h1>
+<h1><%= I18n.t('fotos.galleries')%></h1>
  <%= %>
 <div class="container-fluid">
 	<div class="row-fluid">
@@ -23,4 +23,4 @@
 </div
 
 <br />
-<%= link_to 'New Gallery', new_gallery_path %>
+<%= link_to I18n.t('fotos.new-gallery'), new_gallery_path %>

@@ -15,12 +15,13 @@ class Rubrik < ActiveRecord::Base
   has_many :neuigkeiten, :class_name => "Neuigkeit"
   has_many :calentries, :through => :neuigkeiten, :as=>:object
   resourcify
-def moderator
-   u=User.with_role(:newsmoderator).first
-   if !u.nil? 
-     u.id
-   end
-end
+  has_one :calendar
+  def moderator
+    u=User.with_role(:newsmoderator).first
+    if !u.nil? 
+      u.id
+    end
+  end
 
 
 end

@@ -1,41 +1,31 @@
+<%= render 'fetprofiles/tabs' %>
+<p id="notice"><%= notice %></p>
 <div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-			<%= render 'fetprofiles/tabs' %>
-			<p id="notice"><%= notice %></p>
-		</div>
-	</div>
-	<div class="row-fluid">
-		<div class="span12">
-			<h1>
-			  <%= @gremium.name %>
-			</h1>
-			<% Gremium::TYPEN[@gremium.typ.to_i].to_s %>
-			<p>
-			<%= @gremium.desc %>
-			</p>
-		</div>
-	</div>
+  <div class="row-fluid">
+    <h1>
+      <%= @gremium.name %>
+    </h1>
+    <% Gremium::TYPEN[@gremium.typ.to_i].to_s %>
+    <p>
+      <%= @gremium.desc %>
+    </p>
+  </div>
 
-
-	<% @gremium.memberships.order(:typ).active.each_slice(4) do |r| %>
-		<div class="row-fluid"><% r.each do |m| %>
-		<%= link_to m.fetprofile do %>
-			<div class="span3" style="vertical-align:middle; text-align:center">
-				<%= image_tag m.fetprofile.picture.portrait %>
-				<p>
-				<%= m.fetprofile.name %> <br><%= render(m) %>
-				</p>
-			</div> 
-			<% end %>
-		<% end %>
-		</div>
-
-	<% end %>
-
-
-	<%= link_to 'Edit', edit_gremium_path(@gremium) %> |
-	</div>
-	</div>
-
+  <% @gremium.memberships.order(:typ).active.each_slice(4) do |r| %>
+  <div class="row-fluid">
+    <% r.each do |m| %>
+    <%= link_to m.fetprofile do %>
+    <div class="span3" style="vertical-align:middle; text-align:center">
+      <%= image_tag m.fetprofile.picture.portrait %>
+      <p>
+	<%= m.fetprofile.name %> <br>
+	<%= render(m) %>
+      </p>
+    </div> 
+    <% end %>
+    <% end %>
+  </div>
+  <% end %>
 </div>
+  <%= link_to I18n.t('common.edit'), edit_gremium_path(@gremium) %> 
+

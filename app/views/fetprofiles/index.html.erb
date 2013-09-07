@@ -1,36 +1,29 @@
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span12">
-		 <%= render 'fetprofiles/tabs' %>
-		</div>  
-	</div>
-	<div class="row-fluid">  
-		<div class="span12">
-			<h1>
-			<%=	I18n.t 'fetprofiles.all' if params[:filter] == "all" %>
-			<%=	I18n.t 'fetprofiles.active' if params[:filter].nil? || params[:filter]== "active"
-			%>
-			
-			
-			</h1>
-		</div>
-	</div>
-	<% @fetprofiles.each do |fetprofile| %>
-	<div class="row-fluid">
-	<%= link_to fetprofile do %>
-	<div class="span3">
-	<%= image_tag fetprofile.picture.portrait.url %>
-	</div>
-	<div class="span9">
-	
-    <h2><%= fetprofile.name %></h2>
-    <p><%= fetprofile.fetmail %></p>
-    <p><%= fetprofile.desc %></p>
-   
-</div> <% end %>
+
+<%= render 'fetprofiles/tabs' %>
+<h1>
+  <%=	I18n.t 'fetprofiles.all' if params[:filter] == "all" %>
+  <%=	I18n.t 'fetprofiles.active' if params[:filter].nil? || params[:filter]== "active"
+	%>
+</h1>
+<ul class="unstyled">
+<% @fetprofiles.each do |fetprofile| %>
+<li>
+<%= link_to fetprofile do %>
+<span class="pull-left">
+  <%= image_tag fetprofile.picture.portrait.url %>
+</span>
+<div class="">
+  
+  <h2><%= fetprofile.name %></h2>
+  <p><%= fetprofile.fetmail %></p>
+  <p><%= fetprofile.desc %></p>
+  
 </div>
 <% end %>
+</li>
+<% end %>
+</ul>
 <div class="row-fluid">
-<div class="span12">
-<%= link_to 'New Fetprofile', new_fetprofile_path %>
+  <div class="span12">
+    <%= link_to I18n.t('fetprofiles.new'), new_fetprofile_path %>
 </div></div></div>

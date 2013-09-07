@@ -1,5 +1,4 @@
  Fetsite::Application.routes.draw do
-
    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
    resources :home, :only=>[:index]
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"
@@ -7,11 +6,9 @@
      resources :users, :only => [:index]
      get 'users/:id/add_role/:role', :controller=>:users, :action=>:add_role, :as=>'user_add_role'
      get 'users/:id/do_confirm', :controller=>:users, :action=>:do_confirm, :as=>'user_do_confirm'
-
      get 'config',:controller=>:config,:action=>:index , :as => 'config'
-     get 'config/get_git_update',:controller=>:config,:action=>:get_git_update, :as=>'config_getgitupdate'
-     get 'config/get_git_update',:controller=>:config,:action=>:get_git_update
-   end
+
+    end
 
    devise_for :users
 

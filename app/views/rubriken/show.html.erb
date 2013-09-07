@@ -1,37 +1,34 @@
 <%= render 'tabs' %>
-
 <p id="notice"><%= notice %></p>
-<div class="row-fluid">
-<span class="span12">
-  <h1><%= @rubrik.name %></h1>
 
+
+<h1><%= @rubrik.name %></h1>
 <p>
-
   <%= @rubrik.desc %>
 </p>
-<b>Moderatoren:</b><i>
-<% @moderatoren.each do |m|%>
-<%= m.email%>,
-<% end%></i>
-</span>
-</div>
+<b>Moderatoren:</b>
+<i>
+  <% @moderatoren.each do |m|%>
+  <%= m.email%>,
+  <% end%>
+</i>
 
-<% @rubrik.neuigkeiten.each_slice(2) do |row| %>
-<div class="row-fluid">
-<% row.each do |neuigkeit| %>
-<div class="span6 min-width:13em;">
-<%= render neuigkeit %>
 
-</div>
+<% @rubrik.neuigkeiten.each_slice(1) do |row| %>
+<ul class="unstyled" style="max-width:70em">
+  <% row.each do |neuigkeit| %>
+  <li>
+    <%= render neuigkeit %>
+  </li>
+  <% end %>
+</ul>
 <% end %>
-</div>
-<% end %>
 
 
-<div class="row-fluid">
-<span class="span12">
-<%= link_to 'Verwalten', verwalten_rubrik_path(@rubrik) %> |
-<%= link_to '<i class="icon-plus-sign"></i>'.html_safe+"Neuer Artikel", new_rubrik_neuigkeit_path(@rubrik) %> 
-</span></div>
+
+    <%= link_to 'Verwalten', verwalten_rubrik_path(@rubrik) %> |
+    <%= link_to '<i class="icon-plus-sign"></i>'.html_safe+"Neuer Artikel", new_rubrik_neuigkeit_path(@rubrik) %> 
+
+
 <%= toolbar_html(@toolbar_elements)%>
 

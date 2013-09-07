@@ -1,40 +1,40 @@
 <p id="notice"><%= notice %></p>
 <div class="container-fluid">
   <div class="row-fluid">
-	  <div class="span3">
-		<%= image_tag @fetprofile.picture.portrait.url %>
-	</div>
-	<div class="span9">
-<h2><%= @fetprofile.name %></h2>
+    <div class="span3">
+      <%= image_tag @fetprofile.picture.portrait.url %>
+    </div>
+    <div class="span9">
+      <h2><%= @fetprofile.name %></h2>
 
-<p>
-  <%= @fetprofile.fetmailalias %>
-</p>
-<p>
-  <%= @fetprofile.desc %>
-</p>
-<p>
-   <%= "<b>Aktiv</b>".html_safe if @fetprofile.active %>
-</p>
-<p><%= link_to 'Destroy', @fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-</div>
-</div>
+      <p>
+	<%= @fetprofile.fetmailalias %>
+      </p>
+      <p>
+	<%= @fetprofile.desc %>
+      </p>
+      <p>
+	<%= "<b>"+I18n.t('fetprofiles.active')+"</b>".html_safe if @fetprofile.active %>
+      </p>
+      <p><%= link_to 'Destroy', @fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    </div>
+  </div>
 
   <div class="row-fluid">
-	  <div class="span12">
-<ul>
+    <div class="span12">
+      <ul>
 	<% @fetprofile.memberships.each do |m| %>
-		<li>
-<%= render m %>
-<% link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) %>
-		</li>
+	<li>
+	  <%= render m %>
+	  <% link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) %>
+	</li>
 	<% end %>
-</ul>
+      </ul>
 
 
-<%= link_to 'Neue Mitgliedschaft', new_fetprofile_membership_path(@fetprofile) %> |
+      <%= link_to 'Neue Mitgliedschaft', new_fetprofile_membership_path(@fetprofile) %> |
 
-<%= link_to 'Edit', edit_fetprofile_path(@fetprofile) %> |
-<%= link_to 'Back', fetprofiles_path %>
-</div>
+      <%= link_to 'Edit', edit_fetprofile_path(@fetprofile) %> |
+      <%= link_to 'Back', fetprofiles_path %>
+    </div>
 </div></div>

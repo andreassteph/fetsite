@@ -1,32 +1,23 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-	<div class="span12">
-		<%= render 'rubriken/tabs' %>
-		<p id="notice"><%= notice %></p>
-	</div>
-  </div>
-  <div class="row-fluid">
-	<div class="span9">
-		<%= @neuigkeit.rubrik.name %>
-			</div>
-	<div class="span3">
+<%= render 'rubriken/tabs' %>
+<p id="notice"><%= notice %></p>
 
-		<%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
-		<%= "am " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
-	</div>
+<span>
+  <%= @neuigkeit.rubrik.name %>
+</span>
+<span class="pull-right">
+  <%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
+  <%= "am " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
+</span>
+<div class="media">
+  <div class="pull-left" href="#">
+    <p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.url  %>
+    </p>
   </div>
-  <div class="row-fluid">
-	<div class="span12">
-		<div class="media">
-		<div class="pull-left" href="#">
-			<p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.url  %></p>
-		</div>
-		<div class="media-body">
-			<h1><%= link_to @neuigkeit.title,rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)  %></h1>
-			<%= raw(@neuigkeit.text) %>
-			<p></p>
-		</div>
-	</div>
+  <div class="media-body">
+    <h1><%= link_to @neuigkeit.title,rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)  %></h1>
+    <%= raw(@neuigkeit.text) %>
+    <p></p>
   </div>
+</div>
 
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
