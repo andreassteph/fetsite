@@ -15,7 +15,7 @@ class ThemenController < ApplicationController
   def show
     @thema = Thema.find(params[:id])
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>edit_thema_path(@thema)}]
-    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('thema.remove'), :path=>themengruppe_thema_path(@thema), :method=>:delete, :confirm=>I18n.t('thema.sure')}
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('thema.remove'), :path=>thema_path(@thema), :method=>:delete, :confirm=>I18n.t('thema.sure')}
 
     respond_to do |format|
       format.html # show.html.erb
@@ -78,7 +78,7 @@ class ThemenController < ApplicationController
     @thema.destroy
 
     respond_to do |format|
-      format.html { redirect_to themen_url }
+      format.html { redirect_to themengruppe_path(@thema.themengruppe) }
       format.json { head :no_content }
     end
   end
