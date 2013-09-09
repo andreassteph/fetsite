@@ -6,8 +6,24 @@ Verwendung: Aufruf mit
 -->
 <% toolbar_elements = !pretty_toolbar.nil? ? pretty_toolbar : @toolbar_elements %>
 <span class="label"><%= I18n.t("common.actions")%></span>
- <div class="btn-group">
-<% toolbar_elements.each do |t| %>
-      <%= link_to '<i class="'.html_safe+ t[:hicon].to_s.html_safe + '"></i>'.html_safe+t[:text], t[:path], :method=>t[:method], :confirm=>t[:confirm].to_s, :data=>t[:data], :class=>((t[:method].to_s=='delete') ? "btn btn-danger" : "btn") %>
-    <% end %>
+<div class="btn-group">
+  <% toolbar_elements.each do |t| %>
+  <% unless t[:method]==:versions %>
+  <% text='<i class="'.html_safe+ t[:hicon].to_s.html_safe + '"></i>'.html_safe+t[:text] %>
+  <%= link_to text, t[:path], :method=>t[:method], :confirm=>t[:confirm].to_s, :data=>t[:data], :class=>((t[:method].to_s=='delete') ? "btn btn-danger" : "btn") %>
+  <% else %>
+  <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	Versionen<span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+	<% t[:versions].each_with_index do |v,i| %>
+	<li>
+	  <%= link_to v[:created_at], t[:path]+"?version=#{i}" ,:version=>v[:id]%>
+	</li>
+	<% end %>    
+      </ul>
+  </div>
+  <% end %>
+  <% end %>
 </div>

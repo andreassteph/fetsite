@@ -3,16 +3,21 @@ class NeuigkeitenController < ApplicationController
   load_and_authorize_resource
 
   def show
-    @neuigkeit = Neuigkeit.find(params[:id])
-	if params[:verwalten]
-          @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :publish, @neuigkeit
-          @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :unpublish, @neuigkeit
+  @neuigkeit = Neuigkeit.find(params[:id])    
+    if  !params[:version].nil?
+      @neuigkeit.versions.reverse[params[:version].to_i].reify.save!
+      @neuigkeit=Neuigkeit.find(params[:id])
+    end 
 
-
-          @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit
-          @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>"Sure?" } if can? :delete, @neuigkeit
+    if params[:verwalten]
+      @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :publish, @neuigkeit
+      @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :unpublish, @neuigkeit
+      @versions= @neuigkeit.versions.select([:created_at]).reverse
+      @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}
+      @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
+      @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>"Sure?" } if can? :delete, @neuigkeit
         else
-          @toolbar_elements << {:text=>I18n.t('common.verwalten'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit,{:verwalten=>true}),:icon=>:pencil} if can? :verwalten, @neuigkeit
+      @toolbar_elements << {:text=>I18n.t('common.verwalten'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit,{:verwalten=>true}),:icon=>:pencil} if can? :verwalten, @neuigkeit
           
         end
   end
