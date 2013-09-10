@@ -5,7 +5,7 @@
   <%=	I18n.t 'fetprofiles.active' if params[:filter].nil? || params[:filter]== "active"
 	%>
 </h1>
-<ul class="unstyled">
+<ul class="unstyled fetprofile_list">
 <% @fetprofiles.each do |fetprofile| %>
 <li>
 <%= link_to fetprofile do %>
