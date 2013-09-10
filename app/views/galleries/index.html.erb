@@ -7,9 +7,9 @@
     <div class="media gallery-block">
       <div class="pull-left" href="#">
 	<%= if(gallery.fotos.empty?)
-	    image_tag "no_image_128.png"
+	    image_tag "no_image_128.png", {:class => "img-rounded"}
 	    else
-	    image_tag gallery.fotos.sample.datei.big_thumb.url
+	    image_tag gallery.fotos.sample.datei.big_thumb.url, {:class => "img-rounded"}
 	    end %>
       </div>
       <div class="media-body">
