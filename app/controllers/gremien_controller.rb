@@ -4,7 +4,7 @@ class GremienController < ApplicationController
  before_filter {@toolbar_elements=[]}
   def verwalten
     @gremien = Gremium.all
-    @gremientabs=Gremium.all
+    @gremientabs=Gremium.tabs
     @toolbar_elements << {:text=>I18n.t('common.new'),:path=>new_gremium_path() ,:icon=>:plus} if can? :new, Gremium
     respond_to do |format|
       format.html # index.html.erb
@@ -12,11 +12,18 @@ class GremienController < ApplicationController
     end
   end
 
+  def index 
+    @gremien = Gremium.order(:typ).order(:name)
+    @gremientabs=Gremium.tabs
+  
+  end
+
+
   # GET /gremien/1
   # GET /gremien/1.json
   def show
     @gremium = Gremium.find(params[:id])
-    @gremientabs=Gremium.order(:typ)
+    @gremientabs=Gremium.tabs
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @gremium }
