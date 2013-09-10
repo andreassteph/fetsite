@@ -9,15 +9,17 @@
 <% @fetprofiles.each do |fetprofile| %>
 <li>
 <%= link_to fetprofile do %>
+<div class="media">
 <span class="pull-left">
   <%= image_tag fetprofile.picture.portrait.url %>
 </span>
-<div class="">
+<div class="media-body">
   
   <h2><%= fetprofile.name %></h2>
   <p><%= fetprofile.fetmail %></p>
   <p><%= fetprofile.desc %></p>
   
+</div>
 </div>
 <% end %>
 </li>
