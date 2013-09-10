@@ -1,0 +1,13 @@
+<%= render 'fetprofiles/tabs' %>
+<h1>Alle Gremien</h1>
+
+<ul class="unstyled fetprofile_list">
+  <% @gremien.each do |g| %>
+  <li>
+    <%= link_to g do %>
+    <h2><%= g.name %></h2>
+    <p><%= g.desc %></p>
+    <% end %>
+  </li>
+<% end %>
+</ul>
