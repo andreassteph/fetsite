@@ -5,7 +5,7 @@ class FetprofilesController < ApplicationController
     
     @fetprofiles = Fetprofile.active.order(:vorname,:nachname)
     @fetprofiles = Fetprofile.order(:vorname,:nachname) if params[:filter]== "all"
-	@gremientabs=Gremium.order(:typ)
+	@gremientabs=Gremium.tabs
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @fetprofiles }

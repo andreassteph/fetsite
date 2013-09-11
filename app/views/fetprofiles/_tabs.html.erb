@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
  <li <%= (request.fullpath == fetprofiles_path(filter: "active")|| request.fullpath == fetprofiles_path) ? 'class="active"'.html_safe : ''%> >
  <%= link_to "Aktive Mitglieder" , fetprofiles_path( filter: "active") %> </li>
- 
+<li><%= link_to "Alle Gremien und Gruppen", gremien_path %></li> 
 <% for g in @gremientabs %>
   <li <%= (!@gremium.nil? && g == @gremium) ? 'class="active"'.html_safe : '' %> title="<%= g.name %>">
     <%= link_to g.name, g %>

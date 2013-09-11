@@ -16,3 +16,9 @@ border-radius:2px;
 border-color: blue;
 margin: 5px;
 }
+a.studium {
+display:block
+}
+a.studium:hover {
+box-shadow: 1px 1px 2px 2px lightgray;
+}

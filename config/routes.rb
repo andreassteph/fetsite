@@ -35,7 +35,7 @@
        resources :fotos
      end
      
-     resources :gremien, :except=>[:index] do 
+     resources :gremien do 
        collection do 
          get 'verwalten'
        end
