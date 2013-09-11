@@ -3,3 +3,7 @@ en:
     galleries: "Picture Gallery"
     new-gallery: "new gallery"
     bilder: "pictures"
+    prev: "Previous"
+    next: "Next"
+    slideshow: "Slideshow"
+    pictures_per_site: "Pictures per site"
