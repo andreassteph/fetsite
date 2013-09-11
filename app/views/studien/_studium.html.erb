@@ -1,6 +1,14 @@
-<div class="studium">
-  <h2><%= link_to studium.name + " " + studium.zahl.to_s, studium_path(studium, :ansicht=>'semesteransicht')%></h2>  <p><b><%= studium.typ%> </b></p>
+  <%= link_to studium_path(studium, :ansicht=>'semesteransicht') ,{:class=>"studium"} do %>
+
+  <h2>
+    <%= studium.name + " " + studium.zahl.to_s %>
+  </h2>
+  <p>
+    <b><%= studium.typ%> </b>
+  </p>
   <p><b><%=I18n.t("studien.desc")%>:</b><br>
-      <%= !(studium.desc.to_s == "") ? studium.desc.html_safe :  I18n.t("keine.beschreibung")%></p>
+      <%= !(studium.desc.to_s == "") ? studium.desc.html_safe :  I18n.t("keine.beschreibung")%>
+  </p>
   
-</div>
+
+<% end %>
