@@ -15,7 +15,7 @@
 
 <div class="fluid-row">
   <div class="span9">  <!-- pagination-->
-    <div class="pagination pull_left">
+    <div class="pagination pull_left" style="margin:0px 0px 0px 0px">
       <ul>
 	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==1 ? @page : @page-1)} %>"><%=I18n.t('fotos.prev')%></a></li>
 	<% for i in 1..@pages do %>
@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="span3"> <!-- size selector -->
-    <div class="pull-right" style="margin-top:20px">
+    <div class="pull-right">
       <div class="btn-group" data-toggle="buttons-radio">
 	<button class="btn" disabled><%=I18n.t('fotos.pictures_per_site')%></button>
 	<% for i in 0..@pppage_array.size-1 %>
@@ -39,7 +39,7 @@
 
 <div style="clear:both"></div>
 
-<div class="fluid-row" style="margin-bottom:20px">
+<div class="fluid-row" style="margin:20px">
   <!-- modal-gallery is the modal dialog used for the image gallery -->
   <div id="modal-gallery" class="modal hide fade modal-gallery modal-fullscreen modal-loading" tabindex="-1">
     <div class="modal-header">
@@ -59,7 +59,7 @@
     <% @fotos.each do |f| %>
 
     <a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery="gallery">
-      <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid"}) %></a>
+      <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>
 
 
     <% end %>
