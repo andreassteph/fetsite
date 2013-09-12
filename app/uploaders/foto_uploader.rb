@@ -30,7 +30,11 @@ class FotoUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+
+  # general settings
+  process :fix_exif_rotation
   process :strip
+  process :convert => 'jpg'
 
   # Create different versions of your uploaded files:
    version :thumb do
