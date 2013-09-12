@@ -29,9 +29,9 @@ class GalleriesController < ApplicationController
     @page = params[:page].nil? ? 1 : params[:page].to_i
     @fotos = Foto.where(:gallery_id => params[:id]).limit(@pppage_array[@pppage]).offset(@pppage_array[@pppage]*(@page-1))
     @pages = (Foto.where(:gallery_id => params[:id]).count/(@pppage_array[@pppage])+1)
-    @toolbar_elements << {:hicon=>'icon-plus', :text=> "NewFoto", :path=>new_gallery_foto_path(@gallery)}
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fotos.new-fotos'), :path=>new_gallery_foto_path(@gallery)}
     @toolbar_elements << {:hicon=>'icon-pencil', :text => I18n.t('common.edit'), :path=>edit_gallery_path(@gallery)}
-    @toolbar_elements << {:text=>"Back", :path=>galleries_path()}
+    @toolbar_elements << {:hicon=>'icon-arrow-left', :text=>I18n.t('common.back'), :path=>galleries_path()}
 
     respond_to do |format|
       format.html # show.html.erb
