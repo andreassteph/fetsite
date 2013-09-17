@@ -7,6 +7,11 @@
     <%= f.input :rubrik, :as=>:radio, :collection=>Rubrik.all %>
     <%= f.input :author, :as=>:radio %>
     <%= f.input :picture, :as=>:file %>
+  <%= f.inputs :for => :calentry do |calentry| %>
+    <%= calentry.input :start, :as =>:datepicker %>
+    <%= calentry.input :ende, :as =>:datepicker %>
+    <%= calentry.input :typ %>
+  <% end %>
   <% end %>
 
   <%= f.actions do %>

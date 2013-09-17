@@ -69,6 +69,8 @@
          member do
            get 'publish'
            get 'unpublish'
+           get 'add_calentry'
+           get 'rm_calentry'
          end
        end
      end

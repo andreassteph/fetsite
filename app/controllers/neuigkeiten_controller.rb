@@ -27,6 +27,18 @@ class NeuigkeitenController < ApplicationController
     @rubrik=Rubrik.find(params[:rubrik_id]) unless params[:rubrik_id].nil?
     @neuigkeit.rubrik=@rubrik unless @rubrik.nil?
   end
+  def add_calentry
+    @neuigkeit=Neuigkeit.find(params[:id])
+    if params[:calentry_id].nil?
+      ce = Calentry.new
+    else
+      ce=Calentry.find(params[:calentry_id])
+    end
+    @calentry=ce 
+    ce.object=@neuigkeit
+     render 'edit'
+  end
+
   def unpublish
     @neuigkeit = Neuigkeit.find(params[:id])
     @neuigkeit.reverse_publish
