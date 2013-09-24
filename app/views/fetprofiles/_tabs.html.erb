@@ -1,24 +1,25 @@
 <ul class="nav nav-tabs">
- <li <%= (request.fullpath == fetprofiles_path(filter: "active")|| request.fullpath == fetprofiles_path) ? 'class="active"'.html_safe : ''%> >
- <%= link_to "Aktive Mitglieder" , fetprofiles_path( filter: "active") %> </li>
-<li><%= link_to "Alle Gremien und Gruppen", gremien_path %></li> 
-<% for g in @gremientabs %>
+  <li <%= (request.fullpath == fetprofiles_path(filter: "active")|| request.fullpath == fetprofiles_path) ? 'class="active"'.html_safe : ''%> >
+    <%= link_to "Aktive Mitglieder" , fetprofiles_path( filter: "active") %> 
+  </li>
+  <li>
+    <%= link_to "Alle Gremien und Gruppen", gremien_path %>
+  </li> 
+  <% for g in @gremientabs %>
   <li <%= (!@gremium.nil? && g == @gremium) ? 'class="active"'.html_safe : '' %> title="<%= g.name %>">
     <%= link_to g.name, g %>
-    </li>
-<% end %>
-
- <li <%= (request.fullpath == fetprofiles_path(filter: "all")) ? 'class="active"'.html_safe : ''%> >
- <%= link_to "Alle Mitglieder" , fetprofiles_path( filter: "all") %> </li>
-
-
-<% if can?(:verwalten,Gremium) %>
-<% if request.fullpath == verwalten_gremien_path %>
+  </li>
+  <% end %>
+  <li <%= (request.fullpath == fetprofiles_path(filter: "all")) ? 'class="active"'.html_safe : ''%> >
+    <%= link_to "Alle Mitglieder" , fetprofiles_path( filter: "all") %> 
+  </li>
+  <% if can?(:verwalten,Gremium) %>
+  <% if request.fullpath == verwalten_gremien_path %>
   <li class="active pull-right">
   <% else %>
   <li class="pull-right">
-<% end %>
-<%= link_to "Verwaltung", verwalten_gremien_path %>
-</li>
-<% end %>
+  <% end %>
+    <%= link_to "Verwaltung", verwalten_gremien_path %>
+  </li>
+  <% end %>
 </ul>

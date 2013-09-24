@@ -6,26 +6,27 @@
 	%>
 </h1>
 <ul class="unstyled fetprofile_list">
-<% @fetprofiles.each do |fetprofile| %>
-<li>
-<%= link_to fetprofile do %>
-<div class="media">
-<span class="pull-left">
-  <%= image_tag fetprofile.picture.portrait.url %>
-</span>
-<div class="media-body">
+  <% @fetprofiles.each do |fetprofile| %>
+  <li>
+    <%= link_to fetprofile do %>
+    <div class="media">
+      <span class="pull-left">
+	<%= image_tag fetprofile.picture.portrait.url %>
+      </span>
+      <div class="media-body">  
+	<h2><%= fetprofile.name %></h2>
+	<p><%= fetprofile.fetmail %></p>
+	<p><%= fetprofile.desc %></p>
   
-  <h2><%= fetprofile.name %></h2>
-  <p><%= fetprofile.fetmail %></p>
-  <p><%= fetprofile.desc %></p>
-  
-</div>
-</div>
-<% end %>
-</li>
-<% end %>
+      </div>
+    </div>
+    <% end %>
+  </li>
+  <% end %>
 </ul>
 <div class="row-fluid">
   <div class="span12">
     <%= link_to I18n.t('fetprofiles.new'), new_fetprofile_path %>
-</div></div></div>
+  </div>
+</div>
+</div>

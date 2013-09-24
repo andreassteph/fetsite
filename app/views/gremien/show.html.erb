@@ -16,10 +16,14 @@
     <% r.each do |m| %>
     <%= link_to m.fetprofile do %>
     <div class="span3" style="vertical-align:middle; text-align:center">
-      <%= image_tag m.fetprofile.picture.portrait %>
-      <p>
+      <%= image_tag m.fetprofile.try(:picture).try(:portrait) %>
+      <p> 
+	<% if m.fetprofile.nil?%>
+	PROFIL fehlt
+	<% else %>
 	<%= m.fetprofile.name %> <br>
 	<%= render(m) %>
+	<% end %>
       </p>
     </div> 
     <% end %>

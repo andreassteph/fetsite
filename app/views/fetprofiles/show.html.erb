@@ -6,7 +6,6 @@
     </div>
     <div class="span9">
       <h2><%= @fetprofile.name %></h2>
-
       <p>
 	<%= @fetprofile.fetmailalias %>
       </p>
@@ -14,9 +13,8 @@
 	<%= @fetprofile.desc %>
       </p>
       <p>
-	<%= "<b>"+I18n.t('fetprofiles.active')+"</b>".html_safe if @fetprofile.active %>
-      </p>
-      <p><%= link_to 'Destroy', @fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	<%= link_to 'Destroy', @fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>
     </div>
   </div>
 
@@ -26,15 +24,11 @@
 	<% @fetprofile.memberships.each do |m| %>
 	<li>
 	  <%= render m %>
-	  <% link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) %>
+	  <%= link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) if params["verwalten"]%>
+	  <%= link_to 'delete', [@fetprofile, m], method: :delete, data: {confirm: 'Sure?'} if params["verwalten"] %>
 	</li>
 	<% end %>
       </ul>
-
-
-      <%= link_to 'Neue Mitgliedschaft', new_fetprofile_membership_path(@fetprofile) %> |
-
-      <%= link_to 'Edit', edit_fetprofile_path(@fetprofile) %> |
-      <%= link_to 'Back', fetprofiles_path %>
+      <%= render 'layouts/pretty_toolbar' %>
     </div>
 </div></div>
