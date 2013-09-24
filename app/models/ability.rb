@@ -36,7 +36,7 @@ class Ability
     can [:show, :index], Modul
     can [:show, :index], Lva
 
-    # Rechteverwaltung f�r Studien Modul
+    # Rechteverwaltung fuer Studien Modul
     can :read, Modulgruppe
     
 
