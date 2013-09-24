@@ -1,11 +1,15 @@
 class FetprofilesController < ApplicationController
   # GET /fetprofiles
   # GET /fetprofiles.json
+  before_filter {@toolbar_elements=[]}
+  load_and_authorize_resource
+ 
+  
   def index
     
     @fetprofiles = Fetprofile.active.order(:vorname,:nachname)
     @fetprofiles = Fetprofile.order(:vorname,:nachname) if params[:filter]== "all"
-	@gremientabs=Gremium.tabs
+    @gremientabs = Gremium.tabs
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @fetprofiles }
@@ -16,7 +20,14 @@ class FetprofilesController < ApplicationController
   # GET /fetprofiles/1.json
   def show
     @fetprofile = Fetprofile.find(params[:id])
-
+    if params["verwalten"]
+      @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fetprofile.newmembership'),:path => new_fetprofile_membership_path(@fetprofile) , :confirm=>"Sure?" } if can? :new, Membership
+     @toolbar_elements << {:hicon=>'icon-pencil', :text=> I18n.t('common.edit'),:path => edit_fetprofile_path(@fetprofile),:confirm=>"Sure?" } if can? :edit, @fetprofile
+      @toolbar_elements << {:hicon=>'icon-minus', :text => I18n.t('common.delete'), :method=>:delete, :confirm=>"Sure"}
+          
+    else
+      @toolbar_elements << {:text=>I18n.t('common.verwalten'),:path=>fetprofile_path(@fetprofile,{:verwalten=>true}),:icon=>:pencil} if can? :verwalten, @fetprofile
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @fetprofile }
