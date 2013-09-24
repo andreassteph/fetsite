@@ -1,32 +1,47 @@
 
 <%= render 'fetprofiles/tabs' %>
+
 <h1>
   <%=	I18n.t 'fetprofiles.all' if params[:filter] == "all" %>
   <%=	I18n.t 'fetprofiles.active' if params[:filter].nil? || params[:filter]== "active"
 	%>
 </h1>
+
 <ul class="unstyled fetprofile_list">
+
   <% @fetprofiles.each do |fetprofile| %>
   <li>
+
     <%= link_to fetprofile do %>
     <div class="media">
+
       <span class="pull-left">
-	<%= image_tag fetprofile.picture.portrait.url %>
+	<%=  image_tag fetprofile.picture.portrait.url %>
       </span>
+
       <div class="media-body">  
 	<h2><%= fetprofile.name %></h2>
+
 	<p><%= fetprofile.fetmail %></p>
+<% if false %>
 	<p><%= fetprofile.desc %></p>
+<% end %>
   
       </div>
+
     </div>
     <% end %>
+
   </li>
   <% end %>
+
 </ul>
+
 <div class="row-fluid">
   <div class="span12">
     <%= link_to I18n.t('fetprofiles.new'), new_fetprofile_path %>
   </div>
 </div>
 </div>
+
+

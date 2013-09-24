@@ -26,6 +26,6 @@ class Fetprofile < ActiveRecord::Base
   accepts_nested_attributes_for :memberships
   scope :active, -> { where(:active=>true).order(:vorname) } 
   def fetmail
-    (fetmailalias.nil? || fetmail.empty?) ? short.to_s + "@fet.at" : fetmailalias.to_s + "@fet.at"
+    (fetmailalias.nil? || fetmailalias.empty?) ? short.to_s + "@fet.at" : fetmailalias.to_s + "@fet.at"
   end
 end
