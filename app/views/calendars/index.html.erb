@@ -8,16 +8,24 @@
   <div class="row-fluid">
     <div class="span12">
       <h1><%= I18n.t 'calendars.calendar' %></h1>
-      <% @calendars.each do |calendar| %>
-      <div class="media">
-	<a class="pull-left" href="#">
-	  <img class="media-object img-circle" src="<%= calendar.picture.thumb.url %>"/>
-	</a>
-	<div class="media-body">
-	  <h4><%= link_to calendar.name, calendar %></h4>
-	</div>
-      </div>
-      <% end %>
+      <ul class="unstyled linkbox-list">
+	<% @calendars.each do |calendar| %>
+	<li>	  
+	  <%= link_to calendar, {class: :linkbox} do %>
+
+	  <div class="media">
+	    <span class="pull-left" >
+	      <img class="media-object img-circle" src="<%= calendar.picture.thumb.url %>"/>
+	    </span>
+	    y<div class="media-body">
+	      <h4><%= calendar.name %></h4>
+	    </div>
+	  </div>
+
+	<% end %>
+	</li>    
+	<% end %>
+      </ul>   
     </div>
   </div>
   <div class="row-fluid">
