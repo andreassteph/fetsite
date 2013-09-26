@@ -22,20 +22,21 @@ $color_prim_light: 0B65A5;
 $color_prim_vlight: 2B85C5;
 $color_cont: FFDB73;
 $color_cont_light:FFDB73;
-
+$linkColor: #03006E;
 $white: #FFFFFF;
 
 $bodyBackground: $white;
-$navbarBackground: lighten(#FFCE40,20%);
-//$navbarBackground: #FFFFFF;
+$navbarBackground: $color_cont;
+$navbarBackground: #EEEEEE;
 
-$navbarBackgroundHighlight:lighten(#FFDB73,20%);
+$navbarBackgroundHighlight:lighten($navbarBackground,30%);
 //$navbarBackgroundHighlight:#FFFFFF;
 
 $navbarLinkBackgroundHover:#FFBE00;
+$navbarLinkBackgroundHover: lighten(#CCCCCC,30%);
 $infoBackground:#65A5D1;
 $infoText:#03406A;
-$linkColor: #03006E;
+
 @import 'bootstrap';
 @import 'bootstrap-responsive';
 @import 'bootstrap/image-gallery';
@@ -114,4 +115,12 @@ border: lightgray solid 1px;
 a.linkbox:hover
 {
 box-shadow: 1px 1px 2px 2px lightgray;
+}
+
+a.linkbox li
+{ 
+}
+ul.linkbox-list li
+{
+margin-bottom:10px;
 }
