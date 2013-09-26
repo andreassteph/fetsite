@@ -102,3 +102,16 @@ box-shadow:none;
 #contentdiv .container-fluid
 { padding:0;
 }
+
+a.linkbox
+{
+display:block;
+padding:5px;
+border-radius: 10px;
+border: lightgray solid 1px;
+
+}
+a.linkbox:hover
+{
+box-shadow: 1px 1px 2px 2px lightgray;
+}

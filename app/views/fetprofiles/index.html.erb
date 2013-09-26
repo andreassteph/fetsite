@@ -7,12 +7,12 @@
 	%>
 </h1>
 
-<ul class="unstyled fetprofile_list">
+<ul class="unstyled fetprofile_list" style="width:100%">
 
   <% @fetprofiles.each do |fetprofile| %>
   <li>
 
-    <%= link_to fetprofile do %>
+    <%= link_to fetprofile, {class: :linkbox} do %>
     <div class="media">
 
       <span class="pull-left">
