@@ -1,7 +1,7 @@
 <%= render 'tabs' %>
 <h1><%= I18n.t("rubrik.title")%></h1>
 
-<ul class="unstyled" style="max-width:70em">
+<ul class="unstyled linkbox-list" style="max-width:70em">
   <% @neuigkeiten.each do |n| %>
   <li><%= render n %> </li>
   <% end %>
