@@ -4,16 +4,15 @@
     <h1><%= I18n.t("studien.list") %></h1>
 
 
-    <% @studien.each_slice(2) do |row| %>
-    <div class="row-fluid">
-    <% row.each do |studium|%>
-      <div class="span6">
+   
+<ul class="unstyled linkbox-list">   
+    <% @studien.each do |studium|%>
+     
 	<%= render studium%>
-      </div>
-    <% end %>
-    </div>
-    <%end%>
-
+     
+   
+ <% end %>
+</ul>   
     <br>
 
   </div>
