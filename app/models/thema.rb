@@ -15,7 +15,7 @@ class Thema < ActiveRecord::Base
   has_many :fragen
   has_many :attachments
   belongs_to :themengruppe, :foreign_key => "themengruppe_id"
-  
+  has_one :gremium
   validates :themengruppe, :presence => true
   validates :title, :presence => true
 
