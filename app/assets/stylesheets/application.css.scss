@@ -112,6 +112,7 @@ border-radius: 10px;
 border: lightgray solid 1px;
 
 }
+
 a.linkbox:hover
 {
 box-shadow: 1px 1px 2px 2px lightgray;
@@ -126,4 +127,13 @@ margin-bottom:10px;
 }
 ul.linkbox-list
 { max-width:70em;
+}
+
+div.contentbox
+{
+display:block;
+padding:5px;
+border-radius: 10px;
+border: lightgray solid 1px;
+margin: 5px;
 }
