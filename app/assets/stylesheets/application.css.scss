@@ -104,7 +104,7 @@ box-shadow:none;
 { padding:0;
 }
 
-a.linkbox
+a.linkbox, div.contentbox
 {
 display:block;
 padding:5px;
@@ -131,9 +131,5 @@ ul.linkbox-list
 
 div.contentbox
 {
-display:block;
-padding:5px;
-border-radius: 10px;
-border: lightgray solid 1px;
 margin: 5px;
 }

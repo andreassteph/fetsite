@@ -6,7 +6,7 @@
       <h1><%= I18n.t("studien.verwaltung.title") %></h1> 
       <%= I18n.t("studien.verwaltung.explanation").html_safe %>
       <h2><%= I18n.t "studien.studien"%> </h2>
-      <div class="verwalten-block">
+      <div class="contentbox">
 	<div class="row-fluid">
 	  <% @studien.each_slice([(Studium.count/2.0).ceil, 1].max) do |col| %>
 
@@ -36,7 +36,7 @@
 	</div>
       </div>
       <h2>Vortragende </h2>
-      <div class="verwalten-block">
+      <div class="contentbox">
 	<div class="row-fluid">
 	  <% @lecturers.each_slice([(Lecturer.count/3.0).ceil, 1].max) do |col| %>
 	  <div class="span4">
@@ -68,7 +68,7 @@
 	
 	<div class="span4">
 	  <h2>Modulgruppen </h2>
-	  <div class="verwalten-block">
+	  <div class="contentbox">
 	    <% @modulgruppen.each do |mg| %>
 	    <%= (mg.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %> <%= link_to mg.name, mg %> | <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_modulgruppe_path(mg)%><br>
 	    <% end %>
@@ -95,7 +95,7 @@
 	</div>
 	<div class="span4">
 	  <h2>Module </h2>
-	  <div class="verwalten-block">
+	  <div class="contentbox">
 	    
 	    
 	    <% @module.each do |m| %>
@@ -123,7 +123,7 @@
 	</div>
 	<div class="span4">
 	  <h2>Lvas </h2>
-	  <div class="verwalten-block">
+	  <div class="contentbox">
 	    
 
 	    <% @lvas.each do |lva| %>
@@ -164,7 +164,7 @@
 	<li>Black: Warning, should be solved</li>
 	<li><font color="green"><b>Green</b></font>: Everything is fine</li>
       </ul>
-      <div class="verwalten-block">
+      <div class="contentbox">
 	<ul>
 	  <% @messages.flatten.compact.each do |m| %>
 	  <% if !m.strip.empty? %>
@@ -175,7 +175,7 @@
 	<b><font color="green"><%= I18n.t("verwalten.fehler.keine").html_safe if @messages.empty?%></font></b>
       </div>
       <h2>Beispiele </h2>
-      <div class="verwalten-block">
+      <div class="contentbox">
 
 
 	<% @beispiele.each do |b| %>
