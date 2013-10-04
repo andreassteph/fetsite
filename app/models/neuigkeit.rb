@@ -14,18 +14,19 @@
 
 class Neuigkeit < ActiveRecord::Base
   
-  attr_accessible :datum, :text, :title, :rubrik_id, :author_id,:picture
+  attr_accessible :datum, :text, :title, :rubrik_id, :author_id,:picture, :calentry_attributes
   belongs_to :author, :class_name =>'User'
   belongs_to :rubrik, :class_name =>'Rubrik', :foreign_key => "rubrik_id"
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
   translates :title,:text, :versioning=>true, :fallbacks_for_empty_translations => true
-  has_one :calentry, :as => :object
+  has_one :calentry
   mount_uploader :picture, PictureUploader
   scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date).order(:datum).reverse_order}
   scope :recent, -> { published.where("updated_at >= ? ",Time.now - 7.days)}
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>:true)}
+accepts_nested_attributes_for :calentry
   def datum_nilsave
 	self.datum.nil? ? Time.now + 42.years : self.datum
   end

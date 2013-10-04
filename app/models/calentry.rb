@@ -13,8 +13,9 @@
 #
 
 class Calentry < ActiveRecord::Base
-  attr_accessible :ende, :start, :summary, :typ,:calendar_ids
-  has_and_belongs_to_many :calendars
+  attr_accessible :ende, :start, :summary, :typ,:calendar_ids, :calendar
+  belongs_to :calendar
+  belongs_to :neuigkeit
   validates :start, :presence => true
   validates :typ, :presence => true
   before_save :get_public
@@ -28,7 +29,7 @@ validate do |entry|
   
   resourcify
   def get_public
-  self.public = (self.try(:object).nil?)? (self.calendars.public.count>0) : object.try(:public)
+  self.public = (self.try(:object).nil?)? (self.calendar.try(:public)) : object.try(:public)
   true
   end
   def start_time

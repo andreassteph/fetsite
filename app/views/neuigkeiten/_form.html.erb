@@ -1,19 +1,20 @@
 <%= tinymce_assets %>
 <%= semantic_form_for [@neuigkeit.rubrik,@neuigkeit] do |f| %>
   <%= f.inputs do %>
-    <%= f.input :title, :placeholder=>"Titel" %>
-    <%= f.input :text, :as=>:tinymce_text %>
-    <% f.input :datum, :as=>:datepicker %>
-    <%= f.input :rubrik, :as=>:radio, :collection=>Rubrik.all %>
-    <%= f.input :author, :as=>:radio %>
-    <%= f.input :picture, :as=>:file %>
-  <%= f.inputs :for => :calentry do |calentry| %>
-    <%= calentry.input :start, :as =>:datepicker %>
-    <%= calentry.input :ende, :as =>:datepicker %>
-    <%= calentry.input :typ %>
+    <%= f.input :title,   :placeholder=> "Titel" %>
+    <%= f.input :text,    :as=> :tinymce_text    %>
+    <%  f.input :datum,   :as=> :datepicker      %>
+    <%= f.input :rubrik,  :as=> :radio, :collection=>Rubrik.all %>
+    <%= f.input :author,  :as=> :radio           %>
+    <%= f.input :picture, :as=> :file            %>
+    <% unless @neuigkeit.calentry.nil?          %>
+      <%= f.inputs :for => :calentry do |calentry| %>
+        <%= calentry.input :start, :as => :datepicker  %>
+	<%= calentry.input :ende , :as => :datepicker  %>
+	<%= calentry.input :typ %>
+      <% end %>
+    <% end %>
   <% end %>
-  <% end %>
-
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>
   <% end %>

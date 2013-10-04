@@ -11,10 +11,13 @@
 #
 
 class Calendar < ActiveRecord::Base
-  attr_accessible :name, :public, :picture
-  has_and_belongs_to_many :calentries
+  attr_accessible :name, :public, :picture, :rubrik_id
+  has_many :calentries
   mount_uploader :picture, PictureUploader
   belongs_to :rubrik
+  validates :rubrik, :presence=>true
+
   resourcify
-  scope :public, -> { where(:public => :true) }
+  scope :public_cals, -> { where(:public => :true) }
+
 end

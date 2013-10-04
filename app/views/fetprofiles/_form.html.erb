@@ -31,10 +31,11 @@
     <%= f.inputs :for => :memberships do |membership,i| %> 
     <div class="row-fluid">
       <div class="span1"></div>
-      <div class="span3"><%= membership.input :start, :as=>:datepicker %></div>
-      <div class="span3"><%= membership.input :stop, :as=>:datepicker,:label=>false %></div>
-      <div class="span3"><%= membership. input :gremium %></div>
-      <div class="span2"><%= membership.input :typ ,:as=>:radio, :collection=>Membership::TYPEN.invert %></div>
+      <div class="span3"><%= membership.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
+      <div class="span3"><%= membership.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
+    <div class="span2"><%= membership.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false %></div>
+ <div class="span3"><%= membership.input :gremium, :label=>false %></div>
+
       
     </div>  
     <% end %>
@@ -47,4 +48,7 @@
       </div>
     </div>
  <% end %>
+  
+
+  <script>$('.datepicker').datepicker()</script>
 </div>

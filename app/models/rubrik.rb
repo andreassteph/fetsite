@@ -11,7 +11,7 @@
 #
 
 class Rubrik < ActiveRecord::Base
-  attr_accessible :desc, :name, :prio
+  attr_accessible :desc, :name, :prio, :calendar
   has_many :neuigkeiten, :class_name => "Neuigkeit"
   has_many :calentries, :through => :neuigkeiten, :as=>:object
   resourcify

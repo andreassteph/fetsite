@@ -16,6 +16,8 @@ class NeuigkeitenController < ApplicationController
       @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}
       @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
       @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>"Sure?" } if can? :delete, @neuigkeit
+      @toolbar_elements << {:path=> add_calentry_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :text=>"Add Calentry", :icon=>:plus}
+
         else
       @toolbar_elements << {:text=>I18n.t('common.verwalten'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit,{:verwalten=>true}),:icon=>:pencil} if can? :verwalten, @neuigkeit
           
@@ -30,12 +32,15 @@ class NeuigkeitenController < ApplicationController
   def add_calentry
     @neuigkeit=Neuigkeit.find(params[:id])
     if params[:calentry_id].nil?
-      ce = Calentry.new
+      ce = Calentry.new(:start=>Time.now, :ende=>1.hour.from_now, :typ=>1, :calendar=>@neuigkeit.rubrik.calendar)
     else
       ce=Calentry.find(params[:calentry_id])
     end
     @calentry=ce 
     ce.object=@neuigkeit
+    @neuigkeit.calentry=ce
+    @neuigkeit.save
+    
      render 'edit'
   end
 
