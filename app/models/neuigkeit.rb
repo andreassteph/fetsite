@@ -31,7 +31,7 @@ accepts_nested_attributes_for :calentry
 	self.datum.nil? ? Time.now + 42.years : self.datum
   end
   def public
-	self.rubrik.public && self.datum >=Time.now.to_date
+	self.rubrik.public && self.datum_nilsave >=Time.now.to_date
   end
   def publish
     self.datum = Date.today
