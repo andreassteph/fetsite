@@ -26,8 +26,8 @@ class BeispieleController < ApplicationController
   # GET /beispiele/new.json
   def new
     @beispiel = Beispiel.new
-    @beispiel.lva = Lva.find(params[:lva_id])
-
+    @beispiel.lva = Lva.find_by_id(params[:lva_id])
+    @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @beispiel }
@@ -45,10 +45,11 @@ class BeispieleController < ApplicationController
     @lva = Lva.find_by_id(params[:lva_id])
     params.delete(:lva_id)
     @beispiel = Beispiel.new(params[:beispiel])
+        @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
     respond_to do |format|
       @beispiel.name=@beispiel.beispieldatei.to_s.split('/').last
       if @beispiel.save
-        format.html { redirect_to @beispiel.lva, notice: 'Beispiel was successfully created.' }
+        format.html { redirect_to @backlink, notice: 'Beispiel was successfully created.' }
         format.json { render json: @beispiel, status: :created, location: @beispiel }
       else
         format.html { render action: "new" }
@@ -62,10 +63,11 @@ class BeispieleController < ApplicationController
   def update
     @beispiel = Beispiel.find(params[:id])
     @beispiel.name=@beispiel.beispieldatei.to_s.split('/').last
+        @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
     @lva = @beispiel.lva
     respond_to do |format|
       if @beispiel.update_attributes(params[:beispiel])
-        format.html { redirect_to @beispiel.lva, notice: 'Beispiel was successfully updated.' }
+        format.html { redirect_to @backlink, notice: 'Beispiel was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,10 +80,11 @@ class BeispieleController < ApplicationController
   # DELETE /beispiele/1.json
   def destroy
     @beispiel = Beispiel.find(params[:id])
+        @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
     @beispiel.destroy
 
     respond_to do |format|
-      format.html { redirect_to beispiele_url }
+      format.html { redirect_to @backlink  }
       format.json { head :no_content }
     end
   end

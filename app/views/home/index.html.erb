@@ -1,4 +1,4 @@
-<h1><%= t 'home.willkommen' %></h1>
+<h1><%= I18n.t('home.willkommen') %></h1>
 <div class="alert">
 <h2>Alpha Test</h2>
 <p>Die Webseite befindet sich derzeit in einem Entsicklungsstadium,
@@ -25,6 +25,7 @@ alle anderen sind nur zur Voransicht. Bezüglich Design und Steuerung sind Vorsc
 <p>Um bei der Entwicklung mitzuhelfen braucht nur Ruby on Rails installiert werden</p>
 <p><%= link_to "Getting Started" , home_startdev_path%></p>
 </div>
-<p><%= t 'home.hallobeiderfet' %></p>
+<p><%= I18n.t('home.hallobeiderfet') %></p>
+<%= render 'beispiele' %>
 <%= link_to "Entwicklungsstatus" , home_dev_path %>
 <%= render 'layouts/login' %>

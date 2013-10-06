@@ -20,6 +20,8 @@ de:
     add: "Neues Modul"
   keine:
     beschreibung: "Keine Beschreibung vorhanden"
+  beispiel:
+    add: "Beispiel hinzufügen"
   lva:
     add: "Lva hinzufügen"
     addrem: "Lva hinzufügen/entfernen"

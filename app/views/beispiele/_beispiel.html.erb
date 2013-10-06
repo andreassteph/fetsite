@@ -1,5 +1,5 @@
 
-<div class="row-fluid lva-beispiele">
+<div class="row-fluid contentbox">
   <div class="span5">
 <b><%=link_to beispiel.name, beispiel.beispieldatei.url%></b>  <%= link_to "edit", edit_beispiel_path(beispiel)%></br>
 <%= I18n.t("file.size") + ": " + (beispiel.beispieldatei.size/1024.0).round(2).to_s  %>KiB
