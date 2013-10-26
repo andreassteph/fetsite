@@ -1,6 +1,7 @@
 class ModulsController < ApplicationController
   # GET /moduls
   # GET /moduls.json
+  load_and_authorize_resource
   def index
     @moduls = Modul.all
     if @moduls

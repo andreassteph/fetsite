@@ -1,6 +1,8 @@
 class ThemenController < ApplicationController
   # GET /themen
   # GET /themen.json
+  load_and_authorize_resource
+
   def index
     @themen = Thema.all
 

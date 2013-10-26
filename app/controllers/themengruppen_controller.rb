@@ -1,6 +1,7 @@
 class ThemengruppenController < ApplicationController
   # GET /themengruppen
   # GET /themengruppen.json
+  load_and_authorize_resource
   def index
     @themengruppen = Themengruppe.all
     @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]

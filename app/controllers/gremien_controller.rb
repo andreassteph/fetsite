@@ -1,6 +1,7 @@
 class GremienController < ApplicationController
   # GET /gremien
   # GET /gremien.json
+  load_and_authorize_resource
  before_filter {@toolbar_elements=[]}
   def verwalten
     @gremien = Gremium.all

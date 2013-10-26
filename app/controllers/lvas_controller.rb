@@ -1,6 +1,7 @@
 class LvasController < ApplicationController
   # GET /lvas
  before_filter {@toolbar_elements =[]} 
+  load_and_authorize_resource
   def index
     @lvas = Lva.all
     @toolbar_elements=[{:hicon=>'icon-plus-sign',:text =>I18n.t('lva.add'),:path => new_lva_path}]

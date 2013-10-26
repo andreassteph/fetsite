@@ -1,6 +1,7 @@
 class CalentriesController < ApplicationController
   # GET /calentries
   # GET /calentries.json
+  load_and_authorize_resource
   def index
     @calentries = Calentry.all
 

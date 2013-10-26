@@ -1,5 +1,5 @@
 class SemestersController < ApplicationController
-
+  load_and_authorize_resource
   def index
     @semesters = Semester.all
   end

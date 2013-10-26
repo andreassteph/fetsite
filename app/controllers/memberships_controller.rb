@@ -1,6 +1,7 @@
 class MembershipsController < ApplicationController
   # GET /memberships/new
   # GET /memberships/new.json
+  load_and_authorize_resource
   def new
     @membership = Membership.new
 	@membership.fetprofile=Fetprofile.find(params[:fetprofile_id])

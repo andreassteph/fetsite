@@ -1,7 +1,7 @@
 class StudienController < ApplicationController
   before_filter {@toolbar_elements =[]} 
   #  before_filter :authorize, :only => :verwalten
-
+  load_and_authorize_resource
   def index
     @studien = Studium.all
     @topbar_elements=[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]

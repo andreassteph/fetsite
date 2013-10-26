@@ -1,6 +1,7 @@
 class FetzneditionsController < ApplicationController
   # GET /fetzneditions
   # GET /fetzneditions.json
+  load_and_authorize_resource
   def index
     @fetzneditions = Fetznedition.all
 

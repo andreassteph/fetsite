@@ -1,6 +1,7 @@
 class LecturersController < ApplicationController
   # GET /lecturers
   # GET /lecturers.json
+  load_and_authorize_resource
   def index
     @lecturers = Lecturer.all
 

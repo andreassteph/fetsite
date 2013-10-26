@@ -1,6 +1,7 @@
 class BeispieleController < ApplicationController
   # GET /beispiele
   # GET /beispiele.json
+  load_and_authorize_resource
   def index
     @beispiele = Beispiel.all
 
