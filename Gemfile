@@ -55,6 +55,7 @@ gem "paper_trail" , '>=2.7.0'
 gem "devise" ,'~>2.2.3'
 gem "omniauth"
 gem "omniauth-facebook"
+gem "omniauth-ldap"
 
 # Roles for users
 gem "rolify"

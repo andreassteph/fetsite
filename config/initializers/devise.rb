@@ -8,7 +8,7 @@ Devise.setup do |config|
 
   # Configure the class responsible to send e-mails.
   config.mailer = "Devise::Mailer"
-    config.mailer.default_url_options = { :host => 'glonass.htu.tuwien.ac.at' }  
+  config.mailer.default_url_options = { :host => 'glonass.htu.tuwien.ac.at' }  
   config.mailer.delivery_method = :sendmail
 #  config.mailer.smtp_settings = {
 #  :address              => "smtp.gmail.com",
@@ -225,8 +225,18 @@ Devise.setup do |config|
   # up on your models and hooks.
   #config.omniauth :facebook, 'appid', 'secret'
   secrets = YAML.load_file("#{::Rails.root.to_s}/config/omniauth_secrets.yml")
-config.omniauth :facebook, secrets["facebook"]["appid"], secrets["facebook"]["secret"]
-  # ==> Warden configuration
+  config.omniauth :facebook, secrets["facebook"]["appid"], secrets["facebook"]["secret"]
+  config.omniauth :ldap, :title => "My LDAP", 
+    :host => secrets["ldap"]["host"],
+    :port => secrets["ldap"]["port"],
+  :method => secrets["ldap"]["method"],
+    :base => secrets["ldap"]["base"],
+    :uid => secrets["ldap"]['uid'],
+    :name_proc => Proc.new {|name| name.gsub(/@.*$/,'')},
+  :bind_dn =>secrets["ldap"]['bind'],
+  :password => secrets["ldap"]['password']
+
+  # ==> Warden configuration<<
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
