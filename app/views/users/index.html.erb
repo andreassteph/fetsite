@@ -4,9 +4,11 @@
 </li>
 </ul>
 <table class="table table-striped">
-<% @users.each do |user|%>
+
 <tr><th>E-Mail</th><th>Rollen</th><th>Actions</th>
-</tr><tr>
+</tr>
+<% @users.each do |user|%>
+<tr>
 <td>
 	<%= user.email %></td><td><ul>
 	<% user.roles.each do |role| %>
@@ -22,7 +24,7 @@
     <ul class="dropdown-menu">
 		<li><%= link_to 'Rolle: fetadmin', user_add_role_path(user, "fetadmin")%></li>
 		<li><%= link_to 'Rolle: fetuser', user_add_role_path(user, "fetuser")%></li>
-		<li><%= link_to 'Confirm Account', user_do_confirm_path(user)%></li>
+	
     <!-- dropdown menu links -->
     </ul>
 </div>
