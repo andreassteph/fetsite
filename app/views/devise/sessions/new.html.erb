@@ -1,5 +1,9 @@
 <h2>Sign in</h2>
-
+<p id="notice"><%= notice %></p>
+<% debug session["devise.ldap_data"] %>
+<%= debug request.env.inspect %>
+<% debug request %>
+<% debug request.env %>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
