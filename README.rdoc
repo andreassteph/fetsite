@@ -5,6 +5,26 @@ anzubieten.
 Die Dokumentation ist derzeit nur in einem sehr reduzierten Ausmaß verfügbar. 
 Für alle von der FET die hier mitarbeiten, derzeit gibt es auf fetintern eine Doku
 die Teile, die zum Verständnis sinnvoll sind werden sukzessive hier her portiert.
+
+== Lizenz
+Diese Plattform läuft unter der GPL mit dem Vorbehalt, dass das Design für politische Zwecke in Österreich nicht ohne Erlaubnis der Fachschaft Elektrotechnik bzw. der Programmierer eingesetzt werden darf.
+
+Für kommerzielle Zwecke muss ebenfalls die Fachschaft Elektrotechnik kontaktiert werden.
+
+== Finanzierung
+Dieses Projekt basiert auf freiwilliger Arbeit von Andreas Stephanides, Thomas Blazek, Andreas Deutschmann und einigen weiteren Mitarbeitern. Es sind daher keinerlei öffentliche Mittel in die Entwicklung gegangen.
+
+
+
+
+
+
+
+
+
+
+
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
