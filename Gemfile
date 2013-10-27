@@ -84,3 +84,4 @@ gem 'rmagick'
 
 gem 'bootstrap-addons-rails'
 gem "jquery-fileupload-rails"
+gem "seed_dump", "~> 0.5.3"
