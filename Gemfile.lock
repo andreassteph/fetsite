@@ -102,6 +102,7 @@ GEM
     mime-types (1.21)
     multi_json (1.5.1)
     multipart-post (1.2.0)
+    mysql2 (0.3.13)
     net-ldap (0.2.2)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -227,6 +228,7 @@ DEPENDENCIES
   haml
   jquery-fileupload-rails
   jquery-rails
+  mysql2
   omniauth
   omniauth-facebook
   omniauth-ldap
