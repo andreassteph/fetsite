@@ -18,8 +18,8 @@
  */
 // Colorshema #0A64A4
 $color_prim: #0A64A4;
-$color_prim_light: 0B65A5;
-$color_prim_vlight: 2B85C5;
+$color_prim_light: #0B65A5;
+$color_prim_vlight: #2B85C5;
 $color_cont: FFDB73;
 $color_cont_light:FFDB73;
 $linkColor: #03006E;
@@ -27,13 +27,13 @@ $white: #FFFFFF;
 
 $bodyBackground: $white;
 $navbarBackground: $color_cont;
-$navbarBackground: #EEEEEE;
+$navbarBackground: #FFFFFF;
 
 $navbarBackgroundHighlight:lighten($navbarBackground,30%);
 //$navbarBackgroundHighlight:#FFFFFF;
 
 $navbarLinkBackgroundHover:#FFBE00;
-$navbarLinkBackgroundHover: lighten(#CCCCCC,30%);
+$navbarLinkBackgroundHover: lighten(#cccccc,10%);
 $infoBackground:#65A5D1;
 $infoText:#03406A;
 $sansFontFamily: Helvetica, Arial;
@@ -65,7 +65,7 @@ div.header {
   background-color: #0A64A4;
   background-position:15px center; 
   border-bottom:1px solid black; 
-  height:72px; 
+  height:41px; 
   color:#C0C0C0;
   padding-left:87px;
   padding-top:0px;
@@ -75,7 +75,7 @@ div.header {
 div.header h1 {
 padding:0;
 margin:4px;
-font-size:23px;
+font-size:20px;
 line-height:32px;
 }
 #menudiv { 
