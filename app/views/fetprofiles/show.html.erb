@@ -13,7 +13,7 @@
 	<%= @fetprofile.desc %>
       </p>
       <p>
-	<%= link_to 'Destroy', @fetprofile, method: :delete, data: { confirm: 'Are you sure?' } %>
+
 </p>
     </div>
   </div>
@@ -24,8 +24,8 @@
 	<% @fetprofile.memberships.each do |m| %>
 	<li>
 	  <%= render m %>
-	  <%= link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) if params["verwalten"]%>
-	  <%= link_to 'delete', [@fetprofile, m], method: :delete, data: {confirm: 'Sure?'} if params["verwalten"] %>
+	  <%= link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) if params["verwalten"] && can?(:delete, m)%>
+	  <%= link_to 'delete', [@fetprofile, m], method: :delete, data: {confirm: 'Sure to delete?'} if params["verwalten"] && can?(:delete, m ) %>
 	</li>
 	<% end %>
       </ul>
