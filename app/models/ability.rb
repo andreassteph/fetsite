@@ -38,7 +38,7 @@ class Ability
     can [:show,:index], Gallery
     can [:show, :index], Themengruppe
     can [:show, :index], Fetprofile
-    can [:show],Gremium
+    can [:show, :index],Gremium
     # Rechteverwaltung fuer Studien Modul
   
     
