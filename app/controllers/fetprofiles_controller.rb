@@ -20,6 +20,8 @@ class FetprofilesController < ApplicationController
   # GET /fetprofiles/1.json
   def show
     @fetprofile = Fetprofile.find(params[:id])
+    @gremientabs = Gremium.tabs
+
     if params["verwalten"]
       @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fetprofile.newmembership'),:path => new_fetprofile_membership_path(@fetprofile) , :confirm=>"Sure?" } if can? :new, Membership
      @toolbar_elements << {:hicon=>'icon-pencil', :text=> I18n.t('common.edit'),:path => edit_fetprofile_path(@fetprofile),:confirm=>"Sure?" } if can? :edit, @fetprofile

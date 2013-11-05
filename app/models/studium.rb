@@ -62,4 +62,10 @@ class Studium < ActiveRecord::Base
     semester.save
     self.semester << semester
   end
+
+   def desc_first_words
+    md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.desc
+    md[:text].split(" ")[0..100].join(" ")+ " ..."
+  end
+
 end
