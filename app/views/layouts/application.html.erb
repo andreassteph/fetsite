@@ -21,17 +21,20 @@
 	  <h1 style="display:block">Fachschaft Elektrotechnik</h1>
 	</div>
     </div>
+
     <div class="row-fluid">
       <div class="span2 earlymax">
 
 	
 	<div id="menudiv"><%= render :template => 'layouts/menu' %></div>
+    <%= render 'layouts/login' %>
       </div>	
       <div class="span10" id="contentdiv">
 	
 	<%= yield %>
       </div>
     </div>
+
   </div>
 </body>
 </html>
