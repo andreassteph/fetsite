@@ -52,7 +52,7 @@ class Lva < ActiveRecord::Base
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen?
   # (zumindest eines)
-  def typ_name
+  def full_name
     return self.typ + ' ' + self.name
     end
   def add_semesters
