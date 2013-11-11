@@ -105,14 +105,11 @@ GEM
     multipart-post (1.2.0)
     mysql2 (0.3.13)
     net-ldap (0.2.2)
-<<<<<<< HEAD
     nokogiri (1.5.6)
-=======
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     nokogiri (1.6.0-x86-mingw32)
       mini_portile (~> 0.5.0)
->>>>>>> d314a8126862e76d94c84a289a8883167b58a001
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
