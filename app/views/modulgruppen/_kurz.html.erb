@@ -1,1 +1,2 @@
-<b><%=link_to modulgruppe.name, modulgruppe %></b> <%= ' ( ' + modulgruppe.studium.title_context + ')' unless modulgruppe.studium.nil? %>
+<b><%=link_to modulgruppe.name, modulgruppe %></b>
+(<%=(link_to modulgruppe.studium.title_context, studium_path(modulgruppe.studium))  unless modulgruppe.studium.nil? %>)

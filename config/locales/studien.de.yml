@@ -30,6 +30,7 @@ de:
     ohne: "Ohne Semesterzuordnung"
   modulgruppe:
     typ: "Typ"
+    edit: "Modulgruppe bearbeiten"
     addmodul: "Neues Modul hinzufügen"
     studium: "Studium"
     new: "Neue Modulgruppe"
