@@ -39,7 +39,7 @@ validate do |entry|
     start.to_date
   end
   def dauer
-    self.start-self.ende
+    (self.ende-self.start)/3600
   end
   def dauer=(dauer)
     self.ende=self.start+dauer.to_i.hours
