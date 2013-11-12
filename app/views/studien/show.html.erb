@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="row-fluid">
-    <% if params[:info]==true %>
+    <% if params[:info].true? %>
     <%= raw(@studium.desc) %>
     <% else %>
     <%= @studium.desc_first_words %> <%= link_to I18n.t('studium.info'), studium_path(@studium, :ansicht=>params[:ansicht], :info=>true) %>
