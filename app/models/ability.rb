@@ -67,10 +67,11 @@ class Ability
    if user.has_role?("newsadmin") || user.has_role?("fetadmin") 
       can :addmoderator, Rubrik
    end    
-   can [:show, :index], [Rubrik,Neuigkeit]
+   can [:show, :index], [Rubrik,Neuigkeit], :public=>true
    if user.has_role?("newsadmin") || user.has_role?( "fetadmin") || user.has_role?( "fetuser") 
 	  can :manage, Rubrik
 	  can :manage, Neuigkeit
+          can :showunpublished, Neuigkeit
    end
   
   
