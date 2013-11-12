@@ -50,6 +50,8 @@ class FetprofilesController < ApplicationController
   # GET /fetprofiles/1/edit
   def edit
     @fetprofile = Fetprofile.find(params[:id])
+    @memberships=@fetprofile.memberships.order(:typ)
+    @memberships<<Membership.new
   end
 
   # POST /fetprofiles

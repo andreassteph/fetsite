@@ -5,6 +5,36 @@
     <%= f.input :typ, :as => :select, :collection => Gremium::TYPEN.invert %>
     <%= f.input :geschlecht, :as => :select, :collection => Gremium::GESCHLECHT.invert %>
     <%= f.input :thema, :as=> :select, :collection => Thema.all %>
+ 
+
+    <% f.inputs :for => :memberships, :objects=>@memberships do |membership,i| %> 
+    <div class="row-fluid">
+      <div class="span1"></div>
+      <div class="span3"><%= membership.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
+      <div class="span3"><%= membership.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
+    <div class="span2"><%= membership.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false %></div>
+<div class="span3"><%= membership.input :fetprofile, :as=>:select, :label=>false %></div>
+
+      
+    </div>  
+    <% end %>
+
+
+<% @memberships.each do |m| %>
+
+    <%= f.semantic_fields_for :memberships, m do |memberships_attributes| %> 
+    <div class="row-fluid">
+      <div class="span1"></div>
+      <div class="span3"><%= memberships_attributes.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
+      <div class="span3"><%= memberships_attributes.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
+    <div class="span2"><%= memberships_attributes.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false %></div>
+<div class="span3"><%= memberships_attributes.input :fetprofile, :as=>:select, :label=>false %></div>
+
+      
+    </div>  
+    <% end %>
+<% end %>
+
   <% end %>
 
   <%= f.actions do %>

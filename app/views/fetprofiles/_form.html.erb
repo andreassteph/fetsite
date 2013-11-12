@@ -28,9 +28,13 @@
       <div class="span4">  <%= f.input :fetmailalias %></div> 
     </div>
     
-    <%= f.inputs :for => :memberships do |membership,i| %> 
+<% @memberships.each do |m| %>
+
+    <%= f.semantic_fields_for :memberships, m do |membership| %>
+  
     <div class="row-fluid">
       <div class="span1"></div>
+ 
       <div class="span3"><%= membership.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
       <div class="span3"><%= membership.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
     <div class="span2"><%= membership.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false %></div>
@@ -39,7 +43,7 @@
       
     </div>  
     <% end %>
-    <% end %>
+  <% end %>  <% end %>  
     <div class="row-fluid">
       <div class="span12">
 	<%= f.actions do %>

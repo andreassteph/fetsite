@@ -45,6 +45,10 @@ class GremienController < ApplicationController
   # GET /gremien/1/edit
   def edit
     @gremium = Gremium.find(params[:id])
+    
+    @memberships=@gremium.memberships.order(:fetprofile_id).active
+    @memberships<<Membership.new
+
   end
 
   # POST /gremien
