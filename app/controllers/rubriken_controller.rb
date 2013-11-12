@@ -9,6 +9,11 @@ class RubrikenController < ApplicationController
   def show
     @rubrik = Rubrik.find(params[:id])
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
+    if can?(:showunpublished, Neuigkeit)
+    @neuigkeiten = @rubrik.neuigkeiten
+else
+    @neuigkeiten = @rubrik.neuigkeiten.published
+end
   end
   
   def new
