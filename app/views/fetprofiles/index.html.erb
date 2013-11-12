@@ -2,8 +2,8 @@
 <%= render 'fetprofiles/tabs' %>
 
 <h1>
-  <%=	I18n.t 'fetprofiles.all' if params[:filter] == "all" %>
-  <%=	I18n.t 'fetprofiles.active' if params[:filter].nil? || params[:filter]== "active"
+  <%=	I18n.t 'profile.all_members' if params[:filter] == "all" %>
+  <%=	I18n.t 'profile.active_members' if params[:filter].nil? || params[:filter]== "active"
 	%>
 </h1>
 
