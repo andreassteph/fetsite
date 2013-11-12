@@ -18,8 +18,8 @@
 	<% @fetprofile.memberships.each do |m| %>
 	<li>
 	  <%= render m %>
-	  <%= link_to 'edit', edit_fetprofile_membership_path(@fetprofile,m) if params["verwalten"] && can?(:delete, m)%>
-	  <%= link_to 'delete', [@fetprofile, m], method: :delete, data: {confirm: 'Sure to delete?'} if params["verwalten"] && can?(:delete, m ) %>
+	  <%= link_to I18n.t('common.edit'), edit_fetprofile_membership_path(@fetprofile,m) if params["verwalten"] && can?(:edit, m)%>
+	  <%= link_to I18n.t('common.delete'), [@fetprofile, m], method: :delete, data: {confirm: I18n.t('common.sure_del')} if params["verwalten"] && can?(:delete, m ) %>
 	</li>
 	<% end %>
       </ul>

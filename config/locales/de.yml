@@ -5,10 +5,12 @@ de:
   hello: "Hallo Welt"
   common:
     edit: "Bearbeiten"
+    back: "Zurück"
     actions: "Aktionen"
     delete: "Löschen"    
     verwalten: "Verwalten"
     back: "Zurück"
+    sure_del: "Sicher endgültig löschen?"
   home:
     mtitle: "Menu"
     willkommen: "Willkommen bei der Fachschaft Elektrotechnik"
@@ -82,4 +84,4 @@ de:
               blank: "Wählen Sie zumindest eine Modulgruppe aus"
   support:
     array:
-      two_words_connector: ', '
+      two_words_connector: ', '	
