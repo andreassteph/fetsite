@@ -13,7 +13,7 @@
 #
 
 class Calentry < ActiveRecord::Base
-  attr_accessible :ende, :start, :summary, :typ,:calendar_ids, :calendar
+  attr_accessible :ende, :start, :summary, :typ,:calendar_ids, :calendar, :dauer
   belongs_to :calendar
   belongs_to :neuigkeit
   validates :start, :presence => true
@@ -37,6 +37,12 @@ validate do |entry|
   end
   def start1
     start.to_date
+  end
+  def dauer
+    self.start-self.ende
+  end
+  def dauer=(dauer)
+    self.ende=self.start+dauer.to_i.hours
   end
   def name
     unless self.object.nil?
