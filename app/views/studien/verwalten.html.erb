@@ -127,7 +127,7 @@
 	    
 
 	    <% @lvas.each do |lva| %>
-	    <%= (lva.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %><%= link_to lva.name, lva %> |	      
+	    <%= (lva.valid?) ? '<i class="icon-ok"> </i>'.html_safe : '<i class="icon-remove"></i>'.html_safe  %><%= link_to lva.full_name, lva %> |	      
 	    <%=link_to '<i class="icon-pencil"></i>'.html_safe+ 'edit', edit_lva_path(lva)%><br>
 	    
 	    <% end %>

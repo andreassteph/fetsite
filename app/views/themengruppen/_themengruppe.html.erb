@@ -26,7 +26,7 @@
   <div class="span6">
     <!--<b><%= I18n.t("themengruppe.themen") %></b>
     --><ul>
-      <% themengruppe.themen.each do |t| %>
+      <% themengruppe.themen.order(:title).each do |t| %>
       <li>
 	<%= render t %>
       </li>

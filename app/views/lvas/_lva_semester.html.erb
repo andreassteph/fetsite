@@ -1,6 +1,6 @@
 
 <div class="lva-semester">
- <%=lva.lvanr.to_s %> <b><%= link_to lva.name, lva_path(lva)%></b>  <%= lva.ects %> ECTS / <%= lva.stunden %> Std<br>
+ <%=lva.lvanr.to_s %> <b><%= link_to lva.full_name, lva_path(lva)%></b>  <%= lva.ects %> ECTS / <%= lva.stunden %> Std<br>
 <!--  <div class="hidden-phone">
   Module: /<% lva.modul.each do |m| %> <%= link_to m.name + ' / ', modul_path(m) unless m.modulgruppen.map{|x| x.studium}.index(@studium).nil? && !@studium.nil? %><% end %>
 <br>
