@@ -10,7 +10,7 @@
     <% unless @neuigkeit.calentry.nil?          %>
       <%= f.inputs :for => :calentry do |calentry| %>
         <%= calentry.input :start, :as => :datepicker  %>
-	<%= calentry.input :ende , :as => :datepicker  %>
+	<%= calentry.input :dauer , :as => :string  %>
 	<%= calentry.input :typ %>
       <% end %>
     <% end %>
