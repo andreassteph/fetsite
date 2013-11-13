@@ -16,6 +16,7 @@ class Rubrik < ActiveRecord::Base
   has_many :calentries, :through => :neuigkeiten, :as=>:object
   resourcify
   has_one :calendar
+validates :calender , :presence=>true
   def moderator
     u=User.with_role(:newsmoderator).first
     if !u.nil? 

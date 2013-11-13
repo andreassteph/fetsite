@@ -40,10 +40,15 @@ validate do |entry|
     start.to_date
   end
   def dauer
-    (self.ende-self.start)/3600
+if self.ende.nil? && self.start.nil? 
+0 
+else
+self.ende = self.start unless self.start.nil?
+    (self.ende-self.start)/3600 
+end
   end
   def dauer=(dauer)
-    self.ende=self.start+dauer.to_i.hours
+    self.ende=self.start+dauer.to_i.hours 
   end
   def name
     unless self.object.nil?

@@ -14,6 +14,12 @@ class RubrikenController < ApplicationController
 else
     @neuigkeiten = @rubrik.neuigkeiten.published
 end
+@toolbar_elements << {:text=>I18n.t('neuigkeit.new.title'),:path=> new_rubrik_neuigkeit_path(@rubrik),:hicon=>'icon-plus-sign'} if can? :verwalten, @rubrik
+
+@toolbar_elements << {:text=>I18n.t('common.verwalten'),:path=>verwalten_rubrik_path(@rubrik),:icon=>:pencil} if can? :verwalten, @rubrik
+      
+
+
   end
   
   def new
@@ -83,6 +89,9 @@ end
     @neuigkeiten_unpublished = @rubrik.neuigkeiten.unpublished
     @neuigkeiten_published=@rubrik.neuigkeiten.published
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
+@toolbar_elements << {:text=>I18n.t('neuigkeit.new.title'),:path=> new_rubrik_neuigkeit_path(@rubrik),:hicon=>'icon-plus-sign'} if can? :verwalten, @rubrik
+
+
   end  
 
   # Alle Rubriken verwalten und Sachen einstellen..

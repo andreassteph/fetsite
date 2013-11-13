@@ -5,5 +5,5 @@
 <div class="span4">
   <%= f.input :start, :as => :datepicker  %></div><div class="span4">
 	<%= f.input :dauer , :as => :string, :append=>"h"  %></div><div class="span1">
-	<%= f.input :typ %></div> <div class="span1"><%= f.check_box :_destroy %></div>
+	<% f.input :typ %></div> <div class="span1"><%= f.check_box :_destroy %> <%= I18n.t 'common.delete' %></div>
      </div>

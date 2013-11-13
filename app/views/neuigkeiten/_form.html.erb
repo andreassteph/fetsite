@@ -21,13 +21,13 @@
    <%= f.input :picture, :as=> :file            %>
   </div>  </div>  
 
-  <% unless @neuigkeit.calentry.nil?          %>
+  
 
  
-      <%= f.inputs :for => :calentry do |calentry| %>
+      <%= f.semantic_fields_for :calentries , @calentries do |calentry| %>
       <%= render 'calentries/nested_fields', :f => calentry %> 
       <% end %>
-    <% end %>
+   
   <% end %>
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>
