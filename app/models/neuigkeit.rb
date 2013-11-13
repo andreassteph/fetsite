@@ -20,13 +20,13 @@ class Neuigkeit < ActiveRecord::Base
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
   translates :title,:text, :versioning=>true, :fallbacks_for_empty_translations => true
-  has_one :calentry
+  has_one :calentry, inverse_of: :object
   mount_uploader :picture, PictureUploader
   scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date).order(:datum).reverse_order}
   scope :recent, -> { published.where("updated_at >= ? ",Time.now - 7.days)}
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>:true)}
-accepts_nested_attributes_for :calentry
+accepts_nested_attributes_for :calentry, :allow_destroy=>true 
   def datum_nilsave
 	self.datum.nil? ? Time.now + 42.years : self.datum
   end
@@ -39,6 +39,9 @@ accepts_nested_attributes_for :calentry
   def reverse_publish
     self.datum = nil
   end
+ def name
+self.title
+end
   def text_first_words
     md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.text
     md[:text].split(" ")[0..100].join(" ")+ " ..."
