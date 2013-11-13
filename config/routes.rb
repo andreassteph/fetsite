@@ -56,6 +56,7 @@
      #resources :neuigkeiten, :except => [:index] do
     
      #end
+     resources :neuigkeiten, :only =>[:show]
      resources :rubriken do
        collection do 
          get 'verwalten' , :action => :alle_verwalten

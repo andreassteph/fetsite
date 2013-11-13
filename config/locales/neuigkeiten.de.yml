@@ -2,8 +2,10 @@
 de:
   neuigkeit:
     publish: "Neuigkeit veröffentlichen"
+    republish: "Neuigkeit erneut veröffentlichen"
+    unpublish: "Veröffentlichung rückgängig"
     new:
-      title: "Neue Neuigkeit"
+      title: "Neuer Artikel"
   rubriken:
     alle: "Alle Rubriken"
   rubrik:

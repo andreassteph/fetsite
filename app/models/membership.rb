@@ -18,5 +18,7 @@ class Membership < ActiveRecord::Base
   belongs_to :fetprofile
   belongs_to :gremium
   scope :active, -> {where("stop >= ? OR stop IS NULL", Time.now.to_date)}
-
+  validates :typ, :presence=>true
+  validates :fetprofile, :presence=>true
+  validates :start, :presence=>true
 end

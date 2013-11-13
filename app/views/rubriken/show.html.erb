@@ -14,7 +14,7 @@
 </i>
 
 
-<% @rubrik.neuigkeiten.each_slice(1) do |row| %>
+<% @neuigkeiten.each_slice(1) do |row| %>
 <ul class="unstyled" style="max-width:70em">
   <% row.each do |neuigkeit| %>
   <li>
@@ -25,10 +25,9 @@
 <% end %>
 
 
+<br>
 
-    <%= link_to 'Verwalten', verwalten_rubrik_path(@rubrik) %> |
-    <%= link_to '<i class="icon-plus-sign"></i>'.html_safe+"Neuer Artikel", new_rubrik_neuigkeit_path(@rubrik) %> 
+<%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 
 
-<%= toolbar_html(@toolbar_elements)%>
 

@@ -13,10 +13,11 @@
 #
 
 class Calentry < ActiveRecord::Base
-  attr_accessible :ende, :start, :summary, :typ,:calendar_ids, :calendar
+  attr_accessible :ende, :start, :summary, :typ,:calendar_ids, :calendar, :dauer
   belongs_to :calendar
-  belongs_to :neuigkeit
+  #belongs_to :neuigkeit
   validates :start, :presence => true
+  validates :object, :presence => true
   validates :typ, :presence => true
   before_save :get_public
   belongs_to :object, polymorphic: true # Objekt zu dem der Calentry gehört (derzeit ein Newsartikel)
@@ -37,6 +38,17 @@ validate do |entry|
   end
   def start1
     start.to_date
+  end
+  def dauer
+if self.ende.nil? && self.start.nil? 
+0 
+else
+self.ende = self.start unless self.start.nil?
+    (self.ende-self.start)/3600 
+end
+  end
+  def dauer=(dauer)
+    self.ende=self.start+dauer.to_i.hours 
   end
   def name
     unless self.object.nil?

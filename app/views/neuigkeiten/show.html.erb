@@ -19,5 +19,7 @@
     <p></p>
   </div>
 </div>
-
+<% @calentries1.each do |ce|%>
+<%= render ce unless ce.nil? %>
+<% end %>
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
