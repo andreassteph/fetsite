@@ -45,7 +45,7 @@ class Lva < ActiveRecord::Base
   has_and_belongs_to_many :lecturers
   translates :desc,  :fallbacks_for_empty_translations => true
   
-  validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
+  validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9A][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
   validates_presence_of :ects  # ECTS vorhanden?
   validates :name, :presence=>true, :uniqueness=>{:scope=>:typ}# Name Eingetragen?
   validates :typ, :presence=>true, :inclusion=> ERLAUBTE_TYPEN
