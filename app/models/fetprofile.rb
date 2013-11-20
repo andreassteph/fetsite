@@ -20,10 +20,15 @@ class Fetprofile < ActiveRecord::Base
   has_many :gremien, :through=> :membership
   mount_uploader :picture, PictureUploader
   has_paper_trail
+validates :desc, :presence=>true
+  validates :nachname, length:{minimum: 3},:presence=>true
+  validates :vorname, length:{minimum: 3},:presence=>true
+  validates :short, length:{minimum: 3},:presence=>true
+
   def name
     [vorname, nachname, "(",short,")"].join(" ")
   end
-  accepts_nested_attributes_for :memberships
+  accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:fetprofile_id].blank?}
   scope :active, -> { where(:active=>true).order(:vorname) } 
   def fetmail
     (fetmailalias.nil? || fetmailalias.empty?) ? short.to_s + "@fet.at" : fetmailalias.to_s + "@fet.at"

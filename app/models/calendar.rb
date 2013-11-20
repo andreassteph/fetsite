@@ -15,7 +15,7 @@ class Calendar < ActiveRecord::Base
   has_many :calentries
   mount_uploader :picture, PictureUploader
   belongs_to :rubrik
-  validates :rubrik, :presence=>true
+ # validates :rubrik, :presence=>true
 
   resourcify
   scope :public_cals, -> { where(:public => :true) }

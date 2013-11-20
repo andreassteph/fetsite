@@ -2,14 +2,14 @@ class CalentriesController < ApplicationController
   # GET /calentries
   # GET /calentries.json
   load_and_authorize_resource
-  def index
-    @calentries = Calentry.all
+ # def index
+ #   @calentries = Calentry.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @calentries }
-    end
-  end
+ #   respond_to do |format|
+ #     format.html # index.html.erb
+ #     format.json { render json: @calentries }
+ #   end
+ # end
 
   # GET /calentries/1
   # GET /calentries/1.json
@@ -25,35 +25,36 @@ class CalentriesController < ApplicationController
 
   # GET /calentries/new
   # GET /calentries/new.json
-  def new
-    @calentry = Calentry.new
+ # def new
+ #   @calentry = Calentry.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @calentry }
-    end
-  end
+ #   respond_to do |format|
+ #     format.html # new.html.erb
+ #     format.json { render json: @calentry }
+ #   end
+ # end
 
   # GET /calentries/1/edit
-  def edit
-    @calentry = Calentry.find(params[:id])
-  end
+  #def edit
+  #  @calentry = Calentry.find(params[:id])
+    
+ # end
 
   # POST /calentries
   # POST /calentries.json
-  def create
-    @calentry = Calentry.new(params[:calentry])
+ # def create
+ #   @calentry = Calentry.new(params[:calentry])
 
-    respond_to do |format|
-      if @calentry.save
-        format.html { redirect_to @calentry, notice: 'Calentry was successfully created.' }
-        format.json { render json: @calentry, status: :created, location: @calentry }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @calentry.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+#    respond_to do |format|
+#      if @calentry.save
+#        format.html { redirect_to @calentry, notice: 'Calentry was successfully created.' }
+#        format.json { render json: @calentry, status: :created, location: @calentry }
+#      else
+ #       format.html { render action: "new" }
+#        format.json { render json: @calentry.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
 
   # PUT /calentries/1
   # PUT /calentries/1.json

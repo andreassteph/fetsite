@@ -24,7 +24,7 @@
 </div>
  <div class="row-fluid">
 <%= calendar @calendar.calentries do |entry| %>
-  <div><%= link_to entry.name.to_s, entry %></div>
+  <div><%= link_to entry.name.to_s, polymorphic_path(entry.object) %></div>
 <% end %>
 </div>
  <div class="row-fluid">
