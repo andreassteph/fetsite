@@ -49,14 +49,14 @@ class Studium < ActiveRecord::Base
     end
     for i in 1..length
       semester =Semester.new()
-      semester.name = i.to_s + '. ' + self.name
+      #semester.name = i.to_s + '. ' + self.name
       semester.nummer = i
       semester.ssws = ((i % 2 == 0) ? "SS" : "WS")
       semester.save
       self.semester << semester
     end
     semester = Semester.new()
-    semester.name = 'Ohne Zuordnung (' + self.name + ')'
+    #semester.name = 'Ohne Zuordnung (' + self.name + ')'
     semester.nummer = 0
     semester.ssws = "WS"
     semester.save
