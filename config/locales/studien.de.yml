@@ -18,6 +18,9 @@ de:
     edit: "Modul bearbeiten"
     list: "Alle Module"
     add: "Neues Modul"
+    lvas: "LVAs"
+    mgs: "Modulgruppen"
+    desc: "Beschreibung"
   keine:
     beschreibung: "Keine Beschreibung vorhanden"
   beispiel:
