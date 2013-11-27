@@ -33,7 +33,7 @@ class Studium < ActiveRecord::Base
   validates :abkuerzung, :length=>{:maximum=>5}, :format=>{:with=>/^[a-zA-z]{0,5}$/}
   validates :typ, :inclusion => {:in => ["Bachelor","Master"] }
   validates :name, :uniqueness => true, :presence=>true
-  validates :zahl, :presence=>true, :format=>{:with=>/^0(33|66)[0-9]{3}$/}, :uniqueness => true 
+  validates :zahl, :presence=>true, :format=>{:with=>/^[0-9A-Z]{4,10}$/}, :uniqueness => true 
   mount_uploader :picture, PictureUploader
   translates :desc,:shortdesc, :versioning =>true,:fallbacks_for_empty_translations => true
   def title_context
