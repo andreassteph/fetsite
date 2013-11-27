@@ -33,7 +33,7 @@ class Studium < ActiveRecord::Base
   validates :abkuerzung, :length=>{:maximum=>5}, :format=>{:with=>/^[a-zA-z]{0,5}$/}
   validates :typ, :inclusion => {:in => ["Bachelor","Master"] }
   validates :name, :uniqueness => true, :presence=>true
-  validates :zahl, :presence=>true, :format=>{:with=>/^0(33|66)[0-9]{3}$/}, :uniqueness => true 
+  validates :zahl, :presence=>true, :format=>{:with=>/^[0-9A-Z]{4,10}$/}, :uniqueness => true 
   mount_uploader :picture, PictureUploader
   translates :desc,:shortdesc, :versioning =>true,:fallbacks_for_empty_translations => true
   def title_context
@@ -49,14 +49,14 @@ class Studium < ActiveRecord::Base
     end
     for i in 1..length
       semester =Semester.new()
-      semester.name = i.to_s + '. ' + self.name
+      #semester.name = i.to_s + '. ' + self.name
       semester.nummer = i
       semester.ssws = ((i % 2 == 0) ? "SS" : "WS")
       semester.save
       self.semester << semester
     end
     semester = Semester.new()
-    semester.name = 'Ohne Zuordnung (' + self.name + ')'
+    #semester.name = 'Ohne Zuordnung (' + self.name + ')'
     semester.nummer = 0
     semester.ssws = "WS"
     semester.save

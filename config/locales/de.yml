@@ -71,7 +71,7 @@ de:
           attributes:
             zahl:
               blank: "Geben Sie die Studienkennzahl an"
-              invalid: "Die eingegebene Form stimmt nicht (beginnend mit 033 oder 066, dann 3 Stellen)"
+              invalid: "Die eingegebene Form stimmt nicht. (4-10 Zeichen, Ziffern und Großbuchstaben"
               taken: "Die Kennzahl wird bereits verwendet"
             name:
               blank: "Geben Sie den Namen des Studiums ein"
