@@ -21,6 +21,8 @@ class FetprofilesController < ApplicationController
   def show
     @fetprofile = Fetprofile.find(params[:id])
     @gremientabs = Gremium.tabs
+    @memberships=@fetprofile.memberships.order(:typ)
+    @memberships<<Membership.new
     
     if params["verwalten"]
       @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fetprofile.newmembership'),:path => new_fetprofile_membership_path(@fetprofile) , :confirm=>"Sure?" } if can? :new, Membership
@@ -40,8 +42,8 @@ class FetprofilesController < ApplicationController
   # GET /fetprofiles/new.json
   def new
     @fetprofile = Fetprofile.new
-@memberships=[];
-@memberships<<Membership.new
+    @memberships=[]
+    @memberships<<Membership.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -60,6 +62,8 @@ class FetprofilesController < ApplicationController
   # POST /fetprofiles.json
   def create
     @fetprofile = Fetprofile.new(params[:fetprofile])
+    @memberships=@fetprofile.memberships.order(:typ)
+    @memberships<<Membership.new
 
     respond_to do |format|
       if @fetprofile.save
@@ -76,6 +80,8 @@ class FetprofilesController < ApplicationController
   # PUT /fetprofiles/1.json
   def update
     @fetprofile = Fetprofile.find(params[:id])
+    @memberships=@fetprofile.memberships.order(:typ)
+    @memberships<<Membership.new
 
     respond_to do |format|
       if @fetprofile.update_attributes(params[:fetprofile])
