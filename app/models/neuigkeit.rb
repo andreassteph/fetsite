@@ -56,6 +56,7 @@ def sanitize
 self.calentries.each do |calentry|
 calentry.calendar= self.rubrik.calendar
 calentry.typ=1
+calentry.object=self
 end
 end
 end
