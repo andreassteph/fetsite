@@ -43,7 +43,7 @@ validate do |entry|
 if self.ende.nil? && self.start.nil? 
 0 
 else
-self.ende = self.start unless self.start.nil?
+self.ende = self.start if self.ende.nil?
     (self.ende-self.start)/3600 
 end
   end
