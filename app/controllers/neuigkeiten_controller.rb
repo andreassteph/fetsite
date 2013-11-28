@@ -3,7 +3,8 @@ class NeuigkeitenController < ApplicationController
   load_and_authorize_resource
 
   def show
-  @neuigkeit = Neuigkeit.find(params[:id])    
+  @neuigkeit = Neuigkeit.find(params[:id])
+@rubrik=@neuigkeit.rubrik    
     if  !params[:version].nil?
       @neuigkeit.versions.reverse[params[:version].to_i].reify.save!
       @neuigkeit=Neuigkeit.find(params[:id])
@@ -30,6 +31,8 @@ class NeuigkeitenController < ApplicationController
     @neuigkeit = Neuigkeit.new
     @rubrik=Rubrik.find(params[:rubrik_id]) unless params[:rubrik_id].nil?
     @neuigkeit.rubrik=@rubrik unless @rubrik.nil?
+    @calentries= [Calentry.new] 
+
   end
   def add_calentry
     @neuigkeit=Neuigkeit.find(params[:id])

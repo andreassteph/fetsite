@@ -27,7 +27,7 @@ class Neuigkeit < ActiveRecord::Base
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>:true)}
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
-before_validation :sanitize
+  before_validation :sanitize
   def datum_nilsave
 	self.datum.nil? ? Time.now + 42.years : self.datum
   end
@@ -51,6 +51,9 @@ end
     md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.text
     md[:text].split(" ")[0..100].join(" ")+ " ..."
   end
+def has_calentries?
+!self.calentries.nil? && !self.calentries.empty?
+end
 private
 def sanitize
 self.calentries.each do |calentry|

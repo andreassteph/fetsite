@@ -16,13 +16,22 @@ class Rubrik < ActiveRecord::Base
   has_many :calentries, :through => :neuigkeiten, :as=>:object
   resourcify
   has_one :calendar
-validates :calender , :presence=>true
+  validates :calendar , :presence=>true
+  before_validation :sanitize
   def moderator
     u=User.with_role(:newsmoderator).first
     if !u.nil? 
       u.id
     end
   end
-
-
+  def sanitize
+    if self.calendar.nil?
+      self.calendar=Calendar.new
+   
+      
+end
+   self.calendar.name=self.name
+self.calendar.public=self.public
+self.calendar.save
+end
 end

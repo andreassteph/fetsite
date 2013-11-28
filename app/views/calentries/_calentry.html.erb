@@ -1,9 +1,9 @@
 <div class="contentbox">
-<%= image_tag("/icon_kalender_small.png")  %>
+<%= image_tag("/calendar-day-icon-small.png")  %>
 <% if calentry.start.to_date == calentry.ende.to_date 
 format=:timeonly
 else
 format =:default
 end%>
-<%= link_to I18n.l(calentry.start) +" bis "+ I18n.l(calentry.ende,:format=>format), calendar_path(calentry.calendar) %>
+<%= link_to I18n.l(calentry.start) +" bis "+ I18n.l(calentry.ende,:format=>format), calentry_path(calentry) %>
 </div>

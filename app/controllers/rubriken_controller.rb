@@ -4,6 +4,7 @@ class RubrikenController < ApplicationController
   def index
     @rubriken = Rubrik.all
     @neuigkeiten = Neuigkeit.recent
+    @calentries= Calentry.all
   end
  
   def show

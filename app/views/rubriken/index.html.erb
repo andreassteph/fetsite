@@ -1,11 +1,28 @@
 <%= render 'tabs' %>
-<h1><%= I18n.t("rubrik.title")%></h1>
+<p id="notice"><%= notice %></p>
 
-<ul class="unstyled linkbox-list" style="max-width:70em">
-  <% @neuigkeiten.each do |n| %>
-  <li><%= render n %> </li>
-  <% end %>
-</ul>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+
+      <h1><%= I18n.t("rubrik.title")%></h1>
+    </div>
+  </div>
+  <div class="row-fluid">
+
+    <div class="span9">
+
+      <ul class="unstyled linkbox-list" style="max-width:70em">
+	<% @neuigkeiten.each do |n| %>
+	<li><%= render n %> </li>
+	<% end %>
+      </ul>
+    </div>
+    <div class="span3">
+      <%= render 'calendars/calentries', :object=>@calentries %>
+    </div>
+  </div>
+</div>
 
 
 
