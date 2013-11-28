@@ -10,7 +10,7 @@
       <small><%= neuigkeit.rubrik.name %></small> 
       <small class="pull-right"><%= "am "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> 
     </div>
-    <h1><%= image_tag("/calendar-day-icon-small.png")  if neuigkeit.has_calentries? %>
+    <h1><%= image_tag("/iconnavy/time.png")  if neuigkeit.has_calentries? %>
 <%= neuigkeit.title%></h1>
     <%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%>
   </div>
