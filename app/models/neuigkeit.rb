@@ -20,7 +20,7 @@ class Neuigkeit < ActiveRecord::Base
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
   translates :title,:text, :versioning=>true, :fallbacks_for_empty_translations => true
-  has_many :calentries, inverse_of: :object
+  has_many :calentries, as: :object
   mount_uploader :picture, PictureUploader
   scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date).order(:datum).reverse_order}
   scope :recent, -> { published.where("updated_at >= ? ",Time.now - 7.days)}
