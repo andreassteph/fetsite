@@ -24,14 +24,13 @@ class FetprofilesController < ApplicationController
     @memberships=@fetprofile.memberships.order(:typ)
     @memberships<< Membership.new
     
-    if params["verwalten"]
-      @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fetprofile.newmembership'),:path => new_fetprofile_membership_path(@fetprofile) , :confirm=>"Sure?" } if can? :new, Membership
-     @toolbar_elements << {:hicon=>'icon-pencil', :text=> I18n.t('common.edit'),:path => edit_fetprofile_path(@fetprofile),:confirm=>"Sure?" } if can? :edit, @fetprofile
+  
+   
+     @toolbar_elements << {:hicon=>'icon-pencil', :text=> I18n.t('common.edit'),:path => edit_fetprofile_path(@fetprofile) } if can? :edit, @fetprofile
+
       @toolbar_elements << {:hicon=>'icon-minus', :text => I18n.t('common.delete'), :method=>:delete, :confirm=>"Sure"}
           
-    else
-      @toolbar_elements << {:text=>I18n.t('common.verwalten'),:path=>fetprofile_path(@fetprofile,{:verwalten=>true}),:icon=>:pencil} if can? :verwalten, @fetprofile
-    end
+   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @fetprofile }
