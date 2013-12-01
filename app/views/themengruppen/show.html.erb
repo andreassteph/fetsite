@@ -12,9 +12,15 @@
 			<%= thema.title %>
 		  </a>
 		</div>
-		<div id="collapse<%=thema.id%>" class="accordion-body collapse">
+		<div id="collapse<%=thema.id%>" class="accordion-body<%= 'collapse' unless params['thema']==thema.id %>">
 		  <div class="accordion-inner">
-			<%= render :partial => 'themen/small', :object => thema %>
+	<% unless thema.gremium.nil? %>
+			<p><%= link_to "Zu dem Gremium ..." , thema.gremium %>
+			</p>
+<% end %>		
+	<%= render :partial => 'themen/small', :object => thema %>
+		
+
 		  </div>
 		</div>
 	  </div>

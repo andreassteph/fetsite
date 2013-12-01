@@ -1,7 +1,7 @@
 <%= semantic_form_for @gremium do |f| %>
   <%= f.inputs do %>
     <%= f.input :name %>
-    <%= f.input :desc %>
+    <%= f.input :desc, :as=>:tinymce_text %>
     <%= f.input :typ, :as => :select, :collection => Gremium::TYPEN.invert %>
     <%= f.input :geschlecht, :as => :select, :collection => Gremium::GESCHLECHT.invert %>
     <%= f.input :thema, :as=> :select, :collection => Thema.all %>
@@ -41,3 +41,5 @@
     <%= f.action :submit, :as => :input %>
   <% end %>
 <% end %>
+  <script>$('.datepicker').datepicker()</script>
+<%= tinymce %>

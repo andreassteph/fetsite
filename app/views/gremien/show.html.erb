@@ -9,8 +9,11 @@
     <p>
       <%= @gremium.desc %>
     </p>
+<% unless @gremium.thema.nil? %>
+ <p><%= link_to "Mehr zum Gremium lesen ..." ,themengruppe_path(@gremium.thema.themengruppe , {:thema=>@gremium.thema.id})%></p>
+<% end %>
   </div>
-
+ 
   <% @gremium.memberships.order(:typ).active.each_slice(4) do |r| %>
   <div class="row-fluid">
     <% r.each do |m| %>
