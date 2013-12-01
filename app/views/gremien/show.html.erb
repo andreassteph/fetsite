@@ -7,7 +7,7 @@
     </h1>
     <% Gremium::TYPEN[@gremium.typ.to_i].to_s %>
     <p>
-      <%= @gremium.desc %>
+      <%= @gremium.desc.html_safe %>
     </p>
 <% unless @gremium.thema.nil? %>
  <p><%= link_to "Mehr zum Gremium lesen ..." ,themengruppe_path(@gremium.thema.themengruppe , {:thema=>@gremium.thema.id})%></p>
