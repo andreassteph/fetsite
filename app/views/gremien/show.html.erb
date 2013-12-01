@@ -14,7 +14,7 @@
 <% end %>
   </div>
  
-  <% @gremium.memberships.order(:typ).active.each_slice(4) do |r| %>
+  <% @memberships.each_slice(4) do |r| %>
   <div class="row-fluid">
     <% r.each do |m| %>
     <%= link_to m.fetprofile do %>

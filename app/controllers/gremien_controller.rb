@@ -25,6 +25,8 @@ class GremienController < ApplicationController
   def show
     @gremium = Gremium.find(params[:id])
     @gremientabs=Gremium.tabs
+@memberships=@gremium.memberships.active.includes(:fetprofile).order(:typ,"fetprofiles.vorname","fetprofiles.nachname")
+  
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @gremium }
@@ -48,7 +50,7 @@ class GremienController < ApplicationController
     @gremium = Gremium.find(params[:id])
     
     @memberships=@gremium.memberships.order(:fetprofile_id).active
-    @memberships<<Membership.new
+    @memberships<< Membership.new
 
   end
 

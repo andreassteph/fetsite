@@ -15,7 +15,7 @@
       </p>
 
       <ul>
-	<% @fetprofile.memberships.each do |m| %>
+	<% @memberships.each do |m| %>
 	<li>
 	  <%= render m %>
 	  <%= link_to I18n.t('common.edit'), edit_fetprofile_membership_path(@fetprofile,m) if params["verwalten"] && can?(:edit, m)%>

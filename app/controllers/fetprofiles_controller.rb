@@ -21,8 +21,8 @@ class FetprofilesController < ApplicationController
   def show
     @fetprofile = Fetprofile.find(params[:id])
     @gremientabs = Gremium.tabs
-    @memberships=@fetprofile.memberships.order(:typ)
-    @memberships<< Membership.new
+    @memberships=@fetprofile.memberships.order(:typ,:vorname,:nachname)
+  
     
   
    
