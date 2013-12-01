@@ -23,14 +23,13 @@ class Fetprofile < ActiveRecord::Base
 validates :desc, :presence=>true
   validates :nachname, length:{minimum: 3},:presence=>true
   validates :vorname, length:{minimum: 3},:presence=>true
-  validates :short, length:{minimum: 3},:presence=>true
+ 
 
  accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:gremium_id].blank?}
  
   def name
-    [vorname, nachname, "(",short,")"].join(" ")
+    [vorname, nachname, ((short.empty?)? "": ["(",short,")"].join)].join(" ")
   end
-  
   scope :active, -> { where(:active=>true).order(:vorname) } 
   def fetmail
     (fetmailalias.nil? || fetmailalias.empty?) ? short.to_s + "@fet.at" : fetmailalias.to_s + "@fet.at"
