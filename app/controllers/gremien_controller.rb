@@ -35,6 +35,7 @@ class GremienController < ApplicationController
   # GET /gremien/new.json
   def new
     @gremium = Gremium.new
+    @memberships=[Membership.new]
 
     respond_to do |format|
       format.html # new.html.erb

@@ -17,6 +17,7 @@ class Gremium < ActiveRecord::Base
   ART2FALL={0=>"des", 1=>"des",2=>"der"} # Artikel 2.Fall abhängig vom Geschlecht
   attr_accessible :desc, :name, :typ, :geschlecht,:thema_id, :memberships_attributes
   has_many :memberships # Mitgliedschaften bei dem Gremium
+
   belongs_to :thema # Gehört zu einem Thema
   scope :tabs, -> { where(:typ => [1,3]).order(:typ).order(:name) } # Gremien die in Tabs angezeigt werden (Alle Anderen nur in der Liste
   # Gremium im 2. Fall für die Konstruktion "Mitglied des ... / der ... " 

@@ -22,7 +22,7 @@ class FetprofilesController < ApplicationController
     @fetprofile = Fetprofile.find(params[:id])
     @gremientabs = Gremium.tabs
     @memberships=@fetprofile.memberships.order(:typ)
-    @memberships<<Membership.new
+    @memberships<< Membership.new
     
     if params["verwalten"]
       @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fetprofile.newmembership'),:path => new_fetprofile_membership_path(@fetprofile) , :confirm=>"Sure?" } if can? :new, Membership
@@ -43,7 +43,7 @@ class FetprofilesController < ApplicationController
   def new
     @fetprofile = Fetprofile.new
     @memberships=[]
-    @memberships<<Membership.new
+    @memberships<< Membership.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -55,7 +55,7 @@ class FetprofilesController < ApplicationController
   def edit
     @fetprofile = Fetprofile.find(params[:id])
     @memberships=@fetprofile.memberships.order(:typ)
-    @memberships<<Membership.new
+    @memberships<< Membership.new
   end
 
   # POST /fetprofiles
@@ -63,7 +63,7 @@ class FetprofilesController < ApplicationController
   def create
     @fetprofile = Fetprofile.new(params[:fetprofile])
     @memberships=@fetprofile.memberships.order(:typ)
-    @memberships<<Membership.new
+    @memberships<< Membership.new
 
     respond_to do |format|
       if @fetprofile.save
@@ -80,14 +80,16 @@ class FetprofilesController < ApplicationController
   # PUT /fetprofiles/1.json
   def update
     @fetprofile = Fetprofile.find(params[:id])
-    @memberships=@fetprofile.memberships.order(:typ)
-    @memberships<<Membership.new
-
+    
+   
+   
     respond_to do |format|
       if @fetprofile.update_attributes(params[:fetprofile])
         format.html { redirect_to @fetprofile, notice: 'Fetprofile was successfully updated.' }
         format.json { head :no_content }
       else
+        @memberships=@fetprofile.memberships.order(:typ)
+        @memberships<< Membership.new
         format.html { render action: "edit" }
         format.json { render json: @fetprofile.errors, status: :unprocessable_entity }
       end
