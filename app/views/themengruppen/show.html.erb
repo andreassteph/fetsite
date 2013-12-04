@@ -12,7 +12,7 @@
 			<%= thema.title %>
 		  </a>
 		</div>
-		<div id="collapse<%=thema.id%>" class="accordion-body<%= ' collapse' unless params['thema']==thema.id %>">
+		<div id="collapse<%=thema.id%>" class="accordion-body<%= ' collapse' unless params['thema'].to_i==thema.id %>">
 		  <div class="accordion-inner">
 	<% unless thema.gremium.nil? %>
 			<p><%= link_to "Zu dem Gremium ..." , thema.gremium %>
