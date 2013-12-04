@@ -8,11 +8,19 @@
   <div class="media-body">
     <div>
       <small><%= neuigkeit.rubrik.name %></small> 
-      <small class="pull-right"><%= "am "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> 
+      <small class="pull-right"> <%= "am "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> 
     </div>
-    <h1><%= image_tag("/iconnavy/time.png")  if neuigkeit.has_calentries? %>
-<%= neuigkeit.title%></h1>
+    <h1> 
+      <%= neuigkeit.title%>
+    </h1>
     <%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%>
+    </div>
+<% if neuigkeit.has_calentries? %>
+    <div class="pull-right" href="#">
+<%= image_tag("/iconnavy/time.png")  %>
+
+     <%=  neuigkeit.calentries.first.text %>
+    <% end %>
   </div>
 </div>
 

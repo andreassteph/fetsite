@@ -5,5 +5,5 @@ format=:timeonly
 else
 format =:default
 end%>
-<%= link_to I18n.l(calentry.start) +" bis "+ I18n.l(calentry.ende,:format=>format), calentry_path(calentry) %>
+<%= link_to calentry.name, calentry_path(calentry) %>
 </div>

@@ -57,6 +57,9 @@ end
       summary
     end
   end
+def text
+   I18n.l(self.start) +" bis "+ I18n.l(self.ende) 
+end
   scope :public, -> { where(:public => :true) } 
   scope :upcoming, -> { where("start >= ?" , Time.now).where("start <= ?", 8.days.from_now) }
 end
