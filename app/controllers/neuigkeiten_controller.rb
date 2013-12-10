@@ -30,6 +30,7 @@ class NeuigkeitenController < ApplicationController
   def new
     @neuigkeit = Neuigkeit.new
     @rubrik=Rubrik.find(params[:rubrik_id]) unless params[:rubrik_id].nil?
+    @neuigkeit.author=current_user
     @neuigkeit.rubrik=@rubrik unless @rubrik.nil?
     @calentries= [Calentry.new] 
 
@@ -78,6 +79,8 @@ class NeuigkeitenController < ApplicationController
 
   def create
     @neuigkeit = Neuigkeit.new(params[:neuigkeit])
+    @neuigkeit.author=current_user
+    
     respond_to do |format|
       if @neuigkeit.save
         format.html { redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit was successfully created.' }

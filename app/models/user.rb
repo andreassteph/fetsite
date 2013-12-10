@@ -57,7 +57,7 @@ logger.debug auth.to_s
      user= User.create(name:auth.extra.raw_info.uid.first,
                        provider:auth.provider,
                        uid:auth.extra.raw_info.uid.first,
-                       email:auth.extra.raw_info.uid.first.to_s+"@fet.at",
+                       email:auth.extra.raw_info.mail.first.to_s,
                        password:Devise.friendly_token[0,20])
     user.add_role("fetuser")
 logger.debug(auth.extra.raw_info.to_s)
