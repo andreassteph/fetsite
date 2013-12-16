@@ -2,7 +2,7 @@ BEGIN:VEVENT
 UID:4610<%= calentry.id $>@fet.at
 ORGANIZER;CN="Peter Schlechter, Example Inc.":MAILTO:peter@fet.at
 LOCATION:Vienna
-SUMMARY:<%= calentry.summary%>
+SUMMARY:<%= calentry.name %>
 DESCRIPTION:<%= calentry.summary%>
 CLASS:PUBLIC
 DTSTART:<%= calentry.start.strftime "%Y%m%dT%H%M%S" %>

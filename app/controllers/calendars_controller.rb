@@ -4,6 +4,8 @@ class CalendarsController < ApplicationController
     load_and_authorize_resource
   def index
     @calendars = Calendar.all
+    @calentries = Calentry.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @calendars }
