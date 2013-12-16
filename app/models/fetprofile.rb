@@ -23,9 +23,9 @@ class Fetprofile < ActiveRecord::Base
 validates :desc, :presence=>true
   validates :nachname, length:{minimum: 3},:presence=>true
   validates :vorname, length:{minimum: 3},:presence=>true
- 
+  has_many :users
 
- accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:gremium_id].blank?}
+ accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:gremium_id].blank?}, :allow_destroy=>true
  
   def name
     [vorname, nachname, ((short.empty?)? "": ["(",short,")"].join)].join(" ")

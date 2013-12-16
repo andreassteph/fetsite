@@ -6,7 +6,7 @@
 </span>
 <span class="pull-right">
   <%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
-  <%= "am " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
+  <%= @neuigkeit.author.text+ " am " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
 </span>
 <div class="media">
   <div class="pull-left" href="#">

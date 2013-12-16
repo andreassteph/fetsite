@@ -3,31 +3,45 @@
 <%= link_to "Admin" , :controller =>"config" , :action => "index"%>
 </li>
 </ul>
+
+<%= semantic_form_for "users[]", :url=>all_update_users_path do |ff|%>
 <table class="table table-striped">
 
-<tr><th>E-Mail</th><th>Rollen</th><th>Actions</th>
-</tr>
-<% @users.each do |user|%>
-<tr>
-<td>
-	<%= user.email %></td><td><ul>
-	<% user.roles.each do |role| %>
-	<li><%= role.name%></li>
-<% end %></ul></td>
-<td>
+  <tr><th>E-Mail</th><th>Rollen</th><th>Actions</th><th>Profile</th>
+  </tr>
+  <% @users.each do |user|%>
 
-<div class="btn-group">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Action
-    <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-		<li><%= link_to 'Rolle: fetadmin', user_add_role_path(user, "fetadmin")%></li>
-		<li><%= link_to 'Rolle: fetuser', user_add_role_path(user, "fetuser")%></li>
-	
-    <!-- dropdown menu links -->
-    </ul>
-</div>
-</td>
-</tr><% end %>
+  <tr>
+    <td><%= user.email %></td>
+    <td>
+      <ul>
+	<% user.roles.each do |role| %><li><%= role.name%></li><% end %>
+      </ul>
+    </td>
+    <td>
+      <div class="btn-group">
+	<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+	  Action
+	  <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+	  <li><%= link_to 'Rolle: fetadmin', user_add_role_path(user, "fetadmin")%></li>
+	  <li><%= link_to 'Rolle: fetuser', user_add_role_path(user, "fetuser")%></li>
+	  <!-- dropdown menu links -->
+	</ul>
+      </div>
+    </td>
+    <td>
+      <%= semantic_fields_for "users[#{user.id}]", user do |f|%>
+      <%= f.input :fetprofile ,:label=>false , :as=>:select , :collection=>Fetprofile.all %>
+
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
 </table>
+<%= ff.actions do %>
+      <%= ff.action :submit, :as => :button %>
+      <%= ff.action :cancel, :as => :link %>
+      <% end %>
+<% end %>

@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
+belongs_to :fetprofile
   # attr_accessible :title, :body
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
 logger.debug auth.to_s
@@ -79,5 +80,11 @@ logger.debug auth.to_s
      end
     end
   end
-  
+ def text
+   if self.fetprofile.nil? 
+     self.email
+else
+self.fetprofile.name
+end
+end
 end
