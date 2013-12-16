@@ -33,7 +33,7 @@
     <%= f.semantic_fields_for :memberships, m do |membership| %>
   
     <div class="row-fluid">
-      <div class="span1"></div>
+     
  
       <div class="span3"><%= membership.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
       <div class="span3"><%= membership.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
@@ -41,7 +41,7 @@
  <div class="span3"><%= membership.input :gremium, :label=>false %>
 
 </div>
-
+<div class="span1"><%= membership.check_box :_destroy %> <%= I18n.t 'common.delete' %></div>
       
     </div>  
     <% end %>
