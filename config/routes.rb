@@ -3,7 +3,12 @@
    resources :home, :only=>[:index]
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"
    scope '(:locale)/admin' do
-     resources :users, :only => [:index]
+     resources :users, :only=>[]  do 
+collection do
+       get :index
+       post :all_update
+end
+     end
      get 'users/:id/add_role/:role', :controller=>:users, :action=>:add_role, :as=>'user_add_role'
      get 'users/:id/do_confirm', :controller=>:users, :action=>:do_confirm, :as=>'user_do_confirm'
      get 'config',:controller=>:config,:action=>:index , :as => 'config'
