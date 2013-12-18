@@ -14,7 +14,10 @@
     </p>
   </div>
   <div class="media-body">
-    <h1><%= link_to @neuigkeit.title,rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)  %></h1>
+    <h1>
+<%=  @neuigkeit.title%>
+
+</h1>
     <%= raw(@neuigkeit.text) %>
     <p></p>
   </div>

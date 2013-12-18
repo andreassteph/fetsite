@@ -10,7 +10,7 @@ class NeuigkeitenController < ApplicationController
       @neuigkeit=Neuigkeit.find(params[:id])
     end 
     @calentries1=@neuigkeit.calentries
-    if params[:verwalten]
+
       @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :publish, @neuigkeit
       @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can?(:unpublish, @neuigkeit) && !@neuigkeit.published?
      
@@ -21,10 +21,7 @@ class NeuigkeitenController < ApplicationController
       @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>'Sure?' } if can? :delete, @neuigkeit
 #      @toolbar_elements << {:path=> add_calentry_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :text=>"Add Calentry", :icon=>:plus}
 
-        else
-      @toolbar_elements << {:text=>I18n.t('common.verwalten'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit,{:verwalten=>true}),:icon=>:pencil} if can? :verwalten, @neuigkeit
-          
-        end
+
   end
   
   def new

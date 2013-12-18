@@ -34,7 +34,6 @@ class CalendarsController < ApplicationController
       format.json { render json: @calendar }
     end
   end
-
   # GET /calendars/1/edit
   def edit
     @calendar = Calendar.find(params[:id])

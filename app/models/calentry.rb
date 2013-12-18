@@ -22,10 +22,10 @@ class Calentry < ActiveRecord::Base
   before_save :get_public
   belongs_to :object, polymorphic: true # Objekt zu dem der Calentry gehört (derzeit ein Newsartikel)
   
-validate do |entry|
-	if entry.ende.nil? 
-		errors.add(:ende, "Es muss ein Endzeitpunkt vorhanden sein")
-	end
+  validate do |entry|
+    if entry.ende.nil? 
+      errors.add(:ende, "Es muss ein Endzeitpunkt vorhanden sein")
+    end
   end  
   
   resourcify
@@ -61,5 +61,5 @@ def text
    I18n.l(self.start) +" bis "+ I18n.l(self.ende) 
 end
   scope :public, -> { where(:public => :true) } 
-  scope :upcoming, -> { where("start >= ?" , Time.now).where("start <= ?", 8.days.from_now) }
+  scope :upcoming, -> { where("start >= ?" , Time.now).where("start <= ?", 28.days.from_now) }
 end

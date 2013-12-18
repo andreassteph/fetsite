@@ -30,6 +30,7 @@
 </div>
 <div class="span3">
 <%= render 'calendars/calentries', :object=>@rubrik.calendar.calentries %>
+<%= link_to "ics-format", calendar_path(@rubrik.calendar,:format=>:ics) %>
 </div>
 
 </div>
