@@ -4,4 +4,10 @@ de:
     all_members: "Alle Mitglieder"
     all_groups: "Alle Gremien und Gruppen"
     active_members: "Aktive Mitglieder"
+    notactive_members: "Pension"
     new_profile: "Neues Profil anlegen"
+  gremium:
+    filter:
+      berufung:
+        title: "Berufungskommission"
+        text: "B.."

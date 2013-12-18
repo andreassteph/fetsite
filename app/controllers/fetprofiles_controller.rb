@@ -3,12 +3,12 @@ class FetprofilesController < ApplicationController
   # GET /fetprofiles.json
   before_filter {@toolbar_elements=[]}
   load_and_authorize_resource
- 
-  
   def index
     
     @fetprofiles = Fetprofile.active.order(:vorname,:nachname)
     @fetprofiles = Fetprofile.order(:vorname,:nachname) if params[:filter]== "all"
+    @fetprofiles = Fetprofile.where(:active=>false).order(:vorname,:nachname) if params[:filter]== "notactive"
+
     @gremientabs = Gremium.tabs
     respond_to do |format|
       format.html # index.html.erb

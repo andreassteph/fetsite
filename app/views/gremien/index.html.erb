@@ -1,7 +1,12 @@
 <%= render 'fetprofiles/tabs' %>
 <h1>Alle Gremien</h1>
 
+<% unless params[:filter].nil? %>
+<p><%= Gremium::TEXT[params[:filter]] %></p>
+<% end %>
+
 <ul class="unstyled fetprofile_list">
+
   <% @gremien.each do |g| %>
   <li>
     <%= link_to g do %>

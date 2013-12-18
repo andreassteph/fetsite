@@ -2,7 +2,7 @@
   <li <%= (request.fullpath == fetprofiles_path(filter: "active")|| request.fullpath == fetprofiles_path) ? 'class="active"'.html_safe : ''%> >
     <%= link_to I18n.t('profile.active_members') , fetprofiles_path( filter: "active") %> 
   </li>
-  <li>
+  <li  <%=  request.fullpath == gremien_path ? 'class="active"'.html_safe : '' %> >
     <%= link_to I18n.t('profile.all_groups'), gremien_path %>
   </li> 
   <% for g in @gremientabs %>
@@ -10,15 +10,31 @@
     <%= link_to g.name, g %>
   </li>
   <% end %>
+
+  <% Gremium::FILTER.each do |fid,filtername| %>
+  <li <%= (request.fullpath == gremien_path(filter: fid)) ? 'class="active"'.html_safe : ''%> >
+    <%= link_to filtername , gremien_path( filter: fid) %> 
+  </li>
+  <% end %>
+
+
+  <li <%= (request.fullpath == fetprofiles_path(filter: "notactive")|| request.fullpath == fetprofiles_path) ? 'class="active"'.html_safe : ''%> >
+    <%= link_to I18n.t('profile.notactive_members') , fetprofiles_path( filter: "notactive") %> 
+  </li>
+
   <li <%= (request.fullpath == fetprofiles_path(filter: "all")) ? 'class="active"'.html_safe : ''%> >
     <%= link_to I18n.t('profile.all_members') , fetprofiles_path( filter: "all") %> 
   </li>
+
+
+
+  
   <% if can?(:verwalten,Gremium) %>
   <% if request.fullpath == verwalten_gremien_path %>
   <li class="active pull-right">
-  <% else %>
+    <% else %>
   <li class="pull-right">
-  <% end %>
+    <% end %>
     <%= link_to I18n.t('common.verwalten'), verwalten_gremien_path %>
   </li>
   <% end %>

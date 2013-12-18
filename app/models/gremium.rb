@@ -15,8 +15,8 @@ class Gremium < ActiveRecord::Base
   TYPEN={1=>"offiziell", 2=>"offiziell-temporär", 3 => "inoffiziell",4=>"inoffiziell-tempo", 11=> "berufungskommission"} # Kategorien, im Wesentlichen wichtig für Listung oder nicht Listung
   GESCHLECHT={0=>"saechlich", 1 => "maennlich", 2 => "weiblich"} # Geschlecht des Gremiums zur richtige Deklination
   ART2FALL={0=>"des", 1=>"des",2=>"der"} # Artikel 2.Fall abhängig vom Geschlecht
-  FILTER={11=>I18n.t("gremium.filter.berufung")}
-  TEXT={11=>I18n.t("gremium.filter.berufungT")}
+  FILTER={11=>I18n.t("gremium.filter.berufung.title")}
+  TEXT={11=>I18n.t("gremium.filter.berufung.text")}
 
   attr_accessible :desc, :name, :typ, :geschlecht,:thema_id, :memberships_attributes
   has_many :memberships # Mitgliedschaften bei dem Gremium

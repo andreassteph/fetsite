@@ -14,7 +14,13 @@ class GremienController < ApplicationController
   end
 
   def index 
-    @gremien = Gremium.order(:typ).order(:name)
+    if params[:filter].nil?
+      @gremien = Gremium.where("CAST(typ AS INT) < 10").order(:typ).order(:name)
+    else
+      @gremien = Gremium.order(:typ).order(:name).where("CAST(typ AS INT) == ?",params[:filter])   
+    end
+   
+
     @gremientabs=Gremium.tabs
   
   end
