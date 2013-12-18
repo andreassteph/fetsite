@@ -6,7 +6,12 @@
     <div class="span3 pull-right"><div class="pull-right"> <%= link_to @text, studium_path(@studium, :ansicht=>@flip), :class=>"btn" %></div>
     </div>
   </div>
-  <%= raw(@studium.desc) %>
+
+    <% if params[:info].true? %>
+    <%= raw(@studium.desc) %>
+    <% else %>
+    <%= @studium.desc_first_words %> <%= link_to I18n.t('studium.info'), studium_path(@studium, :ansicht=>params[:ansicht], :info=>true) %>
+    <% end %>
 
     <% @studium.semester.each do |sem| %>
         <div class="row-fluid">
