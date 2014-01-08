@@ -1,4 +1,5 @@
  Fetsite::Application.routes.draw do
+  themes_for_rails
    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
    resources :home, :only=>[:index]
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"

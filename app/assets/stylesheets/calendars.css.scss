@@ -2,3 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+table.calendar tr td
+{
+	width:14.28%;
+	height:2em;
+	position:relative;
+	padding:0
+}
+
+table.calendar tr td.day div 
+{
+	display:block;
+ 	position:absolute;
+	padding:2px;
+}
+table.calendar tr td.day div div
+{
+	display:none;
+	position:relative;
+}
+table.calendar tr td.day.events
+{	color:blue
+}
+table.calendar tr td.day div:hover div
+{
+	display:block;
+	z-index:	10000;
+	background:none;	
+	border: none;
+}
+table.calendar tr td.day div:hover
+{	       
+	background:white;
+	border: solid black 1px;
+	z-index:9999;
+}
+
+table.calendar tr td.day div:hover div
+{
+}
+
+table.calendar tr td.day div div.day_number
+{
+	display:block;
+}

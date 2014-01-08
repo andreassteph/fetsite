@@ -4,7 +4,11 @@
  <head>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fetsite</title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
+  
+  <%= stylesheet_link_tag "themes/"+theme_name+"/application", :media => "all" unless theme_name.nil?  %>
+<%= stylesheet_link_tag "application", :media=>"all" if theme_name.nil? %>
+
+
     <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap-responsive.css">

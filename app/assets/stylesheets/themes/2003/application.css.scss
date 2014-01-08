@@ -10,31 +10,33 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- * require_tree .
- *= require 'calendars'
+ *= require_tree .
  *= require jquery.fileupload-ui
  * require 'bootstrap'
 
- 
+ *= require 'neuigkeiten'
  */
 // Colorshema #0A64A4
-$color_prim: #0A64A4;
-$color_prim_light: #0B65A5;
-$color_prim_vlight: #2B85C5;
+$color_prim: #7070a0;
+$color_prim_light: lighten($color_prim ,10%);
+$color_prim_vlight: lighten($color_prim ,30%);
+$color_prim_dark: darken($color_prim ,10%);
+$color_prim_vdark: darken($color_prim ,30%);
+
 $color_cont: FFDB73;
 $color_cont_light:FFDB73;
-$linkColor: #03006E;
+$linkColor: $color_prim_vdark;
 $white: #FFFFFF;
 
 $bodyBackground: $white;
-$navbarBackground: $color_cont;
-$navbarBackground: #FFFFFF;
+$navbarBackground: $color_prim;
+$navbarText: black;$navbarLinkColor: black;
 
-$navbarBackgroundHighlight:lighten($navbarBackground,30%);
+$navbarBackgroundHighlight: $color_prim;
 //$navbarBackgroundHighlight:#FFFFFF;
 
 $navbarLinkBackgroundHover:#FFBE00;
-$navbarLinkBackgroundHover: lighten(#cccccc,10%);
+$navbarLinkBackgroundHover: darken($navbarBackground,10%);
 $infoBackground:#65A5D1;
 $infoText:#03406A;
 $sansFontFamily: Helvetica, Arial;
@@ -62,16 +64,16 @@ a:hover {
 
 div.header { 
   display: block; 
-  background: url('/header1.png') no-repeat;
-  background-color: #FFF;
+//  background: url('../../../../header1.png') no-repeat;
+//  background-color:white;// $color_prim;
   background-position: right; 
   border-bottom:1px solid black; 
-  height:41px; 
+  float:left;
   color:#000;
   padding-left:87px;
   padding-top:0px;
-  overflow:hidden;
-  margin-bottom: 20px
+//  overflow:hidden;
+  margin-bottom: 0 px
 }
 div.header h1 {
 padding:0;
@@ -79,10 +81,17 @@ margin:4px;
 font-size:20px;
 line-height:32px;
 }
-#menudiv { 
-  width:100%;
+div.headerrow {
+background: $color_prim
 }
-	
+
+#menudiv { 
+ // width:100%;
+}
+
+div.smallspan {
+min-height:0;
+}	
 
 .navbar .nav li {
   min-width:100%;
@@ -139,8 +148,53 @@ div.contentbox
 	margin: 5px;
 }
 
+table.calendar tr td
+{
+	width:14.28%;
+	height:2em;
+	position:relative;
+	padding:0
+}
+
+table.calendar tr td.day div 
+{
+	display:block;
+ 	position:absolute;
+	padding:2px;
+}
+table.calendar tr td.day div div
+{
+	display:none;
+	position:relative;
+}
+table.calendar tr td.day.events
+{	color:blue
+}
+table.calendar tr td.day div:hover div
+{
+	display:block;
+	z-index:	10000;
+	background:none;	
+	border: none;
+}
+table.calendar tr td.day div:hover
+{	       
+	background:white;
+	border: solid black 1px;
+	z-index:9999;
+}
+
+table.calendar tr td.day div:hover div
+{
+}
+
+table.calendar tr td.day div div.day_number
+{
+	display:block;
+}
+
 
 .navbar .nav li {
-min-width:100%;
+min-width:0;
 background:44F;
 }

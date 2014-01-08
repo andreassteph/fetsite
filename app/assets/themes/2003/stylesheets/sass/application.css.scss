@@ -9,11 +9,12 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- * require_tree .
- *= require 'calendars'
+*= require_self
+ *= require_tree .
  *= require jquery.fileupload-ui
  * require 'bootstrap'
+
+ 
 
  
  */
@@ -38,9 +39,9 @@ $navbarLinkBackgroundHover: lighten(#cccccc,10%);
 $infoBackground:#65A5D1;
 $infoText:#03406A;
 $sansFontFamily: Helvetica, Arial;
-@import 'bootstrap';
-@import 'bootstrap-responsive';
-@import 'bootstrap/image-gallery';
+//@import 'bootstrap';
+//@import 'bootstrap-responsive';
+//@import 'bootstrap/image-gallery';
 
 
 h1 { 
@@ -139,8 +140,48 @@ div.contentbox
 	margin: 5px;
 }
 
-
-.navbar .nav li {
-min-width:100%;
-background:44F;
+table.calendar tr td
+{
+	width:14.28%;
+	height:2em;
+	position:relative;
+	padding:0
 }
+
+table.calendar tr td.day div 
+{
+	display:block;
+ 	position:absolute;
+	padding:2px;
+}
+table.calendar tr td.day div div
+{
+	display:none;
+	position:relative;
+}
+table.calendar tr td.day.events
+{	color:blue
+}
+table.calendar tr td.day div:hover div
+{
+	display:block;
+	z-index:	10000;
+	background:none;	
+	border: none;
+}
+table.calendar tr td.day div:hover
+{	       
+	background:white;
+	border: solid black 1px;
+	z-index:9999;
+}
+
+table.calendar tr td.day div:hover div
+{
+}
+
+table.calendar tr td.day div div.day_number
+{
+	display:block;
+}
+@import "bootstrap-sass"

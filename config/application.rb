@@ -59,5 +59,8 @@ module Fetsite
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+  #  config.themes_for_rails.views_dir='app/assets/themes'
+   # config.themes_for_rails.assets_dir='app/assets/themes/assets'
+    
   end
 end
