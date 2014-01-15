@@ -1,25 +1,31 @@
+ul.linkbox-list
+{ 
+  max-width:70em;
+}
+a.linkbox, div.contentbox
+{
+	display:block;
+	padding:5px;
+	border-radius:$box-border-radius;
+	border: $box-border;
+	background: $box-background;
+	
+}
 
-// Colorshema #0A64A4
-$color_prim: #0A64A4;
-$color_prim_light: #0B65A5;
-$color_prim_vlight: #2B85C5;
-$color_cont: FFDB73;
-$color_cont_light:FFDB73;
-$linkColor: #03006E;
-$white: #FFFFFF;
+a.linkbox:hover
+{
+box-shadow: 1px 1px 2px 2px lightgray;
+}
 
-$bodyBackground: $white;
-$navbarBackground: $color_cont;
-$navbarBackground: #FFFFFF;
+a.linkbox li
+{ 
+}
+ul.linkbox-list li
+{
+margin-bottom:10px;
+}
 
-$navbarBackgroundHighlight:lighten($navbarBackground,30%);
-//$navbarBackgroundHighlight:#FFFFFF;
-
-$navbarLinkBackgroundHover:#FFBE00;
-$navbarLinkBackgroundHover: lighten(#cccccc,10%);
-$infoBackground:#65A5D1;
-$infoText:#03406A;
-$sansFontFamily: Helvetica, Arial;
-@import 'bootstrap';
-@import 'bootstrap-responsive';
-@import 'bootstrap/image-gallery';
+div.contentbox
+{
+	margin: 5px;
+}

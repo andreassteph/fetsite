@@ -1,6 +1,6 @@
 
 <%= render 'fetprofiles/tabs' %>
-
+<div class="content-wrap content-column">
 <h1>
   <%=	I18n.t 'profile.all_members' if params[:filter] == "all" %>
   <%=	I18n.t 'profile.active_members' if params[:filter].nil? || params[:filter]== "active"
@@ -43,7 +43,7 @@
   <div class="span12">
     <%= link_to I18n.t('fetprofiles.new'), new_fetprofile_path %>
   </div>
-</div>
+</div></div>
 </div>
 
 

@@ -1,5 +1,6 @@
 <%= render 'fetprofiles/tabs' %>
 <p id="notice"><%= notice %></p>
+<div class="content-wrap content-column">
 <div class="container-fluid">
   <div class="row-fluid">
     <h1>
@@ -33,6 +34,7 @@
     <% end %>
   </div>
   <% end %>
+</div>
 </div>
   <%= link_to I18n.t('common.edit'), edit_gremium_path(@gremium) %> 
 

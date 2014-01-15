@@ -1,8 +1,10 @@
 <%= render 'tabs' %>
 <p id="notice"><%= notice %></p>
+<div class="content-wrap">
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span12">
+
 <h1><%= @rubrik.name %></h1>
 <p>
   <%= @rubrik.desc %>
@@ -34,8 +36,9 @@
 </div>
 
 </div>
+
 <br>
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
-
+</div>
 

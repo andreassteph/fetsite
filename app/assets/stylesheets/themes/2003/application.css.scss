@@ -28,15 +28,21 @@ $color_cont_light:FFDB73;
 $linkColor: $color_prim_vdark;
 $white: #FFFFFF;
 
-$bodyBackground: $white;
-$navbarBackground: $color_prim;
-$navbarText: black;$navbarLinkColor: black;
+$bodyBackground: #EEE;
 
+
+$navbarBackground: $color_prim;
+$navbarText: black; 
+$navbarLinkColor: black;
+$navbarLinkColorHover: black;
+$dropdownLinkColor: black;
 $navbarBackgroundHighlight: $color_prim;
 //$navbarBackgroundHighlight:#FFFFFF;
 
 $navbarLinkBackgroundHover:#FFBE00;
 $navbarLinkBackgroundHover: darken($navbarBackground,10%);
+
+
 $infoBackground:#65A5D1;
 $infoText:#03406A;
 $sansFontFamily: Helvetica, Arial;
@@ -110,91 +116,31 @@ min-height:0;
 }
 #contentdiv
 {
-	background: #FFFFFF
+	//background: #FFFFFF
 }
 #contentdiv .container-fluid
-{ 
-	padding:0;
+{	padding:0;
 }
 
-a.linkbox, div.contentbox
-{
-	display:block;
-	padding:5px;
-	border-radius: 10px;
-	border: lightgray solid 1px;
 
-}
-
-a.linkbox:hover
-{
-box-shadow: 1px 1px 2px 2px lightgray;
-}
-
-a.linkbox li
-{ 
-}
-ul.linkbox-list li
-{
-margin-bottom:10px;
-}
-ul.linkbox-list
-{ 
-  max-width:70em;
-}
-
-div.contentbox
-{
-	margin: 5px;
-}
-
-table.calendar tr td
-{
-	width:14.28%;
-	height:2em;
-	position:relative;
-	padding:0
-}
-
-table.calendar tr td.day div 
-{
-	display:block;
- 	position:absolute;
-	padding:2px;
-}
-table.calendar tr td.day div div
-{
-	display:none;
-	position:relative;
-}
-table.calendar tr td.day.events
-{	color:blue
-}
-table.calendar tr td.day div:hover div
-{
-	display:block;
-	z-index:	10000;
-	background:none;	
-	border: none;
-}
-table.calendar tr td.day div:hover
-{	       
-	background:white;
-	border: solid black 1px;
-	z-index:9999;
-}
-
-table.calendar tr td.day div:hover div
-{
-}
-
-table.calendar tr td.day div div.day_number
-{
-	display:block;
-}
 
 
 .navbar .nav li {
 min-width:0;
-background:44F;
+
 }
+
+
+div.content-wrap {
+margin-left:auto;
+margin-right:auto;
+
+//max-width:70em;
+}
+div.content-column {
+max-width:70em;
+}
+$box-border: lightgray solid 1px;
+$box-border-radius:8px;
+$box-background: white;
+@import 'layout'
