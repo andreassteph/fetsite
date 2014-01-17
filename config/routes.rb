@@ -54,7 +54,13 @@ end
      end
      resources :lecturers
      resources :semesters
-     resources :moduls
+     resources :moduls do
+       get 'edit_lvas'
+       post 'update_lvas'       
+       get 'load_tiss'
+       post 'show_tiss'
+     end
+
      resources :lvas
      
      resources :fragen

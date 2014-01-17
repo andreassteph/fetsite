@@ -62,7 +62,55 @@ class ModulsController < ApplicationController
       format.json { render json: @modul }
     end
   end
-
+  def edit_lvas
+    @modul = Modul.find(params[:modul_id])
+    @lvas = @modul.lvas
+  end
+  def update_lvas
+ params[:modul_id]=params[:id] if params[:modul_id].empty?
+    @modul = Modul.find(params[:modul_id])
+   @newlvas=[]
+    params["lvas"].each do |l|
+      lva=Lva.where(:lvanr=>l["lvanr"])
+      lva=Lva.new(l)
+      lva.modul=[@modul]
+      lva.name=l["name"]
+      lva.ects=l["ects"]
+      lva.desc=l["desc"]
+      lva.stunden=l["stunden"]
+      lva.pruefungsinformation=l["pruefungsinformation"]
+      lva.lernaufwand=l["lernaufwand"]
+      lva.typ=l["typ"]
+      lva.save
+      @newlvas<<lva
+    end 
+@lvas=@newlvas
+  #  if @newlvas.map(&:valid?).all?
+    render "edit_lvas"
+#    else
+ #     @lvas=@newlvas
+ #     render show_tiss
+#    end
+  end
+  def load_tiss
+    @modul = Modul.find(params[:modul_id])
+    @lvas = @modul.lvas
+    
+  end
+  def show_tiss
+    @lvas=[];
+   @modul = Modul.find(params[:modul_id])
+    params["lvas"].to_a.each do |l|
+     unless l.last["lvanr"].empty?
+        l=l.last
+       lva=Lva.new
+        lva.lvanr=l["lvanr"]
+       lva.load_tissdata("-2013W")
+       @lvas<<lva
+      end 
+    end
+    render 'edit_lvas'
+  end
   # GET /moduls/1/edit
   def edit
     @modul = Modul.find(params[:id])

@@ -68,26 +68,30 @@ class Lva < ActiveRecord::Base
     end
     
   end
-  private
+ 
 
   ##
   # Lade Daten aus TISS und füge diese in die Datenbank ein. 
-  def load_tissdata
-    url= "https://tiss.tuwien.ac.at/api/course/"+ self.lvanr.to_s+"-2012W"
-    begin 
-      @hash=Hash.from_xml(open(url).read)["tuvienna"]
-      @person=[] 
-      if @hash["course"]["lecturers"]["oid"].is_a? String
-        @person = @hash["course"]["lecturers"]["oid"]
-      else
-        @hash["course"]["lecturers"]["oid"].each do |pid|
-          @person << Hash.from_xml(open("https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/" + pid.to_s + ".xml").read)["tuvienna"]["person"]
-        end
-      end
-    rescue OpenURI::HTTPError => e
-    end 
+  def load_tissdata(semester)
+    url= "https://tiss.tuwien.ac.at/api/course/"+ lvanr.to_s.gsub(".","")+semester
+#    begin 
+      hash=Hash.from_xml(open(url).read)["tuvienna"]
+  #    person=[] 
+  #    if hash["course"]["lecturers"]["oid"].is_a? String
+  #      person = @hash["course"]["lecturers"]["oid"]
+  #    else
+  #      hash["course"]["lecturers"]["oid"].each do |pid|
+  #        person << Hash.from_xml(open("https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/" + pid.to_s + ".xml").read)["tuvienna"]["person"]
+  #      end
+  #    end
+  #  rescue OpenURI::HTTPError => e
+ #   end 
+    self.name=hash["course"]["title"][I18n.locale.to_s]
+    self.pruefungsinformation=  hash["course"]["examinationModalities"][I18n.locale.to_s]
+    self.desc= hash["course"]["objective"][I18n.locale.to_s]+hash["course"]["teachingContent"][I18n.locale.to_s]
+ 
   end
-
+  
 
 
 end
