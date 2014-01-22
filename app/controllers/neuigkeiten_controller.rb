@@ -4,10 +4,11 @@ class NeuigkeitenController < ApplicationController
 
   def show
   @neuigkeit = Neuigkeit.find(params[:id])
-@rubrik=@neuigkeit.rubrik    
+    @rubrik=@neuigkeit.rubrik    
     if  !params[:version].nil?
-      @neuigkeit.versions.reverse[params[:version].to_i].reify.save!
-      @neuigkeit=Neuigkeit.find(params[:id])
+      @neuigkeit.assign_attributes(@neuigkeit.translation.versions.reverse[params[:version].to_i].reify.attributes.select{|k,v| @neuigkeit.translated_attribute_names.include? k.to_sym })
+                                   
+      # @neuigkeit=Neuigkeit.find(params[:id])
     end 
     @calentries1=@neuigkeit.calentries
 
@@ -15,7 +16,7 @@ class NeuigkeitenController < ApplicationController
       @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can?(:unpublish, @neuigkeit) && !@neuigkeit.published?
      
  @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
-      @versions= @neuigkeit.versions.select([:created_at]).reverse
+      @versions= @neuigkeit.translation.versions.select([:created_at]).reverse
       @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}
      
       @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>'Sure?' } if can? :delete, @neuigkeit

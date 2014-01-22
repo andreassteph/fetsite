@@ -19,7 +19,8 @@ class Neuigkeit < ActiveRecord::Base
   belongs_to :rubrik, :class_name =>'Rubrik', :foreign_key => "rubrik_id"
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
-  translates :title,:text, :versioning=>true, :fallbacks_for_empty_translations => true
+  translates :title,:text, :versioning=>{:gem=>:paper_trail, :options=>{:fallbacks_for_empty_translations => true}}
+
   has_many :calentries, as: :object
   mount_uploader :picture, PictureUploader
   scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date).order(:datum).reverse_order}

@@ -10,11 +10,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ * require_tree .
  *= require jquery.fileupload-ui
  * require 'bootstrap'
 
- *= require 'neuigkeiten'
+ * require 'neuigkeiten'
  */
 // Colorshema #0A64A4
 $color_prim: #7070a0;
@@ -31,11 +31,17 @@ $white: #FFFFFF;
 $bodyBackground: #EEE;
 
 
+
+
 $navbarBackground: $color_prim;
 $navbarText: black; 
-$navbarLinkColor: black;
+$navbarLinkColor: $color_prim_vdark;
 $navbarLinkColorHover: black;
 $dropdownLinkColor: black;
+$navbar-default-brand-color: black;
+$navbarBrandColor:black;
+
+
 $navbarBackgroundHighlight: $color_prim;
 //$navbarBackgroundHighlight:#FFFFFF;
 
@@ -50,6 +56,7 @@ $sansFontFamily: Helvetica, Arial;
 @import 'bootstrap-responsive';
 @import 'bootstrap/image-gallery';
 
+@import 'neuigkeiten';
 
 h1 { 
   font-size: 23px

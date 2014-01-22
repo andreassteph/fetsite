@@ -45,8 +45,7 @@ class FotosController < ApplicationController
   # POST /fotos.json
   def create
     @foto = Foto.new(params[:foto])
-
-      @foto.gallery_id = (params[:gallery_id])
+    @foto.gallery_id = (params[:gallery_id])
     @gallery = @foto.gallery
     respond_to do |format|
       @foto.title = @foto.datei.filename

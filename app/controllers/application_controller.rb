@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_i18n_locale_from_params
   protected
@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
     end
   end
 def get_theme
-  set_theme(params[:theme])
-if valid_theme?
-theme_name
+  if ThemesForRails.available_theme_names.include?(params[:theme])
+  params[:theme]
+ 
 else
-nil
+"2003"
 end
 end
   def default_url_options
