@@ -25,7 +25,7 @@
 	    </div>
 	    <div class="form-group">
 	      <div class="row-fluid">
-	    <%= f.input :desc %>
+	    <%= f.input :desc , :as=>:tinymce_text %>
 	    <%= f.input :pruefungsinformation %>
 	    	    <%= f.input :lernaufwand %>
 	    </div></div>
@@ -39,7 +39,7 @@
       </div>
       <div class="span3">
 	
-	<%= f.input :semester, :as=>:check_boxes%>
+	<%= f.input :semester, :as=>:check_boxes, :collection=>@semester%>
 	<%= f.input :lecturers, :as=>:check_boxes%>
       </div>
     <% end %>
@@ -47,3 +47,4 @@
       <%= f.action :submit, :as => :input %>
     <% end %>
 <% end %>
+<%= tinymce %>

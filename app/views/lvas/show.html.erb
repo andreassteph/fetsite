@@ -6,7 +6,7 @@
       <h1><%=@lva.typ.to_s + ' ' +  @lva.name %></h1>
       <h2>Prüfungsinformation</h2>
       <div class="">
-	<%= @lva.pruefungsinformation %>
+	<%= @lva.pruefungsinformation.html_safe %>
       </div>
       <h2>Lernaufwand</h2>
       <div class="">
@@ -14,7 +14,7 @@
       </div>
       <h2>Beschreibung</h2>
       <div class="">
-	<%= @lva.desc %>
+	<%= @lva.desc.to_s.html_safe %>
       </div>
       <div class="row-fluid">
 	<h2>Beispiele</h2>
@@ -59,3 +59,4 @@
 
   <%= render 'layouts/pretty_toolbar' %>
 </div>
+<%= render 'beispiele/form_bulk' %>

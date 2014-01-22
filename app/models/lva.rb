@@ -38,7 +38,7 @@ class Lva < ActiveRecord::Base
   ERLAUBTE_TYPEN = ['VO', 'UE', 'VU', 'LU', 'SE', 'andere'];
   has_paper_trail # Versionsverfolgung
   attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ, :lecturer_ids
-  has_and_belongs_to_many :modul # Gehört zu einem Modul
+  has_and_belongs_to_many :modul,:uniq=>true # Gehört zu einem Modul
   has_and_belongs_to_many :semester
   #Gehört zu einem Semester( derzeit nicht implementiert)
   has_many :beispiele , :class_name => "Beispiel"
@@ -89,7 +89,8 @@ class Lva < ActiveRecord::Base
     self.name=hash["course"]["title"][I18n.locale.to_s]
     self.pruefungsinformation=  hash["course"]["examinationModalities"][I18n.locale.to_s]
     self.desc= hash["course"]["objective"][I18n.locale.to_s]+hash["course"]["teachingContent"][I18n.locale.to_s]
- 
+    self.typ=hash["course"]["courseType"]
+    self.stunden=hash["course"]["weeklyHours"]
   end
   
 

@@ -1,0 +1,15 @@
+<%= semantic_form_for "lvas[]", :url=>modul_show_tiss_path(params[:modul_id]) do |ff|%>
+<%  for i in 1..5 do  %>
+
+<%= semantic_fields_for "lvas[#{i}]" do |f| %>
+<%= f.input :lvanr %>
+<%= f.input :sem , :input_html => { "style"=>"width:7em" },:as=>:select, :collection=>["2013W","2014S"] %>
+<% end %>
+
+<% end %>
+<%= ff.actions do %>
+      <%= ff.action :submit, :as => :button %>
+      <%= ff.action :cancel, :as => :link %>
+      <% end %>
+
+<% end %>

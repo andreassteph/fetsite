@@ -1,14 +1,16 @@
 <div class="container">
-  <%= semantic_form_for [@gallery, @foto], :remote=>true, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+  <%= semantic_form_for [@lva, @beispiel], :remote=>true, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
   <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-  <div class="row fileupload-buttonbar">
+  <div class="row ">
+  
     <div class="span7">
-      <!-- The fileinput-button span is used to style the file input field as button -->
+  <div class="fileupload-buttonbar">  
+    <!-- The fileinput-button span is used to style the file input field as button -->
       <span class="btn btn-success fileinput-button">
         <i class="icon-plus icon-white"></i>
         <span>Add files...</span>
-        <%= f.file_field :datei, :multiple=>true %>
-	<%= f.input :gallery %>
+        <%= f.file_field :beispieldatei, :multiple=>true %>
+	<%= f.input :lva %>
       </span>
       <button type="submit" class="btn btn-primary start">
         <i class="icon-upload icon-white"></i>
@@ -30,12 +32,13 @@
         <div class="bar" style="width:100%;"></div>
       </div>
     </div>
+</div>
   </div>
   <!-- The loading indicator is shown during image processing -->
   <div class="fileupload-loading"></div>
   <br>
   <!-- The table listing the files available for upload/download -->
-  <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+  <table class="table table-striped"><tbody class="files" data-toggle="modal-lva" data-target="#modal-lva"></tbody>
   </table>
   <% end %>
 
@@ -56,7 +59,7 @@
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-upload fade">
     <!--<td class="preview"><span class="fade"></span></td>-->
-    <td class="name"><span>{%=file.name%}</span></td>
+    <td class="name"><span>{%=file.name %}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     {% if (file.error) { %}
     <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
@@ -93,10 +96,10 @@
     <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
     {% } else { %}
     <!--<td class="preview">{% if (file.thumbnail_url) { %}
-      <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+      <a href="{%=file.url%}" title="{%=file.name%}" rel="lva" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
       {% } %}</td>-->
     <td class="name">
-      <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+      <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'lva'%}" download="{%=file.name%}">{%=file.name%}</a>
     </td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     <td colspan="2"></td>
@@ -132,8 +135,8 @@
   template.addClass('in');
   $('#loading').remove();
   });
-  $('#foto_datei').attr('name', 'foto[datei]');
-  $('#foto_datei').fileupload();
+  $('#beispiel_beispieldatei').attr('name', 'beispiel[beispieldatei]');
+  $('#beispiel_beispieldatei').fileupload();
 
   });
 </script>

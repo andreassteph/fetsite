@@ -61,7 +61,9 @@ end
        post 'show_tiss'
      end
 
-     resources :lvas
+     resources :lvas  do 
+     resources :beispiele, :only=>[:show,:index]
+     end 
      
      resources :fragen
      # get 'rubriken/verwalten', :controller=>:rubriken, :action=>:alle_verwalten, :as=>'alle_verwalten_rubrik'

@@ -9,7 +9,7 @@ class ModulsController < ApplicationController
         @studium=Studium.find_by_id(params[:studium_id])
       end
       @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
-      @topbar_elements=[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]
+      @topbar_elements =[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]
       @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}
       @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}
 
@@ -26,6 +26,9 @@ class ModulsController < ApplicationController
   def show
     @modul = Modul.find(params[:id])
     @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
+    @toolbar_elements << {:hicon=>'icon-pencil', :text=>"Lvas bearbeiten", :path=>modul_edit_lvas_path(@modul)}
+    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>"ADD FROM TISS", :path=>modul_load_tiss_path(:modul_id =>@modul.id)}
+
     @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
 
@@ -65,18 +68,27 @@ class ModulsController < ApplicationController
   def edit_lvas
     @modul = Modul.find(params[:modul_id])
     @lvas = @modul.lvas
+@semester =  @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
+
   end
   def update_lvas
  params[:modul_id]=params[:id] if params[:modul_id].empty?
     @modul = Modul.find(params[:modul_id])
+@semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
+
    @newlvas=[]
-    params["lvas"].each do |l|
-      lva=Lva.where(:lvanr=>l["lvanr"])
-      lva=Lva.new(l)
-      lva.modul=[@modul]
+@lvas=[]
+    params["lvas"].each do |i,l|
+     #lva= Lva.find(l[:id].to_i)
+      lva=Lva.where(:lvanr=>l["lvanr"]).first if lva.nil?
+      lva=Lva.new(l) if lva.nil?
+      lva.modul<<@modul
+      lva.modul.uniq!
       lva.name=l["name"]
+      lva.lvanr=l["lvanr"]
       lva.ects=l["ects"]
       lva.desc=l["desc"]
+      lva.semester=Semester.where(:id=>l["semester_ids"].map(&:to_i))
       lva.stunden=l["stunden"]
       lva.pruefungsinformation=l["pruefungsinformation"]
       lva.lernaufwand=l["lernaufwand"]
@@ -84,12 +96,12 @@ class ModulsController < ApplicationController
       lva.save
       @newlvas<<lva
     end 
-@lvas=@newlvas
-  #  if @newlvas.map(&:valid?).all?
-    render "edit_lvas"
-#    else
- #     @lvas=@newlvas
- #     render show_tiss
+    @lvas=@newlvas
+    if @newlvas.map(&:valid?).all?
+      redirect_to modul_path(@modul)
+    else
+      render "edit_lvas"
+     end
 #    end
   end
   def load_tiss
@@ -100,12 +112,14 @@ class ModulsController < ApplicationController
   def show_tiss
     @lvas=[];
    @modul = Modul.find(params[:modul_id])
+@semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
     params["lvas"].to_a.each do |l|
      unless l.last["lvanr"].empty?
         l=l.last
        lva=Lva.new
         lva.lvanr=l["lvanr"]
-       lva.load_tissdata("-2013W")
+       lva.load_tissdata("-"+ l["sem"])
+       lva.modul<<@modul
        @lvas<<lva
       end 
     end
