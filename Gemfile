@@ -14,7 +14,7 @@ gem 'rails', '3.2.9'
   gem 'sass-rails', '~> 3.2'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass','~> 2.3.2.1'
-
+  
 group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
@@ -47,10 +47,11 @@ gem 'formtastic-bootstrap', '~>2.1.3' #, :git => "git://github.com/mjbellantoni/
 gem "tinymce-rails" , '>=3.5.8'
 
 # Internationalisierung
-gem "globalize3"  ,'~>0.3.0'
-#gem "globalize3" ,:git =>'git://github.com/svenfuchs/globalize3.git'
+#gem "globalize3"  ,'~>3.0.4'
+gem "globalize" ,'~>3.0.4'#,:git =>'git://github.com/globalize/globalize.git'
+gem 'globalize-versioning'
 # Version controll
-gem "paper_trail" , '>=2.7.0'
+gem "paper_trail" , '>=2.7.0', :git=>'git://github.com/airblade/paper_trail.git'
 
 # User management
 gem "devise" ,'~>2.2.3'
