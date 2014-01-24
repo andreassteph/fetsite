@@ -1,0 +1,34 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <!--  <a class="brand" href="#"><% t 'home.mtitle'%></a>-->
+      <a class ="btn btn-navbar" data-toggle="collapse" data-parent="#menudiv" data-target=".nav-collapse">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse">
+	<ul class="nav nav-pills nav-stacked">
+	  <li><%= link_to I18n.t(:home,:scope=>'home' ), home_index_path %>
+	  </li>
+	  <li><%= link_to I18n.t(:news,:scope=>'home' ),rubriken_path %></li>
+	    
+	  <li><%= link_to I18n.t(:info,:scope=>'home' ),themengruppen_path %></li>
+	  <li><%= link_to I18n.t('mitarbeiter',:scope=>'home' ),fetprofiles_path %></li>
+	  <li><%= link_to I18n.t('fotos',:scope=>'home' ),galleries_path %></li>
+	  <li><%= link_to I18n.t(:studien,:scope=>'home' ), studien_path %></li>
+	  <li>
+	    <%= link_to 'Admin' , config_path%>
+	  </li>
+	</ul>
+	<span class="pull-right"><%if I18n.locale == :en %>
+	  <%= link_to image_tag("/flaggen/png/at.png") + " Deutsch" ,switch_locale_url(:de)%>
+	  <% elsif I18n.locale == :de %>
+	  <%= link_to image_tag("/flaggen/png/gb.png") + " English" ,switch_locale_url(:en)%>
+	  <%end %>
+	</span>
+	
+      </div>
+    </div>
+  </div>
+</div>
