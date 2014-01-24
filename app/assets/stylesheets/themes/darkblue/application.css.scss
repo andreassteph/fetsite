@@ -1,0 +1,93 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ * require_tree .
+ *= require jquery.fileupload-ui
+ * require 'bootstrap'
+
+ * require 'neuigkeiten'
+ */
+// Colorshema #0A64A4
+$color_prim: #071672;
+$color_prim_light: lighten($color_prim ,10%);
+$color_prim_vlight: lighten($color_prim ,30%);
+$color_prim_dark: darken($color_prim ,10%);
+$color_prim_vdark: darken($color_prim ,30%);
+
+$color_cont: FFDB73;
+$color_cont_light:FFDB73;
+$linkColor: $color_prim;
+$white: #FFFFFF;
+
+$bodyBackground: #EEE;
+
+
+
+
+$navbarBackground: $color_prim;
+$navbarText: $white; 
+$navbarLinkColor: $white;
+$navbarLinkColorHover: white;
+$dropdownLinkColor: black;
+$navbar-default-brand-color: black;
+$navbarBrandColor:black;
+
+
+$navbarBackgroundHighlight: $color_prim;
+//$navbarBackgroundHighlight:#FFFFFF;
+
+$navbarLinkBackgroundHover:#FFBE00;
+$navbarLinkBackgroundHover: darken($navbarBackground,10%);
+
+
+$infoBackground:#65A5D1;
+$infoText:#03406A;
+$sansFontFamily: Helvetica, Arial;
+
+@import 'bootstrap';
+@import 'bootstrap-responsive';
+@import 'bootstrap/image-gallery';
+
+@import 'neuigkeiten';
+
+
+div.header { 
+  display: block; 
+//  background: url('../../../../header1.png') no-repeat;
+//  background-color:white;// $color_prim;
+  background-position: right; 
+ // border-bottom:1px solid black; 
+  float:left;
+  color:#000;
+  padding-left:87px;
+  padding-top:0px;
+//  overflow:hidden;
+  margin-bottom: 0 px
+}
+div.header h1 {
+	   padding:0;
+margin:4px;
+font-size:20px;
+line-height:32px;
+}
+
+div.headerrow {
+background: $color_prim
+}
+	$contentdiv-background:none;
+$navbar-li-minwidth: 0;
+
+$box-border: lightgray solid 1px;
+$box-border-radius:0px;
+$box-background: white;
+@import 'layout';
+@import 'calendars';
