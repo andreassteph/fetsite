@@ -1,0 +1,26 @@
+<div class="content-wrap content-column" >
+
+<h1><%= @themengruppe.title %></h1>
+<p>
+  <%= @themengruppe.text %>
+</p>
+<ul class="unstyled linkbox-list" >
+  <% @themengruppe.themen.each do |thema| %>
+  <li>
+    <div class="contentbox">		  
+      <a href="#<%=thema.id%>">
+	<h2><%= thema.title %></h2>
+      </a>
+      <% unless thema.gremium.nil? %>
+      <p>
+	<%= link_to "Zu dem Gremium ..." , thema.gremium %>
+      </p>
+      <% end %>		
+      <%= render :partial => 'themen/small', :object => thema %>
+    </div>
+  </li>
+  <% end %>
+</ul>
+
+<%= render :partial=>'layouts/pretty_toolbar' %>
+</div>
