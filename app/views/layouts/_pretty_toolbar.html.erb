@@ -19,7 +19,11 @@ Verwendung: Aufruf mit
       <ul class="dropdown-menu">
 	<% t[:versions].each_with_index do |v,i| %>
 	<li>
-	  <%= link_to v[:created_at], t[:path]+"?version=#{i}" ,:version=>v[:id]%>
+<% 
+uri= URI.parse(t[:path]);
+uri.query= URI.encode_www_form(URI.decode_www_form(uri.query)<<["version",i.to_s])
+%>
+	  <%= link_to v[:created_at],uri.to_s ,:version=>v[:id]%>
 	</li>
 	<% end %>    
       </ul>
