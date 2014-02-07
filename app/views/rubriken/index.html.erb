@@ -14,7 +14,7 @@
 
       <ul class="unstyled linkbox-list" style="max-width:70em">
 	<% @neuigkeiten.each do |n| %>
-	<li><%= render n %> </li>
+	<li><%= render n if can?(:show, n) %> </li>
 	<% end %>
       </ul>
     </div>

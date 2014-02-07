@@ -1,6 +1,7 @@
 <%= render 'rubriken/tabs' %>
+<div class="content-column content-wrap">
 <p id="notice"><%= notice %></p>
-
+<div class="contentbox">
 <span>
   <%= @neuigkeit.rubrik.name %>
 </span>
@@ -22,7 +23,10 @@
     <p></p>
   </div>
 </div>
+
 <% @calentries1.each do |ce|%>
 <%= render ce unless ce.nil? %>
 <% end %>
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
+</div>
+</div>
