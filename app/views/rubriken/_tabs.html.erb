@@ -2,9 +2,11 @@
  <li <%=  'class="active"'.html_safe if (request.fullpath == rubriken_path)%> >
  <%= link_to I18n.t('rubriken.alle') , rubriken_path %> </li>
 <% for r in Rubrik.all %>
+<% if can?(:show, r) %>
   <li <%= (!@rubrik.nil? && r == @rubrik) ? 'class="active"'.html_safe : '' %> title="<%= r.name %>">
     <%= link_to r.name, r %>
     </li>
+<% end %>
 <% end %>
 <% if can? :verwalten, Rubrik%>
 <% if request.fullpath == verwalten_rubriken_path %>
