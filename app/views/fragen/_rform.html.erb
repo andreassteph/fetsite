@@ -1,0 +1,12 @@
+<%= tinymce_assets %>
+<%= semantic_form_for @frage , :remote=>true do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :title %>
+    <%= f.input :thema %>
+    <%= f.input :text, :as=>:tinymce_text%>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

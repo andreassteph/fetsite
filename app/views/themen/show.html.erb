@@ -12,10 +12,11 @@
 <%= render :partial=>'layouts/pretty_toolbar' %>
 
 <h2>FAQs:</h2>
-<% @thema.fragen.each do |frage| %>
-<%= render frage %>
-<% end %>
-
+<div id="fragen">
+<%= render :partial=>'fragen/liste' %>
+</div>
+<% @frage=Frage.new; @frage.thema=@thema %>
+<%= render :partial=>'fragen/rform' %>
 <% @frage_elements = [{:icon=>:plus, :hicon=>'icon-plus', :text=>I18n.t('frage.add'), :path=>new_frage_path}] %>
 <%= render :partial=>'layouts/pretty_toolbar', :object=>@frage_elements %>
 <!--

@@ -1,3 +1,4 @@
+
 class FragenController < ApplicationController
   # GET /fragen
   # GET /fragen.json
@@ -42,14 +43,16 @@ class FragenController < ApplicationController
   # POST /fragen.json
   def create
     @frage = Frage.new(params[:frage])
-
+    @fragen=@frage.thema.fragen
     respond_to do |format|
       if @frage.save
         format.html { redirect_to @frage.thema, notice: 'Frage was successfully created.' }
         format.json { render json: @frage, status: :created, location: @frage }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @frage.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -74,11 +77,16 @@ class FragenController < ApplicationController
   # DELETE /fragen/1.json
   def destroy
     @frage = Frage.find(params[:id])
+    @thema=@frage.thema
     @frage.destroy
 
     respond_to do |format|
       format.html { redirect_to @frage.thema }
       format.json { head :no_content }
+      format.js { 
+        @fragen=@thema.fragen
+        render :create
+      }
     end
   end
 end
