@@ -21,14 +21,17 @@ class GalleriesController < ApplicationController
 
     @pppage_array = [ 25 , 50 , 100 ] #defines number & size of picture chunks
     @pppage = 0 #starting index of pppage_array
-    
+ 
     if params[:pppage].to_i <= 2 && params[:pppage].to_i >= 0
       @pppage = params[:pppage].to_i
     end
       
     @page = params[:page].nil? ? 1 : params[:page].to_i
-    @fotos = Foto.where(:gallery_id => params[:id]).limit(@pppage_array[@pppage]).offset(@pppage_array[@pppage]*(@page-1))
+  #  @fotos = Foto.where(:gallery_id => params[:id]).limit(@pppage_array[@pppage]).offset(@pppage_array[@pppage]*(@page-1))
+    @fotos = Foto.where(:gallery_id => params[:id])
     @pages = (Foto.where(:gallery_id => params[:id]).count/(@pppage_array[@pppage])+1)
+@showind=[]
+    @showind.fill(0,@pppage_array[@pppage]){ |i| i+ @pppage_array[@pppage]*(@page-1)}  # Hier ausrechnen welche angezeigt werden sollen
     @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fotos.new-fotos'), :path=>new_gallery_foto_path(@gallery)}
     @toolbar_elements << {:hicon=>'icon-pencil', :text => I18n.t('common.edit'), :path=>edit_gallery_path(@gallery)}
     @toolbar_elements << {:hicon=>'icon-arrow-left', :text=>I18n.t('common.back'), :path=>galleries_path()}

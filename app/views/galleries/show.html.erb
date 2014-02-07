@@ -56,10 +56,10 @@
   </div>
 
   <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery">
-    <% @fotos.each do |f| %>
-
+    <% @fotos.each_index do |i| %>
+    <% f= @fotos[i] %>
     <a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery="gallery">
-      <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>
+      <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) if @showind.include? i  %></a>
 
 
     <% end %>
