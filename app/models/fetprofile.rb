@@ -24,6 +24,7 @@ validates :desc, :presence=>true
   validates :nachname, length:{minimum: 3},:presence=>true
   validates :vorname, length:{minimum: 3},:presence=>true
   has_many :users
+  scope :search, ->(query) {where("nachname like ? or vorname like ? or short like ?", "%#{query}%", "%#{query}%", "%#{query}%")}
 
  accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:gremium_id].blank?}, :allow_destroy=>true
  

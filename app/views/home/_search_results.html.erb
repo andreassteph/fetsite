@@ -1,0 +1,37 @@
+
+<% unless @neuigkeiten.empty? %>
+<h2>Neuigkeiten</h2>
+<% end %>
+<% @neuigkeiten.each do |neuigkeit| %>
+<ul class="unstyled linkbox-list" style="max-width:70em">
+  <li>
+    <%= render neuigkeit %>
+  </li>
+
+</ul>
+<% end %>
+
+<% unless @fetprofiles.empty? %>
+<h2>Mitarbeiter</h2>
+<% end %>
+
+<% @fetprofiles.each do |fetprofile| %>
+<ul class="unstyled linkbox-list" style="max-width:70em">
+  <li>
+      <%= render fetprofile %>
+  </li>
+</ul>
+<% end %>
+
+<% unless @fetprofiles.empty? %>
+<h2>Themen</h2>
+<% end %>
+
+<% @themen.each do |thema| %>
+<ul class="unstyled linkbox-list" style="max-width:70em">
+  <li><%= link_to thema,  {:class=>"linkbox"} do %>
+      <%= render :partial=>"themen/small", :object=>thema %>
+<% end %>
+  </li>
+</ul>
+<% end %>

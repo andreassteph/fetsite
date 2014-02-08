@@ -18,6 +18,7 @@ class Thema < ActiveRecord::Base
   has_one :gremium
   validates :themengruppe, :presence => true
   validates :title, :presence => true
+  scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
 
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
 end
