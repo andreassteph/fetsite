@@ -3,8 +3,9 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen.json
   load_and_authorize_resource
   def index
-    @themengruppen = Themengruppe.order(:title)
+    @themengruppen = Themengruppe.order(:priority).reverse
     @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]
+    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('common.verwalten'), :path=>verwalten_all_themengruppen_path()}]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,10 +17,13 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen/1.json
   def show
     @themengruppe = Themengruppe.find(params[:id])
+  @themen = @themengruppe.themen.order(:priority).reverse
+ 
     @toolbar_elements = []
     @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('thema.add'), :path=>new_themengruppe_thema_path(@themengruppe)} if can? :new, Themengruppe
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
-    @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
+  @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.verwalten"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
+  @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
 
 
     respond_to do |format|
@@ -42,6 +46,42 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen/1/edit
   def edit
     @themengruppe = Themengruppe.find(params[:id])
+  end
+  def verwalten_all
+    @themengruppen =Themengruppe.order(:priority).reverse
+  end 
+  def verwalten 
+      @themengruppe = Themengruppe.find(params[:themengruppe_id])
+      @themen = @themengruppe.themen.order(:priority).reverse
+  end
+
+  def sort_themengruppen
+    @params=params
+    i=1
+    params['themengruppen'].reverse.each do |themengruppeid|
+      themengruppe=Themengruppe.find(themengruppeid)
+      themengruppe.priority=i
+      themengruppe.save
+      i=i+1
+    end
+    respond_to do |format|
+      format.js
+    end 
+
+  end
+
+  def sort_themen
+    @params=params
+    i=1
+    params['themen'].reverse.each do |themaid|
+      thema=Thema.find(themaid)
+      thema.priority=i
+      thema.save
+      i=i+1
+    end
+    respond_to do |format|
+      format.js
+    end 
   end
 
   # POST /themengruppen

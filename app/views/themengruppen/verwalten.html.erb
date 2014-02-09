@@ -1,0 +1,56 @@
+ <style>
+#themen { list-style-type: none; margin: 0; padding: 0; margin-bottom: 15px;zoom: 1; }
+#themen li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 95%; }
+</style>
+<ul id="themen" class="sort" >
+<% @themen.each do |thema| %>
+<li id="themen_<%= thema.id %>" class="sort" style="background:white;display:block;" ><%= thema.title %>-<%= thema.priority %></li>
+<% end %>
+</ul>
+
+<script>
+
+$( document ).ready(function(){
+  $("#themen").sortable({
+    cursor: 'crosshair',
+    drag:true,
+    update: function(){
+      $.ajax({
+        url: '<%= themengruppe_sort_themen_path(@themengruppe) %>',
+        type: 'post',
+        data: $('#themen').sortable('serialize'),
+        dataType: 'script',
+        complete: function(request){
+          alert("complete");
+         }
+      })
+    }
+  });
+});
+</script>
+
+<!-- 
+$( document ).ready(function(){
+  $("#themen").sortable({
+    axis: 'y',
+    drag:true,
+    dropOnEmpty: false,
+    handle: '.handle',
+    cursor: 'crosshair',
+    items: 'li',
+    opacity: 0.4,
+    scroll: true,
+    update: function(){
+      $.ajax({
+        url: '/books/sort',
+        type: 'post',
+        data: $('#themen').sortable('serialize'),
+        dataType: 'script',
+        complete: function(request){
+          $('#themen').effect('highlight');
+        }
+      });
+    }
+  });
+});
+-->
