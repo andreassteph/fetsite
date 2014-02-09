@@ -4,7 +4,7 @@
 </style>
 <ul id="themen" class="sort" >
 <% @themen.each do |thema| %>
-<li id="themen_<%= thema.id %>" class="sort" style="background:white;display:block;" ><%= thema.title %>-<%= thema.priority %></li>
+<li id="themen_<%= thema.id %>" class="sort"  ><div class="contentbox" ><h2><%= thema.title %></h2>  </div></li>
 <% end %>
 </ul>
 
@@ -19,13 +19,14 @@ $( document ).ready(function(){
         url: '<%= themengruppe_sort_themen_path(@themengruppe) %>',
         type: 'post',
         data: $('#themen').sortable('serialize'),
+        handle: ".contentbox",
         dataType: 'script',
         complete: function(request){
-          alert("complete");
-         }
+                   }
       })
     }
   });
+ 
 });
 </script>
 
