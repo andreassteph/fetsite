@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.ui.all
+// require jquery.ui.draggable
+// require jquery.ui.sortable
+// require jquery.sortable
+// require jquery-ui
 //= require_tree .
 //= require tinymce-jquery
 //= require bootstrap
