@@ -104,10 +104,15 @@ end
     
      resources :beispiele
      resources :themen do
+       
 		resources :attachments
 	 end
 	 
      resources :themengruppen do
+       get :verwalten 
+       get :verwalten_all,:on=>:collection
+       post :sort_themen
+       post :sort_themengruppen, :on=>:collection
        resources :themen, :only=>[:new, :show]
      end
      
