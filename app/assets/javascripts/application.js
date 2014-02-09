@@ -12,6 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+<<<<<<< HEAD
+=======
+//= require jquery.ui.all
+// require jquery.ui.draggable
+// require jquery.ui.sortable
+// require jquery.sortable
+>>>>>>> bb8f427f953c2bcf84331b4eb1f8b5c7108e80e6
 // require jquery-ui
 //= require_tree .
 //= require tinymce-jquery
