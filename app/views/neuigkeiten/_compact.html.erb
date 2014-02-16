@@ -17,8 +17,11 @@
 <% if neuigkeit.has_calentries? %>
     <div class="pull-right" href="#">
 <%= image_tag("/iconnavy/time.png")  %>
-
-     <%=  neuigkeit.calentries.first.text %>
+      <% unless neuigkeit.calentries.upcoming.empty? %>
+    <%=  neuigkeit.calentries.upcoming.first.text %>
+<% else unless neuigkeit.calentries.recent.empty? %>
+   <%=  neuigkeit.calentries.recent.first.text %>
+<% end %><% end %>
   </div>
     <% end %>
 
