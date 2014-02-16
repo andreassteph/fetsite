@@ -1,0 +1,10 @@
+<%= semantic_form_for [@thema,@attachment],:remote=>true do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :datei, :as => :file %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

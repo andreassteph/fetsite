@@ -1,0 +1,10 @@
+<h2>FAQs:</h2>
+<div id="fragen">
+<%= render :partial=>'fragen/liste' %>
+</div>
+<% @frage=Frage.new; @frage.thema=@thema %>
+<div id="fragenform">
+<%= render :partial=>'fragen/rform' %>
+</div>
+<% @frage_elements = [{:icon=>:plus, :hicon=>'icon-plus', :text=>I18n.t('frage.add'), :path=>new_frage_path}] %>
+<%= render :partial=>'layouts/pretty_toolbar', :object=>@frage_elements %>
