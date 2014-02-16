@@ -104,9 +104,9 @@ end
     
      resources :beispiele
      resources :themen do
-       
-		resources :attachments
-	 end
+       get :fragen
+       resources :attachments
+     end
 	 
      resources :themengruppen do
        get :verwalten 

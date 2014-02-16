@@ -3,6 +3,6 @@
 <%= raw(frage.text) %>
 <br/>
 
-<%= link_to 'Edit', edit_frage_path(frage) %> |
+<%= link_to 'Edit', edit_frage_path(frage),:remote=>true %> |
 <%= link_to 'Destroy',frage, method: :delete, :remote=> true , data: { confirm: 'Are you sure?' } %>
 </p>

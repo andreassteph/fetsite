@@ -32,6 +32,7 @@ class AttachmentsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @attachment }
+      format.js
     end
   end
 
@@ -46,15 +47,17 @@ class AttachmentsController < ApplicationController
   def create
     @attachment = Attachment.new(params[:attachment])
     @thema = Thema.find(params[:thema_id])
-	@attachment.thema_id = @thema.id
-	
+    @attachment.thema_id = @thema.id
+
     respond_to do |format|
       if @attachment.save
         format.html { redirect_to @thema, notice: 'Attachment was successfully created.' }
         format.json { render json: @thema, status: :created, location: @thema }
+        format.js   { @attachment = Attachment.new }
       else
         format.html { render action: "new" }
         format.json { render json: @attachment.errors, status: :unprocessable_entity }
+        format.js   { render action: "new"}
       end
     end
   end
@@ -69,9 +72,11 @@ class AttachmentsController < ApplicationController
       if @attachment.update_attributes(params[:attachment])
         format.html { redirect_to @thema, notice: 'Attachment was successfully updated.' }
         format.json { head :no_content }
+        format.js {@attachment=Attachment.new; render action:"create"}
       else
         format.html { render action: "edit" }
         format.json { render json: @attachment.errors, status: :unprocessable_entity }
+      format.js   { render action: "new"}
       end
     end
   end

@@ -2,18 +2,26 @@
 #themen { list-style-type: none; margin: 0; padding: 0; margin-bottom: 15px;zoom: 1; }
 #themen li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 95%; }
 </style>
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span4">
+
 <ul id="themen" class="sort" >
 <% @themen.each do |thema| %>
-<li id="themen_<%= thema.id %>" class="sort"  ><div class="contentbox" ><h2><%= thema.title %></h2>  </div></li>
+<li id="themen_<%= thema.id %>" class="sort"  ><div class="contentbox handle" ><h2><%= thema.title %></h2>  </div> <%= link_to edit_thema_path(thema),:remote=>true do %> Edit <% end %>  <%= link_to thema_fragen_path(thema),:remote=>true do %> Fragen <% end %></li>
 <% end %>
 </ul>
-
+</div>
+<div class="span8">
+<div id="themaview"></div>
+</div>
 <script>
 
 $( document ).ready(function(){
   $("#themen").sortable({
     cursor: 'crosshair',
     drag:true,
+    handle: '.handle',
     update: function(){
       $.ajax({
         url: '<%= themengruppe_sort_themen_path(@themengruppe) %>',
