@@ -42,6 +42,11 @@ Fetsite::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
+
+
+  config.consider_all_requests_local       = true
+  config.action_controller.perform_caching = false
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
