@@ -1,1 +1,4 @@
-$("#attachmentform").html("<%=escape_javascript( render :partial=>'attachments/rform' )%>")
+alert('new.js.erb')
+$("#attachmentform").html("<%=escape_javascript( render :partial=>'attachments/rform' )+ @action.to_s%>");	
+$('document').trigger('ready');
+alert('ready')

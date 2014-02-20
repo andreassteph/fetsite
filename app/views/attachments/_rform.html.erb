@@ -1,6 +1,8 @@
-<%= semantic_form_for [@thema,@attachment],:remote=>true do |f| %>
+<%= semantic_form_for [@thema,@attachment], :remote=>true do |f| %>
   <%= f.inputs do %>
     <%= f.input :name %>
+
+<%= token_tag form_authenticity_token %>
     <%= f.input :datei, :as => :file %>
   <% end %>
 

@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   def index
     @beispiele = Beispiel.last([Beispiel.count, 3].min)
+    @neuigkeiten = Neuigkeit.recent
+
   end
   def dev
 

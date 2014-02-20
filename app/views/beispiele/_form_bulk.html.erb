@@ -1,5 +1,6 @@
+
 <div class="container">
-  <%= semantic_form_for [@lva, @beispiel], :remote=>true, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+  <%= semantic_form_for  [@lva,@beispiel], :remote=>true, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
   <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
   <div class="row ">
   
@@ -10,7 +11,7 @@
         <i class="icon-plus icon-white"></i>
         <span>Add files...</span>
         <%= f.file_field :beispieldatei, :multiple=>true %>
-	<%= f.input :lva %>
+	<% f.input :lva %>
       </span>
       <button type="submit" class="btn btn-primary start">
         <i class="icon-upload icon-white"></i>

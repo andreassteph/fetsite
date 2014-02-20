@@ -34,6 +34,7 @@ class ThemenController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @thema }
+      format.js { render action: "edit" }
     end
   end
 
