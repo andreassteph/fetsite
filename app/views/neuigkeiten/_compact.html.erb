@@ -13,13 +13,16 @@
       <%= neuigkeit.title%>
     </h1>
     <%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%>
-    </div>
-<% if neuigkeit.has_calentries? %>
-    <div class="pull-right" href="#">
-<%= image_tag("/iconnavy/time.png")  %>
-
-     <%=  neuigkeit.calentries.first.text %>
   </div>
+  <% if neuigkeit.has_calentries? %>
+    <div class="pull-right" href="#">
+      <%= image_tag("/iconnavy/time.png")  %>
+      <% unless neuigkeit.calentries.upcoming.empty? %>
+      <%=  neuigkeit.calentries.upcoming.first.text %>
+      <% else unless neuigkeit.calentries.recent.empty? %>
+      <%=  neuigkeit.calentries.recent.first.text %>
+      <% end %><% end %>
+    </div>
     <% end %>
 
 </div>

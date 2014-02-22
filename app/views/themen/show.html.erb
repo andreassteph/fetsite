@@ -11,18 +11,14 @@
 -->
 <%= render :partial=>'layouts/pretty_toolbar' %>
 
-<h2>FAQs:</h2>
-<div id="fragen">
-<%= render :partial=>'fragen/liste' %>
-</div>
-<% @frage=Frage.new; @frage.thema=@thema %>
-<%= render :partial=>'fragen/rform' %>
-<% @frage_elements = [{:icon=>:plus, :hicon=>'icon-plus', :text=>I18n.t('frage.add'), :path=>new_frage_path}] %>
-<%= render :partial=>'layouts/pretty_toolbar', :object=>@frage_elements %>
+<%= render :partial=>'themen/fragen' %>
 <!--
 <%= link_to 'Neue Frage', new_frage_path %> <br/>
 -->
 <br/>
 
 <h2><%= I18n.t('attachment.title')%>:</h2>
+<div id="attachmentform">
+</div>
+<%= link_to new_thema_attachment_path(@thema) ,:remote=>true do %> new Attachment <% end %>
 <%= render :partial => "themen/select", :object => @thema, :locals=>{:editor => :false} %>

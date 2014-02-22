@@ -1,0 +1,30 @@
+<h1><%= @themengruppe.title %></h1>
+
+<p>
+  <%= @themengruppe.text %>
+</p>
+
+<div class="accordion" id="accordion1">
+  <% @themen.each do |thema| %>
+	  <div class="accordion-group">
+		<div class="accordion-heading">
+		  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%=thema.id%>">
+			<%= thema.title %>
+		  </a>
+		</div>
+		<div id="collapse<%=thema.id%>" class="accordion-body<%= ' collapse' unless params['thema'].to_i==thema.id %>">
+		  <div class="accordion-inner">
+	<% unless thema.gremium.nil? %>
+			<p><%= link_to "Zu dem Gremium ..." , thema.gremium %>
+			</p>
+<% end %>		
+	<%= render :partial => 'themen/small', :object => thema %>
+		
+
+		  </div>
+		</div>
+	  </div>
+  <% end %>
+</div>
+
+<%= render :partial=>'layouts/pretty_toolbar' %>

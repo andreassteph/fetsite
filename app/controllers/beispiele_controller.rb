@@ -43,15 +43,29 @@ class BeispieleController < ApplicationController
   # POST /beispiele
   # POST /beispiele.json
   def create
+    logger.info "Creating Beispiel..."
     @lva = Lva.find_by_id(params[:lva_id])
     params.delete(:lva_id)
     @beispiel = Beispiel.new(params[:beispiel])
-        @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
+    @beispiel.lva=@lva
+ logger.info "New Beispiel: #{params.inspect}"
+ 
+#    @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
+      @beispiel.name=@beispiel.beispieldatei.filename
+   logger.info "New Beispiel: #{@beispiel.attributes.inspect}"
+
+    @beispiel.datum=Time.now
     respond_to do |format|
-      @beispiel.name=@beispiel.beispieldatei.to_s.split('/').last
+
       if @beispiel.save
-        format.html { redirect_to @backlink, notice: 'Beispiel was successfully created.' }
-        format.json { render json: @beispiel, status: :created, location: @beispiel }
+        format.html {
+          render :json => [@beispiel.to_jq_upload].to_json,
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json { render json: {files: [@beispiel.to_jq_upload]}, status: :created, location: [@lva, @beispiel] }
+    #    format.html { redirect_to @backlink, notice: 'Beispiel was successfully created.' }
+    #    format.json { render json: @beispiel, status: :created, location: @beispiel }
       else
         format.html { render action: "new" }
         format.json { render json: @beispiel.errors, status: :unprocessable_entity }

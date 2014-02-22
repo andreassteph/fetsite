@@ -34,12 +34,17 @@ class ThemenController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @thema }
+      format.js { render action: "edit" }
     end
   end
 
   # GET /themen/1/edit
   def edit
     @thema = Thema.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /themen
@@ -57,7 +62,13 @@ class ThemenController < ApplicationController
       end
     end
   end
-
+ def fragen
+    @thema = Thema.find(params[:thema_id])
+    @fragen=@thema.fragen
+    respond_to do |format|
+      format.js
+    end
+  end
   # PUT /themen/1
   # PUT /themen/1.json
   def update
@@ -67,9 +78,11 @@ class ThemenController < ApplicationController
       if @thema.update_attributes(params[:thema])
         format.html { redirect_to @thema, notice: 'Thema was successfully updated.' }
         format.json { head :no_content }
+        format.js   
       else
         format.html { render action: "edit" }
         format.json { render json: @thema.errors, status: :unprocessable_entity }
+        format.js   { render action: "edit" }
       end
     end
   end

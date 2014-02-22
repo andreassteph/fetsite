@@ -62,9 +62,9 @@ end
        get 'load_tiss'
        post 'show_tiss'
      end
-
+resources :beispiele#, :only=>[:show,:index,:create]
      resources :lvas  do 
-     resources :beispiele, :only=>[:show,:index]
+     resources :beispiele#, :only=>[:show,:index,:create]
      end 
      
      resources :fragen
@@ -102,11 +102,11 @@ end
      get 'home/linksnotimplemented', :controller=>:home, :action=>:linksnotimplemented, :as=>'home_linksnotimplemented'
      
     
-     resources :beispiele
+    
      resources :themen do
-       
-		resources :attachments
-	 end
+       get :fragen
+       resources :attachments
+     end
 	 
      resources :themengruppen do
        get :verwalten 

@@ -1,41 +1,32 @@
 <%= tinymce_assets %>
-<%= semantic_form_for @thema do |f| %>
+<div class="container-fluid">
+
+
+<%= semantic_form_for @thema, :remote=>true do |f| %>
   <%= f.inputs do %>
+<div class="row-fluid">
+<div class="span6">
     <%= f.input :title %>
+</div> 
+<div class="span6">
     <%= f.input :themengruppe %>
-    <%= f.input :text, :as=>:tinymce_text%>
-  <% end %>
-<%= tinymce %>
+</div>
+<div class="row-fluid"> 
+<div class="span12"> 
+   <%= f.input :text, :as=>:tinymce_text,:label=>false %>
+</div> 
+</div> 
 
 
-<h2>Attachments:</h2>
-<%= render :partial => "themen/select", :object => @thema,:locals =>{ :editor => :true} %>
+</div>
 
 <%= f.actions do %>
 <%= f.action :submit, :as => :input %>
-<% end %>
-
-<!--
-<% @thema.attachments.each do |attachment| %>
-<ul>
-	<li>
-		<%= link_to attachment.name, edit_thema_attachment_path(@thema,attachment) %>
-		<button type="button" onclick="insertAttachment(<%="\"" + attachment.datei.url + "\""%>,<%="\""+attachment.name+"\""%>)">Insert Me!</button>
-	</li>
-</ul>
-<% end %>
+<%= f.action :cancel, :as => :link %>
+<% end %> 
+<% end %><% end %>
+ <%= tinymce %>
+<h2>Attachments:</h2>
+<%= render :partial => "themen/select", :object => @thema,:locals =>{ :editor => :true} %>
 
 
-<% end %>
--->
-<!--
-
-<script>
-function insertAttachment(url) {
-
-	tinymce.activeEditor.setContent(tinymce.activeEditor.getContent({format : 'raw'}) + "Test");
-	//editor.setContent(editor.getContent + "<img src=\"" + url + "\">")
-}
-</script>
-
--->

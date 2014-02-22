@@ -31,28 +31,34 @@ class FragenController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: @frage }
+      format.js
     end
   end
-
+ 
   # GET /fragen/1/edit
   def edit
     @frage = Frage.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js {render action: :new}
+    end 
   end
 
   # POST /fragen
   # POST /fragen.json
   def create
     @frage = Frage.new(params[:frage])
+    thema=@frage.thema
     @fragen=@frage.thema.fragen
     respond_to do |format|
       if @frage.save
         format.html { redirect_to @frage.thema, notice: 'Frage was successfully created.' }
         format.json { render json: @frage, status: :created, location: @frage }
-        format.js
+        format.js {@frage=Frage.new ; @frage.thema=thema}
       else
         format.html { render action: "new" }
         format.json { render json: @frage.errors, status: :unprocessable_entity }
-        format.js
+        format.js 
       end
     end
   end
@@ -66,9 +72,11 @@ class FragenController < ApplicationController
       if @frage.update_attributes(params[:frage])
         format.html { redirect_to @frage, notice: 'Frage was successfully updated.' }
         format.json { head :no_content }
+        format.js {@frage=Frage.new; render action: "new"}
       else
         format.html { render action: "edit" }
         format.json { render json: @frage.errors, status: :unprocessable_entity }
+        format.js {render action: "edit"}
       end
     end
   end
