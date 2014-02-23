@@ -1,4 +1,8 @@
+/usergroup.ldif
+/newuser.ldif
+/passwd.ldif
 /config/omniauth_secrets.yml
+/config/database.yml
 /config/initializers/omniauth_secrets.rb
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 #
