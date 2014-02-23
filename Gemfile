@@ -93,4 +93,4 @@ gem "seed_dump", "~> 0.5.3"
 #gem "themes_for_rails" ,:git =>'git://github.com/tkriplean/themes_for_rails.git'
 #gem "themes_for_rails", :git=> 'git://github.com/lucasefe/themes_for_rails.git'
 gem 'themes_for_rails'
-gem 'remotipart', :git =>'git://github.com/JangoSteve/remotipart.git'
+
