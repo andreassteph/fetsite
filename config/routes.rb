@@ -115,6 +115,7 @@ end
      resources :themengruppen do
        get :verwalten 
        get :verwalten_all,:on=>:collection
+       get :faqs, :on=>:collection
        post :sort_themen
        post :sort_themengruppen, :on=>:collection
        resources :themen, :only=>[:new, :show]

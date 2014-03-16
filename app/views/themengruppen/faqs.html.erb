@@ -1,0 +1,17 @@
+<% @themengruppen.each do |tg| %>
+
+<h2><%= tg.title%></h2>
+<ul>
+<% tg.themen.each do |t| %>
+<li> <%= t.title %>
+
+<ul>
+<% t.fragen.each do |f| %>
+<li><b> <%= f.title %></b><p> <%= f.text %></p></li>
+<% end %>
+</ul>
+
+</li>
+<% end %>
+</ul>
+<% end %>

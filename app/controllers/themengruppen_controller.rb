@@ -12,6 +12,10 @@ class ThemengruppenController < ApplicationController
       format.json { render json: @themengruppen }
     end
   end
+  def faqs
+    @themengruppen = Themengruppe.order(:priority).includes(:themen,{themen: :fragen})
+    
+  end
 
   # GET /themengruppen/1
   # GET /themengruppen/1.json

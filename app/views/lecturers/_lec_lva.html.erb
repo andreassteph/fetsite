@@ -3,7 +3,7 @@
     <img class="media-object img" src="<%= lec_lva.picture.thumb.url  unless lec_lva.picture.nil? %>"/>
   </a>
   <div class="media-body">
-    <h4><%= link_to lec_lva.name, lec_lva %></h4>
+    <h4><%= lec_lva.name %></h4>
 	  	Email: <%= mail_to lec_lva.email %><br>
     TISS: <%= link_to lec_lva.name, lec_lva.link, target: "_blank"  %>
   </div>
