@@ -56,9 +56,11 @@ class ThemenController < ApplicationController
       if @thema.save
         format.html { redirect_to @thema, notice: 'Thema was successfully created.' }
         format.json { render json: @thema, status: :created, location: @thema }
+        format.js   {render action: "update"}
       else
         format.html { render action: "new" }
         format.json { render json: @thema.errors, status: :unprocessable_entity }
+      format.js   { render action: "edit" }
       end
     end
   end

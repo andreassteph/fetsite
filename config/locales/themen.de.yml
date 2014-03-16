@@ -19,3 +19,18 @@ de:
   attachment:
     title: "Anhang"
     add: "Anhang hinzufügen"
+  formtastic:
+    labels:
+      thema:
+        title: "Themen Name"
+        themengruppe: "Gruppe"
+    hints:
+      thema:
+        title: "Überschrift"
+  activerecord:
+    errors:
+      models:
+        thema:
+          attributes:
+            title:
+              blank: "Der Themen Name darf nicht leer sein!"

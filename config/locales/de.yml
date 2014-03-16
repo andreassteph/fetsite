@@ -24,6 +24,7 @@ de:
     mitarbeiter: "Mitarbeiter"
     fotos: "Fotos"
     search: "Suche"
+
   formtastic:
     titles:
       modul: 
