@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <p>&nbsp;</p>	
+      <p>&nbsp;</p>	
+      <%= render partial: "lva", object: @lva %>
+	<h2> <%= I18n.t "lecturers.lecturers" %> </h2>
+	<% @lva.lecturers.each do |lec| %>
+	<%= render :partial=>'lecturers/lec_lva', :object=>lec %>
+
+	<% end %>
+
+
+    </div>
+    <div class="span6">
+      <p> Tiss Version</p>
+      <%= link_to "Von Tiss laden", lva_load_tiss_path(@lva) %> 
+      <%= render partial: "lva", object: @lvatiss %>
+      
+      <h2> <%= I18n.t "lecturers.lecturers" %> </h2>
+      <% @lvatiss.lecturers.each do |lec| %>
+      <%= render :partial=>'lecturers/lec_lva', :object=>lec %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+</div>
