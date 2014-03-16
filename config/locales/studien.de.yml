@@ -31,6 +31,7 @@ de:
     list: "Alle Lvas"
   semester:
     ohne: "Ohne Semesterzuordnung"
+    semester: "Semester"
   modulgruppe:
     typ: "Typ"
     edit: "Modulgruppe bearbeiten"
