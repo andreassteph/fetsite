@@ -6,7 +6,7 @@ class GremienController < ApplicationController
   def verwalten
     @gremien = Gremium.all
     @gremientabs=Gremium.tabs
-    @toolbar_elements << {:text=>I18n.t('common.new'),:path=>new_gremium_path() ,:icon=>:plus} if can? :new, Gremium
+    @toolbar_elements << {:text=>I18n.t('gremium.new'),:path=>new_gremium_path() ,:icon=>:plus} if can? :new, Gremium
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @gremien }
