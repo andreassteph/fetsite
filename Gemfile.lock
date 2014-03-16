@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/JangoSteve/remotipart.git
-  revision: aadc29e996c35096ee971bdc6cbf7ab148077a3a
-  specs:
-    remotipart (1.2.1)
-
-GIT
   remote: git://github.com/airblade/paper_trail.git
   revision: 802b7d4ead71703860fcb9befc2c9b2ee05a8b9f
   specs:
