@@ -98,12 +98,14 @@ end
      # get 'rubriken/:id/verwalten',:controller=>:rubriken,:action=>:verwalten, :as=>'verwalten_rubrik'
      # get 'rubriken/verwalten',:controller=>:rubriken,:action=>:alle_verwalten, :as=>'rubriken_verwalten'
      
-     resources :home, :only=>[:index]
-     get 'home/dev', :controller=>:home, :action=>:dev, :as=>'home_dev'
-     get 'home/startdev', :controller=>:home, :action=>:startdev, :as=>'home_startdev'
-     get 'home/linksnotimplemented', :controller=>:home, :action=>:linksnotimplemented, :as=>'home_linksnotimplemented'
-     
-    
+     resources :home, :only=>[:index] do
+       collection do
+         get 'dev'
+         get 'startdev'
+         get 'linksnotimplemented'
+         get 'kontakt' 
+       end
+    end
     
      resources :themen do
        get :fragen
