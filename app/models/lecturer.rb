@@ -16,4 +16,16 @@ class Lecturer < ActiveRecord::Base
   has_and_belongs_to_many :lvas
   mount_uploader :picture, PictureUploader
   resourcify
+
+  def load_tissdata
+    url= "https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/"+self.oid.to_s+".xml"
+    hash=Hash.from_xml(open(url).read)["tuvienna"]
+    self.name=hash["person"]["firstname"]+" "+hash["person"]["lastname"]
+    if hash["person"]["employee"]["employment"].is_a? Array
+   self.email= hash["person"]["employee"]["employment"].first["emails"]["email"].first
+    else
+      self.email= hash["person"]["employee"]["employment"]["emails"]["email"].first
+    end
+    self.link= "https://tiss.tuwien.ac.at/adressbuch/adressbuch/person_via_oid/"+self.oid.to_s
+  end
 end

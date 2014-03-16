@@ -36,6 +36,17 @@ class LvasController < ApplicationController
 
 
   end
+
+  def compare_tiss
+
+  end
+  
+  def load_tiss
+
+  end
+
+
+
   # POST /lvas
   # POST /lvas.json
   def create

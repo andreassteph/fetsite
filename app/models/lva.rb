@@ -87,7 +87,7 @@ class Lva < ActiveRecord::Base
   #  rescue OpenURI::HTTPError => e
  #   end 
     self.name=hash["course"]["title"][I18n.locale.to_s]
-    self.pruefungsinformation=  hash["course"]["examinationModalities"][I18n.locale.to_s]
+    self.pruefungsinformation =  hash["course"]["examinationModalities"][I18n.locale.to_s]
     self.desc= hash["course"]["objective"][I18n.locale.to_s]+hash["course"]["teachingContent"][I18n.locale.to_s]
     self.typ=hash["course"]["courseType"]
     self.stunden=hash["course"]["weeklyHours"]
