@@ -18,6 +18,9 @@ class LvasController < ApplicationController
     @toolbar_elements<<{:hicon=>'icon-plus-sign', :icon=>:plus, :text => "Neues Beispiel", :path=> new_beispiel_path(:lva_id =>@lva.id)}
      @toolbar_elements<<{:hicon=>'icon-pencil', :icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)}
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('common.delete'), :path=> lva_path(@lva), :method=>:delete, :confirm=>'Sure?' }
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>"df", :path=> lva_compare_tiss_path(@lva)}
+
+
   end
 
   # GET /lvas/new
@@ -38,11 +41,21 @@ class LvasController < ApplicationController
   end
 
   def compare_tiss
-
+    @lva = Lva.find_by_id(params[:lva_id])
+    @lvatiss = Lva.new
+    @lvatiss.lvanr=@lva.lvanr
+    @lvatiss.load_tissdata("-2013W")
+ 
   end
   
   def load_tiss
-
+    @lva = Lva.find_by_id(params[:lva_id])
+    @lva.load_tissdata("-2013W")
+    if @lva.save
+      redirect_to @lva , notice: 'Lva von TISS geleaden.'
+    else
+      redirect_to @lva, action: :compare_tiss
+    end
   end
 
 
@@ -54,7 +67,7 @@ class LvasController < ApplicationController
  
     respond_to do |format|
       if @lva.save
-         @lva.add_semesters
+        @lva.add_semesters
         format.html { redirect_to @lva, notice: 'Lva was successfully created.' }
         
       else
