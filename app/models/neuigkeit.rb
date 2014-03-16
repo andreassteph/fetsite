@@ -24,7 +24,7 @@ class Neuigkeit < ActiveRecord::Base
   has_many :calentries, as: :object
   mount_uploader :picture, PictureUploader
   scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date).order(:datum).reverse_order}
-  scope :recent, -> { published.order(:datum).reverse_order.limit(15)}
+  scope :recent, -> { published.limit(15)}
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>:true)}
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
