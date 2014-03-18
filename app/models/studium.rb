@@ -65,7 +65,11 @@ class Studium < ActiveRecord::Base
 
    def desc_first_words
     md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.desc
-    md[:text].split(" ")[0..100].join(" ")+ " ..." unless md.nil?
+     unless md.nil?
+       md[:text].split(" ")[0..100].join(" ")+ " ..." 
+     else
+       ""
+     end
   end
 
 end
