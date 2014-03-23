@@ -7,10 +7,10 @@
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"
    scope '(:locale)/admin' do
      resources :users, :only=>[]  do 
-collection do
-       get :index
-       post :all_update
-end
+       collection do
+         get :index
+         post :all_update
+       end
      end
      get 'users/:id/add_role/:role', :controller=>:users, :action=>:add_role, :as=>'user_add_role'
      get 'users/:id/do_confirm', :controller=>:users, :action=>:do_confirm, :as=>'user_do_confirm'
@@ -20,10 +20,12 @@ end
 
    devise_for :users , :controllers=>{:omniauth_callbacks=> "users/omniauth_callbacks"}
 
-   scope '(:locale)' do
-     
-     resources :studien, :only=>[:new,:edit,:update,:destroy]
+   scope ':locale' do
+     scope '(t/:theme)' do
+     # Studien 
+    
      scope '(:ansicht)' do
+       resources :studien, :only=>[:new,:edit,:update,:destroy]
        resources :studien, :only=>[:show]
      end
      
@@ -126,7 +128,7 @@ end
      
      resources :calentries
    end
-
+end
    # The priority is based upon order of creation:
    # first created -> highest priority.
 

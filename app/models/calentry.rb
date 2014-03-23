@@ -21,6 +21,7 @@ class Calentry < ActiveRecord::Base
   validates :typ, :presence => true
   before_save :get_public
   belongs_to :object, polymorphic: true # Objekt zu dem der Calentry gehört (derzeit ein Newsartikel)
+
   scope :upcoming, ->{ where("start >= ?", Time.now).order(:start)}
   scope :recent,-> {  where("start <= ?", Time.now).order(:start).reverse_order}
   validate do |entry|
@@ -31,8 +32,8 @@ class Calentry < ActiveRecord::Base
   
   resourcify
   def get_public
-  self.public = (self.try(:object).nil?)? (self.calendar.try(:public)) : object.try(:public)
-  true
+    self.public = (self.try(:object).nil?)? (self.calendar.try(:public)) : object.try(:public)
+    true
   end
   def start_time
     start

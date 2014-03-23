@@ -51,7 +51,8 @@ class ThemenController < ApplicationController
   # POST /themen.json
   def create
     @thema = Thema.new(params[:thema])
-
+   
+      @themen = @thema.themengruppe.themen.order(:priority).reverse
     respond_to do |format|
       if @thema.save
         format.html { redirect_to @thema, notice: 'Thema was successfully created.' }
@@ -75,7 +76,7 @@ class ThemenController < ApplicationController
   # PUT /themen/1.json
   def update
     @thema = Thema.find(params[:id])
-
+  @themen = @thema.themengruppe.themen.order(:priority).reverse
     respond_to do |format|
       if @thema.update_attributes(params[:thema])
         format.html { redirect_to @thema, notice: 'Thema was successfully updated.' }
