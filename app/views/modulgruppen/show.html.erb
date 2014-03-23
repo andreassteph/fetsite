@@ -1,18 +1,23 @@
-</ul><p id="notice"><%= notice %></p>
+<%= render 'studien/tabs' %>
+<div class="content-wrap content-column">
+<p id="notice"><%= notice %></p>
+
 <h1>
   <%= @modulgruppe.name %>
 </h1>
 <p>
  <!-- <b><%= link_to "Studium: "+@modulgruppe.studium.name, studium_path(@modulgruppe.studium) %></b>-->
   
-</p><p>
+</p>
+<p>
   <b><%= I18n.t "modulgruppe.typ"%>:</b>
   <%= @modulgruppe.typ %>
 </p>
-
-
-<% @modulgruppe.moduls.each do |modul| %>
-<%= render 'moduls/kurz', :modul=>modul%>
-<% end %>
+<ul class="unstyled">
+  <% @modulgruppe.moduls.each do |modul| %>
+  <%= render 'moduls/kurz', :modul=>modul%>
+  <% end %>
+</ul>
 
 <%= render 'layouts/pretty_toolbar' %>
+</div>
