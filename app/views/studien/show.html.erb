@@ -1,32 +1,25 @@
-<div class="container-fluid">
-  <div class="row-fluid">
-    <%= render 'studien/tabs' %>
+<%= render 'studien/tabs' %>
+<div class="content-wrap content-column">
+  <p id="notice"><%= notice %></p>
+  <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
+  <p>
+      <div class="pull-right">
+	<%= link_to @text, studium_path(@studium, :ansicht=>@flip), :class=>"btn" %>
+	<%= link_to "Infoansicht", studium_path(@studium, :ansicht=>"infoansicht"), :class=>"btn" %>
+      </div>
+  </p>
+  <% if params[:ansicht]=='modulgruppenansicht' %>
+  <%= render partial: 'modulgruppenansicht' %>
+  <% else if params[:ansicht]=='infoansicht' %>
+    <%= render partial: 'infoansicht' %>
+  <% else %>
+    <%= render partial: 'semesteransicht' %>
+ 
 
-    <p id="notice"><%= notice %></p>
-    <div class="span6">    <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1></div>
-    <div class="span3 pull-right"><div class="pull-right"><%= link_to @text, studium_path(@studium, :ansicht=>@flip), :class=>"btn" %></div>
-    </div>
-  </div>
-  <div class="row-fluid">
-    <% if params[:info].true? %>
-    <%= raw(@studium.desc) %>
-    <% else %>
-    <%= @studium.desc_first_words %> <%= link_to I18n.t('studium.info'), studium_path(@studium, :ansicht=>params[:ansicht], :info=>true) %>
-    <% end %>
+  <% end %>
 
+ <% end %>
 
-    <% @studienphasen.each do |sp| %>
-      <% sp[:modulgruppen].each do |row| %>
-	<div class="row-fluid">
-	  <% row.each do |modulgruppe| %>
-	    <div class="span<%= sp[:width]%> min-width:13em;">
-	      <%= render modulgruppe %>
-	    </div>
-	  <% end %>
-	</div>
-      <% end %>
-    <% end %>
-  </div>
   <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %><br>
   <%= render 'layouts/pretty_toolbar' %>
 </div>
