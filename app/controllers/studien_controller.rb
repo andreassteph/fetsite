@@ -40,17 +40,9 @@ class StudienController < ApplicationController
                              {:hicon=>'icon-list', :text => I18n.t('modulgruppe.list'), :path=>modulgruppen_path}]
     case params[:ansicht]
     when 'semesteransicht'
-      @text = 'Zu Modulansicht wechseln'
-      @flip = 'modulgruppenansicht'
-   #   render 'semesteransicht'
-   
     when 'infoansicht'
-      @text = 'Zu Modulansicht wechseln'
-      @flip = 'modulgruppenansicht'
-
     else
-      @text = 'Zu Semesteransicht wechseln'
-      @flip = 'semesteransicht'
+      params[:ansicht]="modulgruppenansicht"
     end
   end
 

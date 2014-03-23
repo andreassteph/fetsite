@@ -4,21 +4,22 @@
   <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
   <p>
       <div class="pull-right">
-	<%= link_to @text, studium_path(@studium, :ansicht=>@flip), :class=>"btn" %>
-	<%= link_to "Infoansicht", studium_path(@studium, :ansicht=>"infoansicht"), :class=>"btn" %>
+	<%= link_to "Semesteransicht", studium_path(@studium, :ansicht=>"semesteransicht"), :class=>"btn" unless params[:ansicht]=='semesteransicht' %>
+	<%= link_to "Modulgruppenansicht", studium_path(@studium, :ansicht=>"modulgruppenansicht"), :class=>"btn" unless params[:ansicht]=='modulgruppenansicht' %>
+	<%= link_to "Infoansicht", studium_path(@studium, :ansicht=>"infoansicht"), :class=>"btn" unless params[:ansicht]=='infoansicht' %>
       </div>
   </p>
   <% if params[:ansicht]=='modulgruppenansicht' %>
   <%= render partial: 'modulgruppenansicht' %>
   <% else if params[:ansicht]=='infoansicht' %>
     <%= render partial: 'infoansicht' %>
-  <% else %>
+    <% else %>
     <%= render partial: 'semesteransicht' %>
  
 
-  <% end %>
+    <% end %>
 
- <% end %>
+    <% end %>
 
   <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %><br>
   <%= render 'layouts/pretty_toolbar' %>
