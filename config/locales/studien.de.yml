@@ -14,6 +14,10 @@ de:
       <li>Klick auf den Namen eines Objektes führt zu dessen Ansicht, ein Klick auf edit direkt zum Bearbeitungsformular</li>
       <li>Per Dropdown-Menü kann nach einzelnen Objekten gefiltert werden. Die Filter können kombiniert werden, wobei nur erlaubte Kombinationen möglich sind. <b>Solange validation-Fehler (im Log rot und fett) auftreten, keine Filter verwenden</b></li>
       </ul>"
+    ansicht:
+      modulgruppe: "Modulgruppenansicht"
+      semester: "Semesteransicht"
+      info: "Infoansicht"
   modul:
     edit: "Modul bearbeiten"
     list: "Alle Module"

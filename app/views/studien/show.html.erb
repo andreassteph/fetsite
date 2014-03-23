@@ -4,9 +4,9 @@
   <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
   <p>
       <div class="pull-right">
-	<%= link_to "Semesteransicht", studium_path(@studium, :ansicht=>"semesteransicht"), :class=>"btn" unless params[:ansicht]=='semesteransicht' %>
-	<%= link_to "Modulgruppenansicht", studium_path(@studium, :ansicht=>"modulgruppenansicht"), :class=>"btn" unless params[:ansicht]=='modulgruppenansicht' %>
-	<%= link_to "Infoansicht", studium_path(@studium, :ansicht=>"infoansicht"), :class=>"btn" unless params[:ansicht]=='infoansicht' %>
+	<%= link_to I18n.t("studien.ansicht.semester"), studium_path(@studium, :ansicht=>"semesteransicht"), :class=>"btn" unless params[:ansicht]=='semesteransicht' %>
+	<%= link_to I18n.t("studien.ansicht.modulgruppe"), studium_path(@studium, :ansicht=>"modulgruppenansicht"), :class=>"btn" unless params[:ansicht]=='modulgruppenansicht' %>
+	<%= link_to I18n.t("studien.ansicht.info"), studium_path(@studium, :ansicht=>"infoansicht"), :class=>"btn" unless params[:ansicht]=='infoansicht' %>
       </div>
   </p>
   <% if params[:ansicht]=='modulgruppenansicht' %>
