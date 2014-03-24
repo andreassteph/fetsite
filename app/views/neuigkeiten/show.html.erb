@@ -11,7 +11,7 @@
 </span>
 <div class="media">
   <div class="pull-left" href="#">
-    <p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.url  %>
+    <p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.try(:url)  %>
     </p>
   </div>
   <div class="media-body">
