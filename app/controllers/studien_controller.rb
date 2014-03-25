@@ -41,6 +41,7 @@ class StudienController < ApplicationController
     case params[:ansicht]
     when 'semesteransicht'
     when 'infoansicht'
+    when 'qualifikationsprofil'
     else
       params[:ansicht]="modulgruppenansicht"
     end

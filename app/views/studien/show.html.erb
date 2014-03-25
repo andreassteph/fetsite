@@ -13,13 +13,18 @@
   <%= render partial: 'modulgruppenansicht' %>
   <% else if params[:ansicht]=='infoansicht' %>
     <%= render partial: 'infoansicht' %>
+  <% else if params[:ansicht]== 'qualifikationsprofil' %>
+   <h2>Qualifikationsprofil</h2>
+<p>
+<%= raw(@studium.qualifikation) %>
+</p>
     <% else %>
     <%= render partial: 'semesteransicht' %>
  
 
-    <% end %>
+    
 
-    <% end %>
+    <% end %>  <% end %>  <% end %>
 
   <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %><br>
   <%= render 'layouts/pretty_toolbar' %>
