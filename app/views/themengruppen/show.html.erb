@@ -11,11 +11,6 @@
       <a name="<%=thema.id%>" href="#<%=thema.id%>">
 	<h2><%= thema.title %></h2>
       </a>
-      <% unless thema.gremium.nil? %>
-      <p>
-	<%= link_to fa_icon("users 2x")+" Zu dem Gremium ..." , thema.gremium %>
-      </p>
-      <% end %>		
       <%= render :partial => 'themen/small', :object => thema %>
 tools:
       <% 
@@ -24,11 +19,18 @@ tools:
 
    %>
 	<%= render :partial=>'layouts/pretty_toolbar', :object=>@small_elements2 unless @small_elements2.empty? %>
-
-
+<ul class="unstyled">
+	<% unless thema.gremium.nil? %>
+	
+	<li>
+	<%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
+  </li>
+      <% end %>		
+     
       <% thema.nlinks.each do |l| %> 
-      <%= render l.neuigkeit %>
+<li><%= render l.neuigkeit %></li>
       <% end %>
+</ul>
     </div>
   </li>
   <% end %>
