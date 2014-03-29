@@ -92,6 +92,8 @@
            get 'unpublish'
            get 'add_calentry'
            get 'rm_calentry'
+           get 'create_link'
+           get 'find_link'
          end
        end
      end

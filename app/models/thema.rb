@@ -19,6 +19,6 @@ class Thema < ActiveRecord::Base
   validates :themengruppe, :presence => true
   validates :title, :presence => true
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
-
+  has_many :nlinks, as: :link
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
 end

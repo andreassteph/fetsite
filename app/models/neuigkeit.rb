@@ -28,8 +28,11 @@ class Neuigkeit < ActiveRecord::Base
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>:true)}
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
+  LINKTYPES=["Thema", "Gallery", "Lva"]
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
+  has_many :nlinks
+
   def datum_nilsave
 	self.datum.nil? ? Time.now + 42.years : self.datum
   end

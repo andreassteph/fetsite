@@ -44,6 +44,7 @@ class Lva < ActiveRecord::Base
   has_many :beispiele , :class_name => "Beispiel"
   has_and_belongs_to_many :lecturers
   translates :desc,:pruefungsinformation,  :fallbacks_for_empty_translations => true, :versioning=>true
+  scope :search, ->(query) {where("name like ? or desc like ?", "%#{query}%", "%#{query}%")} 
   
   validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9A][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
   validates_presence_of :ects  # ECTS vorhanden?
@@ -52,6 +53,11 @@ class Lva < ActiveRecord::Base
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen?
   # (zumindest eines)
+ has_many :nlinks, as: :link
+ 
+  def title
+    self.name
+  end
   def full_name
     return self.typ + ' ' + self.name
     end
@@ -69,7 +75,6 @@ class Lva < ActiveRecord::Base
     
   end
  
-
   ##
   # Lade Daten aus TISS und füge diese in die Datenbank ein. 
   def tisshash(semester)

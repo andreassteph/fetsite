@@ -1,6 +1,6 @@
 <div class="content-wrap content-column">
 <%= semantic_form_for :search,:remote=>true, :url=>search_home_index_path, :html=>{:id=>"search_form", :method=>'get'} do |f| %>
-<%= f.input :query, :input_html => { :name => 'query' } %>
+<%= f.input :query, :input_html => { :name => 'query' } , :label=>false %>
 <% end %>
 <script>
 $( document ).ready(function() {

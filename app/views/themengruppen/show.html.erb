@@ -1,5 +1,5 @@
 <div class="content-wrap content-column" >
-
+<h2>sdffs</h2>
 <h1><%= @themengruppe.title %></h1>
 <p>
   <%= @themengruppe.text %>
@@ -8,7 +8,7 @@
   <% @themengruppe.themen.each do |thema| %>
   <li>
     <div class="contentbox">		  
-      <a href="#<%=thema.id%>">
+      <a name="<%=thema.id%>" href="#<%=thema.id%>">
 	<h2><%= thema.title %></h2>
       </a>
       <% unless thema.gremium.nil? %>
@@ -17,6 +17,9 @@
       </p>
       <% end %>		
       <%= render :partial => 'themen/small', :object => thema %>
+      <% thema.nlinks.each do |l| %> 
+      <%= render l.neuigkeit %>
+      <% end %>
     </div>
   </li>
   <% end %>
