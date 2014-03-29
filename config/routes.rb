@@ -2,7 +2,7 @@
   themes_for_rails
    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
    resources :home, :only=>[:index] do
-     get :search, :on=>:collection
+
    end
    #get 'home',:controller=>home,:action=>:index,:as=>"home_index"
    scope '(:locale)/admin' do
@@ -103,7 +103,9 @@
      # get 'rubriken/verwalten',:controller=>:rubriken,:action=>:alle_verwalten, :as=>'rubriken_verwalten'
      
      resources :home, :only=>[:index] do
-       collection do
+      get :search, :on=>:collection
+         collection do
+           
          get 'dev'
          get 'startdev'
          get 'linksnotimplemented'

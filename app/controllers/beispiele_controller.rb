@@ -16,11 +16,7 @@ class BeispieleController < ApplicationController
   def show
     # @lva = params([:lva]) unless params([:lva]).nil?
     @beispiel = Beispiel.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @beispiel }
-    end
+redirect_to @beispiel.lva
   end
 
   # GET /beispiele/new

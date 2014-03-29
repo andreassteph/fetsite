@@ -1,9 +1,9 @@
 <% @themengruppen.each do |tg| %>
-
-<h2><%= tg.title%></h2>
+<a name="themengruppe_<%=tg.id.to_s%>">
+<h2><%= tg.title%></h2></a>
 <ul>
 <% tg.themen.order(:priority).reverse.each do |t| %>
-<li><a name="themengruppe_<%=t.id.to_s%>">  <%= t.title %> &nbsp;</a>
+<li><%= t.title %>
 
 
 

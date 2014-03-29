@@ -16,7 +16,7 @@ class ThemenController < ApplicationController
   # GET /themen/1.json
   def show
     @thema = Thema.find(params[:id])
-    redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> params[:id].to_s
+    redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> "thema_"+params[:id].to_s
     @fragen=@thema.fragen
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>"Verwalten", :path=>verwalten_thema_path(@thema)}]
 
