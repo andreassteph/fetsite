@@ -1,24 +1,9 @@
 <p id="notice"><%= notice %></p>
+<%= link_to "Zurück", @thema.themengruppe %>
+<br> 
+<%= render :partial=>"themen/small", :object=>@thema %>
 
-<h1><%= @thema.title %></h1>
-<p>
-  <%= raw(@thema.text) %>
-</p>
-
-<!--
-<%= link_to 'Edit', edit_thema_path(@thema) %> |
-<%= link_to 'Back', themengruppe_path(@thema.themengruppe) %>
--->
 <%= render :partial=>'layouts/pretty_toolbar' %>
 
-<%= render :partial=>'themen/fragen' %>
-<!--
-<%= link_to 'Neue Frage', new_frage_path %> <br/>
--->
-<br/>
-
-<h2><%= I18n.t('attachment.title')%>:</h2>
-<div id="attachmentform">
-</div>
 <%= link_to new_thema_attachment_path(@thema) ,:remote=>true do %> new Attachment <% end %>
 <%= render :partial => "themen/select", :object => @thema, :locals=>{:editor => :false} %>

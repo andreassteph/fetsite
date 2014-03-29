@@ -33,7 +33,7 @@ gem 'jquery-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Deploy with Capistrano
+# Deploy with Capistran
 # gem 'capistrano'
 
 # To use debugger
@@ -87,7 +87,7 @@ gem 'rmagick'
 gem 'bootstrap-addons-rails'
 gem "jquery-fileupload-rails"
 gem "jquery-ui-rails","~> 4.1.1" 
-
+gem "font-awesome-rails"
 # gem "jquery-sortable-rails"
 gem "seed_dump", "~> 0.5.3"
 #gem "themes_for_rails" ,:git =>'git://github.com/tkriplean/themes_for_rails.git'

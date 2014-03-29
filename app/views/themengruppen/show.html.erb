@@ -1,5 +1,5 @@
 <div class="content-wrap content-column" >
-<h2>sdffs</h2>
+<h2>sdffs2</h2>
 <h1><%= @themengruppe.title %></h1>
 <p>
   <%= @themengruppe.text %>
@@ -13,10 +13,19 @@
       </a>
       <% unless thema.gremium.nil? %>
       <p>
-	<%= link_to "Zu dem Gremium ..." , thema.gremium %>
+	<%= link_to fa_icon("users 2x")+" Zu dem Gremium ..." , thema.gremium %>
       </p>
       <% end %>		
       <%= render :partial => 'themen/small', :object => thema %>
+tools:
+      <% 
+	 @small_elements2 = []
+	 @small_elements2 << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('common.verwalten'), :path=>verwalten_thema_path(thema)} if can? :edit, thema 
+
+   %>
+	<%= render :partial=>'layouts/pretty_toolbar', :object=>@small_elements2 unless @small_elements2.empty? %>
+
+
       <% thema.nlinks.each do |l| %> 
       <%= render l.neuigkeit %>
       <% end %>

@@ -112,8 +112,11 @@
     end
     
      resources :themen do
-       get :fragen
-       resources :attachments
+         member do
+           get :fragen
+           get :verwalten
+         end
+         resources :attachments
      end
 	 
      resources :themengruppen do
