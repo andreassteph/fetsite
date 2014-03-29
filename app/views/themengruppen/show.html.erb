@@ -8,10 +8,7 @@
 <ul class="unstyled linkbox-list" >
   <% @themengruppe.themen.each do |thema| %>
   <li>
-    <div class="contentbox">		  
-      <a name="<%=thema.id%>" href="#<%=thema.id%>">
-	<h2><%= thema.title %></h2>
-      </a>
+    <div class="contentbox">	
       <%= render :partial => 'themen/small', :object => thema %>
 tools:
       <% 

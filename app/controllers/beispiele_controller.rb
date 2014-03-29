@@ -16,7 +16,7 @@ class BeispieleController < ApplicationController
   def show
     # @lva = params([:lva]) unless params([:lva]).nil?
     @beispiel = Beispiel.find(params[:id])
-redirect_to @beispiel.lva
+    redirect_to @beispiel.lva
   end
 
   # GET /beispiele/new
