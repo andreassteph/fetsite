@@ -2,8 +2,10 @@
 
 <h2><%= tg.title%></h2>
 <ul>
-<% tg.themen.each do |t| %>
-<li> <%= t.title %>
+<% tg.themen.order(:priority).reverse.each do |t| %>
+<li><a name="themengruppe_<%=t.id.to_s%>">  <%= t.title %> &nbsp;</a>
+
+
 
 <ul>
 <% t.fragen.each do |f| %>

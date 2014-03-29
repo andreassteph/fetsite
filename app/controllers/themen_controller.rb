@@ -77,7 +77,7 @@ class ThemenController < ApplicationController
     end
   end
  def fragen
-    @thema = Thema.find(params[:thema_id])
+    @thema = Thema.find(params[:id])
     @fragen=@thema.fragen
     respond_to do |format|
       format.js

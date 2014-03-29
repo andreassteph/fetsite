@@ -13,7 +13,7 @@ class ThemengruppenController < ApplicationController
     end
   end
   def faqs
-    @themengruppen = Themengruppe.order(:priority).includes(:themen,{themen: :fragen})
+    @themengruppen = Themengruppe.order("themengruppen.priority").includes(:themen,{themen: :fragen}).order("themen.priority").reverse
     
   end
 
