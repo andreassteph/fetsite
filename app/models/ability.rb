@@ -38,7 +38,7 @@ class Ability
     can [:show,:index], Gallery
     can [:show, :index], Themengruppe
     can [:show], Thema
-
+    can [:create], Beispiel
     can [:show, :index], Fetprofile
     can [:show, :index],Gremium
     # Rechteverwaltung fuer Studien Modul
@@ -51,16 +51,16 @@ class Ability
     can [:show], Calentry
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can :manage,:all
-    can :manage, Modulgruppe
+      can :manage, Modulgruppe
 
-    can [:show,:index], Calendar
-    can  [:edit, :update,:new,:create,:verwalten], Calendar
-    can  [:edit, :update,:new,:create,:verwalten], Calentry
+      can [:show,:index], Calendar
+      can  [:edit, :update,:new,:create,:verwalten], Calendar
+      can  [:edit, :update,:new,:create,:verwalten], Calentry
     end
-	if( user.has_role?("fetadmin"))
-	can [:delete],Calendar
-	can [:delete],Calentry
-	end
+    if( user.has_role?("fetadmin"))
+      can [:delete],Calendar
+      can [:delete],Calentry
+    end
  
     # Rechteverwaltung fuer Neuigkeiten
 
