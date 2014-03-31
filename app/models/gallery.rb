@@ -15,7 +15,7 @@ class Gallery < ActiveRecord::Base
   attr_accessible :datum, :desc, :name
   has_many :fotos
   has_many :nlinks, as: :link
-    scope :search, ->(query) {where("name like ? or desc like ?", "%#{query}%", "%#{query}%")}
+    scope :search, ->(query) {where("name like ? or galleries.desc like ?", "%#{query}%", "%#{query}%")}
 
   def title
     name
