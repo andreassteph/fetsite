@@ -17,13 +17,19 @@ Verwendung: Aufruf mit
 	Versionen<span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
+	<li>	<%= link_to "active", t[:path]  %>
+	</li>
 	<% t[:versions].each_with_index do |v,i| %>
 	<li>
-<% 
-uri= URI.parse(t[:path]);
-uri.query= URI.encode_www_form(URI.decode_www_form(uri.query)<<["version",i.to_s])
-%>
-	  <%= link_to v[:created_at],uri.to_s ,:version=>v[:id]%>
+	  <% unless t[:path].nil?
+	     uri= URI.parse(t[:path]);
+	     q=[];
+	     q= q.merge(URI.decode_www_form(uri.query)) unless uri.query.nil?
+	    
+	     uri.query= URI.encode_www_form(q<<["version",i.to_s])
+									      %>
+	  <%= link_to I18n.l(v[:created_at]).to_s,uri.to_s ,:version=>v[:id] %>
+<% end %>
 	</li>
 	<% end %>    
       </ul>

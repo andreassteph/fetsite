@@ -7,6 +7,7 @@ de:
     notactive_members: "Pension"
     new_profile: "Neues Profil anlegen"
   gremium:
+    new: "Neues Gremium"
     filter:
       berufung:
         title: "Berufungskommission"

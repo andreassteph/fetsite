@@ -27,7 +27,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 class Studium < ActiveRecord::Base
-  attr_accessible :desc, :name,:abkuerzung, :typ, :zahl, :semester, :picture, :picture_cache
+  attr_accessible :desc, :name,:abkuerzung, :typ, :zahl, :semester, :picture, :picture_cache, :qualifikation,:struktur, :jobmoeglichkeiten
   has_many :modulgruppen, inverse_of: :studium, :class_name => "Modulgruppe", :dependent => :destroy
   has_many :semester, :dependent => :destroy
   validates :abkuerzung, :length=>{:maximum=>5}, :format=>{:with=>/^[a-zA-z]{0,5}$/}
@@ -35,7 +35,7 @@ class Studium < ActiveRecord::Base
   validates :name, :uniqueness => true, :presence=>true
   validates :zahl, :presence=>true, :format=>{:with=>/^[0-9A-Z]{4,10}$/}, :uniqueness => true 
   mount_uploader :picture, PictureUploader
-  translates :desc,:shortdesc, :versioning =>true,:fallbacks_for_empty_translations => true
+  translates :desc,:shortdesc, :qualifikation,:struktur, :jobmoeglichkeiten, :versioning =>true,:fallbacks_for_empty_translations => true
   def title_context
     return self.abkuerzung.to_s.strip.empty? ? self.name : self.abkuerzung
   end
@@ -65,7 +65,11 @@ class Studium < ActiveRecord::Base
 
    def desc_first_words
     md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.desc
-    md[:text].split(" ")[0..100].join(" ")+ " ..." unless md.nil?
+     unless md.nil?
+       md[:text].split(" ")[0..100].join(" ")+ " ..." 
+     else
+       ""
+     end
   end
 
 end

@@ -1,6 +1,6 @@
 class LvasController < ApplicationController
   # GET /lvas
- before_filter {@toolbar_elements =[]} 
+  before_filter :load_toolbar, :only => [:show]
   load_and_authorize_resource
   def index
     @lvas = Lva.all
@@ -14,10 +14,7 @@ class LvasController < ApplicationController
 
   def show
     @lva = Lva.find_by_id(params[:id])
-   @beispiel=Beispiel.new
-    @toolbar_elements<<{:hicon=>'icon-plus-sign', :icon=>:plus, :text => "Neues Beispiel", :path=> new_beispiel_path(:lva_id =>@lva.id)}
-     @toolbar_elements<<{:hicon=>'icon-pencil', :icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)}
-    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('common.delete'), :path=> lva_path(@lva), :method=>:delete, :confirm=>'Sure?' }
+    @beispiel=Beispiel.new
   end
 
   # GET /lvas/new
@@ -33,52 +30,71 @@ class LvasController < ApplicationController
   def edit
     @lva = Lva.find(params[:id])
     @semester =  @lva.modul.map(&:modulgruppen).flatten.map(&:studium).map(&:semester).flatten.uniq
-
-
   end
-  # POST /lvas
-  # POST /lvas.json
+
+  def compare_tiss
+    @lva = Lva.find_by_id(params[:id])
+    @lvatiss = Lva.new
+    @lvatiss.lvanr=@lva.lvanr
+    @lvatiss.load_tissdata("-2013W")
+ 
+  end
+  
+  def load_tiss
+    @lva = Lva.find_by_id(params[:id])
+    @lva.load_tissdata("-2013W")
+    if @lva.save
+      redirect_to @lva , notice: 'Lva von TISS geleaden.'
+    else
+      redirect_to @lva, action: :compare_tiss
+    end
+  end
+
   def create
     @lva = Lva.new(params[:lva])
  
     respond_to do |format|
       if @lva.save
-         @lva.add_semesters
+        @lva.add_semesters
         format.html { redirect_to @lva, notice: 'Lva was successfully created.' }
-        
       else
         format.html { render action: "new" }
-        
       end
     end
   end
 
-  # PUT /lvas/1
-  # PUT /lvas/1.json
   def update
     @lva = Lva.find(params[:id])
-    
     respond_to do |format|
       if @lva.update_attributes(params[:lva])
         @lva.add_semesters
         format.html { redirect_to @lva, notice: 'Lva was successfully updated.' }
- 
       else
         format.html { render action: "edit" }
-
       end
     end
   end
 
-  # DELETE /lvas/1
-  # DELETE /lvas/1.json
   def destroy
     @lva = Lva.find(params[:id])
     @lva.destroy
 
     respond_to do |format|
       format.html { redirect_to lvas_url }
-   
     end
   end
+
+private
+  def load_toolbar
+    @lva = Lva.find_by_id(params[:id])
+    @toolbar_elements =[]
+    @toolbar_elements<<{:hicon=>'icon-pencil', :icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)} if can? :edit, @lva
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>"Tissvergleichladen", :path=> lva_compare_tiss_path(@lva)} if can? :compare_tiss, @lva
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('common.delete'), :path=> lva_path(@lva), :method=>:delete, :confirm=>'Sure?' } if can? :delete, @lva
+
+
+
+
+  end
+
 end

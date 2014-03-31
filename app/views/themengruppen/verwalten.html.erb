@@ -7,9 +7,7 @@
 <div class="span4">
 
 <ul id="themen" class="sort" >
-<% @themen.each do |thema| %>
-<li id="themen_<%= thema.id %>" class="sort"  ><div class="contentbox handle" ><h2><%= thema.title %></h2>  </div> <%= link_to edit_thema_path(thema),:remote=>true do %> Edit <% end %>  <%= link_to thema_fragen_path(thema),:remote=>true do %> Fragen <% end %></li>
-<% end %>
+  <%= render partial:"themen/verw_liste", object: @themen %>
 </ul>
 <%= link_to new_themengruppe_thema_path(@themengruppe),:remote=>true do %> New Thema <% end %>
 </div>

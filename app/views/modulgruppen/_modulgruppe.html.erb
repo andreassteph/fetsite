@@ -2,7 +2,7 @@
   <h2><%=  link_to modulgruppe.name, modulgruppe_path(modulgruppe) %> 
   </h2> 
 
-  <%= modulgruppe.desc%><ul>
+  <%= modulgruppe.desc%><ul class="unstyled">
   <%= render :partial=>'moduls/kurz', :collection=>modulgruppe.moduls, :as=>:modul%>
   </ul>
   <br>

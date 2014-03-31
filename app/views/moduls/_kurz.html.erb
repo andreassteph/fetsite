@@ -1,6 +1,19 @@
-<li><p>
+<li>
+<div class="contentbox">
+<p>
   <b><% if !modul.name.nil? %><%= link_to "Modul "+ modul.name , modul_path(modul) %> <%end%></b>
 </p>
+<ul>
+<% modul.lvas.each do |lva| %>
+<li> 	      <%= render :partial=>'lvas/lva_semester', :locals =>{:lva => lva}%>
+
+</li>
+<% end %>
+
+
+</ul>
+
 <% link_to '<i class="icon-pencil"></i>'.html_safe+I18n.t("common.edit"), edit_modul_path(modul) %>
+</div>
 </li>
 

@@ -24,7 +24,7 @@ class ModulgruppenController < ApplicationController
     @toolbar_elements = [ {:text=>'Zurück', :path=>studium_path(@studium, :ansicht=>:modulgruppenansicht)}]
     @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>I18n.t('modulgruppe.addmodul'), :path=>new_modul_path(@modulgruppe)}
     @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t('modulgruppe.edit'), :path=>edit_modulgruppe_path(@modulgruppe)}
-    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium, :ansicht=>:modulgruppenansicht), :method=> :delete,:confirm=>"Sure?" }
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium, :ansicht=>:modulgruppenansicht), :method=> :delete,:confirm=>'Sure?' }
   end
 
   # GET /modulgruppen/new
@@ -71,7 +71,6 @@ class ModulgruppenController < ApplicationController
 
   def update
     @modulgruppe = Modulgruppe.find(params[:id])
-
     respond_to do |format|
       if @modulgruppe.update_attributes(params[:modulgruppe])
         format.html { redirect_to @modulgruppe, notice: 'Modulgruppe was successfully updated.' }

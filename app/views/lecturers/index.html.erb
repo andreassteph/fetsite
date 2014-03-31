@@ -16,7 +16,7 @@
     <td><%= lecturer.name %></td>
     <td><%= lecturer.email %></td>
     <td><%= lecturer.oid %></td>
-    <td><%= lecturer.picture %></td>
+    <td><%= image_tag lecturer.picture.thumb %></td>
     <td><%= link_to 'Show', lecturer %></td>
     <td><%= link_to 'Edit', edit_lecturer_path(lecturer) %></td>
     <td><%= link_to 'Destroy', lecturer, method: :delete, data: { confirm: 'Are you sure?' } %></td>

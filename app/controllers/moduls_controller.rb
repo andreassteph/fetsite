@@ -8,6 +8,7 @@ class ModulsController < ApplicationController
       if !params[:studium_id].nil?
         @studium=Studium.find_by_id(params[:studium_id])
       end
+
       @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
       @topbar_elements =[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]
       @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}

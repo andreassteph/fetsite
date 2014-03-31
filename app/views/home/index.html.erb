@@ -7,7 +7,7 @@
 	<% end %>
       </ul>
 <p>
-<%= link_to "FET Login", user_omniauth_authorize_path(:ldap) %>
+<%= link_to I18n.t('home.login'), user_omniauth_authorize_path(:ldap) %>
 </p>
   <div class="alert">
     <h2>Beta Test</h2>
@@ -23,12 +23,12 @@
     </p>
     <p><%= link_to "Steuerelemente und Komponenten", "http://getbootstrap.com/2.3.2/index.html" %></p>
     <p>Um bei der Entwicklung mitzuhelfen braucht nur Ruby on Rails installiert werden</p>
-    <p><%= link_to "Getting Started" , home_startdev_path%></p>
+    <p><%= link_to "Getting Started" , startdev_home_index_path %></p>
     <p> Das Kalender Feature wird überarbeitet, in Zukunft soll folgender Link nicht mehr funktionieren 	  <%= link_to "Kalender", calendars_path %>
     </p>
 
   </div>
-  <%= link_to "Entwicklungsstatus" , home_dev_path %>
+  <%= link_to "Entwicklungsstatus" , dev_home_index_path %>
   <%= render 'beispiele' %>
 
 Verschiedene Styles
