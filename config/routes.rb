@@ -66,9 +66,12 @@
      end
      resources :beispiele#, :only=>[:show,:index,:create]
      resources :lvas  do 
-       get 'compare_tiss'
-       get 'load_tiss'
-       resources :beispiele#, :only=>[:show,:index,:create]
+         member do
+           get 'compare_tiss'
+           get 'load_tiss'
+         end
+         resources :beispiele#, :only=>[:show,:index,:create]
+
      end 
      
      resources :fragen
