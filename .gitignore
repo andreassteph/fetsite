@@ -29,4 +29,5 @@ Gemfile.lock
 console
 /server
 /public/uploads/
+/bak/*
 *#
