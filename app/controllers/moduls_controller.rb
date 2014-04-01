@@ -91,11 +91,12 @@ class ModulsController < ApplicationController
       lva.desc=l["desc"]
       lva.semester=Semester.where(:id=>l["semester_ids"].map(&:to_i))
       lva.stunden=l["stunden"]
-      lva.pruefungsinformation=l["pruefungsinformation"]
+      pr =l["pruefungsinformation"]
+      lva.pruefungsinformation= (pr.empty?) ? "<div></div>" : pr
       lva.lernaufwand=l["lernaufwand"]
       lva.typ=l["typ"]
       lva.save
-      @newlvas<<lva
+      @newlvas<<lva #
     end 
     @lvas=@newlvas
     if @newlvas.map(&:valid?).all?
@@ -121,7 +122,7 @@ class ModulsController < ApplicationController
         lva.lvanr=l["lvanr"]
        lva.load_tissdata("-"+ l["sem"])
        lva.modul<<@modul
-       @lvas<<lva
+       @lvas<<lva # 
       end 
     end
     render 'edit_lvas'

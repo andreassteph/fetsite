@@ -52,7 +52,7 @@ class LvasController < ApplicationController
     @lva = Lva.find_by_id(params[:lva_id])
     @lva.load_tissdata("-2013W")
     if @lva.save
-      redirect_to @lva , notice: 'Lva von TISS geleaden.'
+      redirect_to @lva , notice: 'Lva von TISS geladen.'
     else
       redirect_to @lva, action: :compare_tiss
     end
@@ -64,7 +64,6 @@ class LvasController < ApplicationController
   # POST /lvas.json
   def create
     @lva = Lva.new(params[:lva])
- 
     respond_to do |format|
       if @lva.save
         @lva.add_semesters
