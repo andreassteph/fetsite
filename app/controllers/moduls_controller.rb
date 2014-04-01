@@ -88,9 +88,11 @@ class ModulsController < ApplicationController
       lva.name=l["name"]
       lva.lvanr=l["lvanr"]
       lva.ects=l["ects"]
-      lva.desc=l["desc"]
+      descr = l["desc"]
+      lva.desc= (descr.empty?) ? "<div></div>" : descr
       lva.semester=Semester.where(:id=>l["semester_ids"].map(&:to_i))
       lva.stunden=l["stunden"]
+      
       pr =l["pruefungsinformation"]
       lva.pruefungsinformation= (pr.empty?) ? "<div></div>" : pr
       lva.lernaufwand=l["lernaufwand"]
