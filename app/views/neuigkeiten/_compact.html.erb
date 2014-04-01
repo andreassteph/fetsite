@@ -16,7 +16,7 @@
   </div>
   <% if neuigkeit.has_calentries? %>
     <div class="pull-right" href="#">
-      <%= image_tag("/iconnavy/time.png")  %>
+      <%= fa_icon("calendar 2x")  %>
       <% unless neuigkeit.calentries.upcoming.empty? %>
       <%=  neuigkeit.calentries.upcoming.first.text %>
       <% else unless neuigkeit.calentries.recent.empty? %>

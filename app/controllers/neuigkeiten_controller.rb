@@ -1,5 +1,9 @@
 class NeuigkeitenController < ApplicationController
   before_filter :load_toolbar_elements, :only=>[:show,:find_link]
+  before_filter :load_toolbar_elements_edit, :only=>[:edit]
+ 
+
+
   load_and_authorize_resource
 
   def show
@@ -57,7 +61,7 @@ class NeuigkeitenController < ApplicationController
 
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
-    @toolbar_elements << {:text=>I18n.t('common.show'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)} if can? :show, @neuigkeit
+
     @calentries= @neuigkeit.calentries
     @calentries<<  Calentry.new 
 
@@ -134,7 +138,12 @@ private
   end
   
 
-
+  def load_toolbar_elements_edit
+    @neuigkeit = Neuigkeit.find(params[:id])
+    @toolbar_elements=[]
+    @toolbar_elements << {:text=>I18n.t('common.show'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)} if can? :show, @neuigkeit
+    
+  end
 
  
 end

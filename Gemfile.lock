@@ -258,6 +258,7 @@ DEPENDENCIES
   paper_trail (>= 2.7.0)!
   paperclip (~> 3.4.0)
   rails (= 3.2.13)
+  remotipart!
   rmagick
   rolify
   rspec-rails
