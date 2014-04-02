@@ -170,4 +170,52 @@ class Lva < ActiveRecord::Base
     
   end
 
+  def update_multiple(hash)
+    newlvas=[]
+    params["lvas"].each do |i,l|
+      lva=Lva.where(:lvanr=>l["lvanr"]).first if lva.nil?
+      lva=Lva.new(l) if lva.nil?
+
+      lva.name=l["name"]
+      lva.lvanr=l["lvanr"]
+      lva.ects=l["ects"]
+      descr = l["desc"]
+      lva.desc= (descr.empty?) ? "<div></div>" : descr
+      lva.semester=Semester.where(:id=>l["semester_ids"].map(&:to_i))
+      lva.stunden=l["stunden"]
+      pr =l["pruefungsinformation"]
+      lva.pruefungsinformation= (pr.empty?) ? "<div></div>" : pr
+      lva.lernaufwand=l["lernaufwand"]
+      lva.typ=l["typ"]
+      lva.save
+      newlvas<<lva #
+    end 
+    newlvas
+    
+  end
+  def self.update_multiple_with_modul(hash,modul)
+    newlvas=[]
+    hash.each do |i,l|
+      lva=Lva.where(:lvanr=>l["lvanr"]).first if lva.nil?
+      lva=Lva.new(l) if lva.nil?
+      lva.modul<<modul
+      lva.modul.uniq!
+      lva.name=l["name"]
+      lva.lvanr=l["lvanr"]
+      lva.ects=l["ects"]
+      descr = l["desc"]
+      lva.desc= (descr.empty?) ? "<div></div>" : descr
+      lva.semester=Semester.where(:id=>l["semester_ids"].map(&:to_i))
+      lva.stunden=l["stunden"]
+      pr =l["pruefungsinformation"]
+      lva.pruefungsinformation= (pr.empty?) ? "<div></div>" : pr
+      lva.lernaufwand=l["lernaufwand"]
+      lva.typ=l["typ"]
+      lva.save
+      newlvas<<lva #
+    end 
+    newlvas
+    
+  end
+
 end

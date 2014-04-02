@@ -1,6 +1,10 @@
+# -*- coding: utf-8 -*-
 class ModulsController < ApplicationController
   # GET /moduls
   # GET /moduls.json
+  before_filter :find_modul, :only=>[:show,:update_lvas,:edit_lvas,:load_tiss,:show_tiss]          # @modul laden
+  before_filter :load_toolbar_show, :only=>[:show]   # Toolbar für show erstellen
+  before_filter :load_toolbar_index, :only=>[:index] # Toolbar für index erstellen
   load_and_authorize_resource
   def index
     @moduls = Modul.all
@@ -8,15 +12,8 @@ class ModulsController < ApplicationController
       if !params[:studium_id].nil?
         @studium=Studium.find_by_id(params[:studium_id])
       end
-
-      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
-      @topbar_elements =[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]
-      @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}
-      @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}
-
       respond_to do |format|
         format.html # index.html.erb
-        format.json { render json: @moduls }
       end
     end
     
@@ -25,24 +22,8 @@ class ModulsController < ApplicationController
   # GET /moduls/1
   # GET /moduls/1.json
   def show
-    @modul = Modul.find(params[:id])
-    @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
-    @toolbar_elements << {:hicon=>'icon-pencil', :text=>"Lvas bearbeiten", :path=>modul_edit_lvas_path(@modul)}
-    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>"ADD FROM TISS", :path=>modul_load_tiss_path(:modul_id =>@modul.id)}
-    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
-    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
-    @topbar_elements = [{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}]
-      @tb=[]
     for i in @modul.modulgruppen
-
-      if  !i.studium.nil?
-        name =i.studium.name
-        id = i.studium.id
-      else
-        s.name = 'Kein Studium vorhanden'
-        s.id = nil
-      end
-      @tb <<{:text=> i.name + ' ('+i.studium.name + ')', :path=>modulgruppe_path(i)} 
+      @tb <<{:text=> i.name + ' ('+i.studium_name + ')', :path=>modulgruppe_path(i)} 
     end
     respond_to do |format|
       format.html # show.html.erb
@@ -60,60 +41,36 @@ class ModulsController < ApplicationController
     end
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @modul }
     end
   end
   def edit_lvas
-    @modul = Modul.find(params[:modul_id])
+  
     @lvas = @modul.lvas
     @semester =  @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
 
   end
   def update_lvas
-    params[:modul_id]=params[:id] if params[:modul_id].empty?
-    @modul = Modul.find(params[:modul_id])
+   
+  
     @semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
-
-    @newlvas=[]
-    @lvas=[]
-    params["lvas"].each do |i,l|
-     #lva= Lva.find(l[:id].to_i)
-      lva=Lva.where(:lvanr=>l["lvanr"]).first if lva.nil?
-      lva=Lva.new(l) if lva.nil?
-      lva.modul<<@modul
-      lva.modul.uniq!
-      lva.name=l["name"]
-      lva.lvanr=l["lvanr"]
-      lva.ects=l["ects"]
-      descr = l["desc"]
-      lva.desc= (descr.empty?) ? "<div></div>" : descr
-      lva.semester=Semester.where(:id=>l["semester_ids"].map(&:to_i))
-      lva.stunden=l["stunden"]
-      
-      pr =l["pruefungsinformation"]
-      lva.pruefungsinformation= (pr.empty?) ? "<div></div>" : pr
-      lva.lernaufwand=l["lernaufwand"]
-      lva.typ=l["typ"]
-      lva.save
-      @newlvas<<lva #
-    end 
+    @newlvas=Lva.update_multiple_with_modul(params["lvas"],@modul)
     @lvas=@newlvas
+
     if @newlvas.map(&:valid?).all?
       redirect_to modul_path(@modul)
     else
       render "edit_lvas"
      end
-#    end
   end
   def load_tiss
-    @modul = Modul.find(params[:modul_id])
+  
     @lvas = @modul.lvas
     
   end
   def show_tiss
     @lvas=[];
-   @modul = Modul.find(params[:modul_id])
-@semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
+  
+    @semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
     params["lvas"].to_a.each do |l|
      unless l.last["lvanr"].empty?
         l=l.last
@@ -182,9 +139,32 @@ class ModulsController < ApplicationController
       i.add_semesters
     end
     @modul.destroy
-
-
     redirect_to modulgruppe_path(modulgruppe) 
-    
   end
-end
+
+  private
+  def find_modul
+      @modul = Modul.find(params[:id])
+  end
+    def load_toolbar_show
+      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
+      @toolbar_elements << {:hicon=>'icon-pencil', :text=>"Lvas bearbeiten", :path=>edit_lvas_modul_path(@modul)}
+      @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>"ADD FROM TISS", :path=>load_tiss_modul_path(:modul_id =>@modul.id)}
+      @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
+      @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
+      @topbar_elements = [{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}]
+      @tb=[]
+    
+
+    end
+
+    def load_toolbar_index 
+
+      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
+      @topbar_elements =[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]
+      @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}
+      @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}
+
+    end
+ 
+  end

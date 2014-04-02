@@ -25,4 +25,8 @@ class Modulgruppe < ActiveRecord::Base
   validates :phase,  :inclusion => {:in => [1, 2, 3, 4]}
   validates :typ, :inclusion => {:in => ["Pflicht","Vertiefungspflicht","Wahl"] }
   translates :desc, :versioning =>true,:fallbacks_for_empty_translations => true
+
+  def studium_name
+    self.studium.nil? ? "Kein Studium vorhanden" : self.studium.name
+  end
 end

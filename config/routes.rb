@@ -59,10 +59,12 @@
      resources :lecturers
      resources :semesters
      resources :moduls do
-       get 'edit_lvas'
-       post 'update_lvas'       
-       get 'load_tiss'
-       post 'show_tiss'
+         member do
+           get 'edit_lvas'
+           post 'update_lvas'       
+           get 'load_tiss'
+           post 'show_tiss'
+           end
      end
      resources :beispiele#, :only=>[:show,:index,:create]
      resources :lvas  do 

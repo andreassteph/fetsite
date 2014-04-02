@@ -88,7 +88,7 @@ private
     @lva = Lva.find_by_id(params[:id])
     @toolbar_elements =[]
     @toolbar_elements<<{:hicon=>'icon-pencil', :icon=>:pencil,:text =>I18n.t('common.edit'),:path => edit_lva_path(@lva)} if can? :edit, @lva
-    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>"Tissvergleichladen", :path=> lva_compare_tiss_path(@lva)} if can? :compare_tiss, @lva
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>"Tissvergleichladen", :path=> compare_tiss_lva_path(@lva)} if can? :compare_tiss, @lva
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('common.delete'), :path=> lva_path(@lva), :method=>:delete, :confirm=>'Sure?' } if can? :delete, @lva
 
 

@@ -14,7 +14,7 @@
     </div>
     <div class="span6">
       <p> Tiss Version</p>
-      <%= link_to "Von Tiss laden", lva_load_tiss_path(@lva) %> 
+      <%= link_to "Von Tiss laden", load_tiss_lva_path(@lva) %> 
       <%= render partial: "lva", object: @lvatiss %>
       
       <h2> <%= I18n.t "lecturers.lecturers" %> </h2>
