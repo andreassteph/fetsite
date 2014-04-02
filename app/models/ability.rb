@@ -36,7 +36,7 @@ class Ability
     can [:show, :index], Modul
     can [:show, :index], Lva
     can [:show,:index], Gallery
-    can [:show, :index], Themengruppe
+    can [:show, :index,:faqs], Themengruppe
     can [:show], Thema
     can [:create], Beispiel
     can [:show, :index], Fetprofile
