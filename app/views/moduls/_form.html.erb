@@ -1,6 +1,5 @@
 <div class="container-fluid">
   <%= semantic_form_for @modul do |f| %>
-
   <%= f.inputs do %>
   <div class="row-fluid">
     <div class="span9">
@@ -24,7 +23,7 @@
       </div>
     </div>
     <div class="span3">
-	<%= f.input :modulgruppen,:as => :check_boxes, :collection => Hash[Modulgruppe.all.map{|m| [m.studium.name + " " + m.name,m.id]}.sort] %>
+      <%= f.input :modulgruppen, :as => :check_boxes, :member_label=>:long_name, :collection => Modulgruppe.all %>
     </div>
   </div>
  

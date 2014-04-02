@@ -44,14 +44,11 @@ class ModulsController < ApplicationController
     end
   end
   def edit_lvas
-  
-    @lvas = @modul.lvas
+      @lvas = @modul.lvas
     @semester =  @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
 
   end
   def update_lvas
-   
-  
     @semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
     @newlvas=Lva.update_multiple_with_modul(params["lvas"],@modul)
     @lvas=@newlvas
