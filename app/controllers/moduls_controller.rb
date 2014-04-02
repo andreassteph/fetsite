@@ -29,11 +29,8 @@ class ModulsController < ApplicationController
     @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
     @toolbar_elements << {:hicon=>'icon-pencil', :text=>"Lvas bearbeiten", :path=>modul_edit_lvas_path(@modul)}
     @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>"ADD FROM TISS", :path=>modul_load_tiss_path(:modul_id =>@modul.id)}
-
     @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
-
-    
     @topbar_elements = [{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}]
       @tb=[]
     for i in @modul.modulgruppen
@@ -73,12 +70,12 @@ class ModulsController < ApplicationController
 
   end
   def update_lvas
- params[:modul_id]=params[:id] if params[:modul_id].empty?
+    params[:modul_id]=params[:id] if params[:modul_id].empty?
     @modul = Modul.find(params[:modul_id])
-@semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
+    @semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
 
-   @newlvas=[]
-@lvas=[]
+    @newlvas=[]
+    @lvas=[]
     params["lvas"].each do |i,l|
      #lva= Lva.find(l[:id].to_i)
       lva=Lva.where(:lvanr=>l["lvanr"]).first if lva.nil?
@@ -141,8 +138,6 @@ class ModulsController < ApplicationController
   # POST /moduls.json
   def create
     @modul = Modul.new(params[:modul])
-    
-    
     respond_to do |format|
       if @modul.save
         for i in @modul.lvas
