@@ -53,7 +53,7 @@ class Neuigkeit < ActiveRecord::Base
 self.title
 end
   def text_first_words
-    md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.text
+    md = /<p>(?<text>[^\<\>]*)/.match Sanitize.clean(self.text,:elements=>['p'])
     words=md[:text].split(" ") unless md.nil?
     if words.nil? || words.empty?
       "...."
