@@ -66,7 +66,7 @@ class ModulsController < ApplicationController
   def edit_lvas
     @modul = Modul.find(params[:modul_id])
     @lvas = @modul.lvas
-@semester =  @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
+    @semester =  @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
 
   end
   def update_lvas
