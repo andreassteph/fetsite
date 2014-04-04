@@ -29,6 +29,7 @@
 class Studium < ActiveRecord::Base
   attr_accessible :desc, :name,:abkuerzung, :typ, :zahl, :semester, :picture, :picture_cache, :qualifikation,:struktur, :jobmoeglichkeiten
   has_many :modulgruppen, inverse_of: :studium, :class_name => "Modulgruppe", :dependent => :destroy
+  
   has_many :semester, :dependent => :destroy
   validates :abkuerzung, :length=>{:maximum=>5}, :format=>{:with=>/^[a-zA-z]{0,5}$/}
   validates :typ, :inclusion => {:in => ["Bachelor","Master"] }

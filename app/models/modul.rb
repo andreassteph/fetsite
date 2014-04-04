@@ -23,8 +23,9 @@ class Modul < ActiveRecord::Base
   translates :desc,:depend,:name, :versioning =>true, :fallbacks_for_empty_translations => true
   def  self.update_multiple(hash)
     m= []
-    hash.each_entry do |h|
-      if h["id"].to_i == 0
+    if hash.is_a? Hash
+    hash.each do |i,h|
+      if i.to_i == 0 
         unless h["name"].empty?
           md=Modul.new(:name=>h["name"],:desc=>h["desc"],:depend=>h["depend"])
           md.modulgruppen=Modulgruppe.where(:id => h["modulgruppe_ids"].map(&:to_i))
@@ -37,8 +38,17 @@ class Modul < ActiveRecord::Base
         md.modulgruppen=Modulgruppe.where(:id => h["modulgruppe_ids"].map(&:to_i))
         m << md
       end
-
     end
+    else 
+      hash.each do |h|
+      unless h["name"].empty?
+          md=Modul.new(:name=>h["name"],:desc=>h["desc"],:depend=>h["depend"])
+          md.modulgruppen=Modulgruppe.where(:id => h["modulgruppe_ids"].map(&:to_i))
+          md.save
+          m << md
+        end
+      end  
+  end
     m
   end
 end

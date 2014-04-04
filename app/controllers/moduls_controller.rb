@@ -63,9 +63,14 @@ class ModulsController < ApplicationController
     unless params[:modulgruppen_id].nil?
       @moduls=Modulgruppe.find(params[:modulgruppen_id]).moduls
     else
+        unless params[:studium_id].nil?
+         @moduls=Studium.find(params[:studium_id]).modulgruppen.collect(&:moduls).flatten
+     else
+
     @moduls=Modul.all
+end
     end
-      @moduls << Modul.new
+      
   end
 
   def edit_lvas

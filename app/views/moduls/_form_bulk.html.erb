@@ -4,7 +4,7 @@
 <% @moduls.each do |m| %>
 <%= semantic_fields_for "moduls[#{m.id}]", m do |f| %>
 <tr><td>
-<%= f.input :id, :label=>false, :hint=>"" ,:as=>:hidden%>
+<%= f.input :id, :label=>false, :hint=>"" ,:as=>:hidden %>
 <%= f.input :name, :label=>false, :hint=>"" %></td>
 <td>
 <%= f.input :modulgruppen, :label=>false, :hint=>"" , :collection=>Modulgruppe.all %>
