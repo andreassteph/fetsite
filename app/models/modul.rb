@@ -35,6 +35,8 @@ class Modul < ActiveRecord::Base
       else
         md=Modul.find(h["id"].to_i)
         md.name=h["name"]
+        md.desc=h["desc"]
+        md.depend=h["depend"]
         md.modulgruppen=Modulgruppe.where(:id => h["modulgruppe_ids"].map(&:to_i))
         m << md
       end
