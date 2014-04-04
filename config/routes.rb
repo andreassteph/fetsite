@@ -29,7 +29,8 @@
        resources :studien, :only=>[:show]
      end
      
-     resources :modulgruppen,:only =>[:create,:index]
+     resources :modulgruppen,:only =>[:create,:index] do
+       end
      
      resources :studien,:except=>[:show,:new,:edit,:update,:destroy], :shallow=>true do 
        resources :modulgruppen, :path => "(:locale)/modulgruppen"
@@ -64,7 +65,13 @@
            post 'update_lvas'       
            get 'load_tiss'
            post 'show_tiss'
-           end
+         end
+         collection do
+           get 'edit_bulk'
+           get 'new_bulk'
+           post 'update_bulk'
+         end
+         
      end
      resources :beispiele#, :only=>[:show,:index,:create]
      resources :lvas  do 

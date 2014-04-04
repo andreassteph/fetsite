@@ -2,10 +2,11 @@
 class ModulsController < ApplicationController
   # GET /moduls
   # GET /moduls.json
-  before_filter :find_modul, :only=>[:show,:update_lvas,:edit_lvas,:load_tiss,:show_tiss]          # @modul laden
+  before_filter :find_modul, :only=>[:show,:update,:update_lvas,:edit_lvas,:load_tiss,:show_tiss]          # @modul laden
   before_filter :load_toolbar_show, :only=>[:show]   # Toolbar für show erstellen
   before_filter :load_toolbar_index, :only=>[:index] # Toolbar für index erstellen
   load_and_authorize_resource
+  
   def index
     @moduls = Modul.all
     if @moduls
@@ -31,6 +32,7 @@ class ModulsController < ApplicationController
     end
   end
 
+  
   # GET /moduls/new
   # GET /moduls/new.json
   def new
@@ -43,11 +45,59 @@ class ModulsController < ApplicationController
       format.html # new.html.erb
     end
   end
-  def edit_lvas
-      @lvas = @modul.lvas
-    @semester =  @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
 
+  def new_bulk
+    @moduls= []
+    @modulgruppe=Modulgruppe.find(params[:modulgruppen_id])
+    10.times {@moduls << Modul.new(:modulgruppen=>[@modulgruppe])}
   end
+
+  def edit
+    @modul = Modul.find(params[:id])
+    if !params[:studium_id].nil?
+      @studium=Studium.find(params[:studium_id])
+    end
+  end
+
+  def edit_bulk
+    unless params[:modulgruppen_id].nil?
+      @moduls=Modulgruppe.find(params[:modulgruppen_id]).moduls
+    else
+    @moduls=Modul.all
+    end
+      @moduls << Modul.new
+  end
+
+  def edit_lvas
+    @lvas = @modul.lvas
+    @semester =  @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
+  end
+
+  def update
+
+    respond_to do |format|
+      if @modul.update_attributes(params[:modul])
+        for i in @modul.lvas
+          i.add_semesters
+        end
+        format.html { redirect_to url_for(@modul), notice: 'Modul was successfully updated.' }
+      else
+        format.html { render action: "edit" }
+      end
+    end
+  end
+
+  def update_bulk 
+    @moduls=Modul.update_multiple(params[:moduls])
+    if @moduls.map(&:valid?).all?
+      redirect_to @moduls.first.modulgruppen.first, :notice=>"Erfolgreich Module geändert"
+    else
+      render :edit_bulk
+    end
+  end
+
+
+
   def update_lvas
     @semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
     @newlvas=Lva.update_multiple_with_modul(params["lvas"],@modul)
@@ -59,14 +109,13 @@ class ModulsController < ApplicationController
       render "edit_lvas"
      end
   end
+
   def load_tiss
-  
     @lvas = @modul.lvas
-    
   end
+
   def show_tiss
     @lvas=[];
-  
     @semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
     params["lvas"].to_a.each do |l|
      unless l.last["lvanr"].empty?
@@ -80,13 +129,8 @@ class ModulsController < ApplicationController
     end
     render 'edit_lvas'
   end
+
   # GET /moduls/1/edit
-  def edit
-    @modul = Modul.find(params[:id])
-    if !params[:studium_id].nil?
-      @studium=Studium.find(params[:studium_id])
-    end
-  end
 
   # POST /moduls
   # POST /moduls.json
@@ -98,10 +142,8 @@ class ModulsController < ApplicationController
           i.add_semesters
         end
         format.html { redirect_to modulgruppe_path(@modul.modulgruppen.first), notice: 'Modul was successfully created.' }
-        format.json { render json: @modul, status: :created, location: @modul }
       else
         format.html { render action: "new" }
-        format.json { render json: @modul.errors, status: :unprocessable_entity }
       end
     end
     
@@ -109,27 +151,9 @@ class ModulsController < ApplicationController
 
   # PUT /moduls/1
   # PUT /moduls/1.json
-  def update
-    @modul = Modul.find(params[:id])
-
-    respond_to do |format|
-      if @modul.update_attributes(params[:modul])
-        for i in @modul.lvas
-          i.add_semesters
-        end
-        format.html { redirect_to url_for(@modul), notice: 'Modul was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @modul.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /moduls/1
   # DELETE /moduls/1.json
   def destroy
-    
     @modul = Modul.find(params[:id])
     modulgruppe=@modul.modulgruppen.first
     for i in @modul.lvas
@@ -140,22 +164,24 @@ class ModulsController < ApplicationController
   end
 
   private
+  
   def find_modul
-      @modul = Modul.find(params[:id])
+    @modul = Modul.find(params[:id])
   end
-    def load_toolbar_show
-      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
-      @toolbar_elements << {:hicon=>'icon-pencil', :text=>"Lvas bearbeiten", :path=>edit_lvas_modul_path(@modul)}
-      @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>"ADD FROM TISS", :path=>load_tiss_modul_path(:modul_id =>@modul.id)}
-      @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
-      @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
-      @topbar_elements = [{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}]
-      @tb=[]
+
+  def load_toolbar_show
+    @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
+    @toolbar_elements << {:hicon=>'icon-pencil', :text=>"Lvas bearbeiten", :path=>edit_lvas_modul_path(@modul)}
+    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>"ADD FROM TISS", :path=>load_tiss_modul_path(:modul_id =>@modul.id)}
+    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
+    @topbar_elements = [{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}]
+    @tb=[]
     
 
     end
-
-    def load_toolbar_index 
+  
+  def load_toolbar_index 
 
       @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
       @topbar_elements =[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]

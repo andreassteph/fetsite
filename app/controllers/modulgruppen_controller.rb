@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 class ModulgruppenController < ApplicationController
-  # GET /modulgruppen
-
-
+  before_filter :find_modulgruppe, :only=>[:show, :delete]       
+  before_filter :load_toolbar_show, :only=>[:show]   # Toolbar für show erstellen
   load_and_authorize_resource
+
   def index
     @modulgruppen = Modulgruppe.all
     if !params[:studium_id].nil?
@@ -14,17 +14,12 @@ class ModulgruppenController < ApplicationController
   end
 
   # GET /modulgruppen/1
-
   def show
     @modulgruppe = Modulgruppe.find(params[:id])
     @studium = Studium.find(@modulgruppe.studium_id)
     if !params[:studium_id].nil?
       @studium=Studium.find(params[:studium_id])
     end
-    @toolbar_elements = [ {:text=>'Zurück', :path=>studium_path(@studium, :ansicht=>:modulgruppenansicht)}]
-    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>I18n.t('modulgruppe.addmodul'), :path=>new_modul_path(@modulgruppe)}
-    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t('modulgruppe.edit'), :path=>edit_modulgruppe_path(@modulgruppe)}
-    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium, :ansicht=>:modulgruppenansicht), :method=> :delete,:confirm=>'Sure?' }
   end
 
   # GET /modulgruppen/new
@@ -38,7 +33,6 @@ class ModulgruppenController < ApplicationController
     end
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @modulgruppe }
     end
 
   end
@@ -51,13 +45,15 @@ class ModulgruppenController < ApplicationController
     end
   end
 
+  
+  
+
+
   # POST /modulgruppen
 
   def create
     @modulgruppe = Modulgruppe.new(params[:modulgruppe])
-    
     respond_to do |format|
-         
       if @modulgruppe.save
         format.html { redirect_to @modulgruppe.studium, notice: 'Modulgruppe was successfully created.' }
 
@@ -93,4 +89,20 @@ class ModulgruppenController < ApplicationController
 
     end
   end
+
+  private
+  def find_modulgruppe
+    @modulgruppe = Modulgruppe.find(params[:id])
+  
+  end
+  def load_toolbar_show
+    @toolbar_elements = [ {:text=>'Zurück', :path=>studium_path(@modulgruppe.studium, :ansicht=>:modulgruppenansicht)}]
+    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>I18n.t('modulgruppe.addmodule'), :path=>new_bulk_moduls_path(:modulgruppen_id=>@modulgruppe.id)}
+
+    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>I18n.t('modulgruppe.addmodul'), :path=>new_modul_path(:modulgruppen_id=>@modulgruppe.id)}
+    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t('modulgruppe.edit'), :path=>edit_modulgruppe_path(@modulgruppe)}
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => modulgruppe_path(@modulgruppe, :ansicht=>:modulgruppenansicht), :method=> :delete,:confirm=>'Sure?' }
+    
+  end
+
 end

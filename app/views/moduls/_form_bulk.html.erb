@@ -1,0 +1,29 @@
+<%= semantic_form_for "moduls[]", :url=>update_bulk_moduls_path do |ff| %>
+<table>
+<tr><th>Modulname</th><th>Modulgruppen</th><th>Beschreibung</th> <th>Voraussetzungen</th></tr>
+<% @moduls.each do |m| %>
+<%= semantic_fields_for "moduls[#{m.id}]", m do |f| %>
+<tr><td>
+<%= f.input :id, :label=>false, :hint=>"" ,:as=>:hidden%>
+<%= f.input :name, :label=>false, :hint=>"" %></td>
+<td>
+<%= f.input :modulgruppen, :label=>false, :hint=>"" , :collection=>Modulgruppe.all %>
+</td>
+<td>
+<%= f.input :desc, :label=>false, :hint=>"" ,:input_html=>{:class=>"row-fluid"} %>
+</td>
+
+<td>
+<%= f.input :depend, :label=>false, :hint=>""  ,:input_html=>{:class=>"row-fluid"} %>
+</td>
+</tr>
+<% end %>
+<% end %>
+</table>
+<%= ff.actions do %>
+<%= ff.action :submit, :label=>"Save", :as=>:button %>
+<%= ff.action :cancel, :as => :link %>
+<% end %>
+
+<% end %>
+  
