@@ -4,7 +4,7 @@ class Nlink < ActiveRecord::Base
   belongs_to :link, :polymorphic=>true
   validates :neuigkeit, :presence=>true
   validates :link, :presence=>true
-validates :link_id, :uniqueness=>{:scope=>[:neuigkeit_id]}
+  validates :link_id, :uniqueness=>{:scope=>[:neuigkeit_id]}
 
 
 end
