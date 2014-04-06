@@ -24,7 +24,7 @@ class ModulsController < ApplicationController
   # GET /moduls/1.json
   def show
     for i in @modul.modulgruppen
-      @tb <<{:text=> i.name + ' ('+i.studium_name + ')', :path=>modulgruppe_path(i)} 
+      @tb <<{:text=> i.long_name, :path=>modulgruppe_path(i)} 
     end
     respond_to do |format|
       format.html # show.html.erb

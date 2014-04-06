@@ -12,7 +12,7 @@
   <li>
     <%= link_to g do %>
     <h2><%= g.name %></h2>
-    <p><%= g.desc %></p>
+    <p><%= g.desc.html_safe %></p>
     <% end %>
   </li>
 <% end %>
