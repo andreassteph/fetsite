@@ -28,7 +28,7 @@ class Neuigkeit < ActiveRecord::Base
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>:true)}
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
-  LINKTYPES=["Thema", "Gallery", "Lva","Studium"]
+  LINKTYPES=["Thema", "Gallery", "Lva","Studium","Fetprofile"]
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
   has_many :nlinks
