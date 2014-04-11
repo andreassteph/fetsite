@@ -32,4 +32,4 @@ console
 /vendor/*
 /bak/*
 *#
-
+Gemfile.lock
