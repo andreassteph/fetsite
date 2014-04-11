@@ -24,4 +24,4 @@
 console
 /server
 /public/uploads/
-
+/vendor/*
