@@ -76,6 +76,7 @@ class Ability
    if user.has_role?("newsadmin") || user.has_role?( "fetadmin") || user.has_role?( "fetuser") 
 	  can :manage, Rubrik
 	  can :manage, Neuigkeit
+          can :shownonpublic, Rubrik
           can :showunpublished, Neuigkeit
    end
   

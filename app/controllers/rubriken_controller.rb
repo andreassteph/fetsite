@@ -2,14 +2,25 @@ class RubrikenController < ApplicationController
   before_filter {@toolbar_elements=[]}
    load_and_authorize_resource
   def index
-    @rubriken = Rubrik.all
-    @neuigkeiten = Neuigkeit.recent
-    @calentries= Calentry.public
+    if can?(:shownonpublic, Rubrik)
+      @rubriken = Rubrik.all
+    else
+      @rubriken = Rubrik.where(:public=>true)
+    end   
+    @neuigkeiten = @rubriken.collect(&:neuigkeiten).map(&:recent).flatten
+    @calentries= @rubriken.collect(&:calendar).collect(&:calentries).flatten
   end
  
   def show
+    if can?(:shownonpublic, Rubrik)
+      @rubriken = Rubrik.all
+    else
+      @rubriken = Rubrik.where(:public=>true)
+    end   
+
     @rubrik = Rubrik.find(params[:id])
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
+    @calentries= @rubrik.calentries
     if can?(:showunpublished, Neuigkeit)
       @neuigkeiten = @rubrik.neuigkeiten
     else
