@@ -1,4 +1,9 @@
+/db/.#initdebug.rb
+/usergroup.ldif
+/newuser.ldif
+/passwd.ldif
 /config/omniauth_secrets.yml
+/config/database.yml
 /config/initializers/omniauth_secrets.rb
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 #
@@ -14,7 +19,7 @@
 /db/schema.rb
 /db/structure.sql
 /config/initializers/devise.rb
-
+Gemfile.lock
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
@@ -25,3 +30,6 @@ console
 /server
 /public/uploads/
 /vendor/*
+/bak/*
+*#
+

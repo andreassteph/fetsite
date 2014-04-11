@@ -2,8 +2,14 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <%= render 'studien/tabs' %>
-    <div class="span6">    <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1></div>
-    <div class="span3 pull-right"><div class="pull-right"> <%= link_to @text, studium_path(@studium, :ansicht=>@flip), :class=>"btn" %></div>
+    <div class="span6">    
+      <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
+    </div>
+    <div class="span3 pull-right">
+      <div class="pull-right"> 
+	<%= link_to @text, studium_path(@studium, :ansicht=>@flip), :class=>"btn" %>
+	<%= link_to "Infoansicht", studium_path(@studium, :ansicht=>'infoansicht'), :class=>"btn" unless params[:ansicht]=='infoansicht'%>     
+ </div>
     </div>
   </div>
 

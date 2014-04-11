@@ -11,22 +11,36 @@
 </span>
 <div class="media">
   <div class="pull-left" href="#">
-    <p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.url  %>
+    <p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.try(:url)  %>
     </p>
   </div>
   <div class="media-body">
     <h1>
-<%=  @neuigkeit.title%>
-
-</h1>
+      <%=  @neuigkeit.title%>
+      
+    </h1>
     <%= raw(@neuigkeit.text) %>
     <p></p>
   </div>
 </div>
-
 <% @calentries1.each do |ce|%>
 <%= render ce unless ce.nil? %>
 <% end %>
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
+
+Siehe auch: 
+<ul class="unstyled">
+  <div id="nlink_list">
+    <%= render partial: "nlink_list", collection: @neuigkeit.nlinks %>
+  </div>
+  <div id="nlink_list_search">
+    <%= render partial: "nlink_list_search", collection: @nlink_search %>
+  </div>
+</ul>
+
+<%= semantic_form_for :find_link, :url=>find_link_rubrik_neuigkeit_path(@rubrik,@neuigkeit), :html=>{:id=>"search_form", :method=>'get'} do |f| %>
+<%= f.input :query, :input_html => { :name => 'query' },:label=>false %>
+<% end %>
+
 </div>

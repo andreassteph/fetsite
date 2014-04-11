@@ -34,18 +34,16 @@ class StudienController < ApplicationController
     
     @toolbar_elements=[{:icon=>:plus, :hicon =>'icon-plus-sign' ,:text=> I18n.t('studien.new') , :path => new_studium_path(@studium) },
                        {:icon=>:pencil, :hicon=>'icon-pencil',:text =>I18n.t('common.edit'),:path => edit_studium_path(@studium)},
-                       {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>"Sure?" }]
+                       {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>'Sure?' }]
 
     @toolbar_modulgruppen =[ {:hicon=>'icon-plus-sign', :text=> I18n.t('modulgruppe.new'), :path=>new_studium_modulgruppe_path(@studium)},
                              {:hicon=>'icon-list', :text => I18n.t('modulgruppe.list'), :path=>modulgruppen_path}]
-    
-    if params[:ansicht] != 'modulgruppenansicht'
-      @text = 'Zu Modulansicht wechseln'
-      @flip = 'modulgruppenansicht'
-      render 'semesteransicht'
+    case params[:ansicht]
+    when 'semesteransicht'
+    when 'infoansicht'
+    when 'qualifikationsprofil'
     else
-      @text = 'Zu Semesteransicht wechseln'
-      @flip = 'semesteransicht'
+      params[:ansicht]="modulgruppenansicht"
     end
   end
 
@@ -242,14 +240,14 @@ class StudienController < ApplicationController
   end
 
   def default_url_options
-    {:ansicht=> params[:ansicht],
+   
+    super.merge({:ansicht=> params[:ansicht],
       :std_verw=> params[:std_verw],
       :mg_verw=> params[:mg_verw],
       :m_verw=>params[:m_verw],
       :lva_verw=>params[:lva_verw],
       :b_verw=>params[:b_verw],
-      :lec_verw=>params[:lec_verw]}.merge(super)
-    
-
+      :lec_verw=>params[:lec_verw]})
   end
+
 end

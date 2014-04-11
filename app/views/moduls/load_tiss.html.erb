@@ -1,4 +1,4 @@
-<%= semantic_form_for "lvas[]", :url=>modul_show_tiss_path(params[:modul_id]) do |ff|%>
+<%= semantic_form_for "lvas[]", :url=>show_tiss_modul_path(params[:modul_id]) do |ff|%>
 <%  for i in 1..5 do  %>
 
 <%= semantic_fields_for "lvas[#{i}]" do |f| %>

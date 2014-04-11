@@ -5,31 +5,32 @@
 
 <div class="row-fluid">
   <div class="span8">
-<h2><%=I18n.t("modul.desc")%></h2>    
-<p>
-  <%= raw(@modul.desc) %>
-</p>
+    <h2><%=I18n.t("modul.lvas")%></h2>
+    <% @modul.lvas.each_slice(3) do |row| %>
+    <ul>
+      <% row.each do |lv| %>
+      <li>
+	<%= render 'lvas/lva_semester', :lva=>lv%>
+      </li>
+      <% end %>
+    </ul>
+    <% end %>
+    <h2><%=I18n.t("modul.desc")%></h2>    
+    <p>
+      <%= raw(@modul.desc) %>
+    </p>
+  </div>
+  <div class="span4">
+    <div class="lva-sidebar">
+      <h2><%=I18n.t("modul.mgs")%></h2>
+      <ul>
+	<% @modul.modulgruppen.each do |mg| %>
+	<li>
+	  <%= render 'modulgruppen/kurz', :modulgruppe=>mg %>
+	</li>
+	<% end %>
+      </ul>
 
+    </div>
+  </div>
 </div>
-<div class="span4">
-  <div class="lva-sidebar">
-  <h2><%=I18n.t("modul.mgs")%></h2>
-  <ul>
-<% @modul.modulgruppen.each do |mg| %>
-<li>
-<%= render 'modulgruppen/kurz', :modulgruppe=>mg %>
-</li>
-<% end %>
-</ul>
-<h2><%=I18n.t("modul.lvas")%></h2>
-<% @modul.lvas.each_slice(3) do |row| %>
-<ul>
-<% row.each do |lv| %>
-<li>
-<%= render 'lvas/lva_semester', :lva=>lv%>
-</li>
-<% end %>
-</ul>
-<% end %>
-</div>
-  </div></div>

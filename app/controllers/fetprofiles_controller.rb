@@ -28,7 +28,7 @@ class FetprofilesController < ApplicationController
    
      @toolbar_elements << {:hicon=>'icon-pencil', :text=> I18n.t('common.edit'),:path => edit_fetprofile_path(@fetprofile) } if can? :edit, @fetprofile
 
-      @toolbar_elements << {:hicon=>'icon-minus', :text => I18n.t('common.delete'), :method=>:delete, :confirm=>"Sure"}
+      @toolbar_elements << {:hicon=>'icon-minus', :text => I18n.t('common.delete'), :method=>:delete, :confirm=>"Sure"} if can? :destroy,@fetprofile
           
    
     respond_to do |format|

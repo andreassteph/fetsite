@@ -24,12 +24,15 @@ class Neuigkeit < ActiveRecord::Base
   has_many :calentries, as: :object
   mount_uploader :picture, PictureUploader
   scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date).order(:datum).reverse_order}
-  scope :recent, -> { published.order(:datum).reverse_order.limit(15)}
+  scope :recent, -> { published.limit(15)}
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>:true)}
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
+  LINKTYPES=["Thema", "Gallery", "Lva","Studium","Fetprofile"]
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
+  has_many :nlinks
+
   def datum_nilsave
 	self.datum.nil? ? Time.now + 42.years : self.datum
   end
@@ -50,7 +53,7 @@ class Neuigkeit < ActiveRecord::Base
 self.title
 end
   def text_first_words
-    md = /<p>(?<text>[\w\s,\.!\?]*)/.match self.text
+    md = /<p>(?<text>[^\<\>]*)/.match Sanitize.clean(self.text,:elements=>['p'])
     words=md[:text].split(" ") unless md.nil?
     if words.nil? || words.empty?
       "...."

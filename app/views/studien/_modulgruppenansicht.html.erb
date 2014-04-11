@@ -1,0 +1,22 @@
+<div class="container-fluid">
+
+  <div class="row-fluid">
+    <% if params[:info].true? %>
+    <%= raw(@studium.desc) %>
+    <% else %>
+    <%= @studium.desc_first_words %> <%= link_to I18n.t('studium.info'), studium_path(@studium, :ansicht=>params[:ansicht], :info=>true) %>
+    <% end %>
+
+
+    <% @studienphasen.each do |sp| %>
+      <% sp[:modulgruppen].each do |row| %>
+	<div class="row-fluid">
+	  <% row.each do |modulgruppe| %>
+	    <div class="span<%= sp[:width]%> min-width:13em;">
+	      <%= render modulgruppe %>
+	    </div>
+	  <% end %>
+	</div>
+      <% end %>
+    <% end %>
+  </div>
