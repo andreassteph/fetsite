@@ -1,5 +1,7 @@
 <div class="contentbox">
-<%= image_tag("/iconnavy/time.png")  %>
+<% image_tag("/iconnavy/time.png")  %>
+<%= fa_icon("calendar 2x") %>
+
 <% if calentry.start.to_date == calentry.ende.to_date 
 format=:timeonly
 else

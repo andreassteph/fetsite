@@ -7,6 +7,8 @@ class HomeController < ApplicationController
   def dev
 
   end
+  def kontakt
+  end
   def startdev
   render 'setup_fetsite_dev'
   end

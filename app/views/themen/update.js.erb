@@ -1,2 +1,4 @@
-alert('t'); 
+
 $("#themaview").html("<%= escape_javascript(raw("<h2>Bearbeiten</h2>")+render(:partial=>"themen/small", :object=>@thema) )%>");
+
+$("#themen").html("<%= escape_javascript(render(:partial=>"themen/verw_liste", :object=>@themen) )%>");

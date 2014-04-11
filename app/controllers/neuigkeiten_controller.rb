@@ -1,27 +1,19 @@
 class NeuigkeitenController < ApplicationController
-  before_filter {@toolbar_elements=[]}
+  before_filter :load_toolbar_elements, :only=>[:show,:find_link]
+  before_filter :load_toolbar_elements_edit, :only=>[:edit]
+ 
+
+
   load_and_authorize_resource
 
   def show
-  @neuigkeit = Neuigkeit.find(params[:id])
+    @neuigkeit = Neuigkeit.find(params[:id])
     @rubrik=@neuigkeit.rubrik    
+
     if  !params[:version].nil?
       @neuigkeit.assign_attributes(@neuigkeit.translation.versions.reverse[params[:version].to_i].reify.attributes.select{|k,v| @neuigkeit.translated_attribute_names.include? k.to_sym })
-                                   
-      # @neuigkeit=Neuigkeit.find(params[:id])
     end 
     @calentries1=@neuigkeit.calentries
-
-      @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can? :publish, @neuigkeit
-      @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>"Sure?" } if can?(:unpublish, @neuigkeit) && !@neuigkeit.published?
-     
- @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
-      @versions= @neuigkeit.translation.versions.select([:created_at]).reverse
-      @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}
-     
-      @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>'Sure?' } if can? :delete, @neuigkeit
-#      @toolbar_elements << {:path=> add_calentry_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :text=>"Add Calentry", :icon=>:plus}
-
 
   end
   
@@ -45,7 +37,7 @@ class NeuigkeitenController < ApplicationController
     @neuigkeit.calentry=ce
     @neuigkeit.save
     
-     render 'edit'
+    render 'edit'
   end
 
   def unpublish
@@ -69,10 +61,28 @@ class NeuigkeitenController < ApplicationController
 
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
-    @toolbar_elements << {:text=>I18n.t('common.show'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)} if can? :show, @neuigkeit
+
     @calentries= @neuigkeit.calentries
     @calentries<<  Calentry.new 
 
+  end
+  def find_link
+    @rubrik=@neuigkeit.rubrik    
+    @calentries1=@neuigkeit.calentries
+    @nlink_search = Neuigkeit::LINKTYPES.clone
+    
+    @nlink_search.collect!{|t| t.constantize}
+    @nlink_search.collect!{|t| t.search(params[:query]).limit(2)}
+
+
+@nlink_search.flatten!
+    
+    render action:"show"
+  end
+  def create_link
+    Nlink.create(:link=>params[:link_type].constantize.find(params[:link_id]),:neuigkeit=>Neuigkeit.find(params[:id]))
+
+    redirect_to action:"show"
   end
 
   def create
@@ -111,4 +121,29 @@ class NeuigkeitenController < ApplicationController
       
     end
   end
+
+private
+  def load_toolbar_elements
+    @neuigkeit=Neuigkeit.find(params[:id])
+    @toolbar_elements=[]
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:publish, @neuigkeit) && @neuigkeit.published?
+    @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:unpublish, @neuigkeit) && !@neuigkeit.published?
+    @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
+    @versions= @neuigkeit.translation.versions.select([:created_at]).reverse
+
+    @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}
+     
+      @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>'Sure?' } if can? :delete, @neuigkeit
+
+  end
+  
+
+  def load_toolbar_elements_edit
+    @neuigkeit = Neuigkeit.find(params[:id])
+    @toolbar_elements=[]
+    @toolbar_elements << {:text=>I18n.t('common.show'),:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)} if can? :show, @neuigkeit
+    
+  end
+
+ 
 end

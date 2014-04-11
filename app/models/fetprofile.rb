@@ -27,7 +27,11 @@ validates :desc, :presence=>true
   scope :search, ->(query) {where("nachname like ? or vorname like ? or short like ?", "%#{query}%", "%#{query}%", "%#{query}%")}
 
  accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:gremium_id].blank?}, :allow_destroy=>true
- 
+  has_many :nlinks, as: :link
+
+  def title
+    self.name
+  end
   def name
     [vorname, nachname, ((short.empty?)? "": ["(",short,")"].join)].join(" ")
   end

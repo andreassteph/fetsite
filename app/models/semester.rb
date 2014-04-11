@@ -22,7 +22,7 @@ class Semester < ActiveRecord::Base
     if self.nummer == 0
       return I18n.t("ohnezuordnung") + " (" + self.studium.name + ")"
     else
-      return self.nummer.to_s + ". " + self.studium.name
+      return self.nummer.to_s + "."+I18n.t("semester.semester")+", " + self.studium.name
     end
   end
   def name_kurz

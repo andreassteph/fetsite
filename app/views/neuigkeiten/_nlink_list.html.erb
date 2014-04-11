@@ -1,0 +1,11 @@
+  <li>
+    <%= link_to nlink_list.link do  %>
+<div class="contentbox" >
+    <% p = nlink_list.link_type.downcase.pluralize+"/nlink" %>
+    <%= raw(strip_links(render :partial=>p, :object=>nlink_list.link )) %>
+</div>  
+<% end %>
+</li>
+
+
+

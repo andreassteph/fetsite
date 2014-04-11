@@ -12,19 +12,22 @@ class ThemengruppenController < ApplicationController
       format.json { render json: @themengruppen }
     end
   end
+  def faqs
+    @themengruppen = Themengruppe.order("themengruppen.priority").includes(:themen,{themen: :fragen}).order("themen.priority").reverse
+    
+  end
 
   # GET /themengruppen/1
   # GET /themengruppen/1.json
   def show
     @themengruppe = Themengruppe.find(params[:id])
-  @themen = @themengruppe.themen.order(:priority).reverse
+    @themen = @themengruppe.themen.order(:priority).reverse
  
     @toolbar_elements = []
     @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('thema.add'), :path=>new_themengruppe_thema_path(@themengruppe)} if can? :new, Themengruppe
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
-  @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.verwalten"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
-  @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
-
+    @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.manage"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
+    @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
 
     respond_to do |format|
       format.html # show.html.erb
