@@ -3,33 +3,10 @@
 <% i = 0 %>
 <% @lvas.each do |lva|%>
 <% i = i +1 %>
-<tr>
 <%= semantic_fields_for "lvas[#{i}]", lva  do |f|%>
-<td>
-<h4><%= lva.name %></h4>
-<%= f.semantic_errors :state %>
-<%= f.input :id, :as=>:hidden %></td>
-<td><%= f.input :lvanr , :input_html => { "style"=>"width:7em" }%></td>
-
-
-<td><%= f.input :name %></td>
-<td><%= f.input :ects, :input_html => { "style"=>"width:4em" },:size=>5 %>
-<%= f.input :stunden, :input_html => { "style"=>"width:4em" }%></td>
-<td><%= f.input :typ, :input_html => { "style"=>"width:4em" }%></td>
-<td>
-<%= f.input :semester , :input_html=>{:style=>"height:8em"},:collection=>@semester%></td>
-
-<td><%= f.input :pruefungsinformation,:input_html=>{:rows=>4} %></td>
-
-<td><%= f.input :desc, :input_html=>{:rows=>4}%></td>
-<td>
-<%= lva.valid? %>
-
-</td>
+      <%= render 'lvas/nested_fields', :f => f,:lva=>lva %> 
 
 <% end%>
-
-</tr>
 <% end %>
 
 <%= ff.actions do %>

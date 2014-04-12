@@ -13,8 +13,13 @@
 	    end %>
       </div>
       <div class="media-body">
-	<small class="pull-left"><%= gallery.fotos.size.to_s + " " + I18n.t('fotos.bilder')%> </small>
-	<small class="pull-right"><%=I18n.l(gallery.try(:datum).try(:to_date)) unless gallery.try(:datum).try(:to_date).nil? %></small></br>
+	<small class="pull-left">
+	  <%= gallery.fotos.size.to_s + " " + I18n.t('fotos.bilder')%> 
+	</small>
+	<small class="pull-right">
+	  <%=I18n.l(gallery.try(:datum).try(:to_date)) unless gallery.try(:datum).try(:to_date).nil? %>
+	</small>
+        </br>
 	<h1><%= gallery.name %></h1>
 	<p>
 	  <%= if gallery.desc.split.size > Gallery::WORD_COUNT

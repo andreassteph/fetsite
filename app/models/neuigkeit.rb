@@ -23,6 +23,7 @@ class Neuigkeit < ActiveRecord::Base
 
   has_many :calentries, as: :object
   mount_uploader :picture, PictureUploader
+
   scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date).order(:datum).reverse_order}
   scope :recent, -> { published.limit(15)}
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
@@ -32,7 +33,7 @@ class Neuigkeit < ActiveRecord::Base
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
   has_many :nlinks
-
+  
   def datum_nilsave
 	self.datum.nil? ? Time.now + 42.years : self.datum
   end

@@ -25,9 +25,12 @@
      # Studien 
     
      scope '(:ansicht)' do
-       resources :studien, :only=>[:new,:edit,:update,:destroy]
-       resources :studien, :only=>[:show]
-     end
+       resources :studien, :only=>[:new,:edit,:update,:destroy,:show] do
+           member do
+             get :edit_lvas
+           end
+         end
+       end
      
      resources :modulgruppen,:only =>[:create,:index] do
        end
