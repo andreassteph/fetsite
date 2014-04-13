@@ -1,0 +1,15 @@
+<%= semantic_form_for @studium do |ff|%>
+
+<table>
+
+  <%= ff.semantic_fields_for  :lvas, @lvas  do |f|%>
+  <%= render 'lvas/nested_fields', :f => f %> 
+  <% end %>
+  
+  <%= ff.actions do %>
+  <%= ff.action :submit, :as => :button %>
+  <%= ff.action :cancel, :as => :link %>
+  <% end %>
+      
+</table>
+<% end %>

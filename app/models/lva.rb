@@ -36,14 +36,18 @@
 
 class Lva < ActiveRecord::Base
   ERLAUBTE_TYPEN = ['VO', 'UE', 'VU', 'LU', 'SE', 'andere'];
+  
   has_paper_trail :ignore=>[:desc, :pruefungsinformation]# Versionsverfolgung
+  translates :desc,:pruefungsinformation,  :fallbacks_for_empty_translations => true, :versioning=>true
+
   attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ, :lecturer_ids
+
   has_and_belongs_to_many :modul,:uniq=>true # Gehört zu einem Modul
   has_and_belongs_to_many :semester
-  #Gehört zu einem Semester( derzeit nicht implementiert)
   has_many :beispiele , :class_name => "Beispiel"
   has_and_belongs_to_many :lecturers
-  translates :desc,:pruefungsinformation,  :fallbacks_for_empty_translations => true, :versioning=>true
+  has_many :nlinks, as: :link
+  
   scope :search, ->(query) {where("name like ? or lvas.desc like ?", "%#{query}%", "%#{query}%")} 
   
   validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9A][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
@@ -53,7 +57,7 @@ class Lva < ActiveRecord::Base
   validates_presence_of :stunden # Stunden Eingetragen?
   validates_presence_of :modul # Zugehöriges Modul eingetragen?
   # (zumindest eines)
- has_many :nlinks, as: :link
+ 
  
   def title
     self.name

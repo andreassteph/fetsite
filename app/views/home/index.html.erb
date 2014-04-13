@@ -1,6 +1,5 @@
 <div class="content-wrap content-column">
-  <h1><%= I18n.t('home.willkommen') %></h1>
-  <p><%= I18n.t('home.hallobeiderfet') %></p>
+  <h1><%= I18n.t('home.willkommen') %></h1></p>
       <ul class="unstyled linkbox-list" style="max-width:70em">
 	<% @neuigkeiten.each do |n| %>
 	<li><%= render n if can?(:show, n) %> </li>
@@ -11,7 +10,7 @@
 </p>
   <div class="alert">
     <h2>Beta Test</h2>
-    <p>Die Webseite befindet sich derzeit in einem Entsicklungsstadium,
+    <p>Die Webseite befindet sich derzeit in einem Entwicklungsstadium,
       volle Funktionsfähigkeit ist noch nicht erreicht. Bitte Featurerequests und
       Fehlermeldungen auf GitHub melden.
     </p>

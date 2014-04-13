@@ -1,38 +1,38 @@
 <div class="content-wrap content-column" >
-<%= link_to fa_icon("arrow-circle-left 2x")+" Alle Themengruppen", themengruppen_path, :class=>"linkbox" %>
-<%= link_to fa_icon("question 2x")+" Häufige Fragen", faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
-<h1><%= @themengruppe.title %></h1>
-<p>
-  <%= @themengruppe.text %>
-</p>
-<ul class="unstyled linkbox-list" >
-  <% @themengruppe.themen.each do |thema| %>
-  <li>
-    <div class="contentbox">	
-      <%= render :partial => 'themen/small', :object => thema %>
-tools:
-      <% 
-	 @small_elements2 = []
-	 @small_elements2 << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('common.verwalten'), :path=>verwalten_thema_path(thema)} if can? :edit, thema 
+  <%= link_to fa_icon("arrow-circle-left 2x")+" Alle Themengruppen", themengruppen_path, :class=>"linkbox" %>
+  <%= link_to fa_icon("question 2x")+" Häufige Fragen", faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
+  <h1><%= @themengruppe.title %></h1>
+  <p>
+    <%= @themengruppe.text %>
+  </p>
+  <ul class="unstyled linkbox-list" >
+    <% @themengruppe.themen.each do |thema| %>
+    <li>
+      <div class="contentbox">	
+	<%= render :partial => 'themen/small', :object => thema %>
+	tools:
+	<% 
+	   @small_elements2 = []
+	   @small_elements2 << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('common.verwalten'), :path=>verwalten_thema_path(thema)} if can? :edit, thema 
 
-   %>
+	%>
 	<%= render :partial=>'layouts/pretty_toolbar', :object=>@small_elements2 unless @small_elements2.empty? %>
-<ul class="unstyled">
-	<% unless thema.gremium.nil? %>
-	
-	<li>
-	<%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
-  </li>
-      <% end %>		
-     
-      <% thema.nlinks.each do |l| %> 
-<li><%= render l.neuigkeit %></li>
-      <% end %>
-</ul>
-    </div>
-  </li>
-  <% end %>
-</ul>
+	<ul class="unstyled">
+	  <% unless thema.gremium.nil? %>
+	  
+	  <li>
+	    <%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
+	  </li>
+	  <% end %>		
+	  
+	  <% thema.nlinks.each do |l| %> 
+	  <li><%= render l.neuigkeit %></li>
+	  <% end %>
+	</ul>
+      </div>
+    </li>
+    <% end %>
+  </ul>
 
-<%= render :partial=>'layouts/pretty_toolbar' %>
+  <%= render :partial=>'layouts/pretty_toolbar' %>
 </div>

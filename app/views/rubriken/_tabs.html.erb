@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
  <li <%=  'class="active"'.html_safe if (request.fullpath == rubriken_path)%> >
  <%= link_to I18n.t('rubriken.alle') , rubriken_path %> </li>
-<% for r in Rubrik.all %>
+<% for r in @rubriken  %>
 <% if can?(:show, r) %>
   <li <%= (!@rubrik.nil? && r == @rubrik) ? 'class="active"'.html_safe : '' %> title="<%= r.name %>">
     <%= link_to r.name, r %>

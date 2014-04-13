@@ -9,6 +9,11 @@ class NeuigkeitenController < ApplicationController
   def show
     @neuigkeit = Neuigkeit.find(params[:id])
     @rubrik=@neuigkeit.rubrik    
+    if can?(:shownonpublic, Rubrik)
+      @rubriken = Rubrik.all
+    else
+      @rubriken = Rubrik.where(:public=>true)
+    end   
 
     if  !params[:version].nil?
       @neuigkeit.assign_attributes(@neuigkeit.translation.versions.reverse[params[:version].to_i].reify.attributes.select{|k,v| @neuigkeit.translated_attribute_names.include? k.to_sym })

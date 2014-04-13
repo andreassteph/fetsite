@@ -34,6 +34,7 @@ class StudienController < ApplicationController
     
     @toolbar_elements=[{:icon=>:plus, :hicon =>'icon-plus-sign' ,:text=> I18n.t('studien.new') , :path => new_studium_path(@studium) },
                        {:icon=>:pencil, :hicon=>'icon-pencil',:text =>I18n.t('common.edit'),:path => edit_studium_path(@studium)},
+                       {:icon=>:pencil, :hicon=>'icon-pencil',:text =>I18n.t('common.edit'),:path => edit_lvas_studium_path(@studium)},
                        {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>'Sure?' }]
 
     @toolbar_modulgruppen =[ {:hicon=>'icon-plus-sign', :text=> I18n.t('modulgruppe.new'), :path=>new_studium_modulgruppe_path(@studium)},
@@ -57,6 +58,15 @@ class StudienController < ApplicationController
     @toolbar_elements<<{:text =>I18n.t('studien.allestudien'),:path=>studien_path(@studium)}
   end
 
+  def edit_lvas
+    @studium = Studium.find(params[:id])
+    @lvas=@studium.lvas
+    @semester=@studium.semester 
+    @toolbar_elements=[{:text => I18n.t('studien.anzeigen') , :path => url_for(@studium) }]
+    @toolbar_elements<<{:text =>I18n.t('studien.allestudien'),:path=>studien_path(@studium)}
+
+  end
+
   def create
     @studium = Studium.new(params[:studium])
     
@@ -73,9 +83,13 @@ class StudienController < ApplicationController
 
   def update
     @studium = Studium.find(params[:id])
-
-    if @studium.update_attributes(params[:studium])
-      redirect_to url_for(@studium), notice: 'Studium was successfully updated.' 
+    logger.info "params: #{params[:studium].inspect}"
+    if @studium.update_attributes(params[:studium]) 
+      if @studium.lvas.map(&:valid?).all?
+        redirect_to url_for(@studium), notice: 'Studium was successfully updated.' 
+      else
+        render action: "edit" 
+      end
     else
       render action: "edit" 
       

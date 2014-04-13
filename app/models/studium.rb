@@ -27,18 +27,24 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 class Studium < ActiveRecord::Base
-  attr_accessible :desc, :name,:abkuerzung, :typ, :zahl, :semester, :picture, :picture_cache, :qualifikation,:struktur, :jobmoeglichkeiten
+  attr_accessible :desc, :name,:abkuerzung, :typ, :zahl, :semester, :picture, :picture_cache, :qualifikation,:struktur, :jobmoeglichkeiten, :lvas_attributes
   has_many :modulgruppen, inverse_of: :studium, :class_name => "Modulgruppe", :dependent => :destroy
     scope :search, ->(query) {where("name like ? or studien.desc like ?", "%#{query}%", "%#{query}%")} 
   has_many :moduls, :through=>:modulgruppen
   has_many :lvas, :through=>:moduls
   has_many :semester, :dependent => :destroy
-  validates :abkuerzung, :length=>{:maximum=>5}, :format=>{:with=>/^[a-zA-z]{0,5}$/}
+  
+validates :abkuerzung, :length=>{:maximum=>5}, :format=>{:with=>/^[a-zA-z]{0,5}$/}
   validates :typ, :inclusion => {:in => ["Bachelor","Master"] }
   validates :name, :uniqueness => true, :presence=>true
   validates :zahl, :presence=>true, :format=>{:with=>/^[0-9A-Z]{4,10}$/}, :uniqueness => true 
+
   mount_uploader :picture, PictureUploader
+
+  accepts_nested_attributes_for :lvas #, :allow_destroy=>true # , :reject_if=> lambda{|a| a[:name].blank?}
+
   translates :desc,:shortdesc, :qualifikation,:struktur, :jobmoeglichkeiten, :versioning =>true,:fallbacks_for_empty_translations => true
+
   def title_context
     return self.abkuerzung.to_s.strip.empty? ? self.name : self.abkuerzung
   end
