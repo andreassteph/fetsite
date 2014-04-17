@@ -51,6 +51,11 @@ $navbarLinkBackgroundHover: darken($navbarBackground,10%);
 
 $infoBackground:#65A5D1;
 $infoText:#03406A;
+
+@font-face {
+font-family: 'ayuma2yk';
+src:font-url('Ayuma2yk.ttf');}
+
 $sansFontFamily: Helvetica, Arial;
 
 @import 'bootstrap';
@@ -59,12 +64,16 @@ $sansFontFamily: Helvetica, Arial;
 @import 'font-awesome';
 @import 'neuigkeiten';
 
+#menudiv {
+  font-family: ayuma2yk;
+}
 
 div.header { 
   display: block; 
 //  background: url('../../../../header1.png') no-repeat;
 //  background-color:white;// $color_prim;
   background-position: right; 
+  font-family: ayuma2yk;
  // border-bottom:1px solid black; 
   float:left;
   color:#000;

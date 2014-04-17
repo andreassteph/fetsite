@@ -9,14 +9,16 @@
 
  
   <%= stylesheet_link_tag "themes/"+theme_name+"/application", :media => "all" unless theme_name.empty?  %>
-<%= stylesheet_link_tag "application", :media=>"all" if theme_name.empty? %>
- <%= theme_stylesheet_link_tag "test", :media => "all" %>
-<% theme_stylesheet_link_tag "mod", :media=>"all" %>
-    <link rel="stylesheet" href="css/bootstrap.css">
+  <%= stylesheet_link_tag "application", :media=>"all" if theme_name.empty? %>
+  <%= theme_stylesheet_link_tag "test", :media => "all" %>
+  <% theme_stylesheet_link_tag "mod", :media=>"all" %>
+ <!--   <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/bootstrap-responsive.css">
-<!--[if lt IE 7]><link rel="stylesheet" href="css/bootstrap-ie6.css"><![endif]-->
 <link rel="stylesheet" href="css/bootstrap-image-gallery.css">
+-->
+<!--[if lt IE 7]><link rel="stylesheet" href="css/bootstrap-ie6.css"><![endif]-->
+
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
