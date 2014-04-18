@@ -1,18 +1,18 @@
 <%= semantic_form_for "lvas[]", :url=>update_lvas_modul_path(@modul) do |ff|%>
 <table>
 <% i = 0 %>
+
 <% @lvas.each do |lva|%>
-<% i = i +1 %>
-<%= semantic_fields_for "lvas[#{i}]", lva  do |f|%>
+  <% i = i +1 %>
+  <%= semantic_fields_for "lvas[#{i}]", lva  do |f|%>
       <%= render 'lvas/nested_fields', :f => f,:lva=>lva %> 
-
-<% end%>
+  <% end%>
 <% end %>
-
+</table>
 <%= ff.actions do %>
       <%= ff.action :submit, :as => :button %>
       <%= ff.action :cancel, :as => :link %>
-      <% end %>
+<% end %>
 
 
 <% end %>

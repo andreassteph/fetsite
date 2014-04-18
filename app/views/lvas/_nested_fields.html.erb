@@ -9,8 +9,11 @@
   <td><%= f.input :name %></td>
   <td>
     <%= f.input :ects, :input_html => { "style"=>"width:4em" },:size=>5 %>
-    <%= f.input :stunden, :input_html => { "style"=>"width:4em" }%></td>
-  <td><%= f.input :typ, :input_html => { "style"=>"width:4em" }%></td>
+    <%= f.input :stunden, :input_html => { "style"=>"width:4em" }%>
+  </td>
+  <td>
+    <%= f.input :typ, :input_html => { "style"=>"width:4em" }%>
+  </td>
   <td>
     <%= f.input :semester , :input_html=>{:style=>"height:8em"},:collection=>@semester%>
   </td>
