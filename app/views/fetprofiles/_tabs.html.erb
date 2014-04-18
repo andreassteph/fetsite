@@ -18,7 +18,7 @@
   <% end %>
 
 
-  <li <%= (request.fullpath == fetprofiles_path(filter: "notactive")|| request.fullpath == fetprofiles_path) ? 'class="active"'.html_safe : ''%> >
+  <li <%= (request.fullpath == fetprofiles_path(filter: "notactive")) ? 'class="active"'.html_safe : ''%> >
     <%= link_to I18n.t('profile.notactive_members') , fetprofiles_path( filter: "notactive") %> 
   </li>
 
