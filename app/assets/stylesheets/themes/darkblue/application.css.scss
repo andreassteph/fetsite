@@ -55,15 +55,27 @@ $infoText:#03406A;
 @font-face {
 font-family: 'ayuma2yk';
 src:font-url('Ayuma2yk.ttf');}
+@font-face {
+  font-family: 'cmunrm';
+  src: font-url('cmunrm.eot');
+  src: font-url('cmunrm.eot') format('embedded-opentype'),
+       font-url('cmunrm.woff') format('woff'),
+       font-url('cmunrm.ttf') format('truetype'),
+       font-url('cmunrm.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
-$sansFontFamily: Helvetica, Arial;
+
+
+$sansFontFamily: cmunrm, Helvetica, Arial;
 
 @import 'bootstrap';
 @import 'bootstrap-responsive';
 @import 'bootstrap/image-gallery';
 @import 'font-awesome';
 @import 'neuigkeiten';
-
+@import 'fetlogo';
 #menudiv {
   font-family: ayuma2yk;
 }

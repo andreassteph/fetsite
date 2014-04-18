@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'fetlogo';
+  src: font-url('fetlogo.eot?46715046');
+  src: font-url('fetlogo.eot?46715046#iefix') format('embedded-opentype'),
+       font-url('fetlogo.woff?46715046') format('woff'),
+       font-url('fetlogo.ttf?46715046') format('truetype'),
+       font-url('fetlogo.svg?46715046#fetlogo') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fetlogo';
+    src: font-url('fetlogo.svg?46715046#fetlogo') format('svg');
+  }
+}
+*/
+ 
+ [class^="feticon-"]:before, [class*=" feticon-"]:before {
+  font-family: "fetlogo";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.feticon-fet_logo:before { content: '\e800'; } /* '' */
