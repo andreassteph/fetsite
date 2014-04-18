@@ -3,7 +3,9 @@
 <h1>Alle Gremien</h1>
 
 <% unless params[:filter].nil? %>
-<p><%= Gremium::TEXT[params[:filter]] %></p>
+<h1><%= Gremium::FILTER[params[:filter].to_i] %></h1>
+
+<p><%= Gremium::TEXT[params[:filter].to_i] %></p>
 <% end %>
 
 <ul class="unstyled fetprofile_list">
