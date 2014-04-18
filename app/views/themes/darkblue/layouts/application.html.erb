@@ -31,7 +31,9 @@
        <div class="span10 ">
 	 <div class="header_wrap" style="background:7070a0">
 	   <div class="header">
-	     <%= link_to image_tag('/fetlogo90.png',{:style=>"float:left;height:50px",:height=>"50"}),home_index_path %>
+	     <%= link_to home_index_path do %>
+	     <span class="feticon-fet_logo fa-3x" style="color:white"> </span>
+	     <% end %>
 	     <h1 style="display:block"></h1>
 	   </div>
 	   
