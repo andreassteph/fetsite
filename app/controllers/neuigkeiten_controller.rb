@@ -73,6 +73,12 @@ class NeuigkeitenController < ApplicationController
   end
   def find_link
     @rubrik=@neuigkeit.rubrik    
+   if can?(:shownonpublic, Rubrik)
+      @rubriken = Rubrik.all
+    else
+      @rubriken = Rubrik.where(:public=>true)
+    end   
+
     @calentries1=@neuigkeit.calentries
     @nlink_search = Neuigkeit::LINKTYPES.clone
     
@@ -80,7 +86,7 @@ class NeuigkeitenController < ApplicationController
     @nlink_search.collect!{|t| t.search(params[:query]).limit(2)}
 
 
-@nlink_search.flatten!
+    @nlink_search.flatten!
     
     render action:"show"
   end
