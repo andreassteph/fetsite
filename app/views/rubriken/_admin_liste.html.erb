@@ -2,7 +2,7 @@
   <% neuigkeiten.each do |n| %>
   <% r = n.rubrik %>
   <tr>
-    <td><%= r.public%></td>
+    <td><%= fa_icon "globe" if r.public%></td>
     <td><%= r.name %></td>
     <td>
       <%= n.title %> 

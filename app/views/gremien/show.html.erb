@@ -38,6 +38,15 @@
     <% end %>
   </div>
   <% end %>
+  <div class="row-fluid">
+    <div class="span12">
+      <ul class="unstyled">
+	<% @gremium.nlinks.each do |l| %> 
+	<li><%= render l.neuigkeit %></li>
+	<% end %>
+      </ul>
+    </div>
+ </div>
 </div>
 </div>
   <%= link_to I18n.t('common.edit'), edit_gremium_path(@gremium) %> 
