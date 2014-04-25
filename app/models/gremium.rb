@@ -26,7 +26,7 @@ class Gremium < ActiveRecord::Base
 
   belongs_to :thema # Gehört zu einem Thema
   scope :tabs, -> { where(:typ => [1,3]).order(:typ).order(:name) } # Gremien die in Tabs angezeigt werden (Alle Anderen nur in der Liste
- scope :search, ->(query) {where("name like ? or desc like ?", "%#{query}%", "%#{query}%")} 
+
 
  # Gremium im 2. Fall für die Konstruktion "Mitglied des ... / der ... " 
   accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:fetprofile_id].blank?}
