@@ -16,17 +16,19 @@ class ThemenController < ApplicationController
   # GET /themen/1.json
   def show
     @thema = Thema.find(params[:id])
-    redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> "thema_"+params[:id].to_s
+   
     @fragen=@thema.fragen
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>"Verwalten", :path=>verwalten_thema_path(@thema)}]
 
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>edit_thema_path(@thema)}]
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('thema.remove'), :path=>thema_path(@thema), :method=>:delete, :confirm=>I18n.t('thema.sure')}
 
-  #  respond_to do |format|
-  #    format.html # show.html.erb
-  #    format.json { render json: @thema }
-  #  end
+    respond_to do |format|
+      format.html {
+        redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> "thema_"+params[:id].to_s     
+      }
+      format.js
+    end
   end
   def verwalten
     @thema = Thema.find(params[:id])
@@ -82,6 +84,13 @@ class ThemenController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+ def attachments
+   @thema = Thema.find(params[:id])
+   @attachments=@thema.attachments
+   respond_to do |format|
+     format.js
+   end
   end
   # PUT /themen/1
   # PUT /themen/1.json

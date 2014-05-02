@@ -1,0 +1,12 @@
+<table>
+<% attachment_list.each do |a| %>
+<tr>
+<td>
+<%= render a %>
+</td>
+<td>
+<%= link_to "Edit", edit_thema_attachment_path(a.thema,a) %>
+</td>
+</tr>
+<% end %>
+</table>
