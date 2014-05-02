@@ -10,7 +10,9 @@ class RubrikenController < ApplicationController
     @neuigkeiten = @rubriken.collect(&:neuigkeiten).map(&:recent).flatten
     @calentries= @rubriken.collect(&:calendar).collect(&:calentries).flatten
   end
- 
+  def intern
+
+  end
   def show
     if can?(:shownonpublic, Rubrik)
       @rubriken = Rubrik.all

@@ -23,22 +23,27 @@ class Neuigkeit < ActiveRecord::Base
 
   has_many :calentries, as: :object
   mount_uploader :picture, PictureUploader
-
-  scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date).order(:datum).reverse_order}
-  scope :recent, -> { published.limit(15)}
+  default_scope order(:datum).reverse_order
+  #scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date)}
+  scope :recent, -> { published.limit(10)}
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
-  scope :public, ->{includes(:rubrik).where("rubriken.public"=>:true)}
+  scope :public, ->{includes(:rubrik).where("rubriken.public"=>true)}
+  scope :intern, ->{includes(:rubrik).where("rubriken.public"=>false)}
+
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
   LINKTYPES=["Thema", "Gallery", "Lva","Studium","Fetprofile", "Gremium"]
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
-  has_many :nlinks
-  
+  has_many :nlinks   
+  def self.published
+    where("datum <= ? AND datum IS NOT NULL", Time.now.to_date)  
+  end
+
   def datum_nilsave
 	self.datum.nil? ? Time.now + 42.years : self.datum
   end
-  def public
-	self.rubrik.public && self.datum_nilsave >=Time.now.to_date
+  def public?
+    self.rubrik.public
   end
   def published?
    self.datum_nilsave>=Time.now.to_date

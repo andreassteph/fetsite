@@ -13,6 +13,7 @@
 class Rubrik < ActiveRecord::Base
   attr_accessible :desc, :name, :prio, :calendar, :public
   has_many :neuigkeiten, :class_name => "Neuigkeit"
+  has_many :published, :class_name => "Neuigkeit", :conditions=>["Neuigkeit.published"]
   has_many :calentries, :through => :neuigkeiten, :as=>:object
   resourcify
   has_one :calendar

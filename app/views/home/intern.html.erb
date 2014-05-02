@@ -1,0 +1,10 @@
+<h1> FET Intern NEU </h1>
+<h2>Neuigkeiten</h2>
+<ul class="unstyled linkbox-list" style="max-width:70em">
+  <% @neuigkeiten.each do |n| %>
+  <li><%= render n if can?(:show, n) %> </li>
+  <% end %>
+</ul>
+
+<h2></h2>
+
