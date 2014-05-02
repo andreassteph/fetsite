@@ -31,6 +31,7 @@ class Ability
 #    can :manage, :all     
     can :addfetuser, User
     can :addfetadmin, User
+
     can [:show, :index], Studium
     can [:show, :index], Modulgruppe
     can [:show, :index], Modul
@@ -78,6 +79,8 @@ class Ability
 	  can :manage, Neuigkeit
           can :shownonpublic, Rubrik
           can :showunpublished, Neuigkeit
+     can :seeintern, User
+    
    end
   
   

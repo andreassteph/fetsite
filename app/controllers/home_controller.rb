@@ -9,6 +9,10 @@ class HomeController < ApplicationController
   end
   def kontakt
   end
+  def intern
+    authorize! :seeintern, User
+    @neuigkeiten = Neuigkeit.intern.recent
+  end
   def startdev
   render 'setup_fetsite_dev'
   end

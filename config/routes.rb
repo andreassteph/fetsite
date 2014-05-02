@@ -91,10 +91,12 @@
      #resources :neuigkeiten, :except => [:index] do
     
      #end
-     resources :neuigkeiten, :only =>[:show]
+     resources :neuigkeiten, :only =>[:show] 
+      
      resources :rubriken do
        collection do 
          get 'verwalten' , :action => :alle_verwalten
+         get 'intern'
        end
        member do
          get 'verwalten'
@@ -120,7 +122,7 @@
      resources :home, :only=>[:index] do
       get :search, :on=>:collection
          collection do
-           
+        get 'intern'   
          get 'dev'
          get 'startdev'
          get 'linksnotimplemented'
@@ -130,6 +132,7 @@
     
      resources :themen do
          member do
+           get :attachments
            get :fragen
            get :verwalten
          end

@@ -19,9 +19,10 @@
 	  <li><%= link_to I18n.t(:studien,:scope=>'home' ), studien_path %></li>
 	  <li> <%= link_to I18n.t("home.search"), search_home_index_path %></li>
 <li> <%= link_to I18n.t("home.kontakt"), kontakt_home_index_path %></li>
+	 <% if can?(:seeintern, User) %>
 	  <li>
-	    <%= link_to 'Admin' , config_path%>
-	  </li>
+	    <%= link_to 'Intern' , intern_home_index_path  %>
+	  </li><% end %>
 	</ul>
 	<ul class="nav navbar-nav">
 	<li class="dropdown">

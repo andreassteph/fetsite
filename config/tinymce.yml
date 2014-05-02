@@ -16,3 +16,4 @@ plugins:
   - advimage
   - heading
 heading_clear_tag: p
+width: "100%"
