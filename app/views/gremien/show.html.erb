@@ -42,7 +42,7 @@
     <div class="span12">
       <ul class="unstyled">
 	<% @gremium.nlinks.each do |l| %> 
-	<li><%= render l.neuigkeit %></li>
+	<li><%= render l.neuigkeit  if can? :show, l.neuigkeit %></li>
 	<% end %>
       </ul>
     </div>
