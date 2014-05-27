@@ -1,10 +1,20 @@
 <h1> FET Intern NEU </h1>
-<h2>Neuigkeiten</h2>
-<ul class="unstyled linkbox-list" style="max-width:70em">
-  <% @neuigkeiten.each do |n| %>
-  <li><%= render n if can?(:show, n) %> </li>
-  <% end %>
-</ul>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <%= link_to "Adressliste", internlist_fetprofiles_path %>
+      <%= link_to "Internes Nachschlagewerk" %>
+    </div>
+    <div class="span6">
+      <h2>Neuigkeiten</h2>
+      <ul class="unstyled linkbox-list">	
+	<% @neuigkeiten.each do |n| %>
+	<li><%= render n if can?(:show, n) %></li>
+	<% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <h2></h2>
 

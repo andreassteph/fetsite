@@ -57,6 +57,7 @@
      resources :fetprofiles do
        collection do 
          get 'verwalten'
+         get 'internlist'
        end
        resources :memberships, :only => [:new, :edit, :update,:destroy,:create] 
      end
