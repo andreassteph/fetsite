@@ -10,7 +10,7 @@
 
 class Themengruppe < ActiveRecord::Base
   WORD_COUNT = 50
-  attr_accessible :text, :title, :picture, :priority
+  attr_accessible :text, :title, :picture, :priority, :public
   has_many :themen, class_name: 'Thema'
   has_many :fragen, through: :themen
 

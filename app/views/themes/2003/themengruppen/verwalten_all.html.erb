@@ -1,4 +1,6 @@
 
+<%= render :partial=>'layouts/pretty_toolbar' %>
+
 <ul id="themengruppen" class="sort" >
 <% @themengruppen.each do |themengruppe| %>
 <li id="themengruppen_<%= themengruppe.id %>" class="sort" style="background:white;display:block;" ><%= themengruppe.title %>-<%= themengruppe.priority %></li>
@@ -6,7 +8,6 @@
 </ul>
 
 <script>
-
 $( document ).ready(function(){
   $("#themengruppen").sortable({
     cursor: 'crosshair',
