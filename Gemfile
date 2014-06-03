@@ -72,8 +72,9 @@ gem 'paperclip' ,'~>3.4.0'
 
 gem 'git'
 gem 'haml'
-#gem 'RedCloth'
-#gem 'gollum'
+gem 'RedCloth'
+gem 'wikicloth'
+gem 'gollum-lib'
 gem 'awesome_nested_set'
 gem 'annotate', ">=2.5.0"
 gem 'carrierwave', "~>0.9.0"

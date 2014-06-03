@@ -20,4 +20,17 @@ class Themengruppe < ActiveRecord::Base
   validates :text, :presence => true
 
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
+  
+  scope :intern,-> {where(:public=>false)}
+
+  def self.find_wiki_default
+    where(:wiki_default=>true).first
+  end
+
+  def make_wiki_default
+    Themengruppe.where(:wiki_default=>:true).update_all(:wiki_default=>:false)
+    self.wiki_default=true;
+    self.save;
+  end
+
 end

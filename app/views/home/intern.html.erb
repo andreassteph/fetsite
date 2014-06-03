@@ -4,6 +4,17 @@
     <div class="span6">
       <%= link_to "Adressliste", internlist_fetprofiles_path %>
       <%= link_to "Internes Nachschlagewerk" %>
+      <ul class="unstyled linkbox-list">
+	<li>  
+	  <% @themengruppen.each do |themengruppe| %>
+	  <div class="container-fluid">
+	    <%= render themengruppe if can?(:show,themengruppe)%>
+	  </div>
+	  <% end %>
+	</li>
+      </ul>
+
+      
     </div>
     <div class="span6">
       <h2>Neuigkeiten</h2>
