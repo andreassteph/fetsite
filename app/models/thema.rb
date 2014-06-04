@@ -22,7 +22,9 @@ class Thema < ActiveRecord::Base
   validates :text, :presence => true
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
-
+  def is_wiki?
+    wikiname.empty? || wikiname.nil?
+  end
   def text_first_words
     md = /<p>(?<text>[^\<\>]*)/.match Sanitize.clean(self.text,:elements=>['p'])
     words=md[:text].split(" ") unless md.nil?

@@ -32,6 +32,10 @@ class ThemenController < ApplicationController
   end
   def verwalten
     @thema = Thema.find(params[:id])
+  unless (@thema.wikiname.empty? || @thema.wikiname.nil?)
+      redirect_to verwalten_wiki_path(Wiki.find(@thema.id))
+    end
+ 
     @fragen=@thema.fragen
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>"Verwalten", :path=>verwalten_thema_path(@thema)}]
 
@@ -54,6 +58,7 @@ class ThemenController < ApplicationController
   # GET /themen/1/edit
   def edit
     @thema = Thema.find(params[:id])
+   
     respond_to do |format|
       format.html
       format.js

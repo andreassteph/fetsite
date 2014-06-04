@@ -5,5 +5,3 @@
 
 <%= render :partial=>'layouts/pretty_toolbar' %>
 
-<%= link_to new_thema_attachment_path(@thema) ,:remote=>true do %> new Attachment <% end %>
-<%= render :partial => "themen/select", :object => @thema, :locals=>{:editor => :false} %>
