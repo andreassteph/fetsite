@@ -15,7 +15,7 @@
       </div>
     </div> 
     <div class="row-fluid">
-      <div class="span4"> <%= f.input :active %></div> 
+      <div class="span4"> <%= f.input :active %> <%= f.input :geschlecht,:as=>:select, :collection=>Fetprofile::GESCHLECHT.invert %></div> 
       <div class="span4">
 	<%= image_tag(@fetprofile.picture.thumb.url) unless @fetprofile.picture.nil? %>
 	<%= f.file_field :picture %>

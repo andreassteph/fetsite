@@ -15,15 +15,16 @@
 #
 
 class Fetprofile < ActiveRecord::Base
-  attr_accessible :active, :desc, :fetmailalias, :nachname, :picture, :short, :vorname, :memberships_attributes, :remove_picture, :picture_cache, :plz, :street, :city, :instant,:skype, :telnr, :hdynr, :birth_day,:birth_month, :birth_year
+  attr_accessible :active, :desc, :fetmailalias, :nachname, :picture, :short, :vorname, :memberships_attributes, :remove_picture, :picture_cache, :plz, :street, :city, :instant,:skype, :telnr, :hdynr, :birth_day,:birth_month, :birth_year,:geschlecht
   has_many :memberships, dependent: :delete_all
   has_many :gremien, :through=> :membership
   mount_uploader :picture, PictureUploader
   has_paper_trail
-validates :desc, :presence=>true
+  validates :desc, :presence=>true
   validates :nachname, length:{minimum: 3},:presence=>true
   validates :vorname, length:{minimum: 3},:presence=>true
   validate :validate_birthday
+  GESCHLECHT={0=>"gendered", 1=>"maennlich", 2=>"weiblich"}
   has_many :users
   scope :search, ->(query) {where("nachname like ? or vorname like ? or short like ?", "%#{query}%", "%#{query}%", "%#{query}%")}
 
