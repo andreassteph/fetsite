@@ -15,7 +15,7 @@
 #
 
 class Fetprofile < ActiveRecord::Base
-  attr_accessible :active, :desc, :fetmailalias, :nachname, :picture, :short, :vorname, :memberships_attributes, :remove_picture, :picture_cache, :plz, :street, :city, :instant,:skype, :telnr, :hdynr, :birth_day,:birth_month, :birth_year,:geschlecht
+  attr_accessible :active, :desc, :fetmailalias, :nachname, :picture, :short, :vorname, :memberships_attributes, :remove_picture, :picture_cache, :plz, :street, :city, :instant,:skype, :telnr, :hdynr, :birth_day, :birth_month, :birth_year,:geschlecht
   has_many :memberships, dependent: :delete_all
   has_many :gremien, :through=> :membership
   mount_uploader :picture, PictureUploader

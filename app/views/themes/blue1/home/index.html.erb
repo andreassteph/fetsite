@@ -28,6 +28,10 @@
 
   </div>
   <%= link_to "Entwicklungsstatus" , dev_home_index_path %>
+  <p>  
+    <%= link_to "FAQS", faqs_themengruppen_path,class: :btn %>
+  </p>
+
   <%= render 'beispiele' %>
 </div>
 <div class="span6">
@@ -44,6 +48,7 @@ Verschiedene Styles
 <li> <%= link_to "2003", home_index_path({:theme=>"2003"}) %></li>
 <li> <%= link_to "white_1", home_index_path({:theme=>"white_1"}) %></li>
 </ul>
+
 </div>
 </div>
 </div>
