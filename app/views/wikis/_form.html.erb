@@ -1,6 +1,6 @@
 <%= tinymce_assets %>
 <div class="container-fluid">
-  <%= semantic_form_for @wiki do |f| %>
+  <%= semantic_form_for @wiki, :remote=>remote do |f| %>
   <%= f.inputs do %>
   <div class="row-fluid">
     <div class="span6">

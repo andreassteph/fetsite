@@ -23,7 +23,11 @@ class WikisController < ApplicationController
   end
   def edit
     @wiki = Wiki.find(params[:id])
-    
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
   
   def update

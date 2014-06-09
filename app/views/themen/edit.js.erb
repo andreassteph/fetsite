@@ -1,1 +1,1 @@
-$("#themaview").html("<%= escape_javascript(raw("<h2>"+I18n.t('thema.edit')+"</h2>")+render(:partial=>"themen/form") )%>");
+$("#themaview").html("<%= escape_javascript(raw("<h2>"+I18n.t('thema.edit')+"</h2>")+render(:partial=>"themen/form", :locals=>{:remote=>true}) )%>");

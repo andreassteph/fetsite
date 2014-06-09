@@ -32,7 +32,8 @@ class ThemenController < ApplicationController
   end
   def verwalten
     @thema = Thema.find(params[:id])
-  unless (@thema.wikiname.empty? || @thema.wikiname.nil?)
+    @attachment=Attachment.new
+    unless (@thema.is_wiki?)
       redirect_to verwalten_wiki_path(Wiki.find(@thema.id))
     end
  
@@ -58,7 +59,10 @@ class ThemenController < ApplicationController
   # GET /themen/1/edit
   def edit
     @thema = Thema.find(params[:id])
-   
+    unless ( @thema.wikiname.nil? || @thema.wikiname.empty? )
+      redirect_to edit_wiki_path(Wiki.find(@thema.id))
+      return
+    end
     respond_to do |format|
       format.html
       format.js
@@ -93,6 +97,7 @@ class ThemenController < ApplicationController
  def attachments
    @thema = Thema.find(params[:id])
    @attachments=@thema.attachments
+   @attachment=Attachment.new
    respond_to do |format|
      format.js
    end
