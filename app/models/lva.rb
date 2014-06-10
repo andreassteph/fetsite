@@ -58,12 +58,14 @@ class Lva < ActiveRecord::Base
   validates_presence_of :modul # Zugehöriges Modul eingetragen?
   # (zumindest eines)
  
- 
+  def typ_n
+    typ=="andere" ? "" : typ
+  end
   def title
     self.name
   end
   def full_name
-    return self.typ + ' ' + self.name
+    return self.typ_n + ' ' + self.name
     end
   def add_semesters
     # Diese Methode fügt die Instanz automatisch zu allen Studien als "Ohne Semesterempfehlung" (Semester 0) zu, bei denen die Instanz im Studium noch nicht vorkommt.
