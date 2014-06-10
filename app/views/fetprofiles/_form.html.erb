@@ -47,28 +47,16 @@ Geburtstag:
 <%=f.input :birth_day %>
 <%=f.input :birth_month %>
 <%=f.input :birth_year %>
-
 </div>
 
 </div>
+<div id="memberships_form_list">
 <% @memberships.each do |m| %>
-
-    <%= f.semantic_fields_for :memberships, m do |membership| %>
-  
-    <div class="row-fluid">
-     
- 
-      <div class="span3"><%= membership.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
-      <div class="span3"><%= membership.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
-    <div class="span2"><%= membership.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false %></div>
- <div class="span3"><%= membership.input :gremium, :label=>false %>
-
+<%= render partial:"membership_fields", object: m , locals: {:f=>f} %>
+<% end %>  
 </div>
-<div class="span1"><%= membership.check_box :_destroy %> <%= I18n.t 'common.delete' %></div>
-      
-    </div>  
-    <% end %>
-  <% end %>  <% end %>  
+
+<% end %>  
     <div class="row-fluid">
       <div class="span12">
 	<%= f.actions do %>
