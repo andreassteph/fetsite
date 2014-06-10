@@ -33,9 +33,7 @@ class ThemenController < ApplicationController
   def verwalten
     @thema = Thema.find(params[:id])
     @attachment=Attachment.new
-    unless (@thema.is_wiki?)
-      redirect_to verwalten_wiki_path(Wiki.find(@thema.id))
-    end
+
  
     @fragen=@thema.fragen
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>"Verwalten", :path=>verwalten_thema_path(@thema)}]

@@ -1,5 +1,5 @@
 <a name="thema_<%=small.id%>" href="#<%=small.id%>">
-  <h2><%= small.title %></h2>
+  <h2><%= small.title %> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %></h2>
 </a>
 <%= raw(small.text) %>
 <br/>

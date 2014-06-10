@@ -16,11 +16,7 @@ class WikisController < ApplicationController
     redirect_to wiki_path(@wiki)
   end
 
-  def verwalten
-    @wiki = Wiki.find(params[:id])
-    @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('wiki.edit'), :path=>edit_wiki_path(@wiki)}]
-    
-  end
+
   def edit
     @wiki = Wiki.find(params[:id])
     respond_to do |format|
@@ -36,7 +32,7 @@ class WikisController < ApplicationController
     @wiki.raw_data=params[:wiki][:raw_data]
     respond_to do |format|
       if @wiki.update_attributes(params[:wiki])
-        format.html { redirect_to @wiki, notice: 'Thema was successfully updated.' }
+        format.html { redirect_to verwalten_thema_path(@wiki), notice: 'Thema was successfully updated.' }
         format.json { head :no_content }
         format.js   
       else
