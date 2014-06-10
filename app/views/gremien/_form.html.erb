@@ -7,35 +7,29 @@
     <%= f.input :thema, :as=> :select, :collection => Thema.all %>
  
 
-    <% f.inputs :for => :memberships, :objects=>@memberships do |membership,i| %> 
-    <div class="row-fluid">
-      <div class="span1"></div>
-      <div class="span3"><%= membership.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
-      <div class="span3"><%= membership.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
-    <div class="span2"><%= membership.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false %></div>
-<div class="span3"><%= membership.input :fetprofile, :as=>:select, :label=>false %></div>
 
-      
-    </div>  
-    <% end %>
-
-
-<% @memberships.each do |m| %>
-
+    <% @memberships.each do |m| %>
     <%= f.semantic_fields_for :memberships, m do |memberships_attributes| %> 
     <div class="row-fluid">
       <div class="span1"></div>
-      <div class="span3"><%= memberships_attributes.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
-      <div class="span3"><%= memberships_attributes.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
-    <div class="span2"><%= memberships_attributes.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false %></div>
-<div class="span3"><%= memberships_attributes.input :fetprofile, :as=>:select, :label=>false %></div>
-
-      
+      <div class="span11">
+      <table>
+	<tr><td><%= memberships_attributes.input :start, :as=>:datepicker, :prepend=>"von",:label=>false ,  :input_html => { :style => "width:6em" } ,:value=>Proc.new { |c| I18n.l(c) }%>
+	  </td>
+	  <td>
+	    <%= memberships_attributes.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" ,  :input_html => { :style => "width:6em"},:value_method=>Proc.new { |c| I18n.l(c) }%>
+	  </td>
+	  <td>
+	    <%= memberships_attributes.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false,  :input_html => { :style => "width:12em" } %>
+	  </td>
+	  <td><%= memberships_attributes.input :fetprofile, :as=>:select, :label=>false %></td>
+	</tr>
+      </table>
     </div>  
+    </div>   
+   <% end %>
     <% end %>
-<% end %>
-
-  <% end %>
+    <% end %>
 
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>
@@ -43,3 +37,9 @@
 <% end %>
   <script>$('.datepicker').datepicker()</script>
 <%= tinymce %>
+
+
+
+
+
+
