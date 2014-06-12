@@ -10,10 +10,15 @@
       <p>
 	<%= @fetprofile.fetmail %>
       </p>
-      <p>
+  respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @fetprofiles }
+    end
+  
+     <p>
 	<%= @fetprofile.desc %>
       </p>
-
+      <%= render partial: "interninfo", object: @fetprofile if can?(:seeintern, @fetprofile) %>
       <ul>
 	<% @memberships.each do |m| %>
 	<li>

@@ -8,7 +8,7 @@ class RubrikenController < ApplicationController
       @rubriken = Rubrik.where(:public=>true)
     end   
     @neuigkeiten = @rubriken.collect(&:neuigkeiten).map(&:recent).flatten
-    @calentries= @rubriken.collect(&:calendar).collect(&:calentries).flatten
+    @calentries= @rubriken.collect(&:calentries).flatten
   end
   def intern
 

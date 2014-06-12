@@ -3,11 +3,11 @@
   <p id="notice"><%= notice %></p>
   <div class="row-fluid">
     <div class="span8">
-      <h1><%=@lva.typ.to_s + ' ' +  @lva.name %></h1>
+      <h1><%= @lva.full_name %></h1>
       
       <h2>Prüfungsinformation</h2>
       <div class="">
-	<%= @lva.pruefungsinformation.html_safe %>
+	<%= @lva.pruefungsinformation.to_s.html_safe %>
       </div>
 
       <h2>Lernaufwand</h2>

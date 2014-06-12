@@ -6,6 +6,9 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+def root
+  Rails.root.join 'public/'
+end
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -19,6 +22,9 @@ class AttachmentUploader < CarrierWave::Uploader::Base
 
    version :thumb do
      process :resize_to_fill => [64, 64]
+   end
+   version :thumb_small do
+     process :resize_to_fill => [32, 32]
    end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

@@ -1,35 +1,28 @@
 <div class="content-wrap content-column">
-<p>  <%= link_to "FAQS", faqs_themengruppen_path,class: :btn %></p>
-<ul class="unstyled linkbox-list">
-  <li>  
-    <% @themengruppen.each do |themengruppe| %>
- 
-    
-    
+  <%= render :partial=>'layouts/pretty_toolbar' %>
+  <p>  
+    <%= link_to "FAQS", faqs_themengruppen_path,class: :btn %>
+  </p>
+  <ul class="unstyled linkbox-list">
+    <li>  
+      <% @themengruppen.each do |themengruppe| %>
       <div class="container-fluid">
-	<%= render themengruppe %>
-	<br/>
-	<div class="row-fluid">
-	  <!--
-	  <%= link_to 'Edit', edit_themengruppe_path(themengruppe) %>
-	  -->
-	</div>
+	<%= render themengruppe if can?(:show,themengruppe)%>
       </div>
-    
-    
-  <% end %>
-  </li>
-</ul>
+      <% end %>
+    </li>
+  </ul>
 
-<br/>
+  <br/>
 </div>
-<script class="hidden-phone">
 
+<script class="hidden-phone">
+  
 <!-- make_equal_height();
 -->
 </script>
 
-<%= render :partial=>'layouts/pretty_toolbar' %>
+
 <!--
 <%= link_to 'New Themengruppe', new_themengruppe_path %>
 -->

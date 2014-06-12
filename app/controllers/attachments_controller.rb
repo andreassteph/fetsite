@@ -46,19 +46,29 @@ class AttachmentsController < ApplicationController
   # POST /attachments.json
   def create
     @attachment = Attachment.new(params[:attachment])
-    @thema = Thema.find(params[:thema_id])
-    @attachment.thema_id = @thema.id
-    @action="create"
-    logger.info "#{@attachment.inspect}"
+    @thema = Thema.find_by_id(params[:thema_id])
+   # logger.info "gg"
+    @attachment.thema = @thema
+   @attachment.name=@attachment.datei.filename
+   @action="create"
+
+  
+ #   logger.info "sdf"
     respond_to do |format|
-      if @attachment.save
-        format.html { redirect_to @thema, notice: 'Attachment was successfully created.' }
-        format.json { render json: @thema, status: :created, location: @thema }
-        format.js   {  }
+      if  @attachment.save
+        format.html {
+          render :json => [@attachment.to_jq_upload].to_json,
+          :content_type => 'text/html',
+          :layout => false
+        }
+  
+      #  format.html { redirect_to @thema, notice: 'Attachment was successfully created.' }
+        format.json { render json: {files: [@attachment.to_jq_upload]}, status: :created, location: [@thema, @attachment]}
+
       else
         format.html { render action: "new" }
         format.json { render json: @attachment.errors, status: :unprocessable_entity }
-        format.js   { render action: "new.js.erb"}
+
       end
     end
   end

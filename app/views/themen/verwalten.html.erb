@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
-
 <h1><%= @thema.title %></h1>
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span6">
+
 <p>
   <%= raw(@thema.text) %>
 </p>
@@ -11,16 +14,22 @@
 -->
 <%= render :partial=>'layouts/pretty_toolbar' %>
 
+<h2><%= I18n.t('attachment.title')%>:</h2>
+<div id="attachmentform">
+</div>
+<%= render partial: "attachment_verwalten" %>
+<%= render :partial => "themen/select", :object => @thema, :locals=>{:editor => :false} %>
+
+</div>
+<div class="span6">
+
 <%= render :partial=>'themen/fragen' %>
 <!--
 <%= link_to 'Neue Frage', new_frage_path %> <br/>
 -->
 <br/>
 
-<h2><%= I18n.t('attachment.title')%>:</h2>
-<div id="attachmentform">
-</div>
-
-<%= link_to new_thema_attachment_path(@thema) ,:remote=>true do %> new Attachment <% end %>
-<%= render :partial => "themen/select", :object => @thema, :locals=>{:editor => :false} %>
 <%= link_to I18n.t('common.back'), themengruppen_path, :class=>:btn %>
+</div>
+</div>
+</div>

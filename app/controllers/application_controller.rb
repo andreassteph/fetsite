@@ -18,7 +18,7 @@ def get_theme
   params[:theme]
  
 else
-"2003"
+"blue1"
 end
 end
   def default_url_options

@@ -24,10 +24,7 @@ class ThemengruppenController < ApplicationController
     @themen = @themengruppe.themen.order(:priority).reverse
  
     @toolbar_elements = []
-    @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('thema.add'), :path=>new_themengruppe_thema_path(@themengruppe)} if can? :new, Themengruppe
-    @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.manage"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
-    @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
 
     respond_to do |format|
       format.html # show.html.erb
@@ -52,10 +49,18 @@ class ThemengruppenController < ApplicationController
   end
   def verwalten_all
     @themengruppen =Themengruppe.order(:priority).reverse
-  end 
+    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]
+ 
+ end 
   def verwalten 
       @themengruppe = Themengruppe.find(params[:themengruppe_id])
       @themen = @themengruppe.themen.order(:priority).reverse
+
+    @toolbar_elements =[]
+    @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
+    @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('thema.add'), :path=>new_themengruppe_thema_path(@themengruppe)} if can? :new, Themengruppe
+    @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
+
   end
 
   def sort_themengruppen

@@ -1,5 +1,5 @@
  Fetsite::Application.routes.draw do
-  themes_for_rails
+   themes_for_rails
    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
    resources :home, :only=>[:index] do
 
@@ -16,10 +16,24 @@
      get 'users/:id/do_confirm', :controller=>:users, :action=>:do_confirm, :as=>'user_do_confirm'
      get 'config',:controller=>:config,:action=>:index , :as => 'config'
 
-    end
+   end
 
    devise_for :users , :controllers=>{:omniauth_callbacks=> "users/omniauth_callbacks"}
-
+   scope '(:locale)' do 
+     scope '(t/:theme)' do
+      
+       get "wiki/:name", action: :wiki, controller: :wikis
+       resources :wikis do
+         member do
+           get :verwalten
+         end
+       end  
+     end
+      
+   end
+ 
+  #  end
+ #  end
    scope ':locale' do
      scope '(t/:theme)' do
      # Studien 
@@ -57,6 +71,7 @@
      resources :fetprofiles do
        collection do 
          get 'verwalten'
+         get 'internlist'
        end
        resources :memberships, :only => [:new, :edit, :update,:destroy,:create] 
      end

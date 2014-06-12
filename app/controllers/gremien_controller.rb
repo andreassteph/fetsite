@@ -7,6 +7,8 @@ class GremienController < ApplicationController
     @gremien = Gremium.all
     @gremientabs=Gremium.tabs
     @toolbar_elements << {:text=>I18n.t('gremium.new'),:path=>new_gremium_path() ,:icon=>:plus} if can? :new, Gremium
+    @toolbar_elements << {:text=>I18n.t('profile.new'),:path=>new_fetprofile_path() ,:icon=>:plus} if can? :new, Fetprofile
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @gremien }

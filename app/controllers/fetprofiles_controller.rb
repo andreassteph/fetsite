@@ -12,9 +12,12 @@ class FetprofilesController < ApplicationController
     @gremientabs = Gremium.tabs
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @fetprofiles }
-    end
+      end
   end
+  def internlist
+    @fetprofiles = Fetprofile.order(:vorname,:nachname) 
+    end
+
 
   # GET /fetprofiles/1
   # GET /fetprofiles/1.json
