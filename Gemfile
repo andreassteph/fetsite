@@ -60,6 +60,7 @@ gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-ldap"
 
+gem "fb_graph"
 # Roles for users
 gem "rolify"
 

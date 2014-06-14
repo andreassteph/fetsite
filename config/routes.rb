@@ -25,7 +25,7 @@
        get "wiki/:name", action: :wiki, controller: :wikis
        resources :wikis do
          member do
-           get :verwalten
+           
          end
        end  
      end

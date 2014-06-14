@@ -4,7 +4,7 @@ class WikisController < ApplicationController
   def show
     @wiki = Wiki.find(params[:id])
     @fragen = @wiki.fragen
-    @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('wiki.edit'), :path=>verwalten_wiki_path(@wiki)}]
+    @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('wiki.edit'), :path=>verwalten_thema_path(@wiki)}]
   end
 
   def wiki

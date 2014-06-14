@@ -31,10 +31,12 @@ class Fetprofile < ActiveRecord::Base
  accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:gremium_id].blank?}, :allow_destroy=>true
   has_many :nlinks, as: :link
   def validate_birthday
-    unless Date.valid_date?(birth_year, birth_month, birth_day)
+    unless birth_month.nil? || birth_day.nil?
+    unless Date.valid_date?((birth_year.nil?) ? Date.today.year : birth_year, birth_month, birth_day)
       errors.add(:birth_month, "Invalides Datum")
       errors.add(:birth_day, "Invalides Datum")
     end
+end
   end
 
   def title
