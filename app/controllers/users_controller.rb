@@ -12,9 +12,19 @@ class UsersController < ApplicationController
     end
     redirect_to users_url
   end
+  def fb_set_default_publish_page
+    if params["page"].nil? || !(current_user.provider=="facebook")
+      redirect_to intern_home_index_path
+    else
+      @fbu=FbGraph::User.new(current_user.uid.to_s).fetch(:access_token=>session["fbuser_access_token"])
+      File.open("tmp/page.yml",'w'){|f|  f.write(@fbu.accounts(:access_token=>session["fbuser_access_token"]).select { |p| p.name == params["page"] }.first.to_yaml)}
+      logger.debug @fbu.to_s
+      redirect_to admin_home_index_path
+    end
+      
+  end
   
   def all_update
-    
     params[:users].each do |id,u| 
       user=User.find(id) 
       user.fetprofile = Fetprofile.find(u[:fetprofile_id].to_i) if u[:fetprofile_id].to_i>0 
@@ -26,7 +36,6 @@ class UsersController < ApplicationController
   def do_confirm
     @user= User.find(params[:id])
     @user.confirm!
-    
     redirect_to users_url
   end
 end

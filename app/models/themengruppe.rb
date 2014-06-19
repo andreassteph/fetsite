@@ -22,6 +22,7 @@ class Themengruppe < ActiveRecord::Base
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   
   scope :intern,-> {where(:public=>false)}
+  scope :public,-> {where(:public=>true)}
 
   def self.find_wiki_default
     where(:wiki_default=>true).first

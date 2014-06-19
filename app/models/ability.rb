@@ -61,6 +61,7 @@ class Ability
     if( user.has_role?("fetadmin"))
       can [:delete],Calendar
       can [:delete],Calentry
+      can :doadmin, User
     end
  
     # Rechteverwaltung fuer Neuigkeiten

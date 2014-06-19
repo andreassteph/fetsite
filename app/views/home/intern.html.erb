@@ -3,7 +3,8 @@
   <div class="row-fluid">
     <div class="span6">
       <%= link_to "Adressliste", internlist_fetprofiles_path %>
-      <%= link_to "Internes Nachschlagewerk" %>
+      <%= link_to "Admin" , admin_home_index_path if current_user.has_role?(:fetadmin) %>
+
       <ul class="unstyled linkbox-list">
 	<li>  
 	  <% @themengruppen.each do |themengruppe| %>
@@ -14,7 +15,7 @@
 	</li>
       </ul>
 
-      
+      <%= link_to "Users", users_path %>
     </div>
     <div class="span6">
       <h2>Neuigkeiten</h2>
@@ -28,4 +29,3 @@
 </div>
 
 <h2></h2>
-

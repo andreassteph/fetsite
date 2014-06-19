@@ -48,7 +48,8 @@ class ThemengruppenController < ApplicationController
     @themengruppe = Themengruppe.find(params[:id])
   end
   def verwalten_all
-    @themengruppen =Themengruppe.order(:priority).reverse
+    @themengruppen =Themengruppe.public.order(:priority).reverse
+@themengruppen_intern =Themengruppe.intern.order(:priority).reverse
     @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]
  
  end 

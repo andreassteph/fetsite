@@ -57,13 +57,14 @@ class ThemenController < ApplicationController
   # GET /themen/1/edit
   def edit
     @thema = Thema.find(params[:id])
-    unless ( @thema.wikiname.nil? || @thema.wikiname.empty? )
+    
+    if @thema.is_wiki?
       redirect_to edit_wiki_path(Wiki.find(@thema.id))
       return
     end
     respond_to do |format|
       format.html
-      format.js
+      format.js { @themen= @thema.themengruppe.themen }
     end
   end
 
@@ -72,13 +73,15 @@ class ThemenController < ApplicationController
   def create
     @thema = Thema.new(params[:thema])
    
-      @themen = @thema.themengruppe.themen.order(:priority).reverse
+    
     respond_to do |format|
       if @thema.save
+        @themen = @thema.themengruppe.themen.order(:priority).reverse
         format.html { redirect_to @thema, notice: 'Thema was successfully created.' }
         format.json { render json: @thema, status: :created, location: @thema }
         format.js   {render action: "update"}
       else
+        @themen = @thema.themengruppe.themen.order(:priority).reverse
         format.html { render action: "new" }
         format.json { render json: @thema.errors, status: :unprocessable_entity }
       format.js   { render action: "edit" }
@@ -105,8 +108,10 @@ class ThemenController < ApplicationController
   def update
     @thema = Thema.find(params[:id])
   @themen = @thema.themengruppe.themen.order(:priority).reverse
+    @thema.assign_attributes(params[:thema])
+    @thema.fix_links(request.host_with_port)
     respond_to do |format|
-      if @thema.update_attributes(params[:thema])
+      if @thema.save
         format.html { redirect_to @thema, notice: 'Thema was successfully updated.' }
         format.json { head :no_content }
         format.js   
@@ -123,7 +128,7 @@ class ThemenController < ApplicationController
   def destroy
     @thema = Thema.find(params[:id])
     @thema.destroy
-
+ @themen = @thema.themengruppe.themen.order(:priority).reverse
     respond_to do |format|
       format.html { redirect_to themengruppe_path(@thema.themengruppe) }
       format.json { head :no_content }

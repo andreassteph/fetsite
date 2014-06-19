@@ -1,0 +1,12 @@
+<p><%= link_to "Grant extra FB privileges", user_omniauth_authorize_path(:facebook,:params=>{scope:"manage_pages,publish_actions,email"}) %>
+</p>
+<p>
+<%= link_to "user", users_path %>
+</p>
+<p>
+<%= @fbu.to_yaml.to_s %>
+
+<%= semantic_form_for :set_page, url: fb_set_default_publish_page_user_path(current_user), html:{method: :get} do |f| %>
+<%= f.input :page , :input_html => { :name => 'page' }%>
+<% end %>
+</p>

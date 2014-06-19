@@ -46,7 +46,7 @@ class Neuigkeit < ActiveRecord::Base
     self.rubrik.public
   end
   def published?
-   self.datum_nilsave>=Time.now.to_date
+   self.datum_nilsave<Time.now.to_date
   end
 
   def publish

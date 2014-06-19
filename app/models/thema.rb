@@ -9,8 +9,9 @@
 #  updated_at      :datetime         not null
 #  themengruppe_id :integer
 #
-
+require 'uri'
 class Thema < ActiveRecord::Base
+include Rails.application.routes.url_helpers
   attr_accessible :text, :title, :themengruppe_id
   has_many :fragen
   has_many :attachments
@@ -23,7 +24,7 @@ class Thema < ActiveRecord::Base
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   def is_wiki?
-     wikiname.nil? || wikiname.empty?
+     !(wikiname.nil? || wikiname.empty?)
   end
   def text_first_words
     md = /<p>(?<text>[^\<\>]*)/.match Sanitize.clean(self.text,:elements=>['p'])
@@ -36,4 +37,10 @@ class Thema < ActiveRecord::Base
     end
   end
 
+  def fix_links(host)
+   full_url= URI.parse(root_url(:host=>host))
+    self.text.gsub!(/src="[^"]*attachment\/datei\/(\d+)[^"]*"/){|s| full_url.path=Attachment.find($1.to_i).datei.url; 'src="'+full_url.to_s+'"'}
+    self.text.gsub!(/href="[^"]*themen\/(\d+)[^"]*"/){|s| full_url.path=thema_path(Thema.find($1.to_i)); 'href="'+full_url.to_s+'"'}
+
+  end
 end

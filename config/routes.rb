@@ -11,6 +11,9 @@
          get :index
          post :all_update
        end
+       member do
+         get :fb_set_default_publish_page
+       end
      end
      get 'users/:id/add_role/:role', :controller=>:users, :action=>:add_role, :as=>'user_add_role'
      get 'users/:id/do_confirm', :controller=>:users, :action=>:do_confirm, :as=>'user_do_confirm'
@@ -34,7 +37,7 @@
  
   #  end
  #  end
-   scope ':locale' do
+   scope '(:locale)' do
      scope '(t/:theme)' do
      # Studien 
     
@@ -126,6 +129,7 @@
            get 'rm_calentry'
            get 'create_link'
            get 'find_link'
+           get 'publish_to_facebook'
          end
        end
      end
@@ -135,13 +139,14 @@
      # get 'rubriken/verwalten',:controller=>:rubriken,:action=>:alle_verwalten, :as=>'rubriken_verwalten'
      
      resources :home, :only=>[:index] do
-      get :search, :on=>:collection
+      get :search, :on => :collection
          collection do
-        get 'intern'   
-         get 'dev'
-         get 'startdev'
-         get 'linksnotimplemented'
-         get 'kontakt' 
+           get 'intern'
+           get 'admin'   
+           get 'dev'
+           get 'startdev'
+           get 'linksnotimplemented'
+           get 'kontakt' 
        end
     end
     

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class NeuigkeitenController < ApplicationController
   before_filter :load_toolbar_elements, :only=>[:show,:find_link]
   before_filter :load_toolbar_elements_edit, :only=>[:edit]
@@ -61,9 +62,19 @@ class NeuigkeitenController < ApplicationController
     if params[:verwalten] 
       redirect_to verwalten_rubrik_path(@neuigkeit.rubrik)
     end
-    redirect_to rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)
+    redirect_to  rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)
   end 
-
+  def publish_to_facebook
+    @neuigkeit = Neuigkeit.find(params[:id])
+    unless @neuigkeit.published?
+      redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie auf Facebook zu posten.'
+    else
+      page=YAML.load_file("#{::Rails.root.to_s}/tmp/page.yml")
+      page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html")
+     
+      redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit auf Facebook gepostet'
+    end
+  end
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
 
@@ -137,9 +148,13 @@ private
   def load_toolbar_elements
     @neuigkeit=Neuigkeit.find(params[:id])
     @toolbar_elements=[]
-    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:publish, @neuigkeit) && @neuigkeit.published?
-    @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:unpublish, @neuigkeit) && !@neuigkeit.published?
-    @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:publish, @neuigkeit) && !@neuigkeit.published?
+    @toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publish')+" to facebook",:path => publish_to_facebook_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:publish, @neuigkeit)
+
+    @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:unpublish, @neuigkeit) && @neuigkeit.published?
+  
+
+  @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
     @versions= @neuigkeit.translation.versions.select([:created_at]).reverse
 
     @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}

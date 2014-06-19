@@ -14,6 +14,12 @@ class HomeController < ApplicationController
     @neuigkeiten = Neuigkeit.intern.recent
     @themengruppen=Themengruppe.intern
   end
+  def admin
+    authorize! :doadmin, User
+    
+
+  end
+
   def startdev
   render 'setup_fetsite_dev'
   end
