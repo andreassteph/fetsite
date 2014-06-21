@@ -97,7 +97,13 @@ class ThemenController < ApplicationController
    
     respond_to do |format|
       if @thema.save
-        format.html { redirect_to @thema, notice: I18n.t("thema.updated") }
+        format.html { 
+          if params["button"]=="continue"
+              render action: "edit", notice: I18n.t("thema.updated") 
+          else
+            redirect_to @thema, notice: I18n.t("thema.updated") 
+          end
+        }
         format.json { head :no_content }
         format.js   
       else

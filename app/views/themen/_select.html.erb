@@ -23,10 +23,7 @@
 </div>
 </br>
 
-<% unless @thema.id.nil? %>
-<% @att_elements = [{:icon=>:plus, :hicon=>'icon-plus', :text=>I18n.t('attachment.add'), :path=>new_thema_attachment_path(@thema),:remote=>true}] %>
-<div id="attachmentform">
-</div>
-<%= render :partial=>'layouts/pretty_toolbar', :object=>@att_elements %>
-<% end %>
+
+
+
 <br/>

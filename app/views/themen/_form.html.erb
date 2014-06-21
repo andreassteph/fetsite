@@ -1,4 +1,5 @@
 <%= tinymce_assets %>
+
 <div class="container-fluid">
   <%= semantic_form_for @thema, :remote=>remote do |f| %>
   <%= f.inputs do %>
@@ -17,8 +18,8 @@
   </div>
 
   <%= f.actions do %>
-  <%= f.action :submit, :as => :button %> 
-  <%= f.action :submit, :as => :button, :label=> "&edit", :params=>{edit: true} %> 
+  <%= f.action :submit, :as => :button, :label=> I18n.t("thema.save" ) %> 
+  <%= f.action :submit, :as => :button, :label=> I18n.t("thema.savecont"), :button_html=>{:value=>"continue"} %> 
   <%= f.action :cancel, :as => :link %>
   <% end %> 
   <% end %><% end %>

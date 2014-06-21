@@ -14,6 +14,8 @@ de:
     edit: "Thema bearbeiten"
     remove: "Thema löschen"
     manage: "Thema verwalten"
+    save: "Thema speichern"
+    savecont: "Thema zwischenspeichern"
     created: "Thema erfolgreich erstellt"
     updated: "Thema erfolgreich gespeichert"
     sure: "Sicher, dass Sie dieses Thema löschen möchten?"
@@ -42,8 +44,8 @@ de:
         text: "Antwort"
         thema: "Thema"
     hints:
-      thema:
-        title: "Überschrift"
+
+
   activerecord:
     errors:
       models:
