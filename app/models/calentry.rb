@@ -35,6 +35,9 @@ class Calentry < ActiveRecord::Base
     self.public = (self.try(:object).nil?)? (self.calendar.try(:public?)) : object.try(:public?)
     true
   end
+  def s_time=(s_time)
+    start 
+  end
   def start_time
     start
   end

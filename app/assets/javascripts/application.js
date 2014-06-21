@@ -26,6 +26,8 @@
 //= require bootstrap/image-gallery.min
 //= require jquery-fileupload
 // require jquery.remotipart
+//= require jquery.datetimepicker
+
 function insertAttachment(url,name) {
     var ext = url.split('.').pop().toLowerCase();
     var img_ext = [ "jpg", "png", "bmp" , "jpeg" ];
