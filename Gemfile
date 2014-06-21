@@ -91,6 +91,7 @@ gem 'bootstrap-addons-rails'
 gem "jquery-fileupload-rails"
 gem "jquery-ui-rails","~> 4.1.1" 
 gem "font-awesome-rails"
+gem "jquery-datetimepicker-rails"
 # gem "jquery-sortable-rails"
 gem "seed_dump", "~> 0.5.3"
 #gem "themes_for_rails" ,:git =>'git://github.com/tkriplean/themes_for_rails.git'

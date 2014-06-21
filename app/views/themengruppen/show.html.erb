@@ -1,6 +1,6 @@
 <div class="content-wrap content-column" >
-  <%= link_to fa_icon("arrow-circle-left 2x")+" Alle Themengruppen", themengruppen_path, :class=>"linkbox" %>
-  <%= link_to fa_icon("question 2x")+" Häufige Fragen", faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
+  <%= link_to fa_icon("arrow-circle-left 2x")+I18n.t("themengruppe.showall"), themengruppen_path, :class=>"linkbox" %>
+  <%= link_to fa_icon("question 2x")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
   <%= render :partial=>'layouts/pretty_toolbar' %>
 
   <h1><%= @themengruppe.title %></h1>
@@ -13,11 +13,8 @@
     <li>
       <div class="contentbox">	
 	<%= render :partial => 'themen/small', :object => thema %>
-
-
 	<ul class="unstyled">
 	  <% unless thema.gremium.nil? %>
-	  
 	  <li>
 	    <%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
 	  </li>
@@ -26,9 +23,7 @@
 	  <% thema.nlinks.each do |l| %> 
 	  <li><%= render l.neuigkeit %></li>
 	  <% end %>
-	  <% thema.nlinks.each do |l| %> 
-	  <li><%= render l.neuigkeit %></li>
-	  <% end %>
+
 	</ul>
       </div>
     </li>

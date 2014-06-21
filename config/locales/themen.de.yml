@@ -6,10 +6,16 @@ de:
     remove: "Themengruppe löschen"
     sure: "Sicher, dass Sie diese Themengruppe löschen möchten?"
     manage: "Themengruppe verwalten"
+    manage_all: "Alle Themengruppen verwalten"
+    showall: "Alle Themengruppen anzeigen"
+    faqs: "Häufig gestellte Fragen"
   thema:
     add: "Thema hinzufügen"
     edit: "Thema bearbeiten"
     remove: "Thema löschen"
+    manage: "Thema verwalten"
+    created: "Thema erfolgreich erstellt"
+    updated: "Thema erfolgreich gespeichert"
     sure: "Sicher, dass Sie dieses Thema löschen möchten?"
   frage:
     add: "Frage hinzufügen"
@@ -22,8 +28,19 @@ de:
   formtastic:
     labels:
       thema:
-        title: "Themen Name"
+        title: "Themen Überschrift"
+        text: "Text"
         themengruppe: "Gruppe"
+      themengruppe:
+        title: "Überschrift"
+        priority: "Sortierung"
+        public: "öffentlich"
+        picture: "Icon"
+        text: "Beschreibung"
+      frage:
+        title: "Frage"
+        text: "Antwort"
+        thema: "Thema"
     hints:
       thema:
         title: "Überschrift"
@@ -34,3 +51,5 @@ de:
           attributes:
             title:
               blank: "Der Themen Name darf nicht leer sein!"
+            text:
+              blank: "Bitte Text hinzufügen"

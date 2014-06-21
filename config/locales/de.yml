@@ -9,7 +9,6 @@ de:
     actions: "Aktionen"
     delete: "Löschen"    
     verwalten: "Verwalten"
-    back: "Zurück"
     sure_del: "Sicher endgültig löschen?"
   home:
     sprache: "Deutsch"

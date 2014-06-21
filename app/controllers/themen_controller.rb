@@ -3,24 +3,12 @@ class ThemenController < ApplicationController
   # GET /themen.json
   load_and_authorize_resource
 
-  def index
-    @themen = Thema.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @themen }
-    end
-  end
-
-  # GET /themen/1
-  # GET /themen/1.json
   def show
     @thema = Thema.find(params[:id])
-   
     @fragen=@thema.fragen
-    @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>"Verwalten", :path=>verwalten_thema_path(@thema)}]
 
-    @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>edit_thema_path(@thema)}]
+    @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("thema.manage"), :path=>verwalten_thema_path(@thema)}]
+    @toolbar_elements << [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>edit_thema_path(@thema)}]
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('thema.remove'), :path=>thema_path(@thema), :method=>:delete, :confirm=>I18n.t('thema.sure')}
 
     respond_to do |format|
@@ -33,10 +21,7 @@ class ThemenController < ApplicationController
   def verwalten
     @thema = Thema.find(params[:id])
     @attachment=Attachment.new
-
- 
     @fragen=@thema.fragen
-    @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>"Verwalten", :path=>verwalten_thema_path(@thema)}]
 
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>edit_thema_path(@thema)}]
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('thema.remove'), :path=>thema_path(@thema), :method=>:delete, :confirm=>I18n.t('thema.sure')}
@@ -57,7 +42,7 @@ class ThemenController < ApplicationController
   # GET /themen/1/edit
   def edit
     @thema = Thema.find(params[:id])
-    
+
     if @thema.is_wiki?
       redirect_to edit_wiki_path(Wiki.find(@thema.id))
       return
@@ -72,12 +57,11 @@ class ThemenController < ApplicationController
   # POST /themen.json
   def create
     @thema = Thema.new(params[:thema])
-   
-    
+       
     respond_to do |format|
       if @thema.save
         @themen = @thema.themengruppe.themen.order(:priority).reverse
-        format.html { redirect_to @thema, notice: 'Thema was successfully created.' }
+        format.html { redirect_to @thema, notice: I18n.t("thema.created") }
         format.json { render json: @thema, status: :created, location: @thema }
         format.js   {render action: "update"}
       else
@@ -107,12 +91,13 @@ class ThemenController < ApplicationController
   # PUT /themen/1.json
   def update
     @thema = Thema.find(params[:id])
-  @themen = @thema.themengruppe.themen.order(:priority).reverse
+    @themen = @thema.themengruppe.themen.order(:priority).reverse
     @thema.assign_attributes(params[:thema])
     @thema.fix_links(request.host_with_port)
+   
     respond_to do |format|
       if @thema.save
-        format.html { redirect_to @thema, notice: 'Thema was successfully updated.' }
+        format.html { redirect_to @thema, notice: I18n.t("thema.updated") }
         format.json { head :no_content }
         format.js   
       else
@@ -128,7 +113,7 @@ class ThemenController < ApplicationController
   def destroy
     @thema = Thema.find(params[:id])
     @thema.destroy
- @themen = @thema.themengruppe.themen.order(:priority).reverse
+    @themen = @thema.themengruppe.themen.order(:priority).reverse
     respond_to do |format|
       format.html { redirect_to themengruppe_path(@thema.themengruppe) }
       format.json { head :no_content }

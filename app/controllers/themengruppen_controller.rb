@@ -5,7 +5,7 @@ class ThemengruppenController < ApplicationController
   def index
     @themengruppen = Themengruppe.where(:public=>true).order(:priority).reverse
     @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]
-    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('common.verwalten'), :path=>verwalten_all_themengruppen_path()}]
+    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.manage_all'), :path=>verwalten_all_themengruppen_path()}]
 
     respond_to do |format|
       format.html # index.html.erb

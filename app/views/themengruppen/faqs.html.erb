@@ -1,24 +1,25 @@
+<h1><%= I18n.t("themengruppe.faqs") %>
 <div class="content-wrap content-column">
-	<% @themengruppen.each do |tg| %>
-		<div class="contentbox">
-		<a name="themengruppe_<%=tg.id.to_s%>"></a>
-		<h2> <%= tg.title%></h2>
-		<ul>
-			<% tg.themen.order(:priority).reverse.each do |t| %>
-			<li> <%= t.title %>
-				<ul> <% t.fragen.each do |f| %>
-					<li>
-						<b> <%= f.title %></b>
-						<p> <%= f.text %></p>
-					</li>
-
-						<% end %>
-				</ul>
-
-			</li>
-			<% end %>
-		</ul>
-
-		</div>
-	<% end %>
+  <% @themengruppen.each do |tg| %>
+  <div class="contentbox">
+    <a name="themengruppe_<%=tg.id.to_s%>"></a>
+    <h2> <%= tg.title%></h2>
+    <ul>
+      <% tg.themen.order(:priority).reverse.each do |t| %>
+      <li> <%= t.title %>
+	<ul> <% t.fragen.each do |f| %>
+	  <li>
+	    <b> <%= f.title %>?</b>
+	    <p> <%= f.text %></p>
+	  </li>
+	  
+	  <% end %>
+	</ul>
+	
+      </li>
+      <% end %>
+    </ul>
+    
+  </div>
+  <% end %>
 </div>

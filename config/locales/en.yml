@@ -6,13 +6,21 @@ en:
   common:
     back: "Back"
     edit: "Edit"
+    actions: "Actions"
+    delete: "Delete"    
+    verwalten: "Manage"
+    sure_del: "Are you sure you want to delete this?"
 
   home:
     sprache: "English"
+    kontakt: "Contact"
     mtitle: "Menu"
     hallobeiderfet: "This is the page of Fachschaft Elektrotechnik at TU Wien"
     home: "Home"
     studien: "Studies"
     news: "News"
     info: "Information"
+    mitarbeiter: "Members"
+    fotos: "Fotos"
+    search: "Search"
     willkommen: "Welcome at Fachschaft Elektrotechnik" 
