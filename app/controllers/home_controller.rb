@@ -12,7 +12,7 @@ class HomeController < ApplicationController
   def intern
     authorize! :seeintern, User
     @neuigkeiten = Neuigkeit.intern.recent
-    @themengruppen=Themengruppe.intern
+    @themengruppen=Themengruppe.intern.order(:priority).reverse
   end
   def admin
     authorize! :doadmin, User
