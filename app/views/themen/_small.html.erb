@@ -1,6 +1,13 @@
 <a name="thema_<%=small.id%>" href="#<%=small.id%>">
   <h2><%= small.title %> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %></h2>
 </a>
+<% if small.is_outdated? %>
+<div style="background:red; width:100%"> Outdated </div>
+<% end %>
+<% if small.isdraft %>
+<div style="background:yellow; width:100%"> isdraft </div>
+
+<% end %>
 <%= raw(small.text) %>
 <br/>
 

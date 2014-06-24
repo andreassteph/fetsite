@@ -10,13 +10,31 @@
     <div class="span6">
       <%= f.input :themengruppe %>
     </div>
-    <div class="row-fluid"> 
-      <div class="span12"> 
-	<%= f.input :text, :as=>:tinymce_text,:label=>false, :input_html=>{:rows=>20} %>
-      </div> 
-    </div> 
+  </div>
+  <div class="row-fluid"> 
+    <div class="span4">
+      <%= f.input :isdraft %>
+    </div>  
+    <div class="span4">
+      <%= f.input :hidelink, :as=>:boolean %>
+
+    </div>  
+    <div class="span4">
+      <%= f.input :hideattachment %>
+
+    </div>  
+
   </div>
 
+  <div class="row-fluid"> 
+    <div class="span12"> 
+      <%= f.input :text, :as=>:tinymce_text,:label=>false, :input_html=>{:rows=>20} %>
+    </div> 
+  </div> 
+</div>
+<% unless I18n.locale == :de %>
+@thema.text
+<% end %>
   <%= f.actions do %>
   <%= f.action :submit, :as => :button, :label=> I18n.t("thema.save" ) %> 
   <%= f.action :submit, :as => :button, :label=> I18n.t("thema.savecont"), :button_html=>{:value=>"continue"} %> 

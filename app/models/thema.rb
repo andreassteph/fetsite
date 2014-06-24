@@ -12,7 +12,7 @@
 require 'uri'
 class Thema < ActiveRecord::Base
 include Rails.application.routes.url_helpers
-  attr_accessible :text, :title, :themengruppe_id
+  attr_accessible :text, :title, :themengruppe_id,:isdraft, :hidelink, :hideattachment
   has_many :fragen
   has_many :attachments
   belongs_to :themengruppe, :foreign_key => "themengruppe_id"
@@ -22,7 +22,11 @@ include Rails.application.routes.url_helpers
   validates :title, :presence => true
   validates :text, :presence => true
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
+  scope :outdated, -> {where("updated_at < ?", 1.week.ago)}
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
+  def is_outdated?
+    updated_at < 1.week.ago
+  end
   def is_wiki?
      !(wikiname.nil? || wikiname.empty?)
   end

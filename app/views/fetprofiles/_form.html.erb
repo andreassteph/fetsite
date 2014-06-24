@@ -68,7 +68,7 @@
       <div class="span12">
 	<%= f.actions do %>
 	<%= f.action :submit, :as => :input , :label=>I18n.t("common.save") %>
-	<%= f.action :submit, :as => :input, :button_html=>{value: "continue"} , :label=>I18n.t("common.savecont") %>
+	<%= f.action :submit, :as => :input , :label=>I18n.t("common.savecont"), :button_html=>{value: "continue"} %>
 	<%= f.action :cancel, :as=> :link , :label=>I18n.t("common.cancel") %>
 	<% end %>
       </div>
