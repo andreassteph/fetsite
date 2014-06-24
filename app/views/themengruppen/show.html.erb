@@ -9,7 +9,7 @@
     <%= @themengruppe.text %>
   </p>
   <ul class="unstyled linkbox-list" >
-    <% @themengruppe.themen.each do |thema| %>
+    <% @themen.each do |thema| %>
     <li>
       <div class="contentbox">	
 	<%= render :partial => 'themen/small', :object => thema %>
