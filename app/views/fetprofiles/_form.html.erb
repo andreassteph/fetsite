@@ -11,7 +11,7 @@
     </div> </div>
     <div class="row-fluid">
       <div class="span12">   
-	<%= f.input :desc %>
+	<%= f.input :desc , input_html: {style: "width:100%"}%>
       </div>
     </div> 
     <div class="row-fluid">
@@ -30,23 +30,30 @@
     
 <div class="row-fluid">
 <div class="span6">
-Adresse:
+
+<%= I18n.t("fetprofile.adresse") %>:
 
 <%=f.input :street %>
-<%=f.input :plz %>
-<%=f.input :city %>
-KOntakt:
-<%=f.input :instant %>
-<%=f.input :skype %>
+<table><tr><td>
+<%=f.input :plz, input_html: {style: "width:5em"} %></td>
+<td><%=f.input :city, input_html: {style: "width:5em"} %></td></tr></table>
 <%=f.input :telnr %>
 <%=f.input :hdynr %>
 
 </div>
 <div class="span6">
-Geburtstag:
-<%=f.input :birth_day %>
-<%=f.input :birth_month %>
-<%=f.input :birth_year %>
+<%= I18n.t("fetprofile.geburtstag") %>:
+<table><tr>
+<td><%=f.input :birth_day, input_html: {style: "width:3em"}%></td>
+<td><%=f.input :birth_month, input_html: {style: "width:3em"} %></td>
+<td><%=f.input :birth_year, input_html: {style: "width:5em"} %></td>
+</tr></table>
+
+
+
+<%=f.input :instant %>
+<%=f.input :skype %>
+
 </div>
 
 </div>
@@ -60,7 +67,9 @@ Geburtstag:
     <div class="row-fluid">
       <div class="span12">
 	<%= f.actions do %>
-	<%= f.action :submit, :as => :input %>
+	<%= f.action :submit, :as => :input , :label=>I18n.t("common.save") %>
+	<%= f.action :submit, :as => :input, :button_html=>{value: "continue"} , :label=>I18n.t("common.savecont") %>
+	<%= f.action :cancel, :as=> :link , :label=>I18n.t("common.cancel") %>
 	<% end %>
       </div>
     </div>

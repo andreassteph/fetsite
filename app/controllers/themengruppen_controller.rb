@@ -4,8 +4,9 @@ class ThemengruppenController < ApplicationController
   load_and_authorize_resource
   def index
     @themengruppen = Themengruppe.where(:public=>true).order(:priority).reverse
-    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]
-    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.manage_all'), :path=>verwalten_all_themengruppen_path()}]
+    @toolbar_elements = []
+    @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()} if can? :new, Themengruppe
+    @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.manage_all'), :path=>verwalten_all_themengruppen_path()} if can? :verwalten_all, Themengruppe
 
     respond_to do |format|
       format.html # index.html.erb

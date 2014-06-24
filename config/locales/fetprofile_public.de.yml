@@ -1,0 +1,20 @@
+de:
+  profile:
+    remove_picture: "Bild entfernen"
+    all_members: "Alle Mitglieder"
+    all_groups: "Alle Gremien und Gruppen"
+    active_members: "Aktive Mitglieder"
+    notactive_members: "Pension"
+    new_profile: "Neues Profil anlegen"
+  gremium:
+    new: "Neues Gremium"
+    seit: "seit"
+    von: "von"
+    bis: "bis"
+    filter:
+      berufung:
+        title: "Berufungskommission"
+        text: "B.."
+      habil:
+        title: "Habilitationskommission"
+        text: "Die Habilitation ist die Verleihung der Lehrbefugnis an einer Universität. Die Habilitation ist mit dem Abfassen einer Habilitationsschrift ähnlich einer Dissertation verbunden. Außerdem werden die didaktischen Fähigkeiten und die sonstige wissenschaftliche Laufbahn beurteilt."

@@ -20,6 +20,6 @@
   <% else %>
   <li class="pull-right">
 <% end %>
-<%= link_to I18n.t("studien.verwaltung.title"), studien_verwalten_path %>
+<%= link_to I18n.t("studien.verwaltung.title"), studien_verwalten_path  if can? :verwalten, Studium %>
 </li>
 </ul>

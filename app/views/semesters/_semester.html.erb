@@ -1,0 +1,17 @@
+<div class="contentbox">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span8">
+	<h2><%= semester.name %></h2>
+      </div>
+      <div class="span4">
+	
+      </div>
+    </div>
+    <% semester.lvas.each do |lva| %>
+    <div class="row-fluid">
+      <%= render :partial=>'lvas/lva_semester', :locals =>{:lva => lva}%>
+    </div>
+    <% end %>
+  </div>
+</div>

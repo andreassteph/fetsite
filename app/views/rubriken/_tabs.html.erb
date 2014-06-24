@@ -14,7 +14,7 @@
   <% else %>
   <li class="pull-right">
 <% end %>
-<%= link_to "Verwaltung", verwalten_rubriken_path %>
+<%= link_to I18n.t("rubrik.management"), verwalten_rubriken_path if can? :verwalten, Rubrik %>
 </li>
 <% end %>
 </ul>

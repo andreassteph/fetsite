@@ -1,4 +1,8 @@
 <% verw_liste.each do |thema| %>
-<li id="themen_<%= thema.id %>" class="sort"  ><div class="contentbox handle" ><h2><%= thema.title %></h2>  </div> 
-<%= link_to thema_path(thema),:remote=>true do %> Show <% end %> <%= link_to edit_thema_path(thema),:remote=>true do %> Edit <% end %>  <%= link_to fragen_thema_path(thema),:remote=>true do %> Fragen <% end %><%= link_to attachments_thema_path(thema),:remote=>true do %> Attachments <% end %></li>
+<li id="themen_<%= thema.id %>" class="sort"  ><div class="contentbox handle" ><b><%= thema.title %></b> </div>
+ 
+<%= link_to thema_path(thema),:remote=>true do %> Show <% end %> 
+<%= link_to edit_thema_path(thema),:remote=>true do %> Edit <% end %>  
+<%= link_to fragen_thema_path(thema),:remote=>true do %> Fragen <% end %>
+<%= link_to attachments_thema_path(thema),:remote=>true do %> Attachments <% end %></li>
 <% end %>

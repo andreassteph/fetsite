@@ -10,6 +10,8 @@ class FetprofilesController < ApplicationController
     @fetprofiles = Fetprofile.where(:active=>false).order(:vorname,:nachname) if params[:filter]== "notactive"
 
     @gremientabs = Gremium.tabs
+     @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('profile.new_profile'),:path => new_fetprofile_path(@fetprofile) } if can? :new, @fetprofile
+
     respond_to do |format|
       format.html # index.html.erb
       end
@@ -87,7 +89,13 @@ class FetprofilesController < ApplicationController
    
     respond_to do |format|
       if @fetprofile.update_attributes(params[:fetprofile])
-        format.html { redirect_to @fetprofile, notice: 'Fetprofile was successfully updated.' }
+        format.html { 
+          unless params[:button]=="continue" || params[:commit]=="continue"
+          redirect_to @fetprofile, notice: 'Fetprofile was successfully updated.' 
+          else
+          redirect_to edit_fetprofile_path(@fetprofile), notice: 'Fetprofile was successfully updated.'
+          end
+        }
         format.json { head :no_content }
       else
         @memberships=@fetprofile.memberships.order(:typ)

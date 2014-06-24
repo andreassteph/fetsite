@@ -1,20 +1,29 @@
 
 de:
+# -------- Interne Strings ---------
   neuigkeit:
     publish: "Neuigkeit veröffentlichen"
+    publishfb: "Neuigkeit auf Facebook veröffentlichen"
     republish: "Neuigkeit erneut veröffentlichen"
     unpublish: "Veröffentlichung rückgängig"
     new:
       title: "Neuer Artikel"
-  rubriken:
-    alle: "Alle Rubriken"
   rubrik:
-    title: "Neuigkeiten und aktuelle Infos"
     moderatoradded: "Neuen Moderator hinzugefügt!"
     moderatoraddnorights: "Keine Berechtigung neue Moderatoren hinzuzufügen!"
     new: "Neue Rubrik"
     edit: "Rubrik bearbeiten"
-    
+    management: "Verwaltung"
+  formtastic:
+    labels:
+      neuigkeit:
+        text: "Text"
+        title: "Überschrift"
+        author: "Author"
+        picture: "Bild"
+      calentry:
+        start: "Beginn"
+        dauer: "Dauer"
   activerecord:
     errors:
       models:

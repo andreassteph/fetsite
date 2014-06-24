@@ -6,9 +6,15 @@
   <%=	I18n.t 'profile.active_members' if params[:filter].nil? || params[:filter]== "active"
 	%>
 </h1>
+<div class="row-fluid">
+  <div class="span12">
+ <%= render 'layouts/pretty_toolbar' %>
+
+    <% link_to I18n.t('profile.new_profile'), new_fetprofile_path %>
+  </div>
+</div>
 
 <ul class="unstyled fetprofile_list linkbox-list" style="width:100%">
-
   <% @fetprofiles.each do |fetprofile| %>
 
 <li>
@@ -39,11 +45,7 @@
 
 </ul>
 
-<div class="row-fluid">
-  <div class="span12">
-    <%= link_to I18n.t('profile.new_profile'), new_fetprofile_path %>
-  </div>
-</div></div>
+</div>
 </div>
 
 

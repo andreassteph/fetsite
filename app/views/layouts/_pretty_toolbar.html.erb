@@ -5,6 +5,7 @@ Verwendung: Aufruf mit
 
 -->
 <% toolbar_elements = !pretty_toolbar.nil? ? pretty_toolbar : @toolbar_elements %>
+<% unless toolbar_elements.nil? || toolbar_elements.empty? %>
 <span class="label"><%= I18n.t("common.actions")%></span>
 <div class="btn-group">
   <% toolbar_elements.each do |t| %>
@@ -14,10 +15,10 @@ Verwendung: Aufruf mit
   <% else %>
   <div class="btn-group">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-	Versionen<span class="caret"></span>
+	<%= I18n.t("common.versions") %><span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-	<li>	<%= link_to "active", t[:path]  %>
+	<li>	<%= link_to I18n.t("common.activeversion"), t[:path]  %>
 	</li>
 	<% t[:versions].each_with_index do |v,i| %>
 	<li>
@@ -37,3 +38,4 @@ Verwendung: Aufruf mit
   <% end %>
   <% end %>
 </div>
+<% end %>
