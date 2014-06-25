@@ -91,9 +91,14 @@ class FetprofilesController < ApplicationController
       if @fetprofile.update_attributes(params[:fetprofile])
         format.html { 
           unless params[:button]=="continue" || params[:commit]=="continue"
-          redirect_to @fetprofile, notice: 'Fetprofile was successfully updated.' 
+            
+          redirect_to @fetprofile, notice: 'profile was successfully updated.' 
           else
-          redirect_to edit_fetprofile_path(@fetprofile), notice: 'Fetprofile was successfully updated.'
+            @memberships=@fetprofile.memberships.order(:typ)
+            @memberships<< Membership.new
+            @memberships<< Membership.new
+            @memberships<< Membership.new
+            render action: "edit", notice: 'profile was successfully updated.'
           end
         }
         format.json { head :no_content }

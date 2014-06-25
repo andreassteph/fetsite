@@ -22,8 +22,11 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen/1.json
   def show
     @themengruppe = Themengruppe.find(params[:id])
+    if can? :showdraft , Thema
     @themen = @themengruppe.themen.order(:priority).reverse
- 
+      else
+    @themen = @themengruppe.themen.where(:isdraft=>false).order(:priority).reverse
+    end
     @toolbar_elements = []
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.manage"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
 

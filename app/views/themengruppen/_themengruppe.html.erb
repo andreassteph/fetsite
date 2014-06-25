@@ -26,7 +26,7 @@
   <div class="span6">
     <!--<b><%= I18n.t("themengruppe.themen") %></b>
     --><ul>
-      <% themengruppe.themen.order(:priority).reverse.each do |t| %>
+      <% themengruppe.themen.where(" (NOT hidelink) and ( NOT isdraft) ").order(:priority).reverse.each do |t| %>
       <li>
 	<%= render t %>
       </li>

@@ -19,6 +19,8 @@ de:
     created: "Thema erfolgreich erstellt"
     updated: "Thema erfolgreich gespeichert"
     sure: "Sicher, dass Sie dieses Thema löschen möchten?"
+    isdraft: "Entwurf"
+    outdated: "Veraltete Information"
   frage:
     add: "Frage hinzufügen"
     edit: "Frage bearbeiten"
@@ -33,6 +35,9 @@ de:
         title: "Themen Überschrift"
         text: "Text"
         themengruppe: "Gruppe"
+        isdraft: "Entwurf"
+        hideattachment: "Anhangtabelle ausblenden"
+        hidelink: "Thema in Überblick nicht anzeigen"
       themengruppe:
         title: "Überschrift"
         priority: "Sortierung"

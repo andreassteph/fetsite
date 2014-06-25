@@ -26,6 +26,12 @@ end
    version :thumb_small do
      process :resize_to_fill => [32, 32]
    end
+  version :thumb_big do
+    process :resize_to_fill => [200,200]
+  end
+  version :resized do
+    process :resize_to_fit => [1024,1024]
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url

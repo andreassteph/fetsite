@@ -33,8 +33,10 @@
   </div> 
 </div>
 <% unless I18n.locale == :de %>
-@thema.text
-<% end %>
+<% I18n.with_locale(:de) do %>
+<%= raw(@thema.text) %>
+<% end %><% end %>
+
   <%= f.actions do %>
   <%= f.action :submit, :as => :button, :label=> I18n.t("thema.save" ) %> 
   <%= f.action :submit, :as => :button, :label=> I18n.t("thema.savecont"), :button_html=>{:value=>"continue"} %> 

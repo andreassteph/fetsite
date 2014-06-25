@@ -2,10 +2,10 @@
   <h2><%= small.title %> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %></h2>
 </a>
 <% if small.is_outdated? %>
-<div style="background:red; width:100%"> Outdated </div>
+<div class="sticker sticker-red"> <%= I18n.t("thema.outdated") %> </div>
 <% end %>
 <% if small.isdraft %>
-<div style="background:yellow; width:100%"> isdraft </div>
+<div class="sticker sticker-yellow"><%= I18n.t("thema.isdraft") %>  </div>
 
 <% end %>
 <%= raw(small.text) %>
@@ -19,8 +19,9 @@
   <%= raw(frage.text) %>
 </p>
 <% end %>
-
+<% unless small.hideattachment %>
 <%= render partial: "themen/attachment_list", object: small.attachments, locals:{editor: false} unless small.attachments.empty? %>
+<% end %>
 <br/>
 
 

@@ -38,7 +38,7 @@ class Ability
     can [:show, :index], Lva
     can [:show,:index], Gallery
     can [:show, :index,:faqs], Themengruppe
-    can [:show], Thema
+    can [:show], Thema, :isdraft=>false
     can [:create], Beispiel
     can [:show, :index], Fetprofile
     can [:show, :index],Gremium
@@ -53,7 +53,7 @@ class Ability
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can :manage,:all
       can :manage, Modulgruppe
-
+      can :showdraft , Thema
       can [:show,:index], Calendar
       can  [:edit, :update,:new,:create,:verwalten], Calendar
       can  [:edit, :update,:new,:create,:verwalten], Calentry
