@@ -95,7 +95,7 @@ Fetsite::Application.routes.draw do
       resources :fragen, :only =>[:new, :edit, :update, :destroy, :create]
       
 
-      
+        resources :neuigkeiten, :only => [:show]      
       resources :rubriken do
         collection do 
           get 'verwalten' , :action => :alle_verwalten
