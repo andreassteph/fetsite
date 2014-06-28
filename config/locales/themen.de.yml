@@ -12,6 +12,7 @@ de:
   thema:
     add: "Thema hinzufügen"
     edit: "Thema bearbeiten"
+    show: "Thema anzeigen"
     remove: "Thema löschen"
     manage: "Thema verwalten"
     save: "Thema speichern"

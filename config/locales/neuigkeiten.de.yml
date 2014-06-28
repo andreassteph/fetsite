@@ -3,9 +3,13 @@ de:
 # -------- Interne Strings ---------
   neuigkeit:
     publish: "Neuigkeit veröffentlichen"
+    publish_sure: "Achtung! Das Veröffentlichen sollte nicht mehr rückgängiggemacht werden. Die Neuigkeit ist für die Öffentlichkeit sichtbar! Bist du sicher, dass du die Nachricht veröffentlichen willst?"
     publishfb: "Neuigkeit auf Facebook veröffentlichen"
+    publishfb_sure: "Sicher, dass diese Neuigkeit auf Facebook veröffentlicht werden soll? Diese Aktion kann nicht rückgängig gemacht werden!"
     republish: "Neuigkeit erneut veröffentlichen"
     unpublish: "Veröffentlichung rückgängig"
+    unpublish_sure: "Veröffentlichen rückgängig machen? Dieser Vorgang beeinflusst nicht die Veröffentlichung auf Facebook"
+    edit: "Artikel bearbeiten"
     new:
       title: "Neuer Artikel"
   rubrik:

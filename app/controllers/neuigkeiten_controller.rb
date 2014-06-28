@@ -36,7 +36,7 @@ class NeuigkeitenController < ApplicationController
     if params[:calentry_id].nil?
       ce = Calentry.new(:start=>Time.now, :ende=>1.hour.from_now, :typ=>1, :calendar=>@neuigkeit.rubrik.calendar)
     else
-      ce=Calentry.find(params[:calentry_id])
+      ce = Calentry.find(params[:calentry_id])
     end
     @calentry=ce 
     ce.object=@neuigkeit
@@ -148,10 +148,10 @@ private
   def load_toolbar_elements
     @neuigkeit=Neuigkeit.find(params[:id])
     @toolbar_elements=[]
-    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:publish, @neuigkeit) && !@neuigkeit.published?
-    @toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publish')+" to facebook",:path => publish_to_facebook_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:publish, @neuigkeit)
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.publish_sure') } if can?(:publish, @neuigkeit) && !@neuigkeit.published?
+    @toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfb'),:path => publish_to_facebook_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfb_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
 
-    @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:unpublish, @neuigkeit) && @neuigkeit.published?
+    @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.unpublish_sure') } if can?(:unpublish, @neuigkeit) && @neuigkeit.published?
   
 
   @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik

@@ -1,7 +1,7 @@
 
 <li>
   <%= link_to nlink_list_search.title, nlink_list_search %>
-<%= link_to "add:"+nlink_list_search.title, create_link_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit, :link_id=>nlink_list_search.id, :link_type=>nlink_list_search.class.to_s) %>
+  <%= link_to "add:"+nlink_list_search.title, create_link_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit, :link_id=>nlink_list_search.id, :link_type=>nlink_list_search.class.to_s) %>
   <div class="contentbox" >
     <% p = nlink_list_search.class.to_s.downcase.pluralize+"/nlink" %>
     <%= render :partial=>p, :object=>nlink_list_search %>

@@ -17,3 +17,19 @@ plugins:
   - heading
 heading_clear_tag: p
 width: "100%"
+formats:
+  boldred: {inline: "b", styles: {color: "red"}}
+setup : function(fn) {
+    // Add a custom button
+    fn.addButton('firstname', {
+        title : 'Member First Name',
+        image : 'resources/scripts/tiny_mce/themes/advanced/img/firstname.gif',
+        onclick : function() {
+            // Add you own code to execute something on click
+            fn.focus();
+            fn.selection.setContent('{firstname}');
+        }
+    });
+}
+
+
