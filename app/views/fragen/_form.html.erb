@@ -10,5 +10,5 @@
     <%= f.action :submit, :as => :input %>
   <% end %>
 <% end %>
-
- <%= tinymce %>
+<%= tinymce :theme => "simple", :language => "de", :plugins => ["wordcount", "paste"] %>
+ <% tinymce :compact %>

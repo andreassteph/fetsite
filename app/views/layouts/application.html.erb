@@ -10,7 +10,7 @@
  
   <%= stylesheet_link_tag "themes/"+theme_name+"/application", :media => "all" unless theme_name.empty?  %>
   <%= stylesheet_link_tag "application", :media=>"all" if theme_name.empty? %>
-  <%= theme_stylesheet_link_tag "test", :media => "all" %>
+  <% theme_stylesheet_link_tag "test", :media => "all" %>
   <% theme_stylesheet_link_tag "mod", :media=>"all" %>
  <!--   <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style.css">

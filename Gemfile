@@ -45,7 +45,7 @@ gem 'jquery-rails'
 gem 'formtastic', '~>2.2.1'
 gem 'formtastic-bootstrap', '~>2.1.3' #, :git => "git://github.com/mjbellantoni/formtastic-bootstrap.git"
 # TinyMCE
-gem "tinymce-rails" , '~>3.5.8'
+gem "tinymce-rails" , '~>4.1.0'
 
 # Internationalisierung
 #gem "globalize3"  ,'~>3.0.4'
