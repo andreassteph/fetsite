@@ -35,7 +35,7 @@
   <div class="row-fluid"> 
     <div class="span12"> 
 
-<% unless I18n.locale == :de do %>
+<% unless I18n.locale == :de  %>
   <% I18n.with_locale(:de) do %>
     <%= raw(@thema.text) %>
   <% end %>
