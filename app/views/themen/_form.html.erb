@@ -31,20 +31,34 @@
       <%= f.input :text, :as=>:tinymce_text,:label=>false, :input_html=>{:rows=>20} %>
     </div> 
   </div> 
-</div>
-<% unless I18n.locale == :de %>
-<% I18n.with_locale(:de) do %>
-<%= raw(@thema.text) %>
-<% end %><% end %>
 
-  <%= f.actions do %>
-  <%= f.action :submit, :as => :button, :label=> I18n.t("thema.save" ) %> 
-  <%= f.action :submit, :as => :button, :label=> I18n.t("thema.savecont"), :button_html=>{:value=>"continue"} %> 
-  <%= f.action :cancel, :as => :link %>
-  <% end %> 
-  <% end %><% end %>
+  <div class="row-fluid"> 
+    <div class="span12"> 
+
+<% unless I18n.locale == :de do %>
+  <% I18n.with_locale(:de) do %>
+    <%= raw(@thema.text) %>
+  <% end %>
+<% end %>
+    </div> 
+  </div> 
+
+  <div class="row-fluid"> 
+    <div class="span12"> 
+
+      <%= f.actions do %>
+      <%= f.action :submit, :as => :button, :label=> I18n.t("thema.save" ) %> 
+      <%= f.action :submit, :as => :button, :label=> I18n.t("thema.savecont"), :button_html=>{:value=>"continue"} %> 
+      <%= f.action :cancel, :as => :link %>
+      <% end %> 
+    </div> 
+  </div> 
+
+  <% end %>
+  <% end %>
   <%= tinymce %>
-  <h2>Attachments:</h2>
-  <%= render :partial => "themen/select", :object => @thema,:locals =>{ :editor => :true} %>
+</div>
+<h2>Attachments:</h2>
+<%= render :partial => "themen/select", :object => @thema,:locals =>{ :editor => :true} %>
 
 
