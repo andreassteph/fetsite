@@ -8,6 +8,14 @@ module ApplicationHelper
     current_url1({:locale=>target_locale}) .sub "/"+I18n.locale.to_s+"/", "/"+target_locale.to_s+"/"
    
   end
+  def ffi1_icon (name)
+    content_tag("i","", class: "ffi1-"+name )
+  end
+  def ffi1_list 
+    y=YAML.load_file("#{::Rails.root.to_s}/config/flatfeticon1.yml")
+    y["ffi1"]
+end
+
   def toolbar_html(elemente)
     html = ""
     limiter = " | "

@@ -21,13 +21,15 @@ class Themengruppe < ActiveRecord::Base
 
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   
-  scope :intern,-> {where("NOT public")}
+  scope :intern,-> {where(:public=>false)}
   scope :public,-> {where(:public=>true)}
 
   def self.find_wiki_default
     where(:wiki_default=>true).first
   end
-
+  def intern
+    ! self.public
+end
   def make_wiki_default
     Themengruppe.where(:wiki_default=>:true).update_all(:wiki_default=>:false)
     self.wiki_default=true;

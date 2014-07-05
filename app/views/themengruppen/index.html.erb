@@ -1,7 +1,10 @@
 <div class="content-wrap content-column">
   <%= render :partial=>'layouts/pretty_toolbar' %>
-  <p>  
-    <%= link_to I18n.t("themengruppe.faqs"), faqs_themengruppen_path,class: :btn %>
+  <ul class="linklist">
+    <li>
+    <%= link_to fa_icon("question")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path,class: :linkbox %>
+</li>
+</ul>
   </p>
   <ul class="unstyled linkbox-list">
     <li>  

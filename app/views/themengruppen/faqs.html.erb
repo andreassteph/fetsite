@@ -1,4 +1,4 @@
-<h1><%= I18n.t("themengruppe.faqs") %>
+<h1><%= I18n.t("themengruppe.faqs") %></h1>
 <div class="content-wrap content-column">
   <% @themengruppen.each do |tg| %>
   <div class="contentbox">
@@ -10,7 +10,7 @@
 	<ul> <% t.fragen.each do |f| %>
 	  <li>
 	    <b> <%= f.title %>?</b>
-	    <p> <%= f.text %></p>
+	    <p> <%= raw(f.text) %></p>
 	  </li>
 	  
 	  <% end %>

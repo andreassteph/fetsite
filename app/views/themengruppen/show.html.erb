@@ -1,6 +1,13 @@
 <div class="content-wrap content-column" >
-  <%= link_to fa_icon("arrow-circle-left 2x")+I18n.t("themengruppe.showall"), themengruppen_path, :class=>"linkbox" %>
-  <%= link_to fa_icon("question 2x")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
+  <ul class="linklist">
+<% if @themengruppe.public %>
+<li>  <%= link_to fa_icon("arrow-circle-left 2x")+I18n.t("themengruppe.showall"), themengruppen_path, :class=>"linkbox" %></li>
+<% else %>
+<li>  <%= link_to fa_icon("arrow-circle-left 2x")+I18n.t("common.intern"), intern_home_index_path, :class=>"linkbox" %></li>
+<% end %>
+  <li><%= link_to fa_icon("question 2x")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
+</li>
+</ul>
   <%= render :partial=>'layouts/pretty_toolbar' %>
 
   <h1><%= @themengruppe.title %></h1>
