@@ -27,12 +27,16 @@
 <h2>Themen</h2>
 <% end %>
 
-<% @themen.each do |thema| %>
 <ul class="unstyled content-list" style="max-width:70em">
+
+<% @themen.each do |thema| %>
+<% if can? :show, thema %>
   <li><%= link_to thema.title,thema %>
 <div class="contentbox">
       <%= render :partial=>"themen/small", :object=>thema %>
 </div>
   </li>
-</ul>
 <% end %>
+
+<% end %>
+</ul>
