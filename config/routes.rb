@@ -116,6 +116,7 @@ Fetsite::Application.routes.draw do
             get 'create_link'
             get 'find_link'
             get 'publish_to_facebook'
+            get 'mail_to_fet'
           end
         end
       end

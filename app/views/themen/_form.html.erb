@@ -57,8 +57,12 @@
   <% end %>
   <% end %>
   <%= tinymce %>
+
 </div>
+
+<%= tinymce_icon_choice %>
 <h2>Attachments:</h2>
 <%= render :partial => "themen/select", :object => @thema,:locals =>{ :editor => :true} %>
+
 
 

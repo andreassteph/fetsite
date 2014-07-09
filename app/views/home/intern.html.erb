@@ -2,9 +2,12 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span6">
-      <%= link_to "Adressliste", internlist_fetprofiles_path %>
-      <%= link_to "Admin" , admin_home_index_path if current_user.has_role?(:fetadmin) %>
-
+<ul class="linklist">
+<li>
+      <%= link_to "Adressliste", internlist_fetprofiles_path ,class: :linkbox %></li>
+ <li>     <%= link_to "Admin" , admin_home_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
+</li>
+</ul>
       <ul class="unstyled linkbox-list">
 	<li>  
 	  <% @themengruppen.each do |themengruppe| %>

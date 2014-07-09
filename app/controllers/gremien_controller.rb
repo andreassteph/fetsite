@@ -85,7 +85,17 @@ class GremienController < ApplicationController
 
     respond_to do |format|
       if @gremium.update_attributes(params[:gremium])
-        format.html { redirect_to @gremium, notice: 'Gremium was successfully updated.' }
+        format.html { 
+          unless params[:button]=="continue" || params[:commit]=="continue"
+            redirect_to @gremium, notice: 'Gremium was successfully updated.' 
+          else
+            @memberships=@gremium.memberships.order(:typ)
+            @memberships<< Membership.new
+            @memberships<< Membership.new
+            @memberships<< Membership.new
+            render action: "edit", notice: 'gremium was successfully updated.'
+
+          }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

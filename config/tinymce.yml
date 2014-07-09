@@ -27,5 +27,5 @@ toolbar:
 formats:
   boldred: {selector: "p",block: "p", classes: "mc-important"}
 setup: function(ed) {
-       ed.addButton('boldred_btn', {title:'Bold-Red',icon:"fa fa-red fa-bold", onclick:function() {ed.focus();ed.formatter.toggle('boldred'); }, onPostRender:function() {var ctrl = this; ed.on('NodeChange', function(e) {ctrl.active(e.element.formatter.match('boldred'));}); }}); 
+       ed.addButton('boldred_btn', {title:'Bold-Red',icon:"fa fa-red fa-bold", onclick:function() {ed.focus();ed.formatter.toggle('boldred'); }}); 
       }

@@ -5,9 +5,6 @@
     <%= f.input :typ, :as => :select, :collection => Gremium::TYPEN.invert %>
     <%= f.input :geschlecht, :as => :select, :collection => Gremium::GESCHLECHT.invert %>
     <%= f.input :thema, :as=> :select, :collection => Thema.all %>
- 
-
-
     <% @memberships.each do |m| %>
     <%= f.semantic_fields_for :memberships, m do |memberships_attributes| %> 
     <div class="row-fluid">
@@ -33,6 +30,9 @@
 
   <%= f.actions do %>
     <%= f.action :submit, :as => :input %>
+	<%= f.action :submit, :as => :button, :label=>I18n.t("common.savecont"), :button_html=>{value: "continue"} %>
+	<%= f.action :cancel, :as=> :link , :label=>I18n.t("common.cancel") %>
+
   <% end %>
 <% end %>
   <script>$('.datepicker').datepicker()</script>

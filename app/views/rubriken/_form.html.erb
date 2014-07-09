@@ -3,8 +3,10 @@
     <%= f.input :name %>
     <%= f.input :desc %>
     <%= f.input :prio %>
+    <%= f.input :color ,:as=>:radio,:collection=>{raw('<a class="color-1-dark">color1</a>')=>1, raw('<a class="color-2-dark">color2</a>')=>2, raw('<a class="color-3-dark">color3</a>')=>3, raw('<a class="color-4-dark">color4</a>')=>4, raw('<a class="color-5-dark">color5</a>')=>5} %>
     <%= f.input :public %>    
-  
+        <%= f.input :icon , :input_html=>{:id=>"iconfield"}%>
+    <i id="icon"></i>
 
   <% end %>
 
@@ -12,3 +14,13 @@
     <%= f.action :submit, :as => :input %>
   <% end %>
 <% end %>
+<script>
+$(document).ready(function(){
+$('#iconfield').on('change', function(){$('#icon').attr("class",$(this).val())})});
+</script>
+
+   
+   <% ffi1_list.each do |i| %>
+ <a onclick="$('#iconfield').val('ffi1-<%= i %>');$('#icon').attr('class','ffi1-<%= i %>')" href="#"><%=ffi1_icon(i)%>
+</a>
+<% end %> 

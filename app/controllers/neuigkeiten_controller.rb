@@ -75,6 +75,17 @@ class NeuigkeitenController < ApplicationController
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit auf Facebook gepostet'
     end
   end
+  def mail_to_fet
+    @neuigkeit = Neuigkeit.find(params[:id])
+    authorize! :publish, @neuigkeit
+    unless @neuigkeit.published?
+      redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie als Mail zu versenden.'
+    else      
+      NewsMailer.neuigkeit_mail("andis@fet.at", params[:id]).deliver
+      redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit versendet'
+  
+    end  
+  end
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
 
@@ -150,6 +161,8 @@ private
     @toolbar_elements=[]
     @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.publish_sure') } if can?(:publish, @neuigkeit) && !@neuigkeit.published?
     @toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfb'),:path => publish_to_facebook_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfb_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
+
+@toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfetmail'),:path => mail_to_fet_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfetmail_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
 
     @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.unpublish_sure') } if can?(:unpublish, @neuigkeit) && @neuigkeit.published?
   

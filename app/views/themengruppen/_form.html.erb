@@ -5,7 +5,8 @@
     <%= f.input :public %>
     <%= f.input :picture, :as => :file %>
     <%= f.input :text %>
-
+    <%= f.input :icon , :input_html=>{:id=>"iconfield"}%>
+    <i id="icon"></i>
   <% end %>
 
   <%= f.actions do %>
@@ -13,3 +14,13 @@
 	<%= f.action :cancel,:label => I18n.t("common.back"), :as => :link %>
   <% end %>
 <% end %>
+<script>
+$(document).ready(function(){
+$('#iconfield').on('change', function(){$('#icon').attr("class",$(this).val())})});
+</script>
+
+   
+   <% ffi1_list.each do |i| %>
+ <a onclick="$('#iconfield').val('ffi1-<%= i %>');$('#icon').attr('class','ffi1-<%= i %>')" href="#"><%=ffi1_icon(i)%>
+</a>
+<% end %> 

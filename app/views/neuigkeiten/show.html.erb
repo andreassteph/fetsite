@@ -3,7 +3,7 @@
 <p id="notice"><%= notice %></p>
 <div class="contentbox">
 <span>
-  <%= @neuigkeit.rubrik.name %>
+  <%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
 </span>
 <span class="pull-right">
   <%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 

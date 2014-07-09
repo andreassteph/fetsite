@@ -57,6 +57,7 @@ class ThemenController < ApplicationController
   # POST /themen.json
   def create
     @thema = Thema.new(params[:thema])
+    @themen = @thema.themengruppe.themen.order(:priority).reverse
        
     respond_to do |format|
       if @thema.save
