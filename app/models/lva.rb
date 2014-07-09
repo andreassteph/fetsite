@@ -40,7 +40,7 @@ class Lva < ActiveRecord::Base
   has_paper_trail :ignore=>[:desc, :pruefungsinformation]# Versionsverfolgung
   translates :desc,:pruefungsinformation,  :fallbacks_for_empty_translations => true, :versioning=>true
 
-  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ, :lecturer_ids
+  attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ, :lecturer_ids, :forumlink
 
   has_and_belongs_to_many :modul,:uniq=>true # Gehört zu einem Modul
   has_and_belongs_to_many :semester

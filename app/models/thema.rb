@@ -23,10 +23,11 @@ include Rails.application.routes.url_helpers
   validates :text, :presence => true
 
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
-  scope :outdated, -> {where("updated_at < ?", 2.month.ago)}
+  scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",2.month.ago).where("thema_translations.locale"=>I18n.t.locale)
+}
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   def is_outdated?
-    updated_at < 1.month.ago
+    translation.updated_at < 2.month.ago
   end
   def is_wiki?
      !(wikiname.nil? || wikiname.empty?)

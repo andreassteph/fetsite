@@ -4,7 +4,10 @@
   <div class="row-fluid">
     <div class="span8">
       <h1><%= @lva.full_name %></h1>
-      
+      <ul class="linklist">
+	<li><%= link_to ffi1_icon("live2")+"ET-Forum",@lva.forumlink, class: :linkbox unless @lva.forumlink.nil? or @lva.forumlink.empty?%></li>
+      </ul>
+
       <h2>Prüfungsinformation</h2>
       <div class="">
 	<%= @lva.pruefungsinformation.to_s.html_safe %>
