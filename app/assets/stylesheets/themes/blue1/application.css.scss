@@ -24,7 +24,14 @@ $color_schema_3: #FF0021;
 $color_schema_4: #E8820C;
 $color_schema_5: #FFF30D;
 
-$color_prim: #006599; //071672;
+$color_schema_1_dark: darken($color_schema_1, 10%);
+$color_schema_2_dark: darken($color_schema_2, 10%);
+$color_schema_3_dark: darken($color_schema_3, 10%);
+$color_schema_4_dark: darken($color_schema_4, 10%);
+$color_schema_5_dark: darken($color_schema_5, 10%);
+
+$color_prim: $color_schema_1_dark; // #006599; //071672;
+
 $color_prim_light: lighten($color_prim ,10%);
 $color_prim_vlight: lighten($color_prim ,30%);
 $color_prim_dark: darken($color_prim ,10%);
@@ -33,6 +40,7 @@ $color_prim_vdark: darken($color_prim ,30%);
 $color_cont: $color_schema_3;
 $color_cont_light:lighten($color_cont ,10%);
 $linkColor: $color_prim;
+$linkColorHover: $color_schema_1;
 $white: #FFFFFF;
 
 $bodyBackground: #EEE;
@@ -43,7 +51,7 @@ $bodyBackground: #EEE;
 $navbarBackground: #EEE;//$color_prim;
 $navbarText: $color_prim; 
 $navbarLinkColor: $color_prim;
-$navbarLinkColorHover: $color_prim_dark;
+$navbarLinkColorHover: $color_schema_1;
 $dropdownLinkColor: black;
 $navbar-default-brand-color: black;
 $navbarBrandColor:black;

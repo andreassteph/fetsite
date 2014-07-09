@@ -11,10 +11,22 @@ module ApplicationHelper
   def ffi1_icon (name)
     content_tag("i","", class: "ffi1-"+name )
   end
+  def ff_icon (name)
+    content_tag("i","", class: name )
+  end
+
   def ffi1_list 
     y=YAML.load_file("#{::Rails.root.to_s}/config/flatfeticon1.yml")
     y["ffi1"]
 end
+
+  def tinymce_icon_choice 
+    s=""
+    ffi1_list.each do |i| 
+      s=s+'<a onclick="insertIcon_ffi1(\'ffi1-'+i+'\')">'+ffi1_icon(i)+'</a>' 
+    end
+    raw(s)
+  end
 
   def toolbar_html(elemente)
     html = ""

@@ -63,7 +63,14 @@ class Ability
       can [:delete],Calentry
       can :doadmin, User
     end
- 
+    unless user.has_role?("fetadmin")
+      cannot :delete, Modulgruppe
+      cannot :delete, Rubrik
+      cannot :delete, Themengruppe
+      cannot :delete, Fetprofile
+      cannot :delete, Studium
+      cannot :delete, Modul
+     end
     # Rechteverwaltung fuer Neuigkeiten
 
 #    can :write, Neuigkeit if user.has_role?("newsmoderator", Neuigkeit.rubrik)

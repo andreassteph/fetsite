@@ -6,9 +6,6 @@
  
      
 <p>
-<% ffi1_list.each do |i| %>
-<%= ffi1_icon i %>
-<% end %>
 <%= ffi1_icon "academic" %><%= link_to I18n.t('home.login'), user_omniauth_authorize_path(:ldap) %>
 </p>
   <div class="alert">

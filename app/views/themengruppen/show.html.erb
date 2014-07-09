@@ -10,7 +10,9 @@
 </ul>
   <%= render :partial=>'layouts/pretty_toolbar' %>
 
-  <h1><%= @themengruppe.title %></h1>
+  <h1>	<% unless @themengruppe.icon.nil? or @themengruppe.icon.empty? %>      <i class="<%= @themengruppe.icon %>" style="font-size:1.5em;margin:0"></i>
+      <% end %>
+<%= @themengruppe.title %></h1>
 
   <p>
     <%= @themengruppe.text %>
