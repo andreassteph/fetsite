@@ -94,7 +94,7 @@ class GremienController < ApplicationController
             @memberships<< Membership.new
             @memberships<< Membership.new
             render action: "edit", notice: 'gremium was successfully updated.'
-
+          end
           }
         format.json { head :no_content }
       else

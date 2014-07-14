@@ -31,7 +31,7 @@
 	  
 	  <% thema.nlinks.each do |l| %> 
 	  <li>
-	    <%= render l.neuigkeit %>
+	    <%= render l.neuigkeit if can? :show, l.neuigkeit%>
 	  </li>
 	  <% end %>
 
