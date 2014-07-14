@@ -27,7 +27,11 @@ include Rails.application.routes.url_helpers
 }
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   def is_outdated?
+   unless translation.try(:updated_at).nil?
     translation.updated_at < 2.month.ago
+   else
+     true
+   end
   end
   def is_wiki?
      !(wikiname.nil? || wikiname.empty?)

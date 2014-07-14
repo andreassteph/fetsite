@@ -17,6 +17,19 @@
  * require 'neuigkeiten'
  */
 // Colorshema #0A64A4
+$color_schema_1: #006599;
+$color_schema_2: #630CE8;
+$color_schema_3: #FF0021;
+$color_schema_4: #E8820C;
+$color_schema_5: #FFF30D;
+
+$color_schema_1_dark: darken($color_schema_1, 10%);
+$color_schema_2_dark: darken($color_schema_2, 10%);
+$color_schema_3_dark: darken($color_schema_3, 10%);
+$color_schema_4_dark: darken($color_schema_4, 10%);
+$color_schema_5_dark: darken($color_schema_5, 10%);
+
+
 $color_prim: #7070a0;
 $color_prim_light: lighten($color_prim ,10%);
 $color_prim_vlight: lighten($color_prim ,30%);
