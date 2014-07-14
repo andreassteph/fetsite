@@ -2,7 +2,7 @@ class GremienController < ApplicationController
   # GET /gremien
   # GET /gremien.json
   load_and_authorize_resource
- before_filter {@toolbar_elements=[]}
+  before_filter {@toolbar_elements=[]}
   def verwalten
     @gremien = Gremium.all
     @gremientabs=Gremium.tabs
@@ -94,7 +94,7 @@ class GremienController < ApplicationController
             @memberships<< Membership.new
             @memberships<< Membership.new
             render action: "edit", notice: 'gremium was successfully updated.'
-
+          end
           }
         format.json { head :no_content }
       else
@@ -105,7 +105,8 @@ class GremienController < ApplicationController
   end
 
   # DELETE /gremien/1
-  # DELETE /gremien/1.json
+  # 
+  #
   def destroy
     @gremium = Gremium.find(params[:id])
     @gremium.destroy

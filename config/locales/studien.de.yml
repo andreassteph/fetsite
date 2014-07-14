@@ -18,6 +18,7 @@ de:
   lva:
     add: "Lva hinzufügen"
     addrem: "Lva hinzufügen/entfernen"
+    editlvas: "Lvas bearbeiten"
     list: "Alle Lvas"
   modulgruppe:
     typ: "Typ"
