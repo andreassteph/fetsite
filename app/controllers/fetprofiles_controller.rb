@@ -7,7 +7,7 @@ class FetprofilesController < ApplicationController
     
     @fetprofiles = Fetprofile.active.order(:vorname,:nachname)
     @fetprofiles = Fetprofile.order(:vorname,:nachname) if params[:filter]== "all"
-    @fetprofiles = Fetprofile.where(:active=>false).order(:vorname,:nachname) if params[:filter]== "notactive"
+    @fetprofiles = Fetprofile.where(:active=>false).order(:nachname,:vorname) if params[:filter]== "notactive"
 
     @gremientabs = Gremium.tabs
      @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('profile.new_profile'),:path => new_fetprofile_path(@fetprofile) } if can? :new, @fetprofile
