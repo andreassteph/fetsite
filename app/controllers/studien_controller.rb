@@ -60,7 +60,7 @@ class StudienController < ApplicationController
 
   def edit_lvas
     @studium = Studium.find(params[:id])
-    @lvas=@studium.lvas
+    @lvas=@studium.lvas.uniq
     @semester=@studium.semester 
     @toolbar_elements=[{:text => I18n.t('studien.anzeigen') , :path => url_for(@studium) }]
     @toolbar_elements<<{:text =>I18n.t('studien.allestudien'),:path=>studien_path(@studium)}
