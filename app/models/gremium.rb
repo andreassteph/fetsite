@@ -20,8 +20,8 @@ class Gremium < ActiveRecord::Base
   TEXT={11=>I18n.t("gremium.filter.berufung.text"),12=>I18n.t("gremium.filter.habil.text")}
 
   attr_accessible :desc, :name, :typ, :geschlecht,:thema_id, :memberships_attributes
-  has_many :memberships # Mitgliedschaften bei dem Gremium
-  has_many :nlinks, as: :link
+  has_many :memberships, dependent: :destroy # Mitgliedschaften bei dem Gremium
+  has_many :nlinks, as: :link, dependent: :destroy
   scope :search, ->(query) {where("gremien.name like ? or gremien.desc like ?", "%#{query}%", "%#{query}%")}
 
   belongs_to :thema # Gehört zu einem Thema
