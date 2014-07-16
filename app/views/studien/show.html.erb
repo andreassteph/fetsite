@@ -3,31 +3,29 @@
   <p id="notice"><%= notice %></p>
   <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
   <div>
-  <p>
+    <p>
       <div class="pull-right">
 	<%= link_to I18n.t("studien.ansicht.semester"), studium_path(@studium, :ansicht=>"semesteransicht"), :class=>"btn" unless params[:ansicht]=='semesteransicht' %>
 	<%= link_to I18n.t("studien.ansicht.modulgruppe"), studium_path(@studium, :ansicht=>"modulgruppenansicht"), :class=>"btn" unless params[:ansicht]=='modulgruppenansicht' %>
 	<%= link_to I18n.t("studien.ansicht.info"), studium_path(@studium, :ansicht=>"infoansicht"), :class=>"btn" unless params[:ansicht]=='infoansicht' %>
       </div>
-  </p>
+    </p>
   </div>
   <% if params[:ansicht]=='modulgruppenansicht' %>
   <%= render partial: 'modulgruppenansicht' %>
   <% else if params[:ansicht]=='infoansicht' %>
-    <%= render partial: 'infoansicht' %>
+  <%= render partial: 'infoansicht' %>
   <% else if params[:ansicht]== 'qualifikationsprofil' %>
-   <h2>Qualifikationsprofil</h2>
-<p>
-<%= raw(@studium.qualifikation) %>
-</p>
-    <% else %>
-    <%= render partial: 'semesteransicht' %>
- 
+  <h2>Qualifikationsprofil</h2>
+  <p>
+    <%= raw(@studium.qualifikation) %>
+  </p>
+  <% else %>
+  <%= render partial: 'semesteransicht' %>
+  <% end %> 
+  <% end %> <% end %>
 
-    
-
-    <% end %>  <% end %>  <% end %>
-
-  <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %><br>
+  <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %>
+  <br>
   <%= render 'layouts/pretty_toolbar' %>
 </div>
