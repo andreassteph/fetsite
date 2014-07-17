@@ -46,6 +46,7 @@ class Ability
       cannot :delete, Fetprofile
       cannot :delete, Studium
       cannot :delete, Modul
+      cannot :delete ,Gremium
      end
     # Rechteverwaltung fuer Neuigkeiten
 

@@ -30,7 +30,7 @@ include Rails.application.routes.url_helpers
    unless translation.try(:updated_at).nil?
     translation.updated_at < 2.month.ago
    else
-     true
+     false
    end
   end
   def is_wiki?

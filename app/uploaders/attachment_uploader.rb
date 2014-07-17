@@ -19,15 +19,39 @@ end
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  def cover 
+    manipulate! do |frame, index|
+      index== 0 ? frame.convert(:jpg) : nil
+      
+    end
+  end 
+  version :thumb do
+    process :cover
+    process :resize_to_fill => [64, 64]
 
-   version :thumb do
-     process :resize_to_fill => [64, 64]
-   end
-   version :thumb_small do
-     process :resize_to_fill => [32, 32]
-   end
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.jpg'
+    end 
+  end
+  version :cover do
+    process :cover
+    process :resize_to_fit => [64,64]
+    process :convert => :jpg
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.jpg'
+    end
+  end
+  version :thumb_small do
+    process :resize_to_fill => [32, 32]
+  end
   version :thumb_big do
-    process :resize_to_fill => [200,200]
+    process :cover
+    process :resize_to_fill => [200, 200]
+    process :convert => :jpg
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.jpg'
+    end 
+
   end
   version :resized do
     process :resize_to_fit => [1024,1024]
