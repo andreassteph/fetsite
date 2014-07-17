@@ -44,7 +44,7 @@ class BeispieleController < ApplicationController
     params.delete(:lva_id)
     @beispiel = Beispiel.new(params[:beispiel])
     @beispiel.lva=@lva
- logger.info "New Beispiel: #{params.inspect}"
+    logger.info "New Beispiel: #{params.inspect}"
  
 #    @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
       @beispiel.name=@beispiel.beispieldatei.filename

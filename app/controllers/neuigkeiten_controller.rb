@@ -70,7 +70,7 @@ class NeuigkeitenController < ApplicationController
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie auf Facebook zu posten.'
     else
       page=YAML.load_file("#{::Rails.root.to_s}/tmp/page.yml")
-      page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html")
+      page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html", :picture=>@neuigkeit.picture.url)
      
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit auf Facebook gepostet'
     end
@@ -81,7 +81,7 @@ class NeuigkeitenController < ApplicationController
     unless @neuigkeit.published?
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie als Mail zu versenden.'
     else      
-      NewsMailer.neuigkeit_mail("andis@fet.at", params[:id]).deliver
+      NewsMailer.neuigkeit_mail(current_user.email, params[:id]).deliver
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit versendet'
   
     end  
