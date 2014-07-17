@@ -4,6 +4,8 @@ class AttachmentUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
+#  include CarrierWave::Uploader::Processing
+
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 def root
@@ -25,15 +27,16 @@ end
       
     end
   end 
-  version :thumb do
-    process :cover
+  version :thumb ,:if=>:image? do
     process :resize_to_fill => [64, 64]
+    process :convert => :jpg
 
     def full_filename(for_file)
       super.chomp(File.extname(super)) + '.jpg'
     end 
   end
-  version :cover do
+
+  version :cover  , :if=>:image? do
     process :cover
     process :resize_to_fit => [64,64]
     process :convert => :jpg
@@ -41,11 +44,11 @@ end
       super.chomp(File.extname(super)) + '.jpg'
     end
   end
-  version :thumb_small do
+  version :thumb_small , :if=>:image? do
     process :resize_to_fill => [32, 32]
   end
-  version :thumb_big do
-    process :cover
+  version :thumb_big , :if=>:image? do
+
     process :resize_to_fill => [200, 200]
     process :convert => :jpg
     def full_filename(for_file)
@@ -53,7 +56,7 @@ end
     end 
 
   end
-  version :resized do
+  version :resized, :if=>:image? do
     process :resize_to_fit => [1024,1024]
   end
 
@@ -88,5 +91,8 @@ end
   # def filename
   #   "something.jpg" if original_filename
   # end
-
+protected
+  def image?(file)
+    %w(jpg png jpeg).include?(File.extname(full_filename(file)))
+  end
 end
