@@ -98,3 +98,4 @@ gem "seed_dump", "~> 0.5.3"
 #gem "themes_for_rails", :git=> 'git://github.com/lucasefe/themes_for_rails.git'
 gem 'themes_for_rails'
 
+gem 'rubyzip'

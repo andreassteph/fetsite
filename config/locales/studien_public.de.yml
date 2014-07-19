@@ -16,6 +16,7 @@ de:
     beschreibung: "Keine Beschreibung vorhanden"
   beispiel:
     add: "Beispiel hinzufügen"
+    zip: "Alle Beispiele als ZIP Datei"
   lecturers:
     lecturers: "Vortragende"
   file:
@@ -23,3 +24,5 @@ de:
   semester:
     ohne: "Ohne Semesterzuordnung"
     semester: "Semester"
+  home:
+    newexamples: "Neueste Beispiele"

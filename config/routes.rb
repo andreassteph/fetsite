@@ -65,6 +65,7 @@ Fetsite::Application.routes.draw do
       resources :beispiele#, :only=>[:show,:index,:create]
       resources :lvas  do 
         member do
+          get 'beispiel_sammlung'
           get 'compare_tiss'
           get 'load_tiss'
         end

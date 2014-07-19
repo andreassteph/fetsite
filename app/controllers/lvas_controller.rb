@@ -1,5 +1,6 @@
 class LvasController < ApplicationController
   # GET /lvas
+  require 'zip'
   before_filter :load_toolbar, :only => [:show]
   load_and_authorize_resource
   def index
@@ -9,7 +10,34 @@ class LvasController < ApplicationController
          {:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path},
          {:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}]
   end
-
+  def beispiel_sammlung
+    @lva = Lva.find_by_id(params[:id])
+    #Attachment name
+    filename = 'beispiel_sammlung_' + @lva.lvanr.to_s + '_' + l(Date.today).to_s + '.zip'
+    temp_file = Tempfile.new(filename) 
+    begin
+      #This is the tricky part
+      #Initialize the temp file as a zip file
+      Zip::OutputStream.open(temp_file) { |zos| }
+      #Add files to the zip file as usual
+      Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
+        #Put files in here
+        i=1
+        @lva.beispiele.each do |bsp|
+          zip.add(i.to_s + '_' + File.basename(bsp.beispieldatei.current_path), bsp.beispieldatei.current_path)
+          i = i + 1
+        end
+        
+      end
+      #Read the binary data from the file
+      zip_data = File.read(temp_file.path)
+      send_data(zip_data, :type => 'application/zip', :filename => filename)
+    ensure
+      #Close and delete the temp file
+      temp_file.close
+      temp_file.unlink
+    end
+  end
   # GET /lvas/1
 
   def show
