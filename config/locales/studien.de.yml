@@ -20,6 +20,8 @@ de:
     addrem: "Lva hinzufügen/entfernen"
     editlvas: "Lvas bearbeiten"
     list: "Alle Lvas"
+    delete: "LVA löschen"
+    deletesure: "Willst du sicher die ganze LVA löschen?"
   modulgruppe:
     typ: "Typ"
     edit: "Modulgruppe bearbeiten"

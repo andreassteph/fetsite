@@ -62,7 +62,12 @@ Fetsite::Application.routes.draw do
         end
         
       end
-      resources :beispiele#, :only=>[:show,:index,:create]
+      resources :beispiele do #, :only=>[:show,:index,:create]
+        member do
+          get 'like'
+          get 'dislike'
+        end
+      end
       resources :lvas  do 
         member do
           get 'beispiel_sammlung'

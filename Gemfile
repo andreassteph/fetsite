@@ -99,3 +99,5 @@ gem "seed_dump", "~> 0.5.3"
 gem 'themes_for_rails'
 
 gem 'rubyzip'
+
+gem 'acts_as_votable'

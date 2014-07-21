@@ -1,13 +1,32 @@
 
 <div class="row-fluid contentbox">
-  <div class="span5">
-<b><%=link_to beispiel.name, beispiel.beispieldatei.url%></b>  
-<%= link_to "edit", edit_beispiel_path(beispiel)%>
-<%= link_to "delete",  beispiel_path(beispiel), :method=>:delete, :data=>{:confirm=>I18n.t('beispiel.sure')}%></br>
+  <div class="span8">
 
-<%= I18n.t("file.size") + ": " + (beispiel.beispieldatei.size/1024.0).round(2).to_s  %>KiB
+<b><%=link_to ffi1_icon("note20")+" " + beispiel.name, beispiel.beispieldatei.url, title: beispiel.desc  %></b>
+
+<%= I18n.t("file.size") + ": " + (beispiel.beispieldatei.size/1024.0).round(2).to_s  %>KiB <br>  
+<span class="linklist"><%= 
+if can?(:like, beispiel)
+link_to ffi1_icon("like3")+" like" + "("+beispiel.get_likes.size.to_s+")", like_beispiel_path(beispiel),title: "liked by " + ((current_user.liked?(beispiel)) ? ("you and " + ((beispiel.get_likes.size - 1).to_s + " others")) :  beispiel.get_likes.size.to_s)  
+else
+"liked by " + beispiel.get_likes.size.to_s
+end
+%>
+
+<%= 
+if can?(:dislike, beispiel)
+link_to ffi1_icon("dislike")+" dislike" + "("+beispiel.get_dislikes.size.to_s+")", dislike_beispiel_path(beispiel),title:"disliked by " + ((current_user.disliked?(beispiel)) ? ("you and " + ((beispiel.get_dislikes.size - 1).to_s + " others")) :  beispiel.get_dislikes.size.to_s) 
+else
+"disliked by " + beispiel.get_dislikes.size.to_s
+end
+
+%>
+
+<%= link_to ff_icon("icon-pencil")+" edit", edit_beispiel_path(beispiel) if can? :edit, beispiel%>
+<%= link_to ff_icon("icon-remove")+" delete",  beispiel_path(beispiel), :method=>:delete, :data=>{:confirm=>I18n.t('beispiel.sure')} if can? :delete, beispiel %></br>
+</span>
 </div>
-<div class="span7">
+<div class="span4">
 <%= beispiel.desc %>
 </div>
 </div>

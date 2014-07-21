@@ -32,9 +32,9 @@ a.linkbox, div.contentbox
 	padding:5px;
 	border-radius:$box-border-radius;
 	border: $box-border;
-	background: $box-background;
-	
+	background: $box-background;	
 }
+
 
 a.linkbox:hover
 {
@@ -164,3 +164,12 @@ ul.linklist li a i{
 vertical-align:middle;
 margin-right:6px;
 font-size:2em;}
+span.linklist a {
+	padding:5px;
+	border-radius:$box-border-radius;
+	border: $box-border;
+	background: $box-background;
+	display:block;
+	float:left;	
+
+}
