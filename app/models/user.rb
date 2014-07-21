@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable,:omniauthable, :omniauth_providers => [:facebook,:ldap]
-
+  acts_as_voter
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
 belongs_to :fetprofile
@@ -51,27 +51,19 @@ logger.debug auth.to_s
     
     user
   end
- def self.find_for_ldap_oauth(auth,signed_in_resource=nil)
-  # debug "sdfg"
+  def self.find_for_ldap_oauth(auth,signed_in_resource=nil)
+    # debug "sdfg"
 
-   user= User.where(:provider=>auth.provider,:uid=>auth.extra.raw_info.uid).first
-   unless user
-     user= User.create(name:auth.extra.raw_info.uid.first,
-                       provider:auth.provider,
-                       uid:auth.extra.raw_info.uid.first,
-                       email:auth.extra.raw_info.mail.first.to_s,
-                       password:Devise.friendly_token[0,20])
-    user.add_role("fetuser")
-logger.debug(auth.extra.raw_info.to_s)
-   end
-   unless user
-    # user=User.create(name:"fail",
-    #                  provider:"ldap",
-    #                  uid:"sdf",
-    #                  email:"sdf@fet.at",
-    #                  password:Devise.friendly_token[0,20])
-   
-   end
+    user= User.where(:provider=>auth.provider,:uid=>auth.extra.raw_info.uid).first
+    unless user
+      user= User.create(name:auth.extra.raw_info.uid.first,
+                        provider:auth.provider,
+                        uid:auth.extra.raw_info.uid.first,
+                        email:auth.extra.raw_info.mail.first.to_s,
+                        password:Devise.friendly_token[0,20])
+      user.add_role("fetuser")
+      logger.debug(auth.extra.raw_info.to_s)
+    end
    user
  end
 
