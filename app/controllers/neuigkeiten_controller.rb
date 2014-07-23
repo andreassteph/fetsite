@@ -69,7 +69,7 @@ class NeuigkeitenController < ApplicationController
     unless @neuigkeit.published?
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie auf Facebook zu posten.'
     else
-      page=YAML.load_file("#{::Rails.root.to_s}/tmp/page.yml")
+      page=YAML.load_file("#{::Rails.root.to_s}/config/page.yml")
       page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html", :picture=>@neuigkeit.picture.url)
      
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit auf Facebook gepostet'

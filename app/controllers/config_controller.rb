@@ -4,4 +4,6 @@ class ConfigController < ApplicationController
     
   end
 
+  def choose_contact_topics
+  end
 end

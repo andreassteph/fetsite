@@ -1,29 +1,38 @@
-<h1><%= @themengruppe.title %></h1>
-
+<h1><% unless @themengruppe.icon.nil? or @themengruppe.icon.empty? %>      <i class="<%= @themengruppe.icon %>" style="font-size:1.5em;margin:0"></i>
+      <% end %><%= @themengruppe.title %></h1>
 <p>
   <%= @themengruppe.text %>
 </p>
 
 <div class="accordion" id="accordion1">
   <% @themen.each do |thema| %>
-	  <div class="accordion-group">
-		<div class="accordion-heading">
-		  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%=thema.id%>">
-			<%= thema.title %>
-		  </a>
-		</div>
-		<div id="collapse<%=thema.id%>" class="accordion-body<%= ' collapse' unless params['thema'].to_i==thema.id %>">
-		  <div class="accordion-inner">
-	<% unless thema.gremium.nil? %>
-			<p><%= link_to "Zu dem Gremium ..." , thema.gremium %>
-			</p>
-<% end %>		
-	<%= render :partial => 'themen/small', :object => thema %>
-		
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%=thema.id%>">
+	<%= thema.title %>
+      </a>
+    </div>
+    <div id="collapse<%=thema.id%>" class="accordion-body<%= ' collapse' unless params['thema'].to_i==thema.id %>">
+      <div class="accordion-inner">
 
-		  </div>
-		</div>
-	  </div>
+	<%= render :partial => 'themen/small', :object => thema %>
+	<ul class="unstyled">
+	  <% unless thema.gremium.nil? %>
+	  <li>
+	    <%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
+	  </li>
+	  <% end %>		
+	  
+	  <% thema.nlinks.each do |l| %> 
+	  <li>
+	    <%= render l.neuigkeit if can? :show, l.neuigkeit%>
+	  </li>
+	  <% end %>
+
+	</ul>
+      </div>
+    </div>
+  </div>
   <% end %>
 </div>
 

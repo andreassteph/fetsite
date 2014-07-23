@@ -73,6 +73,7 @@ Fetsite::Application.routes.draw do
           get 'beispiel_sammlung'
           get 'compare_tiss'
           get 'load_tiss'
+          get 'verwalten'
         end
         resources :beispiele#, :only=>[:show,:index,:create]
 
@@ -135,7 +136,8 @@ Fetsite::Application.routes.draw do
           get 'dev'
           get 'startdev'
           get 'linksnotimplemented'
-          get 'kontakt' 
+          get 'kontakt'
+          get 'choose_contact_topics'
         end
       end
 
