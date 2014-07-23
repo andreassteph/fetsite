@@ -6,8 +6,8 @@ Verwendung: Aufruf mit
 -->
 <% toolbar_elements = !pretty_toolbar.nil? ? pretty_toolbar : @toolbar_elements %>
 <% unless toolbar_elements.nil? || toolbar_elements.empty? %>
-<span class="label"><%= I18n.t("common.actions")%></span>
-<div class="btn-group">
+<!--<span class="label"><% I18n.t("common.actions")%></span>
+--><div class="btn-group">
   <% toolbar_elements.each do |t| %>
   <% unless t[:method]==:versions %>
   <% text='<i class="'.html_safe+ t[:hicon].to_s.html_safe + '"></i>'.html_safe+t[:text] %>
