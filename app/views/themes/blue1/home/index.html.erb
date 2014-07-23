@@ -3,11 +3,18 @@
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span6">
- 
-     
-<p>
-<%= ffi1_icon "academic" %><%= link_to I18n.t('home.login'), user_omniauth_authorize_path(:ldap) %>
-</p>
+  
+  <ul class="linklist">
+    <li>
+      <%= link_to ffi1_icon("academic") + I18n.t('home.login'), user_omniauth_authorize_path(:ldap) ,class: :linkbox %>
+    </li>
+    <li>
+      <%= link_to "Entwicklungsstatus" , dev_home_index_path ,class: :linkbox %>
+    </li>
+    <li>  
+      <%= link_to "FAQS", faqs_themengruppen_path,class: :btn ,class: :linkbox %>
+    </li>
+  </ul>
   <div class="alert">
     <h2>Beta Test</h2>
     <p>Die Webseite befindet sich derzeit in einem Entwicklungsstadium,
@@ -28,9 +35,7 @@
     </p>
 
   </div>
-  <%= link_to "Entwicklungsstatus" , dev_home_index_path %>
-  <p>  
-    <%= link_to "FAQS", faqs_themengruppen_path,class: :btn %>
+  
   </p>
 
   <%= render 'beispiele' %>

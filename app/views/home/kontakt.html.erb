@@ -1,12 +1,10 @@
 <div class="content-column content-wrap">
   <h1> <%= I18n.t "kontakt.H1" %></h1>
-  <p>
-    <%= I18n.t "kontakt.text" %>    
-  </p>
-  <h2><%= I18n.t "kontakt.service" %></h2>
-  <%= raw(I18n.t( "kontakt.service_text")) %>
-  <h2><%= I18n.t "kontakt.adresse" %></h2>
-  <p><%= raw(I18n.t("kontakt.adresse_text")) %></p>
-  <p><%= raw(I18n.t ("kontakt.telefon_text")) %></p>
+<% @themen.each do |th| %>
+<%= render partial: "themen/small", object: th %>
+<% end %>
+
+
+ 
  
 </div>

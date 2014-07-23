@@ -1,7 +1,7 @@
 class LvasController < ApplicationController
   # GET /lvas
   require 'zip'
-  before_filter :load_toolbar, :only => [:show]
+  before_filter :load_toolbar, :only => [:verwalten]
   load_and_authorize_resource
   def index
     @lvas = Lva.all
@@ -43,6 +43,15 @@ class LvasController < ApplicationController
   def show
     @lva = Lva.find_by_id(params[:id])
     @beispiel=Beispiel.new
+    @toolbar_elements =[]
+    @toolbar_elements<<{:hicon=>'icon-pencil', :icon=>:pencil,:text =>I18n.t('common.manage'),:path => verwalten_lva_path(@lva)} if can? :verwalten, @lva
+    
+  end
+  def verwalten
+    @lva = Lva.find_by_id(params[:id])
+    @beispiel=Beispiel.new
+
+    render :show
   end
 
   # GET /lvas/new
