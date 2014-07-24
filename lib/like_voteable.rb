@@ -8,12 +8,20 @@ module LikeVoteable
   module InstanceMethods  
     def like
       @obj=controller_name.classify.constantize.find(params[:id])
-      @obj.liked_by current_user
+      if current_user.liked? @obj
+        @obj.unliked_by current_user
+      else
+        @obj.liked_by current_user
+      end
       redirect_to @obj 
     end
     def dislike
       @obj=controller_name.classify.constantize.find(params[:id])
-      @obj.disliked_by current_user
+      if current_user.disliked?(@obj)
+        @obj.undisliked_by current_user
+      else
+        @obj.disliked_by current_user
+      end
       redirect_to @obj 
     end
 
