@@ -9,7 +9,7 @@ class Ability
     can [:show, :index], Studium
     can [:show, :index], Modulgruppe
     can [:show, :index], Modul
-    can [:show, :index], Lva
+    can [:show, :index, :beispiel_sammlung], Lva
     can [:create, :show], Beispiel
     if loggedin
       can :like, Beispiel
@@ -20,6 +20,7 @@ class Ability
       can :manage, Modul
       can :manage, Lva
       can :manage, Studium
+      can :manage, Beispiel
     end
     unless user.has_role?("fetadmin")
       cannot :delete, Studium    
