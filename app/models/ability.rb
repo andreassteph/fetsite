@@ -41,6 +41,7 @@ class Ability
       can :showintern, Thema
       can :manage, Thema
       can :manage, Themengruppe
+      can :manage, Attachment
     end
     unless user.has_role?("fetadmin")
       cannot :delete, Themengruppe
