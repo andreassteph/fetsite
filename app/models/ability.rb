@@ -4,6 +4,8 @@ class Ability
   def initialize(user)
     loggedin=!(user.nil?)
     user ||= User.new # guest user (not logged in)
+
+    can :manage, Comment
     #-----------------------------------------------------
     # Rechteverwaltung fuer Studien Modul
     can [:show, :index], Studium
@@ -97,6 +99,8 @@ class Ability
     if user.has_role?("fetadmin")
       can :addfetuser, User
       can :addfetadmin, User
+      can :edit, User
+      can :manage, User
     end
     
     if user.has_role?("newsadmin") || user.has_role?( "fetadmin") || user.has_role?( "fetuser") 

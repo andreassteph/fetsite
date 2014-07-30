@@ -13,7 +13,15 @@ module LikeVoteable
       else
         @obj.liked_by current_user
       end
-      redirect_to @obj 
+      respond_to do |format|
+        format.html {
+          redirect_to @obj 
+        }
+        format.js {
+          render :show
+        }
+        #
+      end
     end
     def dislike
       @obj=controller_name.classify.constantize.find(params[:id])
@@ -22,7 +30,17 @@ module LikeVoteable
       else
         @obj.disliked_by current_user
       end
-      redirect_to @obj 
+
+      respond_to do |format|
+        format.html {
+          redirect_to @obj 
+        }
+        format.js {
+          render :show
+        }
+        #
+      end
+      
     end
 
   end
