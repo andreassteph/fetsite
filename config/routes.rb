@@ -1,4 +1,7 @@
 Fetsite::Application.routes.draw do
+  resources :comments
+
+
   themes_for_rails
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :home, :only=>[:index] do
@@ -127,7 +130,7 @@ Fetsite::Application.routes.draw do
           end
         end
       end
-      
+      resources :comments
       resources :home, :only=>[:index] do
         get :search, :on => :collection
         collection do
