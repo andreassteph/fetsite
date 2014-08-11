@@ -89,8 +89,11 @@ end
   # def filename
   #   "something.jpg" if original_filename
   # end
-protected
-  def image?(file)
-    %w(jpg png jpeg).include?(File.extname(full_filename(file)))
+  def extention
+    File.extname(full_filename(file.file)).downcase
+  end
+
+  def image?(for_file)
+    %w(.jpg .png .jpeg).include?(File.extname(full_filename(for_file.file)).downcase)
   end
 end

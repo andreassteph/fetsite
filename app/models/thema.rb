@@ -49,7 +49,9 @@ include Rails.application.routes.url_helpers
 
   def fix_links(host)
    full_url= URI.parse(root_url(:host=>host))
-    self.text.gsub!(/src="[^"]*attachment\/datei\/(\d+)[^"]*"/){|s| full_url.path=Attachment.find($1.to_i).datei.url; 'src="'+full_url.to_s+'"'}
+    self.text.gsub!(/src="[\.\/]*uploads\/attachment\/datei\/(\d+)\/thumb_big[^"]*"/){|s| full_url.path=Attachment.find($1.to_i).datei.thumb_big.url; 'src="'+full_url.to_s+'"'}
+    self.text.gsub!(/src="[\.\/^"]*uploads\/attachment\/datei\/(\d+)\/[^"]*"/){|s| full_url.path=Attachment.find($1.to_i).datei.url; 'src="'+full_url.to_s+'"'}
+     
     self.text.gsub!(/href="[^"]*themen\/(\d+)[^"]*"/){|s| full_url.path=thema_path(Thema.find($1.to_i)); 'href="'+full_url.to_s+'"'}
 
   end

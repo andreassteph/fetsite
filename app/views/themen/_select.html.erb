@@ -2,19 +2,33 @@
   <% select.attachments.each_slice(6) do |row| %>
   <div class="row-fluid">
     <% row.each do |attachment|
-       data_ext = attachment.datei.file.extension.downcase %>
+%>
     <div class="span2" align="center">
-      <%= link_to attachment.name, edit_thema_attachment_path(@thema,attachment) %></br>
-      <% if (!["jpg","png","jpeg"].find_index(data_ext).nil?) %>
+<div class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <% if attachment.image? %>
       <%= image_tag attachment.datei.thumb.url %>
       <% else %>
       <%= image_tag "pdf-logo.jpg" %>
       <% end %>
+      </a>
       <% if(editor) %>
-      </br><button type="button" onclick="insertAttachment(<%="\"" + attachment.datei.url + "\""%>,<%="\""+attachment.name+"\""%>)">Insert Me!</button>
-      <% else %>
-      </br><%= link_to 'Destroy',[@thema,attachment], method: :delete, data: { confirm: 'Are you sure?' } %>
+      </br>
+<ul class="dropdown-menu">
+  <li>
+ <a href="#" onclick="insertAttachment(<%="\"" + attachment.datei.url + "\""%>,<%="\""+attachment.name+"\""%>)"> Datei einfügen</a></li>
+      <% if attachment.image? %>
+      <li><a type="button" onclick="insertAttachment(<%="\"" + attachment.datei.thumb_big.url + "\""%>,<%="\""+attachment.name+"\""%>)">Thumb einfügen</a></li>
       <% end %>
+</ul>
+
+      <% else %>
+<ul class="dropdown-menu">
+<li>
+     <%= link_to 'Destroy',[@thema,attachment], method: :delete, data: { confirm: 'Are you sure?' } %>
+</li>
+</ul>      <% end %>
+</div>
     </div>
     <% end %>
   </div>
