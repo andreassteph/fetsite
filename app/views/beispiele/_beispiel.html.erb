@@ -2,7 +2,7 @@
 <div class="row-fluid">
   <div class="span8">
 
-<b><%=link_to ffi1_icon("note20")+" " + beispiel.name, beispiel.beispieldatei.url, title: beispiel.desc  %></b>
+    <b><%=link_to ffi1_icon("note20")+" " + beispiel.name, beispiel.beispieldatei.url, title: beispiel.desc  %></b>
 
 <%= I18n.t("file.size") + ": " + (beispiel.beispieldatei.size/1024.0).round(2).to_s  %>KiB <br>  
 <span class="linklist"><%= 
@@ -31,9 +31,11 @@ end
 <%= beispiel.desc %>
 </div>
 </div>
-<div class="row-fluid"><div class="span12"><%= render partial:"comments/comments", object: beispiel.comments.roots %></div></div>
-<%= link_to "comment" , new_comment_path( commentable_type: "Beispiel", commentable_id: beispiel.id), remote:true  %>  
+<%= link_to "comment" , new_comment_path( commentable_type: "Beispiel", commentable_id: beispiel.id), remote:true if can? :comment, beispiel %>  
   <div id="<%= Comment.formid_for(beispiel) %>">
   </div>
+<% unless beispiel.comments.roots.empty? %>
+<div class="row-fluid"><div class="span12"><%= render partial:"comments/comments", object: beispiel.comments.order(:created_at).roots.reverse_order %></div></div>
+<% end %>
 
 </div>
