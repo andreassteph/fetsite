@@ -12,12 +12,17 @@
 
     <div class="span9">
 
-      <ul class="unstyled linkbox-list" style="max-width:70em">
+      <ul class="unstyled linkbox-list" style="max-width:70em" id="neuigkeiten">
 	<% @neuigkeiten.each do |n| %>
 	<li><%= render n if can?(:show, n) %> </li>
 	<% end %>
       </ul>
+<div id="infinite-scrolling">
+<%= will_paginate @neuigkeiten %>
+</div>
+
     </div>
+
     <div class="span3">
       <%= render 'calendars/calentries', :object=>@calentries %>
     </div>
