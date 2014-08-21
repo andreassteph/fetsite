@@ -4,13 +4,18 @@ class RubrikenController < ApplicationController
   def index
     if can?(:showintern, Rubrik)
       @rubriken = Rubrik.all
-      @neuigkeiten = Neuigkeit.recent
+      @neuigkeiten = Neuigkeit.paginate(page: params[:page], per_page:3)
     else
       @rubriken = Rubrik.where(:public=>true)
       @neuigkeiten = Neuigkeit.public.recent
     end   
     
       @calentries= @rubriken.collect(&:calentries).flatten
+    respond_to do |format|
+      format.html
+      format.js {render action: :show}
+    end
+
   end
   def intern
 
@@ -26,14 +31,17 @@ class RubrikenController < ApplicationController
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
     @calentries= @rubrik.calentries
     if can?(:showunpublished, Neuigkeit)
-      @neuigkeiten = @rubrik.neuigkeiten
+      @neuigkeiten = @rubrik.neuigkeiten.paginate(page: params[:page], per_page:3)
     else
-      @neuigkeiten = @rubrik.neuigkeiten.published
+      @neuigkeiten = @rubrik.neuigkeiten.published.paginate(page: params[:page], per_page:3)
     end
     @toolbar_elements << {:text=>I18n.t('neuigkeit.new.title'), :path=> new_rubrik_neuigkeit_path(@rubrik),:hicon=>'icon-plus-sign'} if can? :verwalten, @rubrik
     @toolbar_elements << {:text=>I18n.t('common.verwalten'), :path=>verwalten_rubrik_path(@rubrik),:icon=>:pencil} if can? :verwalten, @rubrik
       
-
+    respond_to do |format|
+      format.html
+      format.js
+    end
 
   end
   

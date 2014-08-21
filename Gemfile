@@ -103,3 +103,6 @@ gem 'themes_for_rails'
 gem 'rubyzip'
 
 gem 'acts_as_votable'
+
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'

@@ -86,6 +86,11 @@ class NeuigkeitenController < ApplicationController
   
     end  
   end
+  def mail_preview
+    @neuigkeit = Neuigkeit.find(params[:id])
+    authorize! :publish, @neuigkeit
+    render template: "news_mailer/neuigkeit_mail", layout: false
+  end
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
 
@@ -109,8 +114,12 @@ class NeuigkeitenController < ApplicationController
 
 
     @nlink_search.flatten!
-    
-    render action:"show"
+    respond_to do |format|
+      format.html { render action:"show" }
+      format.js
+    end
+  
+ 
   end
   def create_link
     @neuigkeit = Neuigkeit.find(params[:id])
@@ -118,7 +127,7 @@ class NeuigkeitenController < ApplicationController
     Nlink.create(:link=>params[:link_type].constantize.find(params[:link_id]),:neuigkeit=>Neuigkeit.find(params[:id]))
     @nlinks=@neuigkeit.nlinks
     respond_to do |format|
-      format.html { edirect_to action:"show" }
+      format.html { redirect_to action:"show" }
       format.js
     end
   end
