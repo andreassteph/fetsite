@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-class NeuigkeitenController < ApplicationController
+
+	class NeuigkeitenController < ApplicationController
   before_filter :load_toolbar_elements, :only=>[:show,:find_link]
   before_filter :load_toolbar_elements_edit, :only=>[:edit]
  

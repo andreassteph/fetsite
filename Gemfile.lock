@@ -37,6 +37,7 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
+    acts_as_votable (0.10.0)
     annotate (2.6.1)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -225,6 +226,7 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     rubyntlm (0.1.1)
+    rubyzip (1.1.6)
     sanitize (2.0.6)
       nokogiri (>= 1.4.4)
     sass (3.2.13)
@@ -271,6 +273,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  acts_as_votable
   annotate (>= 2.5.0)
   awesome_nested_set
   bootstrap-addons-rails
@@ -304,6 +307,7 @@ DEPENDENCIES
   rmagick
   rolify
   rspec-rails
+  rubyzip
   sanitize
   sass-rails (~> 3.2)
   seed_dump (~> 0.5.3)
