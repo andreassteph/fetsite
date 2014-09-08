@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class NeuigkeitenController < ApplicationController
   before_filter :load_toolbar_elements, :only=>[:show,:find_link]
   before_filter :load_toolbar_elements_edit, :only=>[:edit]
@@ -35,7 +36,7 @@ class NeuigkeitenController < ApplicationController
     if params[:calentry_id].nil?
       ce = Calentry.new(:start=>Time.now, :ende=>1.hour.from_now, :typ=>1, :calendar=>@neuigkeit.rubrik.calendar)
     else
-      ce=Calentry.find(params[:calentry_id])
+      ce = Calentry.find(params[:calentry_id])
     end
     @calentry=ce 
     ce.object=@neuigkeit
@@ -61,9 +62,30 @@ class NeuigkeitenController < ApplicationController
     if params[:verwalten] 
       redirect_to verwalten_rubrik_path(@neuigkeit.rubrik)
     end
-    redirect_to rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)
+    redirect_to  rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit)
   end 
-
+  def publish_to_facebook
+    @neuigkeit = Neuigkeit.find(params[:id])
+    unless @neuigkeit.published?
+      redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie auf Facebook zu posten.'
+    else
+      page=YAML.load_file("#{::Rails.root.to_s}/tmp/page.yml")
+      page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html", :picture=>@neuigkeit.picture.url)
+     
+      redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit auf Facebook gepostet'
+    end
+  end
+  def mail_to_fet
+    @neuigkeit = Neuigkeit.find(params[:id])
+    authorize! :publish, @neuigkeit
+    unless @neuigkeit.published?
+      redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie als Mail zu versenden.'
+    else      
+      NewsMailer.neuigkeit_mail(current_user.email, params[:id]).deliver
+      redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit versendet'
+  
+    end  
+  end
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
 
@@ -137,9 +159,15 @@ private
   def load_toolbar_elements
     @neuigkeit=Neuigkeit.find(params[:id])
     @toolbar_elements=[]
-    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:publish, @neuigkeit) && @neuigkeit.published?
-    @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>'Sure?' } if can?(:unpublish, @neuigkeit) && !@neuigkeit.published?
-    @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.publish_sure') } if can?(:publish, @neuigkeit) && !@neuigkeit.published?
+    @toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfb'),:path => publish_to_facebook_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfb_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
+
+@toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfetmail'),:path => mail_to_fet_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfetmail_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
+
+    @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.unpublish_sure') } if can?(:unpublish, @neuigkeit) && @neuigkeit.published?
+  
+
+  @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
     @versions= @neuigkeit.translation.versions.select([:created_at]).reverse
 
     @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}

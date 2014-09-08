@@ -3,9 +3,10 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen.json
   load_and_authorize_resource
   def index
-    @themengruppen = Themengruppe.order(:priority).reverse
-    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]
-    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('common.verwalten'), :path=>verwalten_all_themengruppen_path()}]
+    @themengruppen = Themengruppe.where(:public=>true).order(:priority).reverse
+    @toolbar_elements = []
+    @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()} if can? :new, Themengruppe
+    @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.manage_all'), :path=>verwalten_all_themengruppen_path()} if can? :verwalten_all, Themengruppe
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,13 +22,13 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen/1.json
   def show
     @themengruppe = Themengruppe.find(params[:id])
+    if can? :showdraft , Thema
     @themen = @themengruppe.themen.order(:priority).reverse
- 
+      else
+    @themen = @themengruppe.themen.where(:isdraft=>false).order(:priority).reverse
+    end
     @toolbar_elements = []
-    @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('thema.add'), :path=>new_themengruppe_thema_path(@themengruppe)} if can? :new, Themengruppe
-    @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.manage"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
-    @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
 
     respond_to do |format|
       format.html # show.html.erb
@@ -51,11 +52,20 @@ class ThemengruppenController < ApplicationController
     @themengruppe = Themengruppe.find(params[:id])
   end
   def verwalten_all
-    @themengruppen =Themengruppe.order(:priority).reverse
-  end 
+    @themengruppen =Themengruppe.public.order(:priority).reverse
+@themengruppen_intern =Themengruppe.intern.order(:priority).reverse
+    @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]
+ 
+ end 
   def verwalten 
       @themengruppe = Themengruppe.find(params[:themengruppe_id])
       @themen = @themengruppe.themen.order(:priority).reverse
+
+    @toolbar_elements =[]
+    @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
+    @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('thema.add'), :path=>new_themengruppe_thema_path(@themengruppe)} if can? :new, Themengruppe
+    @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
+
   end
 
   def sort_themengruppen

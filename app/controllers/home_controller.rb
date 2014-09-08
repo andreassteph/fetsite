@@ -12,7 +12,14 @@ class HomeController < ApplicationController
   def intern
     authorize! :seeintern, User
     @neuigkeiten = Neuigkeit.intern.recent
+    @themengruppen=Themengruppe.intern.order(:priority).reverse
   end
+  def admin
+    authorize! :doadmin, User
+    
+
+  end
+
   def startdev
   render 'setup_fetsite_dev'
   end
@@ -20,10 +27,20 @@ class HomeController < ApplicationController
   render 'links_notimplemented'
   end
   def search
+  
     unless params['query'].nil? || params['query'].empty?
-      @neuigkeiten=Neuigkeit.search(params['query'])
+      if can?(:showintern, Neuigkeit)
+        @neuigkeiten=Neuigkeit.search(params['query'])
+      else
+        @neuigkeiten =Neuigkeit.search(params['query']).public
+      end
       @fetprofiles = Fetprofile.search(params['query'])
-      @themen=Thema.search(params['query'])
+      if can?(:showintern, Neuigkeit)
+        @themen=Thema.search(params['query'])
+      else
+        @themen=Thema.search(params['query']).public
+      end
+
     else
       @neuigkeiten=[]
       @fetprofiles=[]

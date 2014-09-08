@@ -1,23 +1,13 @@
+
+# --------------- interne Strings
 de:
-  studien:
-    desc: "Beschreibung"
-    studien: "Studien"
-    list: "Studien der Fakultät Elektrotechnik"
-    anzeigen: "Studium anzeigen"
-    new: "Neues Studium"
-    allestudien: "Alle Studien"
-    loeschen: "Dieses Studium löschen"
-    edit: "Studium bearbeiten"
+  studien:  
     verwaltung:
       title: "Studien verwalten"
       explanation: "<ul>
       <li>Klick auf den Namen eines Objektes führt zu dessen Ansicht, ein Klick auf edit direkt zum Bearbeitungsformular</li>
       <li>Per Dropdown-Menü kann nach einzelnen Objekten gefiltert werden. Die Filter können kombiniert werden, wobei nur erlaubte Kombinationen möglich sind. <b>Solange validation-Fehler (im Log rot und fett) auftreten, keine Filter verwenden</b></li>
       </ul>"
-    ansicht:
-      modulgruppe: "Modulgruppenansicht"
-      semester: "Semesteransicht"
-      info: "Infoansicht"
   modul:
     edit: "Modul bearbeiten"
     list: "Alle Module"
@@ -25,17 +15,13 @@ de:
     lvas: "LVAs"
     mgs: "Modulgruppen"
     desc: "Beschreibung"
-  keine:
-    beschreibung: "Keine Beschreibung vorhanden"
-  beispiel:
-    add: "Beispiel hinzufügen"
   lva:
     add: "Lva hinzufügen"
     addrem: "Lva hinzufügen/entfernen"
+    editlvas: "Lvas bearbeiten"
     list: "Alle Lvas"
-  semester:
-    ohne: "Ohne Semesterzuordnung"
-    semester: "Semester"
+    delete: "LVA löschen"
+    deletesure: "Willst du sicher die ganze LVA löschen?"
   modulgruppe:
     typ: "Typ"
     edit: "Modulgruppe bearbeiten"
@@ -56,8 +42,65 @@ de:
   verwalten:
     fehler:
       keine: "Keine Fehlermeldungen oder Warnungen"
-  lecturers:
-    lecturers: "Vortragende"
-  file:
-    size: "Dateigröße"
     
+  formtastic:
+    titles:
+      modul: 
+        title: "Modul Details"
+        edit: "Modul Details"
+    hints:
+      modul:
+        name: "Name des Moduls"
+    labels:
+        modul:
+          name: "Name"
+          desc: "Beschreibung"
+          depend: "Voraussetzungen"
+  activerecord:
+    errors:
+      models:
+        modulgruppe:
+          attributes:
+            studium_id:
+              blank: "Bitte wählen Sie ein Studium aus"
+            typ:
+              inclusion: "Bitte wählen Sie einen Typ aus"
+            phase:
+              not_a_number: "Die Phase muss eine Nummer sein"            
+              inclusion: "Bitte wählen sie eine gültige Zahl für die Phase"
+            name:
+              blank: "Bitte geben sie einen Namen ein"
+              taken: "Der Name ist schon vergeben (Hier ist ein Bug)"
+        lva:
+          attributes:
+            modul: 
+              blank: "Lva muss zumindest einem Modul zugewiesen sein"
+            name:
+              blank: "Die Lva muss einen Namen haben"
+            ects:
+              blank: "Es müssen ECTS eingetragen sein"
+            stunden:
+              blank: "Es muss die Studenanzahl eingettragen sein"
+            lvanr:
+              invalid: "Die Nummer muss im Format 000.000 eingegeben sein"
+              blank: "Geben sie eine Lva-Nr an"
+              taken: "Die Lva-Nummer ist vergeben"
+            typ:
+              blank: "Es muss ein Lva-Typ angegeben sein"
+              inclusion: "Der Typ ist nicht aus der Auswahl der gültigen Typen"
+              
+        studium:
+          attributes:
+            zahl:
+              blank: "Geben Sie die Studienkennzahl an"
+              invalid: "Die eingegebene Form stimmt nicht. (4-10 Zeichen, Ziffern und Großbuchstaben"
+              taken: "Die Kennzahl wird bereits verwendet"
+            name:
+              blank: "Geben Sie den Namen des Studiums ein"
+              taken: "Der  Name ist bereits vergeben"
+            typ:
+              inclusion: 'Wählen Sie "Bachelor" oder "Master" aus'
+        modul:
+          attributes:
+            modulgruppen:
+              blank: "Wählen Sie zumindest eine Modulgruppe aus"

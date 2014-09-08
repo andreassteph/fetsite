@@ -1,22 +1,17 @@
 // Place all the styles related to the themengruppen controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div.themengruppe
-{padding:10px;
-margin:2px;
-border-radius: 10px;
-min-width:13em;
-border: #91B4FF solid 0px;
-height: 90%
-}
 
-a.themengruppe:hover
-{
-	box-shadow: 1px 1px 2px 2px lightgray;
-}
 
-a.themengruppe
+div.sticker
 {
-	padding: 5px;
-	display:block;
+	width: 90%;
+	text-align: center;
+	padding: 5px
+}
+div.sticker-red
+{	background: red;
+}
+div.sticker-yellow
+{	background: yellow;
 }

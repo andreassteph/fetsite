@@ -1,6 +1,6 @@
 
-<%= membership.stop.nil? ? "seit " : "von " %>
+<%= membership.stop.nil? ? I18n.t("gremium.seit")+" " : I18n.t("gremium.von")+" " %>
 <%=membership.start.to_s %> 
-<%= " bis "+membership.stop.to_s unless membership.stop.nil? %> 
-<%= Membership::TYPEN[membership.typ.to_i] %>  
+<%= " "+I18n.t("gremium.bis")+" "+membership.stop.to_s unless membership.stop.nil? %> 
+<%= Membership::TYPEN_g[membership.fetprofile.geschlecht.to_i][membership.typ.to_i] %>  
 <%= membership.gremium.fall2 %>

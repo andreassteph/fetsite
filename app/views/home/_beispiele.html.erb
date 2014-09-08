@@ -1,21 +1,16 @@
 <div class="contentbox">
   <div class="row-fluid">
-
     <div class="span8">
-      <h4>Neueste Beispiele in unserer Sammlung</h4>
+      <h4><%= I18n.t("home.newexamples") %></h4>
     </div>
     <div class="span4">
       <%= link_to I18n.t("beispiel.add"), new_beispiel_path, :class=>"btn"%>
     </div>
   </div>
-
-
- 
-
   <ul class="unstyled linkbox-list">
     <% @beispiele.each do |b| %>
     <li>
-      <%= link_to b, {:class=> :linkbox} do %>
+      <%= link_to b.lva, {:class=> :linkbox} do %>
       <div class="row-fluid">
 	<div class="span8">
 	  <b><%=b.name%></b> (<%=b.lva.full_name%>)

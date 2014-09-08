@@ -1,10 +1,8 @@
 <h1><%= I18n.t("modulgruppe.show.title")%></h1>
-
-
 <% @modulgruppen.sort_by{|n| n[:name]}.each do |modulgruppe| %>
  <%= render modulgruppe%>
 <% end %>
 <br>
 <% if !@studium.nil? %>
-<%= link_to 'New Modulgruppe', new_studium_modulgruppe_path(@studium) %>
+<%= link_to I18n.t("modulgruppe.new"), new_studium_modulgruppe_path(@studium) if can? :new, Modulgruppe %> 
 <% end%>

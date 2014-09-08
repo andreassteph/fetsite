@@ -1,16 +1,17 @@
 class BeispieleController < ApplicationController
   # GET /beispiele
-  # GET /beispiele.json
+  
   load_and_authorize_resource
+  include LikeVoteable
   def index
     @beispiele = Beispiel.all
-
+ 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @beispiele }
     end
   end
-
+ 
   # GET /beispiele/1
   # GET /beispiele/1.json
   def show
@@ -44,11 +45,11 @@ class BeispieleController < ApplicationController
     params.delete(:lva_id)
     @beispiel = Beispiel.new(params[:beispiel])
     @beispiel.lva=@lva
- logger.info "New Beispiel: #{params.inspect}"
+    logger.info "New Beispiel: #{params.inspect}"
  
 #    @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
-      @beispiel.name=@beispiel.beispieldatei.filename
-   logger.info "New Beispiel: #{@beispiel.attributes.inspect}"
+    @beispiel.name=@beispiel.beispieldatei.filename
+    logger.info "New Beispiel: #{@beispiel.attributes.inspect}"
 
     @beispiel.datum=Time.now
     respond_to do |format|
@@ -91,7 +92,7 @@ class BeispieleController < ApplicationController
   # DELETE /beispiele/1.json
   def destroy
     @beispiel = Beispiel.find(params[:id])
-        @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
+    @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
     @beispiel.destroy
 
     respond_to do |format|
@@ -99,4 +100,4 @@ class BeispieleController < ApplicationController
       format.json { head :no_content }
     end
   end
-end
+ end

@@ -1,0 +1,28 @@
+de:
+  studien:
+    desc: "Beschreibung"
+    studien: "Studien"
+    list: "Studien der Fakultät Elektrotechnik"
+    anzeigen: "Studium anzeigen"
+    new: "Neues Studium"
+    allestudien: "Alle Studien"
+    loeschen: "Dieses Studium löschen"
+    edit: "Studium bearbeiten"
+    ansicht:
+      modulgruppe: "Modulgruppenansicht"
+      semester: "Semesteransicht"
+      info: "Infoansicht"
+  keine:
+    beschreibung: "Keine Beschreibung vorhanden"
+  beispiel:
+    add: "Beispiel hinzufügen"
+    zip: "Alle Beispiele als ZIP Datei"
+  lecturers:
+    lecturers: "Vortragende"
+  file:
+    size: "Dateigröße"
+  semester:
+    ohne: "Ohne Semesterzuordnung"
+    semester: "Semester"
+  home:
+    newexamples: "Neueste Beispiele"

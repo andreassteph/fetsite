@@ -1,5 +1,4 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
 de:
   ohnezuordnung: "Ohne Zuordnung"
   hello: "Hallo Welt"
@@ -9,8 +8,13 @@ de:
     actions: "Aktionen"
     delete: "Löschen"    
     verwalten: "Verwalten"
-    back: "Zurück"
     sure_del: "Sicher endgültig löschen?"
+    versions: "Versionen"
+    activeversion: "Akutelle Version"
+    cancel: "Abbrechen"
+    save: "Speichern"
+    savecont: "Zwischenspeichern"
+    intern: "Intern"
   home:
     sprache: "Deutsch"
     kontakt: "Kontakt"
@@ -25,68 +29,16 @@ de:
     mitarbeiter: "Mitarbeiter"
     fotos: "Fotos"
     search: "Suche"
-
-  formtastic:
-    titles:
-      modul: 
-        title: "Modul Details"
-        edit: "Modul Details"
-    hints:
-      modul:
-        name: "Name des Moduls"
-    labels:
-        modul:
-          name: "Name"
-          desc: "Beschreibung"
-          depend: "Voraussetzungen"
-  activerecord:
-    errors:
-      models:
-        modulgruppe:
-          attributes:
-            studium_id:
-              blank: "Bitte wählen Sie ein Studium aus"
-            typ:
-              inclusion: "Bitte wählen Sie einen Typ aus"
-            phase:
-              not_a_number: "Die Phase muss eine Nummer sein"            
-              inclusion: "Bitte wählen sie eine gültige Zahl für die Phase"
-            name:
-              blank: "Bitte geben sie einen Namen ein"
-              taken: "Der Name ist schon vergeben (Hier ist ein Bug)"
-        lva:
-          attributes:
-            modul: 
-              blank: "Lva muss zumindest einem Modul zugewiesen sein"
-            name:
-              blank: "Die Lva muss einen Namen haben"
-            ects:
-              blank: "Es müssen ECTS eingetragen sein"
-            stunden:
-              blank: "Es muss die Studenanzahl eingettragen sein"
-            lvanr:
-              invalid: "Die Nummer muss im Format 000.000 eingegeben sein"
-              blank: "Geben sie eine Lva-Nr an"
-              taken: "Die Lva-Nummer ist vergeben"
-            typ:
-              blank: "Es muss ein Lva-Typ angegeben sein"
-              inclusion: "Der Typ ist nicht aus der Auswahl der gültigen Typen"
-              
-        studium:
-          attributes:
-            zahl:
-              blank: "Geben Sie die Studienkennzahl an"
-              invalid: "Die eingegebene Form stimmt nicht. (4-10 Zeichen, Ziffern und Großbuchstaben"
-              taken: "Die Kennzahl wird bereits verwendet"
-            name:
-              blank: "Geben Sie den Namen des Studiums ein"
-              taken: "Der  Name ist bereits vergeben"
-            typ:
-              inclusion: 'Wählen Sie "Bachelor" oder "Master" aus'
-        modul:
-          attributes:
-            modulgruppen:
-              blank: "Wählen Sie zumindest eine Modulgruppe aus"
+    newexamples: "Neueste Beispiele in unserer Sammlung"
+    selectstyle: "Wähle dein Design"
   support:
     array:
       two_words_connector: ', '	
+  kontakt:
+    H1: "Kontakt"
+    text: "Du kannst uns telefonisch, E-Mail, Skype und persönlich erreichen."
+    service: "Service"
+    adresse: "Adresse"
+    adresse_text: "Gußhausstraße 25-27<br>1220 Wien" 
+    service_text: "Für individuelle Beratung und alle sonstigen Angelegenheiten stehen wir mit unserem Servicedienst während der Vorlesungszeit jenen <b>Mo-Fr von 9 bis 15 Uhr</b> zur Verfügung. Außerhalb dieser Zeiten ist oft trotzdem jemand auf der Fachschaft der dir weiterhelfen kann."
+    telefon_text: "Telefon: +43 2241341 <br> Skype: <br><b>E-Mail: service@fet.at</b>"

@@ -15,11 +15,9 @@ a:hover {
   text-decoration:none;
 }
 
-
-
-
-
-
+@import 'tinymce';
+@import 'fetlogo';
+@import 'flatfeticon1';
 
 
 
@@ -34,14 +32,77 @@ a.linkbox, div.contentbox
 	padding:5px;
 	border-radius:$box-border-radius;
 	border: $box-border;
-	background: $box-background;
-	
+	background: $box-background;	
 }
+
 
 a.linkbox:hover
 {
 box-shadow: 1px 1px 2px 2px lightgray;
 }
+
+a.linkbox.color-1
+{
+color:$color_schema_1;	
+}
+a.linkbox.color-2
+{
+color:$color_schema_2;	
+}
+a.linkbox.color-3
+{
+color:$color_schema_3;	
+}
+a.linkbox.color-4
+{
+color:$color_schema_4;	
+}
+a.linkbox.color-5
+{
+color:$color_schema_5;	
+}
+
+a.color-1-dark
+{
+color:$color_schema_1_dark;	
+}
+a.color-2-dark
+{
+color:$color_schema_2_dark;	
+}
+a.color-3-dark
+{
+color:$color_schema_3_dark;	
+}
+a.color-4-dark
+{
+color:$color_schema_4_dark;	
+}
+a.color-5-dark
+{
+color:$color_schema_5_dark;	
+}
+a.color-1-dark:hover
+{
+color:$color_schema_1;	
+}
+a.color-2-dark:hover
+{
+color:$color_schema_2;	
+}
+a.color-3-dark:hover
+{
+color:$color_schema_3;	
+}
+a.color-4-dark:hover
+{
+color:$color_schema_4;	
+}
+a.color-5-dark:hover
+{
+color:$color_schema_5;	
+}
+
 
 a.linkbox li
 { 
@@ -90,4 +151,25 @@ div.smallspan {
   min-height:0;
 }
 
+ul.linklist
+{max-width:25em;
+padding:0;
+margin:0;
+}
+ul.linklist li{
+list-style:none;
+maring-bottom:5px;
+}
+ul.linklist li a i{
+vertical-align:middle;
+margin-right:6px;
+font-size:2em;}
+span.linklist a {
+	padding:5px;
+	border-radius:$box-border-radius;
+	border: $box-border;
+	background: $box-background;
+	display:block;
+	float:left;	
 
+}

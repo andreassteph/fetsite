@@ -17,6 +17,20 @@
  * require 'neuigkeiten'
  */
 
+
+$color_schema_1: #006599;
+$color_schema_2: #630CE8;
+$color_schema_3: #FF0021;
+$color_schema_4: #E8820C;
+$color_schema_5: #FFF30D;
+
+$color_schema_1_dark: darken($color_schema_1, 30%);
+$color_schema_2_dark: darken($color_schema_2, 30%);
+$color_schema_3_dark: darken($color_schema_3, 30%);
+$color_schema_4_dark: darken($color_schema_4, 30%);
+$color_schema_5_dark: darken($color_schema_5, 30%);
+
+
 $color_prim: #0A64A4;
 $color_prim_light: #0B65A5;
 $color_prim_vlight: #2B85C5;
@@ -74,3 +88,4 @@ $box-border-radius:8px;
 $box-background: white;
 @import 'layout';
 @import 'calendars';
+@import 'tinymce';

@@ -26,24 +26,18 @@
 //= require bootstrap/image-gallery.min
 //= require jquery-fileupload
 // require jquery.remotipart
+//= require jquery.datetimepicker
+
 function insertAttachment(url,name) {
     var ext = url.split('.').pop().toLowerCase();
     var img_ext = [ "jpg", "png", "bmp" , "jpeg" ];
-    
- //   if ( img_ext.indexOf(ext) > -1) {
-//	tinymce.activeEditor.setContent(tinymce.activeEditor.getContent({format : 'raw'}) + "<img src=\"" + url + "\" title=\"" + name + "\">");
-//    }
-//    else {
-//	tinymce.activeEditor.setContent(tinymce.activeEditor.getContent({format : 'raw'}) + "<a href=\"" + url + "\">" + name +"</a>");
-//    }
-
-
     if ( img_ext.indexOf(ext) > -1) {
 	tinymce.activeEditor.execCommand('mceInsertContent', false, "<img src=\"" + url + "\" title=\"" + name + "\">");
     }
     else {
 	tinymce.activeEditor.execCommand('mceInsertContent', false, "<a href=\"" + url + "\">" + name +"</a>");
     }
-
-
+}
+function insertIcon_ffi1(name) {
+    tinymce.activeEditor.execCommand('mceInsertContent',false,'<span class="'+name+'">&nbsp;</span>&nbsp;')
 }

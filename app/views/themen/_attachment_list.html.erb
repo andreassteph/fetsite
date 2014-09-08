@@ -1,12 +1,18 @@
-<table>
+<table class="table-striped">
 <% attachment_list.each do |a| %>
 <tr>
 <td>
+  <%= link_to a.datei.url do %>
 <%= render a %>
+<% end %>
 </td>
+<% if editor %>
 <td>
 <%= link_to "Edit", edit_thema_attachment_path(a.thema,a) %>
+<%= link_to "Delete", thema_attachment_path(a.thema,a), method: "DELETE", confirm: "Sure?" %>
+
 </td>
+<% end %>
 </tr>
 <% end %>
 </table>

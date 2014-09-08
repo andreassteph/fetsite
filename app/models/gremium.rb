@@ -12,16 +12,16 @@
 #
 
 class Gremium < ActiveRecord::Base
-  TYPEN={1=>"offiziell", 2=>"offiziell-temporär", 3 => "inoffiziell",4=>"inoffiziell-tempo", 11=> "berufungskommission",12=> "habilitationskommission" } # Kategorien, im Wesentlichen wichtig für Listung oder nicht Listung
+  TYPEN={1=>"offiziell", 2=>"offiziell-notab", 3 => "inoffiziell",4=>"inoffiziell-notab", 11=> "berufungskommission",12=> "habilitationskommission" } # Kategorien, im Wesentlichen wichtig für Listung oder nicht Listung
   GESCHLECHT={0=>"saechlich", 1 => "maennlich", 2 => "weiblich"} # Geschlecht des Gremiums zur richtige Deklination
- ART2FALL={0=>"des", 1=>"des",2=>"der"} # Artikel 2.Fall abhängig vom Geschlecht 
- ART4FALL={0=>"das", 1=>"den",2=>"die"} # Artikel 2.Fall abhängig vom Geschlecht
+  ART2FALL={0=>"des", 1=>"des",2=>"der"} # Artikel 2.Fall abhängig vom Geschlecht 
+  ART4FALL={0=>"das", 1=>"den",2=>"die"} # Artikel 2.Fall abhängig vom Geschlecht
   FILTER={11=>I18n.t("gremium.filter.berufung.title"),12=>I18n.t("gremium.filter.habil.title")}
   TEXT={11=>I18n.t("gremium.filter.berufung.text"),12=>I18n.t("gremium.filter.habil.text")}
 
   attr_accessible :desc, :name, :typ, :geschlecht,:thema_id, :memberships_attributes
-  has_many :memberships # Mitgliedschaften bei dem Gremium
-  has_many :nlinks, as: :link
+  has_many :memberships, dependent: :destroy # Mitgliedschaften bei dem Gremium
+  has_many :nlinks, as: :link, dependent: :destroy
   scope :search, ->(query) {where("gremien.name like ? or gremien.desc like ?", "%#{query}%", "%#{query}%")}
 
   belongs_to :thema # Gehört zu einem Thema

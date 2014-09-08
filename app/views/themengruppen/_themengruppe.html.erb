@@ -1,13 +1,21 @@
-<%= link_to themengruppe,{:class=>'linkbox'} do %>
+<%= link_to themengruppe,{:class=>'linkbox color-1-dark'} do %>
 <div class="row-fluid">
-  <div class="span6">
+  <div class="span12">
     <div class="media">
       <span class="pull-left">
+	<% if themengruppe.icon.nil? or themengruppe.icon.empty? %>
 	<%= image_tag themengruppe.picture.thumb.url,{:class=>"img-rounded"} %>
+	<% end %>
+
       </span>
       <div class="media-body">
-	<h3><%=themengruppe.title%> </h3>
+	<h3>
+	<% unless themengruppe.icon.nil? or themengruppe.icon.empty? %>      <i class="<%= themengruppe.icon %>" style="font-size:1.5em;margin:0"></i>
+      <% end %>
+
+<%=themengruppe.title%> </h3>
       </div>
+    
     </div>
   </div>
 </div>
@@ -26,7 +34,7 @@
   <div class="span6">
     <!--<b><%= I18n.t("themengruppe.themen") %></b>
     --><ul>
-      <% themengruppe.themen.order(:title).each do |t| %>
+      <% themengruppe.themen.where(" (NOT hidelink) and ( NOT isdraft) ").order(:priority).reverse.each do |t| %>
       <li>
 	<%= render t %>
       </li>

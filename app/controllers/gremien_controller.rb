@@ -2,11 +2,13 @@ class GremienController < ApplicationController
   # GET /gremien
   # GET /gremien.json
   load_and_authorize_resource
- before_filter {@toolbar_elements=[]}
+  before_filter {@toolbar_elements=[]}
   def verwalten
     @gremien = Gremium.all
     @gremientabs=Gremium.tabs
     @toolbar_elements << {:text=>I18n.t('gremium.new'),:path=>new_gremium_path() ,:icon=>:plus} if can? :new, Gremium
+    @toolbar_elements << {:text=>I18n.t('profile.new'),:path=>new_fetprofile_path() ,:icon=>:plus} if can? :new, Fetprofile
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @gremien }
@@ -83,7 +85,17 @@ class GremienController < ApplicationController
 
     respond_to do |format|
       if @gremium.update_attributes(params[:gremium])
-        format.html { redirect_to @gremium, notice: 'Gremium was successfully updated.' }
+        format.html { 
+          unless params[:button]=="continue" || params[:commit]=="continue"
+            redirect_to @gremium, notice: 'Gremium was successfully updated.' 
+          else
+            @memberships=@gremium.memberships.order(:typ)
+            @memberships<< Membership.new
+            @memberships<< Membership.new
+            @memberships<< Membership.new
+            render action: "edit", notice: 'gremium was successfully updated.'
+          end
+          }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -93,7 +105,8 @@ class GremienController < ApplicationController
   end
 
   # DELETE /gremien/1
-  # DELETE /gremien/1.json
+  # 
+  #
   def destroy
     @gremium = Gremium.find(params[:id])
     @gremium.destroy

@@ -3,25 +3,17 @@
 
  <head>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="./public/favicon.ico"> 
+<link rel="shortcut icon" href="http://glonass.htu.tuwien.ac.at/favicon.ico"> 
  <!--<link rel="shortcut icon" href="http://www.fet.at/favicon.ico">-->
   <title>Fetsite</title>
 
  
   <%= stylesheet_link_tag "themes/"+theme_name+"/application", :media => "all" unless theme_name.empty?  %>
   <%= stylesheet_link_tag "application", :media=>"all" if theme_name.empty? %>
-  <%= theme_stylesheet_link_tag "test", :media => "all" %>
+  <% theme_stylesheet_link_tag "test", :media => "all" %>
   <% theme_stylesheet_link_tag "mod", :media=>"all" %>
- <!--   <link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/bootstrap-responsive.css">
-<link rel="stylesheet" href="css/bootstrap-image-gallery.css">
--->
-<!--[if lt IE 7]><link rel="stylesheet" href="css/bootstrap-ie6.css"><![endif]-->
-
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
 </head>
 
  <body>
@@ -29,10 +21,13 @@
      <div class="row-fluid">
        <div class="span1 "></div>
        <div class="span10 ">
-	 <div class="header_wrap" style="background:7070a0">
+	 <div class="header_wrap">
 	   <div class="header">
-	     <%= link_to image_tag('/fetlogo90.png',{:style=>"float:left;height:50px",:height=>"50"}),home_index_path %>
-	     <h1 style="display:block"></h1>
+	     <% link_to image_tag('/fetlogo90.png',{:style=>"float:left;height:50px",:height=>"50"}),home_index_path %>
+	     <%= link_to home_index_path do %>
+	     <span class="feticon-fet_logo fa-4x color-1"> </span>
+	     <% end %>
+
 	   </div>
 	   
 	   <div id="menudiv" style="margin-top:12px">

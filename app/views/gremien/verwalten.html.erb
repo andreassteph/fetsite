@@ -1,13 +1,13 @@
 <h1>Listing gremien</h1>
+<%= render 'layouts/pretty_toolbar' %>
 <div class="container-fluid">
 <% @gremien.each do |gremium| %>
   <div class="row-fluid">
     <div class="span2">
-      <%= gremium.typ %>
+      <%= Gremium::TYPEN[gremium.typ.to_i] %>
     </div>
     <div class="span8">
       <b><%= gremium.name %></b>
-      <%= gremium.desc %>
     </div>
     <div class="span2">
 <div class="btn-group">   
@@ -17,10 +17,9 @@
 <span class="caret"></span>
 </button>
   <ul class="dropdown-menu">
-<li>
-      <%= link_to 'Show', gremium %></li>
-     <li> <%= link_to 'Edit', edit_gremium_path(gremium) %></li>
-    <li>  <%= link_to 'Destroy', gremium, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn-danger" %>
+    <li><%= link_to 'Show', gremium %></li>
+    <li><%= link_to 'Edit', edit_gremium_path(gremium) %></li>
+    <li><%= link_to 'Destroy', gremium, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn-danger" %>
 </li>      </ul>
     </div>
 </div>
@@ -38,7 +37,7 @@
 </table>
 
 <br />
-<%= render 'layouts/pretty_toolbar' %>
+
 
 
 

@@ -12,9 +12,22 @@
 
 class Attachment < ActiveRecord::Base
   has_paper_trail
-  attr_accessible :name, :datei
+  attr_accessible :name, :datei, :datei_cache
   belongs_to :thema
   mount_uploader :datei, AttachmentUploader
   validates :thema, :presence => true
   validates :name, :presence => true
+
+  def to_jq_upload
+  {
+    "id" => read_attribute(:id),
+    "title" => read_attribute(:title),
+    "description" => read_attribute(:desc),
+    "name" => read_attribute(:title),
+    "size" => datei.size,
+    "url" => datei.url,
+    "thumbnail_url" => datei.thumb.url,
+    "delete_type" => "DELETE" 
+   }
+  end
 end

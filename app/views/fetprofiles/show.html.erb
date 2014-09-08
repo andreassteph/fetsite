@@ -13,7 +13,7 @@
       <p>
 	<%= @fetprofile.desc %>
       </p>
-
+      <%= render partial: "interninfo", object: @fetprofile if can?(:seeintern, @fetprofile) %>
       <ul>
 	<% @memberships.each do |m| %>
 	<li>

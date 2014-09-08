@@ -2,13 +2,15 @@ class RubrikenController < ApplicationController
   before_filter {@toolbar_elements=[]}
    load_and_authorize_resource
   def index
-    if can?(:shownonpublic, Rubrik)
+    if can?(:showintern, Rubrik)
       @rubriken = Rubrik.all
+      @neuigkeiten = Neuigkeit.recent
     else
       @rubriken = Rubrik.where(:public=>true)
+      @neuigkeiten = Neuigkeit.public.recent
     end   
-    @neuigkeiten = @rubriken.collect(&:neuigkeiten).map(&:recent).flatten
-    @calentries= @rubriken.collect(&:calendar).collect(&:calentries).flatten
+    
+      @calentries= @rubriken.collect(&:calentries).flatten
   end
   def intern
 

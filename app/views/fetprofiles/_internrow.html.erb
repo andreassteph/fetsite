@@ -1,0 +1,12 @@
+<tr>
+<td> <%= link_to internrow.name, internrow %>
+</td>
+<td> <%= internrow.adress %></td>
+<td> 
+ <%= raw("Telefon: ")+ internrow.telnr + "<br>" unless internrow.telnr.nil? || internrow.telnr.empty?%>
+ <%= raw("Handy: ") +internrow.hdynr + raw("<br>") unless internrow.hdynr.nil? || internrow.hdynr.empty? %>
+<%= raw("Skype: ") +internrow.skype + raw("<br>") unless internrow.skype.nil? || internrow.skype.empty? %>
+<%= raw("Instant Messaging: ") +internrow.instant + raw("<br>") unless internrow.instant.nil? || internrow.instant.empty? %>
+</td>
+<td><%= internrow.fetmail %></td>
+</tr>

@@ -4,8 +4,13 @@ class AttachmentUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
+#  include CarrierWave::Uploader::Processing
+
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+def root
+  Rails.root.join 'public/'
+end
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -16,12 +21,44 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+  def cover 
+    manipulate! do |frame, index|
+      index== 0 ? frame.convert(:jpg) : nil
+      
+    end
+  end 
+  version :thumb ,:if=>:image? do
+    process :resize_to_fill => [64, 64]
+    process :convert => :jpg
 
-   version :thumb do
-     process :resize_to_fill => [64, 64]
-   end
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.jpg'
+    end 
+  end
 
-  # Provide a default URL as a default if there hasn't been a file uploaded:
+  version :cover  , :if=>:image? do
+    process :cover
+    process :resize_to_fit => [64,64]
+    process :convert => :jpg
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.jpg'
+    end
+  end
+  version :thumb_small , :if=>:image? do
+    process :resize_to_fill => [32, 32]
+  end
+  version :thumb_big , :if=>:image? do
+
+    process :resize_to_fill => [200, 200]
+    process :convert => :jpg
+    def full_filename(for_file)
+      super.chomp(File.extname(super)) + '.jpg'
+    end 
+
+  end
+  version :resized, :if=>:image? do
+    process :resize_to_fit => [1024,1024]
+  end
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
@@ -52,5 +89,8 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
+protected
+  def image?(file)
+    %w(jpg png jpeg).include?(File.extname(full_filename(file)))
+  end
 end

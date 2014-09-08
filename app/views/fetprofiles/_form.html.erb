@@ -11,11 +11,11 @@
     </div> </div>
     <div class="row-fluid">
       <div class="span12">   
-	<%= f.input :desc %>
+	<%= f.input :desc , input_html: {style: "width:100%"}%>
       </div>
     </div> 
     <div class="row-fluid">
-      <div class="span4"> <%= f.input :active %></div> 
+      <div class="span4"> <%= f.input :active %> <%= f.input :geschlecht,:as=>:select, :collection=>Fetprofile::GESCHLECHT.invert %></div> 
       <div class="span4">
 	<%= image_tag(@fetprofile.picture.thumb.url) unless @fetprofile.picture.nil? %>
 	<%= f.file_field :picture %>
@@ -28,28 +28,48 @@
       <div class="span4">  <%= f.input :fetmailalias %></div> 
     </div>
     
-<% @memberships.each do |m| %>
+<div class="row-fluid">
+<div class="span6">
 
-    <%= f.semantic_fields_for :memberships, m do |membership| %>
-  
-    <div class="row-fluid">
-     
- 
-      <div class="span3"><%= membership.input :start, :as=>:datepicker, :prepend=>"von",:label=>false%></div>
-      <div class="span3"><%= membership.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" %></div>
-    <div class="span2"><%= membership.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false %></div>
- <div class="span3"><%= membership.input :gremium, :label=>false %>
+<%= I18n.t("fetprofile.adresse") %>:
+
+<%=f.input :street %>
+<table><tr><td>
+<%=f.input :plz, input_html: {style: "width:5em"} %></td>
+<td><%=f.input :city, input_html: {style: "width:5em"} %></td></tr></table>
+<%=f.input :telnr %>
+<%=f.input :hdynr %>
 
 </div>
-<div class="span1"><%= membership.check_box :_destroy %> <%= I18n.t 'common.delete' %></div>
-      
-    </div>  
-    <% end %>
-  <% end %>  <% end %>  
+<div class="span6">
+<%= I18n.t("fetprofile.geburtstag") %>:
+<table><tr>
+<td><%=f.input :birth_day, input_html: {style: "width:3em"}%></td>
+<td><%=f.input :birth_month, input_html: {style: "width:3em"} %></td>
+<td><%=f.input :birth_year, input_html: {style: "width:5em"} %></td>
+</tr></table>
+
+
+
+<%=f.input :instant %>
+<%=f.input :skype %>
+
+</div>
+
+</div>
+<div id="memberships_form_list">
+<% @memberships.each do |m| %>
+<%= render partial:"membership_fields", object: m , locals: {:f=>f} %>
+<% end %>  
+</div>
+
+<% end %>  
     <div class="row-fluid">
       <div class="span12">
 	<%= f.actions do %>
-	<%= f.action :submit, :as => :input %>
+	<%= f.action :submit, :as => :button, :label=>I18n.t("common.save") %>
+	<%= f.action :submit, :as => :button, :label=>I18n.t("common.savecont"), :button_html=>{value: "continue"} %>
+	<%= f.action :cancel, :as=> :link , :label=>I18n.t("common.cancel") %>
 	<% end %>
       </div>
     </div>

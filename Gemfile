@@ -45,7 +45,7 @@ gem 'jquery-rails'
 gem 'formtastic', '~>2.2.1'
 gem 'formtastic-bootstrap', '~>2.1.3' #, :git => "git://github.com/mjbellantoni/formtastic-bootstrap.git"
 # TinyMCE
-gem "tinymce-rails" , '~>3.5.8'
+gem "tinymce-rails" , '~>4.1.0'
 
 # Internationalisierung
 #gem "globalize3"  ,'~>3.0.4'
@@ -60,9 +60,10 @@ gem "omniauth"
 gem "omniauth-facebook"
 gem "omniauth-ldap"
 
+gem "fb_graph"
+
 # Roles for users
 gem "rolify"
-
 # Abilities
 gem "cancan"
 
@@ -72,8 +73,9 @@ gem 'paperclip' ,'~>3.4.0'
 
 gem 'git'
 gem 'haml'
-#gem 'RedCloth'
-#gem 'gollum'
+gem 'RedCloth'
+gem 'wikicloth'
+gem 'gollum-lib'
 gem 'awesome_nested_set'
 gem 'annotate', ">=2.5.0"
 gem 'carrierwave', "~>0.9.0"
@@ -89,9 +91,13 @@ gem 'bootstrap-addons-rails'
 gem "jquery-fileupload-rails"
 gem "jquery-ui-rails","~> 4.1.1" 
 gem "font-awesome-rails"
+gem "jquery-datetimepicker-rails"
 # gem "jquery-sortable-rails"
 gem "seed_dump", "~> 0.5.3"
 #gem "themes_for_rails" ,:git =>'git://github.com/tkriplean/themes_for_rails.git'
 #gem "themes_for_rails", :git=> 'git://github.com/lucasefe/themes_for_rails.git'
 gem 'themes_for_rails'
 
+gem 'rubyzip'
+
+gem 'acts_as_votable'

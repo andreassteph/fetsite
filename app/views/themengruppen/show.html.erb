@@ -1,41 +1,44 @@
 <div class="content-wrap content-column" >
-  <%= link_to fa_icon("arrow-circle-left 2x")+" Alle Themengruppen", themengruppen_path, :class=>"linkbox" %>
-  <%= link_to fa_icon("question 2x")+" Häufige Fragen", faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
-  <h1><%= @themengruppe.title %></h1>
+  <ul class="linklist">
+<% if @themengruppe.public %>
+<li>  <%= link_to fa_icon("arrow-circle-left 2x")+I18n.t("themengruppe.showall"), themengruppen_path, :class=>"linkbox" %></li>
+<% else %>
+<li>  <%= link_to fa_icon("arrow-circle-left 2x")+I18n.t("common.intern"), intern_home_index_path, :class=>"linkbox" %></li>
+<% end %>
+  <li><%= link_to fa_icon("question 2x")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
+</li>
+</ul>
+  <%= render :partial=>'layouts/pretty_toolbar' %>
+
+  <h1>	<% unless @themengruppe.icon.nil? or @themengruppe.icon.empty? %>      <i class="<%= @themengruppe.icon %>" style="font-size:1.5em;margin:0"></i>
+      <% end %>
+<%= @themengruppe.title %></h1>
+
   <p>
     <%= @themengruppe.text %>
   </p>
   <ul class="unstyled linkbox-list" >
-    <% @themengruppe.themen.each do |thema| %>
+    <% @themen.each do |thema| %>
     <li>
       <div class="contentbox">	
 	<%= render :partial => 'themen/small', :object => thema %>
-	tools:
-	<% 
-	   @small_elements2 = []
-	   @small_elements2 << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('common.verwalten'), :path=>verwalten_thema_path(thema)} if can? :edit, thema 
-
-	%>
-	<%= render :partial=>'layouts/pretty_toolbar', :object=>@small_elements2 unless @small_elements2.empty? %>
 	<ul class="unstyled">
 	  <% unless thema.gremium.nil? %>
-	  
 	  <li>
 	    <%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
 	  </li>
 	  <% end %>		
 	  
 	  <% thema.nlinks.each do |l| %> 
-	  <li><%= render l.neuigkeit %></li>
+	  <li>
+	    <%= render l.neuigkeit if can? :show, l.neuigkeit%>
+	  </li>
 	  <% end %>
-	  <% thema.nlinks.each do |l| %> 
-	  <li><%= render l.neuigkeit %></li>
-	  <% end %>
+
 	</ul>
       </div>
     </li>
     <% end %>
   </ul>
 
-  <%= render :partial=>'layouts/pretty_toolbar' %>
 </div>

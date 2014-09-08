@@ -6,11 +6,22 @@ de:
     remove: "Themengruppe löschen"
     sure: "Sicher, dass Sie diese Themengruppe löschen möchten?"
     manage: "Themengruppe verwalten"
+    manage_all: "Alle Themengruppen verwalten"
+    showall: "Alle Themengruppen anzeigen"
+    faqs: "Häufig gestellte Fragen"
   thema:
     add: "Thema hinzufügen"
     edit: "Thema bearbeiten"
+    show: "Thema anzeigen"
     remove: "Thema löschen"
+    manage: "Thema verwalten"
+    save: "Thema speichern"
+    savecont: "Thema zwischenspeichern"
+    created: "Thema erfolgreich erstellt"
+    updated: "Thema erfolgreich gespeichert"
     sure: "Sicher, dass Sie dieses Thema löschen möchten?"
+    isdraft: "Entwurf"
+    outdated: "Veraltete Information"
   frage:
     add: "Frage hinzufügen"
     edit: "Frage bearbeiten"
@@ -22,11 +33,25 @@ de:
   formtastic:
     labels:
       thema:
-        title: "Themen Name"
+        title: "Themen Überschrift"
+        text: "Text"
         themengruppe: "Gruppe"
-    hints:
-      thema:
+        isdraft: "Entwurf"
+        hideattachment: "Anhangtabelle ausblenden"
+        hidelink: "Thema in Überblick nicht anzeigen"
+      themengruppe:
         title: "Überschrift"
+        priority: "Sortierung"
+        public: "öffentlich"
+        picture: "Icon"
+        text: "Beschreibung"
+      frage:
+        title: "Frage"
+        text: "Antwort"
+        thema: "Thema"
+    hints:
+
+
   activerecord:
     errors:
       models:
@@ -34,3 +59,5 @@ de:
           attributes:
             title:
               blank: "Der Themen Name darf nicht leer sein!"
+            text:
+              blank: "Bitte Text hinzufügen"

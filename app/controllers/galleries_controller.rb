@@ -6,7 +6,7 @@ class GalleriesController < ApplicationController
   # GET /galleries.json
   def index
     @galleries = Gallery.all
-    @toolbar_elements << {:hicon => 'icon-plus', :text => I18n.t('fotos.new-gallery'), :path => new_gallery_path }
+    @toolbar_elements << {:hicon => 'icon-plus', :text => I18n.t('fotos.new-gallery'), :path => new_gallery_path } if can? :new, Gallery
 
     respond_to do |format|
       format.html # index.html.erb

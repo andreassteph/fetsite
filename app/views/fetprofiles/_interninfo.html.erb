@@ -1,0 +1,16 @@
+<p>
+<b>Geburtstag</b> <%= %>
+</p>
+<p>
+  <b>Adresse:</b>
+  <%= interninfo.plz %> 
+  <%= interninfo.city %>, 
+  <%= interninfo.street %> 
+</p>
+<p>
+ <%= raw("<b>Telefon: </b>")+ interninfo.telnr + "<br>" unless (interninfo.telnr.nil? || interninfo.telnr.empty?) %>
+ <%= raw("<b>Handy: </b>") +interninfo.hdynr unless interninfo.hdynr.nil? || interninfo.hdynr.empty? %><br>
+<%= raw("<b>Skype: </b>") +interninfo.skype unless interninfo.skype.nil? || interninfo.skype.empty? %><br>
+<%= raw("<b>Instant Messaging: </b>") +interninfo.instant unless interninfo.instant.nil? || interninfo.instant.empty? %><br>
+
+</p>

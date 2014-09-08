@@ -3,11 +3,14 @@
   <p id="notice"><%= notice %></p>
   <div class="row-fluid">
     <div class="span8">
-      <h1><%=@lva.typ.to_s + ' ' +  @lva.name %></h1>
-      
+      <h1><%= @lva.full_name %></h1>
+      <ul class="linklist">
+	<li><%= link_to ffi1_icon("live2")+"ET-Forum",@lva.forumlink, class: :linkbox unless @lva.forumlink.nil? or @lva.forumlink.empty?%></li>
+      </ul>
+
       <h2>Prüfungsinformation</h2>
       <div class="">
-	<%= @lva.pruefungsinformation.html_safe %>
+	<%= @lva.pruefungsinformation.to_s.html_safe %>
       </div>
 
       <h2>Lernaufwand</h2>
@@ -19,10 +22,6 @@
 	<%= @lva.desc.to_s.html_safe %>
       </div>
       
-      <h2>Beispiele</h2>
-      <% @lva.beispiele.each do |b| %>
-      <%= render b%>
-      <% end %>
       
    
     </div>
@@ -57,6 +56,17 @@
       </div>
     </div>
   </div>
+  <div class="row-fluid">
+    <div class="span12">
+
+      <h2>Beispiele</h2>
+      <%= link_to t("beispiel.zip") , beispiel_sammlung_lva_path(@lva), class: :linkbox %>
+      <% @lva.beispiele.each do |b| %>
+      <%= render b%>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row-fluid">
     <div class="span12">
       <% unless @lva.nlinks.empty? %> 

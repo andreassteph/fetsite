@@ -3,11 +3,11 @@
 <p id="notice"><%= notice %></p>
 <div class="contentbox">
 <span>
-  <%= @neuigkeit.rubrik.name %>
+  <%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
 </span>
 <span class="pull-right">
   <%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
-  <%= @neuigkeit.author.text+ " am " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
+  <%= @neuigkeit.author.text+ " "+ I18n.t("neuigkeit.am")+" " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
 </span>
 <div class="media">
   <div class="pull-left" href="#">
@@ -17,7 +17,6 @@
   <div class="media-body">
     <h1>
       <%=  @neuigkeit.title%>
-      
     </h1>
     <%= raw(@neuigkeit.text) %>
     <p></p>
@@ -29,7 +28,7 @@
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
 
-Siehe auch: 
+<%= I18n.t("neuigkeit.sieheauch") %>
 <ul class="unstyled">
   <div id="nlink_list">
     <%= render partial: "nlink_list", collection: @neuigkeit.nlinks %>
@@ -38,9 +37,9 @@ Siehe auch:
     <%= render partial: "nlink_list_search", collection: @nlink_search %>
   </div>
 </ul>
-
+<% if can? :find_link, @neuigkeit %>
 <%= semantic_form_for :find_link, :url=>find_link_rubrik_neuigkeit_path(@rubrik,@neuigkeit), :html=>{:id=>"search_form", :method=>'get'} do |f| %>
 <%= f.input :query, :input_html => { :name => 'query' },:label=>false %>
 <% end %>
-
+<% end %>
 </div>

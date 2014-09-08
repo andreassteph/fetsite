@@ -1,14 +1,32 @@
+# -------------- interne Strings ---------
 de:
-  profile:
-    remove_picture: "Bild entfernen"
-    all_members: "Alle Mitglieder"
-    all_groups: "Alle Gremien und Gruppen"
-    active_members: "Aktive Mitglieder"
-    notactive_members: "Pension"
-    new_profile: "Neues Profil anlegen"
-  gremium:
-    new: "Neues Gremium"
-    filter:
-      berufung:
-        title: "Berufungskommission"
-        text: "B.."
+  fetprofile:
+    edit: "Profil bearbeiten"
+    geburtstag: "Geburtstag"
+    adresse: "Adresse"
+  formtastic:
+    labels:
+      fetprofile:
+        birth_day: "Tag"
+        birth_month: "Monat"
+        birth_year: "Jahr"
+        geschlecht: "Geschlecht"
+        hdynr: "Handynummer"
+        telnr: "Telefonnummer"
+        skype: "Skype"
+        instant: "anderer Instantmessanger"
+        city: "Stadt"
+        street: "Straße"
+        plz: "PLZ"
+        picture: "Portraitfoto"
+        vorname: "Vorname"
+        nachname: "Nachname"
+        short: "Spitzname"
+        fetmailalias: "Spitzname bei Mailadresse"
+        desc: "Beschreibungstext"
+        active: "AktiveR MitarbeiterIn"
+      membership:
+        start: "Beginn"
+        stop: "Ende"
+        type: "Typ"
+        

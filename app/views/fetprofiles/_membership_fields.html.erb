@@ -1,0 +1,13 @@
+<%= f.semantic_fields_for :memberships, membership_fields do |membership| %>
+<table><tr><td>
+<%= membership.input :start, :as=>:datepicker, :prepend=>"von",:label=>false ,  :input_html => { :style => "width:6em"} %>
+</td><td>
+ <%= membership.input :stop, :as=>:datepicker,:label=>false, :prepend =>"bis" ,  :input_html => { :style => "width:6em"}%></td><td>
+
+<%= membership.input :typ ,:as=>:select, :collection=>Membership::TYPEN.invert, :label=>false ,  :input_html => { :style => "width:12em" }%></td><td>
+
+<%= membership.input :gremium, :label=>false %>
+</td><td>
+<%= membership.check_box :_destroy %> <%= I18n.t 'common.delete' %></td></tr></table>
+
+<% end %>

@@ -7,14 +7,19 @@ class FetprofilesController < ApplicationController
     
     @fetprofiles = Fetprofile.active.order(:vorname,:nachname)
     @fetprofiles = Fetprofile.order(:vorname,:nachname) if params[:filter]== "all"
-    @fetprofiles = Fetprofile.where(:active=>false).order(:vorname,:nachname) if params[:filter]== "notactive"
+    @fetprofiles = Fetprofile.where(:active=>false).order(:nachname,:vorname) if params[:filter]== "notactive"
 
     @gremientabs = Gremium.tabs
+     @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('profile.new_profile'),:path => new_fetprofile_path(@fetprofile) } if can? :new, @fetprofile
+
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @fetprofiles }
-    end
+      end
   end
+  def internlist
+    @fetprofiles = Fetprofile.order(:vorname,:nachname) 
+    end
+
 
   # GET /fetprofiles/1
   # GET /fetprofiles/1.json
@@ -84,7 +89,18 @@ class FetprofilesController < ApplicationController
    
     respond_to do |format|
       if @fetprofile.update_attributes(params[:fetprofile])
-        format.html { redirect_to @fetprofile, notice: 'Fetprofile was successfully updated.' }
+        format.html { 
+          unless params[:button]=="continue" || params[:commit]=="continue"
+            
+          redirect_to @fetprofile, notice: 'profile was successfully updated.' 
+          else
+            @memberships=@fetprofile.memberships.order(:typ)
+            @memberships<< Membership.new
+            @memberships<< Membership.new
+            @memberships<< Membership.new
+            render action: "edit", notice: 'profile was successfully updated.'
+          end
+        }
         format.json { head :no_content }
       else
         @memberships=@fetprofile.memberships.order(:typ)

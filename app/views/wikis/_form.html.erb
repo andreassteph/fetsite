@@ -1,0 +1,38 @@
+<%= tinymce_assets %>
+<div class="container-fluid">
+  <%= semantic_form_for @wiki, :remote=>remote do |f| %>
+  <%= f.inputs do %>
+  <div class="row-fluid">
+    <div class="span6">
+      <%= f.input :title %>
+    </div> 
+    <div class="span6">
+      <%= f.input :themengruppe %>
+    </div>
+  </div> 
+  <div class="row-fluid">
+    <div class="span6">
+      <%= f.input :wikiformat, :as=>:select, :collection=>Wiki::WIKIFORMATS.invert %>
+    </div> 
+    <div class="span6">
+      <%= f.input :hidelink, :as=>:boolean %>
+ 
+  <%= @wiki.wikiname %>
+    </div>
+  </div> 
+
+  <div class="row-fluid"> 
+    <div class="span12"> 
+      <%= f.input :raw_data, :label=>false,:as=>:text, :input_html=>{:rows=>20,:class=>"row-fluid"}   %>
+    </div> 
+  </div>
+  <%= f.actions do %>
+  <%= f.action :submit, :as => :button %> 
+  <%= f.action :cancel, :as => :link %>
+  <% end %> 
+  <% end %><% end %>
+  <%= tinymce %>
+  <h2>Attachments:</h2>
+
+
+

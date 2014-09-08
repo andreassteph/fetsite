@@ -32,8 +32,11 @@ class Calentry < ActiveRecord::Base
   
   resourcify
   def get_public
-    self.public = (self.try(:object).nil?)? (self.calendar.try(:public)) : object.try(:public)
+    self.public = (self.try(:object).nil?)? (self.calendar.try(:public?)) : object.try(:public?)
     true
+  end
+  def s_time=(s_time)
+    start 
   end
   def start_time
     start
@@ -60,7 +63,7 @@ end
     end
   end
 def text
-   I18n.l(self.start) +" bis "+ I18n.l(self.ende) 
+   I18n.l(self.start) +" "+ I18n.t("cal.bis")+" "+ I18n.l(self.ende) 
 end
   scope :public, -> { where(:public => :true) } 
  # scope :upcoming, -> { where("start >= ?" , Time.now).where("start <= ?", 28.days.from_now) }

@@ -22,9 +22,11 @@ class Neuigkeit < ActiveRecord::Base
   translates :title,:text, :versioning=>{:gem=>:paper_trail, :options=>{:fallbacks_for_empty_translations => true}}
 
   has_many :calentries, as: :object
+  has_many :nlinks   
+
   mount_uploader :picture, PictureUploader
-  default_scope order(:datum).reverse_order
-  #scope :published, -> {where("datum <= ? AND datum IS NOT NULL", Time.now.to_date)}
+
+  default_scope  order(:datum).reverse_order  
   scope :recent, -> { published.limit(10)}
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>true)}
@@ -34,7 +36,9 @@ class Neuigkeit < ActiveRecord::Base
   LINKTYPES=["Thema", "Gallery", "Lva","Studium","Fetprofile", "Gremium"]
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
-  has_many :nlinks   
+
+
+
   def self.published
     where("datum <= ? AND datum IS NOT NULL", Time.now.to_date)  
   end
@@ -46,7 +50,7 @@ class Neuigkeit < ActiveRecord::Base
     self.rubrik.public
   end
   def published?
-   self.datum_nilsave>=Time.now.to_date
+   self.datum_nilsave<Time.now.to_date
   end
 
   def publish
@@ -55,9 +59,9 @@ class Neuigkeit < ActiveRecord::Base
   def reverse_publish
     self.datum = nil
   end
- def name
-self.title
-end
+  def name
+    self.title
+  end
   def text_first_words
     md = /<p>(?<text>[^\<\>]*)/.match Sanitize.clean(self.text,:elements=>['p'])
     words=md[:text].split(" ") unless md.nil?
@@ -68,15 +72,15 @@ end
       
     end
   end
-def has_calentries?
-!self.calentries.nil? && !self.calentries.empty?
-end
-private
-def sanitize
-self.calentries.each do |calentry|
-calentry.calendar= self.rubrik.calendar
-calentry.typ=1
-calentry.object=self
-end
-end
+  def has_calentries?
+    !self.calentries.nil? && !self.calentries.empty?
+  end
+  private
+  def sanitize
+    self.calentries.each do |calentry|
+      calentry.calendar= self.rubrik.calendar
+      calentry.typ=1
+      calentry.object=self
+    end
+  end
 end

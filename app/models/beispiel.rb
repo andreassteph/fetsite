@@ -14,7 +14,9 @@
 class Beispiel < ActiveRecord::Base
   has_paper_trail
   attr_accessible :desc, :name, :lva_id, :beispieldatei, :beispieldatei_cache, :datum
+  acts_as_votable
   belongs_to :lva
+
   mount_uploader :beispieldatei, AttachmentUploader
   validates :beispieldatei, :presence => true
   validates :name, :presence => true
