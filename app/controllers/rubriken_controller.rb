@@ -7,7 +7,7 @@ class RubrikenController < ApplicationController
       @neuigkeiten = Neuigkeit.paginate(page: params[:page], per_page:3)
     else
       @rubriken = Rubrik.where(:public=>true)
-      @neuigkeiten = Neuigkeit.public.recent
+      @neuigkeiten = Neuigkeit.public.published.paginate(page: params[:page], per_page:3)
     end   
     
       @calentries= @rubriken.collect(&:calentries).flatten

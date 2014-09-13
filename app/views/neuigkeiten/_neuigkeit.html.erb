@@ -1,6 +1,6 @@
 <% if defined?(wrap_in) && !wrap_in.blank? %>
 <%= content_tag wrap_in do %>
-www
+
 <% c =[:linkbox] %>
 <% c << "color-"+neuigkeit.rubrik.color.to_s+"-dark" unless neuigkeit.rubrik.color.nil? %>
 <%= link_to [neuigkeit.rubrik,neuigkeit], {class: c} do %>
