@@ -1,4 +1,4 @@
-$('#neuigkeiten').append('<%= j render @neuigkeiten, :locals => { :wrap_in => :li} %>');
+$('#neuigkeiten').append('<%= j render @neuigkeiten,  :wrap_in => :li %>');
 <% if @neuigkeiten.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @neuigkeiten %>');
 <% else %>

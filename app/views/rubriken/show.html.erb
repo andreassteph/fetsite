@@ -22,9 +22,8 @@
 <ul class="unstyled linkbox-list" style="max-width:70em" id="neuigkeiten">
 <% @neuigkeiten.each do |neuigkeit| %>
 
-  <li>
-    <%= render neuigkeit %>
-  </li>
+
+    <%= render neuigkeit, wrap_in: "li" %>
 <% end %>
 </ul>
 
