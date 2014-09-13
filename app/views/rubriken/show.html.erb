@@ -1,3 +1,6 @@
+<%= content_for :header do %>
+<title>Fetsite - <%= @rubrik.name %></title>
+<% end %>
 <%= render 'tabs' %>
 <p id="notice"><%= notice %></p>
 <div class="content-wrap">
@@ -24,6 +27,7 @@
 
 
     <%= render neuigkeit, wrap_in: "li" %>
+
 <% end %>
 </ul>
 

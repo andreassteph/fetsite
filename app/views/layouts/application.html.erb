@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="shortcut icon" href="http://glonass.htu.tuwien.ac.at/favicon.ico"> 
    <!--<link rel="shortcut icon" href="http://www.fet.at/favicon.ico">-->
-   <title>Fetsite</title>
+   <!---->
    
    <%= stylesheet_link_tag "themes/"+theme_name+"/application", :media => "all" unless theme_name.empty?  %>
    <%= stylesheet_link_tag "application", :media=>"all" if theme_name.empty? %>
@@ -13,7 +13,11 @@
    <% theme_stylesheet_link_tag "mod", :media=>"all" %>
    <%= javascript_include_tag "application" %>
    <%= csrf_meta_tags %>
+<% if content_for?(:header) %>
    <%= yield :header %>
+<% else %>
+<title>Fetsite</title>
+<% end  %>
   </head>
 
   <body>
