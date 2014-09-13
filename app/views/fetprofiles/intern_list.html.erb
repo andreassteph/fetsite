@@ -1,0 +1,7 @@
+Liste
+<table>
+<tr><th></th><th>Name</th><th></th><th>E-Mail</th></tr>
+<% @fetprofiles.each do |fp| %>
+<%= render partial: "fetprofiles/list_row", object: fp %>
+<% end %>
+</table>

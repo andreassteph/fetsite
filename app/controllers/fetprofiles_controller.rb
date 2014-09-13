@@ -9,6 +9,7 @@ class FetprofilesController < ApplicationController
     @fetprofiles = Fetprofile.order(:vorname,:nachname) if params[:filter]== "all"
     @fetprofiles = Fetprofile.where(:active=>false).order(:nachname,:vorname) if params[:filter]== "notactive"
 
+
     @gremientabs = Gremium.tabs
      @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('profile.new_profile'),:path => new_fetprofile_path(@fetprofile) } if can? :new, @fetprofile
 
@@ -16,10 +17,10 @@ class FetprofilesController < ApplicationController
       format.html # index.html.erb
       end
   end
+
   def internlist
     @fetprofiles = Fetprofile.order(:vorname,:nachname) 
     end
-
 
   # GET /fetprofiles/1
   # GET /fetprofiles/1.json
