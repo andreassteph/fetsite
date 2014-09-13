@@ -8,6 +8,8 @@ class HomeController < ApplicationController
 
   end
   def kontakt
+    t=YAML.load_file("#{::Rails.root.to_s}/config/contact_topic.yml")
+    @themen = Thema.where(:id=>t)
   end
   def intern
     authorize! :seeintern, User
@@ -51,4 +53,9 @@ class HomeController < ApplicationController
       format.js
     end
   end
+  def choose_contact_topics
+File.open("config/contact_topic.yml",'w'){|f|  f.write(params[:themen].to_yaml)} 
+  redirect_to admin_home_index_path
+  end
+
 end

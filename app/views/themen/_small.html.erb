@@ -1,3 +1,4 @@
+<% if can? :show, small %>
 <a name="thema_<%=small.id%>" href="#<%=small.id%>">
   <h2><%= small.title %> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %></h2>
 </a>
@@ -30,3 +31,6 @@
 @small_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>small} if can? :edit, small 
 @small_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('thema.remove'), :path=>small, :method=>:delete,:confirm=>I18n.t('thema.sure')} if can? :delete, small %>
 <% render :partial=>'layouts/pretty_toolbar', :object=>@small_elements unless @small_elements.empty? %>
+<% else %>
+Error
+<% end %>

@@ -18,6 +18,13 @@ class Attachment < ActiveRecord::Base
   validates :thema, :presence => true
   validates :name, :presence => true
 
+  def image?
+    
+ #   data_ext = datei.file.extension.downcase 
+ #   %w(jpg png jpeg).include?(data_ext)
+    datei.image?(datei.file)
+  end
+
   def to_jq_upload
   {
     "id" => read_attribute(:id),

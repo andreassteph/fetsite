@@ -1,13 +1,13 @@
-
-<div class="row-fluid contentbox">
+<div id="<%= beispiel.divid %>" class="contentbox">
+<div class="row-fluid">
   <div class="span8">
 
-<b><%=link_to ffi1_icon("note20")+" " + beispiel.name, beispiel.beispieldatei.url, title: beispiel.desc  %></b>
+    <b><%=link_to ffi1_icon("note20")+" " + beispiel.name, beispiel.beispieldatei.url, title: beispiel.desc  %></b>
 
 <%= I18n.t("file.size") + ": " + (beispiel.beispieldatei.size/1024.0).round(2).to_s  %>KiB <br>  
 <span class="linklist"><%= 
 if can?(:like, beispiel)
-link_to ffi1_icon("like3")+" like" + "("+beispiel.get_likes.size.to_s+")", like_beispiel_path(beispiel),title: "liked by " + ((current_user.liked?(beispiel)) ? ("you and " + ((beispiel.get_likes.size - 1).to_s + " others")) :  beispiel.get_likes.size.to_s)  
+link_to ffi1_icon("like3")+" like" + "("+beispiel.get_likes.size.to_s+")", like_beispiel_path(beispiel),title: "liked by " + ((current_user.liked?(beispiel)) ? ("you and " + ((beispiel.get_likes.size - 1).to_s + " others")) :  beispiel.get_likes.size.to_s), remote: true  
 else
 "liked by " + beispiel.get_likes.size.to_s
 end
@@ -15,7 +15,7 @@ end
 
 <%= 
 if can?(:dislike, beispiel)
-link_to ffi1_icon("dislike")+" dislike" + "("+beispiel.get_dislikes.size.to_s+")", dislike_beispiel_path(beispiel),title:"disliked by " + ((current_user.disliked?(beispiel)) ? ("you and " + ((beispiel.get_dislikes.size - 1).to_s + " others")) :  beispiel.get_dislikes.size.to_s) 
+link_to ffi1_icon("dislike")+" dislike" + "("+beispiel.get_dislikes.size.to_s+")", dislike_beispiel_path(beispiel),title:"disliked by " + ((current_user.disliked?(beispiel)) ? ("you and " + ((beispiel.get_dislikes.size - 1).to_s + " others")) :  beispiel.get_dislikes.size.to_s) , remote: true
 else
 "disliked by " + beispiel.get_dislikes.size.to_s
 end
@@ -23,10 +23,19 @@ end
 %>
 
 <%= link_to ff_icon("icon-pencil")+" edit", edit_beispiel_path(beispiel) if can? :edit, beispiel%>
-<%= link_to ff_icon("icon-remove")+" delete",  beispiel_path(beispiel), :method=>:delete, :data=>{:confirm=>I18n.t('beispiel.sure')} if can? :delete, beispiel %></br>
+<%= link_to ff_icon("icon-remove")+" delete",  beispiel_path(beispiel), :method=>:delete, :data=>{:confirm=>I18n.t('beispiel.sure')} if can? :delete, beispiel %>
+<%= link_to "Refresh", beispiel, remote: true %></br>
 </span>
 </div>
 <div class="span4">
 <%= beispiel.desc %>
 </div>
+</div>
+<%= link_to "comment" , new_comment_path( commentable_type: "Beispiel", commentable_id: beispiel.id), remote:true if can? :comment, beispiel %>  
+  <div id="<%= Comment.formid_for(beispiel) %>">
+  </div>
+<% unless beispiel.comments.roots.empty? %>
+<div class="row-fluid"><div class="span12"><%= render partial:"comments/comments", object: beispiel.comments.order(:created_at).roots.reverse_order %></div></div>
+<% end %>
+
 </div>

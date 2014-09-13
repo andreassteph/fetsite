@@ -2,21 +2,21 @@
   <%= render :partial=>'layouts/pretty_toolbar' %>
   <ul class="linklist">
     <li>
-    <%= link_to fa_icon("question")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path,class: :linkbox %>
-</li>
-</ul>
-  </p>
-  <ul class="unstyled linkbox-list">
-    <li>  
-      <% @themengruppen.each do |themengruppe| %>
-      <div class="container-fluid">
-	<%= render themengruppe if can?(:show,themengruppe)%>
-      </div>
-      <% end %>
+      <%= link_to fa_icon("question")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path,class: :linkbox %>
     </li>
   </ul>
+</p>
+<ul class="unstyled linkbox-list">
+    <% @themengruppen.each do |themengruppe| %>
+  <li>  
 
-  <br/>
+    <%= render themengruppe if can?(:show,themengruppe)%>
+
+  </li>
+    <% end %>
+</ul>
+
+<br/>
 </div>
 
 <script class="hidden-phone">

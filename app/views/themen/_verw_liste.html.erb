@@ -1,8 +1,13 @@
 <% verw_liste.each do |thema| %>
-<li id="themen_<%= thema.id %>" class="sort"  ><div class="contentbox handle" ><b><%= thema.title %></b> </div>
- 
-<%= link_to thema_path(thema),:remote=>true do %> Show <% end %> 
-<%= link_to edit_thema_path(thema),:remote=>true do %> Edit <% end %>  
-<%= link_to fragen_thema_path(thema),:remote=>true do %> Fragen <% end %>
-<%= link_to attachments_thema_path(thema),:remote=>true do %> Attachments <% end %></li>
+<li id="themen_<%= thema.id %>" class="sort"  >
+<div class="dropdown contentbox handle">
+<a href="#" data-toggle="dropdown" class="dropdown-toggle"><b><%= thema.title %></b></a> <%= link_to thema_path(thema),:remote=>true do %> <%= fa_icon('eye') %>   <% end %><%= link_to edit_thema_path(thema),:remote=>true do %> <%= ff_icon('icon-pencil') %> <% end %>
+
+ <ul class="dropdown-menu">
+<li><%= link_to thema_path(thema),:remote=>true do %> <%= fa_icon('eye') %> Show <% end %></li> 
+<li><%= link_to edit_thema_path(thema),:remote=>true do %> <%= ff_icon('icon-pencil') %> Edit <% end %>  </li>
+<li><%= link_to fragen_thema_path(thema),:remote=>true do %> Fragen <% end %></li>
+<li><%= link_to attachments_thema_path(thema),:remote=>true do %> Attachments <% end %></li>
+</ul>
+</li>
 <% end %>

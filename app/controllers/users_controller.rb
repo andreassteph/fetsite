@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       redirect_to intern_home_index_path
     else
       @fbu=FbGraph::User.new(current_user.uid.to_s).fetch(:access_token=>session["fbuser_access_token"])
-      File.open("tmp/page.yml",'w'){|f|  f.write(@fbu.accounts(:access_token=>session["fbuser_access_token"]).select { |p| p.name == params["page"] }.first.to_yaml)}
+      File.open("config/page.yml",'w'){|f|  f.write(@fbu.accounts(:access_token=>session["fbuser_access_token"]).select { |p| p.name == params["page"] }.first.to_yaml)}
       logger.debug @fbu.to_s
       redirect_to admin_home_index_path
     end

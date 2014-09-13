@@ -4,12 +4,14 @@ class Ability
   def initialize(user)
     loggedin=!(user.nil?)
     user ||= User.new # guest user (not logged in)
+
+    can :manage, Comment
     #-----------------------------------------------------
     # Rechteverwaltung fuer Studien Modul
     can [:show, :index], Studium
     can [:show, :index], Modulgruppe
     can [:show, :index], Modul
-    can [:show, :index], Lva
+    can [:show, :index, :beispiel_sammlung], Lva
     can [:create, :show], Beispiel
     if loggedin
       can :like, Beispiel
@@ -20,6 +22,7 @@ class Ability
       can :manage, Modul
       can :manage, Lva
       can :manage, Studium
+      can :manage, Beispiel
     end
     unless user.has_role?("fetadmin")
       cannot :delete, Studium    
@@ -40,6 +43,7 @@ class Ability
       can :showintern, Thema
       can :manage, Thema
       can :manage, Themengruppe
+      can :manage, Attachment
     end
     unless user.has_role?("fetadmin")
       cannot :delete, Themengruppe
@@ -95,6 +99,8 @@ class Ability
     if user.has_role?("fetadmin")
       can :addfetuser, User
       can :addfetadmin, User
+      can :edit, User
+      can :manage, User
     end
     
     if user.has_role?("newsadmin") || user.has_role?( "fetadmin") || user.has_role?( "fetuser") 

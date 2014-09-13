@@ -69,7 +69,7 @@ class NeuigkeitenController < ApplicationController
     unless @neuigkeit.published?
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie auf Facebook zu posten.'
     else
-      page=YAML.load_file("#{::Rails.root.to_s}/tmp/page.yml")
+      page=YAML.load_file("#{::Rails.root.to_s}/config/page.yml")
       page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html", :picture=>@neuigkeit.picture.url)
      
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit auf Facebook gepostet'
@@ -113,9 +113,14 @@ class NeuigkeitenController < ApplicationController
     render action:"show"
   end
   def create_link
-    Nlink.create(:link=>params[:link_type].constantize.find(params[:link_id]),:neuigkeit=>Neuigkeit.find(params[:id]))
+    @neuigkeit = Neuigkeit.find(params[:id])
 
-    redirect_to action:"show"
+    Nlink.create(:link=>params[:link_type].constantize.find(params[:link_id]),:neuigkeit=>Neuigkeit.find(params[:id]))
+    @nlinks=@neuigkeit.nlinks
+    respond_to do |format|
+      format.html { edirect_to action:"show" }
+      format.js
+    end
   end
 
   def create
@@ -159,21 +164,23 @@ private
   def load_toolbar_elements
     @neuigkeit=Neuigkeit.find(params[:id])
     @toolbar_elements=[]
-    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.publish_sure') } if can?(:publish, @neuigkeit) && !@neuigkeit.published?
-    @toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfb'),:path => publish_to_facebook_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfb_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
+    actions=[]
+    actions << {:hicon=>'icon-plus', :text=> I18n.t('neuigkeit.publish'),:path => publish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.publish_sure') } if can?(:publish, @neuigkeit) && !@neuigkeit.published?
+    actions << {:hicon=>'ffi1-facebook1', :text=> I18n.t('neuigkeit.publishfb'),:path => publish_to_facebook_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfb_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
 
-@toolbar_elements << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfetmail'),:path => mail_to_fet_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfetmail_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
+actions << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfetmail'),:path => mail_to_fet_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=>I18n.t('neuigkeit.publishfetmail_sure') } if can?(:publish, @neuigkeit) && @neuigkeit.published?
 
-    @toolbar_elements << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.unpublish_sure') } if can?(:unpublish, @neuigkeit) && @neuigkeit.published?
+    actions << {:hicon=>'icon-minus', :text=> I18n.t('neuigkeit.unpublish'),:path => unpublish_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:confirm=> I18n.t('neuigkeit.unpublish_sure') } if can?(:unpublish, @neuigkeit) && @neuigkeit.published?
   
+
 
   @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
     @versions= @neuigkeit.translation.versions.select([:created_at]).reverse
 
     @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}
      
-      @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>'Sure?' } if can? :delete, @neuigkeit
-
+      actions << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>'Sure?' } if can? :delete, @neuigkeit
+    @toolbar_elements << {:text => "action", :method => :dropdown, :elements=> actions}
   end
   
 
