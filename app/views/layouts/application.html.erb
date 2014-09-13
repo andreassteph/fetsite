@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 
- <head>
+  <head>
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="http://glonass.htu.tuwien.ac.at/favicon.ico"> 
- <!--<link rel="shortcut icon" href="http://www.fet.at/favicon.ico">-->
-  <title>Fetsite</title>
+   <link rel="shortcut icon" href="http://glonass.htu.tuwien.ac.at/favicon.ico"> 
+   <!--<link rel="shortcut icon" href="http://www.fet.at/favicon.ico">-->
+   <title>Fetsite</title>
+   
+   <%= stylesheet_link_tag "themes/"+theme_name+"/application", :media => "all" unless theme_name.empty?  %>
+   <%= stylesheet_link_tag "application", :media=>"all" if theme_name.empty? %>
+   <% theme_stylesheet_link_tag "test", :media => "all" %>
+   <% theme_stylesheet_link_tag "mod", :media=>"all" %>
+   <%= javascript_include_tag "application" %>
+   <%= csrf_meta_tags %>
+   <%= yield :header %>
+  </head>
 
- 
-  <%= stylesheet_link_tag "themes/"+theme_name+"/application", :media => "all" unless theme_name.empty?  %>
-  <%= stylesheet_link_tag "application", :media=>"all" if theme_name.empty? %>
-  <% theme_stylesheet_link_tag "test", :media => "all" %>
-  <% theme_stylesheet_link_tag "mod", :media=>"all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-
- <body>
-   <div id="maincontainer" class="container-fluid">
+  <body>
+    <div id="maincontainer" class="container-fluid">
      <div class="row-fluid">
        <div class="span1 "></div>
        <div class="span10 ">
@@ -27,7 +27,6 @@
 	     <%= link_to home_index_path do %>
 	     <span class="feticon-fet_logo fa-4x color-1"> </span>
 	     <% end %>
-
 	   </div>
 	   
 	   <div id="menudiv" style="margin-top:12px">
@@ -56,7 +55,7 @@
        <div class="span1">
        </div>
      </div>
-   </div>
+    </div>
   
- </body>
+  </body>
 </html>

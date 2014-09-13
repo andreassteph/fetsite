@@ -19,16 +19,18 @@
 <div class="row-fluid">
 
 <div class="span9">
-<% @neuigkeiten.each_slice(1) do |row| %>
-<ul class="unstyled" style="max-width:70em">
-  <% row.each do |neuigkeit| %>
+<ul class="unstyled linkbox-list" style="max-width:70em" id="neuigkeiten">
+<% @neuigkeiten.each do |neuigkeit| %>
+
   <li>
     <%= render neuigkeit %>
   </li>
-  <% end %>
-</ul>
 <% end %>
+</ul>
 
+<div id="infinite-scrolling">
+<%= will_paginate @neuigkeiten %>
+</div>
 </div>
 <div class="span3">
 <%= render 'calendars/calentries', :object=>@calentries %>

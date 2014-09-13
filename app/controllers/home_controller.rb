@@ -28,6 +28,7 @@ class HomeController < ApplicationController
   def linksnotimplemented
   render 'links_notimplemented'
   end
+
   def search
   
     unless params['query'].nil? || params['query'].empty?
@@ -54,8 +55,8 @@ class HomeController < ApplicationController
     end
   end
   def choose_contact_topics
-File.open("config/contact_topic.yml",'w'){|f|  f.write(params[:themen].to_yaml)} 
-  redirect_to admin_home_index_path
+    File.open("config/contact_topic.yml",'w'){|f|  f.write(params[:themen].to_yaml)} 
+    redirect_to admin_home_index_path
   end
 
 end

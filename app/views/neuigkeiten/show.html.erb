@@ -27,18 +27,10 @@
 <% end %>
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
-
-<%= I18n.t("neuigkeit.sieheauch") %>
-<ul class="unstyled">
-  <div id="nlink_list">
-    <%= render partial: "nlink_list", collection: @neuigkeit.nlinks %>
-  </div>
-  <div id="nlink_list_search">
-    <%= render partial: "nlink_list_search", collection: @nlink_search %>
-  </div>
-</ul>
+<%= render partial: 'nlink_list_whole', :object=>@neuigkeit.nlinks %>
+<%= render partial: 'nlink_list_search_whole', object: @nlink_search %>
 <% if can? :find_link, @neuigkeit %>
-<%= semantic_form_for :find_link, :url=>find_link_rubrik_neuigkeit_path(@rubrik,@neuigkeit), :html=>{:id=>"search_form", :method=>'get'} do |f| %>
+<%= semantic_form_for :find_link, :url=>find_link_rubrik_neuigkeit_path(@rubrik,@neuigkeit), :html=>{:id=>"search_form", :method=>'get'} , :remote=> true do |f| %>
 <%= f.input :query, :input_html => { :name => 'query' },:label=>false %>
 <% end %>
 <% end %>
