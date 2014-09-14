@@ -19,6 +19,7 @@ class Membership < ActiveRecord::Base
   belongs_to :fetprofile
   belongs_to :gremium
   scope :active, -> {where("stop >= ? OR stop IS NULL", Time.now.to_date)}
+  scope :visible_in_gremium, ->{active.includes(:fetprofile).order(:typ,"fetprofiles.vorname","fetprofiles.nachname")}
   validates :typ, :presence=>true
   validates :fetprofile, :presence=>true
   validates :start, :presence=>true
