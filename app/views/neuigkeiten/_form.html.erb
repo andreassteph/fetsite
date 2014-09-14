@@ -34,7 +34,9 @@
   <% end %>
 </div>
 <script>
-$(document).ready(function(){
-$('.datetimepicker').map($(this).datetimepicker({format: 'd.m.Y H:i', startDate: (!($(this).attr("value")==undefined))? $(this).attr("value"): ""}))
-})</script>
+  $(document).ready(function(){
+    $('.datetimepicker').map($(this).datetimepicker({format: 'd.m.Y H:i', startDate: (!($(this).attr("value")==undefined))? $(this).attr("value"): ""}))
+  })
+  $(document).ready(function(){$('.datetimepicker').datetimepicker({format: 'd.m.Y H:i', startDate: (!($(this).attr("value")==undefined))? $(this).attr("value"): ""})})
+</script>
 <%= tinymce %>
