@@ -33,7 +33,7 @@ class GremienController < ApplicationController
   def show
     @gremium = Gremium.find(params[:id])
     @gremientabs=Gremium.tabs
-    @memberships=@gremium.memberships.active.includes(:fetprofile).order(:typ,"fetprofiles.vorname","fetprofiles.nachname")
+    @memberships=@gremium.memberships.visible_in_gremium
   
     respond_to do |format|
       format.html # show.html.erb

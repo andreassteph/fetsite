@@ -1,2 +1,6 @@
 <h2><%=fa_icon("users 2x")+  nlink.name %></h2>
-<p><%= raw(nlink.desc) %></p>
+
+ <% nlink.memberships.visible_in_gremium.each do |m| %>
+ <%= image_tag m.fetprofile.try(:picture).try(:thumb) %>
+     
+ <% end %>
