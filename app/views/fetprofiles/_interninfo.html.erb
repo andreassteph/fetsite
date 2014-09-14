@@ -1,5 +1,5 @@
 <p>
-<b>Geburtstag</b> <%= I18n.l(interninfo.birthday,format: :short) %>
+<b>Geburtstag</b> <%= I18n.l(interninfo.birthday,format: :short) unless interninfo.birthday.nil?%>
 </p>
 <p>
   <b>Adresse:</b>

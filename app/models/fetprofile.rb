@@ -54,10 +54,14 @@ end
     self.plz.to_s + ' ' + self.city.to_s + connector.to_s + self.street.to_s
   end
   def birthday
+    unless self.birth_month.nil? || self.birth_day.nil?
     if self.birth_year.nil? || self.birth_year.zero?
       Date.new( Date.today.year,self.birth_month,self.birth_day)
     else
       Date.new( self.birth_year,self.birth_month,self.birth_day)
+    end
+    else
+      nil
     end
   end
 end
