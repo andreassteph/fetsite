@@ -25,20 +25,19 @@
 #  id          :integer          not null, primary key
 #  name        :string(255)
 #  desc        :text
-#  ects        :decimal(, )
+#  ects        :decimal
 #  lvanr       :string(255)
-#  stunden     :decimal(, )
+#  stunden     :decimal
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  modul_id    :integer
-#  semester_id :integer
- #
+#  semester_id  :integer
 
 class Lva < ActiveRecord::Base
   ERLAUBTE_TYPEN = ['VO', 'UE', 'VU', 'LU', 'SE', 'andere'];
-  
+  translates :desc,:pruefungsinformation,  :fallbacks_for_empty_translations => true, :versioning=> :paper_trail #true #{:gem=>:paper_trail}
   has_paper_trail :ignore=>[:desc, :pruefungsinformation]# Versionsverfolgung
-  translates :desc,:pruefungsinformation,  :fallbacks_for_empty_translations => true, :versioning=>true
+  
 
   attr_accessible :desc, :ects, :lvanr, :name, :stunden, :modul_ids, :semester_ids, :pruefungsinformation, :lernaufwand, :typ, :lecturer_ids, :forumlink
 
