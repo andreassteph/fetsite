@@ -131,7 +131,15 @@ class NeuigkeitenController < ApplicationController
       format.js
     end
   end
-
+  def delete_link
+    @neuigkeit = Neuigkeit.find(params[:id])
+    @nlink = @neuigkeit.nlinks.find(params[:nlink_id])
+    @nlink.destroy
+    respond_to do |format|
+      format.html { redirect_to @neuigkeit }
+      format.js
+    end
+  end  
   def create
     @neuigkeit = Neuigkeit.new(params[:neuigkeit])
     @neuigkeit.author=current_user
@@ -167,7 +175,7 @@ class NeuigkeitenController < ApplicationController
       format.html { redirect_to rubrik }
       
     end
-  end
+   end
 
 private
   def load_toolbar_elements
