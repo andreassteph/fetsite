@@ -1,9 +1,13 @@
 
-    <%= link_to nlink_list.link do  %>
-<div class="contentbox" style="height:9em">
+<%= link_to nlink_list.link do  %>
+<div class="contentbox" >
+<div style="height:9em;overflow:hidden">
     <% p = nlink_list.link_type.downcase.pluralize+"/nlink" %>
     <%= raw(strip_links(render :partial=>p, :object=>nlink_list.link )) %>
+</div>
+<%= link_to "DELETE", delete_link_rubrik_neuigkeit_path(nlink_list.neuigkeit.rubrik,nlink_list.neuigkeit.id, :nlink_id=>nlink_list.id) %>
 </div>  
+
 <% end %>
 
 

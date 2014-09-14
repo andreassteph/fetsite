@@ -124,6 +124,7 @@ Fetsite::Application.routes.draw do
             get 'add_calentry'
             get 'rm_calentry'
             get 'create_link'
+            get 'delete_link'
             get 'find_link'
             get 'publish_to_facebook'
             get 'mail_to_fet'

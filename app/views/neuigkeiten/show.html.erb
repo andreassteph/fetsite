@@ -28,10 +28,32 @@
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
 <%= render partial: 'nlink_list_whole', :object=>@neuigkeit.nlinks %>
-<%= render partial: 'nlink_list_search_whole', object: @nlink_search %>
+
+<a id="findlink-open" href="#"> Neue Verknüpfungen </a>
+<div id="findlink-body" style="background:white">
 <% if can? :find_link, @neuigkeit %>
 <%= semantic_form_for :find_link, :url=>find_link_rubrik_neuigkeit_path(@rubrik,@neuigkeit), :html=>{:id=>"search_form", :method=>'get'} , :remote=> true do |f| %>
 <%= f.input :query, :input_html => { :name => 'query' },:label=>false %>
 <% end %>
+<%= render partial: 'nlink_list_search_whole', object: @nlink_search %>
+
 <% end %>
+</div>
+<script>
+$(function(){
+  dialog = $( "#findlink-body" ).dialog({
+      autoOpen: false,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Fertig": function() {
+          dialog.dialog( "close" );
+        }
+      }
+    });
+  $("#findlink-open").on("click",function(){dialog.dialog("open")})
+  });
+</script>
+
 </div>
