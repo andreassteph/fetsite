@@ -1,6 +1,6 @@
 $('#neuigkeiten').append('<%= j render @neuigkeiten,  :wrap_in => :li %>');
 <% if @neuigkeiten.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate @neuigkeiten %>');
+  $('.pagination').replaceWith('<%= j paginate @neuigkeiten, theme: 'twitter-bootstrap' %>');
 <% else %>
   $(window).off('scroll');
   $('.pagination').remove();

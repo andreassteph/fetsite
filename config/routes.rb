@@ -132,7 +132,11 @@ Fetsite::Application.routes.draw do
           end
         end
       end
-      resources :comments
+      resources :comments do
+        collection do
+          get 'hide'
+        end
+      end
       resources :home, :only=>[:index] do
         get :search, :on => :collection
         collection do
@@ -160,6 +164,7 @@ Fetsite::Application.routes.draw do
           get :attachments
           get :fragen
           get :verwalten
+          get :sanitize
         end
         resources :attachments
       end

@@ -32,6 +32,13 @@ class Comment < ActiveRecord::Base
     t_url= user.fetprofile.picture.thumb.url unless user.nil? or user.fetprofile.nil?
     t_url
   end
+  def self.wrapid_for(c)
+    "comments_" + c.class.to_s + "_" + c.id.to_s
+  end
+
+  def self.switchshowid_for(c)
+    "show_comments_" + c.class.to_s + "_" + c.id.to_s
+  end
   def divid
     "comment_" + id.to_s
   end

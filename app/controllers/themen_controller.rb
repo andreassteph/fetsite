@@ -18,6 +18,11 @@ class ThemenController < ApplicationController
       format.js
     end
   end
+  def sanitize
+    @thema = Thema.find(params[:id])
+    @fragen=@thema.fragen
+    
+  end
   def verwalten
     @thema = Thema.find(params[:id])
     @attachment=Attachment.new

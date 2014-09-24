@@ -4,10 +4,10 @@ class RubrikenController < ApplicationController
   def index
     if can?(:showintern, Rubrik)
       @rubriken = Rubrik.all
-      @neuigkeiten = Neuigkeit.paginate(page: params[:page], per_page:3)
+      @neuigkeiten = Neuigkeit.page(params[:page]).per(3)
     else
       @rubriken = Rubrik.where(:public=>true)
-      @neuigkeiten = Neuigkeit.public.published.paginate(page: params[:page], per_page:3)
+      @neuigkeiten = Neuigkeit.public.published.page(params[:page]).per(3)
     end   
     
       @calentries= @rubriken.collect(&:calentries).flatten
@@ -31,9 +31,9 @@ class RubrikenController < ApplicationController
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
     @calentries= @rubrik.calentries
     if can?(:showunpublished, Neuigkeit)
-      @neuigkeiten = @rubrik.neuigkeiten.paginate(page: params[:page], per_page:3)
+      @neuigkeiten = @rubrik.neuigkeiten.page(params[:page]).per(3)
     else
-      @neuigkeiten = @rubrik.neuigkeiten.published.paginate(page: params[:page], per_page:3)
+      @neuigkeiten = @rubrik.neuigkeiten.published..page(params[:page]).per(3)
     end
     @toolbar_elements << {:text=>I18n.t('neuigkeit.new.title'), :path=> new_rubrik_neuigkeit_path(@rubrik),:hicon=>'icon-plus-sign'} if can? :verwalten, @rubrik
     @toolbar_elements << {:text=>I18n.t('common.verwalten'), :path=>verwalten_rubrik_path(@rubrik),:icon=>:pencil} if can? :verwalten, @rubrik

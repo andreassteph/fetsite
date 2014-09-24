@@ -1,4 +1,5 @@
 
+
 $ ->
   if $('#infinite-scrolling').size() > 0
     more_posts_url = $('.pagination .next_page a').attr('href')
