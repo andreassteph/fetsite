@@ -1,9 +1,24 @@
 class CommentsController < ApplicationController
- def index
-   @comments=Comment.all
-   end
+  def index
+    @commentable=params[:commentable_type].constantize.find(params[:commentable_id]) unless params[:commentable_type].nil? or params[:commentable_id].nil?
+    @comments=@commentable.comments.order(:created_at).roots.page(params[:page]).per(2).reverse_order
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @comment }
+      format.js
+    end
+
+  end
+  def hide
+   @commentable=params[:commentable_type].constantize.find(params[:commentable_id]) unless params[:commentable_type].nil? or params[:commentable_id].nil?
+    respond_to do |format|
+      format.js
+    end
+  
+ end
   def show
     @comment = Comment.find(params[:id])
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,15 +48,9 @@ class CommentsController < ApplicationController
     c = params[:comment][:commentable_type].constantize.find(params[:comment][:commentable_id]) unless params[:comment][:commentable_type].nil? or params[:comment][:commentable_id].nil? 
     
     @comment = Comment.build_for(c, current_user,"", params_new)  
-    #raise @comment.to_yaml.to_s
- #   @comment.commentable= c 
-
-
- 
-
     respond_to do |format|
       if @comment
-        format.html { redirect_to @comment.commentable, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @comment.commentable, notice: 'Comment was successfully created.', show_comments: true }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }
@@ -73,11 +82,13 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment = Comment.find(params[:id])
+    @commentable=@comment.commentable
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url }
+      format.html { redirect_to @commentable, :action=>"show"}
       format.json { head :no_content }
+    
     end
   end
 end

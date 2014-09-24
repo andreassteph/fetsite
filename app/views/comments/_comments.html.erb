@@ -6,4 +6,7 @@
 <% end %>
 </ul>
 </div>
+<% if comments.first.root? %>
+<%= paginate comments, :remote=>true , :theme=>'twitter-bootstrap'%>
+<% end %>
 <% end %>

@@ -103,6 +103,7 @@ gem 'themes_for_rails'
 gem 'rubyzip'
 
 gem 'acts_as_votable'
-
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views', :git=>'git://github.com/matenia/bootstrap-kaminari-views.git'
+#gem 'will_paginate', :git=>'git://github.com/mislav/will_paginate.git'
+#gem 'bootstrap-will_paginate'
