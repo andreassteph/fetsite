@@ -54,7 +54,7 @@ gem "tinymce-rails" , '~>4.1.0'
 gem "globalize" ,'~>3.0.4'#,:git =>'git://github.com/globalize/globalize.git'
 gem 'globalize-versioning'
 # Version controll
-gem "paper_trail" , '~>3.0.5', :git=>'git://github.com/airblade/paper_trail.git'
+gem "paper_trail" , '~>3.0.5'#, :git=>'git://github.com/airblade/paper_trail.git'
 
 # User management
 gem "devise" ,'~>2.2.3'
@@ -63,7 +63,7 @@ gem "omniauth-facebook"
 gem "omniauth-ldap"
 
 gem "fb_graph"
-
+gem "meta-tags"
 # Roles for users
 gem "rolify"
 # Abilities

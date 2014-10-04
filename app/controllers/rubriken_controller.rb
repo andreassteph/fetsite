@@ -33,7 +33,7 @@ class RubrikenController < ApplicationController
     if can?(:showunpublished, Neuigkeit)
       @neuigkeiten = @rubrik.neuigkeiten.page(params[:page]).per(3)
     else
-      @neuigkeiten = @rubrik.neuigkeiten.published..page(params[:page]).per(3)
+      @neuigkeiten = @rubrik.neuigkeiten.published.page(params[:page]).per(3)
     end
     @toolbar_elements << {:text=>I18n.t('neuigkeit.new.title'), :path=> new_rubrik_neuigkeit_path(@rubrik),:hicon=>'icon-plus-sign'} if can? :verwalten, @rubrik
     @toolbar_elements << {:text=>I18n.t('common.verwalten'), :path=>verwalten_rubrik_path(@rubrik),:icon=>:pencil} if can? :verwalten, @rubrik
