@@ -16,7 +16,7 @@ class Beispiel < ActiveRecord::Base
   attr_accessible :desc, :name, :lva_id, :beispieldatei, :beispieldatei_cache, :datum
   acts_as_votable
   belongs_to :lva
-  include IsCommentable
+
   mount_uploader :beispieldatei, AttachmentUploader
   validates :beispieldatei, :presence => true
   validates :name, :presence => true
