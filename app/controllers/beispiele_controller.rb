@@ -18,7 +18,7 @@ class BeispieleController < ApplicationController
     # @lva = params([:lva]) unless params([:lva]).nil?
     @beispiel = Beispiel.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to lva_path(@beispiel.lva , show_comments: params[:show_comments])}
+      format.html { redirect_to lva_path(@beispiel.lva )}
       format.js
     end
   end
