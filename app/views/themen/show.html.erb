@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 <%= link_to "Zurück", @thema.themengruppe %>
 <br> 
+<div class="contentbox">
 <%= render :partial=>"themen/small", :object=>@thema %>
-
+</div>
 <%= render :partial=>'layouts/pretty_toolbar' %>
 

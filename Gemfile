@@ -9,7 +9,8 @@ gem 'webrick', '1.3.1'
   gem 'sqlite3'
   gem 'execjs', '~>1.4.0' 
 
-  gem 'sanitize'
+  gem 'sanitize',  :git=>'git://github.com/rgrove/sanitize'
+
 # Gems used only for assets and not required
 # in production environments by default.
   gem 'sass-rails', '~> 3.2'
@@ -77,7 +78,7 @@ gem 'git'
 gem 'haml'
 gem 'RedCloth'
 gem 'wikicloth'
-gem 'gollum-lib'
+#gem 'gollum-lib'
 gem 'awesome_nested_set'
 gem 'annotate', ">=2.5.0"
 gem 'carrierwave', "~>0.9.0"
