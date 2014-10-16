@@ -1,8 +1,9 @@
+
 class ThemenController < ApplicationController
   # GET /themen
   # GET /themen.json
   load_and_authorize_resource
-
+  
   def show
     @thema = Thema.find(params[:id])
     @fragen=@thema.fragen
@@ -19,9 +20,25 @@ class ThemenController < ApplicationController
     end
   end
   def sanitize
+    require 'sanitize'
     @thema = Thema.find(params[:id])
-    @fragen=@thema.fragen
-    
+    @fragen = @thema.fragen
+    trans_icons= lambda do |env|
+      node=env[:node]
+      node_name=env[:node_name]
+      return if env[:is_whitelisted] || !node.element?
+      return unless node_name == 'span'
+     # return unless node["class"] =~ /.*ffi.*/
+      Sanitize.node!(node,{:elements=>["span"],:attributes=>{"span"=>["class","style"]},:css=>{:properties=>["color"]}})
+      {:node_whitelist=>[node]}
+    end
+    @thema.text = Sanitize.fragment(@thema.text, {:elements=>['table','tr','td','p','h3','h4','a','th','img','ul','li','i','b','em'],:attributes=>{'p'=>['class'],'table'=>['class'],'a'=>['href','data'],'img'=>['src','width','height'],:all=>['class']},:css=>{:properties=>['float']},:transformers=>[trans_icons]})
+    # # #
+    # #
+    # # 
+    #
+    # @thema.text = @thema.text.sanitize
+    render :show
   end
   def verwalten
     @thema = Thema.find(params[:id])

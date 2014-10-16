@@ -20,6 +20,7 @@
 	<li><%= render n if can?(:show, n) %> </li>
 	<% end %>
       </ul>
+
 <div id="infinite-scrolling">
 <%= paginate @neuigkeiten, theme:'twitter-bootstrap' %>
 </div>
