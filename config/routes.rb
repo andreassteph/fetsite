@@ -23,12 +23,6 @@ Fetsite::Application.routes.draw do
   end
   devise_for :users , :controllers=>{:omniauth_callbacks=> "users/omniauth_callbacks"}
 
-  scope '(:locale)' do 
-    scope '(t/:theme)' do
-      get "wiki/:name", action: :wiki, controller: :wikis
-      resources :wikis 
-    end
-  end
   
   scope '(:locale)' do
     scope '(t/:theme)' do

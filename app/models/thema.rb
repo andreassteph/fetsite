@@ -33,9 +33,7 @@ include Rails.application.routes.url_helpers
      false
    end
   end
-  def is_wiki?
-     !(wikiname.nil? || wikiname.empty?)
-  end
+  
   def text_first_words
     md = /<p>(?<text>[^\<\>]*)/.match Sanitize.clean(self.text,:elements=>['p'])
     words=md[:text].split(" ") unless md.nil?
