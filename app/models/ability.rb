@@ -5,7 +5,7 @@ class Ability
     loggedin=!(user.nil?)
     user ||= User.new # guest user (not logged in)
 
-    
+    can :manage, Comment
     #-----------------------------------------------------
     # Rechteverwaltung fuer Studien Modul
     can [:show, :index], Studium
