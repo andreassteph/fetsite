@@ -1,3 +1,7 @@
+<%= content_for :header do %>
+<title>Fetsite - <%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</title>
+<% end %>
+
 <%= render 'studien/tabs' %>
 <div class="content-wrap content-column">
   <p id="notice"><%= notice %></p>
