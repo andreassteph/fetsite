@@ -40,9 +40,16 @@
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
 <%= render partial: 'nlink_list_whole', :object=>@neuigkeit.nlinks %>
-
+<% if can? :find_link , @neuigkeit %>
 <a id="findlink-open" href="#"> Neue Verknüpfungen </a>
-<div id="findlink-body" style="background:white">
+<% end %>
+</div>
+<style>
+div.ui-dialog-titlebar {
+background:white;
+}
+</style>
+<div id="findlink-body" style="background:white; border:solid black 1pt">
 <% if can? :find_link, @neuigkeit %>
 <%= semantic_form_for :find_link, :url=>find_link_rubrik_neuigkeit_path(@rubrik,@neuigkeit), :html=>{:id=>"search_form", :method=>'get'} , :remote=> true do |f| %>
 <%= f.input :query, :input_html => { :name => 'query' },:label=>false %>
@@ -67,5 +74,3 @@ $(function(){
   $("#findlink-open").on("click",function(){dialog.dialog("open")})
   });
 </script>
-
-</div>
