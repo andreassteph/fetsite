@@ -69,7 +69,7 @@
 
       <h2>Beispiele</h2>
       <%= link_to t("beispiel.zip") , beispiel_sammlung_lva_path(@lva), class: :linkbox %>
-      <% @lva.beispiele.each do |b| %>
+      <% @lva.beispiele.order(:datum).each do |b| %>
       <%= render b%>
       <% end %>
     </div>

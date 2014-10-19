@@ -1,12 +1,18 @@
 <%= content_for :header do %>
 <title>Fetsite - <%=  @neuigkeit.title %> (<%= @neuigkeit.rubrik.name %>)</title>
-<% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) %>
+<% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) unless @neuigkeit.author.fetprofile.nil? %>
 <% set_meta_tags :og => {
     :image => @neuigkeit.picture.url.to_s,
     :title => @neuigkeit.title.to_s + " (" + @neuigkeit.rubrik.name.to_s + ")",
-    :type => "article"
+    :type => "article",
+    :description =>@neuigkeit.text_first_words,
+:article=> {
+  :author=>@neuigkeit.author.text
+  }
 }
 %>
+<% set_meta_tags :og=>{:article=> {:published_time=>I18n.l(@neuigkeit.try(:datum).try(:to_date)) }} unless @neuigkeit.try(:datum).try(:to_date).nil? %>
+
 <%= display_meta_tags %>
 <% end %>
 
