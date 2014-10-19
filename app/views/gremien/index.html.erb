@@ -1,6 +1,5 @@
 <%= render 'fetprofiles/tabs' %>
 <div class="content-wrap content-column">
-<h1>Alle Gremien</h1>
 
 <% unless params[:filter].nil? %>
 <h1><%= Gremium::FILTER[params[:filter].to_i] %></h1>
