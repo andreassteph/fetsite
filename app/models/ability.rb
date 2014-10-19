@@ -24,6 +24,7 @@ class Ability
       can :manage, Studium
       can :manage, Beispiel
       can :manage, Lecturer
+      
     end
     unless user.has_role?("fetadmin")
       cannot :delete, Studium    
@@ -88,6 +89,7 @@ class Ability
     if loggedin
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
+   
       can :showintern, Neuigkeit
       can :showintern, Rubrik
       can :seeintern, User

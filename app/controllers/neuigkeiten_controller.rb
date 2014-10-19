@@ -15,8 +15,8 @@ class NeuigkeitenController < ApplicationController
     else
       @rubriken = Rubrik.where(:public=>true)
     end   
-
-    if  !params[:version].nil?
+    
+    if  !params[:version].nil? && can?(:showversions, Neuigkeit)
       @neuigkeit.assign_attributes(@neuigkeit.translation.versions.reverse[params[:version].to_i].reify.attributes.select{|k,v| @neuigkeit.translated_attribute_names.include? k.to_sym })
     end 
     @calentries1=@neuigkeit.calentries
@@ -192,12 +192,13 @@ actions << {:hicon=>'icon-facebook', :text=> I18n.t('neuigkeit.publishfetmail'),
 
 
   @toolbar_elements << {:text=>I18n.t('common.edit'),:path=>edit_rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:icon=>:pencil} if can? :edit, @neuigkeit.rubrik
+if  can?(:showversions, Neuigkeit)
     @versions= @neuigkeit.translation.versions.select([:created_at]).reverse
 
     @toolbar_elements <<{:path=>rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit),:method=>:versions,:versions=>@versions}
-     
+end     
       actions << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => rubrik_neuigkeit_path(@neuigkeit.rubrik,@neuigkeit), :method=> :delete,:confirm=>'Sure?' } if can? :delete, @neuigkeit
-    @toolbar_elements << {:text => "action", :method => :dropdown, :elements=> actions}
+    @toolbar_elements << {:text => "action", :method => :dropdown, :elements=> actions} unless actions.empty?
   end
   
 
