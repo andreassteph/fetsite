@@ -31,6 +31,7 @@ Verwendung: Aufruf mit
     </ul>
 <% end %>
   <% else %>
+<% if t[:versions].count>0 %>
   <div class="btn-group">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 	<%= I18n.t("common.versions") %><span class="caret"></span>
@@ -53,6 +54,7 @@ Verwendung: Aufruf mit
 	<% end %>    
       </ul>
   </div>
+<% end %>
   <% end %>
   <% end %>
 </div>

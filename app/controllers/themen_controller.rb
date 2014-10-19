@@ -38,7 +38,7 @@ class ThemenController < ApplicationController
     # # 
     #
     # @thema.text = @thema.text.sanitize
-    render :show
+    render :edit
   end
   def verwalten
     @thema = Thema.find(params[:id])
@@ -46,6 +46,8 @@ class ThemenController < ApplicationController
     @fragen=@thema.fragen
 
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>edit_thema_path(@thema)}]
+    @toolbar_elements <<{ :hicon=>'icon-leaf', :text=>"Sanitize", :path=>sanitize_thema_path(@thema)}
+
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('thema.remove'), :path=>thema_path(@thema), :method=>:delete, :confirm=>I18n.t('thema.sure')}
     
   end
