@@ -35,10 +35,12 @@ class CalentriesController < ApplicationController
  # end
 
   # GET /calentries/1/edit
-  #def edit
-  #  @calentry = Calentry.find(params[:id])
-    
- # end
+  def edit
+    @calentry = Calentry.find(params[:id])
+    respond_to do |format|
+      format.html
+    end
+  end
 
   # POST /calentries
   # POST /calentries.json

@@ -1,4 +1,4 @@
-<div class="contentbox">
+<div class="contentbox" id="calentry_<%= calentry.id%>">
 <% image_tag("/iconnavy/time.png")  %>
 <%= fa_icon("calendar 2x") %>
 
@@ -9,5 +9,5 @@ format =:default
 end%>
 <%= calentry.text %>
 
-
+<%= link_to "edit", edit_calentry_path(calentry) if can? :edit, calentry %>
 </div>
