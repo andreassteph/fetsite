@@ -23,6 +23,7 @@ class Ability
       can :manage, Lva
       can :manage, Studium
       can :manage, Beispiel
+      can :manage, Lecturer
     end
     unless user.has_role?("fetadmin")
       cannot :delete, Studium    
@@ -34,7 +35,7 @@ class Ability
     # Rechteverwaltung fuer Informationen
     can [:show, :index,:faqs], Themengruppe, :public=>true  
     can [:show], Thema, :isdraft=>false
-    can :show, Frage
+   can :show, Frage
     if loggedin
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
