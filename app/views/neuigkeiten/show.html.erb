@@ -28,10 +28,12 @@
   <%= @neuigkeit.author.text+ " "+ I18n.t("neuigkeit.am")+" " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
 </span>
 <div class="media">
+  <% unless @neuigkeit.picture.big_thumb.to_s.empty? %>
   <div class="pull-left" href="#">
     <p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.try(:url)  %>
     </p>
   </div>
+<% end %>
   <div class="media-body">
     <h1>
       <%=  @neuigkeit.title%>

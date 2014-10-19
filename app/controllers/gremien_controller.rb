@@ -34,7 +34,7 @@ class GremienController < ApplicationController
     @gremium = Gremium.find(params[:id])
     @gremientabs=Gremium.tabs
     @memberships=@gremium.memberships.visible_in_gremium
-  
+    @nlinks = @gremium.nlinks.page(params[:page]).per(5)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @gremium }

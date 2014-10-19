@@ -5,6 +5,6 @@ class Nlink < ActiveRecord::Base
   validates :neuigkeit, :presence=>true
   validates :link, :presence=>true
   validates :link_id, :uniqueness=>{:scope=>[:neuigkeit_id,:link_type]}
-
+  default_scope includes(:neuigkeit).order("neuigkeiten.datum").reverse_order
 
 end
