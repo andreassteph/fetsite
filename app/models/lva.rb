@@ -34,7 +34,7 @@
 #  semester_id  :integer
 
 class Lva < ActiveRecord::Base
-  ERLAUBTE_TYPEN = ['VO', 'UE', 'VU', 'LU', 'SE', 'andere'];
+  ERLAUBTE_TYPEN = ['VO', 'UE', 'VU', 'LU', 'SE', 'PR', 'andere'];
   translates :desc,:pruefungsinformation,  :fallbacks_for_empty_translations => true, :versioning=> :paper_trail #true #{:gem=>:paper_trail}
   has_paper_trail :ignore=>[:desc, :pruefungsinformation]# Versionsverfolgung
   
