@@ -1,0 +1,32 @@
+en:
+  studien:
+    desc: "Description"
+    studien: "study programs"
+    list: "Study program of Electrical Engineering Faculty"
+    anzeigen: "Show study program"
+    new: "New study program"
+    allestudien: "All study programs"
+    loeschen: "Delete study program"
+    edit: "Edit study program"
+    ansicht:
+      modulgruppe: "Modul view"
+      semester: "Semester view"
+      info: "Info view"
+  keine:
+    beschreibung: "No desciption available"
+  beispiel:
+    add: "Add Examples"
+    zip: "Download all as ZIP File"
+  lecturers:
+    lecturers: "Lecturers"
+  file:
+    size: "Filesize"
+  semester:
+    ohne: "Ohne Semesterzuordnung"
+    semester: "Semester"
+  lva:
+    pruefungsinfo: "Exam informations"
+    lernaufwand: "Workload for exams"
+    desc: "Description"
+  home:
+    newexamples: "Newest Examples"

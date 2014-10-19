@@ -24,5 +24,9 @@ de:
   semester:
     ohne: "Ohne Semesterzuordnung"
     semester: "Semester"
+  lva:
+    pruefungsinfo: "Prüfungsinformationen"
+    lernaufwand: "Lernaufwand"
+    desc: "Beschreibung"
   home:
     newexamples: "Neueste Beispiele"
