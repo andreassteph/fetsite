@@ -89,7 +89,7 @@ class Ability
     if loggedin
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
-   
+      can :showversions, Neuigkeit
       can :showintern, Neuigkeit
       can :showintern, Rubrik
       can :seeintern, User
