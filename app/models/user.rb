@@ -77,8 +77,8 @@ logger.debug auth.to_s
  def text
    if self.fetprofile.nil? 
      self.email
-else
-self.fetprofile.name
-end
+   else
+     self.fetprofile.name
+   end
 end
 end

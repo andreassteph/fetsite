@@ -1,6 +1,6 @@
 <%= content_for :header do %>
 <title>Fetsite - <%=  @neuigkeit.title %> (<%= @neuigkeit.rubrik.name %>)</title>
-<% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) %>
+<% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) unless @neuigkeit.author.fetprofile.nil? %>
 <% set_meta_tags :og => {
     :image => @neuigkeit.picture.url.to_s,
     :title => @neuigkeit.title.to_s + " (" + @neuigkeit.rubrik.name.to_s + ")",
