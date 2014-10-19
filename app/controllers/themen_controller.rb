@@ -65,10 +65,7 @@ class ThemenController < ApplicationController
   def edit
     @thema = Thema.find(params[:id])
 
-    if @thema.is_wiki?
-      redirect_to edit_wiki_path(Wiki.find(@thema.id))
-      return
-    end
+    
     respond_to do |format|
       format.html
       format.js { @themen= @thema.themengruppe.themen }
