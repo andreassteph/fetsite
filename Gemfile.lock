@@ -266,9 +266,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-
-=======
-  RedCloth
   acts_as_votable
   annotate (>= 2.5.0)
   awesome_nested_set
@@ -306,6 +303,7 @@ DEPENDENCIES
   rolify
   rspec-rails
   rubyzip
+  sanitize!
   sass-rails (~> 3.2)
   seed_dump (~> 0.5.3)
   simple_calendar (~> 0.1.9)
