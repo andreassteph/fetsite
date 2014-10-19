@@ -13,8 +13,8 @@ de:
     bis: "bis"
     filter:
       berufung:
-        title: "Berufungskommission"
-        text: "B.."
+        title: "Berufungskommissionen"
+        text: "Die Besetzung einer Professur ist mit einem umfangreichen Ausschreibungsverfahren verbunden, in welchem die bzw. der  kompetenteste BewerberIn gefunden werden soll."
       habil:
-        title: "Habilitationskommission"
+        title: "Habilitationskommissionen"
         text: "Die Habilitation ist die Verleihung der Lehrbefugnis an einer Universität. Die Habilitation ist mit dem Abfassen einer Habilitationsschrift ähnlich einer Dissertation verbunden. Außerdem werden die didaktischen Fähigkeiten und die sonstige wissenschaftliche Laufbahn beurteilt."
