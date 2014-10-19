@@ -14,7 +14,7 @@
     <li>  
       <%= link_to "FAQS", faqs_themengruppen_path,class: :btn ,class: :linkbox %>
     </li>
-    <li><%= link_to "Beispielsammlung", studium_path(Studium.first) ,class: :btn ,class: :linkbox %></li>
+    <li><%= link_to "Beispielsammlung", studium_path(Studium.first, {:ansicht=>'semesteransicht'}) ,class: :btn ,class: :linkbox %></li>
   </ul>
   <div class="alert">
     <h2>Beta Test</h2>
