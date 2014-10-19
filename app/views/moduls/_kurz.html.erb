@@ -1,7 +1,7 @@
 <li>
 <div class="contentbox">
 <p>
-  <b><% if !modul.name.nil? %><%= link_to "Modul "+ modul.name , modul_path(modul) %> <%end%></b>
+  <b><%= link_to "Modul "+ modul.name.to_s , modul_path(modul) %> </b>
 </p>
 <ul>
 <% modul.lvas.each do |lva| %>
