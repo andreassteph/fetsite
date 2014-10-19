@@ -28,5 +28,6 @@ en:
     pruefungsinfo: "Exam informations"
     lernaufwand: "Workload for exams"
     desc: "Description"
+    bspe: "Examples"
   home:
     newexamples: "Newest Examples"
