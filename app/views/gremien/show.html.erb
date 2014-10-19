@@ -41,10 +41,12 @@
   <div class="row-fluid">
     <div class="span12">
       <ul class="unstyled">
-	<% @gremium.nlinks.each do |l| %> 
+	<% @nlinks.each do |l| %> 
 	<li><%= render l.neuigkeit  if can? :show, l.neuigkeit %></li>
 	<% end %>
       </ul>
+      <%= paginate @nlinks, theme:'twitter-bootstrap' %>
+
     </div>
  </div>
 </div>
