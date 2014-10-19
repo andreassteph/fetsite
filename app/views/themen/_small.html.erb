@@ -3,7 +3,7 @@
   <h2><%= small.title %> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %></h2>
 </a>
 <% if small.is_outdated? %>
-<div class="sticker sticker-red"> <%= I18n.t("thema.outdated") %> </div>
+<div class="sticker sticker-red"> <%= I18n.t("thema.outdated") %> <%= link_to"Als aktuell markieren",is_updated_thema_path(small), :class=>:btn %></div>
 <% end %>
 <% if small.isdraft %>
 <div class="sticker sticker-yellow"><%= I18n.t("thema.isdraft") %>  </div>

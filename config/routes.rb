@@ -155,6 +155,7 @@ Fetsite::Application.routes.draw do
           get :fragen
           get :verwalten
           get :sanitize
+          get :is_updated
         end
         resources :attachments
       end

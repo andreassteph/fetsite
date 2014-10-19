@@ -92,7 +92,13 @@ class ThemenController < ApplicationController
       end
     end
   end
- def fragen
+  def is_updated
+    @thema = Thema.find(params[:id])
+    @thema.translation.touch
+   
+    redirect_to @thema
+  end
+  def fragen
     @thema = Thema.find(params[:id])
     @fragen=@thema.fragen
     respond_to do |format|
