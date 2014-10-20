@@ -29,5 +29,8 @@ de:
     lernaufwand: "Lernaufwand"
     desc: "Beschreibung"
     bspe: "Beispiele"
+    module: "Module"
+    lvanr: "LVA-Nummer"
+    stunden: "Stunden"
   home:
     newexamples: "Neueste Beispiele"
