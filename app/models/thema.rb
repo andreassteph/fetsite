@@ -21,7 +21,8 @@ include Rails.application.routes.url_helpers
   validates :themengruppe, :presence => true
   validates :title, :presence => true
   validates :text, :presence => true
-
+  scope :public, where(:isdraft=>false)
+  default_scope order(:priority).reverse_order
   scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
   scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",2.month.ago).where("thema_translations.locale"=>I18n.t.locale)
 }

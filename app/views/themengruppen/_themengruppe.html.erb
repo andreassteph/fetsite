@@ -34,8 +34,9 @@
 
   <div class="span6">
     <!--<b><%= I18n.t("themengruppe.themen") %></b>
-    --><ul>
-      <% themengruppe.themen.where(" (NOT hidelink) and ( NOT isdraft) ").order(:priority).reverse.each do |t| %>
+    -->
+    <ul>
+      <% themengruppe.themen.where(:hidelink=>false).where(:isdraft=>false).each do |t| %>
       <li>
 	<%= render t %>
       </li>
