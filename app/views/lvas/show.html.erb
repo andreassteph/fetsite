@@ -36,11 +36,11 @@
     <div class="span4">
       <div class="contentbox">
 	<ul>
-	  <li><b>LVA-Nummer:</b> <%=@lva.lvanr %></li>
+	  <li><b><%= I18n.t('lva.lvanr')%>:</b> <%=@lva.lvanr %></li>
 	  <li><b>ECTS:</b> <%=@lva.ects %></li>
-	  <li><b>Stunden:</b> <%=@lva.stunden %></li>
+	  <li><b><%= I18n.t('lva.stunden')%>:</b> <%=@lva.stunden %></li>
 	</ul>
-	<h2>Module</h2>
+	<h2><%= I18n.t('lva.module')%></h2>
 	<ul>
 	  <% @lva.modul.each do |modul| %>
 	  <li><b><%= link_to modul.name , modul_path(modul)%></b>
@@ -68,6 +68,8 @@
     <div class="span12">
 
       <h2><%= I18n.t("lva.bspe") %></h2>
+      <p><%= I18n.t("lva.ratebsp")%>       <%= link_to ffi1_icon("facebook1") + I18n.t('home.fblogin'), user_omniauth_authorize_path(:facebook) ,class: :linkbox %>
+</p>
       <%= link_to t("beispiel.zip") , beispiel_sammlung_lva_path(@lva), class: :linkbox %>
       <% @lva.beispiele.order(:datum).each do |b| %>
       <%= render b%>
@@ -78,7 +80,7 @@
   <div class="row-fluid">
     <div class="span12">
       <% unless @lva.nlinks.empty? %> 
-      <h2>Neuigkeiten</h2>
+      <h2><%= I18n.t("rubrik.title") %></h2>
       <% @lva.nlinks.each do |l| %> 
       <%= render l.neuigkeit %>
       <% end %>

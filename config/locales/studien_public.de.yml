@@ -29,5 +29,9 @@ de:
     lernaufwand: "Lernaufwand"
     desc: "Beschreibung"
     bspe: "Beispiele"
+    module: "Module"
+    lvanr: "LVA-Nummer"
+    stunden: "Stunden"
+    ratebsp: "Möchtest du die Beispiele bewerten musst du dich einloggen. Derzeit funktioniert das über Facebook, wir arbeiten an einem Login über TISS!"
   home:
     newexamples: "Neueste Beispiele"
