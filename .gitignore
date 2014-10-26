@@ -33,6 +33,7 @@ console
 /vendor/*
 /bak/*
 /solr/*
+/log/*
 *#
 Gemfile.lock
 /config/database.yml
