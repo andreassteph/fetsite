@@ -94,7 +94,7 @@ class Ability
       can :showintern, Rubrik
       can :seeintern, User
       can :shownonpublic, Rubrik
-
+      can :manage, Nlink
     end
     if user.has_role?("newsadmin") || user.has_role?("fetadmin") 
       can :addmoderator, Rubrik
