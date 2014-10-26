@@ -32,7 +32,7 @@ class Neuigkeit < ActiveRecord::Base
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>true)}
   scope :intern, ->{includes(:rubrik).where("rubriken.public"=>false)}
 
-  scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
+#  scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
   LINKTYPES=["Thema", "Gallery", "Lva","Studium","Fetprofile", "Gremium"]
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
@@ -82,5 +82,9 @@ class Neuigkeit < ActiveRecord::Base
       calentry.typ=1
       calentry.object=self
     end
+  end
+  searchable do
+    text :text, :datum
+    text :title, :boost=>3.0
   end
 end

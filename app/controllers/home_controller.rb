@@ -32,12 +32,17 @@ class HomeController < ApplicationController
   def search
   
     unless params['query'].nil? || params['query'].empty?
-      if can?(:showintern, Neuigkeit)
-        @neuigkeiten=Neuigkeit.search(params['query'])
-      else
-        @neuigkeiten =Neuigkeit.search(params['query']).public
+      @results = Sunspot.search Neuigkeit, Fetprofile do
+        fulltext params['query']
       end
-      @fetprofiles = Fetprofile.search(params['query'])
+      @neuigkeiten=[];
+      if can?(:showintern, Neuigkeit)
+        #@neuigkeiten=Neuigkeit.search(params['query'])
+      else
+       # @neuigkeiten =Neuigkeit.search(params['query']).public
+      end
+  #    @fetprofiles = Fetprofile.search(params['query'])
+      @fetprofiles=[]
       if can?(:showintern, Neuigkeit)
         @themen=Thema.search(params['query'])
       else

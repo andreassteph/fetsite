@@ -26,7 +26,7 @@ class Fetprofile < ActiveRecord::Base
   validate :validate_birthday
   GESCHLECHT={0=>"gendered", 1=>"maennlich", 2=>"weiblich"}
   has_many :users
-  scope :search, ->(query) {where("nachname like ? or vorname like ? or short like ?", "%#{query}%", "%#{query}%", "%#{query}%")}
+#  scope :search, ->(query) {where("nachname like ? or vorname like ? or short like ?", "%#{query}%", "%#{query}%", "%#{query}%")}
 
  accepts_nested_attributes_for :memberships, :reject_if=>lambda{|a| a[:typ].blank?|| a[:start].blank? ||a[:gremium_id].blank?}, :allow_destroy=>true
   has_many :nlinks, as: :link
@@ -64,4 +64,9 @@ end
       nil
     end
   end
+  searchable do
+    text :fetmailalias, :short, :fetmail
+    text :vorname, :nachname, :boost=>2.0
+  end
+
 end

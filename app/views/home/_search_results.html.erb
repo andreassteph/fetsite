@@ -1,4 +1,10 @@
 
+<% unless @results.nil? %>
+<%= @results.results.each do |res| %>
+<%= render res %>
+<% end %>
+<% end %>
+
 <% unless @neuigkeiten.empty? %>
 <h2>Neuigkeiten</h2>
 <% end %>
