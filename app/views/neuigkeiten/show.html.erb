@@ -49,16 +49,15 @@
 </div>
 <%= render partial: 'nlink_list_whole', :object=>@neuigkeit.nlinks %>
 <% if can? :find_link , @neuigkeit %>
-<a id="findlink-open" href="#"> Neue Verknüpfungen </a>
+<a id="findlink-open" href="#"><%= fa_icon("link")%> Neue Verknüpfungen </a>
 <% end %>
 </div>
 <style>
-div.ui-dialog-titlebar {
-background:white;
-}
+
 </style>
-<div id="findlink-body" style="background:white; border:solid black 1pt">
+<div id="findlink-body"class="ui-dialog" style="">
 <% if can? :find_link, @neuigkeit %>
+Nach Element suchen:
 <%= semantic_form_for :find_link, :url=>find_link_rubrik_neuigkeit_path(@rubrik,@neuigkeit), :html=>{:id=>"search_form", :method=>'get'} , :remote=> true do |f| %>
 <%= f.input :query, :input_html => { :name => 'query' },:label=>false %>
 <% end %>
@@ -70,9 +69,9 @@ background:white;
 $(function(){
   dialog = $( "#findlink-body" ).dialog({
       autoOpen: false,
-      height: 300,
       width: 350,
       modal: true,
+      title: "Neue Verknüpfung hinzufügen",
       buttons: {
         "Fertig": function() {
           dialog.dialog( "close" );

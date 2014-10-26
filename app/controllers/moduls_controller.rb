@@ -175,11 +175,12 @@ end
   end
 
   def load_toolbar_show
-    @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)}]
-    @toolbar_elements << {:hicon=>'icon-pencil', :text=>"Lvas bearbeiten", :path=>edit_lvas_modul_path(@modul)}
-    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>"ADD FROM TISS", :path=>load_tiss_modul_path(:modul_id =>@modul.id)}
-    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)}
-    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}}
+    @toolbar_elements=[]
+    @toolbar_elements = {:hicon=>'icon-plus-sign', :text=>I18n.t("lva.add"), :path=>new_lva_path(:modul_id =>@modul.id)} if can? :new, Lva
+    @toolbar_elements << {:hicon=>'icon-pencil', :text=>"Lvas bearbeiten", :path=>edit_lvas_modul_path(@modul)} if can? :edit, Lva
+    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>"ADD FROM TISS", :path=>load_tiss_modul_path(:modul_id =>@modul.id)} if can? :load_tiss, Modul
+    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t("modul.edit"), :path=>edit_modul_path(@modul)} if can? :edit, @modul
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t("common.delete"),:path=>@modul , :method=>:delete , :data=>{:confirm =>'Are you sure'}} if can? :delete, @modul
     @topbar_elements = [{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}]
     @tb=[]
     
@@ -188,7 +189,7 @@ end
   
   def load_toolbar_index 
 
-      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}]
+      @toolbar_elements = [{:hicon=>'icon-plus-sign', :text=>I18n.t("modul.add"), :path=>new_modul_path}] if can? :new , Modul
       @topbar_elements =[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]
       @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}
       @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}
