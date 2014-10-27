@@ -1,5 +1,12 @@
 <%= content_for :header do %>
 <title>Fetsite - <%= I18n.t('home.news') %></title>
+<% set_meta_tags :og => {
+:title => "Fetsite - "+I18n.t('home.news'),
+:url=> rubriken_path(:theme=>nil)
+}
+%>
+<%= display_meta_tags %>
+
 <% end %>
 <%= render 'tabs' %>
 <p id="notice"><%= notice %></p>

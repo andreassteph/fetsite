@@ -1,5 +1,12 @@
 <%= content_for :header do %>
 <title>Fetsite - <%= @rubrik.name %></title>
+<% set_meta_tags :og => {
+:title => @rubrik.name.to_s,
+:url=> rubrik_path(@rubrik,:theme=>nil)
+}
+%>
+<%= display_meta_tags %>
+
 <% end %>
 <%= render 'tabs' %>
 <p id="notice"><%= notice %></p>

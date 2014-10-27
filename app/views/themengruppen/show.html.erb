@@ -2,7 +2,7 @@
 <title>Fetsite - <%= @themengruppe.title %></title>
 <% set_meta_tags :og => {
 :title => @themengruppe.title.to_s,
-:url=> themengruppe_path(:theme=>nil,:locale=>nil)
+:url=> themengruppe_path(@themengruppe,:theme=>nil,:locale=>nil)
 }
 %>
 <%= display_meta_tags %>
