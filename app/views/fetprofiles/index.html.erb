@@ -15,36 +15,24 @@
   </div>
 </div>
 
-<ul class="unstyled fetprofile_list linkbox-list" style="width:100%">
-  <% @fetprofiles.each do |fetprofile| %>
-
-<li>
-    <%= link_to fetprofile, {class: :linkbox} do %>
   
-    <div class="media">
 
-      <span class="pull-left">
-	<%=  image_tag fetprofile.picture.portrait.url %>
-      </span>
-
-      <div class="media-body">  
-	<h2><%= fetprofile.name %></h2>
-
-	<p><%= fetprofile.fetmail %></p>
-<% if false %>
-	<p><%= fetprofile.desc %></p>
-<% end %>
+  <% @fetprofiles.each_slice(4) do |row| %>
+<div class="row-fluid">
+ <% row.each do |fetprofile| %>
+<div class="span3">
   
-      </div>
-
-    </div>
- 
+    <%= link_to fetprofile do %>
+    <%= render :partial=>"portrait", :object=>fetprofile %>
    <% end %>
-</li> 
- 
+  
+</div> 
   <% end %>
+</div>
+<% end %>
 
-</ul>
+
+
 
 
 <div class="row-fluid">

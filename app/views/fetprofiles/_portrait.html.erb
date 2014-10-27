@@ -1,0 +1,9 @@
+<div style="margin-left:auto; margin-right:auto;text-align:center"><%= image_tag portrait.try(:picture).try(:portrait) %>
+<br> <span>
+  <% if portrait.nil?%>
+  PROFIL fehlt
+  <% else %>
+  <%= portrait.name %>
+  <% end %>
+</span>
+    </div>

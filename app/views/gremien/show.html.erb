@@ -1,6 +1,9 @@
 <%= render 'fetprofiles/tabs' %>
+<div class="content-wrap content-column">
+
 <p id="notice"><%= notice %></p>
 <div class="content-wrap content-column">
+  <%= link_to I18n.t('common.edit'), edit_gremium_path(@gremium) if can? :edit, @gremium%> 
 <div class="container-fluid">
   <div class="row-fluid">
     <h1>
@@ -33,6 +36,9 @@
 	<%= render(m) %>
 	<% end %>
       </p>
+     
+      
+
     </div> 
     <% end %>
     <% end %>
@@ -51,5 +57,6 @@
  </div>
 </div>
 </div>
-  <%= link_to I18n.t('common.edit'), edit_gremium_path(@gremium) %> 
 
+
+</div>
