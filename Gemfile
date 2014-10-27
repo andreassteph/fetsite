@@ -109,5 +109,8 @@ gem 'bootstrap-kaminari-views', :git=>'git://github.com/matenia/bootstrap-kamina
 #gem 'will_paginate', :git=>'git://github.com/mislav/will_paginate.git'
 #gem 'bootstrap-will_paginate'
 
+
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+gem 'sitemap_generator'
+
