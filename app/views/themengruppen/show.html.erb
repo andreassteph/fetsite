@@ -1,3 +1,15 @@
+<%= content_for :header do %>
+<title>Fetsite - <%= @themengruppe.title %></title>
+<% set_meta_tags :og => {
+:title => @themengruppe.title.to_s,
+:url=> themengruppe_path(:theme=>nil,:locale=>nil)
+}
+%>
+<%= display_meta_tags %>
+
+
+<% end %>
+
 <div class="content-wrap content-column" >
   <ul class="linklist">
     <% if @themengruppe.public %>
