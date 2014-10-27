@@ -15,7 +15,9 @@
 	    
 	  <li><%= link_to I18n.t(:info,:scope=>'home' ),themengruppen_path %></li>
 	  <li><%= link_to I18n.t('mitarbeiter',:scope=>'home' ),fetprofiles_path %></li>
+<% if can? :index, Gallery %>
 	  <li><%= link_to I18n.t('fotos',:scope=>'home' ),galleries_path %></li>
+<% end %>
 	  <li><%= link_to I18n.t(:studien,:scope=>'home' ), studien_path %></li>
 	  <li> <%= link_to I18n.t("home.search"), search_home_index_path %></li>
 <li> <%= link_to I18n.t("home.kontakt"), kontakt_home_index_path %></li>

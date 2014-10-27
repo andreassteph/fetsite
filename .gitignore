@@ -32,6 +32,7 @@ console
 /public/uploads/
 /vendor/*
 /bak/*
+/solr/*
 *#
 Gemfile.lock
 /config/database.yml

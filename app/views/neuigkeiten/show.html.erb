@@ -6,6 +6,7 @@
     :title => @neuigkeit.title.to_s + " (" + @neuigkeit.rubrik.name.to_s + ")",
     :type => "article",
     :description =>@neuigkeit.text_first_words,
+:url=>neuigkeit_path(:theme=>nil),
 :article=> {
   :author=>@neuigkeit.author.text
   }

@@ -1,3 +1,23 @@
+<%= content_for :header do %>
+<title>Fetsite - <%=  @fetprofile.name %></title>
+
+<% set_meta_tags :og => {
+    :image => @fetprofile.picture.portrait.url.to_s,
+    :title => @fetprofile.name.to_s ,
+    :type => "profile",
+    :url=>fetprofile_path(@fetprofile,:theme=>nil),
+:profile=> {
+  :first_name=>@fetprofile.vorname,
+  :last_name=>@fetprofile.nachname
+  }
+}
+%>
+<% set_meta_tags :og=>{:article=> {:published_time=>I18n.l(@neuigkeit.try(:datum).try(:to_date)) }} unless @neuigkeit.try(:datum).try(:to_date).nil? %>
+
+<%= display_meta_tags %>
+<% end %>
+
+
 <%= render 'fetprofiles/tabs' %>
 <p id="notice"><%= notice %></p>
 <div style="max-width:70em">

@@ -1,6 +1,6 @@
 <div class="content-wrap content-column">
-<p>
-<%= semantic_form_for :search,:remote=>true, :url=>search_home_index_path, :html=>{:id=>"search_form",:class=>"navbar-search", :method=>'get'} do |f| %>
+<div>
+<%= semantic_form_for :search,:remote=>true, :url=>search_home_index_path, :html=>{:id=>"search_form",:class=>"", :method=>'get'} do |f| %>
 <%= f.input :query, :input_html => { :name => 'query' } , :label=>false, :class=>"search-query" %>
     <%= f.actions do %>
       <%= f.action :submit, :as => :input %>
@@ -8,13 +8,10 @@
 
 <% end %>
 
-</p>
-<p>
+</div>
+
 
 <div id="searchresults">
 <%= render :partial=>"home/search_results" %>
 </div>
-
-
-</p>
 </div>
