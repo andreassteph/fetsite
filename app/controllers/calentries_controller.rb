@@ -39,6 +39,7 @@ class CalentriesController < ApplicationController
     @calentry = Calentry.find(params[:id])
     respond_to do |format|
       format.html
+      format.js
     end
   end
 
@@ -67,9 +68,11 @@ class CalentriesController < ApplicationController
       if @calentry.update_attributes(params[:calentry])
         format.html { redirect_to @calentry, notice: 'Calentry was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: "edit" }
         format.json { render json: @calentry.errors, status: :unprocessable_entity }
+        format.js { render action: "edit"}
       end
     end
   end

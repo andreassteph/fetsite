@@ -9,5 +9,5 @@ format =:default
 end%>
 <%= calentry.text %>
 
-<%= link_to "edit", edit_calentry_path(calentry) if can? :edit, calentry %>
+<%= link_to "edit", edit_calentry_path(calentry),:remote=>true if can? :edit, calentry %>
 </div>
