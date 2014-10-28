@@ -14,7 +14,7 @@
 	<% unless themengruppe.icon.nil? or themengruppe.icon.empty? %>      <i class="<%= themengruppe.icon %>" style="font-size:1.5em;margin:0"></i>
       <% end %>
 
-<%=themengruppe.title%> </h3>
+      <%= themengruppe.title%> </h3>
       </div>
     
     </div>
@@ -24,7 +24,7 @@
   <div class="span6">
 
     <p>
-      <%= 	if themengruppe.text.split.size > Themengruppe::WORD_COUNT
+      <%= if themengruppe.text.split.size > Themengruppe::WORD_COUNT
       themengruppe.text.split[0..Themengruppe::WORD_COUNT].join(" ") + " ..."
       else
       themengruppe.text

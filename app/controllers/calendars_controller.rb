@@ -37,6 +37,11 @@ class CalendarsController < ApplicationController
   # GET /calendars/1/edit
   def edit
     @calendar = Calendar.find(params[:id])
+    respond_to do |format|
+      format.html # new.html.erb
+      format.js
+    end
+
   end
 
   # POST /calendars

@@ -1,3 +1,13 @@
+<%= content_for :header do %>
+<title>Fetsite - <%=  @lva.full_name %></title>
+<% set_meta_tags :og => {
+  :url=>lva_path(:theme=>nil) }
+%>
+<%= display_meta_tags %>
+<% end %>
+
+
+
 <div class="container-fluid">
   <%= render 'studien/tabs'%>
   <p id="notice"><%= notice %></p>
