@@ -2,11 +2,11 @@
 <title>Fetsite - <%=  @neuigkeit.title %> (<%= @neuigkeit.rubrik.name %>)</title>
 <% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) unless @neuigkeit.author.fetprofile.nil? %>
 <% set_meta_tags :og => {
-    :image => @neuigkeit.picture.url.to_s,
+    :image => image_url(@neuigkeit.picture.to_s),
     :title => @neuigkeit.title.to_s + " (" + @neuigkeit.rubrik.name.to_s + ")",
     :type => "article",
     :description =>@neuigkeit.text_first_words,
-:url=>neuigkeit_path(:theme=>nil),
+:url=>neuigkeit_url(:theme=>nil),
 :article=> {
   :author=>@neuigkeit.author.text
   }
