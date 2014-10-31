@@ -1,27 +1,32 @@
-<%= link_to themengruppe,{:class=>'linkbox color-1-dark'} do %>
+<div class="contentbox color-1-dark">
       <div class="container-fluid">
 <div class="row-fluid">
   <div class="span12">
     <div class="media">
+<%= link_to themengruppe do %>
+
       <span class="pull-left">
 	<% if themengruppe.icon.nil? or themengruppe.icon.empty? %>
 	<%= image_tag themengruppe.picture.thumb.url,{:class=>"img-rounded"} %>
 	<% end %>
 
       </span>
-      <div class="media-body">
+
+    <div class="media-body">
+
 	<h3>
 	<% unless themengruppe.icon.nil? or themengruppe.icon.empty? %>      <i class="<%= themengruppe.icon %>" style="font-size:1.5em;margin:0"></i>
       <% end %>
 
       <%= themengruppe.title%> </h3>
       </div>
-    
+<% end %>      
     </div>
   </div>
 </div>
 <div class="row-fluid">
   <div class="span6">
+<%= link_to themengruppe do %>
 
     <p>
       <%= if themengruppe.text.split.size > Themengruppe::WORD_COUNT
@@ -30,6 +35,7 @@
       themengruppe.text
       end%>	
     </p>
+<% end %>  
   </div>
 
   <div class="span6">
@@ -38,7 +44,8 @@
     <ul>
       <% themengruppe.themen.where(:hidelink=>false).where(:isdraft=>false).each do |t| %>
       <li>
-	<%= render t %>
+	<%= link_to t do %>
+<%= render t %> <% end %>
       </li>
       <% end %>
     </ul>
@@ -48,4 +55,5 @@
 
 </div>
       </div>
-<% end %>
+</div>
+
