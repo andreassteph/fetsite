@@ -7,7 +7,7 @@
   <div class="media-body">
     <div>
       <small><%= ff_icon(neuigkeit.rubrik.icon) unless neuigkeit.rubrik.icon.nil? or neuigkeit.rubrik.icon.empty? %>&nbsp;<%= neuigkeit.rubrik.name %></small> 
-      <small class="pull-right"> <%= I18n.t("neuigkeit.am")+" "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> 
+     <% unless neuigkeit.has_calentries? %> <small class="pull-right"> <%= I18n.t("neuigkeit.am")+" "+ I18n.l(neuigkeit.try(:datum).try(:to_date)) unless neuigkeit.try(:datum).try(:to_date).nil?  %></small> <% end %>
     </div>
     <h1> 
       <%= neuigkeit.title%>
