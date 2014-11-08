@@ -9,7 +9,7 @@ class Ability
     #-----------------------------------------------------
     # Rechteverwaltung fuer Studien Modul
     can [:show, :index], Studium
-    can [:show, :index], Modulgruppe
+    can [:show], Modulgruppe
     can [:show, :index], Modul
     can [:show, :index, :beispiel_sammlung], Lva
     can [:create, :show], Beispiel
@@ -55,7 +55,7 @@ class Ability
     #-----------------------------------------------------
     # Rechteverwaltung fuer Fotos
 
-#    can [:show,:index], Gallery
+#    can [:show,:index], Gallery, :intern=>false
     if loggedin
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))

@@ -97,11 +97,11 @@ class ModulgruppenController < ApplicationController
   end
   def load_toolbar_show
     @toolbar_elements = [ {:text=>'Zurück', :path=>studium_path(@modulgruppe.studium, :ansicht=>:modulgruppenansicht)}]
-    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>I18n.t('modulgruppe.addmodule'), :path=>new_bulk_moduls_path(:modulgruppen_id=>@modulgruppe.id)}
+    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>I18n.t('modulgruppe.addmodule'), :path=>new_bulk_moduls_path(:modulgruppen_id=>@modulgruppe.id)} if can? :new ,Modul
 
-    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>I18n.t('modulgruppe.addmodul'), :path=>new_modul_path(:modulgruppen_id=>@modulgruppe.id)}
-    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t('modulgruppe.edit'), :path=>edit_modulgruppe_path(@modulgruppe)}
-    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => modulgruppe_path(@modulgruppe, :ansicht=>:modulgruppenansicht), :method=> :delete,:confirm=>'Sure?' }
+    @toolbar_elements << {:hicon=>'icon-plus-sign', :text=>I18n.t('modulgruppe.addmodul'), :path=>new_modul_path(:modulgruppen_id=>@modulgruppe.id)} if can? :new, Modul
+    @toolbar_elements << {:hicon=>'icon-pencil', :text=>I18n.t('modulgruppe.edit'), :path=>edit_modulgruppe_path(@modulgruppe)} if can? :edit, @modulgruppe
+    @toolbar_elements << {:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => modulgruppe_path(@modulgruppe, :ansicht=>:modulgruppenansicht), :method=> :delete,:confirm=>'Sure?' }if can? :delete, Modulgruppe
     
   end
 

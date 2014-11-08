@@ -1,3 +1,12 @@
+<%= content_for :header do %>
+<title><%= "Fetsite - "+I18n.t('home.mitarbeiter') %></title>
+<% set_meta_tags :og => {
+:title => "Fetsite - "+I18n.t('home.mitarbeiter'),
+:url=> fetprofiles_path(:theme=>nil)
+}
+%>
+<%= display_meta_tags %>
+<% end %>
 
 <%= render 'fetprofiles/tabs' %>
 <div class="content-wrap content-column">
