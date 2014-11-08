@@ -21,7 +21,7 @@
     else
       stored_location_for(resource) || request.referer || root_path
     end
-  end^
+  end
 def get_theme
   if ThemesForRails.available_theme_names.include?(params[:theme])
   params[:theme]
