@@ -7,7 +7,13 @@
   <p id="notice"><%= notice %></p>
   <h1><%= @studium.typ %> <%= @studium.name %>  (<%= @studium.zahl %>)</h1>
   <div>
+
+
     <p>
+
+  <%= render 'layouts/pretty_toolbar' %>  
+<%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %>
+  
       <div class="pull-right">
 	<%= link_to I18n.t("studien.ansicht.semester"), studium_path(@studium, :ansicht=>"semesteransicht"), :class=>"btn" unless params[:ansicht]=='semesteransicht' %>
 	<%= link_to I18n.t("studien.ansicht.modulgruppe"), studium_path(@studium, :ansicht=>"modulgruppenansicht"), :class=>"btn" unless params[:ansicht]=='modulgruppenansicht' %>
@@ -29,7 +35,4 @@
   <% end %> 
   <% end %> <% end %>
 
-  <%= render :partial=>'layouts/pretty_toolbar', :object=>@toolbar_modulgruppen %>
-  <br>
-  <%= render 'layouts/pretty_toolbar' %>
 </div>

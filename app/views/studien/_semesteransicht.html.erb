@@ -1,10 +1,6 @@
 
-<% if params[:info].true? %>
-<%= raw(@studium.desc) %>
-<% else %>
-<%= @studium.desc_first_words %> <%= link_to I18n.t('studium.info'), studium_path(@studium, :ansicht=>params[:ansicht], :info=>true) %>
-<% end %>
 
+<%= raw(@studium.desc) %>
 <div class="container-fluid">
   <% @studium.semester.each_slice(2) do |row| %>
   <div class="row-fluid">

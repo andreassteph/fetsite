@@ -32,13 +32,13 @@ class StudienController < ApplicationController
       @studienphasen << {:modulgruppen=>modulgruppen, :phase => ph}.merge(opts)
     end
     @toolbar_elements=[]
-    @toolbar_elements<<{:icon=>:plus, :hicon =>'icon-plus-sign' ,:text=> I18n.t('studien.new') , :path => new_studium_path(@studium) } if can? :new, Studium
+    
     @toolbar_elements<<{:icon=>:pencil, :hicon=>'icon-pencil',:text =>I18n.t('common.edit'),:path => edit_studium_path(@studium)} if can? :edit, Studium
 @toolbar_elements<<{:icon=>:pencil, :hicon=>'icon-pencil',:text =>I18n.t('lva.editlvas'),:path => edit_lvas_studium_path(@studium)} if can? :edit_lvas, Studium
 @toolbar_elements<<{:hicon=>'icon-remove-circle', :text=> I18n.t('common.delete'),:path => studium_path(@studium), :method=> :delete,:confirm=>'Sure?' } if can? :delete, Studium
  @toolbar_modulgruppen =[]
     @toolbar_modulgruppen << {:hicon=>'icon-plus-sign', :text=> I18n.t('modulgruppe.new'), :path=>new_studium_modulgruppe_path(@studium)} if can? :new, Modulgruppe
-    @toolbar_modulgruppen << {:hicon=>'icon-list', :text => I18n.t('modulgruppe.list'), :path=>modulgruppen_path} if can? :index, Modulgruppe
+    #@toolbar_modulgruppen << {:hicon=>'icon-list', :text => I18n.t('modulgruppe.list'), :path=>modulgruppen_path} if can? :index, Modulgruppe
     case params[:ansicht]
     when 'semesteransicht'
     when 'infoansicht'
