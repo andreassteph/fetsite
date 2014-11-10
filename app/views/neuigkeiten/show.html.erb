@@ -1,8 +1,13 @@
 <%= content_for :header do %>
 <title>Fetsite - <%=  @neuigkeit.title %> (<%= @neuigkeit.rubrik.name %>)</title>
 <% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) unless @neuigkeit.author.fetprofile.nil? %>
+<% unless @neuigkeit.picture.url.nil?
+   picture_url=URI(root_url)
+   picture_url.path=@neuigkeit.picture.url
+end
+%>
 <% set_meta_tags :og => {
-    :image => image_url(@neuigkeit.picture.to_s,:theme=>nil),
+    :image => picture_url.to_s,
     :title => @neuigkeit.title.to_s + " (" + @neuigkeit.rubrik.name.to_s + ")",
     :type => "article",
     :description =>@neuigkeit.text_first_words,

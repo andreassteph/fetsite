@@ -22,6 +22,7 @@
       stored_location_for(resource) || root_path
     end
   end
+
   rescue_from CanCan::AccessDenied do |exception|
     
     if user_signed_in?
@@ -37,6 +38,7 @@
     
   end 
   
+
 def get_theme
   if ThemesForRails.available_theme_names.include?(params[:theme])
   params[:theme]
