@@ -1,5 +1,14 @@
 <h2>Sign in</h2>
 <p id="notice"><%= notice %></p>
+<p>  <ul class="linklist">
+    <li>
+      <%= link_to ffi1_icon("facebook1") + I18n.t('home.fblogin'), user_omniauth_authorize_path(:facebook) ,class: :linkbox %>
+    </li>
+    <li>
+      <%= link_to ffi1_icon("academic") + I18n.t('home.login'), user_omniauth_authorize_path(:ldap) ,class: :linkbox %>
+    </li>
+</ul>
+</p>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
