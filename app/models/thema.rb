@@ -23,8 +23,14 @@ include Rails.application.routes.url_helpers
   validates :text, :presence => true
   scope :public, where(:isdraft=>false).includes(:themengruppe).where("themengruppen.public"=>true)
   default_scope order("themen.priority").reverse_order
-  scope :search, ->(query) {where("themen.text like ? or themen.title like ?", "%#{query}%", "%#{query}%")}
-  scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",2.month.ago).where("thema_translations.locale"=>I18n.t.locale)
+ # scope :search, ->(query) {where("themen.text like ? or themen.title like ?", "%#{query}%", "%#{query}%")}
+ searchable do
+    text :text
+    text :title, :boost=>4.0
+  end
+  
+
+scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",2.month.ago).where("thema_translations.locale"=>I18n.t.locale)
 }
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   def is_outdated?

@@ -32,7 +32,7 @@ class HomeController < ApplicationController
   def search
   
     unless params['query'].nil? || params['query'].empty?
-      @results = Sunspot.search Neuigkeit, Fetprofile do
+      @results = Sunspot.search Neuigkeit,Rubrik, Fetprofile, Thema, Themengruppe, Lva, Studium, Modul, Modulgruppe do
         fulltext params['query']
       end
       @neuigkeiten=[];
@@ -43,12 +43,13 @@ class HomeController < ApplicationController
       end
   #    @fetprofiles = Fetprofile.search(params['query'])
       @fetprofiles=[]
-      if can?(:showintern, Neuigkeit)
-        @themen=Thema.search(params['query'])
-      else
-        @themen=Thema.search(params['query']).public
-      end
-
+     # if can?(:showintern, Neuigkeit)
+     #   @themen=Thema.search(params['query'])
+     # else
+     #   @themen=Thema.search(params['query']).public
+     # end
+  @themen=[]
+      
     else
       @neuigkeiten=[]
       @fetprofiles=[]

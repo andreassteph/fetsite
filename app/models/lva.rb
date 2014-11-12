@@ -198,6 +198,15 @@ class Lva < ActiveRecord::Base
     newlvas
     
   end
+
+ searchable do
+    text :desc
+    text :pruefungsinformation
+    text :lernaufwand
+    text :typ
+    text :name, :boost=>3.0
+  end
+
   def self.update_multiple_with_modul(hash,modul)
     newlvas=[]
     hash.each do |i,l|
@@ -222,5 +231,5 @@ class Lva < ActiveRecord::Base
     newlvas
     
   end
-
+ 
 end

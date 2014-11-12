@@ -35,4 +35,10 @@ end
 self.calendar.public=self.public
 self.calendar.save
 end
+
+ searchable do
+    text :desc
+    text :name, :boost=>4.0
+  end
+
 end

@@ -36,4 +36,9 @@ end
     self.save;
   end
 
+ searchable do
+    text :text
+    text :title, :boost=>4.0
+  end
+
 end

@@ -84,5 +84,12 @@ validates :abkuerzung, :length=>{:maximum=>5}, :format=>{:with=>/^[a-zA-z]{0,5}$
        ""
      end
   end
+  searchable do
+     text :desc 
+     text :zahl 
+     text :typ 
+     text :abkuerzung
+     text :name, :boost=>3.0
+  end
 
 end

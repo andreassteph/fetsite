@@ -53,4 +53,9 @@ class Modul < ActiveRecord::Base
   end
     m
   end
+
+  searchable do
+    text :desc
+    text :name, :boost=>3.0
+  end
 end

@@ -1,8 +1,17 @@
 
 <% unless @results.nil? %>
-<%= @results.results.each do |res| %>
-<%= render res %>
+<ul class="unstyled linkbox-list">
+<% @results.results.each do |res| %>
+<% if can?(:show, res) %>
+<li>
+<%= link_to res, :class=>:linkbox do %>
+<%= render :partial=>res.class.to_s.pluralize.downcase+"/nlink", :object=>res %>
 <% end %>
+
+</li>
+<% end %>
+<% end %>
+</ul>
 <% end %>
 
 <% unless @neuigkeiten.empty? %>

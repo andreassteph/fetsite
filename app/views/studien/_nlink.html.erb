@@ -1,2 +1,17 @@
-<h2><%= nlink.name %></h2>
-<p><%= nlink.desc_first_words %></p>
+<% studium=nlink %>
+<div class="media">
+<% unless studium.picture.thumb.url.nil? %>
+  <div class="pull-left">
+    <%= image_tag studium.picture.thumb.url %>
+  </div>
+<% end %>
+  <div class="media-body"> 
+    <h2>
+      <%= studium.name + " " + studium.zahl.to_s %>
+    </h2>
+    <p>
+      <b><%= studium.typ%> </b>
+    </p>
+
+</div>
+</div>

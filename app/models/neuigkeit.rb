@@ -84,7 +84,8 @@ class Neuigkeit < ActiveRecord::Base
     end
   end
   searchable do
-    text :text, :datum
+    text :text 
+    text :datum
     text :title, :boost=>3.0
   end
 end

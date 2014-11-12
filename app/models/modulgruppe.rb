@@ -32,4 +32,10 @@ class Modulgruppe < ActiveRecord::Base
   def studium_name
     self.studium.nil? ? "Kein Studium vorhanden" : self.studium.name
   end
+ searchable do
+    text :desc 
+    text :typ
+    text :name, :boost=>3.0
+  end
+
 end
