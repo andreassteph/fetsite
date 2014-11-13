@@ -5,7 +5,7 @@
     :image => @fetprofile.picture.portrait.url.to_s,
     :title => @fetprofile.name.to_s ,
     :type => "profile",
-    :url=>fetprofile_path(@fetprofile,:theme=>nil),
+    :url=>fetprofile_url(@fetprofile,:theme=>nil),
 :profile=> {
   :first_name=>@fetprofile.vorname,
   :last_name=>@fetprofile.nachname
