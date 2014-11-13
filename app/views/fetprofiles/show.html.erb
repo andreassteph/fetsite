@@ -1,8 +1,13 @@
 <%= content_for :header do %>
 <title>Fetsite - <%=  @fetprofile.name %></title>
+<% unless @fetprofile.picture.url.nil?
+   picture_url=URI(root_url)
+   picture_url.path=@fetprofile.picture.portrait.url
+end
+%>
 
 <% set_meta_tags :og => {
-    :image => @fetprofile.picture.portrait.url.to_s,
+    :image => picture_url.to_s,
     :title => @fetprofile.name.to_s ,
     :type => "profile",
     :url=>fetprofile_url(@fetprofile,:theme=>nil),
