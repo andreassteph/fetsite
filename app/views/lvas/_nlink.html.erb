@@ -1,2 +1,2 @@
-<h2><%= nlink.title %></h2>
-<% render :partial=>  "lvas/lva", :object=>nlink %>
+<h2><%= nlink.title unless nlink.nil? %></h2>
+<%= render :partial=>  "lvas/lva", :object=>nlink unless nlink.nil? %>
