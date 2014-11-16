@@ -48,9 +48,12 @@ end
     <p></p>
   </div>
 </div>
+<div id="calentries">
 <% @calentries1.each do |ce|%>
 <%= render ce unless ce.nil? %>
 <% end %>
+</div>
+<div id="calentry_new" ><%= link_to "new Calentry",  new_calentry_path(:object_id=>@neuigkeit.id, :object_type=>"Neuigkeit"), :remote=>true %></div>
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
 <%= render partial: 'nlink_list_whole', :object=>@neuigkeit.nlinks %>

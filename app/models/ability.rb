@@ -129,7 +129,7 @@ class Ability
 
       can [:show,:index], Calendar
       can  [:edit, :update,:new,:create,:verwalten], Calendar
-      can  [:edit, :update,:new,:create,:verwalten], Calentry
+      can  [:edit, :update,:new,:create,:verwalten,:delete], Calentry
     end
     if( user.has_role?("fetadmin"))
       can [:delete],Calendar

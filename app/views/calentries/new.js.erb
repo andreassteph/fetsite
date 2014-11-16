@@ -1,0 +1,3 @@
+$("#calentry_new").replaceWith("<div id=\"calentry_new\"><%=escape_javascript( render :partial=>"nested_form" ,:object=>@calentry) %></div>");
+  $('.datetimepicker').datetimepicker({format: 'd.m.Y H:i', startDate: (!($(this).attr("value")==undefined))? $(this).attr("value"): ""})
+  

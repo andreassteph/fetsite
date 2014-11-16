@@ -1,2 +1,7 @@
 
 $("#calentry_<%= @calentry.id %>").html("<%=escape_javascript( render :partial=>"nested_form" ,:object=>@calentry)%>");
+
+
+
+  
+  $('.datetimepicker').datetimepicker({format: 'd.m.Y H:i', startDate: (!($(this).attr("value")==undefined))? $(this).attr("value"): ""})

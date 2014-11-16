@@ -1,0 +1,2 @@
+alert("sdf");
+$("#calentry_new").replaceWith("<div id=\"calentry_<%= @calentry.id %>\"> <%=escape_javascript( render :partial=>"calentry", :object=>@calentry)%> </div><div id=\"calentry_new\"><%= escape_javascript( link_to "new Calentry",  new_calentry_path, :remote=>true) %></div>");
