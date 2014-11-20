@@ -3,4 +3,4 @@
 </h1>
 <%= image_tag "http://glonass.htu.tuwien.ac.at"+@neuigkeit.picture.big_thumb.url %>
 <%= raw(@neuigkeit.text) %>
-<p> Eine Nachricht aus deiner Fachschaft! wenn du diese Neuigkeiten nicht mehr bekommen willst hast du leider Pech gehabt es gibt keine Möglichkeit aus der FET wieder auszutreten.</p>
+<%= link_to "Auf Fet.at weiterlesen", neuigkeit_url(@neuigkeit) %> 
