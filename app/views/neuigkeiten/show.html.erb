@@ -11,10 +11,7 @@ end
     :title => @neuigkeit.title.to_s + " (" + @neuigkeit.rubrik.name.to_s + ")",
     :type => "article",
     :description =>@neuigkeit.text_first_words,
-:url=>neuigkeit_url(:theme=>nil),
-:article=> {
-  :author=>@neuigkeit.author.text
-  }
+:url=>neuigkeit_url(:theme=>nil)
 }
 %>
 <% set_meta_tags :og=>{:article=> {:published_time=>I18n.l(@neuigkeit.try(:datum).try(:to_date)) }} unless @neuigkeit.try(:datum).try(:to_date).nil? %>
