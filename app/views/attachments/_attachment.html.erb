@@ -1,4 +1,4 @@
-  <% data_ext = attachment.datei.file.extension.downcase %>
+  <% data_ext = attachment.datei.file.try(:extension).try(:downcase) %>
     
  
   <% if (!["jpg","png","jpeg"].find_index(data_ext).nil?) %>

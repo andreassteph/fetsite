@@ -8,8 +8,8 @@
 <% if small.isdraft %>
 <div class="sticker sticker-yellow"><%= I18n.t("thema.isdraft") %>  </div>
 
-<% end %>
-<%= raw(small.text) %>
+<% end %><div>
+<%= raw(small.text) %></div>
 <br/>
 
 <%= raw("<b>FAQs:</b>")  unless small.fragen.empty? %>
@@ -20,6 +20,23 @@
   <%= raw(frage.text) %>
 </p>
 <% end %>
+<% unless small.meetings.empty? %>
+<b>Treffen/Sitzungen</b>
+<% small.meetings.each do |m| %>
+<%= render m %>
+ 
+<% end%>
+<% end%>
+
+
+<% unless small.documents.empty? %>
+<b>Dokumente</b>
+<% small.documents.each do |d| %>
+<%= render d %>
+ 
+<% end%>
+<% end%>
+
 <% unless small.hideattachment %>
 <%= render partial: "themen/attachment_list", object: small.attachments, locals:{editor: false} unless small.attachments.empty? %>
 <% end %>

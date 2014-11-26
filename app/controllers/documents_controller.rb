@@ -57,7 +57,7 @@ def update
     logger.info("-------------delete------------------")
     @document = Document.find(params[:id])
     @document_id = params[:id]  
-    @object=@document.object
+   
     @document.destroy
     
     respond_to do |format|
