@@ -1,0 +1,8 @@
+<div class="contentbox" id="meeting_<%= meeting.id%>">
+<h3>Meeting: <%= meeting.name %></h3>
+<%= render meeting.calentry %>
+<%= link_to  "Agenda" , create_agenda_meeting_path(meeting), :remote=>true %>
+<%= link_to  "Protokoll" , create_protocol_meeting_path(meeting),:remote=>true %>
+<%= render meeting.agenda unless meeting.agenda.nil? %>
+<%= render meeting.protocol unless meeting.protocol.nil? %>
+</div>

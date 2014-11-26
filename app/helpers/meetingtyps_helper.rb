@@ -1,0 +1,2 @@
+module MeetingtypsHelper
+end

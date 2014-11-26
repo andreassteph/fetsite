@@ -159,10 +159,18 @@ Fetsite::Application.routes.draw do
         end
         resources :attachments
       end
-            
+      
       resources :calendars
       get 'verwalten/calendars', :controller=>:calendars, :action=>:verwalten, :as=>'calendars_verwalten'
       resources :calentries
+      resources :documents 
+      resources :meetings do
+        member do
+        get :create_protocol
+        get :create_agenda 
+      end
+      end
+      resources :meetingtyps
     end
   end
   root :to => 'home#index'

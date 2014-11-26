@@ -1,15 +1,9 @@
 <%= fa_icon("calendar 2x") %>
 <p id="notice"><%= notice %></p>
 
-<%= semantic_form_for @calentry, :remote=>true, :html=>{:class=>"inline"} do |f| %>
+<%= semantic_form_for @document, :remote=>true, :html=>{:class=>""} do |f| %>
 
- <%= f.input :start, :as => :datetimepicker  %>
- <%= f.input :dauer , :as => :string, :append=>"h"  %>
- <%= f.input :object_id , :as => :hidden  %>
- <%= f.input :object_type , :as => :hidden  %>
-<%= f.input :typ , :as => :hidden  %>
-
- 
-    <%= f.action :submit, :as => :input_ %>
+ <%= f.input :name  %>
+ <%= f.action :submit, :as => :input_ %>
  
 <% end %>

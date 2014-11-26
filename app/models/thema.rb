@@ -21,6 +21,8 @@ include Rails.application.routes.url_helpers
   validates :themengruppe, :presence => true
   validates :title, :presence => true
   validates :text, :presence => true
+  has_many :meetings, :as=>:parent
+  has_many :documents, :as=>:parent
   scope :public, where(:isdraft=>false).includes(:themengruppe).where("themengruppen.public"=>true)
   default_scope order("themen.priority").reverse_order
   scope :search, ->(query) {where("themen.text like ? or themen.title like ?", "%#{query}%", "%#{query}%")}

@@ -1,8 +1,8 @@
 <div class="contentbox" id="document_<%= document.id%>">
   <% image_tag("/iconnavy/time.png")  %>
-  <% fa_icon("calendar 2x") %>
+  <%= fa_icon("file-text 2x") %>
 
-  <%= document.title %>
+  <%= document.name %>
   <%= link_to "edit", edit_document_path(document),:remote=>true if can? :edit, document %>
   <%= link_to 'Delete', document, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, document %>
 </div>
