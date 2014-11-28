@@ -205,6 +205,9 @@ class Lva < ActiveRecord::Base
     text :lernaufwand
     text :typ
     text :name, :boost=>3.0
+    text :lecturer_names do
+      lecturers.map { |l| l.name }
+    end
   end
 
   def self.update_multiple_with_modul(hash,modul)
@@ -212,7 +215,7 @@ class Lva < ActiveRecord::Base
     hash.each do |i,l|
       lva=Lva.where(:lvanr=>l["lvanr"]).first if lva.nil?
       lva=Lva.new(l) if lva.nil?
-      lva.modul<<modul
+      lva.modul<< modul
       lva.modul.uniq!
       lva.name=l["name"]
       lva.lvanr=l["lvanr"]
@@ -226,7 +229,7 @@ class Lva < ActiveRecord::Base
       lva.lernaufwand=l["lernaufwand"]
       lva.typ=l["typ"]
       lva.save
-      newlvas<<lva #
+      newlvas<< lva #
     end 
     newlvas
     
