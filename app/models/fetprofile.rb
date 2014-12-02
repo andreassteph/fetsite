@@ -65,7 +65,9 @@ end
     end
   end
   searchable do
-    text :fetmailalias, :short, :fetmail
+    text :fetmailalias
+    text :short
+    text :fetmail
     text :vorname, :nachname, :boost=>2.0
   end
 
