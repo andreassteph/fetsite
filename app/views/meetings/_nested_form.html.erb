@@ -1,0 +1,21 @@
+<%= fa_icon("calendar 2x") %>
+<p id="notice"><%= notice %></p>
+
+<%= semantic_form_for @meeting, :remote=>true, :html=>{:class=>""} do |f| %>
+
+ <%= f.input :name  %>
+ <%= f.semantic_fields_for :calentry, @meeting.calentry do |ff| %>
+    <%= ff.input :start, :as => :datetimepicker  %>
+    <%= ff.input :dauer , :as => :string, :append=>"h"  %>
+    <%= ff.input :typ %>
+    <% ff.input :object_id %>
+    <% ff.input :object_type %>
+
+ <% end %>
+
+<%= f.input :parent_id, :as=>:hidden  %>
+<%= f.input :parent_type, :as=>:hidden %>
+ <%= f.action :submit, :as => :input_ %>
+ 
+<% end %>
+<%=  @meeting.calentry.to_yaml %>

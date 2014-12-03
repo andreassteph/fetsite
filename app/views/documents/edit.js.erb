@@ -1,5 +1,4 @@
-
-$("#document_<%= @document.id %>").html("<%=escape_javascript( render :partial=>"nested_form" ,:object=>@document)%>");
+$("#<%= @document.divid %>").html("<%=escape_javascript( render :partial=>"nested_form" ,:object=>@document)%>");
 
 
 

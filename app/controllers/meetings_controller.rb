@@ -10,8 +10,10 @@ class MeetingsController < ApplicationController
   end
   def new
     @meeting=Meeting.new
-    @meeting.parent=params[:parent_typ].constantize.find(params[:parent_id])
-    @meeting.typ = 1
+    @meeting.parent=params[:parent_type].constantize.find(params[:parent_id])
+    @parent=@meeting.parent
+ @meeting.calentry=Calentry.new
+# @meeting.typ = 1
     respond_to do |format|
       format.js
     end
@@ -35,7 +37,8 @@ class MeetingsController < ApplicationController
   end
   def edit
     @meeting = Meeting.find(params[:id])
-    respond_to do |format|
+@parent=@meeting.parent    
+respond_to do |format|
        format.js
     end
 
@@ -43,7 +46,9 @@ class MeetingsController < ApplicationController
 
   def create
     @meeting = Meeting.new(params[:meeting])
-
+    @parent=@meeting.parent
+    #@meeting.assign_attributes(params[:meeting])
+    
     respond_to do |format|
       if @meeting.save
        # format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
@@ -58,25 +63,25 @@ class MeetingsController < ApplicationController
   end
 
 def update
-    @meeting = Meeting.find(params[:id])
-
+  @meeting = Meeting.find(params[:id])
+  @parent=@meeting.parent
     respond_to do |format|
-      if @meeting.update_attributes(params[:meeting])
+    if @meeting.update_attributes(params[:meeting])
         format.html { redirect_to @meeting, notice: 'Meeting was successfully updated.' }
         format.json { head :no_content }
         format.js
       else
-     #   format.html { render action: "edit" }
+     #   format.html 
     #    format.json { render json: @meeting.errors, status: :unprocessable_entity }
-        format.js { render action: "edit"}
+        format.js { render action: "edit" }
       end
     end
   end
   def destroy
     logger.info("-------------delete------------------")
     @meeting = Meeting.find(params[:id])
+    @parent=@meeting.parent
     @meeting_id = params[:id]  
-    @object=@meeting.object
     @meeting.destroy
     
     respond_to do |format|

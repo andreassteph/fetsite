@@ -1,8 +1,11 @@
 <div class="contentbox" id="meeting_<%= meeting.id%>">
 <h3>Meeting: <%= meeting.name %></h3>
-<%= render meeting.calentry %>
-<%= link_to  "Agenda" , create_agenda_meeting_path(meeting), :remote=>true %>
-<%= link_to  "Protokoll" , create_protocol_meeting_path(meeting),:remote=>true %>
+<%= link_to "edit", edit_meeting_path(meeting), remote: true %>
+<%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, meeting %>
+<%= render meeting.calentry unless meeting.calentry.nil? %>
+<%= link_to  "Agenda" , create_agenda_meeting_path(meeting), :remote=>true if meeting.agenda.nil?  %>
+<%= link_to  "Protokoll" , create_protocol_meeting_path(meeting),:remote=>true if meeting.protocol.nil? %>
 <%= render meeting.agenda unless meeting.agenda.nil? %>
 <%= render meeting.protocol unless meeting.protocol.nil? %>
 </div>
+

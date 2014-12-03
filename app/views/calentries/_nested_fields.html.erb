@@ -1,10 +1,15 @@
 <div class="row-fluid">
-<div class="span1"></div><div class="span1">
-<%= fa_icon("calendar 2x") %>
-
+  <div class="span1"></div>
+  <div class="span1">
+    <%= fa_icon("calendar 2x") %>
+  </div>
+  <div class="span4">
+    <%= f.input :start, :as => :datetimepicker  %></div><div class="span4">
+    <%= f.input :dauer , :as => :string, :append=>"h"  %></div><div class="span1">
+    <% f.input :typ %>
+  </div> 
+  <div class="span1">
+    <%= f.check_box :_destroy %> 
+    <%= I18n.t 'common.delete' %>
+  </div>
 </div>
-<div class="span4">
-  <%= f.input :start, :as => :datetimepicker  %></div><div class="span4">
-	<%= f.input :dauer , :as => :string, :append=>"h"  %></div><div class="span1">
-	<% f.input :typ %></div> <div class="span1"><%= f.check_box :_destroy %> <%= I18n.t 'common.delete' %></div>
-     </div>

@@ -8,7 +8,10 @@ class DocumentsController < ApplicationController
   end
   def new
     @document=Document.new
-    @document.parent=params[:parent_typ].constantize.find(params[:parent_id])
+    @parent=params[:parent_type].constantize.find(params[:parent_id])
+    
+    @document.parent=@parent
+
     @document.typ = 1
     respond_to do |format|
       format.js
@@ -16,6 +19,7 @@ class DocumentsController < ApplicationController
   end
   def edit
     @document = Document.find(params[:id])
+    @parent=@document.parent
     respond_to do |format|
        format.js
     end
@@ -24,7 +28,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(params[:document])
-
+    @parent=@document.parent
     respond_to do |format|
       if @document.save
        # format.html { redirect_to @document, notice: 'Document was successfully created.' }
@@ -38,9 +42,9 @@ class DocumentsController < ApplicationController
     end
   end
 
-def update
+  def update
     @document = Document.find(params[:id])
-
+    @parent=@document.parent
     respond_to do |format|
       if @document.update_attributes(params[:document])
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
@@ -56,6 +60,7 @@ def update
   def destroy
     logger.info("-------------delete------------------")
     @document = Document.find(params[:id])
+    @parent=@document.parent
     @document_id = params[:id]  
    
     @document.destroy
