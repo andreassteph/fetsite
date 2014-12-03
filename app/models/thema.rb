@@ -25,22 +25,20 @@ include Rails.application.routes.url_helpers
   has_many :documents, :as=>:parent
   scope :public, where(:isdraft=>false).includes(:themengruppe).where("themengruppen.public"=>true)
   default_scope order("themen.priority").reverse_order
- # scope :search, ->(query) {where("themen.text like ? or themen.title like ?", "%#{query}%", "%#{query}%")}
- searchable do
+  # scope :search, ->(query) {where("themen.text like ? or themen.title like ?", "%#{query}%", "%#{query}%")}
+  searchable do
     text :text
     text :title, :boost=>4.0
   end
-  
-
-scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",2.month.ago).where("thema_translations.locale"=>I18n.t.locale)
-}
+  scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",2.month.ago).where("thema_translations.locale"=>I18n.t.locale)
+  }
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   def is_outdated?
-   unless translation.try(:updated_at).nil?
-    translation.updated_at < 2.month.ago
-   else
-     false
-   end
+    unless translation.try(:updated_at).nil?
+      translation.updated_at < 2.month.ago
+    else
+      false
+    end
   end
   
   def text_first_words
@@ -50,16 +48,13 @@ scope :outdated, -> {includes(:translations).where("thema_translations.updated_a
       "...."
     else
       words[0..100].join(" ")+ " ..." unless  words.nil?
-      
     end
   end
-
+  
   def fix_links(host)
-   full_url= URI.parse(root_url(:host=>host))
+    full_url= URI.parse(root_url(:host=>host))
     self.text.gsub!(/src="[\.\/]*uploads\/attachment\/datei\/(\d+)\/thumb_big[^"]*"/){|s| full_url.path=Attachment.find($1.to_i).datei.thumb_big.url; 'src="'+full_url.to_s+'"'}
     self.text.gsub!(/src="[\.\/^"]*uploads\/attachment\/datei\/(\d+)\/[^"]*"/){|s| full_url.path=Attachment.find($1.to_i).datei.url; 'src="'+full_url.to_s+'"'}
-     
     self.text.gsub!(/href="[^"]*themen\/(\d+)[^"]*"/){|s| full_url.path=thema_path(Thema.find($1.to_i)); 'href="'+full_url.to_s+'"'}
-
   end
 end

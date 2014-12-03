@@ -114,15 +114,14 @@ class Ability
     unless user.has_role?("fetadmin")
       cannot :delete, Rubrik
       cannot :delete, Neuigkeit
-
     end
     # Calendar
-   if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
-     can :manage, Document
-     can :manage, Meeting
-     can :manage, Meetingtyp
-   end    
-
+    if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
+      can :manage, Document
+      can :manage, Meeting
+      can :manage, Meetingtyp
+    end    
+    
 
     # Rechteverwaltung Kalender 
     can [:show, :index], Calendar, :public => true 
@@ -130,8 +129,6 @@ class Ability
     can [:show], Calentry
 
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
-
-
       can [:show,:index], Calendar
       can  [:edit, :update,:new,:create,:verwalten], Calendar
       can  [:edit, :update,:new,:create,:verwalten,:delete], Calentry
