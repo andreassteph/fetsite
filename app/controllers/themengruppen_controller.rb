@@ -23,9 +23,9 @@ class ThemengruppenController < ApplicationController
   def show
     @themengruppe = Themengruppe.find(params[:id])
     if can? :showdraft , Thema
-    @themen = @themengruppe.themen
+    @themen = @themengruppe.themen.reverse
       else
-    @themen = @themengruppe.themen.public
+    @themen = @themengruppe.themen.public.reverse
     end
     @toolbar_elements = []
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.manage"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
@@ -59,7 +59,7 @@ class ThemengruppenController < ApplicationController
   end 
   def verwalten 
     @themengruppe = Themengruppe.find(params[:themengruppe_id])
-    @themen = @themengruppe.themen.order(:priority)
+    @themen = @themengruppe.themen.order(:priority).reverse
     
     @toolbar_elements =[]
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
