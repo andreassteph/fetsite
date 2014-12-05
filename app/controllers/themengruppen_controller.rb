@@ -14,7 +14,7 @@ class ThemengruppenController < ApplicationController
     end
   end
   def faqs
-    @themengruppen = Themengruppe.order("themengruppen.priority").includes(:themen,{themen: :fragen}).order("themen.priority").reverse
+    @themengruppen = Themengruppe.order("themengruppen.priority").includes(:themen,{themen: :fragen}).order("themen.priority")
     
   end
 
@@ -23,9 +23,9 @@ class ThemengruppenController < ApplicationController
   def show
     @themengruppe = Themengruppe.find(params[:id])
     if can? :showdraft , Thema
-    @themen = @themengruppe.themen.reverse
+    @themen = @themengruppe.themen
       else
-    @themen = @themengruppe.themen.public.reverse
+    @themen = @themengruppe.themen.public
     end
     @toolbar_elements = []
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.manage"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
@@ -59,9 +59,11 @@ class ThemengruppenController < ApplicationController
   end 
   def verwalten 
     @themengruppe = Themengruppe.find(params[:themengruppe_id])
-    @themen = @themengruppe.themen.order(:priority).reverse
+    @themen = @themengruppe.themen
     
     @toolbar_elements =[]
+    @toolbar_elements << {:text=>I18n.t('themengruppe.show'), :path=>themengruppe_path(@themengruppe)} if can? :show, @themengruppe
+
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
     @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('thema.add'), :path=>new_themengruppe_thema_path(@themengruppe), :remote=>true} if can? :new, Thema
     @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe
