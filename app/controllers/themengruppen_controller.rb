@@ -59,7 +59,7 @@ class ThemengruppenController < ApplicationController
   end 
   def verwalten 
     @themengruppe = Themengruppe.find(params[:themengruppe_id])
-    @themen = @themengruppe.themen.order(:priority).reverse
+    @themen = @themengruppe.themen.order(:priority)
     
     @toolbar_elements =[]
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
