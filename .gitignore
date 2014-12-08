@@ -30,6 +30,7 @@ Gemfile.lock
 console
 /server
 /public/uploads/
+/public/sitemap*
 /vendor/*
 /bak/*
 /solr/*
