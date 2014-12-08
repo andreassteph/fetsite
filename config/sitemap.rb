@@ -55,7 +55,7 @@ SitemapGenerator::Sitemap.create do
   end
   Globalize.with_locale(:de) do
     Themengruppe.public.with_translations(:de).find_each do |thema|
-      add themengruppe_path(thema, :locale=>:de, :theme=>nil),:lastmod=>thema.updated_at,  :lang=>"de"}
+      add themengruppe_path(thema, :locale=>:de, :theme=>nil),:lastmod=>thema.updated_at
     end
   end
   # Put links creation logic here.
