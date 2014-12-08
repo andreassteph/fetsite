@@ -113,4 +113,4 @@ gem 'bootstrap-kaminari-views', :git=>'git://github.com/matenia/bootstrap-kamina
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'sitemap_generator'
-
+gem 'whenever'
