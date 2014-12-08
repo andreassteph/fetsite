@@ -1,7 +1,7 @@
 # Set the host name for URL creation
 require 'rubygems'
 require 'sitemap_generator'
-SitemapGenerator::Sitemap.default_host = "http://localhost:3000"
+SitemapGenerator::Sitemap.default_host = "http://www.fet.at"
 
 SitemapGenerator::Sitemap.create do
   add root_path
