@@ -86,7 +86,7 @@ class NeuigkeitenController < ApplicationController
     unless @neuigkeit.published?
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie als Mail zu versenden.'
     else      
-      NewsMailer.neuigkeit_mail(current_user.email, params[:id]).deliver
+      NewsMailer.neuigkeit_mail("all@fet.at", params[:id]).deliver
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit versendet'
   
     end  
