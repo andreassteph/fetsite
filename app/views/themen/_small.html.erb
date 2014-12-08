@@ -20,22 +20,21 @@
   <%= raw(frage.text) %>
 </p>
 <% end %>
-<% unless small.meetings.empty? %>
 <b>Treffen/Sitzungen</b>
 <%= link_to "Neues Meeting", new_meeting_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
 <div id="<%= Meeting.new_divid_for(small) %>"></div>
 
+<% unless small.meetings.empty? %>
 <% small.meetings.each do |m| %>
 <%= render m %>
- 
-<% end%>
+ <% end%>
 <% end%>
 
-
-<% unless small.documents.empty? %>
 <b>Dokumente</b>
 <%= link_to "Neues Dokument", new_document_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
 <div id="<%= Document.new_divid_for(small) %>"></div>
+
+<% unless small.documents.empty? %>
 <% small.documents.each do |d| %>
 <%= render d %>
  
