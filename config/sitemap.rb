@@ -49,13 +49,13 @@ SitemapGenerator::Sitemap.create do
     end
   end
   Globalize.with_locale(:en) do 
-    Thema.public.with_translations(:en).find_each do |thema|
-      add thema_path(thema, :locale=>:en, :theme=>"default"),:lastmod=>thema.updated_at
+    Themengruppe.public.with_translations(:en).find_each do |thema|
+      add themengruppe_path(thema, :locale=>:en, :theme=>nil),:lastmod=>thema.updated_at
     end
   end
   Globalize.with_locale(:de) do
-    Thema.public.with_translations(:de).find_each do |thema|
-      add thema_path(thema, :locale=>:de, :theme=>"default"),:lastmod=>thema.updated_at, :alternate=>{:href=>thema_path(thema, :locale=>:de, :theme=>"blue1"), :lang=>"de"}
+    Themengruppe.public.with_translations(:de).find_each do |thema|
+      add themengruppe_path(thema, :locale=>:de, :theme=>nil),:lastmod=>thema.updated_at,  :lang=>"de"}
     end
   end
   # Put links creation logic here.
