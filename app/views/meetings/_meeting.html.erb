@@ -1,5 +1,5 @@
 <div class="contentbox" id="meeting_<%= meeting.id%>">
-<h3>Meeting: <%= meeting.name %></h3>
+<b><%= meeting.text %></b>
 <%= link_to "edit", edit_meeting_path(meeting), remote: true %>
 <%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, meeting %>
 <%= render meeting.calentry unless meeting.calentry.nil? %>

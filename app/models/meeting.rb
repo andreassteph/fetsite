@@ -1,7 +1,7 @@
 class Meeting < ActiveRecord::Base
   belongs_to :parent, :polymorphic=>true
   belongs_to :meetingtyp
-  attr_accessible :desc, :intern, :name, :parent_id, :parent_type, :calentry,:calentry_attributes
+  attr_accessible :desc, :intern, :name, :parent_id, :parent_type, :calentry,:calentry_attributes, :meetingtyp_id
 
 
   has_one :protocol,  :class_name=>'Document', :conditions=>{:typ=>10}, :as=>:parent
@@ -13,6 +13,16 @@ class Meeting < ActiveRecord::Base
   validate :parent, :presence=>true
   validate :calentry, :presence=>true
 before_validation :fix_calentry
+  def text
+    unless self.meetingtyp.try(:name).to_s.empty?  
+      t =  self.meetingtyp.name.to_s+", "
+    else
+      t = parent.title", " if self.name.empty?
+    end 
+    t= t+ self.name
+    t = t + " " + I18n.l(self .calentry.start)
+    t
+  end
   def fix_calentry
     self.calentry.object=self unless self.calentry.nil?
   end

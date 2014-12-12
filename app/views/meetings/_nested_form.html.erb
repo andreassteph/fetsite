@@ -4,6 +4,8 @@
 <%= semantic_form_for @meeting, :remote=>true, :html=>{:class=>""} do |f| %>
 
  <%= f.input :name  %>
+ <%= f.input :meetingtyp  %>
+
  <%= f.semantic_fields_for :calentry, @meeting.calentry do |ff| %>
     <%= ff.input :start, :as => :datetimepicker  %>
     <%= ff.input :dauer , :as => :string, :append=>"h"  %>
