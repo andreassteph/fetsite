@@ -1,0 +1,1 @@
+$("#meetings_for_<%= @parent.class.to_s %>_<%= @parent.id.to_s %>").replaceWith("<%=escape_javascript( render :partial=>"meetings/meeting_list", object: @meetings, locals: {parent: @parent} ) %>");

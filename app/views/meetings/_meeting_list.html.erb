@@ -1,0 +1,7 @@
+<div id="meetings_for_<%= parent.class.to_s %>_<%= parent.id.to_s %>">
+<% unless meeting_list.empty? %>
+<% meeting_list.each do |m| %>
+<%= render m %>
+<% end%>
+<% end%>
+</div>

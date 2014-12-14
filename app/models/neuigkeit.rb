@@ -23,7 +23,7 @@ class Neuigkeit < ActiveRecord::Base
 
   has_many :calentries, as: :object
   has_many :nlinks   
-
+  has_one :meeting
   mount_uploader :picture, PictureUploader
 
   default_scope  order(:datum).reverse_order  
@@ -38,7 +38,9 @@ class Neuigkeit < ActiveRecord::Base
   before_validation :sanitize
 
 
-
+  def is_annoncement?
+    self.meeting.nil?
+  end
   def self.published
     where("datum <= ? AND datum IS NOT NULL", Time.now.to_date)  
   end

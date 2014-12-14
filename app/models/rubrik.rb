@@ -16,6 +16,7 @@ class Rubrik < ActiveRecord::Base
   has_many :published, :class_name => "Neuigkeit", :conditions=>["Neuigkeit.published"]
   has_many :calentries, :through => :neuigkeiten, :as=>:object
   resourcify
+  has_many :meetingtyps
   has_one :calendar
   validates :calendar , :presence=>true
   before_validation :sanitize

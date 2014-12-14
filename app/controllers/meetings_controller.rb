@@ -2,12 +2,41 @@ class MeetingsController < ApplicationController
 
 
 
-  load_and_authorize_resource
+ # load_and_authorize_resource
   def index
+    parent=params[:parent_type].constantize.find(params[:parent_id])
+    unless parent.nil?
+      #authorize! :show, parent
+      if params[:filter]=="upcomming"
+        @meetings=parent.meetings.includes(:calentry).where("calentries.start>?",1.hour.ago)
+      else
+      @meetings=parent.meetings
+      end
+      @parent=parent
+    end
     respond_to do |format|
       format.html {redirect_to rubriken_path}
+      format.js
     end
   end
+  def announce
+    m=Meeting.find(params[:id])
+    m.create_announcement(current_user)
+    m.save
+   
+    respond_to do |format|
+      format.html {redirect_to m.parent}
+      format.js {render action: :show}  
+    end
+  end
+  def show
+    m=Meeting.find(params[:id])
+    respond_to do |format|
+      format.html {redirect_to m.parent}
+      format.js  
+      
+    end
+end
   def new
     @meeting=Meeting.new
     @meeting.parent=params[:parent_type].constantize.find(params[:parent_id])
