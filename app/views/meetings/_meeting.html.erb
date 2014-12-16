@@ -1,4 +1,5 @@
 <div class="contentbox" id="meeting_<%= meeting.id%>">
+
 <b><%= link_to meeting.text, meeting %></b>
 <%= link_to "Ankündigung", rubrik_neuigkeit_path(meeting.neuigkeit.rubrik, meeting.neuigkeit) unless meeting.neuigkeit.nil? %>
 <%= link_to "ankündigen", announce_meeting_path(meeting), remote: true if meeting.neuigkeit.nil? %>
@@ -10,4 +11,5 @@
 <%= render meeting.agenda unless meeting.agenda.nil? %>
 <%= render meeting.protocol unless meeting.protocol.nil? %>
 </div>
+
 

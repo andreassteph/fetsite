@@ -4,8 +4,10 @@
 <%= semantic_form_for @document, :remote=>true, :html=>{:class=>""} do |f| %>
 
  <%= f.input :name  %>
+
 <%= f.input :parent_id, :as=>:hidden  %>
 <%= f.input :parent_type, :as=>:hidden %>
+
  <%= f.action :submit, :as => :input_ %>
  
 <% end %>

@@ -116,6 +116,7 @@ class Ability
       cannot :delete, Neuigkeit
     end
     # Calendar
+
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can :manage, Document
       can :manage, Meeting

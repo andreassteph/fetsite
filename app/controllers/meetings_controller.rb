@@ -2,6 +2,7 @@ class MeetingsController < ApplicationController
 
 
 
+
  # load_and_authorize_resource
   def index
     parent=params[:parent_type].constantize.find(params[:parent_id])
@@ -66,6 +67,7 @@ end
   end
   def edit
     @meeting = Meeting.find(params[:id])
+
 @parent=@meeting.parent    
 respond_to do |format|
        format.js
@@ -75,9 +77,10 @@ respond_to do |format|
 
   def create
     @meeting = Meeting.new(params[:meeting])
+
     @parent=@meeting.parent
     #@meeting.assign_attributes(params[:meeting])
-    
+
     respond_to do |format|
       if @meeting.save
        # format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
@@ -92,6 +95,7 @@ respond_to do |format|
   end
 
 def update
+
   @meeting = Meeting.find(params[:id])
   @parent=@meeting.parent
     respond_to do |format|
@@ -100,6 +104,7 @@ def update
         format.json { head :no_content }
         format.js
       else
+
      #   format.html 
     #    format.json { render json: @meeting.errors, status: :unprocessable_entity }
         format.js { render action: "edit" }
@@ -109,6 +114,7 @@ def update
   def destroy
     logger.info("-------------delete------------------")
     @meeting = Meeting.find(params[:id])
+
     @parent=@meeting.parent
     @meeting_id = params[:id]  
     @meeting.destroy
