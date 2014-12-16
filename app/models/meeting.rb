@@ -61,7 +61,7 @@ class Meeting < ActiveRecord::Base
       self.agenda=d
     end
   end
-<<<<<<< HEAD
+
   def self.new_divid_for(parent)
     "meeting_new_parent_" + parent.class.to_s + "_" + parent.id.to_s 
   end
@@ -70,6 +70,5 @@ class Meeting < ActiveRecord::Base
   end
 
 
-=======
->>>>>>> origin/documentmeeting
+
 end

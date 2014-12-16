@@ -166,15 +166,14 @@ Fetsite::Application.routes.draw do
       resources :documents 
       resources :meetings do
         member do
-
           get :announce
           get :create_protocol
           get :create_agenda 
         end
-
+        
       end
-
-      end
+      
+    
       resources :meetingtyps
     end
   end
