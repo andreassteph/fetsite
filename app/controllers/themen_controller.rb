@@ -32,7 +32,7 @@ class ThemenController < ApplicationController
       Sanitize.node!(node,{:elements=>["span"],:attributes=>{"span"=>["class","style"]},:css=>{:properties=>["color"]}})
       {:node_whitelist=>[node]}
     end
-    @thema.text = Sanitize.fragment(@thema.text, {:elements=>['table','tr','td','p','h3','h4','a','th','img','ul','li','i','b','em'],:attributes=>{'p'=>['class'],'table'=>['class'],'a'=>['href','data'],'img'=>['src','width','height'],:all=>['class']},:css=>{:properties=>['float']},:transformers=>[trans_icons]})
+    @thema.text = Sanitize.fragment(@thema.text, {:elements=>['table','tr','td','p','h1','h2','h3','h4','h5','a','th','img','ul','li','i','b','em','pre','code'],:attributes=>{'p'=>['class'],'table'=>['class'],'a'=>['href','data'],'img'=>['src','width','height'],:all=>['class']},:css=>{:properties=>['float']},:transformers=>[trans_icons]})
     # # #
     # #
     # # 
