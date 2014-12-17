@@ -23,7 +23,7 @@ heading_clear_tag: p
 width: "100%"
 content_css: "/assets/tinymce.css"
 toolbar: 
-  - styleselect | bold boldred_btn italic forecolor | list link image table | undo redo | fullscreen code
+  - styleselect removeformat | bold boldred_btn italic forecolor | list link image table | bullist numlist | alignleft aligncenter alignright alignjustify | undo redo | fullscreen code
 formats:
   boldred: {selector: "p",block: "p", classes: "mc-important"}
 setup: function(ed) {
