@@ -2,13 +2,13 @@
 <div class="content-wrap content-column">
 
   <% @themengruppen.each do |tg| %>
-  <% if can? :show, tg %>
+  <% if can? (:show, tg) %>
   <div class="contentbox">
     <a name="themengruppe_<%=tg.id.to_s%>"></a>
     <h2> <%= tg.title%></h2>
     <ul>
       <% tg.themen.order(:priority).reverse.each do |t| %>
-      <% if can? :show t %>
+      <% if can?(:show, t) %>
       <li> <%= t.title %>
 	<ul> <% t.fragen.each do |f| %>
 	  <li>
