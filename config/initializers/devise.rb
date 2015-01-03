@@ -4,11 +4,11 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "test@example.com"
+  config.mailer_sender = "no-reply@fet.at"
 
   # Configure the class responsible to send e-mails.
   config.mailer = "Devise::Mailer"
-  config.mailer.default_url_options = { :host => 'glonass.htu.tuwien.ac.at' }  
+  config.mailer.default_url_options = { :host => 'www.fet.at' }  
   config.mailer.delivery_method = :sendmail
 #  config.mailer.smtp_settings = {
 #  :address              => "smtp.gmail.com",
