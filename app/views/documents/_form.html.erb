@@ -1,0 +1,7 @@
+<%= semantic_form_for @document, :html=>{:class=>""} do |f| %>
+ <%= f.input :text, :as=>:tinymce_text  %>
+<%= f.action :submit, :as => :input_ %>
+ 
+<% end %>
+<%= tinymce %>
+

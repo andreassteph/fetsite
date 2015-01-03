@@ -1,0 +1,16 @@
+
+<% if can?(:edit,@thema)|| ! @thema.documents.empty? %>
+
+<b>Dokumente</b>
+<%= link_to "Neues Dokument", new_document_path(:parent_id=>@thema.id, :parent_type=>"Thema"), :remote=>true %>
+<div id="<%= Document.new_divid_for(@thema) %>"></div>
+
+<% unless @documents.empty? %>
+
+<% @documents.each do |d| %>
+<%= render d %>
+
+<% end%>
+<% end%>
+<% end%>
+
