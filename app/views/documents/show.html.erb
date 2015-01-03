@@ -1,8 +1,10 @@
+<%= link_to "parent" , @document.parent %>
+<%= link_to "show", document_path(@document), remote: true %>
+<%= link_to "Write", write_document_path(@document) %>
+<%= link_to "read", read_from_etherpad_document_path(@document) %>
+<%= link_to "dump", dump_to_etherpad_document_path(@document) %>
 <h2><%= @document.name %></h2>
+<div id="">
 <%= raw(@document.text) %>
-<%= semantic_form_for @document, :html=>{:class=>""} do |f| %>
- <%= f.input :text, :as=>:tinymce_text  %>
-<%= f.action :submit, :as => :input_ %>
- 
-<% end %>
-<%= tinymce %>
+</div>
+

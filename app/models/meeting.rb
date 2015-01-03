@@ -21,6 +21,7 @@ class Meeting < ActiveRecord::Base
     unless self.meetingtyp.try(:name).to_s.empty?  
       t =  self.meetingtyp.name.to_s+", "
     else
+      t=""
       t = parent.title.to_s + ", " if self.name.empty?
     end 
     t= t+ self.name.to_s
@@ -52,6 +53,13 @@ class Meeting < ActiveRecord::Base
     end
   
   end
+  def create_calentry
+   if  self.calentry.nil?
+ce =Calentry.new
+ce.typ=2
+self.calentry=ce
+end
+end
   def create_agenda
     if self.agenda.nil?
       d=Document.new
@@ -61,7 +69,16 @@ class Meeting < ActiveRecord::Base
       self.agenda=d
     end
   end
-
+  def self.new_with_date_and_typ(parent,start, typ)
+    m= Meeting.new
+    m.parent=parent
+    m.calentry=Calentry.new
+    m.calentry.typ=2
+    m.calentry.start=start
+    m.calentry.dauer=4
+    m.meetingtyp=typ
+    m
+  end
   def self.new_divid_for(parent)
     "meeting_new_parent_" + parent.class.to_s + "_" + parent.id.to_s 
   end
@@ -69,6 +86,45 @@ class Meeting < ActiveRecord::Base
     "meeting_"+self.id.to_s
   end
 
+  def update_time_from_protocol
+    st= /Beginn[\s:]*([^<>]*)/.match(self.protocol.text)[1].to_s
+    st= /Anfang[\s:]*([^<>]*)/.match(self.protocol.text)[1].to_s if st.empty?
+    self.calentry.start=(self.calentry.start.to_date.to_s + " " +st).to_datetime unless st.empty?
+    st= /Ende[\s:]*([^<>]*)/.match(self.protocol.text)[1].to_s 
+   self.calentry.ende=(self.calentry.ende.to_date.to_s + " " +st).to_datetime unless st.empty?
+  end
+  def agenda_text
+      unless self.agenda.nil?
+      t=  self.agenda.text 
+      else
+       t= ""
+      end
+    t
+  end
+  def protocol_text
+ unless self.protocol.nil?
+      t=  self.protocol.text 
+      else
+       t= ""
+      end
+    t  
+end
 
-
+  searchable do
+    text :text
+    text :name, :boost=>4.0
+    
+    text :meetingtyp do
+      meetingtyp.name
+    end
+    text :protocol do
+   self.protocol_text
+    end
+  
+    text :agenda do
+      self.agenda_text
+    end
+  end
+  
+  
 end

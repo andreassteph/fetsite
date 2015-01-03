@@ -156,6 +156,8 @@ Fetsite::Application.routes.draw do
           get :verwalten
           get :sanitize
           get :is_updated
+          get :documents
+          get :meetings
         end
         resources :attachments
       end
@@ -163,7 +165,14 @@ Fetsite::Application.routes.draw do
       resources :calendars
       get 'verwalten/calendars', :controller=>:calendars, :action=>:verwalten, :as=>'calendars_verwalten'
       resources :calentries
-      resources :documents 
+      resources :documents do
+        member do
+          get :write
+          get :write_etherpad
+          get :read_from_etherpad
+          get :dump_to_etherpad
+        end
+      end
       resources :meetings do
         member do
           get :announce

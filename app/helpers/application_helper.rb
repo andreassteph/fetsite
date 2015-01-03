@@ -1,7 +1,28 @@
 module ApplicationHelper
- def current_url1(overwrite={})
-     url_for  :params => params.merge(overwrite).except(:controller,:action,:ansicht)
- end
+
+  def strip_control_chars(value)
+    value.chars.inject("") do |str, char|
+      unless char.ascii_only? && (char.ord < 32 || char.ord == 127)
+        str << char
+      end
+       str
+    end
+  end
+  def convert_topic_to_meeting(t,mt)
+    m=Meeting.new_with_date_and_typ(t,t.title.to_date+16.hour,mt)
+    m.save
+    m.create_protocol
+    m.protocol.text=t.text
+    m.protocol.save
+    m.update_time_from_protocol
+m.save
+
+    t.meetings << m
+    t.save
+  end
+  def current_url1(overwrite={})
+    url_for  :params => params.merge(overwrite).except(:controller,:action,:ansicht)
+  end
 
 
   def switch_locale_url(target_locale)

@@ -122,7 +122,14 @@ class Ability
       can :manage, Meeting
       can :manage, Meetingtyp
     end    
-    
+    unless user.has_role?( "fetadmin")
+      cannot :delete, Document
+      cannot :delete, Meeting
+    end
+    if user.has_role?( "fetadmin")
+   can :manage, Meetingtyp
+   
+end
 
     # Rechteverwaltung Kalender 
     can [:show, :index], Calendar, :public => true 

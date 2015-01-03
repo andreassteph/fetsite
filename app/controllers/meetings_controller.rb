@@ -42,8 +42,8 @@ end
     @meeting=Meeting.new
     @meeting.parent=params[:parent_type].constantize.find(params[:parent_id])
     @parent=@meeting.parent
- @meeting.calentry=Calentry.new
-# @meeting.typ = 1
+    @meeting.calentry=Calentry.new
+    @meeting.calentry.typ = 2
     respond_to do |format|
       format.js
     end

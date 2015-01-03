@@ -4,10 +4,15 @@
 <%= semantic_form_for @calentry, :remote=>true, :html=>{:class=>"inline"} do |f| %>
 
  <%= f.input :start, :as => :datetimepicker  %>
- <%= f.input :dauer , :as => :string, :append=>"h"  %>
+<% if @calentry.typ==1 %> 
+<%= f.input :dauer , :as => :string, :append=>"h"  %>
+<% else %>
+ <%= f.input :ende, :as => :datetimepicker  %>
+
+<% end %>
  <%= f.input :object_id , :as => :hidden  %>
  <%= f.input :object_type , :as => :hidden  %>
-<%= f.input :typ , :as => :hidden  %>
+ <%= f.input :typ , :as => :hidden  %>
 
  
     <%= f.action :submit, :as => :input_ %>
