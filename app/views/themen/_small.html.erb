@@ -8,8 +8,8 @@
 <% if small.isdraft %>
 <div class="sticker sticker-yellow"><%= I18n.t("thema.isdraft") %>  </div>
 
-<% end %>
-<%= raw(small.text) %>
+<% end %><div>
+<%= raw(small.text) %></div>
 <br/>
 
 <%= raw("<b>FAQs:</b>")  unless small.fragen.empty? %>
@@ -20,6 +20,37 @@
   <%= raw(frage.text) %>
 </p>
 <% end %>
+
+
+<% if can?(:edit,small) || !small.meetings.empty? %>
+<b>Treffen/Sitzungen</b>
+<%= link_to "Neues Meeting", new_meeting_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
+<div id="<%= Meeting.new_divid_for(small) %>"></div>
+<%= link_to "All", meetings_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
+<%= link_to "upcomming", meetings_path(:parent_id=>small.id, :parent_type=>"Thema",:filter=>"upcomming"), :remote=>true %>
+<%= render :partial=>"meetings/meeting_list", object: small.meetings, locals: {parent: small} %>
+<% end %>
+
+
+<% if can?(:edit,small)|| ! small.documents.empty? %>
+
+<b>Dokumente</b>
+<%= link_to "Neues Dokument", new_document_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
+<div id="<%= Document.new_divid_for(small) %>"></div>
+
+<% unless small.documents.empty? %>
+
+<% small.documents.each do |d| %>
+<%= render d %>
+
+<% end%>
+<% end%>
+<% end%>
+
+
+
+
+
 <% unless small.hideattachment %>
 <%= render partial: "themen/attachment_list", object: small.attachments, locals:{editor: false} unless small.attachments.empty? %>
 <% end %>

@@ -1,0 +1,13 @@
+<%= fa_icon("calendar 2x") %>
+<p id="notice"><%= notice %></p>
+
+<%= semantic_form_for @document, :remote=>true, :html=>{:class=>""} do |f| %>
+
+ <%= f.input :name  %>
+
+<%= f.input :parent_id, :as=>:hidden  %>
+<%= f.input :parent_type, :as=>:hidden %>
+
+ <%= f.action :submit, :as => :input_ %>
+ 
+<% end %>

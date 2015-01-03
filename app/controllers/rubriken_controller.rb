@@ -29,7 +29,7 @@ class RubrikenController < ApplicationController
 
     @rubrik = Rubrik.find(params[:id])
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
-    @calentries= @rubrik.calentries
+    @calentries= @rubrik.calendar.calentries
     if can?(:showunpublished, Neuigkeit)
       @neuigkeiten = @rubrik.neuigkeiten.page(params[:page]).per(3)
     else

@@ -22,7 +22,11 @@ class Gremium < ActiveRecord::Base
   attr_accessible :desc, :name, :typ, :geschlecht,:thema_id, :memberships_attributes
   has_many :memberships, dependent: :destroy # Mitgliedschaften bei dem Gremium
   has_many :nlinks, as: :link, dependent: :destroy
-  scope :search, ->(query) {where("gremien.name like ? or gremien.desc like ?", "%#{query}%", "%#{query}%")}
+#  scope :search, ->(query) {where("gremien.name like ? or gremien.desc like ?", "%#{query}%", "%#{query}%")}
+  searchable do
+    text :desc
+    text :name, :boost=>4.0
+  end
 
   belongs_to :thema # Gehört zu einem Thema
   scope :tabs, -> { where(:typ => [1,3]).order(:typ).order(:name) } # Gremien die in Tabs angezeigt werden (Alle Anderen nur in der Liste

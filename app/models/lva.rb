@@ -47,7 +47,7 @@ class Lva < ActiveRecord::Base
   has_and_belongs_to_many :lecturers
   has_many :nlinks, as: :link
   
-  scope :search, ->(query) {where("name like ? or lvas.desc like ?", "%#{query}%", "%#{query}%")} 
+#  scope :search, ->(query) {where("name like ? or lvas.desc like ?", "%#{query}%", "%#{query}%")} 
   
   validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9A][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
   validates_presence_of :ects  # ECTS vorhanden?

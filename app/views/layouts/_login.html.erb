@@ -1,9 +1,17 @@
 <% if user_signed_in? %>
-	  <li>Logged in as : <%= current_user.email %>
-	    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-	  </li>
-	  <% else %>
-	  <li>
-	    <%= link_to('Login', new_user_session_path)  %>  
-	  </li>
-	  <% end %>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= ff_icon('icon-user')%><b class="caret"></b></a>
+  <ul class="dropdown-menu">	 
+    <li style="padding:5px">
+      <%= image_tag current_user.fetprofile.picture.thumb.url,class: "pull-left" unless current_user.fetprofile.nil? %>
+ <%= current_user.email %> is logged in.
+      
+    </li>
+<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        </li>
+  </ul>	
+</li>
+<% else %>
+<li>
+  <%= link_to('Login', new_user_session_path)  %>  
+</li>
+<% end %>

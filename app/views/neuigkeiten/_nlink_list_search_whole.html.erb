@@ -1,5 +1,19 @@
 <div id="nlink_list_search">
   <ul class="unstyled">
-    <%= render partial: "nlink_list_search", collection: nlink_list_search_whole %>
+<% unless @results.nil? %>
+<ul class="unstyled linkbox-list">
+<% @results.results.each do |res| %>
+<% if can?(:show, res) %>
+<li>
+<%= link_to create_link_rubrik_neuigkeit_path(@neuigkeit.rubrik, @neuigkeit, :link_id=>res.id, :link_type=>res.class.to_s), remote: true, class: :linkbox do %>
+<%= render :partial=>res.class.to_s.pluralize.downcase+"/nlink", :object=>res %>
+<% end %>
+</li>
+<% end %>
+<% end %>
+</ul>
+<% end %>
+  
+  <% render partial: "nlink_list_search", collection: nlink_list_search_whole %>
   </ul>
 </div>

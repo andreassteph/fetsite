@@ -1,4 +1,6 @@
 <%= content_for :header do %>
+
+
 <title>Fetsite - <%= @rubrik.name %></title>
 <% set_meta_tags :og => {
 :title => @rubrik.name.to_s,
@@ -8,7 +10,9 @@
 <%= display_meta_tags %>
 
 <% end %>
+
 <%= render 'tabs' %>
+<%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 <p id="notice"><%= notice %></p>
 <div class="content-wrap content-column">
 <div class="container-fluid">
@@ -52,7 +56,6 @@
 </div>
 
 <br>
-<%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
 </div>
 

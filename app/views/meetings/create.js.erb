@@ -1,0 +1,1 @@
+$("#<%= Meeting.new_divid_for(@parent) %>").replaceWith("<div id=\"<%= Meeting.new_divid_for(@parent)%>\"></div><%=escape_javascript( render :partial=>"meeting", :object=>@meeting)%>");

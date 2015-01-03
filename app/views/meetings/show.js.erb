@@ -1,0 +1,1 @@
+$("#meeting_<%= @meeting.id %>").replaceWith("<%=escape_javascript( render :partial=>"meeting", :object=>@meeting)%>");

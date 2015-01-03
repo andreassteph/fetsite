@@ -57,7 +57,7 @@ end
   end
   def name
     unless self.object.nil?
-      self.object.name
+      self.object.title
     else
       summary
     end

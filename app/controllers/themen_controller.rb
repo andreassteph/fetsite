@@ -11,7 +11,7 @@ class ThemenController < ApplicationController
     @toolbar_elements = [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("thema.manage"), :path=>verwalten_thema_path(@thema)}]
     @toolbar_elements << [{:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('thema.edit'), :path=>edit_thema_path(@thema)}]
     @toolbar_elements << {:hicon=>'icon-remove-circle', :text=>I18n.t('thema.remove'), :path=>thema_path(@thema), :method=>:delete, :confirm=>I18n.t('thema.sure')}
-
+    
     respond_to do |format|
       format.html {
         redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> "thema_"+params[:id].to_s     
@@ -40,6 +40,11 @@ class ThemenController < ApplicationController
     # @thema.text = @thema.text.sanitize
     render :edit
   end
+  def version 
+    @thema = Thema.find(params[:id])
+    
+  end
+
   def verwalten
     @thema = Thema.find(params[:id])
     @attachment=Attachment.new
@@ -67,7 +72,7 @@ class ThemenController < ApplicationController
   def edit
     @thema = Thema.find(params[:id])
 
-    
+   
     respond_to do |format|
       format.html
       format.js { @themen= @thema.themengruppe.themen }
@@ -107,7 +112,14 @@ class ThemenController < ApplicationController
       format.js
     end
   end
- def attachments
+  def documents
+    @thema = Thema.find(params[:id])
+    @documents=@thema.documents
+    respond_to do |format|
+      format.js
+    end 
+  end
+  def attachments
    @thema = Thema.find(params[:id])
    @attachments=@thema.attachments
    @attachment=Attachment.new

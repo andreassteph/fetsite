@@ -112,13 +112,13 @@ class NeuigkeitenController < ApplicationController
     end   
 
     @calentries1=@neuigkeit.calentries
-    @nlink_search = Neuigkeit::LINKTYPES.clone
+    nlink_search = Neuigkeit::LINKTYPES.clone
+    nlink_search.collect!{|t| t.constantize}
+   # @nlink_search.collect!{|t| t.search(params[:query]).limit(2)}
+    @results= Sunspot.search nlink_search do 
+      fulltext params[:query]
+    end
     
-    @nlink_search.collect!{|t| t.constantize}
-    @nlink_search.collect!{|t| t.search(params[:query]).limit(2)}
-
-
-    @nlink_search.flatten!
     respond_to do |format|
       format.html { render action:"show" }
       format.js

@@ -1,0 +1,9 @@
+<li><%= link_to "Back to parent" , @document.parent %></li>
+<li><%= link_to ff_icon("icon-pencil") + "Edit", write_document_path(@document) %></li>
+<li><%= link_to ff_icon("icon-refresh")+"Refresh from Etherpad", read_from_etherpad_document_path(@document) if @document.is_etherpad? %></li>
+<li><%= link_to "Copy Document to Etherpad", dump_to_etherpad_document_path(@document)  , confirm: "Sicher? Löscht alle Änderungen im Etherpad"%></li>
+<h2><%= @document.name %></h2>
+<div id="">
+<%= raw(@document.text) %>
+</div>
+
