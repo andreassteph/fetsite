@@ -3,7 +3,7 @@ class MeetingsController < ApplicationController
 
 
 
- # load_and_authorize_resource
+  load_and_authorize_resource
   def index
     parent=params[:parent_type].constantize.find(params[:parent_id])
     unless parent.nil?
