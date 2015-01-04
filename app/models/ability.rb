@@ -16,7 +16,9 @@ class Ability
     if loggedin
       can :like, Beispiel
       can :dislike, Beispiel
+    
     end
+    
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can :manage, Modulgruppe
       can :manage, Modul
@@ -122,6 +124,9 @@ class Ability
       can :manage, Meeting
       can :manage, Meetingtyp
     end    
+    if loggedin
+    end
+    can :show, Document, :typ=>11
     unless user.has_role?( "fetadmin")
       cannot :delete, Document
       cannot :delete, Meeting
