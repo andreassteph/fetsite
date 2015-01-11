@@ -2,8 +2,12 @@ class HomeController < ApplicationController
   def index
     @beispiele = Beispiel.last([Beispiel.count, 3].min)
     @neuigkeiten = Neuigkeit.recent
+    if Thema.count>0
     t=YAML.load_file("#{::Rails.root.to_s}/config/start_topic.yml")
     @starttopic= @themen = Thema.where(:id=>t).first
+    else
+      @starttopic=@themen = nil
+    end
   end
   def dev
 
