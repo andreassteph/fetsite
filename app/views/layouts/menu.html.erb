@@ -25,7 +25,8 @@
 	  <li>
 	    <%= link_to 'Intern' , intern_home_index_path  %>
 	  </li><% end %>
-
+	</ul>
+	<ul class="nav nav-pills nav-stacked pull-right">
 	<li class="dropdown">
 	  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag("/flaggen/png/"+I18n.locale.to_s+".png") + " " +I18n.t('sprache',:scope=>'home')%><b class="caret"></b></a>
 	<ul class="dropdown-menu">	 
