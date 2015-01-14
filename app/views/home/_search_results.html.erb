@@ -1,7 +1,7 @@
 
 <% unless @results.nil? %>
 <ul class="unstyled linkbox-list">
-<% @results.results.each do |res| %>
+<% @res.each do |res| %>
 <% if can?(:show, res) %>
 <li>
 <%= link_to res, :class=>:linkbox do %>
@@ -13,44 +13,4 @@
 </ul>
 <% end %>
 
-<% unless @neuigkeiten.empty? %>
-<h2>Neuigkeiten</h2>
-<% end %>
-<% @neuigkeiten.each do |neuigkeit| %>
-<ul class="unstyled linkbox-list" style="max-width:70em">
-  <li>
-    <%= render neuigkeit %>
-  </li>
-
-</ul>
-<% end %>
-
-<% unless @fetprofiles.empty? %>
-<h2>Mitarbeiter</h2>
-<% end %>
-
-<% @fetprofiles.each do |fetprofile| %>
-<ul class="unstyled linkbox-list" style="max-width:70em">
-  <li>
-      <%= render fetprofile %>
-  </li>
-</ul>
-<% end %>
-
-<% unless @fetprofiles.empty? %>
-<h2>Themen</h2>
-<% end %>
-
-<ul class="unstyled content-list" style="max-width:70em">
-
-<% @themen.each do |thema| %>
-<% if can? :show, thema %>
-  <li><%= link_to thema.title,thema %>
-<div class="contentbox">
-      <%= render :partial=>"themen/small", :object=>thema %>
-</div>
-  </li>
-<% end %>
-
-<% end %>
-</ul>
+<%= @res %>
