@@ -120,10 +120,13 @@ class Ability
     # Calendar
 
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
-      can :manage, Document
+      can [:edit, :update,:new,:create], Document
       can :manage, Meeting
       can :manage, Meetingtyp
     end    
+    if user.has_role?("fetadmin")
+      can :manage, Document
+    end
     if loggedin
     end
     can :show, Document, :typ=>11
