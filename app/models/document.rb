@@ -16,7 +16,7 @@ class Document < ActiveRecord::Base
     "document_"+self.id.to_s
   end
   def self.ether
-    EtherpadLite.connect('http://www.fet.at/etherpad', File.new('/home/andreas/www/APIKEY.txt'))
+    EtherpadLite.connect('http://www.fet.at/etherpad', File.new('/srv/etherpad/etherpad-lite/APIKEY.txt'))
   end
   def ether
     if @ep.nil?
@@ -48,7 +48,7 @@ class Document < ActiveRecord::Base
     self.ep_group.pad(self.etherpadkey)
   end
   def ep_group
-    t= (self.typ.nil?) ? 1 : self.typ
+    t= (self.typ.nil? || self.typ ==0) ? 1 : self.typ
     Document.ether.group(Document::TYPS[t])
   end
   searchable do
