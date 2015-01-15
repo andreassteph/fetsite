@@ -18,7 +18,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/1.json
   def show
     @gallery = Gallery.find(params[:id])
-
+    
     @pppage_array = [ 25 , 50 , 100 ] #defines number & size of picture chunks
     @pppage = 0 #starting index of pppage_array
  
@@ -56,6 +56,7 @@ class GalleriesController < ApplicationController
   # GET /galleries/1/edit
   def edit
     @gallery = Gallery.find(params[:id])
+    @fotos_old = @gallery.fotos
   end
 
   # POST /galleries
@@ -81,6 +82,10 @@ class GalleriesController < ApplicationController
     @foto = Foto.new
     respond_to do |format|
       if @gallery.update_attributes(params[:gallery])
+
+        Foto.where(:gallery_id=>nil).each do |tbd|
+          tbd.destroy
+        end
         format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
         format.json { head :no_content }
       else

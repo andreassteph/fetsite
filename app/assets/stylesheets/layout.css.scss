@@ -1,6 +1,13 @@
 
 @import 'blueimp-gallery-all';
-
+.left
+{
+  float: left;
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  /* etc. */
+}
 h1 { 
   font-size: 23px
 }

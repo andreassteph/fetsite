@@ -12,7 +12,7 @@
 
 class Gallery < ActiveRecord::Base
   WORD_COUNT = 20
-  attr_accessible :datum, :desc, :name
+  attr_accessible :datum, :desc, :name, :foto_ids
   has_many :fotos
   has_many :nlinks, as: :link
 #    scope :search, ->(query) {where("name like ? or galleries.desc like ?", "%#{query}%", "%#{query}%")}
