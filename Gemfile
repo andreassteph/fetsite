@@ -73,7 +73,6 @@ gem "cancan"
 # Fileupload
 
 gem 'paperclip' ,'~>3.4.0'
-gem 'blueimp-gallery'
 
 gem 'git'
 gem 'haml'
@@ -117,3 +116,6 @@ gem 'sitemap_generator'
 gem 'whenever'
 gem 'yaml_db'
 gem 'etherpad-lite'
+
+# Image gallery
+gem 'blueimp-gallery'
