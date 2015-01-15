@@ -119,3 +119,4 @@ gem 'etherpad-lite'
 
 # Image gallery
 gem 'blueimp-gallery'
+gem 'blueimp-gallery-rails'
