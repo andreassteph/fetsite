@@ -40,6 +40,9 @@
   
 
 def get_theme
+  if params[:theme]== "default"
+    params[:theme]="blue1"
+    end
   if ThemesForRails.available_theme_names.include?(params[:theme])
   params[:theme]
  
@@ -48,6 +51,6 @@ else
 end
 end
   def default_url_options
-    {locale: I18n.locale, theme: theme_name, ansicht: nil}
+    {locale: I18n.locale, theme: (theme_name=="blue1") ? "default" : theme_name , ansicht: nil}
   end
 end

@@ -1,0 +1,71 @@
+<div class="content-wrap content-column">
+ <h1><%= I18n.t('home.willkommen') %></h1>
+<%= raw(@starttopic.text) %>
+
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span6">
+  
+  <ul class="linklist">
+    <li>
+      <%= link_to ffi1_icon("facebook1") + I18n.t('home.fblogin'), user_omniauth_authorize_path(:facebook) ,class: :linkbox %>
+    </li>
+    <li>
+      <%= link_to ffi1_icon("academic") + I18n.t('home.login'), user_omniauth_authorize_path(:ldap) ,class: :linkbox %>
+    </li>
+   
+    <li>  
+      <%= link_to ffi1_icon("quiz")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path,class: :linkbox %>
+
+
+    </li>
+    <li><%= link_to ffi1_icon("books19")+"Beispielsammlung", studium_path(Studium.first, {:ansicht=>'semesteransicht'}) ,class: :btn ,class: :linkbox %></li>
+    <li><%= link_to "Alte Beispielsammlung", "http://www.fet.at/alt/bin/view/Beispielsammlung/WebHome" ,class: :btn ,class: :linkbox %></li>
+
+  </ul>
+  <!-- <div class="alert">
+    <h2>Beta Test</h2>
+    <p>Die Webseite befindet sich derzeit in einem Entwicklungsstadium,
+      volle Funktionsfähigkeit ist noch nicht erreicht. Bitte Featurerequests und
+      Fehlermeldungen auf GitHub melden.
+    </p>
+    <p>
+      
+      <%= link_to "Issues", "http://www.github.com/fetsite/fetsite/issues" %>
+    </p>
+    <p>
+      Bezüglich Design und Steuerung sind Vorschläge erwünscht.
+    </p>
+    <p><%= link_to "Steuerelemente und Komponenten", "http://getbootstrap.com/2.3.2/index.html" %></p>
+    <p>Um bei der Entwicklung mitzuhelfen braucht nur Ruby on Rails installiert werden</p>
+    <p><%= link_to "Getting Started" , startdev_home_index_path %></p>
+    <p> Das Kalender Feature wird überarbeitet, in Zukunft soll folgender Link nicht mehr funktionieren 	  <%= link_to "Kalender", calendars_path %>
+    </p>
+
+  </div>-->
+  
+  </p>
+
+  <%= render 'beispiele' %>
+</div>
+<div class="span6">
+ <ul class="unstyled linkbox-list" style="max-width:70em">
+	<% @neuigkeiten.each do |n| %>
+	<li><%= render n if can?(:show, n) %> </li>
+	<% end %>
+      </ul>
+Verschiedene Styles
+<ul>
+<li> <%= link_to "Darkblue", home_index_path({:theme=>"darkblue"}) %></li>
+<li> <%= link_to "Blue1", home_index_path({:theme=>"blue1"}) %></li>
+
+<li> <%= link_to "2003", home_index_path({:theme=>"2003"}) %></li>
+<li> <%= link_to "white_1", home_index_path({:theme=>"white_1"}) %></li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
