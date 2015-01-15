@@ -73,6 +73,7 @@ gem "cancan"
 # Fileupload
 
 gem 'paperclip' ,'~>3.4.0'
+gem 'blueimp-gallery'
 
 gem 'git'
 gem 'haml'

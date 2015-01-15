@@ -52,7 +52,7 @@
   <div id="links">
     <% @fotos.each_index do |i| %>
     <% f= @fotos[i] %>
-    <a href="<%= f.datei.resized.url%>" title="<%=f.title%>">
+    <a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
       <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) if @showind.include? i  %></a>
 
 
@@ -60,7 +60,7 @@
   </div>
 
 
-<%= render 'layouts/pretty_toolbar' %>
+  <%= render 'layouts/pretty_toolbar' %>
 <script>
 document.getElementById('links').onclick = function (event) {
   event = event || window.event;
@@ -71,4 +71,3 @@ document.getElementById('links').onclick = function (event) {
   blueimp.Gallery(links, options);
 };
 </script>
-
