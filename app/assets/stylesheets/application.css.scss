@@ -1,22 +1,21 @@
 
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- * require_tree .
- *= require 'calendars'
- *= require jquery.fileupload-ui
- * require 'bootstrap'
- *= require 'tinymce'
- 
- */
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*= require_self	
+* require_tree .
+*= require 'calendars'
+*= require jquery.fileupload-ui
+* require 'bootstrap'
+*= require 'tinymce'
+
+*/
 // Colorshema #0A64A4
 $color_prim: #0A64A4;
 $color_prim_light: #0B65A5;
@@ -45,34 +44,34 @@ $sansFontFamily: Helvetica, Arial;
 @import 'font-awesome';
 
 h1 {
-  font-size: 23px
+font-size: 23px
 }
 
 h2 { 
-  font-size: 19px
+font-size: 19px
 }
 
 body,html { 
-  padding:0;
-  margin:0;
+padding:0;
+margin:0;
 
 }
 a:hover {
-  text-decoration:none;
+text-decoration:none;
 }
 
 div.header { 
-  display: block; 
- // background: url('/header1.png') no-repeat;
-  background-color: #FFF;
-  background-position: right; 
-  border-bottom:1px solid black; 
-  height:41px; 
-  color:#000;
-  padding-left:87px;
-  padding-top:0px;
-  overflow:hidden;
-  margin-bottom: 20px
+display: block; 
+// background: url('/header1.png') no-repeat;
+background-color: #FFF;
+background-position: right; 
+border-bottom:1px solid black; 
+height:41px; 
+color:#000;
+padding-left:87px;
+padding-top:0px;
+overflow:hidden;
+margin-bottom: 20px
 }
 div.header h1 {
 padding:0;
@@ -81,40 +80,40 @@ font-size:20px;
 line-height:32px;
 }
 #menudiv { 
-  width:100%;
+width:100%;
 }
-	
+
 
 .navbar .nav li {
-  min-width:100%;
+min-width:100%;
 }
 .navbar .nav .divider {
-  border-style: solid;  
-  border-width: 1px 0px 0px 0px;
-  border-color: grey;
-  min-width: 100%;
+border-style: solid;  
+border-width: 1px 0px 0px 0px;
+border-color: grey;
+min-width: 100%;
 }
 
 .navbar .navbar-inner 
 {
-	border:none;
-	box-shadow:none;
+border:none;
+box-shadow:none;
 }
 #contentdiv
 {
-	background: #FFFFFF
+background: #FFFFFF
 }
 #contentdiv .container-fluid
 { 
-	padding:0;
+padding:0;
 }
 
 a.linkbox, div.contentbox
 {
-	display:block;
-	padding:5px;
-	border-radius: 10px;
-	border: lightgray solid 1px;
+display:block;
+padding:5px;
+border-radius: 10px;
+border: lightgray solid 1px;
 
 }
 
@@ -132,12 +131,12 @@ margin-bottom:10px;
 }
 ul.linkbox-list
 { 
-  max-width:70em;
+max-width:70em;
 }
 
 div.contentbox
 {
-	margin: 5px;
+margin: 5px;
 }
 
 
@@ -145,3 +144,5 @@ div.contentbox
 min-width:100%;
 background:44F;
 }
+
+@import 'galleries';

@@ -44,3 +44,5 @@ de:
     adresse_text: "Gußhausstraße 25-27<br>1220 Wien" 
     service_text: "Für individuelle Beratung und alle sonstigen Angelegenheiten stehen wir mit unserem Servicedienst während der Vorlesungszeit jenen <b>Mo-Fr von 9 bis 15 Uhr</b> zur Verfügung. Außerhalb dieser Zeiten ist oft trotzdem jemand auf der Fachschaft der dir weiterhelfen kann."
     telefon_text: "Telefon: +43 2241341 <br> Skype: <br><b>E-Mail: service@fet.at</b>"
+  search:
+    no_results_for: "Es wurden keine Einträge gefunden für"

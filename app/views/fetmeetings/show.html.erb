@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Tnlist:</b>
+  <%= @fetmeeting.tnlist %>
+</p>
+
+<p>
+  <b>Typ:</b>
+  <%= @fetmeeting.typ %>
+</p>
+<p>
+<ul>
+<% @fetmeeting.fetmeetingtops.each do |top|%>
+<li><%= render top %></li>
+<% end %>
+</ul>
+</p>
+<%= link_to 'Edit', edit_fetmeeting_path(@fetmeeting) %> |
+<%= link_to 'Back', fetmeetings_path %>

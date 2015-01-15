@@ -39,3 +39,4 @@ console
 *#
 Gemfile.lock
 /config/database.yml
+/config/start_topic.yml

@@ -91,7 +91,7 @@ gem "simple_calendar", "~> 0.1.9"
 gem 'rmagick'
 
 gem 'bootstrap-addons-rails'
-gem "jquery-fileupload-rails"
+gem "jquery-fileupload-rails", "0.4.1"
 gem "jquery-ui-rails","~> 4.1.1" 
 gem "font-awesome-rails"
 gem "jquery-datetimepicker-rails"
@@ -116,3 +116,6 @@ gem 'sitemap_generator'
 gem 'whenever'
 gem 'yaml_db'
 gem 'etherpad-lite'
+
+# Image gallery
+gem 'blueimp-gallery'

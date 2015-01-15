@@ -1,5 +1,9 @@
-Fetsite::Application.routes.draw do
- 
+
+ Fetsite::Application.routes.draw do
+  resources :fetmeetingtops
+
+
+  resources :fetmeetings
 
 
   themes_for_rails
