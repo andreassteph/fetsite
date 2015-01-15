@@ -73,6 +73,7 @@ gem "cancan"
 # Fileupload
 
 gem 'paperclip' ,'~>3.4.0'
+gem 'blueimp-gallery'
 
 gem 'git'
 gem 'haml'
@@ -91,7 +92,7 @@ gem "simple_calendar", "~> 0.1.9"
 gem 'rmagick'
 
 gem 'bootstrap-addons-rails'
-gem "jquery-fileupload-rails"
+gem "jquery-fileupload-rails", "0.4.1"
 gem "jquery-ui-rails","~> 4.1.1" 
 gem "font-awesome-rails"
 gem "jquery-datetimepicker-rails"
