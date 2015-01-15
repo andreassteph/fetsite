@@ -26,7 +26,7 @@
 //= require jquery-fileupload
 // require jquery.remotipart
 //= require jquery.datetimepicker
-//= require blueimp-gallery-all
+
 
 function insertAttachment(url,name) {
     var ext = url.split('.').pop().toLowerCase();
