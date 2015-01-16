@@ -1,5 +1,8 @@
 de:
   fotos:
+    delete: "Foto löschen"
+    download: "Link zu Originaldatei"
+    download_long:  "Link zu Originaldatei. Für Download Rechtsklick->speichern unter."
     galleries: "Bildergalerien"
     new-gallery: "Neue Galerie"
     new-fotos: "Fotos hinzufügen"
