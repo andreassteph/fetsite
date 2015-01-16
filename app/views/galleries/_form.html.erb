@@ -6,7 +6,7 @@
       <%= f.input :name %>
       <%= f.input :desc %>
       <%= f.input :datum %>
-            <%= f.input :fotos,:label=>"test", :as=>:check_boxes, :member_label =>Proc.new{|u| u.title.html_safe+"<br>".html_safe+image_tag(u.datei.thumb.url,{:class=>"img-polaroid img-rounded"})}, :wrapper_html => {:class => "left"}%>
+     
       <% end %>
 
       <%= f.actions do %>
@@ -16,5 +16,5 @@
     </div>
     
   </div>
-  <%= @fotos_old %>
+
 </div>
