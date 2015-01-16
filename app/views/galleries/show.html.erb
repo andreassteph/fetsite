@@ -36,9 +36,7 @@
     </div>
   </div>
 </div>
-
 <div style="clear:both"></div>
-
 
  <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
@@ -74,14 +72,18 @@
         </div>
     </div>
 </div>
-  <div id="links">
-    <% @fotos.each_index do |i| %>
-    <% f= @fotos[i] %>
+<div id="links">
+  <div class="row-fluid">
+    <div class="span12">
+    <% @fotos_p.each do |f| %>
     <a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
-      <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) if @showind.include? i  %></a>
-
-
+      <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>
     <% end %>
+    <% @fotos_n.each do |f| %>
+        <a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery></a>
+	<% end %>
+	</div>
+	</div>
   </div>
 
    <%= javascript_include_tag "blueimp-gallery-all" %>
