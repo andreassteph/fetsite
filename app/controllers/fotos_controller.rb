@@ -87,10 +87,11 @@ class FotosController < ApplicationController
   # DELETE /fotos/1.json
   def destroy
     @foto = Foto.find(params[:id])
+    gallery = @foto.gallery_id
     @foto.destroy
 
     respond_to do |format|
-      format.html { redirect_to galleries_url }
+      format.html { redirect_to gallery_path(gallery) }
       format.json { head :no_content }
     end
   end

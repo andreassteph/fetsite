@@ -60,17 +60,11 @@
     <fieldType name="rand" class="solr.RandomSortField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="text" class="solr.TextField" omitNorms="false">
-      <analyzer type="index">
-        <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <analyzer>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.StandardFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
-        <filter class="solr.NGramFilterFactory" minGramSize="2" maxGramSize="30"/>
-        <filter class="solr.TrimFilterFactory" />
-        <filter class="solr.EdgeNGramFilterFactory" minGramSize="2" maxGramSize="30"/>
-      </analyzer>
-      <analyzer type="query">
-	<tokenizer class="solr.WhitespaceTokenizerFactory"/>
-	<filter class="solr.LowerCaseFilterFactory"/>
-	<filter class="solr.TrimFilterFactory" />
+        <filter class="solr.PorterStemFilterFactory"/>
       </analyzer>
     </fieldType>
     <!-- *** This fieldType is used by Sunspot! *** -->
