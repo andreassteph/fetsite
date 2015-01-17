@@ -9,6 +9,13 @@ class Document < ActiveRecord::Base
   validate :parent, :presence=>true
   has_paper_trail
   TYPS = { 1=>"fet_docs", 10=>"protocol", 11=> "agenda"}
+  def long_name 
+    if self.parent.class=="Meeting"
+      "<b>"+self.parent.text+ "</b>"+ self.name
+    else
+      "<b>" + self.parent.title + ":</b>"+ self.name
+    end
+  end
   def self.new_divid_for(parent)
     "document_new_parent_" + parent.class.to_s + "_" + parent.id.to_s 
   end
@@ -41,7 +48,7 @@ class Document < ActiveRecord::Base
     end
   end
   def read_from_etherpad
-    self.text=strip_control_chars(self.ep_pad.html)
+    self.text=ApplicationController.helpers.strip_control_chars(self.ep_pad.html)
  
   end
   def ep_pad

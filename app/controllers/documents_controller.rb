@@ -45,7 +45,6 @@ class DocumentsController < ApplicationController
     
     ether=Document.ether
     author = Document.ether.author("fetsite_"+current_user.uid, :name => current_user.text)
-author = Document.ether.author("author_1")
     session[:ep_sessions]={} if session[:ep_sessions].nil?
     group=@document.ep_group
 
@@ -58,9 +57,9 @@ author = Document.ether.author("author_1")
     session[:ep_sessions][group.id] = sess.id
     # Set the EtherpadLite session cookie. This will automatically be picked up by the jQuery plugin's iframe.
 
-    cookies[:sessionID] = {:value => sess.id, :domain => "www.fet.at"}
+    cookies[:sessionID] = {value: sess.id.to_s, domain: %w(.fet.at), expires: 1.hour.from_now}
     #cookies[:sessionID] = {:value => sess.id}
-    cookies[:sessionID1]=sess.id
+    cookies[:sessionID]= {value: sess.id, expires: 1.hour.from_now}
 #    cookies[:sdf]=sess.id
     # pad=ether.pad(@document.etherpadkey)
   #  redirect_to "http://www.fet.at/etherpad/p/"+@document.ep_pad.id
