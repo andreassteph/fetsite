@@ -26,6 +26,7 @@ de:
     typ: "Typ"
     edit: "Modulgruppe bearbeiten"
     addmodul: "Neues Modul hinzufügen"
+    addmodule: "Mehrere Module hinzufügen"
     studium: "Studium"
     new: "Neue Modulgruppe"
     list: "Alle Modulgruppen auflisten"
