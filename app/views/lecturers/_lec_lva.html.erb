@@ -1,6 +1,8 @@
 <div class="media">
   <a class="pull-left" href="#">
-    <img class="media-object img" src="<%= lec_lva.picture.thumb.url  unless lec_lva.picture.nil? %>"/>
+    <% unless lec_lva.picture.url.nil? %>
+    <img class="media-object img" src="<%= lec_lva.picture.thumb.url%>"/>
+    <% end %>
   </a>
   <div class="media-body">
     <h4><%= lec_lva.name %></h4>
