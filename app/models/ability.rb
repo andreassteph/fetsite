@@ -120,7 +120,7 @@ class Ability
     # Calendar
 
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
-      can [:edit, :update,:new,:create], Document
+      can [:show, :edit, :update,:new,:create,:write, :write_etherpad, :read_from_etherpad, :dump_to_etherpad], Document
       can :manage, Meeting
       can :manage, Meetingtyp
     end    
