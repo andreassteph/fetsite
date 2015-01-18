@@ -30,7 +30,17 @@ class MeetingsController < ApplicationController
   def show
     m=Meeting.find(params[:id])
     respond_to do |format|
-      format.html {redirect_to m.parent}
+      format.html { 
+        if can?(:show, m.parent)
+        redirect_to m.parent
+        else 
+          if can?(:show, m.neuigkeit) && !m.neuigkeit.nil?
+            redirect_to m.neuigkeit
+            else
+            redirect_to m.parent
+          end
+        end
+      }
       format.js  
       
     end
