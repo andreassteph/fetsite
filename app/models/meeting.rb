@@ -8,12 +8,16 @@ class Meeting < ActiveRecord::Base
   has_one :protocol,  :class_name=>'Document', :conditions=>{:typ=>10}, :as=>:parent
   has_one :agenda , :as=>:parent,:conditions=>{:typ=>11}, :class_name=>'Document'
   has_one :calentry, as: :object
+  has_one :calendar, :through=>:meetingtyp
+  has_one :rubrik, :through=>:meetingtyp
+
   accepts_nested_attributes_for :calentry
 #  validate :agenda, :presence=>true
 #  validate :protocol, :presence=>true
   validate :parent, :presence=>true
   validate :calentry, :presence=>true
   before_validation :fix_calentry
+  
   def title
     self.text
   end
@@ -39,6 +43,7 @@ class Meeting < ActiveRecord::Base
   end
   def fix_calentry
     self.calentry.object=self unless self.calentry.nil?
+    self.calentry.calendar = self.meetingtyp.rubrik.calendar 
   end
   def public? 
     ! (self.intern)

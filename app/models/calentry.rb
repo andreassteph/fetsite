@@ -32,6 +32,7 @@ class Calentry < ActiveRecord::Base
   
   resourcify
   def get_public
+    self.calendar=self.object.calendar unless object.nil? || object.calendar.nil?
     self.public = (self.try(:object).nil?)? (self.calendar.try(:public?)) : object.try(:public?)
     true
   end

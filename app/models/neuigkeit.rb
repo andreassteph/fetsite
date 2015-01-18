@@ -20,7 +20,7 @@ class Neuigkeit < ActiveRecord::Base
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
   translates :title,:text, :versioning=>{:gem=>:paper_trail, :options=>{:fallbacks_for_empty_translations => true}}
-
+  has_one :calendar, through: :rubrik
   has_many :calentries, as: :object
   has_many :nlinks   
   has_one :meeting

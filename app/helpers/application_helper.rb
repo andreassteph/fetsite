@@ -1,5 +1,11 @@
 module ApplicationHelper
-
+  def clean_calendar(cal)
+    cal.rubrik.meetingtyps.each do |mt| 
+      mt.meetings.each do |m|
+        m.calentry.calendar=cal
+      end
+    end
+  end
   def strip_control_chars(value)
     value.chars.inject("") do |str, char|
       unless char.ascii_only? && (char.ord < 32 || char.ord == 127)
