@@ -10,7 +10,7 @@ class RubrikenController < ApplicationController
       @neuigkeiten = Neuigkeit.public.published.page(params[:page]).per(3)
     end   
     
-      @calentries= @rubriken.collect(&:calentries).flatten
+      @calentries= (@rubriken.map {|r| r.calendar}).collect(&:calentries).flatten
     respond_to do |format|
       format.html
       format.js {render action: :show}
