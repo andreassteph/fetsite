@@ -2,6 +2,7 @@
 <div class="container">
   <%= semantic_form_for  [@lva,@beispiel], :remote=>true, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
   <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+
   <div class="row ">
   
     <div class="span7">
@@ -129,7 +130,7 @@
   console.log(files);
   // no Download on Upload form
   //template = fu._renderDownload(files)
-  //.appendTo($('#fileupload .files'));
+ //.appendTo($('#fileupload .files'));
   // Force reflow:
   fu._reflow = fu._transition && template.length &&
   template[0].offsetWidth;
