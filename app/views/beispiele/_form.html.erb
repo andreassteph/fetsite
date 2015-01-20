@@ -4,8 +4,15 @@
 <div class="row-fluid">
   <div class="span8">
     <div class="row-fluid">
+      <div class="span6">
+      <% unless @beispiel.beispieldatei.url.nil? %>
+      Derzeitige Datei: <br>
+      <b><%= @beispiel.beispieldatei.url.split("/").last %></b>
+      
+      <% end %>
+      </div>
   <div class="span6">
-    <%= f.file_field :beispieldatei, :label=>"Beispiel"%>
+    <%= f.input :beispieldatei, :as=>:file, :label => "Neue Datei hochladen:", :value=>@beispiel.beispieldatei.url%>
   </div>
   <%=f.input :datum , :as => :datetimepicker %>
     
