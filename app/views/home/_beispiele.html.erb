@@ -1,19 +1,19 @@
 <div class="contentbox">
   <div class="row-fluid">
-    <div class="span8">
-      <h4><%= I18n.t("home.newexamples") %></h4>
+    <div class="span6">
+      <h4 style="margin:5px;"><%= I18n.t("home.newexamples") %></h4>
     </div>
-    <div class="span4">
-      <%= link_to I18n.t("beispiel.add"), new_beispiel_path, :class=>"btn"%>
+    <div class="span6">
+      <%= link_to I18n.t("beispiel.add"), new_beispiel_path, :class=>"linkbox"%>
     </div>
   </div>
-  <ul class="unstyled linkbox-list">
+  <ul class="unstyled linkbox-list" style="margin-top:5px;margin-bottom:5px;">
     <% @beispiele.each do |b| %>
     <li>
       <%= link_to b.lva, {:class=> :linkbox} do %>
       <div class="row-fluid">
-	<div class="span8">
-	  <b><%=b.name%></b> (<%=b.lva.full_name%>)
+	<div class="span8" style="word-wrap:break-word;">
+	  <b><%=b.name%></b><br> (<%=b.lva.full_name%>)
 	</div>
 	<div class="span4">
 	  <%= b.updated_at.to_s%>
