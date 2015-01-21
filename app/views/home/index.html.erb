@@ -1,9 +1,9 @@
-<div class="content-wrap content-column">
+<div class="content-wrap content-column" style="max-width:100em;">
  <h1><%= I18n.t('home.willkommen') %></h1>
 <%= render partial: "themen/small", object: @starttopic %>
 <div class="container-fluid">
 <div class="row-fluid">
-<div class="span6">
+<div class="span5">
   
   <ul class="linklist">
     <li>
@@ -49,8 +49,8 @@
 
   <%= render 'beispiele' %>
 </div>
-<div class="span6">
- <ul class="unstyled linkbox-list" style="max-width:70em">
+<div class="span7">
+ <ul class="unstyled linkbox-list" style="margin:5px;">
 	<% @neuigkeiten.each do |n| %>
 	<li><%= render n if can?(:show, n) %> </li>
 	<% end %>
