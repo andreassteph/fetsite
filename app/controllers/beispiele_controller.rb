@@ -5,13 +5,13 @@ class BeispieleController < ApplicationController
   include LikeVoteable
   def index
     @beispiele = Beispiel.all
- 
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @beispiele }
     end
   end
- 
+  
   # GET /beispiele/1
   # GET /beispiele/1.json
   def show
@@ -47,29 +47,42 @@ class BeispieleController < ApplicationController
     @lva = Lva.find_by_id(params[:lva_id])
     params.delete(:lva_id)
     @beispiel = Beispiel.new(params[:beispiel])
-    @beispiel.lva=@lva
+
     logger.info "New Beispiel: #{params.inspect}"
- 
-#    @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
+    
     @beispiel.name=@beispiel.beispieldatei.filename
     logger.info "New Beispiel: #{@beispiel.attributes.inspect}"
 
-    @beispiel.datum=Time.now
-    respond_to do |format|
 
-      if @beispiel.save
-        format.html {
-          render :json => [@beispiel.to_jq_upload].to_json,
-          :content_type => 'text/html',
-          :layout => false
-        }
-        format.json { render json: {files: [@beispiel.to_jq_upload]}, status: :created, location: [@lva, @beispiel] }
-    #    format.html { redirect_to @backlink, notice: 'Beispiel was successfully created.' }
-    #    format.json { render json: @beispiel, status: :created, location: @beispiel }
+    respond_to do |format|
+      unless @lva.nil? || @lva.empty?
+        @beispiel.lva=@lva
+            @beispiel.datum=Time.now
+        if @beispiel.save
+          format.html {
+            render :json => [@beispiel.to_jq_upload].to_json,
+                   :content_type => 'text/html',
+                   :layout => false
+          }
+          format.json { render json: {files: [@beispiel.to_jq_upload]}, status: :created, location: [@lva, @beispiel] }
+        #    format.html { redirect_to @backlink, notice: 'Beispiel was successfully created.' }
+        #    format.json { render json: @beispiel, status: :created, location: @beispiel }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @beispiel.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render action: "new" }
-        format.json { render json: @beispiel.errors, status: :unprocessable_entity }
+        if @beispiel.update_attributes(params[:beispiel])
+          @backlink = Lva.find(@beispiel.lva)
+          format.html { redirect_to @backlink, notice: 'Beispiel was successfully uploaded.'}
+          format.json { head :no_content }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @beispiel.errors, status: :unprocessable_entity }
+        end
       end
+
+      
     end
   end
 
@@ -78,7 +91,7 @@ class BeispieleController < ApplicationController
   def update
     @beispiel = Beispiel.find(params[:id])
     @beispiel.name=@beispiel.beispieldatei.to_s.split('/').last
-        @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
+    @backlink = @beispiel.lva.nil? ? root_url : lva_path(@beispiel.lva)
     @lva = @beispiel.lva
     respond_to do |format|
       if @beispiel.update_attributes(params[:beispiel])
@@ -103,4 +116,4 @@ class BeispieleController < ApplicationController
       format.json { head :no_content }
     end
   end
- end
+end
