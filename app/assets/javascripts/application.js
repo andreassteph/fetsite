@@ -18,7 +18,6 @@
 // require jquery.ui.gallery
 // require jquery.sortable
 // require jquery-ui
-//= require_tree .
 //= require tinymce-jquery
 //= require bootstrap
 //= require bootstrap/colorpicker
@@ -26,7 +25,7 @@
 //= require jquery-fileupload
 // require jquery.remotipart
 //= require jquery.datetimepicker
-
+//= require_tree .
 
 function insertAttachment(url,name) {
     var ext = url.split('.').pop().toLowerCase();
