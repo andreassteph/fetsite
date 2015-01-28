@@ -1,5 +1,8 @@
-
-<div class="lva-semester">
- <%=lva.lvanr.to_s %> <b><%= link_to lva.full_name, lva_path(lva)%></b>  <%= lva.ects %> ECTS / <%= lva.stunden %> Std<br>
- 
-</div> 
+<div class="lva-semester" style="overflow:auto;">
+	<span>  
+    <%=lva.lvanr.to_s %> <b><%= link_to lva.full_name, lva_path(lva)%></b>
+  </span>
+  <span style="float:right;">
+    <%= lva.ects %> ECTS / <%= lva.stunden %> Std
+  </span>
+</div>
