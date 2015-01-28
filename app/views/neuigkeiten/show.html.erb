@@ -23,6 +23,7 @@ end
 <div class="content-column content-wrap">
 <p id="notice"><%= notice %></p>
 <div class="contentbox">
+<div class="row-fluid">
 <span>
   <%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
 </span>
@@ -30,6 +31,7 @@ end
   <%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
   <%= @neuigkeit.author.text+ " "+ I18n.t("neuigkeit.am")+" " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
 </span>
+</div>
 <div class="media">
   <% unless @neuigkeit.picture.big_thumb.to_s.empty? %>
   <div class="pull-left" href="#">
