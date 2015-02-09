@@ -31,12 +31,12 @@ include Rails.application.routes.url_helpers
     text :text
     text :title, :boost=>4.0
   end
-  scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",2.month.ago).where("thema_translations.locale"=>I18n.t.locale)
+  scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",7.month.ago).where("thema_translations.locale"=>I18n.t.locale)
   }
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   def is_outdated?
     unless translation.try(:updated_at).nil?
-      translation.updated_at < 2.month.ago
+      translation.updated_at < 7.month.ago
     else
       false
     end
