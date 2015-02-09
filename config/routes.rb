@@ -181,7 +181,11 @@
       end
       
     
-      resources :meetingtyps
+      resources :meetingtyps do
+        member do
+          get :create_protocol_and_agenda
+        end
+      end
     end
   end
   root :to => 'home#index'

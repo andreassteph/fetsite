@@ -1,0 +1,5 @@
+<%= meetingtyp.name %>  <%= link_to "edit", edit_meetingtyp_path(meetingtyp) %>
+
+<%= link_to "create" , create_protocol_and_agenda_meetingtyp_path(meetingtyp) %>
+<%= render meetingtyp.protocol unless meetingtyp.protocol.nil? %>
+<%= render meetingtyp.agenda unless meetingtyp.agenda.nil? %>

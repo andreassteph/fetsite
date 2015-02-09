@@ -1,0 +1,6 @@
+<ul>
+  <% @meetingtyps.each do |mt| %>
+  <li><%= render mt %> </li>
+  <% end %>
+</ul>
+<%= link_to "New" , new_meetingtyp_path %>

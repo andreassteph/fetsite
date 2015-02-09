@@ -9,7 +9,7 @@
  <%= f.semantic_fields_for :calentry, @meeting.calentry do |ff| %>
     <%= ff.input :start, :as => :datetimepicker  %>
     <%= ff.input :ende, :as => :datetimepicker  %>
-        <%= ff.input :typ %>
+        <%= ff.input :typ, :as=>:hidden %>
     <% ff.input :object_id, :as=>:hidden %>
     <% ff.input :object_type %>
 
@@ -20,4 +20,4 @@
  <%= f.action :submit, :as => :input_ %>
  
 <% end %>
-<%=  @meeting.calentry.to_yaml %>
+

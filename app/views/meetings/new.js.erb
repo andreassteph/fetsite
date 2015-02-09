@@ -1,3 +1,5 @@
 $("#<%= Meeting.new_divid_for(@parent) %>").replaceWith("<div id=\"<%= Meeting.new_divid_for(@parent) %>\"><%=escape_javascript( render :partial=>"nested_form" ,:object=>@meeting) %></div>");
 
+  $('.datetimepicker').datetimepicker({format: 'd.m.Y H:i', startDate: (!($(this).attr("value")==undefined))? $(this).attr("value"): ""})
+
   
