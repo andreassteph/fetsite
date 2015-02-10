@@ -69,7 +69,7 @@ class NeuigkeitenController < ApplicationController
     @neuigkeit = Neuigkeit.find(params[:id])
     unless @neuigkeit.picture.url.nil?
       picture_url=URI(root_url)
-      picture_url.path=@neuigkeit.picture.url
+      picture_url.path=@neuigkeit.picture.url(:locale=>nil, :theme=>nil)
     end
     unless @neuigkeit.published?
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit muss veröffentlicht sein um sie auf Facebook zu posten.'

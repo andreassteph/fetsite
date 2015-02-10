@@ -3,7 +3,7 @@
 <% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) unless @neuigkeit.author.fetprofile.nil? %>
 <% unless @neuigkeit.picture.url.nil?
    picture_url=URI(root_url)
-   picture_url.path=@neuigkeit.picture.url
+   picture_url.path=@neuigkeit.picture.url(:locale=>nil, :theme=>nil)
 end
 %>
 <% set_meta_tags :og => {
