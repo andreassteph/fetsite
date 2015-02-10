@@ -27,6 +27,7 @@ include Rails.application.routes.url_helpers
   scope :public, where(:isdraft=>false).includes(:themengruppe).where("themengruppen.public"=>true)
   default_scope order("themen.priority").reverse_order
   # scope :search, ->(query) {where("themen.text like ? or themen.title like ?", "%#{query}%", "%#{query}%")}
+  resourcify
   searchable do
     text :text
     text :title, :boost=>4.0
