@@ -1,6 +1,24 @@
+<%= content_for :header do %>
+<title><%= @thema.title.to_s + " (" + @thema.themengruppe.title.to_s + ")" %></title>
+
+<% unless @thema.attachments.first.nil?
+  # picture_url=URI(root_url)
+ #  picture_url.path=@thema.picture.url(:locale=>nil, :theme=>nil)
+end
+%>
+<% set_meta_tags :og => {
+      :title => @thema.title.to_s + " (" + @thema.themengruppe.title.to_s + ")",
+    :type => "article",
+    :description =>@thema.text_first_words,
+:url=>thema_url(:theme=>nil)
+}
+%>
+<%= display_meta_tags %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
-<%= link_to "Zurück", @thema.themengruppe %>
-<br> 
+<% link_to "Zurück", @thema.themengruppe %>
+
 <% thema=@thema %>
 <div class="contentbox">	
   <%= render :partial => 'themen/small', :object => thema %>
@@ -20,8 +38,11 @@
   </ul>
 </div>
 
+<br> 
 
-
+<div class="">
+<%= render @thema.themengruppe %>
+</div>
 
 <% # render :partial=>'layouts/pretty_toolbar' %>
 
