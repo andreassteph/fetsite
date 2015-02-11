@@ -19,7 +19,8 @@ end
 <p id="notice"><%= notice %></p>
 <% link_to "Zurück", @thema.themengruppe %>
 
-<% thema=@thema %>
+<% thema=@thema %><div class="content-wrap content-column" >
+
 <div class="contentbox">	
   <%= render :partial => 'themen/small', :object => thema %>
   <ul class="unstyled">
@@ -43,6 +44,6 @@ end
 <div class="">
 <%= render @thema.themengruppe %>
 </div>
-
+</div>
 <% # render :partial=>'layouts/pretty_toolbar' %>
 
