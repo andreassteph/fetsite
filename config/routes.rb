@@ -157,7 +157,11 @@
           get :documents
           get :meetings
         end
-        resources :attachments
+        resources :attachments do
+          member do 
+            get :set_titlepic
+          end
+        end
       end
       
       resources :calendars

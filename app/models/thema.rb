@@ -22,6 +22,7 @@ include Rails.application.routes.url_helpers
   validates :themengruppe, :presence => true
   validates :title, :presence => true
   validates :text, :presence => true
+  has_many :titlepics, :as=>:parent, :class_name=>'Attachment', :conditions=>{:flag_titlepic=>true}
   has_many :meetings, :as=>:parent
   has_many :documents, :as=>:parent
   scope :public, where(:isdraft=>false).includes(:themengruppe).where("themengruppen.public"=>true)
