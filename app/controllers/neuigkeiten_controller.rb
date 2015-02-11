@@ -76,7 +76,7 @@ class NeuigkeitenController < ApplicationController
     else
       page=YAML.load_file("#{::Rails.root.to_s}/config/page.yml")
      # page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html", :picture=>@neuigkeit.picture.url)
- page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html", :picture=>picture_url)
+ page.feed!(:access_token=>page.access_token, :message=>@neuigkeit.text_first_words, :name=>@neuigkeit.title, :link=>rubrik_neuigkeit_url(@neuigkeit.rubrik, @neuigkeit)+".html")# , :picture=>picture_url)
      
       redirect_to [@neuigkeit.rubrik,@neuigkeit], notice: 'Neuigkeit auf Facebook gepostet'
     end
