@@ -6,6 +6,7 @@ de:
     active_members: "Aktive Mitglieder"
     notactive_members: "Pension"
     new_profile: "Neues Profil anlegen"
+    new: "Neues Profil anlegen"
   gremium:
     new: "Neues Gremium"
     seit: "seit"
