@@ -33,6 +33,7 @@ de:
     search: "Suche"
     newexamples: "Neueste Beispiele in unserer Sammlung"
     selectstyle: "Wähle dein Design"
+    morenews: "Mehr Neuigkeiten"
   support:
     array:
       two_words_connector: ', '	

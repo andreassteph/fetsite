@@ -52,11 +52,22 @@
   <%= render 'beispiele' %>
 </div>
 <div class="span7">
- <ul class="unstyled linklist">
-	<% @neuigkeiten.each do |n| %>
-	<li><%= render n if can?(:show, n) %> </li>
-	<% end %>
-      </ul>
+  <ul class="unstyled linklist" style="overflow:hidden;">
+    <% @neuigkeiten.each do |n| %>
+      <li><%= render n if can?(:show, n) %> </li>
+    <% end %>
+  </ul>
+  <div style="border-style: solid;
+              border-width: 15px 4px 5px 5px;
+              -moz-border-image: url('/jag.gif') 15 4 5 5 round repeat;
+              -webkit-border-image: url('/jag.gif') 15 4 5 5 round repeat;
+              -o-border-image: url('/jag.gif') 15 4 5 5 round repeat;
+              border-image: url('/jag.gif') 15 4 5 5 fill round repeat;
+              margin:-20px 5px 0px 5px;">
+    <h2 style="margin:0px 5px 0px 5px">
+      <%= link_to link_to I18n.t('home.morenews'),rubriken_path %>
+    </h2>
+  </div>
 </div>
 </div>
 </div>
