@@ -12,12 +12,12 @@
 
 class Attachment < ActiveRecord::Base
   has_paper_trail
-  attr_accessible :name, :datei, :datei_cache
+  attr_accessible :name, :datei, :datei_cache,:flag_titlepic
   belongs_to :thema
   mount_uploader :datei, AttachmentUploader
   validates :thema, :presence => true
   validates :name, :presence => true
-
+  belongs_to :parent, :polymorphic=>true
   def image?
     
  #   data_ext = datei.file.extension.downcase 

@@ -14,7 +14,7 @@ class ThemenController < ApplicationController
     
     respond_to do |format|
       format.html {
-        redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> "thema_"+params[:id].to_s     
+#        redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> "thema_"+params[:id].to_s     
       }
       format.js
     end

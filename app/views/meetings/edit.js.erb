@@ -1,4 +1,6 @@
 $("#<%= @meeting.divid %>").html("<%=escape_javascript( render :partial=>"nested_form" ,:object=>@meeting)%>");
+  $('.datetimepicker').datetimepicker({format: 'd.m.Y H:i', startDate: (!($(this).attr("value")==undefined))? $(this).attr("value"): ""})
+
 
 
 

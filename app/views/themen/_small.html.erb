@@ -1,7 +1,8 @@
 <% if can? :show, small %>
 <a name="thema_<%=small.id%>" href="#<%=small.id%>">
-  <h2><%= small.title %> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %>   </h2>
+  <h2><%= link_to small.title,small %> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %>   </h2>
 </a>
+<%= image_tag small.titlepics.first.datei.url unless small.titlepics.first.nil? %>
 <% if small.is_outdated? %>
 <div class="sticker sticker-red"> <%= I18n.t("thema.outdated") %> <%= link_to"Als aktuell markieren",is_updated_thema_path(small), :class=>:btn if can? :is_updated, small%></div>
 <% end %>

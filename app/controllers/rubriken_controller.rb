@@ -10,7 +10,7 @@ class RubrikenController < ApplicationController
       @neuigkeiten = Neuigkeit.public.published.page(params[:page]).per(3)
     end   
     
-      @calentries= (@rubriken.map {|r| r.calendar}).collect(&:calentries).flatten
+    @calentries= (@rubriken.map {|r| r.calendar}).collect(&:calentries).flatten.select {|c| c.object !=nil}
     respond_to do |format|
       format.html
       format.js {render action: :show}
@@ -29,7 +29,7 @@ class RubrikenController < ApplicationController
 
     @rubrik = Rubrik.find(params[:id])
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
-    @calentries= @rubrik.calendar.calentries
+    @calentries= @rubrik.calendar.calentries.select {|c| c.object !=nil}
     if can?(:showunpublished, Neuigkeit)
       @neuigkeiten = @rubrik.neuigkeiten.page(params[:page]).per(3)
     else

@@ -4,8 +4,15 @@
 <div class="row-fluid">
   <div class="span8">
     <div class="row-fluid">
+      <div class="span6">
+      <% unless @beispiel.beispieldatei.url.nil? %>
+      Derzeitige Datei: <br>
+      <b><%= @beispiel.beispieldatei.url.split("/").last %></b>
+      
+      <% end %>
+      </div>
   <div class="span6">
-    <%= f.file_field :beispieldatei, :label=>"Beispiel"%>
+    <%= f.file_field :beispieldatei, :label => "Neue Datei hochladen:"%>
   </div>
   <%=f.input :datum , :as => :datetimepicker %>
     
@@ -16,7 +23,9 @@
   
   <%= f.input :desc %>
 </div>
-
+  <div class="span4">
+    <%= f.input :lva, :as=>:radio, :collection => Lva.all %>
+  </div>
 <%= f.hidden_field :beispieldatei_cache %>
 <%= f.actions do %>
 <%= f.action :submit, :as => :input %>
@@ -24,9 +33,7 @@
 <% end %>
 
     </div>
-  <div class="span4">
-    <%= f.input :lva, :as=>:radio, :collection => Lva.all %>
-  </div>
+
 </div>
 
 
