@@ -8,6 +8,8 @@
      format =:default
      end %>
   <%= calentry.text %>
+<% if !(defined? manage) || manage %>
   <%= link_to "edit", edit_calentry_path(calentry),:remote=>true if can? :edit, calentry %>
   <%= link_to 'Delete', calentry, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, calentry %>
+<% end %>
 </div>

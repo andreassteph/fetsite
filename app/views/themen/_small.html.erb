@@ -27,8 +27,10 @@
 <b>Treffen/Sitzungen</b>
 <%= link_to "Neues Meeting", new_meeting_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
 <div id="<%= Meeting.new_divid_for(small) %>"></div>
-<%= link_to "All", meetings_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
-<%= link_to "upcomming", meetings_path(:parent_id=>small.id, :parent_type=>"Thema",:filter=>"upcomming"), :remote=>true %>
+<ul class="nav nav-tabs">
+<li><%= link_to "All", meetings_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true if small.meetings.accessible_by(current_ability).count >0 %></li>
+<li><%= link_to "upcomming", meetings_path(:parent_id=>small.id, :parent_type=>"Thema",:filter=>"upcomming"), :remote=>true  if small.meetings.accessible_by(current_ability).upcomming.count >0 %></li>
+</ul>
 <%= render :partial=>"meetings/meeting_list", object: small.meetings, locals: {parent: small} %>
 <% end %>
 
