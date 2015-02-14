@@ -1,3 +1,12 @@
+<div>
+<b>Titlepics</b>
 
-<%= render :partial=>"attachments/form_bulk" %>
+<% @thema.titlepics.each do |tp| %>
+<%= link_to image_tag(tp.datei.thumb.url) , set_titlepic_thema_attachment_path(tp.thema,tp,:params=>{:titlepic=>false}) %>
+<% end %></div>
+<b> List </b>
 <%= render partial: "themen/attachment_list", object:@thema.attachments ,locals: {:editor => true}%>
+<div>
+<b>Form</b> 
+<%= render :partial=>"attachments/form_bulk" %>
+</div>
