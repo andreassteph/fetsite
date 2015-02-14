@@ -117,6 +117,8 @@ gem 'whenever'
 gem 'yaml_db'
 gem 'etherpad-lite'
 
+gem 'opengraph_parser'
+
 # Image gallery
 gem 'blueimp-gallery'
 gem 'blueimp-gallery-rails'
