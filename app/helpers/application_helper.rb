@@ -94,4 +94,12 @@ end
 	end
     raw(html)
  end
+  def absurl(path)
+     if path.nil?
+       return nil
+     end
+    url=URI(root_url)
+    url.path=path
+    return url
+  end
 end
