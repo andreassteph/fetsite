@@ -5,8 +5,7 @@
     <td><%= fa_icon "globe" if r.public%></td>
     <td><%= r.name %></td>
     <td>
-      <%= n.title %> 
-     
+      <%= link_to n.title, n %>     
     </td> 
     <td>
       <%= unless n.datum.nil? 
