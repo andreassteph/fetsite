@@ -10,7 +10,7 @@
   }
 %> 
 
-<%=
+<%
    unless @thema.titlepics.first.nil?
      picture_url=URI(root_url)
      picture_url.path=@thema.titlepics.first.datei.url(:locale=>nil, :theme=>nil)
