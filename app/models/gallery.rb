@@ -15,7 +15,7 @@ class Gallery < ActiveRecord::Base
   attr_accessible :datum, :desc, :name, :foto_ids
   has_many :fotos, :dependent => :destroy # Delete fotos if gallery is destroyed
   has_many :nlinks, as: :link
-#    scope :search, ->(query) {where("name like ? or galleries.desc like ?", "%#{query}%", "%#{query}%")}
+  default_scope order("galleries.datum").reverse_order
   searchable do 
     text :desc
     text :name, :boost=>3.0
