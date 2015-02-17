@@ -135,6 +135,7 @@
           get 'linksnotimplemented'
           get 'kontakt'
           get 'choose_contact_topics'
+          get 'log'
         end
       end
 
