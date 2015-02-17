@@ -30,7 +30,7 @@ class HomeController < ApplicationController
     authorize! :doadmin, User
     lines = params[:lines]
     if Rails.env == "production"
-      @logs = `tail -n #{lines} log/production.log | grep Error`
+      @logs = `tail -n #{lines} log/production.log | grep  -v 'actionpack\\|railties\\|activesupport\\|::Translation'`
     else
       @logs = `tail -n #{lines} log/development.log | grep -v 'actionpack\\|railties\\|activesupport\\|::Translation'`
     end
