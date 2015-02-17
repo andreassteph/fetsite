@@ -3,7 +3,7 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen.json
   load_and_authorize_resource
   def index
-    @themengruppen = Themengruppe.where(:public=>true).order(:priority).reverse
+    @themengruppen = Themengruppe.accessible_by(current_ability, :show).order(:priority).reverse_order
     @toolbar_elements = []
     @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()} if can? :new, Themengruppe
     @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.manage_all'), :path=>verwalten_all_themengruppen_path()} if can? :verwalten_all, Themengruppe
@@ -22,11 +22,8 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen/1.json
   def show
     @themengruppe = Themengruppe.find(params[:id])
-    if can? :showdraft , Thema
-    @themen = @themengruppe.themen
-      else
-    @themen = @themengruppe.themen.public
-    end
+    @themen=@themengruppe.themen.accessible_by(current_ability, :show)
+   
     @toolbar_elements = []
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t("themengruppe.manage"), :path=>themengruppe_verwalten_path(@themengruppe)} if can? :edit, @themengruppe
 
@@ -53,7 +50,7 @@ class ThemengruppenController < ApplicationController
   end
   def verwalten_all
     @themengruppen =Themengruppe.public.order(:priority).reverse
-@themengruppen_intern =Themengruppe.intern.order(:priority).reverse
+    @themengruppen_intern =Themengruppe.intern.order(:priority).reverse
     @toolbar_elements = [{:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()}]
  
   end 
@@ -63,7 +60,6 @@ class ThemengruppenController < ApplicationController
     
     @toolbar_elements =[]
     @toolbar_elements << {:text=>I18n.t('themengruppe.show'), :path=>themengruppe_path(@themengruppe)} if can? :show, @themengruppe
-
     @toolbar_elements << {:icon=>:pencil, :hicon=>'icon-pencil', :text=>I18n.t('themengruppe.edit'), :path=>edit_themengruppe_path(@themengruppe)} if can? :edit, @themengruppe
     @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('thema.add'), :path=>new_themengruppe_thema_path(@themengruppe), :remote=>true} if can? :new, Thema
     @toolbar_elements << {:hicon=>'icon-remove-circle',:text=>I18n.t('themengruppe.remove'), :path=>themengruppe_path(@themengruppe), :method=>:delete,:confirm=>I18n.t('themengruppe.sure')} if can? :delete, @themengruppe

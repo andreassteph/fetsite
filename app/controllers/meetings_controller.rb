@@ -6,9 +6,9 @@ class MeetingsController < ApplicationController
     unless parent.nil?
       #authorize! :show, parent
       if params[:filter]=="upcomming"
-        @meetings=parent.meetings.includes(:calentry).where("calentries.start>?",1.hour.ago)
+        @meetings=parent.meetings.upcomming
       else
-      @meetings=parent.meetings
+        @meetings=parent.meetings
       end
       @parent=parent
     end
