@@ -13,16 +13,17 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   def fb_set_default_publish_page
-    if params["page"].nil? || !(current_user.provider=="facebook")
-      redirect_to intern_home_index_path
-    else
-      @fbu=FbGraph::User.new(current_user.uid.to_s).fetch(:access_token=>session["fbuser_access_token"])
-      File.open("config/page.yml",'w'){|f|  f.write(@fbu.accounts(:access_token=>session["fbuser_access_token"]).select { |p| p.name == params["page"] }.first.to_yaml)}
-      logger.info @fbu.to_s
-      logger.info "FbGraph Access" + session["fbuser_access_token"]
-      redirect_to admin_home_index_path
+    if Fetsite::Application.config.facebookconfig_enabled
+      if params["page"].nil? || !(current_user.provider=="facebook")
+        redirect_to intern_home_index_path
+      else
+        @fbu=FbGraph::User.new(current_user.uid.to_s).fetch(:access_token=>session["fbuser_access_token"])
+        File.open("config/page.yml",'w'){|f|  f.write(@fbu.accounts(:access_token=>session["fbuser_access_token"]).select { |p| p.name == params["page"] }.first.to_yaml)}
+        logger.info @fbu.to_s
+        logger.info "FbGraph Access" + session["fbuser_access_token"]
+        redirect_to admin_home_index_path
+      end
     end
-      
   end
   
   def all_update

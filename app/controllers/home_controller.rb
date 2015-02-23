@@ -24,7 +24,8 @@ class HomeController < ApplicationController
   end
   def admin
     authorize! :doadmin, User
-    
+    t=YAML.load_file("#{::Rails.root.to_s}/config/contact_topic.yml")
+    @kontaktthemen = Thema.where(:id=>t)
 
   end
   def log
@@ -81,7 +82,14 @@ class HomeController < ApplicationController
     end
   end
   def choose_contact_topics
-    File.open("config/contact_topic.yml",'w'){|f|  f.write(params[:themen].to_yaml)} 
+    t=YAML.load_file("#{::Rails.root.to_s}/config/contact_topic.yml")
+    unless params[:themen].nil?
+    t=([t].flatten+params[:themen]).uniq
+      end
+    unless params[:rmthema].nil? 
+      t=t-[params[:rmthema]]
+    end
+    File.open("config/contact_topic.yml",'w'){|f|  f.write(t.to_yaml)} 
     redirect_to admin_home_index_path
   end
 
