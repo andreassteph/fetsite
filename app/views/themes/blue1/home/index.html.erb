@@ -35,6 +35,15 @@
 
 
   </ul>
+<ul class="linklist">
+  <% @stickythemen.each do |t1| %>
+  <li>
+    <%= link_to t1,:class=>:linkbox do %>
+    <%= render partial: "themen/nlink", object: t1 %>
+    <% end %> 
+  </li>
+  <% end %>
+  </ul>
   <!-- <div class="alert">
     <h2>Beta Test</h2>
     <p>Die Webseite befindet sich derzeit in einem Entwicklungsstadium,
