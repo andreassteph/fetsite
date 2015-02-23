@@ -33,6 +33,14 @@
 
 
   </ul>
+  <% @stickythemen.each do |t1| %>
+  <li>
+    <%= link_to t1 do %>
+    <%= render partial: "themen/nlink", object: t %>
+    <%= end %> 
+  </li>
+  <% end %>
+  
   <!-- <div class="alert">
     <h2>Beta Test</h2>
     <p>Die Webseite befindet sich derzeit in einem Entwicklungsstadium,
