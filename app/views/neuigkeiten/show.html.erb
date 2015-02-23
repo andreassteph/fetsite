@@ -31,33 +31,40 @@ end
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="content-column content-wrap">
-<p id="notice"><%= notice %></p>
-<div class="contentbox">
-<div class="row-fluid">
-<span>
-  <%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
-</span>
-<span class="pull-right">
-  <%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
-  <%= @neuigkeit.author.text+ " "+ I18n.t("neuigkeit.am")+" " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
-</span>
-</div>
-<div class="media">
-  <% unless @neuigkeit.picture.big_thumb.to_s.empty? %>
-  <div class="pull-left" href="#">
-    <p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.try(:url)  %>
-    </p>
-  </div>
-<% end %>
-  <div class="media-body">
-    <h1>
-      <%=  @neuigkeit.title%>
-    </h1>
-    <%= raw(@neuigkeit.text) %>
-    <p></p>
-  </div>
-</div>
-<div id="calentries">
+  <p id="notice"><%= notice %></p>
+  <div class="contentbox" itemscope itemtype="http://schema.org/Article">
+    <meta itemprop="about" content="<%= @neuigkeit.text_first_words %>"/>
+    
+    <div class="row-fluid">
+      <span itemprop="articleSection">
+	<%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
+      </span>
+      <span class="pull-right" itemprop="author">
+	<%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
+	<%= @neuigkeit.author.text+ " "+ I18n.t("neuigkeit.am")+" " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
+      </span>
+    </div>
+    <% unless @neuigkeit.published? %> 
+    <div class="sticker sticker-red"> Not Published</div> <% end %>
+    
+    <div class="media">
+      <% unless @neuigkeit.picture.big_thumb.to_s.empty? %>
+      <div class="pull-left" href="#">
+	<p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.try(:url)  %>
+	</p>
+      </div>
+      <% end %>
+      <div class="media-body">
+	<h1 itemprop="name">
+	  <%=  @neuigkeit.title%>
+	</h1>
+	<div itemprop="articleBody">
+	<%= raw(@neuigkeit.text) %>
+	</div>
+	<p></p>
+      </div>
+    </div>
+    <div id="calentries">
 <% @calentries1.each do |ce|%>
 <%= render ce unless ce.nil? %>
 <% end %>
