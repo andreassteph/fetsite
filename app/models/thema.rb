@@ -13,7 +13,7 @@
 require 'uri'
 class Thema < ActiveRecord::Base
 include Rails.application.routes.url_helpers
-  attr_accessible :text, :title, :themengruppe_id,:isdraft, :hidelink, :hideattachment
+  attr_accessible :text, :title, :themengruppe_id,:isdraft, :hidelink, :hideattachment, :sticky_startpage,:sticky_intern
   has_many :fragen
   has_many :attachments
   belongs_to :themengruppe, :foreign_key => "themengruppe_id"

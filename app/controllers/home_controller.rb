@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     else
       @starttopic=@themen = nil
     end
+    @stickythemen = Thema.where(:sticky_startpage=>true)
   end
   def dev
 
