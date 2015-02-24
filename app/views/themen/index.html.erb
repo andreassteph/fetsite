@@ -1,25 +1,12 @@
-<h1>Listing themen</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @themen.each do |thema| %>
-  <tr>
-    <td><%= thema.title %></td>
-    <td><%= thema.text %></td>
-    <td><%= link_to 'Show', thema %></td>
-    <td><%= link_to 'Edit', edit_thema_path(thema) %></td>
-    <td><%= link_to 'Destroy', thema, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<h1>Listing theme1n</h1><h2>drafts </h2>
+<% @themen_drafts.each do |thema| %>
+<%= render partial:"themen/nlink", object: thema %>
 <% end %>
-</table>
 
+<h2>All</h2>
+<% @themen.each do |thema| %>
+<%= render partial:"themen/nlink", object: thema %>
+<% end %>
 <br />
 
 <%= link_to 'New Thema', new_thema_path %>
