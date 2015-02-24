@@ -34,15 +34,16 @@ end
   <p id="notice"><%= notice %></p>
   <div class="contentbox" itemscope itemtype="http://schema.org/Article">
     <meta itemprop="about" content="<%= @neuigkeit.text_first_words %>"/>
-    
+    <meta itemprop="sameAs" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
     <div class="row-fluid">
       <span itemprop="articleSection">
 	<%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
       </span>
-      <span class="pull-right" itemprop="author">
-	<%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
-	<%= @neuigkeit.author.text+ " "+ I18n.t("neuigkeit.am")+" " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
+      <span class="pull-right">
+	<span itemprop="author"><%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
+	  <%= @neuigkeit.author.text %></span><% unless @neuigkeit.try(:datum).try(:to_date).nil? %><%= " "+ I18n.t("neuigkeit.am")+" " %><span itemprop="datePublished"><%= I18n.l(@neuigkeit.try(:datum).try(:to_date))   %>
       </span>
+<% end %>
     </div>
     <% unless @neuigkeit.published? %> 
     <div class="sticker sticker-red"> Not Published</div> <% end %>
