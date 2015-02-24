@@ -1,18 +1,26 @@
+<%= content_for :header do %>
+<title>Fet - Fotos: <%=  @gallery.name %></title>
+<% end %>
 
+<div itemscope itemtype="http://schema.org/ImageGallery">
 <p id="notice"><%= notice %></p>
 <div>
   <small class="pull-left"><%= @gallery.fotos.size.to_s + " " + I18n.t('fotos.bilder')%> </small>
-  <small class="pull-right"><%=I18n.l(@gallery.try(:datum).try(:to_date)) unless @gallery.try(:datum).try(:to_date).nil? %></small></br>
-  <h1>
+  <small class="pull-right" itemprop="dateCreated" datetime="<%= @gallery.try(:datum).try(:to_date) unless @gallery.try(:datum).try(:to_date).nil?%>"><%=I18n.l(@gallery.try(:datum).try(:to_date)) unless @gallery.try(:datum).try(:to_date).nil? %></small></br>
+  <h1 itemprop="name">
     <%= @gallery.name %>
   </h1>
 </div>
-
-<p>
+<meta itemprop="sameAs" content="<%= gallery_path(@gallery) %>"/>
+<p itemprop="description">
   <%= @gallery.desc %>
 </p>
-
-
+<style>
+.blueimp-gallery > .slides > .slide > .text-content {
+    overflow: auto;
+    text-align: left;
+}
+</style>
 <div class="fluid-row">
   <div class="span9">  <!-- pagination-->
     <div class="pagination pull_left" style="margin:0px 0px 0px 0px">
@@ -78,8 +86,17 @@
     <% @fotos_p.each do |f| %>
     <div class="left">
       <div id="links">
-	<a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
-	  <%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>
+		<a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
+		<%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>
+<div  <% if (@openfotoid.to_i==f.id) %> itemprop="primaryImageOfPage"<% else %> itemprop="hasPart" <% end %> itemscope itemtype="http://schema.org/ImageObject">
+	<a href="<%= gallery_foto_path(f.gallery, f,:params=>{plain: true}) %>" data-type="text/html" title="<%=f.title%>" data-gallery <% if (@openfotoid.to_i==f.id) %>id="openpic"  <% end %>>
+	  <%= image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %>
+	  <meta itemprop="thumbnailUrl" content="<%= f.datei.thumb.url %>"/>
+	  <meta itemprop="dateModified" content="<%= f.updated_at %>"/>
+	  <meta itemprop="image" content="<%= f.datei.url %>"/>
+	  <meta itemprop="sameAs" content="<%= gallery_foto_path(f.gallery, f,:params=>{:plain=>nil, :theme=>nil})%>"/>
+	</a>
+</div>
       </div>
       <%= link_to ff_icon('icon-circle-arrow-down').html_safe, f.datei.url,
 	  :class=>"btn-small",title: I18n.t('fotos.download')+': '+f.title, rel: 'tooltip' %>
@@ -112,5 +129,29 @@
 </div>
 <%= @pppage_array[@pppage] %>
 <%= javascript_include_tag "blueimp-gallery-all" %>
+<script>
+blueimp.Gallery.prototype.textFactory = function (obj, callback) {
+    var $element = $('<div>')
+            .addClass('slide-content')
+            .attr('title', obj.title);
+    $.get(obj.href)
+        .done(function (result) {
+            $element.html(result);
+            callback({
+                type: 'load',
+                target: $element[0]
+            });
+        })
+        .fail(function () {
+            callback({
+                type: 'error',
+                target: $element[0]
+            });
+        });
+    return $element[0];
+};
+$('#openpic').click()
+</script>
 
 
+</div>

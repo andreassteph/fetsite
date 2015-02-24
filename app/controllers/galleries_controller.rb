@@ -27,9 +27,18 @@ class GalleriesController < ApplicationController
     end
     
     @page = params[:page].nil? ? 1 : params[:page].to_i
+   
+      
     #  @fotos = Foto.where(:gallery_id => params[:id]).limit(@pppage_array[@pppage]).offset(@pppage_array[@pppage]*(@page-1))
     @fotos = Foto.where(:gallery_id => params[:id])
-    if @fotos.nil? || @fotos.empty?
+    unless params[:fotoid].nil?
+      foto_ind = @fotos.find_index(Foto.find(params[:fotoid]))
+     # @page=(@fotos.count/foto_ind).to_i+1
+      @openfotoid=params[:fotoid]
+    else
+@openfotoid=0
+    end
+ if @fotos.nil? || @fotos.empty?
       @fotos_p = []
       @fotos_n = []
       @pages = 1

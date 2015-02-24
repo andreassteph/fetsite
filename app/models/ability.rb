@@ -63,6 +63,7 @@ class Ability
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can :manage, Gallery
+      can :show, Foto
     end
     unless user.has_role?("fetadmin")
       cannot :delete, Gallery
