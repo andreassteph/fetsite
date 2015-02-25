@@ -1,7 +1,7 @@
 <% if can? :show, small %>
 <a name="thema_<%=small.id%>" href="#<%=small.id%>">
 <div itemscope itemtype="http://schema.org/Article">
-<meta itemprop="sameAs" content="<%= thema_url(thema, {theme:nil, locale:nil})%>"/>
+<meta itemprop="sameAs" content="<%= thema_url(small, {theme:nil, locale:nil})%>"/>
   <h2><span itemprop="name"><%= link_to small.title,small %></span> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %>   </h2>
 </a>
 <%= image_tag small.titlepics.first.datei.url unless small.titlepics.first.nil? %>

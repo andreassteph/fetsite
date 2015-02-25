@@ -40,7 +40,7 @@ end
       <meta itemprop="representativeOfPage" content="true" />
     </span>
     <div class="media-body">
-      <h2><span itemprop="givenName"><%= @fetprofile.vorname %></span><span itemprop="familyName"> <%= @fetprofile.nachname %></span><% unless @fetprofile.shot.empty? %><span itemprop=""> <%= @fetprofile.short %> </span><% end %></h2>
+      <h2><span itemprop="givenName"><%= @fetprofile.vorname %></span><span itemprop="familyName"> <%= @fetprofile.nachname %></span><% unless @fetprofile.short.empty? %><span itemprop=""> <%= @fetprofile.short %> </span><% end %></h2>
       <p itemprop="email">
 	<%= @fetprofile.fetmail %>
       </p>
