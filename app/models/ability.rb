@@ -60,7 +60,7 @@ class Ability
 
 #    can [:show,:index], Gallery, :intern=>false
     if loggedin
-      can [:show,:index], Gallery, :intern=>false
+      can [:show,:index], Gallery
       can :show, Foto
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
