@@ -18,7 +18,7 @@ picture_url=URI(root_url)
 picture_url.path=@ofoto.datei.url(:locale=>nil, :theme=>nil)
 set_meta_tags :og => {
 :image => picture_url.to_s,
-:title => @gallery.name.to_s + "FotoID:" + @ofoto.id.to_s,
+:title => @gallery.name.to_s + " - FotoID:" + @ofoto.id.to_s,
 :type => "article",
 :url=>gallery_url(@gallery,{:fotoid=>@ofoto.id,:theme=>nil})
 }
