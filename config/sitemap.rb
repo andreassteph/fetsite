@@ -40,12 +40,12 @@ SitemapGenerator::Sitemap.create do
 
   Globalize.with_locale(:de) do 
     Neuigkeit.public.find_each do |neuigkeit|
-      add neuigkeit_path(neuigkeit,:locale=>:de,:theme=>"default"),:lastmod=>neuigkeit.updated_at, :news=>{:title=>neuigkeit.title, :publication_language=>"de", :publication_date=>neuigkeit.datum}
+      add neuigkeit_path(neuigkeit,:locale=>:de,:theme=>"default"),:lastmod=>neuigkeit.updated_at, :news=>{:title=>neuigkeit.title,:name=>neuigkeit.title, :publication_language=>"de", :publication_date=>neuigkeit.datum}
     end
   end
   Globalize.with_locale(:en) do 
     Neuigkeit.public.with_translations(:en).find_each do |neuigkeit|
-      add neuigkeit_path(neuigkeit,:locale=>:en,:theme=>"default"),:lastmod=>neuigkeit.updated_at, :news=>{:title=>neuigkeit.title,:publication_language=>"en",:publication_date=>neuigkeit.datum}
+      add neuigkeit_path(neuigkeit,:locale=>:en,:theme=>"default"),:lastmod=>neuigkeit.updated_at, :news=>{:title=>neuigkeit.title,:name=>neuigkeit.title,:publication_language=>"en",:publication_date=>neuigkeit.datum}
     end
   end
   Globalize.with_locale(:en) do 
