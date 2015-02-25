@@ -1,5 +1,35 @@
 <%= content_for :header do %>
 <title>Fet - Fotos: <%=  @gallery.name %></title>
+
+<% 
+if @openfotoid.nil? || @openfotoid==0
+   @firstfoto= @fotos_p.first
+   picture_url=URI(root_url)
+   picture_url.path=@firstfoto.datei.url(:locale=>nil, :theme=>nil)
+set_meta_tags :og => {
+:image => picture_url.to_s,
+:title => @gallery.name.to_s,
+:type => "article",
+:url=>gallery_url(@gallery,:theme=>nil)
+}
+else
+@ofoto=Foto.find(@openfotoid)
+picture_url=URI(root_url)
+picture_url.path=@ofoto.datei.url(:locale=>nil, :theme=>nil)
+set_meta_tags :og => {
+:image => picture_url.to_s,
+:title => @gallery.name.to_s,
+:type => "article",
+:url=>gallery_foto_url(@gallery,@ofoto,:theme=>nil)
+}
+
+
+end
+%>
+
+
+
+
 <% end %>
 
 <div itemscope itemtype="http://schema.org/ImageGallery">
