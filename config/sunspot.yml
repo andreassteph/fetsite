@@ -1,9 +1,10 @@
 production:
   solr:
     hostname: localhost
-    port: 8983
+    port: 8080
     log_level: WARNING
-    path: /solr/production
+    path: /solr-4.10.2/default #production #ollection1 #production
+#    solr_home: solr
     # read_timeout: 2
     # open_timeout: 0.5
 

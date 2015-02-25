@@ -13,6 +13,15 @@ class AttachmentsController < ApplicationController
 
   # GET /attachments/1
   # GET /attachments/1.json
+  def set_titlepic
+    @attachment = Attachment.find(params[:id])
+    if @attachment.image?
+      @attachment.flag_titlepic = params[:titlepic]
+      @attachment.thema.titlepics << @attachment
+      @attachment.save
+    end
+    redirect_to @attachment.thema
+  end
   def show
     @attachment = Attachment.find(params[:id])
 
@@ -27,7 +36,7 @@ class AttachmentsController < ApplicationController
   def new
     @attachment = Attachment.new
     @thema = Thema.find(params[:thema_id])
-	@attachment.thema = @thema
+    @attachment.thema = @thema
 	
     respond_to do |format|
       format.html # new.html.erb

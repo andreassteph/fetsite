@@ -1,20 +1,30 @@
-<p><%= link_to "Grant extra FB privileges", user_omniauth_authorize_path(:facebook,:params=>{scope:"manage_pages,publish_actions,email"}) %>
-</p>
+<h1>Administration</h1>
 <p>
 <%= link_to "user", users_path %>
+</p>
+<% if Fetsite::Application.config.facebookconfig_enabled %>
+<h2>Facebook Konfiguration</h2>
+<p><%= link_to "Grant extra FB privileges", user_omniauth_authorize_path(:facebook,:params=>{scope:"manage_pages,publish_actions,email"}), :confirm=>"Wirklich?" %>
 </p>
 <p>
 <%= @fbu.to_yaml.to_s %>
 
 <%= semantic_form_for :set_page, url: fb_set_default_publish_page_user_path(current_user), html:{method: :get} do |f| %>
 <%= f.input :page , :input_html => { :name => 'page' }%>
+      <%= f.action :submit, :as => :button, :label=> I18n.t("common.save" ) %> 
+<% end %>
 <% end %>
 
+<h2>Kontaktseite, Themen:</h2>
+<% @kontaktthemen.each do |tt| %>
+<%= render tt %>
+<%= link_to "rm" ,choose_contact_topics_home_index_path(:params=>{:rmthema=>tt.id}) %> 
+<% end %>
 <%= semantic_form_for :set_thema, url: choose_contact_topics_home_index_path, html:{method: :get}  do |f| %>
-<%= f.input :themen, :input_html=> {:name=>'themen'}, :as=>:select ,:multiple=>true,:collection =>Thema.all%>
+<%= f.input :themen, :input_html=> {:name=>'themen'}, :as=>:select ,:multiple=>true,:collection =>Thema.all,:value=>10  %>
 
-      <%= f.actions do %>
-      <%= f.action :submit, :as => :button, :label=> I18n.t("common.save" ) %> 
+<%= f.actions do %>
+<%= f.action :submit, :as => :button, :label=> "Hinzufuegen"  %> 
 <% end %>
 <% end %>
 </p>

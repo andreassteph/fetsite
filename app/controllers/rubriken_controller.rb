@@ -2,15 +2,18 @@ class RubrikenController < ApplicationController
   before_filter {@toolbar_elements=[]}
    load_and_authorize_resource
   def index
-    if can?(:showintern, Rubrik)
-      @rubriken = Rubrik.all
-      @neuigkeiten = Neuigkeit.page(params[:page]).per(3)
-    else
-      @rubriken = Rubrik.where(:public=>true)
-      @neuigkeiten = Neuigkeit.public.published.page(params[:page]).per(3)
-    end   
+  #  if can?(:showintern, Rubrik)
+  #    @rubriken = Rubrik.all
+  #    @neuigkeiten = Neuigkeit.page(params[:page]).per(3)
+  #  else
+  #    @rubriken = Rubrik.where(:public=>true)
+  #    @neuigkeiten = Neuigkeit.public.published.page(params[:page]).per(3)
+  #  end   
     
-      @calentries= (@rubriken.map {|r| r.calendar}).collect(&:calentries).flatten
+    @rubriken= Rubrik.accessible_by(current_ability, :show)
+    @neuigkeiten = Neuigkeit.accessible_by(current_ability, :show).page(params[:page]).per(3)
+    
+    @calentries= (@rubriken.map {|r| r.calendar}).collect(&:calentries).flatten.select {|c| c.object !=nil}
     respond_to do |format|
       format.html
       format.js {render action: :show}
@@ -21,20 +24,13 @@ class RubrikenController < ApplicationController
 
   end
   def show
-    if can?(:shownonpublic, Rubrik)
-      @rubriken = Rubrik.all
-    else
-      @rubriken = Rubrik.where(:public=>true)
-    end   
-
+    @rubriken= Rubrik.accessible_by(current_ability, :show)
     @rubrik = Rubrik.find(params[:id])
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
-    @calentries= @rubrik.calendar.calentries
-    if can?(:showunpublished, Neuigkeit)
-      @neuigkeiten = @rubrik.neuigkeiten.page(params[:page]).per(3)
-    else
-      @neuigkeiten = @rubrik.neuigkeiten.published.page(params[:page]).per(3)
-    end
+
+    @calentries= @rubrik.calendar.calentries.select {|c| c.object !=nil}
+    @neuigkeiten = @rubrik.neuigkeiten.accessible_by(current_ability, :show).page(params[:page]).per(3)
+
     @toolbar_elements << {:text=>I18n.t('neuigkeit.new.title'), :path=> new_rubrik_neuigkeit_path(@rubrik),:hicon=>'icon-plus-sign'} if can? :verwalten, @rubrik
     @toolbar_elements << {:text=>I18n.t('common.verwalten'), :path=>verwalten_rubrik_path(@rubrik),:icon=>:pencil} if can? :verwalten, @rubrik
       
@@ -47,7 +43,6 @@ class RubrikenController < ApplicationController
   
   def new
     @rubrik = Rubrik.new
- 
   end
 
   def edit

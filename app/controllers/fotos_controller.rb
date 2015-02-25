@@ -1,5 +1,6 @@
 class FotosController < ApplicationController
   before_filter {@toolbar_elements=[]}
+  load_and_authorize_resource
   # GET /fotos
   # GET /fotos.json
   def index
@@ -17,7 +18,13 @@ class FotosController < ApplicationController
     @foto = Foto.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {
+        if params[:plain]
+          render "show", layout: false
+        else
+          redirect_to gallery_path(@foto.gallery,:params=>{fotoid: @foto.id})
+        end
+        }
       format.json { render json: @foto }
     end
   end

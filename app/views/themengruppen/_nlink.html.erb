@@ -1,1 +1,14 @@
-<h2><%= nlink.title %> </h2>
+<% themengruppe=nlink %>
+	<h3>
+	<% unless themengruppe.icon.nil? or themengruppe.icon.empty? %>      <i class="<%= themengruppe.icon %>" style="font-size:1.5em;margin:0"></i>
+      <% end %>
+
+      <%= themengruppe.title%> </h3>
+    <p>
+      <%= if themengruppe.text.split.size > Themengruppe::WORD_COUNT
+      themengruppe.text.split[0..Themengruppe::WORD_COUNT].join(" ") + " ..."
+      else
+      themengruppe.text
+      end%>	
+    </p>
+

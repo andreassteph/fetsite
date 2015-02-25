@@ -33,7 +33,7 @@ class Neuigkeit < ActiveRecord::Base
   scope :intern, ->{includes(:rubrik).where("rubriken.public"=>false)}
 
 #  scope :search, ->(query) {where("text like ? or title like ?", "%#{query}%", "%#{query}%")}
-  LINKTYPES=["Thema", "Gallery", "Lva","Studium","Fetprofile", "Gremium"]
+  LINKTYPES=["Thema", "Themengruppe", "Gallery", "Lva","Studium","Fetprofile", "Gremium"]
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
 
@@ -63,6 +63,18 @@ class Neuigkeit < ActiveRecord::Base
   end
   def name
     self.title
+  end
+  def load_from_facebook(link)
+    event=FbGraph::Event.new(link).fetch(:access_token=>"CAABtfB8SO7kBADyHVHnWHqsxsU1bqqmeDdZCp7V1KF9G4o3oFHcZBq0IB8X3ird4muVIPuWKZB8jL1o9JCON60Lmnvk8rkZA2dyZAuU95dC0SWzOEnhtAEkyzZCN6hkKXdl87o38OloLBivc2kjJYmpUVKzdZAD5ywxKG7Hv5FWxXf6amWA782JSmcxgWsRDH4ZAZBXsUrhpnILNOVoKSBf1mGyfrFiPvA3QZD")
+    self.title=event.name
+    self.text=event.description
+    unless event.start_time.nil?
+      ce=Calentry.new(:start=>event.start_time, :ende=>event.end_time , :typ=>1)
+      ce.ende=ce.start if ce.ende.nil?
+      self.calentries<< ce
+      ce.save
+
+    end
   end
   def text_first_words
     md = /<p>(?<text>[^\<\>]*)/.match Sanitize.clean(self.text,:elements=>['p'])

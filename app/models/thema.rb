@@ -13,7 +13,7 @@
 require 'uri'
 class Thema < ActiveRecord::Base
 include Rails.application.routes.url_helpers
-  attr_accessible :text, :title, :themengruppe_id,:isdraft, :hidelink, :hideattachment
+  attr_accessible :text, :title, :themengruppe_id,:isdraft, :hidelink, :hideattachment, :sticky_startpage,:sticky_intern
   has_many :fragen
   has_many :attachments
   belongs_to :themengruppe, :foreign_key => "themengruppe_id"
@@ -22,21 +22,23 @@ include Rails.application.routes.url_helpers
   validates :themengruppe, :presence => true
   validates :title, :presence => true
   validates :text, :presence => true
+  has_many :titlepics, :as=>:parent, :class_name=>'Attachment', :conditions=>{:flag_titlepic=>true}
   has_many :meetings, :as=>:parent
   has_many :documents, :as=>:parent
   scope :public, where(:isdraft=>false).includes(:themengruppe).where("themengruppen.public"=>true)
   default_scope order("themen.priority").reverse_order
   # scope :search, ->(query) {where("themen.text like ? or themen.title like ?", "%#{query}%", "%#{query}%")}
+  resourcify
   searchable do
     text :text
     text :title, :boost=>4.0
   end
-  scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",2.month.ago).where("thema_translations.locale"=>I18n.t.locale)
+  scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",7.month.ago).where("thema_translations.locale"=>I18n.t.locale)
   }
   translates :title,:text, :versioning =>true, :fallbacks_for_empty_translations => true
   def is_outdated?
     unless translation.try(:updated_at).nil?
-      translation.updated_at < 2.month.ago
+      translation.updated_at < 7.month.ago
     else
       false
     end

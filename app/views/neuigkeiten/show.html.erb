@@ -3,7 +3,7 @@
 <% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) unless @neuigkeit.author.fetprofile.nil? %>
 <% unless @neuigkeit.picture.url.nil?
    picture_url=URI(root_url)
-   picture_url.path=@neuigkeit.picture.url
+   picture_url.path=@neuigkeit.picture.url(:locale=>nil, :theme=>nil)
 end
 %>
 <% set_meta_tags :og => {
@@ -14,42 +14,64 @@ end
 :url=>neuigkeit_url(:theme=>nil)
 }
 %>
-<% set_meta_tags :og=>{:article=> {:published_time=>I18n.l(@neuigkeit.try(:datum).try(:to_date)) }} unless @neuigkeit.try(:datum).try(:to_date).nil? %>
+
 
 <%= display_meta_tags %>
 <% end %>
 
 <%= render 'rubriken/tabs' %>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&appId=120379864660921&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="content-column content-wrap">
-<p id="notice"><%= notice %></p>
-<div class="contentbox">
-<span>
-  <%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
-</span>
-<span class="pull-right">
-  <%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
-  <%= @neuigkeit.author.text+ " "+ I18n.t("neuigkeit.am")+" " + I18n.l(@neuigkeit.try(:datum).try(:to_date)) unless @neuigkeit.try(:datum).try(:to_date).nil?  %>
-</span>
-<div class="media">
-  <% unless @neuigkeit.picture.big_thumb.to_s.empty? %>
-  <div class="pull-left" href="#">
-    <p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.try(:url)  %>
-    </p>
-  </div>
+  <p id="notice"><%= notice %></p>
+  <div class="contentbox" itemscope itemtype="http://schema.org/Article">
+    <meta itemprop="about" content="<%= @neuigkeit.text_first_words %>"/>
+    <meta itemprop="sameAs" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
+    <div class="row-fluid">
+      <span itemprop="articleSection">
+	<%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
+      </span>
+      <span class="pull-right">
+	<span itemprop="author"><%= @neuigkeit.author.email.to_s unless @neuigkeit.try(:author).try(:email).to_s %> 
+	  <%= @neuigkeit.author.text %></span><% unless @neuigkeit.try(:datum).try(:to_date).nil? %><%= " "+ I18n.t("neuigkeit.am")+" " %><span itemprop="datePublished"><%= I18n.l(@neuigkeit.try(:datum).try(:to_date))   %>
+      </span>
 <% end %>
-  <div class="media-body">
-    <h1>
-      <%=  @neuigkeit.title%>
-    </h1>
-    <%= raw(@neuigkeit.text) %>
-    <p></p>
-  </div>
-</div>
-<div id="calentries">
+    </div>
+    <% unless @neuigkeit.published? %> 
+    <div class="sticker sticker-red"> Not Published</div> <% end %>
+    
+    <div class="media">
+      <% unless @neuigkeit.picture.big_thumb.to_s.empty? %>
+      <div class="pull-left" href="#">
+	<p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.try(:url)  %>
+	</p>
+      </div>
+      <% end %>
+      <div class="media-body">
+	<h1 itemprop="name">
+	  <%=  @neuigkeit.title%>
+	</h1>
+	<div itemprop="articleBody">
+	<%= raw(@neuigkeit.text) %>
+	</div>
+	<p></p>
+      </div>
+    </div>
+    <div id="calentries">
 <% @calentries1.each do |ce|%>
 <%= render ce unless ce.nil? %>
 <% end %>
 </div>
+<div class="fb-like" data-href"<%= rubrik_neuigkeit_url(@rubrik,@neuigkeit)%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
 <% unless @neuigkeit.meeting.nil? %>
 <%= render @neuigkeit.meeting %>
 <% end%>
@@ -74,6 +96,8 @@ Nach Element suchen:
 
 <% end %>
 </div>
+
+
 <script>
 $(function(){
   dialog = $( "#findlink-body" ).dialog({

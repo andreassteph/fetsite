@@ -2,16 +2,17 @@
 <div class="content-wrap content-column">
 
   <% @themengruppen.each do |tg| %>
-  <% if can?(:show, tg) %>
+  <% themen = tg.themen.accessible_by(current_ability, :show).order(:priority).reverse_order.select{|t| !t.fragen.empty?} %>
+  <% if can?(:show, tg) && !themen.empty? %>
   <div class="contentbox">
     <a name="themengruppe_<%=tg.id.to_s%>"></a>
     <h2> <%= tg.title%></h2>
     <ul>
       <% tg.themen.order(:priority).reverse.each do |t| %>
-      <% if can?(:show, t) %>
+      <% if can?(:show, t) && !t.fragen.empty? %>
       <li> <%= t.title %>
 	<ul> 
-	  <% t.fragen.each do |f| %>
+	  <% t.fragen.order(:title).each do |f| %>
 	  <li>
 	    <b> <%= f.title %>?</b>
 	    <p> <%= raw(f.text) %></p>

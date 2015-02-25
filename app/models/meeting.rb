@@ -10,7 +10,7 @@ class Meeting < ActiveRecord::Base
   has_one :calentry, as: :object
   has_one :calendar, :through=>:meetingtyp
   has_one :rubrik, :through=>:meetingtyp
-
+  scope :upcomming, includes(:calentry).where("calentries.start>?",1.hour.ago)
   accepts_nested_attributes_for :calentry
 #  validate :agenda, :presence=>true
 #  validate :protocol, :presence=>true
@@ -50,26 +50,32 @@ class Meeting < ActiveRecord::Base
   end
   def create_protocol
    if self.protocol.nil?
-      d=Document.new
-      d.typ=10
+     d=Document.new
+     d.typ=10
      d.name="Protokoll"
-      d.save
-      self.protocol=d
-    end
+     unless self.meetingtyp.protocol.nil?
+       d.text=self.meetingtyp.protocol.text
+     end
+     d.save
+     self.protocol=d
+   end
   
   end
   def create_calentry
    if  self.calentry.nil?
-ce =Calentry.new
-ce.typ=2
-self.calentry=ce
-end
-end
+     ce =Calentry.new
+     ce.typ=2
+     self.calentry=ce
+   end
+  end
   def create_agenda
     if self.agenda.nil?
       d=Document.new
       d.typ=11
       d.name="Agenda"
+      unless self.meetingtyp.agenda.nil?
+        d.text=self.meetingtyp.agenda.text
+      end
       d.save
       self.agenda=d
     end

@@ -35,4 +35,6 @@ Fetsite::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = false
+
+  config.facebookconfig_enabled=true
 end

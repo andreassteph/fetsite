@@ -12,6 +12,9 @@
 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Actions</a>
 <ul class="dropdown-menu">
 <li>
+<%= link_to ff_icon("icon-pencil")+"Make Titlepic", set_titlepic_thema_attachment_path(a.thema,a,:params=>{:titlepic=>true}) %>
+</li>
+<li>
 <%= link_to ff_icon("icon-pencil")+"Edit", edit_thema_attachment_path(a.thema,a) %>
 </li><li>
 <%= link_to "Delete Attachment", thema_attachment_path(a.thema,a), method: "DELETE", confirm: "Sure?" , class: "btn-danger " %>

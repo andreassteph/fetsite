@@ -1,8 +1,54 @@
+<%= content_for :header do %>
+<title><%= @thema.title.to_s + " (" + @thema.themengruppe.title.to_s + ")" %></title>
+
+<% 
+   mog = {
+     :title => @thema.title.to_s + " (" + @thema.themengruppe.title.to_s + ")",
+     :type => "article",
+     :description =>@thema.text_first_words,
+     :url=>thema_url(:theme=>nil)
+  }
+%> 
+
+<%
+   unless @thema.titlepics.first.nil?
+     picture_url=URI(root_url)
+     picture_url.path=@thema.titlepics.first.datei.url(:locale=>nil, :theme=>nil)
+     mog[:image]= picture_url 
+   end
+%>
+
+<%= display_meta_tags :og=> mog %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
-<%= link_to "Zurück", @thema.themengruppe %>
-<br> 
-<div class="contentbox">
-<%= render :partial=>"themen/small", :object=>@thema %>
+<% link_to "Zurück", @thema.themengruppe %>
+
+<% thema=@thema %><div class="content-wrap content-column" >
+
+<div class="contentbox">	
+  <%= render :partial => 'themen/small', :object => thema %>
+  <ul class="unstyled">
+    <% unless thema.gremium.nil? %>
+    <li>
+      <%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
+    </li>
+    <% end %>		
+	  
+    <% thema.nlinks.each do |l| %> 
+    <li>
+      <%= render l.neuigkeit if can? :show, l.neuigkeit%>
+    </li>
+    <% end %>
+    
+  </ul>
 </div>
-<%= render :partial=>'layouts/pretty_toolbar' %>
+
+<br> 
+
+<div class="">
+<%= render @thema.themengruppe %>
+</div>
+</div>
+<% # render :partial=>'layouts/pretty_toolbar' %>
 

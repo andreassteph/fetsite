@@ -1,3 +1,12 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&appId=120379864660921&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div class="content-wrap content-column" style="max-width:100em;">
  <h1><%= I18n.t('home.willkommen') %></h1>
 <%= render partial: "themen/small", object: @starttopic %>
@@ -24,6 +33,14 @@
 
 
   </ul>
+  <% @stickythemen.each do |t1| %>
+  <li>
+    <%= link_to t1 do %>
+    <%= render partial: "themen/nlink", object: t %>
+    <%= end %> 
+  </li>
+  <% end %>
+  
   <!-- <div class="alert">
     <h2>Beta Test</h2>
     <p>Die Webseite befindet sich derzeit in einem Entwicklungsstadium,
@@ -48,6 +65,7 @@
   </p>
 
   <%= render 'beispiele' %>
+<div class="fb-like-box" data-href="https://www.facebook.com/FachschaftET" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 </div>
 <div class="span7">
  <ul class="unstyled linkbox-list" style="margin:5px;">

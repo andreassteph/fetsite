@@ -1,11 +1,20 @@
-<div class="content-wrap content-column">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&appId=120379864660921&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="content-wrap content-column" style="max-width:90em;">
  <h1><%= I18n.t('home.willkommen') %></h1>
 <%= raw(@starttopic.text) %>
 
 
 <div class="container-fluid">
 <div class="row-fluid">
-<div class="span6">
+<div class="span5">
   
   <ul class="linklist">
     <li>
@@ -21,8 +30,19 @@
 
     </li>
     <li><%= link_to ffi1_icon("books19")+"Beispielsammlung", studium_path(Studium.first, {:ansicht=>'semesteransicht'}) ,class: :btn ,class: :linkbox %></li>
+
     <li><%= link_to "Alte Beispielsammlung", "http://www.fet.at/alt/bin/view/Beispielsammlung/WebHome" ,class: :btn ,class: :linkbox %></li>
 
+
+  </ul>
+<ul class="linklist">
+  <% @stickythemen.each do |t1| %>
+  <li>
+    <%= link_to t1,:class=>:linkbox do %>
+    <%= render partial: "themen/nlink", object: t1 %>
+    <% end %> 
+  </li>
+  <% end %>
   </ul>
   <!-- <div class="alert">
     <h2>Beta Test</h2>
@@ -46,24 +66,15 @@
   </div>-->
   
   </p>
-
   <%= render 'beispiele' %>
+<div class="fb-like-box" data-href="https://www.facebook.com/FachschaftET" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
 </div>
-<div class="span6">
- <ul class="unstyled linkbox-list" style="max-width:70em">
+<div class="span7">
+  <ul class="unstyled linklist">
 	<% @neuigkeiten.each do |n| %>
 	<li><%= render n if can?(:show, n) %> </li>
 	<% end %>
-      </ul>
-Verschiedene Styles
-<ul>
-<li> <%= link_to "Darkblue", home_index_path({:theme=>"darkblue"}) %></li>
-<li> <%= link_to "Blue1", home_index_path({:theme=>"blue1"}) %></li>
-
-<li> <%= link_to "2003", home_index_path({:theme=>"2003"}) %></li>
-<li> <%= link_to "white_1", home_index_path({:theme=>"white_1"}) %></li>
-</ul>
-
+  </ul>
 </div>
 </div>
 </div>

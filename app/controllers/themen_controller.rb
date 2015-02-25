@@ -3,7 +3,11 @@ class ThemenController < ApplicationController
   # GET /themen
   # GET /themen.json
   load_and_authorize_resource
-  
+  def index
+    @themen = Thema.accessible_by(current_ability,:show)
+    @themen_drafts = Thema.accessible_by(current_ability,:show).where(:isdraft=>true)
+    
+  end
   def show
     @thema = Thema.find(params[:id])
     @fragen=@thema.fragen
@@ -14,7 +18,7 @@ class ThemenController < ApplicationController
     
     respond_to do |format|
       format.html {
-        redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> "thema_"+params[:id].to_s     
+#        redirect_to :controller=>'themengruppen', :id=>@thema.themengruppe.id, :action=>:show, :anchor=> "thema_"+params[:id].to_s     
       }
       format.js
     end

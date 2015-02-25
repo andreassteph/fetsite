@@ -49,6 +49,7 @@ class Ability
       can :manage, Themengruppe
       can :manage, Attachment
     end
+    can [:update,:edit,:verwalten, :showdraft], Thema, :id=>Thema.with_role(:editor, user).pluck(:id)
     unless user.has_role?("fetadmin")
       cannot :delete, Themengruppe
       cannot :delete, Thema
@@ -62,6 +63,7 @@ class Ability
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can :manage, Gallery
+      can :show, Foto
     end
     unless user.has_role?("fetadmin")
       cannot :delete, Gallery
@@ -91,6 +93,7 @@ class Ability
     if loggedin
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
+
       can :showversions, Neuigkeit
       can :showintern, Neuigkeit
       can :showintern, Rubrik
