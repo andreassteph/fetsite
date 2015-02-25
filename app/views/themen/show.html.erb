@@ -23,6 +23,14 @@
 
 <p id="notice"><%= notice %></p>
 <% link_to "Zurück", @thema.themengruppe %>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&appId=120379864660921&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <% thema=@thema %><div class="content-wrap content-column" >
 
@@ -43,6 +51,8 @@
     
   </ul>
 </div>
+
+<div class="fb-like" data-href"<%= thema_url(@thema,{theme: nil, locale: nil})%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 
 <br> 
 
