@@ -59,9 +59,9 @@ class GalleriesController < ApplicationController
     end
 
     # Hier ausrechnen welche angezeigt werden sollen
-    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fotos.new-fotos'), :path=>new_gallery_foto_path(@gallery)}
-    @toolbar_elements << {:hicon=>'icon-pencil', :text => I18n.t('common.edit'), :path=>edit_gallery_path(@gallery)}
-    @toolbar_elements << {:hicon=>'icon-arrow-left', :text=>I18n.t('common.back'), :path=>galleries_path()}
+    @toolbar_elements << {:hicon=>'icon-plus', :text=> I18n.t('fotos.new-fotos'), :path=>new_gallery_foto_path(@gallery)} if can? :create, @gallery
+    @toolbar_elements << {:hicon=>'icon-pencil', :text => I18n.t('common.edit'), :path=>edit_gallery_path(@gallery)} if can? :edit, @gallery
+    @toolbar_elements << {:hicon=>'icon-arrow-left', :text=>I18n.t('common.back'), :path=>galleries_path()} 
     @toolbar_elements << {:hicon => 'icon-remove-circle', :text => I18n.t('common.delete'), :path => gallery_path(@gallery),:confirm=>'Sure?', :method=>:delete} if can? :delete, Gallery
 
     respond_to do |format|

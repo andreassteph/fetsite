@@ -101,7 +101,7 @@
       <%= link_to ff_icon('icon-circle-arrow-down').html_safe, f.datei.url,
 	  :class=>"btn-small",title: I18n.t('fotos.download')+': '+f.title, rel: 'tooltip' %>
       <%= link_to ff_icon('icon-remove-circle').html_safe, gallery_foto_path(@gallery, f),
-          :method => :delete, :class=>"btn-small btn-danger",title: I18n.t('fotos.delete')+': '+f.title, rel: 'tooltip', confirm:  I18n.t('fotos.delete')+': '+f.title+', Sicher?'%>
+          :method => :delete, :class=>"btn-small btn-danger",title: I18n.t('fotos.delete')+': '+f.title, rel: 'tooltip', confirm:  I18n.t('fotos.delete')+': '+f.title+', Sicher?' if can?(:delete,f) %>
       <p></p>
     </div>
     <% end %>
