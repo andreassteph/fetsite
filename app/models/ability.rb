@@ -59,9 +59,10 @@ class Ability
     # Rechteverwaltung fuer Fotos
 
 #    can [:show,:index], Gallery, :intern=>false
-    if loggedin
       can [:show,:index], Gallery
       can :show, Foto
+
+    if loggedin
     end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can :manage, Gallery
