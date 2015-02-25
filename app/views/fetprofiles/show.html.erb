@@ -1,5 +1,5 @@
 <%= content_for :header do %>
-<title>Fetsite - <%=  @fetprofile.name %></title>
+<title>FET - <%=  @fetprofile.name %></title>
 <% unless @fetprofile.picture.url.nil?
    picture_url=URI(root_url)
    picture_url.path=@fetprofile.picture.portrait.url
@@ -28,17 +28,23 @@ end
 <div class="content-wrap content-column">
 
 <p id="notice"><%= notice %></p>
-<div style="max-width:70em">
+<div style="max-width:70em" itemtype="http://schema.org/Person" itemscope>
+<meta itemprop="sameAs" content="<%= fetprofile_path(@fetprofile, params:{theme: nil}) %>"/>
   <div class="media">
-    <span class="pull-left">
-      <%= image_tag @fetprofile.picture.portrait.url %>
+    <span class="pull-left" itemprop="image" itemscope itemtype="http://schema.org/OmageObject">
+      <span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
+	<%= image_tag @fetprofile.picture.portrait.url %>
+	<meta itemprop="url" content="<%= @fetprofile.picture.portrait.url%>" />    
+      </span>
+      <meta itemprop="url" content="<%= @fetprofile.picture.url%>" /> 
+      <meta itemprop="representativeOfPage" content="true" />
     </span>
     <div class="media-body">
-      <h2><%= @fetprofile.name %></h2>
-      <p>
+      <h2><span itemprop="givenName"><%= @fetprofile.vorname %></span><span itemprop="familyName"> <%= @fetprofile.nachname %></span><% unless @fetprofile.shot.empty? %><span itemprop=""> <%= @fetprofile.short %> </span><% end %></h2>
+      <p itemprop="email">
 	<%= @fetprofile.fetmail %>
       </p>
-      <p>
+      <p itemprop="description">
 	<%= @fetprofile.desc %>
       </p>
       <%= render partial: "interninfo", object: @fetprofile if can?(:seeintern, @fetprofile) %>
