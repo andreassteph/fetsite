@@ -89,7 +89,7 @@
 		<a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
 		<%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>
 <div  <% if (@openfotoid.to_i==f.id) %> itemprop="primaryImageOfPage"<% else %> itemprop="hasPart" <% end %> itemscope itemtype="http://schema.org/ImageObject">
-	<a href="<%= gallery_foto_path(f.gallery, f,:params=>{plain: true}) %>" data-type="text/html" title="<%=f.title%>" data-gallery <% if (@openfotoid.to_i==f.id) %>id="openpic"  <% end %>>
+	<a href="<%= gallery_foto_path(f.gallery, f,:params=>{plain: true}) %>" data-type="text/html" type="text/html" title="<%=f.title%>" data-gallery <% if (@openfotoid.to_i==f.id) %>id="openpic"  <% end %>>
 	  <%= image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %>
 	  <meta itemprop="thumbnailUrl" content="<%= f.datei.thumb.url %>"/>
 	  <meta itemprop="dateModified" content="<%= f.updated_at %>"/>
