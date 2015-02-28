@@ -137,7 +137,7 @@ class ThemenController < ApplicationController
     @thema = Thema.find(params[:id])
     @themen = @thema.themengruppe.themen.order(:priority).reverse
     @thema.assign_attributes(params[:thema])
-    @thema.fix_links(request.host_with_port)
+ #   @thema.fix_links(request.host_with_port)
    
     respond_to do |format|
       if @thema.save
