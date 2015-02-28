@@ -63,7 +63,8 @@ end
 </style>
 <div class="fluid-row">
   <div class="span9">  <!-- pagination-->
-    <div class="pagination pull_left" style="margin:0px 0px 0px 0px">
+    <%= paginate @fotos_p , theme:'twitter-bootstrap' %>
+<!--    <div class="pagination pull_left" style="margin:0px 0px 0px 0px">
       <ul>
 	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==1 ? @page : @page-1)} %>"><%=I18n.t('fotos.prev')%></a></li>
 	<% # for i in 1..@pages do 
@@ -72,7 +73,7 @@ end
 	<% # end %>
 	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==@pages ? @page : @page+1)} %>"><%=I18n.t('fotos.next')%></a></li>
       </ul>
-    </div>
+    </div>-->
   </div>
   <div class="span3"> <!-- size selector -->
     <div class="pull-right">
@@ -168,7 +169,7 @@ end
   <% end %>
   <%= render 'layouts/pretty_toolbar' %>
 </div>
-<%= @pppage_array[@pppage] %>
+
 <%= javascript_include_tag "blueimp-gallery-all" %>
 
 <script>

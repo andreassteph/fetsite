@@ -20,9 +20,9 @@ class FotosController < ApplicationController
     @openfotoid=@foto.id
     @pppage=params[:pppage].to_i % 4
     @pppage_array = [ 25 , 50 , 100, 10000]
-   @page = params[:page].nil? ? 1 : params[:page].to_i
- 
-     @fotos_p = @gallery.fotos.page(@page).per(@pppage_array[@pppage])
+    @page = params[:page].nil? ? 1 : params[:page].to_i
+    
+    @fotos_p = @gallery.fotos.page(@page).per(@pppage_array[@pppage])
     @fotos_n = @gallery.fotos- @fotos_p
     respond_to do |format|
       format.html {
