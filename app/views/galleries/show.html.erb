@@ -2,7 +2,7 @@
 <title>Fet - Fotos: <%=  @gallery.name %></title>
 
 <% 
-if @openfotoid.nil? || @openfotoid==0
+   if @openfotoid.nil? || @openfotoid==0
    @firstfoto= @fotos_p.first
    picture_url=URI(root_url)
    picture_url.path=@firstfoto.datei.url(:locale=>nil, :theme=>nil)
@@ -39,187 +39,185 @@ end
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&appId=120379864660921&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+  }(document, 'script', 'facebook-jssdk'));</script>
 
 <div itemscope itemtype="http://schema.org/ImageGallery">
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
 
-<div>
-  <small class="pull-left"><%= @gallery.fotos.size.to_s + " " + I18n.t('fotos.bilder')%> </small>
-  <small class="pull-right" itemprop="dateCreated" datetime="<%= @gallery.try(:datum).try(:to_date) unless @gallery.try(:datum).try(:to_date).nil?%>"><%=I18n.l(@gallery.try(:datum).try(:to_date)) unless @gallery.try(:datum).try(:to_date).nil? %></small></br>
-  <h1 itemprop="name">
-    <%= @gallery.name %>
-  </h1>
-</div>
-<meta itemprop="sameAs" content="<%= gallery_path(@gallery) %>"/>
-<p itemprop="description">
-  <%= @gallery.desc %>
-</p>
-<style>
-.blueimp-gallery > .slides > .slide > .text-content {
+  <div>
+    <small class="pull-left"><%= @gallery.fotos.size.to_s + " " + I18n.t('fotos.bilder')%> </small>
+    <small class="pull-right" itemprop="dateCreated" datetime="<%= @gallery.try(:datum).try(:to_date) unless @gallery.try(:datum).try(:to_date).nil?%>"><%=I18n.l(@gallery.try(:datum).try(:to_date)) unless @gallery.try(:datum).try(:to_date).nil? %></small></br>
+    <h1 itemprop="name">
+      <%= @gallery.name %>
+    </h1>
+  </div>
+  <meta itemprop="sameAs" content="<%= gallery_path(@gallery) %>"/>
+  <p itemprop="description">
+    <%= @gallery.desc %>
+  </p>
+  <style>
+    .blueimp-gallery > .slides > .slide > .text-content {
     overflow: auto;
     text-align: left;
-}
-</style>
-<div class="fluid-row">
-  <div class="span9">  <!-- pagination-->
-    <%= paginate @fotos_p , theme:'twitter-bootstrap' %>
-<!--    <div class="pagination pull_left" style="margin:0px 0px 0px 0px">
-      <ul>
-	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==1 ? @page : @page-1)} %>"><%=I18n.t('fotos.prev')%></a></li>
-	<% # for i in 1..@pages do 
-	   i=1 %>
-	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => i} %>"><%=i%></a></li>
-	<% # end %>
-	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==@pages ? @page : @page+1)} %>"><%=I18n.t('fotos.next')%></a></li>
-      </ul>
-    </div>-->
+    }
+  </style>
+  <div class="fluid-row">
+    <div class="span9">  <!-- pagination-->
+      <%= paginate @fotos_p , theme:'twitter-bootstrap' %>
+      <!--    <div class="pagination pull_left" style="margin:0px 0px 0px 0px">
+	      <ul>
+		<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==1 ? @page : @page-1)} %>"><%=I18n.t('fotos.prev')%></a></li>
+		<% # for i in 1..@pages do 
+		   i=1 %>
+		<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => i} %>"><%=i%></a></li>
+		<% # end %>
+		<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==@pages ? @page : @page+1)} %>"><%=I18n.t('fotos.next')%></a></li>
+	      </ul>
+      </div>-->
+    </div>
+    <div class="span3"> <!-- size selector -->
+      <div class="pull-right">
+	<div class="btn-group" data-toggle="buttons-radio">
+	  <button class="btn" disabled><%=I18n.t('fotos.pictures_per_site')%></button>
+	  <% for i in 0..@pppage_array.size-1 %>
+	  <a class="btn" href="<%= gallery_path @gallery, {:pppage => i} %>"><%=@pppage_array[i]%></a>
+	  <% end %>
+	</div>
+      </div>
+    </div>
   </div>
-  <div class="span3"> <!-- size selector -->
-    <div class="pull-right">
-      <div class="btn-group" data-toggle="buttons-radio">
-	<button class="btn" disabled><%=I18n.t('fotos.pictures_per_site')%></button>
-	<% for i in 0..@pppage_array.size-1 %>
-	<a class="btn" href="<%= gallery_path @gallery, {:pppage => i} %>"><%=@pppage_array[i]%></a>
+  <div style="clear:both"></div>
+
+  <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+  <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="noindicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+      <div class="modal-dialog">
+	<div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body next"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left prev">
+              <i class="glyphicon glyphicon-chevron-left"></i>
+              Previous
+            </button>
+            <button type="button" class="btn btn-primary next">
+              Next
+              <i class="glyphicon glyphicon-chevron-right"></i>
+            </button>
+          </div>
+	</div>
+      </div>
+    </div>
+  </div>
+  <p></p>
+  <div class="row-fluid">
+    <div class="span12">
+      <% @fotos_p.each do |f| %>
+      <div class="left">
+	<div id="links">
+	  <% if (@openfotoid.to_i==f.id) %> 
+	  <meta  itemprop="image" content="<%= f.datei.resized.url %>"/>
+	  <% end %>
+	  <div  <% if (@openfotoid.to_i==f.id) %> itemprop="primaryImageOfPage"<% else %> itemprop="hasPart" <% end %> itemscope itemtype="http://schema.org/ImageObject">
+	    <a href="<%= gallery_foto_path(f.gallery, f,:params=>{plain: true}) %>" data-type="text/html" type="text/html" title="<%=f.title%>"  histItem="<%= gallery_foto_path(f.gallery, f,:params=>{plain: nil, theme: nil})  %>" data-gallery <% if (@openfotoid.to_i==f.id) %>id="openpic"  <% end %>>
+	      <%= image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %>
+	      <meta itemprop="thumbnailUrl" content="<%= f.datei.thumb.url %>"/>
+	      <meta itemprop="dateModified" content="<%= f.updated_at %>"/>
+	      <meta itemprop="image" content="<%= f.datei.url %>"/>
+	      <meta itemprop="sameAs" content="<%= gallery_foto_path(f.gallery, f,:params=>{:plain=>nil, :theme=>nil})%>"/>
+	    </a>
+	  </div>
+	</div>
+	<%= link_to ff_icon('icon-circle-arrow-down').html_safe, f.datei.url,
+	    :class=>"btn-small",title: I18n.t('fotos.download')+': '+f.title, rel: 'tooltip' %>
+	<%= link_to ff_icon('icon-remove-circle').html_safe, gallery_foto_path(@gallery, f),
+            :method => :delete, :class=>"btn-small btn-danger",title: I18n.t('fotos.delete')+': '+f.title, rel: 'tooltip', confirm:  I18n.t('fotos.delete')+': '+f.title+', Sicher?' if can?(:delete,f) %>
+	<p></p>
+      </div>
+      <% end %>
+
+      <div id="links">
+	<% @fotos_n.each do |f| %>
+	<a href="<%= f.datei.resized.url%>"  title="<%=f.title%>" histItem="<%= gallery_foto_path(f.gallery, f,:params=>{plain: nil, theme: nil})  %>" data-gallery></a>
 	<% end %>
       </div>
     </div>
   </div>
-</div>
-<div style="clear:both"></div>
 
-<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
-  <!-- The container for the modal slides -->
-  <div class="slides"></div>
-  <!-- Controls for the borderless lightbox -->
-  <h3 class="title"></h3>
-  <a class="prev">‹</a>
-  <a class="next">›</a>
-  <a class="close">×</a>
-  <a class="play-pause"></a>
-  <ol class="noindicator"></ol>
-  <!-- The modal dialog, which will be used to wrap the lightbox content -->
-  <div class="modal fade">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" aria-hidden="true">&times;</button>
-          <h4 class="modal-title"></h4>
-        </div>
-        <div class="modal-body next"></div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default pull-left prev">
-            <i class="glyphicon glyphicon-chevron-left"></i>
-            Previous
-          </button>
-          <button type="button" class="btn btn-primary next">
-            Next
-            <i class="glyphicon glyphicon-chevron-right"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<p></p>
-<div class="row-fluid">
-  <div class="span12">
-    <% @fotos_p.each do |f| %>
-    <div class="left">
-      <div id="links">
-<!--		<a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
-		<%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>-->
-<% if (@openfotoid.to_i==f.id) %> 
-<meta  itemprop="image" content="<%= f.datei.resized.url %>"/>
-<% end %>
-<div  <% if (@openfotoid.to_i==f.id) %> itemprop="primaryImageOfPage"<% else %> itemprop="hasPart" <% end %> itemscope itemtype="http://schema.org/ImageObject">
-	<a href="<%= gallery_foto_path(f.gallery, f,:params=>{plain: true}) %>" data-type="text/html" type="text/html" title="<%=f.title%>"  histItem="<%= gallery_foto_path(f.gallery, f,:params=>{plain: nil, theme: nil})  %>" data-gallery <% if (@openfotoid.to_i==f.id) %>id="openpic"  <% end %>>
-	  <%= image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %>
-	  <meta itemprop="thumbnailUrl" content="<%= f.datei.thumb.url %>"/>
-	  <meta itemprop="dateModified" content="<%= f.updated_at %>"/>
-	  <meta itemprop="image" content="<%= f.datei.url %>"/>
-	  <meta itemprop="sameAs" content="<%= gallery_foto_path(f.gallery, f,:params=>{:plain=>nil, :theme=>nil})%>"/>
-	</a>
-</div>
+  <div class="row-fluid">
+    <% if can? :delete,@gallery %>
+    <div class="span12">
 
-      </div>
-      <%= link_to ff_icon('icon-circle-arrow-down').html_safe, f.datei.url,
-	  :class=>"btn-small",title: I18n.t('fotos.download')+': '+f.title, rel: 'tooltip' %>
-      <%= link_to ff_icon('icon-remove-circle').html_safe, gallery_foto_path(@gallery, f),
-          :method => :delete, :class=>"btn-small btn-danger",title: I18n.t('fotos.delete')+': '+f.title, rel: 'tooltip', confirm:  I18n.t('fotos.delete')+': '+f.title+', Sicher?' if can?(:delete,f) %>
+      <%= link_to ff_icon('icon-circle-arrow-down').html_safe, '',
+	  :class=>"btn-small"%>: <%= I18n.t('fotos.download_long')%><br>
+      <%= link_to ff_icon('icon-remove-circle').html_safe, '',
+	  :class=>"btn-small btn-danger"%>: <%= I18n.t('fotos.delete')%>
       <p></p>
+      
     </div>
     <% end %>
-    <% @fotos_n.each do |f| %>
-    <div id="links">
-      <a href="<%= f.datei.resized.url%>"  title="<%=f.title%>" histItem="<%= gallery_foto_path(f.gallery, f,:params=>{plain: nil, theme: nil})  %>" data-gallery></a>
-      <% end %>
-    </div>
+    <%= render 'layouts/pretty_toolbar' %>
   </div>
 </div>
-
-<div class="row-fluid">
-  <% if can? :delete,@gallery %>
-  <div class="span12">
-
-    <%= link_to ff_icon('icon-circle-arrow-down').html_safe, '',
-	:class=>"btn-small"%>: <%= I18n.t('fotos.download_long')%><br>
-    <%= link_to ff_icon('icon-remove-circle').html_safe, '',
-	:class=>"btn-small btn-danger"%>: <%= I18n.t('fotos.delete')%>
-    <p></p>
-    
-  </div>
-  <% end %>
-  <%= render 'layouts/pretty_toolbar' %>
-</div>
-
-<%= javascript_include_tag "blueimp-gallery-all" %>
-
-<script>
-blueimp.Gallery.prototype.textFactory = function (obj, callback) {
+  <%= javascript_include_tag "blueimp-gallery-all" %>
+  
+  <script>
+    blueimp.Gallery.prototype.textFactory = function (obj, callback) {
     var $element = $('<div>')
-            .addClass('slide-content')
-            .attr('title', obj.title)
-            .attr('histItem',obj.getAttribute('histitem'));
-     
-    $.get(obj.href)
-        .done(function (result) {
-            $element.html(result);
-            callback({
-                type: 'load',
-                target: $element[0]
-            });
-        })
-        .fail(function () {
-            callback({
-                type: 'error',
-                target: $element[0]
-            });
-        });
-    return $element[0];
-};
-$('#openpic').click()
+      .addClass('slide-content')
+      .attr('title', obj.title)
+      .attr('histItem',obj.getAttribute('histitem'));
+      
+      $.get(obj.href)
+      .done(function (result) {
+      $element.html(result);
+      callback({
+      type: 'load',
+      target: $element[0]
+      });
+      })
+      .fail(function () {
+      callback({
+      type: 'error',
+      target: $element[0]
+      });
+      });
+      return $element[0];
+      };
+      $('#openpic').click()
 
 
-blueimp.Gallery.prototype.onslide = (function(_super) {
-    return function(index) {
-        history.pushState({},"Foto",String(this.list[index].getAttribute('histitem')));
-        return _super.apply(this, arguments);
-    }; 
-})(blueimp.Gallery.prototype.onslide);
-</script>
-<style>
-nav.share {display:inline-block;} /* shareable's nav tag */
-nav.share div {float:left;}
-nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
-#___plusone_0 {font-size: default !important;}
-.fb_iframe_widget span { vertical-align: top; }
-.fb_edge_widget_with_comment { vertical-align: top;}
-.fb-like{display:inline-block}
-* html .fb-like{display:inline}/* ie6 inline block fix*/
-*+html .fb-like{display:inline}/* ie7 inline block fix*/
-</style>
-
-</div>
+      blueimp.Gallery.prototype.onslide = (function(_super) {
+      return function(index) {
+      history.pushState({},"Foto",String(this.list[index].getAttribute('histitem')));
+      return _super.apply(this, arguments);
+      }; 
+      })(blueimp.Gallery.prototype.onslide);
+  </script>
+  <style>
+    nav.share {display:inline-block;} /* shareable's nav tag */
+    nav.share div {float:left;}
+    nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
+    #___plusone_0 {font-size: default !important;}
+    .fb_iframe_widget span { vertical-align: top; }
+    .fb_edge_widget_with_comment { vertical-align: top;}
+    .fb-like{display:inline-block}
+    * html .fb-like{display:inline}/* ie6 inline block fix*/
+    *+html .fb-like{display:inline}/* ie7 inline block fix*/
+  </style>
+  
+  
