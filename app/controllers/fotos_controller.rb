@@ -16,13 +16,20 @@ class FotosController < ApplicationController
   # GET /fotos/1.json
   def show
     @foto = Foto.find(params[:id])
-
+    @gallery=@foto.gallery
+    @openfotoid=@foto.id
+    @pppage=params[:pppage].to_i % 4
+    @pppage_array = [ 25 , 50 , 100, 10000]
+   @page = params[:page].nil? ? 1 : params[:page].to_i
+ 
+     @fotos_p = @gallery.fotos.page(@page).per(@pppage_array[@pppage])
+    @fotos_n = @gallery.fotos- @fotos_p
     respond_to do |format|
       format.html {
         if params[:plain]
           render "show", layout: false
         else
-          redirect_to gallery_path(@foto.gallery,:params=>{fotoid: @foto.id})
+          render "galleries/show" #controller: :galleries, action: :show #gallery_path(@foto.gallery,:params=>{fotoid: @foto.id})
         end
         }
       format.json { render json: @foto }
