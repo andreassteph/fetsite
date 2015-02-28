@@ -149,7 +149,7 @@ end
     <% end %>
     <% @fotos_n.each do |f| %>
     <div id="links">
-      <a href="<%= f.datei.resized.url%>"  title="<%=f.title%>" data-gallery></a>
+      <a href="<%= f.datei.resized.url%>"  title="<%=f.title%>" histItem="<%= gallery_foto_path(f.gallery, f,:params=>{plain: nil, theme: nil})  %>" data-gallery></a>
       <% end %>
     </div>
   </div>
