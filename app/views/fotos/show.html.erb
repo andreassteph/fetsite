@@ -3,14 +3,14 @@
 position: absolute;
 left: 0;
 right: 0;
-bottom: 0;
-top: 0;" %>
+bottom: 40pt;
+top: 0" %>
 <% #,  gallery_foto_path(@foto.gallery,  ((@foto.gallery.fotos[@foto.gallery.fotos.index(@foto)+1].nil?) ? (@foto.gallery.fotos[0].try(:id).to_i) : @foto.gallery.fotos[@foto.gallery.fotos.index(@foto)+1].try(:id).to_i) ) %>
-<div style="position:absolute; bottom:0">
+<div style="position:absolute; bottom:0; ">
 <%= link_to ff_icon('icon-circle-arrow-down').html_safe, @foto.datei.url,
 	  :class=>"btn",title: I18n.t('fotos.download')+': '+@foto.title,:target=>:blank, :style=>"" %>
-<div class="fb-like" data-href"<%=  gallery_path(@foto.gallery, {fotoid:@foto.id,theme: nil, locale: nil})%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-
+<!-- <div class="fb-like" data-href"<%=  gallery_foto_path(@foto.gallery,@foto, {fotoid:@foto.id,theme: nil, locale: nil})%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>-->
+<%= render_shareable  :url=>gallery_foto_url(@foto.gallery,@foto, {theme: nil, locale: nil}) %>
 		<p id="notice"><%= notice %></p>
 </div>
 

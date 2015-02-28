@@ -99,7 +99,7 @@ end
   <a class="next">›</a>
   <a class="close">×</a>
   <a class="play-pause"></a>
-  <ol class="indicator"></ol>
+  <ol class="noindicator"></ol>
   <!-- The modal dialog, which will be used to wrap the lightbox content -->
   <div class="modal fade">
     <div class="modal-dialog">
@@ -131,6 +131,9 @@ end
       <div id="links">
 <!--		<a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
 		<%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>-->
+<% if (@openfotoid.to_i==f.id) %> 
+<meta  itemprop="image" content="<%= f.datei.resized.url %>"/>
+<% end %>
 <div  <% if (@openfotoid.to_i==f.id) %> itemprop="primaryImageOfPage"<% else %> itemprop="hasPart" <% end %> itemscope itemtype="http://schema.org/ImageObject">
 	<a href="<%= gallery_foto_path(f.gallery, f,:params=>{plain: true}) %>" data-type="text/html" type="text/html" title="<%=f.title%>"  histItem="<%= gallery_foto_path(f.gallery, f,:params=>{plain: nil, theme: nil})  %>" data-gallery <% if (@openfotoid.to_i==f.id) %>id="openpic"  <% end %>>
 	  <%= image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %>
@@ -207,6 +210,16 @@ blueimp.Gallery.prototype.onslide = (function(_super) {
     }; 
 })(blueimp.Gallery.prototype.onslide);
 </script>
-
+<style>
+nav.share {display:inline-block;} /* shareable's nav tag */
+nav.share div {float:left;}
+nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
+#___plusone_0 {font-size: default !important;}
+.fb_iframe_widget span { vertical-align: top; }
+.fb_edge_widget_with_comment { vertical-align: top;}
+.fb-like{display:inline-block}
+* html .fb-like{display:inline}/* ie6 inline block fix*/
+*+html .fb-like{display:inline}/* ie7 inline block fix*/
+</style>
 
 </div>

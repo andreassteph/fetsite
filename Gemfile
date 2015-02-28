@@ -122,3 +122,5 @@ gem 'opengraph_parser'
 # Image gallery
 gem 'blueimp-gallery'
 gem 'blueimp-gallery-rails'
+
+gem 'shareable'
