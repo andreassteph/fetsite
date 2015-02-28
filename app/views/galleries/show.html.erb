@@ -32,9 +32,19 @@ end
 
 
 <% end %>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&appId=120379864660921&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <div itemscope itemtype="http://schema.org/ImageGallery">
 <p id="notice"><%= notice %></p>
+
+
 <div>
   <small class="pull-left"><%= @gallery.fotos.size.to_s + " " + I18n.t('fotos.bilder')%> </small>
   <small class="pull-right" itemprop="dateCreated" datetime="<%= @gallery.try(:datum).try(:to_date) unless @gallery.try(:datum).try(:to_date).nil?%>"><%=I18n.l(@gallery.try(:datum).try(:to_date)) unless @gallery.try(:datum).try(:to_date).nil? %></small></br>
@@ -54,15 +64,17 @@ end
 </style>
 <div class="fluid-row">
   <div class="span9">  <!-- pagination-->
-    <div class="pagination pull_left" style="margin:0px 0px 0px 0px">
+    <%= paginate @fotos_p , theme:'twitter-bootstrap' %>
+<!--    <div class="pagination pull_left" style="margin:0px 0px 0px 0px">
       <ul>
 	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==1 ? @page : @page-1)} %>"><%=I18n.t('fotos.prev')%></a></li>
-	<% for i in 1..@pages do %>
+	<% # for i in 1..@pages do 
+	   i=1 %>
 	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => i} %>"><%=i%></a></li>
-	<% end %>
+	<% # end %>
 	<li><a href="<%= gallery_path @gallery, {:pppage => @pppage, :page => (@page==@pages ? @page : @page+1)} %>"><%=I18n.t('fotos.next')%></a></li>
       </ul>
-    </div>
+    </div>-->
   </div>
   <div class="span3"> <!-- size selector -->
     <div class="pull-right">
@@ -117,17 +129,18 @@ end
     <% @fotos_p.each do |f| %>
     <div class="left">
       <div id="links">
-	<!--		<a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
-			<%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>-->
-	<div  <% if (@openfotoid.to_i==f.id) %> itemprop="primaryImageOfPage"<% else %> itemprop="hasPart" <% end %> itemscope itemtype="http://schema.org/ImageObject">
-	  <a href="<%= gallery_foto_path(f.gallery, f,:params=>{plain: true}) %>" data-type="text/html" type="text/html" title="<%=f.title%>" data-gallery <% if (@openfotoid.to_i==f.id) %>id="openpic"  <% end %>>
-	    <%= image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %>
-	    <meta itemprop="thumbnailUrl" content="<%= f.datei.thumb.url %>"/>
-	    <meta itemprop="dateModified" content="<%= f.updated_at %>"/>
-	    <meta itemprop="image" content="<%= f.datei.url %>"/>
-	    <meta itemprop="sameAs" content="<%= gallery_foto_path(f.gallery, f,:params=>{:plain=>nil, :theme=>nil})%>"/>
-	  </a>
-	</div>
+<!--		<a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery>
+		<%=image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %></a>-->
+<div  <% if (@openfotoid.to_i==f.id) %> itemprop="primaryImageOfPage"<% else %> itemprop="hasPart" <% end %> itemscope itemtype="http://schema.org/ImageObject">
+	<a href="<%= gallery_foto_path(f.gallery, f,:params=>{plain: true}) %>" data-type="text/html" type="text/html" title="<%=f.title%>"  histItem="<%= gallery_foto_path(f.gallery, f,:params=>{plain: nil, theme: nil})  %>" data-gallery <% if (@openfotoid.to_i==f.id) %>id="openpic"  <% end %>>
+	  <%= image_tag(f.datei.thumb.url,{:class=>"img-polaroid img-rounded"}) %>
+	  <meta itemprop="thumbnailUrl" content="<%= f.datei.thumb.url %>"/>
+	  <meta itemprop="dateModified" content="<%= f.updated_at %>"/>
+	  <meta itemprop="image" content="<%= f.datei.url %>"/>
+	  <meta itemprop="sameAs" content="<%= gallery_foto_path(f.gallery, f,:params=>{:plain=>nil, :theme=>nil})%>"/>
+	</a>
+</div>
+
       </div>
       <%= link_to ff_icon('icon-circle-arrow-down').html_safe, f.datei.url,
 	  :class=>"btn-small",title: I18n.t('fotos.download')+': '+f.title, rel: 'tooltip' %>
@@ -138,7 +151,7 @@ end
     <% end %>
     <% @fotos_n.each do |f| %>
     <div id="links">
-      <a href="<%= f.datei.resized.url%>" title="<%=f.title%>" data-gallery></a>
+      <a href="<%= f.datei.resized.url%>"  title="<%=f.title%>" data-gallery></a>
       <% end %>
     </div>
   </div>
@@ -158,13 +171,16 @@ end
   <% end %>
   <%= render 'layouts/pretty_toolbar' %>
 </div>
-<%= @pppage_array[@pppage] %>
+
 <%= javascript_include_tag "blueimp-gallery-all" %>
+
 <script>
 blueimp.Gallery.prototype.textFactory = function (obj, callback) {
     var $element = $('<div>')
             .addClass('slide-content')
-            .attr('title', obj.title);
+            .attr('title', obj.title)
+            .attr('histItem',obj.getAttribute('histitem'));
+     
     $.get(obj.href)
         .done(function (result) {
             $element.html(result);
@@ -182,6 +198,14 @@ blueimp.Gallery.prototype.textFactory = function (obj, callback) {
     return $element[0];
 };
 $('#openpic').click()
+
+
+blueimp.Gallery.prototype.onslide = (function(_super) {
+    return function(index) {
+        history.pushState({},"Foto",String(this.list[index].getAttribute('histitem')));
+        return _super.apply(this, arguments);
+    }; 
+})(blueimp.Gallery.prototype.onslide);
 </script>
 
 

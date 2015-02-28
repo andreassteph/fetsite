@@ -29,3 +29,4 @@ formats:
 setup: function(ed) {
        ed.addButton('boldred_btn', {title:'Bold-Red',icon:"fa fa-red fa-bold", onclick:function() {ed.focus();ed.formatter.toggle('boldred'); }}); 
       }
+relative_urls: false

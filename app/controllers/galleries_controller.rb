@@ -19,7 +19,7 @@ class GalleriesController < ApplicationController
   def show
     @gallery = Gallery.find(params[:id])
     
-    @pppage_array = [ 25 , 50 , 100, "all"] #defines number & size of picture chunks
+    @pppage_array = [ 25 , 50 , 100, 10000] #defines number & size of picture chunks
     @pppage = 0 #starting index of pppage_array
     
     if !params[:pppage].nil? && params[:pppage].to_i <= 3 && params[:pppage].to_i >= 0

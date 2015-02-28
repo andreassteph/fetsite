@@ -9,6 +9,8 @@ top: 0;" %>
 <div style="position:absolute; bottom:0">
 <%= link_to ff_icon('icon-circle-arrow-down').html_safe, @foto.datei.url,
 	  :class=>"btn",title: I18n.t('fotos.download')+': '+@foto.title,:target=>:blank, :style=>"" %>
+<div class="fb-like" data-href"<%=  gallery_path(@foto.gallery, {fotoid:@foto.id,theme: nil, locale: nil})%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
 		<p id="notice"><%= notice %></p>
-	</div>
+</div>
 
