@@ -28,6 +28,7 @@ end
 %>
 
 
+<%= display_meta_tags %>
 
 
 <% end %>
@@ -139,6 +140,7 @@ end
 	  <meta itemprop="sameAs" content="<%= gallery_foto_path(f.gallery, f,:params=>{:plain=>nil, :theme=>nil})%>"/>
 	</a>
 </div>
+
       </div>
       <%= link_to ff_icon('icon-circle-arrow-down').html_safe, f.datei.url,
 	  :class=>"btn-small",title: I18n.t('fotos.download')+': '+f.title, rel: 'tooltip' %>
