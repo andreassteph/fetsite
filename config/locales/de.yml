@@ -5,6 +5,7 @@ de:
   common:
     edit: "Bearbeiten"
     back: "Zurück"
+    new: "Neu"
     actions: "Aktionen"
     delete: "Löschen"    
     verwalten: "Verwalten"
@@ -23,7 +24,6 @@ de:
     login: "FET Login"
     fblogin: "Facebook Login"
     willkommen: "Willkommen bei der Fachschaft Elektrotechnik"
-    hallobeiderfet: "auf der Seite der Fachschaft Elektrotechnik an der TU Wien. Wir sind die offizielle Vertretung aller Studierenden Auf der Fakultät für Elektrotechnik und Informationstechnik. Wir vertreten eure Interessen in den offiziellen Gremien der Universität. Wir sind bemüht euch in Anliegen des Studiums bestmöglich zu unterstützen und beraten. Außerdem bieten wir ein Rahmenprogramm zum Studium in Form von Veranstaltungen und Festln. Wir freuen uns über Feedback und Anregungen, insbesondere von jenen, die gleich Nägel mit Köpfen machen und unser Team verstärken wollen oder ihre Themen und Meinungen in eine unserer Sitzungen einbringen möchten."
     home: "Startseite"
     studien: "Studien/Beispielsammlung"
     news: "Neuigkeiten"
@@ -33,6 +33,7 @@ de:
     search: "Suche"
     newexamples: "Neueste Beispiele in unserer Sammlung"
     selectstyle: "Wähle dein Design"
+    morenews: "Mehr Neuigkeiten"
   support:
     array:
       two_words_connector: ', '	

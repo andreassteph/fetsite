@@ -35,6 +35,7 @@ de:
       link: "Modulgruppen auflisten"
   filter:
     studium: "Studium"
+    lecturer: "Vortragender"
     modulgruppe: "Modulgruppe"
     modul: "Modul"
     lva: "Lva"
