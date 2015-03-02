@@ -173,51 +173,51 @@ end
     <%= render 'layouts/pretty_toolbar' %>
   </div>
 </div>
-  <%= javascript_include_tag "blueimp-gallery-all" %>
+<%= javascript_include_tag "blueimp-gallery-all" %>
   
-  <script>
-    blueimp.Gallery.prototype.textFactory = function (obj, callback) {
-    var $element = $('<div>')
-      .addClass('slide-content')
-      .attr('title', obj.title)
-      .attr('histItem',obj.getAttribute('histitem'));
-      
-      $.get(obj.href)
-      .done(function (result) {
-      $element.html(result);
-      callback({
-      type: 'load',
-      target: $element[0]
-      });
-      })
-      .fail(function () {
-      callback({
-      type: 'error',
-      target: $element[0]
-      });
-      });
-      return $element[0];
-      };
-      $('#openpic').click()
+<script>
+  blueimp.Gallery.prototype.textFactory = function (obj, callback) {
+  var $element = $('<div>')
+    .addClass('slide-content')
+    .attr('title', obj.title)
+    .attr('histItem',obj.getAttribute('histitem'));
+    
+    $.get(obj.href)
+    .done(function (result) {
+    $element.html(result);
+    callback({
+    type: 'load',
+    target: $element[0]
+    });
+    })
+    .fail(function () {
+    callback({
+    type: 'error',
+    target: $element[0]
+    });
+    });
+    return $element[0];
+    };
+    $('#openpic').click()
+    
+    
+    blueimp.Gallery.prototype.onslide = (function(_super) {
+    return function(index) {
+    history.pushState({},"Foto",String(this.list[index].getAttribute('histitem')));
+    return _super.apply(this, arguments);
+    }; 
+    })(blueimp.Gallery.prototype.onslide);
+</script>
+<style>
+  nav.share {display:inline-block;} /* shareable's nav tag */
+  nav.share div {float:left;}
+  nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
+  #___plusone_0 {font-size: default !important;}
+  .fb_iframe_widget span { vertical-align: top; }
+  .fb_edge_widget_with_comment { vertical-align: top;}
+  .fb-like{display:inline-block}
+  * html .fb-like{display:inline}/* ie6 inline block fix*/
+  *+html .fb-like{display:inline}/* ie7 inline block fix*/
+</style>
 
-
-      blueimp.Gallery.prototype.onslide = (function(_super) {
-      return function(index) {
-      history.pushState({},"Foto",String(this.list[index].getAttribute('histitem')));
-      return _super.apply(this, arguments);
-      }; 
-      })(blueimp.Gallery.prototype.onslide);
-  </script>
-  <style>
-    nav.share {display:inline-block;} /* shareable's nav tag */
-    nav.share div {float:left;}
-    nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium sized buttons */
-    #___plusone_0 {font-size: default !important;}
-    .fb_iframe_widget span { vertical-align: top; }
-    .fb_edge_widget_with_comment { vertical-align: top;}
-    .fb-like{display:inline-block}
-    * html .fb-like{display:inline}/* ie6 inline block fix*/
-    *+html .fb-like{display:inline}/* ie7 inline block fix*/
-  </style>
-  
   
