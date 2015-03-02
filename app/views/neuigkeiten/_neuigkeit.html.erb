@@ -3,6 +3,7 @@
 
 <% c =[:linkbox] %>
 <% c << "color-"+neuigkeit.rubrik.color.to_s+"-dark" unless neuigkeit.rubrik.color.nil? %>
+<% c << "unpublished" unless neuigkeit.published? %>
 <%= link_to [neuigkeit.rubrik,neuigkeit], {class: c} do %>
 <%= render :partial=>"neuigkeiten/compact",:locals=> {:neuigkeit=> neuigkeit} %>
 <% end %>
