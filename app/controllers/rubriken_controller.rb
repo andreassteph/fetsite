@@ -11,7 +11,7 @@ class RubrikenController < ApplicationController
   #  end   
     
     @rubriken= Rubrik.accessible_by(current_ability, :show)
-    @neuigkeiten = Neuigkeit.accessible_by(current_ability, :show).page(params[:page]).per(3)
+    @neuigkeiten = Neuigkeit.accessible_by(current_ability, :list).page(params[:page]).per(3)
     
     @calentries= (@rubriken.map {|r| r.calendar}).collect(&:calentries).flatten.select {|c| c.object !=nil}
     respond_to do |format|
@@ -29,7 +29,7 @@ class RubrikenController < ApplicationController
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
 
     @calentries= @rubrik.calendar.calentries.select {|c| c.object !=nil}
-    @neuigkeiten = @rubrik.neuigkeiten.accessible_by(current_ability, :show).page(params[:page]).per(3)
+    @neuigkeiten = @rubrik.neuigkeiten.accessible_by(current_ability, :list).page(params[:page]).per(3)
 
     @toolbar_elements << {:text=>I18n.t('neuigkeit.new.title'), :path=> new_rubrik_neuigkeit_path(@rubrik),:hicon=>'icon-plus-sign'} if can? :verwalten, @rubrik
     @toolbar_elements << {:text=>I18n.t('common.verwalten'), :path=>verwalten_rubrik_path(@rubrik),:icon=>:pencil} if can? :verwalten, @rubrik
