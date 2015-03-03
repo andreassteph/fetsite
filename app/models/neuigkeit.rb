@@ -13,20 +13,20 @@
 #
 
 class Neuigkeit < ActiveRecord::Base
-  
   attr_accessible :datum, :text, :title, :rubrik_id, :author_id,:picture, :calentries_attributes
   belongs_to :author, :class_name =>'User'
   belongs_to :rubrik, :class_name =>'Rubrik', :foreign_key => "rubrik_id"
-  validates :rubrik, :presence=>true
-  validates :author, :presence=>true
-  translates :title,:text, :versioning=>{:gem=>:paper_trail, :options=>{:fallbacks_for_empty_translations => true}}
-  has_one :calendar, through: :rubrik
+  has_one :calendar, through: :rubrik  
   has_many :calentries, as: :object
   has_many :nlinks   
   has_one :meeting
+
+  validates :rubrik, :presence=>true
+  validates :author, :presence=>true
+  translates :title,:text, :versioning=>{:gem=>:paper_trail, :options=>{:fallbacks_for_empty_translations => true}}
   mount_uploader :picture, PictureUploader
 
-  default_scope  order(:datum).reverse_order  
+  default_scope  order(:cache_order)
   scope :recent, -> { published.limit(10)}
   scope :unpublished, -> {where("datum >= ? OR datum IS NULL", Date.today)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>true)}
@@ -88,6 +88,33 @@ class Neuigkeit < ActiveRecord::Base
   end
   def has_calentries?
     !self.calentries.nil? && !self.calentries.empty?
+  end
+  def is_event?
+    self.has_calentries?
+  end
+  def update_cache
+    if is_event?
+      unless self.calentries.upcoming.first.nil?
+        self.update_column(:cache_order, (self.calentries.upcoming.first.start.to_date - Date.today).to_i.abs)
+        self.update_column(:cache_relevant_date, self.calentries.upcoming.first.start.to_date)
+      else
+        unless self.calentries.recent.first.nil?
+          self.update_column(:cache_order, (self.calentries.recent.first.start.to_date - Date.today).to_i.abs)
+        self.update_column(:cache_relevant_date, self.calentries.recent.first.start.to_date)
+        end
+      end
+    else
+      unless self.datum.nil?
+        self.update_column(:cache_order, (self.datum.to_date - Date.today).to_i.abs)
+        self.update_column(:cache_relevant_date, self.datum.to_date)
+      else
+        self.update_column(:cache_order,0)
+      end
+    end
+    unless self.published?
+      self.update_column(:cache_order, self.cache_order-14)
+    end
+    self.update_column(:cache_is_published, self.published?)
   end
   private
   def sanitize
