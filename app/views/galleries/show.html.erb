@@ -4,8 +4,10 @@
 <% 
    if @openfotoid.nil? || @openfotoid==0
    @firstfoto= @fotos_p.first
+   unless @firstfoto.nil?
    picture_url=URI(root_url)
    picture_url.path=@firstfoto.datei.url(:locale=>nil, :theme=>nil)
+end
 set_meta_tags :og => {
 :image => picture_url.to_s,
 :title => @gallery.name.to_s,

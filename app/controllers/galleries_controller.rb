@@ -63,9 +63,13 @@ class GalleriesController < ApplicationController
     @toolbar_elements << {:hicon=>'icon-pencil', :text => I18n.t('common.edit'), :path=>edit_gallery_path(@gallery)} if can? :edit, @gallery
     @toolbar_elements << {:hicon=>'icon-arrow-left', :text=>I18n.t('common.back'), :path=>galleries_path()} 
     @toolbar_elements << {:hicon => 'icon-remove-circle', :text => I18n.t('common.delete'), :path => gallery_path(@gallery),:confirm=>'Sure?', :method=>:delete} if can? :delete, Gallery
-
+    
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {
+      if @fotos.nil? || @fotos.empty?
+      redirect_to new_gallery_foto_path(@gallery)
+      end
+      }
       format.json { render json: @gallery }
     end
   end

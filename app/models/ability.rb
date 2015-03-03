@@ -90,7 +90,9 @@ class Ability
     
     #-----------------------------------------------------
     # Rechteverwaltung fuer Neuigkeiten
-    can [:show,:index], Rubrik, :public=>true
+    can :index, Rubrik
+    can [:show], Rubrik, :public=>true
+    can [:list], Neuigkeit, Neuigkeit.public.published
     can :show, Neuigkeit, :rubrik=>{:public=>true}
 
     if loggedin
@@ -101,6 +103,7 @@ class Ability
       can :showintern, Neuigkeit
       can :showintern, Rubrik
       can :seeintern, User
+      can :list, Neuigkeit
       can :shownonpublic, Rubrik
       can :manage, Nlink
     end
