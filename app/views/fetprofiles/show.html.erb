@@ -29,7 +29,7 @@ end
 
 <p id="notice"><%= notice %></p>
 <div style="max-width:70em" itemtype="http://schema.org/Person" itemscope>
-<meta itemprop="sameAs" content="<%= fetprofile_path(@fetprofile, params:{theme: nil}) %>"/>
+<meta itemprop="sameAs" content="<%= fetprofile_path(@fetprofile, theme: nil) %>"/>
   <div class="media">
     <span class="pull-left" itemprop="image" itemscope itemtype="http://schema.org/OmageObject">
       <span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
@@ -41,6 +41,8 @@ end
     </span>
     <div class="media-body">
       <h2><span itemprop="givenName"><%= @fetprofile.vorname %></span><span itemprop="familyName"> <%= @fetprofile.nachname %></span><% unless @fetprofile.short.empty? %><span itemprop=""> <%= @fetprofile.short %> </span><% end %></h2>
+      <meta itemprop="name" content="<%= @fetprofile.name %>" /> 
+
       <p itemprop="email">
 	<%= @fetprofile.fetmail %>
       </p>
