@@ -40,7 +40,10 @@ class Neuigkeit < ActiveRecord::Base
 
 
   def is_annoncement?
-    self.meeting.nil?
+    !self.meeting.nil?
+  end
+  def has_meeting?
+    !self.meeting.nil?
   end
   def self.published
     where("datum <= ? AND datum IS NOT NULL", Time.now.to_date)  
@@ -94,22 +97,27 @@ class Neuigkeit < ActiveRecord::Base
     self.has_calentries?
   end
   def update_cache
-    if is_event?
-      unless self.calentries.upcoming.first.nil?
-        self.update_column(:cache_order, (self.calentries.upcoming.first.start.to_date - Date.today).to_i.abs)
-        self.update_column(:cache_relevant_date, self.calentries.upcoming.first.start.to_date)
-      else
-        unless self.calentries.recent.first.nil?
-          self.update_column(:cache_order, (self.calentries.recent.first.start.to_date - Date.today).to_i.abs)
-        self.update_column(:cache_relevant_date, self.calentries.recent.first.start.to_date)
+    if self.has_meeting? && !self.meeting.calentry.nil?
+      self.update_column(:cache_order, (self.meeting.calentry.start.to_date - Date.today).to_i.abs)
+      self.update_column(:cache_relevant_date, self.meeting.calentry.start.to_date)
+    else 
+      if self.is_event?
+        unless self.calentries.upcoming.first.nil?
+          self.update_column(:cache_order, (self.calentries.upcoming.first.start.to_date - Date.today).to_i.abs)
+          self.update_column(:cache_relevant_date, self.calentries.upcoming.first.start.to_date)
+        else
+          unless self.calentries.recent.first.nil?
+            self.update_column(:cache_order, (self.calentries.recent.first.start.to_date - Date.today).to_i.abs)
+            self.update_column(:cache_relevant_date, self.calentries.recent.first.start.to_date)
+          end
         end
-      end
-    else
-      unless self.datum.nil?
-        self.update_column(:cache_order, (self.datum.to_date - Date.today).to_i.abs)
-        self.update_column(:cache_relevant_date, self.datum.to_date)
       else
-        self.update_column(:cache_order,0)
+        unless self.datum.nil?
+          self.update_column(:cache_order, (self.datum.to_date - Date.today).to_i.abs)
+          self.update_column(:cache_relevant_date, self.datum.to_date)
+        else
+          self.update_column(:cache_order,0)
+        end
       end
     end
     unless self.published?
