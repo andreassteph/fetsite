@@ -37,6 +37,7 @@ class Neuigkeit < ActiveRecord::Base
   LINKTYPES=["Thema", "Themengruppe", "Gallery", "Lva","Studium","Fetprofile", "Gremium"]
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
+  after_save :update_cache
 
 
   def is_annoncement?
