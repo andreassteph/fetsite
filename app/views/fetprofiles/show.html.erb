@@ -31,7 +31,7 @@ end
 <div style="max-width:70em" itemtype="http://schema.org/Person" itemscope>
 <meta itemprop="sameAs" content="<%= fetprofile_path(@fetprofile, theme: nil) %>"/>
   <div class="media">
-    <span class="pull-left" itemprop="image" itemscope itemtype="http://schema.org/OmageObject">
+    <span class="pull-left" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
       <span itemprop="thumbnail" itemscope itemtype="http://schema.org/ImageObject">
 	<%= image_tag @fetprofile.picture.portrait.url %>
 	<meta itemprop="url" content="<%= @fetprofile.picture.portrait.url%>" />    
