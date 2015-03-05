@@ -92,7 +92,7 @@ class Ability
     # Rechteverwaltung fuer Neuigkeiten
     can :index, Rubrik
     can [:show], Rubrik, :public=>true
-    can [:list], Neuigkeit, :cache_published=>true, :public=>true
+    can [:list], Neuigkeit, :cache_is_published=>true,  :rubrik=>{:public=>true}
     can :show, Neuigkeit, :rubrik=>{:public=>true}
 
     if loggedin
