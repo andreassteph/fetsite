@@ -13,6 +13,7 @@ module LikeVoteable
       else
         @obj.liked_by current_user
       end
+      @obj.touch
       respond_to do |format|
         format.html {
           redirect_to @obj 
@@ -30,7 +31,7 @@ module LikeVoteable
       else
         @obj.disliked_by current_user
       end
-
+      @obj.touch
       respond_to do |format|
         format.html {
           redirect_to @obj 

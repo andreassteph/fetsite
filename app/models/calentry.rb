@@ -20,7 +20,7 @@ class Calentry < ActiveRecord::Base
   validates :object, :presence => true
   validates :typ, :presence => true
   before_save :get_public
-  belongs_to :object, polymorphic: true # Objekt zu dem der Calentry gehört (derzeit ein Newsartikel)
+  belongs_to :object, polymorphic: true, touch: true # Objekt zu dem der Calentry gehört (derzeit ein Newsartikel)
 
   scope :upcoming, ->{ where("start >= ?", Time.now).order(:start)}
   scope :recent,-> {  where("start <= ?", Time.now).order(:start).reverse_order}

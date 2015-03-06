@@ -1,10 +1,10 @@
 class Meeting < ActiveRecord::Base
-  belongs_to :parent, :polymorphic=>true
+  belongs_to :parent, :polymorphic=>true, touch: true
   belongs_to :meetingtyp
 
   attr_accessible :desc, :intern, :name, :parent_id, :parent_type, :calentry,:calentry_attributes, :meetingtyp_id
 
-  belongs_to :neuigkeit
+  belongs_to :neuigkeit, touch: true
   has_one :protocol,  :class_name=>'Document', :conditions=>{:typ=>10}, :as=>:parent
   has_one :agenda , :as=>:parent,:conditions=>{:typ=>11}, :class_name=>'Document'
   has_one :calentry, as: :object
