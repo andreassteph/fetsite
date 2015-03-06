@@ -67,9 +67,17 @@ class DocumentsController < ApplicationController
   end
   def write
     @document = Document.find(params[:id])
-    if @document.is_etherpad? 
+    if @document.is_etherpad? && params[:versionid].nil?
       redirect_to action: :write_etherpad
     else
+      unless params[:versionid].nil?
+        v=@document.versions.find(params[:versionid])
+        if v.reify.nil?
+          v=v.next
+        end
+        @document=v.reify
+       
+      end
       @parent=@document.parent
       respond_to do |format|
         format.html

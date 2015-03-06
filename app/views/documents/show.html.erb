@@ -7,3 +7,11 @@
 <%= raw(@document.text) %>
 </div>
 
+<% if can?(:edit, @document) %>
+<ul class='breadcrumb'>
+<% @document.versions.each do |v| %>
+<li>
+<%= link_to User.find(v.whodunnit).name+": "+ v.event + " (" +  I18n.l(v.created_at)+ ") ", write_document_path(@document,:versionid=>v.id)  %>
+<% end %> <span class="divider">/</span></li>
+</ul>
+<% end %>
