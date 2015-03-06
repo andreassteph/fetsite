@@ -40,7 +40,7 @@
   
 
 def get_theme
-  if params[:theme]== "default"
+  if params[:theme]== "default" || params[:theme]=="2003"
     params[:theme]="blue1"
     end
   if ThemesForRails.available_theme_names.include?(params[:theme])
