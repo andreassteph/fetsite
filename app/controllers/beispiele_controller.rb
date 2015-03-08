@@ -55,7 +55,7 @@ class BeispieleController < ApplicationController
 
 
     respond_to do |format|
-      unless @lva.nil? || @lva.empty?
+      unless @lva.nil? 
         @beispiel.lva=@lva
             @beispiel.datum=Time.now
         if @beispiel.save
