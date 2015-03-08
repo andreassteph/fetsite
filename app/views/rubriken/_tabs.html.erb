@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
- <li <%=  'class="active"'.html_safe if (request.fullpath == rubriken_path)%> >
+<li <%=  'class="active"'.html_safe if (request.fullpath == rubriken_path)%> >
  <%= link_to I18n.t('rubriken.alle') , rubriken_path %> </li>
 <% for r in @rubriken  %>
 <% if can?(:show, r) %>
