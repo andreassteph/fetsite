@@ -21,11 +21,7 @@
   <% if neuigkeit.has_calentries? %>
   <div class="pull-right" href="#">
     <%= fa_icon("calendar 2x")  %>
-    <% unless neuigkeit.calentries.upcoming.empty? %>
-    <%=  neuigkeit.calentries.upcoming.first.text %>
-    <% else unless neuigkeit.calentries.recent.empty? %>
-    <%=  neuigkeit.calentries.recent.first.text %>
-    <% end %><% end %>
+    <%= neuigkeit.calentries.min{|c| c.days_to_today * ((c.is_past?)? 2:1)}.text %>
   </div>
   <% end %>
 
