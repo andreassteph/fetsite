@@ -2,7 +2,7 @@
 <%= membership.stop.nil? ? I18n.t("gremium.seit")+" " : I18n.t("gremium.von")+" " %>
 <%=membership.start.to_s %> 
 <%= " "+I18n.t("gremium.bis")+" "+membership.stop.to_s unless membership.stop.nil? %> 
-<%= Membership::TYPEN_g[membership.fetprofile.geschlecht.to_i][membership.typ.to_i] %>  <span itemprop="name">
+<%= Membership::TYPEN_g[membership.fetprofile.geschlecht.to_i][membership.typ.to_i] %>  <meta itemprop="name" content="<%= membership.gremium.name"/><span >
 <%= membership.gremium.fall2 %></span>
 <meta itemprop="sameAs" content="<%= gremium_path(membership.gremium, :theme=>nil)%>"/>
 </span>

@@ -1,16 +1,16 @@
 <%= render 'fetprofiles/tabs' %>
-<div class="content-wrap content-column">
+<div class="content-wrap content-column" itemscope itemtype="http://schema.org/Organization">
 
 <p id="notice"><%= notice %></p>
 <div class="content-wrap content-column">
   <%= link_to I18n.t('common.edit'), edit_gremium_path(@gremium) if can? :edit, @gremium%> 
 <div class="container-fluid">
   <div class="row-fluid">
-    <h1>
+    <h1 itemprop="name">
       <%= @gremium.name %>
     </h1>
     <% Gremium::TYPEN[@gremium.typ.to_i].to_s %>
-    <p>
+    <p itemprop="description">
       <%= @gremium.desc.html_safe %>
     </p>
 <% unless @gremium.thema.nil? %>
@@ -25,21 +25,21 @@
   <% @memberships.each_slice(4) do |r| %>
   <div class="row-fluid">
     <% r.each do |m| %>
+    <% cache("member_"+ m.id.to_s+"_portrait"+[m.updated_at m.fetprofile.updated_at].max.utc.to_s) do %>
     <%= link_to m.fetprofile do %>
-    <div class="span3" style="vertical-align:middle; text-align:center">
+    <div class="span3" style="vertical-align:middle; text-align:center" itemprop="hasmember" itemscope itemtype="http://schema.org/Person">
       <%= image_tag m.fetprofile.try(:picture).try(:portrait) %>
+      <meta itemprop="sameAs" content="<%= fetprofile_path(m.fetprofile) %>"/>
       <p> 
 	<% if m.fetprofile.nil?%>
 	PROFIL fehlt
 	<% else %>
-	<%= m.fetprofile.name %> <br>
+	<span itemprop="name"><%= m.fetprofile.name %> </span><br>
 	<%= render(m) %>
 	<% end %>
       </p>
-     
-      
-
     </div> 
+    <% end %>
     <% end %>
     <% end %>
   </div>
