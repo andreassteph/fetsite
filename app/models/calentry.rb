@@ -31,6 +31,28 @@ class Calentry < ActiveRecord::Base
   end  
   
   resourcify
+
+  def is_upcomming?
+    self.start > Time.now
+  end
+  def is_ongoing?
+    (self.start < Time.now) && (Time.now < self.ende) 
+  end
+  def is_past?
+    (Time.now > self.ende) 
+  end
+  def days_to_today
+    if self.is_ongoing? 
+      0
+    else
+      if self.is_upcomming?
+        (self.start.to_date - Date.today).to_i.abs
+      elsif self.is_past?
+        (self.ende.to_date - Date.today).to_i.abs
+      end
+    end
+
+  end
   def get_public
     self.calendar=self.object.calendar unless object.nil? || object.calendar.nil?
     self.public = (self.try(:object).nil?)? (self.calendar.try(:public?)) : object.try(:public?)
