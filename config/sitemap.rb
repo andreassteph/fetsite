@@ -39,12 +39,12 @@ SitemapGenerator::Sitemap.create do
   end
 
   Globalize.with_locale(:de) do 
-    Neuigkeit.public.find_each do |neuigkeit|
+    Neuigkeit.public.published_scope.find_each do |neuigkeit|
       add neuigkeit_path(neuigkeit,:locale=>:de,:theme=>"default"),:lastmod=>neuigkeit.updated_at, :news=>{:title=>neuigkeit.title, :publication_language=>"de",:publication_name=>"Fachschaft Elektrotechnik - "+neuigkeit.rubrik.name, :publication_date=>neuigkeit.datum}
     end
   end
   Globalize.with_locale(:en) do 
-    Neuigkeit.public.with_translations(:en).find_each do |neuigkeit|
+    Neuigkeit.public.published_scope.with_translations(:en).find_each do |neuigkeit|
       add neuigkeit_path(neuigkeit,:locale=>:en,:theme=>"default"),:lastmod=>neuigkeit.updated_at, :news=>{:title=>neuigkeit.title,:publication_language=>"en",:publication_name=>"Fachschaft Elektrotechnik - "+neuigkeit.rubrik.name,:publication_date=>neuigkeit.datum}
     end
   end
