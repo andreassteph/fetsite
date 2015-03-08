@@ -103,7 +103,7 @@ class Neuigkeit < ActiveRecord::Base
       self.update_column(:cache_relevant_date, self.meeting.calentry.start.to_date)
     else 
       if self.is_event? 
-        c = n.calentries.min{|c| c.days_to_today * ((c.is_past?)? 2:1)}
+        c = self.calentries.min{|c| c.days_to_today * ((c.is_past?)? 2:1)}
         self.update_column(:cache_order,  c.days_to_today * ((c.is_past?)? 2:1))
         self.update_column(:cache_relevant_date, (c.is_past?) ? c.ende.to_date : c.start.to_date)
       else
