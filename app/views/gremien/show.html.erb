@@ -25,7 +25,7 @@
   <% @memberships.each_slice(4) do |r| %>
   <div class="row-fluid">
     <% r.each do |m| %>
-    <% cache("member_"+ m.id.to_s+"_portrait"+[m.updated_at m.fetprofile.updated_at].max.utc.to_s) do %>
+    <% cache(("member_" + m.id.to_s + "_portrait" + ([m.updated_at, m.try(:fetprofile).try(:updated_at)].max.utc.to_s))) do %>
     <%= link_to m.fetprofile do %>
     <div class="span3" style="vertical-align:middle; text-align:center" itemprop="hasmember" itemscope itemtype="http://schema.org/Person">
       <%= image_tag m.fetprofile.try(:picture).try(:portrait) %>
