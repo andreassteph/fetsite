@@ -85,9 +85,17 @@ end
       summary
     end
   end
-def text
-   I18n.l(self.start) +" "+ I18n.t("cal.bis")+" "+ I18n.l(self.ende) 
-end
+  def icon_text
+    ApplicationController.helpers.fa_icon("calendar 2x") + self.text
+  end
+  def text
+    if (self.start.to_date - self.ende.to_date) < 1.day
+      format=:timeonly
+    else
+      format =:default
+    end
+     I18n.l(self.start) +" "+ I18n.t("cal.bis")+" "+ I18n.l(self.ende, :format=>format) 
+  end
   scope :public, -> { where(:public => :true) } 
  # scope :upcoming, -> { where("start >= ?" , Time.now).where("start <= ?", 28.days.from_now) }
 end

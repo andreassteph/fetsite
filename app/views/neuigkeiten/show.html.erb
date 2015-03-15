@@ -1,9 +1,9 @@
 <%= content_for :header do %>
 <title>Fetsite - <%=  @neuigkeit.title %> (<%= @neuigkeit.rubrik.name %>)</title>
 <% set_meta_tags :author => fetprofile_path(@neuigkeit.author.fetprofile) unless @neuigkeit.author.fetprofile.nil? %>
-<% unless @neuigkeit.picture.url.nil?
+<% unless @neuigkeit.picture_robust.url.nil?
    picture_url=URI(root_url)
-   picture_url.path=@neuigkeit.picture.url(:locale=>nil, :theme=>nil)
+   picture_url.path=@neuigkeit.picture_robust.url(:locale=>nil, :theme=>nil)
 end
 %>
 <% set_meta_tags :og => {
@@ -49,9 +49,9 @@ end
     <div class="sticker sticker-red"> Not Published</div> <% end %>
     
     <div class="media">
-      <% unless @neuigkeit.picture.big_thumb.to_s.empty? %>
+      <% unless @neuigkeit.picture_robust.big_thumb.to_s.empty? %>
       <div class="pull-left" href="#">
-	<p><br><%= link_to image_tag(@neuigkeit.picture.big_thumb.url),@neuigkeit.picture.try(:url)  %>
+	<p><br><%= link_to image_tag(@neuigkeit.picture_robust.big_thumb.url),@neuigkeit.picture_robust.try(:url)  %>
 	</p>
       </div>
       <% end %>

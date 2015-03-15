@@ -1,8 +1,10 @@
 <div class="media" itemscope itemtype="http://schema.org/Article"> 
 <meta itemprop="sameAs" content="<%= rubrik_neuigkeit_path(neuigkeit.rubrik,neuigkeit, {theme: nil,locale: nil})%>"/>
+<meta itemprop="url" content="<%= rubrik_neuigkeit_path(neuigkeit.rubrik,neuigkeit, {theme: nil,locale: nil})%>"/>
+
   <div class="pull-left" href="#">
     <p><br>
-<%  unless neuigkeit.picture.url.nil? %><%= image_tag neuigkeit.picture.thumb.url  %> <meta imageprop="thumbnailUrl" content="<%= neuigkeit.picture.thumb.url%>"/>
+<%  unless neuigkeit.picture_robust.url.nil? %><%= image_tag neuigkeit.picture_robust.thumb.url  %> <meta imageprop="thumbnailUrl" content="<%= neuigkeit.picture_robust.thumb.url%>"/>
    <% end %> </p>
   </div>
   <div class="media-body">

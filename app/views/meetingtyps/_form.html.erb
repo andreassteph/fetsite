@@ -4,6 +4,9 @@
       <%= f.input :rubrik %>
       <%= f.input :agendaintern %>
       <%= f.input :protocolintern %>
+      <%= image_tag @meetingtyp.picture.thumb.url %>
+      <%= f.input :picture %>
+
   <% end %>
   <%= f.actions do %>
   <%= f.action :submit, :as => :input %>

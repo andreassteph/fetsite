@@ -1,13 +1,6 @@
 <div class="contentbox" id="calentry_<%= calentry.id%>">
   <% image_tag("/iconnavy/time.png")  %>
-  <%= fa_icon("calendar 2x") %>
-
-  <% if (calentry.start.to_date - calentry.ende.to_date) < 1.day
-     format=:timeonly
-     else
-     format =:default
-     end %>
-  <%= calentry.text %>
+  <%= calentry.icon_text %>
 <% if !(defined? manage) || manage %>
   <%= link_to "edit", edit_calentry_path(calentry),:remote=>true if can? :edit, calentry %>
   <%= link_to 'Delete', calentry, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, calentry %>

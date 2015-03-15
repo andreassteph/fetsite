@@ -21,6 +21,7 @@ class MeetingsController < ApplicationController
     m=Meeting.find(params[:id])
     m.create_announcement(current_user)
     m.save
+    @meeting=Meeting.find(params[:id])
    
     respond_to do |format|
       format.html {redirect_to m.parent}

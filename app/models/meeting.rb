@@ -21,6 +21,7 @@ class Meeting < ActiveRecord::Base
   def title
     self.text
   end
+  
   def text
     unless self.meetingtyp.try(:name).to_s.empty?  
       t =  self.meetingtyp.name.to_s+", "
@@ -29,17 +30,22 @@ class Meeting < ActiveRecord::Base
       t = parent.title.to_s + ", " if self.name.empty?
     end 
     t= t+ self.name.to_s
-    t = t + " " + I18n.l(self.calentry.start) unless self.calentry.nil?
+ #    t = t + " " + I18n.l(self.calentry.start) unless self.calentry.nil?
+    t = t +" am "+ self.calentry.text unless self.calentry.nil?
     t
   end
   def create_announcement(user)
+    if self.neuigkeit.nil?
     n = Neuigkeit.new
     
     n.title=self.text
     n.text ="Agenda im Anhang"
     n.rubrik = self.meetingtyp.rubrik
     n.author=user
+    n.save    
     self.neuigkeit= n
+    end
+    
   end
   def fix_calentry
     self.calentry.object=self unless self.calentry.nil?

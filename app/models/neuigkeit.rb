@@ -39,7 +39,17 @@ class Neuigkeit < ActiveRecord::Base
   before_validation :sanitize
   after_save :update_cache
 
-
+  def picture_robust
+    unless self.picture.url.nil?
+      return self.picture
+    else
+      if self.has_meeting?
+       return self.meeting.meetingtyp.picture
+      else
+        return self.picture
+      end
+    end
+  end
   def is_annoncement?
     !self.meeting.nil?
   end
