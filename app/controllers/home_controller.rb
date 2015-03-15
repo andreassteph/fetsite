@@ -5,6 +5,10 @@ class HomeController < ApplicationController
     if Thema.count>0
     t=YAML.load_file("#{::Rails.root.to_s}/config/start_topic.yml")
     @rubriken= Rubrik.accessible_by(current_ability, :show)
+
+    params[:month]= Date.today.month if params[:month].nil?
+    params[:year]= Date.today.year if params[:year].nil?
+        
     @calentries= (@rubriken.map {|r| r.calendar}).collect(&:calentries).flatten.select {|c| c.object !=nil}
 
     @starttopic= @themen = Thema.where(:id=>t).first

@@ -10,6 +10,9 @@ class RubrikenController < ApplicationController
   #    @neuigkeiten = Neuigkeit.public.published.page(params[:page]).per(3)
   #  end   
     
+    params[:month]= Date.today.month if params[:month].nil?
+    params[:year]= Date.today.year if params[:year].nil?
+        
     @rubriken= Rubrik.accessible_by(current_ability, :show)
     @neuigkeiten = Neuigkeit.accessible_by(current_ability, :list).page(params[:page]).per(3)
     
@@ -28,6 +31,9 @@ class RubrikenController < ApplicationController
     @rubrik = Rubrik.find(params[:id])
     @moderatoren=User.with_role(:newsmoderator,@rubrik)
 
+    params[:month]= Date.today.month if params[:month].nil?
+    params[:year]= Date.today.year if params[:year].nil?
+        
     @calentries= @rubrik.calendar.calentries.select {|c| c.object !=nil}
     @neuigkeiten = @rubrik.neuigkeiten.accessible_by(current_ability, :list).page(params[:page]).per(3)
 
