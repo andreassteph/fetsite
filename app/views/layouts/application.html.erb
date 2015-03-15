@@ -25,15 +25,20 @@
       <div class="row-fluid">
 	<div class="span10 offset1 header_span">
 	  <div class="header_wrap">
-	    <div class="header">
-	      
+	    <div class="header hidden-print">
 	      <%= link_to home_index_path do %>
 	      <!-- <span class="feticon-fet_logo fa-4x color-1"> </span>-->
 	      <%=  image_tag('/logo2014_64.png',{:style=>"float:left;height:50px",:height=>"50"}) %>
 	      <% end %>
 	    </div>
-	    
-	    <div id="menudiv" style="margin-top:12px">
+	    <div class="header visible-print">
+	    <%=  image_tag('/logo2014_64.png',{:style=>"float:left;height:50px",:height=>"50"}) %>
+	    </div>
+	    <div class="visible-print">
+	      Fachschaft Elektrotechnik 
+	    <hr/>
+		</div>
+	    <div id="menudiv" style="margin-top:12px" class="hidden-print">
 	      <%= render :template => 'layouts/menu' %>
 	    </div>
 

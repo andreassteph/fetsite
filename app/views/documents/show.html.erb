@@ -1,14 +1,18 @@
+<div class="hidden-print">
 <li><%= link_to "Back to parent" , @document.parent %></li>
 <li><%= link_to ff_icon("icon-pencil") + "Edit", write_document_path(@document) %></li>
 <li><%= link_to ff_icon("icon-refresh")+"Refresh from Etherpad", read_from_etherpad_document_path(@document) if @document.is_etherpad? %></li>
 <li><%= link_to "Copy Document to Etherpad", dump_to_etherpad_document_path(@document)  , confirm: "Sicher? Löscht alle Änderungen im Etherpad"%></li>
+<li>  <%= link_to 'Delete', @document, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, @document %>
+</li>
+</div>
 <h2><%= @document.name %></h2>
 <div id="">
 <%= raw(@document.text) %>
 </div>
 
 <% if can?(:edit, @document) %>
-<ul class='breadcrumb'>
+<ul class='breadcrumb hidden-print'>
 <% @document.versions.each do |v| %>
 <li>
 <%= link_to User.find(v.whodunnit).name+": "+ v.event + " (" +  I18n.l(v.created_at)+ ") ", write_document_path(@document,:versionid=>v.id)  %>

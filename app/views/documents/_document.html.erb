@@ -5,5 +5,4 @@
 <%= link_to document.name, document %>
 
   <%= link_to "edit", edit_document_path(document),:remote=>true if can? :edit, document %>
-  <%= link_to 'Delete', document, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, document %>
 </div>

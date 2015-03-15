@@ -2,7 +2,24 @@
 <a name="thema_<%=small.id%>" href="#<%=small.id%>">
 <div itemscope itemtype="http://schema.org/Article">
 <meta itemprop="sameAs" content="<%= thema_url(small, {theme:nil, locale:nil})%>"/>
-  <h2><span itemprop="name"><%= link_to small.title,small %></span> <%= link_to fa_icon("pencil"), verwalten_thema_path(small) if can? :edit, small  %>   </h2>
+  <h2><span itemprop="name"><%= link_to small.title,small %></span> 
+<% if can?(:edit,small) %> 
+<span> 	  
+<div class="navbar-btn nav" style="display:inline">
+  <%= link_to fa_icon("pencil"), verwalten_thema_path(small) , class: "btn btn-link navbar-btn" if can? :edit, small  %>
+  <div class="btn-group">
+    <button type="button" class="btn btn-link dropdown-toggle" data-hover="dropdown" aria-expanded="false">
+      <%= fa_icon('plus') %>
+    </button>
+    <ul class="dropdown-menu" role="menu">	 
+      <li><%= link_to ff_icon('ffi1-cleaning1')+" Neues Dokument", new_document_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
+      </li>
+      <li><%= link_to "Neues Meeting", new_meeting_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
+</li>
+</ul>	  
+  </div></div>
+</span>
+<% end %></h2>
 </a>
 <%= image_tag small.titlepics.first.datei.url unless small.titlepics.first.nil? %>
 <% if small.is_outdated? %>
@@ -25,7 +42,9 @@
 <% end %>
 
 
-<% if can?(:edit,small) || !small.meetings.empty? %>
+<% if can?(:edit,small) %> 
+<div id="<%= Meeting.new_divid_for(small) %>"></div>
+<% if !small.meetings.empty? %>
 <b>Treffen/Sitzungen</b>
 <%= link_to "Neues Meeting", new_meeting_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
 <div id="<%= Meeting.new_divid_for(small) %>"></div>
@@ -35,15 +54,17 @@
 </ul>
 <%= render :partial=>"meetings/meeting_list", object: small.meetings, locals: {parent: small} %>
 <% end %>
+<% end %>
 
 
-<% if can?(:edit,small)|| ! small.documents.empty? %>
-
-<b>Dokumente</b>
-<%= link_to "Neues Dokument", new_document_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
+<% if can?(:edit,small) %>
 <div id="<%= Document.new_divid_for(small) %>"></div>
 
 <% unless small.documents.empty? %>
+<b>Dokumente</b>
+<%= link_to "Neues Dokument", new_document_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
+
+
 
 <% small.documents.each do |d| %>
 <%= render d %>
