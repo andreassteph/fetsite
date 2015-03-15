@@ -2,7 +2,7 @@
 
   <%= content_tag wrap_in do %>
 
-  <% cache("neuigkeit_"+neuigkeit.id.to_s+"_"+neuigkeit.updated_at.try(:utc).try(:to_s)) do %>
+  <% cache("neuigkeit_"+neuigkeit.id.to_s+"_"+I18n.locale+neuigkeit.updated_at.try(:utc).try(:to_s)) do %>
     <% c =[:linkbox] %>
     <% c << "color-"+neuigkeit.rubrik.color.to_s+"-dark" unless neuigkeit.rubrik.color.nil? %> 
     <% c << "unpublished" unless neuigkeit.published? %>
@@ -14,7 +14,7 @@
  <% end %>
 <% else %>
 
-<% cache("neuigkeit_"+neuigkeit.id.to_s+"_"+neuigkeit.updated_at.try(:utc).try(:to_s)) do %>
+<% cache("neuigkeit_"+neuigkeit.id.to_s+"_"+I18n.locale+neuigkeit.updated_at.try(:utc).try(:to_s)) do %>
  
 <% c =[:linkbox] %>
 <% c << "color-"+neuigkeit.rubrik.color.to_s+"-dark" unless neuigkeit.rubrik.color.nil? %>
