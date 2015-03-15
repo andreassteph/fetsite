@@ -82,7 +82,7 @@
 </p>
       <%= link_to t("beispiel.zip") , beispiel_sammlung_lva_path(@lva), class: :linkbox %>
       <% @lva.beispiele.order(:datum).each do |b| %>
-      <% cache("beispiel_"  +I18n.locale+b.id.to_s + "_" + b.updated_at.try(:utc).try(:to_s)) do %>
+      <% cache("beispiel_"  +I18n.locale.to_s+b.id.to_s + "_" + b.updated_at.try(:utc).try(:to_s)) do %>
 	 <%= render b%>
       <% end %>
       <% end %>
