@@ -47,7 +47,7 @@
 </div>
 <div class="span3">
 
-<% cache("calendar_" + @calentries.map{|c| c.id}.join('') + @calentries.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s) do %>
+<% cache("calendar_" + @calentries.map{|c| c.id}.join('') + @calentries.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s+params[:month]+params[:year]) do %>
 <%= render 'calendars/calentries', :object=>@calentries %>
 <% end %>
 
