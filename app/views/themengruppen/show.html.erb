@@ -11,7 +11,7 @@
 <% end %>
 
 <div class="content-wrap content-column" >
-  <ul class="linklist">
+  <ul class="linklist hidden-print">
     <% if @themengruppe.public %>
     <li><%= link_to fa_icon("arrow-circle-left 2x")+I18n.t("themengruppe.showall"), themengruppen_path, :class=>"linkbox" %></li>
     <% else %>
@@ -20,8 +20,9 @@
     <li><%= link_to fa_icon("question 2x")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path(:anchor=>"themengruppe_"+@themengruppe.id.to_s), :class=>"linkbox" %>
     </li>
   </ul>
+<div class="hidden-print">
   <%= render :partial=>'layouts/pretty_toolbar' %>
-
+</div>
   <h1>	<% unless @themengruppe.icon.nil? or @themengruppe.icon.empty? %>      <i class="<%= @themengruppe.icon %>" style="font-size:1.5em;margin:0"></i>
       <% end %>
 <%= @themengruppe.title %></h1>
@@ -37,7 +38,9 @@
 	<ul class="unstyled">
 	  <% unless thema.gremium.nil? %>
 	  <li>
-	    <%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
+	    <%= link_to  thema.gremium,:class=>"linkbox" do %>
+	    <%= render partial: "gremien/nlink", object: thema.gremium %>
+	    <% end %>
 	  </li>
 	  <% end %>		
 	  

@@ -39,7 +39,11 @@
   <ul class="unstyled">
     <% unless thema.gremium.nil? %>
     <li>
-      <%= link_to fa_icon("users 2x")+thema.gremium.name , thema.gremium,:class=>"linkbox" %>
+      
+      <%= link_to  thema.gremium,:class=>"linkbox" do %>
+      <%= render partial: "gremien/nlink", object: thema.gremium %>
+      <% end %>
+
     </li>
     <% end %>		
 	  
