@@ -4,6 +4,9 @@ class HomeController < ApplicationController
     @neuigkeiten = Neuigkeit.recent
     if Thema.count>0
     t=YAML.load_file("#{::Rails.root.to_s}/config/start_topic.yml")
+    @rubriken= Rubrik.accessible_by(current_ability, :show)
+    @calentries= (@rubriken.map {|r| r.calendar}).collect(&:calentries).flatten.select {|c| c.object !=nil}
+
     @starttopic= @themen = Thema.where(:id=>t).first
     else
       @starttopic=@themen = nil
