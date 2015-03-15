@@ -56,7 +56,7 @@
   </ul>
 </div>
 <div class="span3">
-<% cache("calendar_" + @calentries.pluck(:id).join('') + @calentries.order(:updated_at).reverse_order.pluck(:updated_at).first.to_i.to_s) do %>
+<% cache("calendar_" + @calentries.map{|c| c.id}.join('') + @calentries.max{|c|c.updated_at}.updated_at.to_i.to_s) do %>
 <%= render 'calendars/calentries', :object=>@calentries %>
 <% end %>
 
