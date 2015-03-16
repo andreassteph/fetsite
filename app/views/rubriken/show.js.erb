@@ -1,4 +1,4 @@
-<% cache("jsneuigkeiten_" + @neuigkeiten.pluck(:id).join('') + @neuigkeiten.order(:updated_at).reverse_order.pluck(:updated_at).first.to_i.to_s) do %>
+<% cache("jsneuigkeiten_" + I18n.locale.to_s+@neuigkeiten.pluck(:id).join('') + @neuigkeiten.order(:updated_at).reverse_order.pluck(:updated_at).first.to_i.to_s) do %>
 $('#neuigkeiten').append('<%= j render @neuigkeiten,  :wrap_in => :li %>');
 <% end %>
 <% if @neuigkeiten.next_page %>
