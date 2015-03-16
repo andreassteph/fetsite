@@ -35,7 +35,9 @@ end
   <div class="contentbox" itemscope itemtype="http://schema.org/Article">
     <meta itemprop="about" content="<%= @neuigkeit.text_first_words %>"/>
     <meta itemprop="sameAs" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
-    <div class="row-fluid">
+   <meta itemprop="url" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
+  
+   <div class="row-fluid">
       <span itemprop="articleSection">
 	<%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
       </span>
