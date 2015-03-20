@@ -4,6 +4,10 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<%= absurl("/logo2014_64.png")%>"> 
+    
+    <link rel="alternate" hreflang="de" href="<%= url_for(params.merge(:locale=>:de))%>" />
+
+    <link rel="alternate" hreflang="en" href="<%= url_for(params.merge(:locale=>:en))%>" />
     <!--<link rel="shortcut icon" href="http://www.fet.at/favicon.ico">-->
     <!---->
     
