@@ -28,6 +28,7 @@
     <div id="maincontainer" class="container-fluid">
       <div class="row-fluid">
 	<div class="span10 offset1 header_span">
+	  <% cache("menu_u"+user_signed_in?.to_s+current_user.try(:id).to_s+"l"+I18n.locale.to_s+ can?(:seeintern, User).to_s+ can?(:index,Gallery).to_s, expires_in: 24.hours) do %>
 	  <div class="header_wrap">
 	    <div class="header hidden-print">
 	      <%= link_to home_index_path do %>
@@ -47,6 +48,7 @@
 	    </div>
 
 	  </div>     
+	  <% end %>
 	</div>
       </div>
       <div class="row-fluid">	
