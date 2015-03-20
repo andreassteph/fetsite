@@ -118,7 +118,7 @@ class Neuigkeit < ActiveRecord::Base
         self.update_column(:cache_relevant_date, (c.is_past?) ? c.ende.to_date : c.start.to_date)
       else
         unless self.datum.nil?
-          self.update_column(:cache_order, (self.datum.to_date - Date.today).to_i.abs)
+          self.update_column(:cache_order, (((self.datum.to_date - Date.today).to_i)/3).abs-1)
           self.update_column(:cache_relevant_date, self.datum.to_date)
         else
           self.update_column(:cache_order,0)
