@@ -1,23 +1,20 @@
-<div class="media" itemscope itemtype="http://schema.org/Article"> 
-<meta itemprop="sameAs" content="<%= rubrik_neuigkeit_path(neuigkeit.rubrik,neuigkeit, {theme: nil,locale: nil})%>"/>
-<meta itemprop="url" content="<%= rubrik_neuigkeit_path(neuigkeit.rubrik,neuigkeit, {theme: nil,locale: nil})%>"/>
-
+<div class="media"> 
   <div class="pull-left" href="#">
     <p><br>
-<%  unless neuigkeit.picture_robust.url.nil? %><%= image_tag neuigkeit.picture_robust.thumb.url  %> <meta imageprop="thumbnailUrl" content="<%= neuigkeit.picture_robust.thumb.url%>"/>
+<%  unless neuigkeit.picture_robust.url.nil? %><%= image_tag neuigkeit.picture_robust.thumb.url  %> 
    <% end %> </p>
   </div>
   <div class="media-body">
     <div>
-      <small><%= ff_icon(neuigkeit.rubrik.icon) unless neuigkeit.rubrik.icon.nil? or neuigkeit.rubrik.icon.empty? %>&nbsp;<span itemprop="articleSection"><%= neuigkeit.rubrik.name %></span></small> 
+      <small><%= ff_icon(neuigkeit.rubrik.icon) unless neuigkeit.rubrik.icon.nil? or neuigkeit.rubrik.icon.empty? %>&nbsp;<span><%= neuigkeit.rubrik.name %></span></small> 
       <% unless neuigkeit.has_calentries? %> <small class="pull-right"><% unless neuigkeit.try(:datum).try(:to_date).nil? %> 
 <%= I18n.t("neuigkeit.am") %>
-<span itemprop="datePublished" datetime="<%= neuigkeit.try(:datum).to_formatted_s(:iso8601) unless neuigkeit.try(:datum).nil? %>"> <%= I18n.l(neuigkeit.try(:datum).try(:to_date))%> </span>  
-<% end %> </small> <% else %> <meta itemprop="datePublished" content="<%= neuigkeit.try(:datum).to_formatted_s(:iso8601) unless neuigkeit.try(:datum).nil? %>"/> <% end %>
+<span  datetime="<%= neuigkeit.try(:datum).to_formatted_s(:iso8601) unless neuigkeit.try(:datum).nil? %>"> <%= I18n.l(neuigkeit.try(:datum).try(:to_date))%> </span>  
+<% end %> </small> <% else %>  <% end %>
     </div>
-    <h1 itemprop="name"> 
+    <h1 > 
       <%= neuigkeit.title%>
-    </h1><div itemprop="description">
+    </h1><div>
     <%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%></div>
   </div>
   <% if neuigkeit.has_calentries? %>
