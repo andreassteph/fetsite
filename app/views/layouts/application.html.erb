@@ -4,6 +4,10 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<%= absurl("/logo2014_64.png")%>"> 
+    
+    <link rel="alternate" hreflang="de" href="<%= url_for(params.merge(:locale=>:de))%>" />
+
+    <link rel="alternate" hreflang="en" href="<%= url_for(params.merge(:locale=>:en))%>" />
     <!--<link rel="shortcut icon" href="http://www.fet.at/favicon.ico">-->
     <!---->
     
@@ -24,6 +28,7 @@
     <div id="maincontainer" class="container-fluid">
       <div class="row-fluid">
 	<div class="span10 offset1 header_span">
+	  <% cache("menu_u"+user_signed_in?.to_s+current_user.try(:id).to_s+"l"+I18n.locale.to_s+ can?(:seeintern, User).to_s+ can?(:index,Gallery).to_s, expires_in: 24.hours) do %>
 	  <div class="header_wrap">
 	    <div class="header hidden-print">
 	      <%= link_to home_index_path do %>
@@ -43,6 +48,7 @@
 	    </div>
 
 	  </div>     
+	  <% end %>
 	</div>
       </div>
       <div class="row-fluid">	
