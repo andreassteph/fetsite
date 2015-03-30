@@ -8,9 +8,9 @@
     <div>
       <small><%= ff_icon(neuigkeit.rubrik.icon) unless neuigkeit.rubrik.icon.nil? or neuigkeit.rubrik.icon.empty? %>&nbsp;<span><%= neuigkeit.rubrik.name %></span></small> 
       <% unless neuigkeit.has_calentries? %> <small class="pull-right"><% unless neuigkeit.try(:datum).try(:to_date).nil? %> 
-<%= I18n.t("neuigkeit.am") %>
-<span  datetime="<%= neuigkeit.try(:datum).to_formatted_s(:iso8601) unless neuigkeit.try(:datum).nil? %>"> <%= I18n.l(neuigkeit.try(:datum).try(:to_date))%> </span>  
-<% end %> </small> <% else %>  <% end %>
+	<%= I18n.t("neuigkeit.am") %>
+	<span  datetime="<%= neuigkeit.try(:datum).to_formatted_s(:iso8601) unless neuigkeit.try(:datum).nil? %>"> <%= I18n.l(neuigkeit.try(:datum).try(:to_date))%> </span>  
+	<% end %> </small> <% else %>  <% end %>
     </div>
     <h1 > 
       <%= neuigkeit.title%>
@@ -20,7 +20,7 @@
   <% if neuigkeit.has_calentries? %>
   <div class="pull-right" href="#">
     <%= fa_icon("calendar 2x")  %>
-    <%= neuigkeit.calentries.min{|c| c.days_to_today * ((c.is_past?)? 2:1)}.text %>
+    <%= neuigkeit.relevant_calentry.text %>
   </div>
   <% end %>
 
