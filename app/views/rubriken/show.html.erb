@@ -46,11 +46,11 @@
 </div>
 </div>
 <div class="span3">
-
+<% unless @calentries.nil? || @calentries.empty? %>
   <% cache("calendar_" + @calentries.map{|c| c.id}.join('') + @calentries.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s+"_"+I18n.locale.to_s+params[:month].to_s+params[:year].to_s) do %>
 <%= render 'calendars/calentries', :object=>@calentries %>
 <% end %>
-
+<% end %>
 <%= link_to "ics-format", calendar_path(@rubrik.calendar,:format=>:ics) %>
 </div>
 

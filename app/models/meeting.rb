@@ -42,6 +42,7 @@ class Meeting < ActiveRecord::Base
     n.text ="Agenda im Anhang"
     n.rubrik = self.meetingtyp.rubrik
     n.author=user
+      n.datum=Date.today
     n.save    
     self.neuigkeit= n
     end
