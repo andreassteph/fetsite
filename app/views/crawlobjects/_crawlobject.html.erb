@@ -1,0 +1,11 @@
+<li><%= link_to crawlobject.url do %> <b> <%= crawlobject.name %> (<%= crawlobject.published_at %>)</b> <%= crawlobject.text %>
+<% end %>
+
+  <% if crawlobject.children.count >0  %> 
+<ul>
+<% crawlobject.children.each do |cc| %>
+<%= render cc %>
+<% end %>
+</ul>
+<% end %>
+</li> 

@@ -46,7 +46,7 @@ class Lva < ActiveRecord::Base
   has_many :beispiele , :class_name => "Beispiel"
   has_and_belongs_to_many :lecturers
   has_many :nlinks, as: :link
-  
+  has_many :crawlobjects, :as=>:something
 #  scope :search, ->(query) {where("name like ? or lvas.desc like ?", "%#{query}%", "%#{query}%")} 
   
   validates :lvanr,:format=>{ :with => /^[0-9][0-9][0-9]\.[0-9A][0-9][0-9]$/}, :presence=>true, :uniqueness=>true # , :uniqueness=>true # LVA-Nummer muss das Format 000.000 besitzen (uniqueness?) oder 000 für nicht 
@@ -234,5 +234,33 @@ class Lva < ActiveRecord::Base
     newlvas
     
   end
+
+
+  def read_et_forum
+    lva=self
+    url=lva.forumlink
+    ans = JSON.parse(`python ../microdata/downloadlogin.py #{url}`)
+    ans.each do |a|
+      if Crawlobject.where(:objhash=>Digest::SHA512.hexdigest(a.to_json), :objtype=>1).count ==0
+        aa = Crawlobject.new(:raw=>a.to_json)
+        aa.objtype=1
+        aa.parse_object
+        aa.calc_hash
+        aa.something=lva
+        if Crawlobject.where(:objhash2=>aa.objhash2, :objtype=>1).count==0
+            aa.save
+        else
+          aa=Crawlobject.where(:objhash2=>aa.objhash2).first
+          aa.raw=a.to_json
+          aa.parse_object
+          aa.calc_hash
+          aa.save
+        end
+      end
+    end
+  end
+
+
  
 end
+
