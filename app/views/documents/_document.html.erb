@@ -4,5 +4,5 @@
   <%= fa_icon("file-text") %>
 <%= link_to document.name, document %>
 
-  <%= link_to "edit", edit_document_path(document),:remote=>true if can? :edit, document %>
+  <%= link_to "rename", edit_document_path(document),:remote=>true if can? :edit, document %>
 </div>

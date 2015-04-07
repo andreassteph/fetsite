@@ -32,9 +32,12 @@ class FotoUploader < CarrierWave::Uploader::Base
   # end
 
   # general settings
+
   process :fix_exif_rotation
+  process :store_exif
   process :strip
   process :convert => 'jpg'
+  
 
   # Create different versions of your uploaded files:
    version :thumb do
@@ -62,5 +65,9 @@ class FotoUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-
+   def store_exif
+     img = Magick::Image.read(current_path)
+     model.exif=img.first.get_exif_by_entry().to_json
+  
+   end
 end

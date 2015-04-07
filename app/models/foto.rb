@@ -15,6 +15,7 @@ class Foto < ActiveRecord::Base
   attr_accessible :datei, :desc, :gallery_id, :title
   belongs_to :gallery
   mount_uploader :datei, FotoUploader
+  before_save :parse_exif
     resourcify
     def to_jq_upload
   {
@@ -28,4 +29,11 @@ class Foto < ActiveRecord::Base
     "delete_type" => "DELETE" 
    }
   end
+    def parse_exif
+      unless self.exif.nil? || self.exif.empty?
+        j=JSON.parse(self.exif)
+        datetime = j.select {|i| i.first == "DateTime"}.try(:first).try(:last)
+        self.taken_at=Time.new(datetime) unless datetime.nil?
+      end
+    end
 end

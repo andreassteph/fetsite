@@ -29,14 +29,11 @@ end
   end 
   version :thumb ,:if=>:image? do
     process :resize_to_fill => [64, 64]
-    process :convert => :jpg
 
-    def full_filename(for_file)
-      super.chomp(File.extname(super)) + '.jpg'
-    end 
   end
 
-  version :cover  , :if=>:image? do
+
+  version :cover  , :if=>:pdf? do
     process :cover
     process :resize_to_fit => [64,64]
     process :convert => :jpg
@@ -44,9 +41,11 @@ end
       super.chomp(File.extname(super)) + '.jpg'
     end
   end
+
   version :thumb_small , :if=>:image? do
     process :resize_to_fill => [32, 32]
   end
+
   version :thumb_big , :if=>:image? do
 
     process :resize_to_fill => [200, 200]
@@ -56,6 +55,10 @@ end
     end 
 
   end
+  version :big_thumb  , :if=>:image? do 
+    process :resize_to_fill => [200,200]  
+  end
+
   version :resized, :if=>:image? do
     process :resize_to_fit => [1024,1024]
   end
@@ -92,7 +95,9 @@ end
   def extention
     File.extname(full_filename(file.file)).downcase
   end
-
+  def pdf?(for_file)
+    %w(.pdf).include?(File.extname(full_filename(for_file.file)).downcase) 
+ end
   def image?(for_file)
     %w(.jpg .png .jpeg).include?(File.extname(full_filename(for_file.file)).downcase)
   end

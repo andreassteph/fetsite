@@ -1,0 +1,14 @@
+<% attachment=attachment_new %> 
+ <% data_ext = attachment.datei.file.try(:extension).try(:downcase) %>
+    
+ 
+  <% if (!["jpg","png","jpeg"].find_index(data_ext).nil?) %>
+  <%= image_tag attachment.datei.thumb_small.url %>
+  <% elsif (!["pdf"].find_index(data_ext).nil?)%>
+  <%= image_tag attachment.datei.cover.url %>
+  
+  <% else %>
+  <%= ff_icon("ffi1-note20 fa-2x") %>
+  
+  <% end %>
+  <%=  attachment.name  %>    

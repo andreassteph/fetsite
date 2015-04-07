@@ -9,6 +9,7 @@ class Document < ActiveRecord::Base
   validate :parent, :presence=>true
   has_paper_trail
   TYPS = { 1=>"fet_docs", 10=>"protocol", 11=> "agenda"}
+  has_many :attachments, :as=>:parent
   def long_name 
     if self.parent.class=="Meeting"
       "<b>"+self.parent.text+ "</b>"+ self.name

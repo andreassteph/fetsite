@@ -78,6 +78,9 @@ end
 <%= render @neuigkeit.meeting %>
 <% end%>
 <div id="calentry_new" ><%= link_to "new Calentry",  new_calentry_path(:object_id=>@neuigkeit.id, :object_type=>"Neuigkeit"), :remote=>true if can? :edit, @neuigkeit  %></div>
+
+<%=   %>
+<%= render_attachments_for(@neuigkeit) %>
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 </div>
 <%= render partial: 'nlink_list_whole', :object=>@neuigkeit.nlinks %>

@@ -12,17 +12,22 @@
 
 class Attachment < ActiveRecord::Base
   has_paper_trail
-  attr_accessible :name, :datei, :datei_cache,:flag_titlepic
+  attr_accessible :name, :datei, :datei_cache,:flag_titlepic,:parent_id, :parent_type
   belongs_to :thema
   mount_uploader :datei, AttachmentUploader
-  validates :thema, :presence => true
+#  validates :thema, :presence => true
   validates :name, :presence => true
+  scope :titlepic, ->{where(flag_titlepic: true)}
+  default_scope order("LOWER(name)")
   belongs_to :parent, :polymorphic=>true
   def image?
     
  #   data_ext = datei.file.extension.downcase 
  #   %w(jpg png jpeg).include?(data_ext)
     datei.image?(datei.file)
+  end
+  def self.parent_attachment_list_id(parent)
+    "attachments_for_"+parent.class.to_s+"_"+parent.id.to_s
   end
 
   def to_jq_upload

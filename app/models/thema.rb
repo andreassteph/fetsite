@@ -22,7 +22,7 @@ class Thema < ActiveRecord::Base
   # Each topic has multiple questions, that are also referenced in the FAQ. 
   has_many :fragen
   # Attachments can be all data formats
-  has_many :attachments
+  has_many :attachments, :as=>:parent
   # attached pics can be used as title pictures
   has_many :titlepics, :as=>:parent, :class_name=>'Attachment', :conditions=>{:flag_titlepic=>true}
   # each topic has to belong to one group 

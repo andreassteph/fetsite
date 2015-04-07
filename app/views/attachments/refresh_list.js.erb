@@ -1,0 +1,1 @@
+$("#<%= Attachment.parent_attachment_list_id(@parent) %>").replaceWith("<%= escape_javascript ( render partial:"attachments/attachment_list", object:@attachments, locals: {editor: true, parent: @parent} ) %>")
