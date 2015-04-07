@@ -1,13 +1,25 @@
 <div class="contentbox" id="meeting_<%= meeting.id%>">
 
 <b><%= image_tag meeting.meetingtyp.picture.thumb.url unless meeting.meetingtyp.picture.thumb.url.nil? %><%= link_to meeting.text.html_safe, meeting %></b>
-<%= link_to "Ankündigung", rubrik_neuigkeit_path(meeting.neuigkeit.rubrik, meeting.neuigkeit) unless meeting.neuigkeit.nil? %>
-<%= link_to "ankündigen", announce_meeting_path(meeting), remote: true if meeting.neuigkeit.nil? %>
-<%= link_to "edit", edit_meeting_path(meeting), remote: true %>
-<%= link_to 'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, meeting %>
+<%= link_to  fa_icon("newspaper-o")+ "Ankündigung", rubrik_neuigkeit_path(meeting.neuigkeit.rubrik, meeting.neuigkeit) unless meeting.neuigkeit.nil? %>
+<%= link_to fa_icon("bullhorn")+"ankündigen", announce_meeting_path(meeting), remote: true if meeting.neuigkeit.nil? %>
 <% render meeting.calentry, locals: {manage: 0} unless meeting.calentry.nil? %>
-<%= link_to  "Agenda" , create_agenda_meeting_path(meeting), :remote=>true if meeting.agenda.nil?  %>
-<%= link_to  "Protokoll" , create_protocol_meeting_path(meeting),:remote=>true if meeting.protocol.nil? %>
+<% if can?(:create_agenda_meeting, meeting) %>
+<%= link_to  fa_icon("plus")+"Agenda" , create_agenda_meeting_path(meeting), :remote=>true if meeting.agenda.nil?  %> <% end %>
+<% if can?(:create_protocol_meeting, meeting) %>
+<%= link_to  fa_icon("plus")+"Protokoll" , create_protocol_meeting_path(meeting),:remote=>true if meeting.protocol.nil? %><% end %>
+<% if can?(:edit,meeting) %>
+<div class="dropdown" style="display:inline">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <%= fa_icon("caret-down")%> </a>
+<ul class="dropdown-menu">
+<li>
+<%= link_to fa_icon("pencil")+"Edit", edit_meeting_path(meeting), remote: true %></li>
+<li>
+<%= link_to fa_icon("trash")+'Delete', meeting, method: :delete, data: { confirm: 'Are you sure?' } , remote: true if can? :delete, meeting %></li>
+</ul></div>
+<% end %>
+
+
 <%= render meeting.agenda unless meeting.agenda.nil? %>
 <%= render meeting.protocol unless meeting.protocol.nil? %>
 </div>
