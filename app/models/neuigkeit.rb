@@ -46,7 +46,11 @@ class Neuigkeit < ActiveRecord::Base
       if self.has_meeting?
        return self.meeting.meetingtyp.picture
       else
-        return self.picture
+        unless self.attachments.where(flag_titlepic: true).first.nil?
+          return self.attachments.where(flag_titlepic: true).first.datei
+        else
+          return self.picture
+        end
       end
     end
   end
