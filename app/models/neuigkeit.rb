@@ -20,6 +20,9 @@ class Neuigkeit < ActiveRecord::Base
   has_many :calentries, as: :object
   has_many :nlinks   
   has_one :meeting
+  has_many :attachments, :as=>:parent
+  
+
 
   validates :rubrik, :presence=>true
   validates :author, :presence=>true
