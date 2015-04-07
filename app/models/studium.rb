@@ -33,7 +33,7 @@ class Studium < ActiveRecord::Base
   has_many :moduls, :through=>:modulgruppen
   has_many :lvas, :through=>:moduls
   has_many :semester, :dependent => :destroy
-  
+  has_many :attachments, :as=>:parent
 validates :abkuerzung, :length=>{:maximum=>5}, :format=>{:with=>/^[a-zA-z]{0,5}$/}
   validates :typ, :inclusion => {:in => ["Bachelor","Master"] }
   validates :name, :uniqueness => true, :presence=>true
