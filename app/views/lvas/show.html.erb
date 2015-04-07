@@ -19,7 +19,7 @@
     <div class="row-fluid">
       <div class="span8">
 	<h1 itemprop="name"><%= @lva.full_name %></h1>
-	<meta itemprop="url" content="<%= lva_path(lva) %>" />
+	<meta itemprop="url" content="<%= lva_path(@lva) %>" />
 	<ul class="linklist">
 	  <li>
 	    <%= link_to ffi1_icon("live2")+"ET-Forum", @lva.forumlink, class: :linkbox, itemprop: "discussionUrl" unless @lva.forumlink.nil? or @lva.forumlink.empty?%>
