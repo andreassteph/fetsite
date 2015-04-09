@@ -1,0 +1,20 @@
+en:
+  date:
+    formats:
+      default: ! '%d/%m/%Y'
+      default-picker: ! 'dd/mm/yyyy'
+      long: ! '%e. %B %Y'
+      short: ! '%e. %b'
+    order:
+    - :day
+    - :month
+    - :year
+    on: on
+  time:
+    am: am
+    formats:
+      default: ! '%d/%m/%Y, %H:%M h'
+      long: ! '%A, %d. %B %Y, %H:%M h'
+      short: ! '%d/%m/%Y, %H:%M h'
+      timeonly: ! '%H:%M Uhr'
+    pm: pm
