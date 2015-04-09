@@ -9,11 +9,12 @@ en:
     - :day
     - :month
     - :year
+    on: on
   time:
     am: am
     formats:
-      default: ! '%d/%m/%Y, %H:%M Uhr'
-      long: ! '%A, %d. %B %Y, %H:%M Uhr'
-      short: ! '%d/%m/%Y, %H:%M Uhr'
+      default: ! '%d/%m/%Y, %H:%M h'
+      long: ! '%A, %d. %B %Y, %H:%M h'
+      short: ! '%d/%m/%Y, %H:%M h'
       timeonly: ! '%H:%M Uhr'
     pm: pm
