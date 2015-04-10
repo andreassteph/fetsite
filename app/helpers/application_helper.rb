@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def cache_array_key(array)
+    array.map{|c| c.id}.join('')+"_"+array.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s+"_"+I18n.locale.to_s
+  end
+
   def clean_calendar(cal)
     cal.rubrik.meetingtyps.each do |mt| 
       mt.meetings.each do |m|
