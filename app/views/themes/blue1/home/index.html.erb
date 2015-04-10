@@ -23,31 +23,28 @@
     <li>
       <%= link_to ffi1_icon("academic") + I18n.t('home.login'), user_omniauth_authorize_path(:ldap) ,class: :linkbox %>
     </li>
-   
     <li>  
       <%= link_to ffi1_icon("quiz")+ I18n.t("themengruppe.faqs"), faqs_themengruppen_path,class: :linkbox %>
-
-
     </li>
     <li><%= link_to ffi1_icon("books19")+"Beispielsammlung", studium_path(Studium.first, {:ansicht=>'semesteransicht'}) ,class: :btn ,class: :linkbox %></li>
-
     <li><%= link_to "Alte Beispielsammlung", "http://www.fet.at/alt/bin/view/Beispielsammlung/WebHome" ,class: :btn ,class: :linkbox %></li>
-
-
   </ul>
+
+<% cache("stickytopics_startpage_"+cache_array_key(@stickythemen)) do %>
   <ul class="linklist">
     <% @stickythemen.each do |t1| %>
     <li>
-    <%= link_to t1,:class=>:linkbox do %>
-    <%= render partial: "themen/nlink", object: t1 %>
-    <% end %> 
+      <%= link_to t1,:class=>:linkbox do %>
+      <%= render partial: "themen/nlink", object: t1 %>
+      <% end %> 
     </li>
     <% end %>
   </ul>
-</p>
+<% end %> 
 <%= render 'beispiele' %>
 
 </div>
+<% cache("neuigkeiten_startpage_"+  cache_array_key(@neuigkeiten)) do %>
 <div class="span5">
   <ul class="unstyled linklist">
 	<% @neuigkeiten.each do |n| %>
@@ -55,8 +52,9 @@
 	<% end %>
   </ul>
 </div>
+<% end %>
 <div class="span3">
-<% cache("calendar_" + @calentries.map{|c| c.id}.join('') + @calentries.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s+"_"+I18n.locale.to_s+params[:month].to_s+params[:year].to_s) do %>
+<% cache("calendar_" + cache_array_key(@calentries)+params[:month].to_s+params[:year].to_s) do %>
 <%= render 'calendars/calentries', :object=>@calentries %>
 <% end %>
 
