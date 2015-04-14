@@ -129,6 +129,7 @@
         get :search, :on => :collection
         collection do
           get 'intern'
+          get 'treeview'
           get 'admin'   
           get 'dev'
           get 'startdev'
