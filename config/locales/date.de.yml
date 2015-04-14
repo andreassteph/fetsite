@@ -1,6 +1,5 @@
 de:
   date:
-    on: am
     abbr_day_names:
     - So
     - Mo
@@ -54,6 +53,7 @@ de:
     - :day
     - :month
     - :year
+    on: am
   datetime:
     distance_in_words:
       about_x_hours:
