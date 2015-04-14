@@ -1,5 +1,6 @@
 en:
   date:
+    on: on
     formats:
       default: ! '%d/%m/%Y'
       default-picker: ! 'dd/mm/yyyy'
@@ -9,7 +10,6 @@ en:
     - :day
     - :month
     - :year
-    on: on
   time:
     am: am
     formats:
