@@ -1,6 +1,6 @@
 en:
   date:
-    am: on
+    am: 'on'
     formats:
       default: ! '%d/%m/%Y'
       default-picker: ! 'dd/mm/yyyy'
