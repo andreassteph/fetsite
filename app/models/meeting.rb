@@ -31,7 +31,7 @@ class Meeting < ActiveRecord::Base
     end 
     t= t+ self.name.to_s
  #    t = t + " " + I18n.l(self.calentry.start) unless self.calentry.nil?
-    t = t +" am "+ self.calentry.text unless self.calentry.nil?
+    t = t +" "+ I18n.t("date.am")+" "+ self.calentry.text unless self.calentry.nil?
     t
   end
   def create_announcement(user)

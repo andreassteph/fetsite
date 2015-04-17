@@ -17,7 +17,10 @@
 <ul class='breadcrumb hidden-print'>
 <% @document.versions.each do |v| %>
 <li>
-<%= link_to User.find(v.whodunnit).name+": "+ v.event + " (" +  I18n.l(v.created_at)+ ") ", write_document_path(@document,:versionid=>v.id)  %>
+<%= link_to User.find(v.whodunnit).name+": "+ v.event + " (" +  I18n.l(v.created_at)+ ") ", write_document_path(@document,:versionid=>v.id)  unless v.whodunnit.nil? %>
 <% end %> <span class="divider">/</span></li>
 </ul>
 <% end %>
+
+
+<%= render_attachments_for(@document) %>

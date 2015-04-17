@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
   <%= @attachment.name %>
+  <%= render @attachment %>
 </p>
 
 
 <%= link_to 'Edit', edit_attachment_path(@attachment) %> |
-<%= link_to 'Back', attachments_path %>
+<%= link_to 'Back', polymorphic_path(@attachment.parent) %>

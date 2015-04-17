@@ -10,8 +10,9 @@
 <%= display_meta_tags %>
 
 <% end %>
-
+<% cache("rubriken_tabs_"+@rubrik.id.to_s + "_"+@rubriken.max{|r| r.updated_at.to_i}.updated_at.to_i.to_s + can?(:verwalten, Rubrik).to_s) do %>
 <%= render 'tabs' %>
+<% end %>
 <%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
 <p id="notice"><%= notice %></p>
 <div class="content-wrap content-column">

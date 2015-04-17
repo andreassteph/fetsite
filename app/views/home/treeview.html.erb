@@ -1,0 +1,69 @@
+Intern
+<ul>
+<% @themengruppen.each do |tg| %>
+<li><%= tg.title %>
+<ul class="fa-ul">
+<% tg.themen.each do |t| %>
+<li><%= fa_icon("folder-open li")+ t.title %>
+<ul class="fa-ul">
+<% t.attachments.each do |a| %>
+<li><%= fa_icon("file li")+a.name %></li>
+<% end %>
+<% t.documents.each do |d| %>
+<li><%= fa_icon("li file-text-o")+d.name %>
+<ul class="fa-ul">
+<% d.attachments.each do |a| %>
+<li><%= fa_icon("file li")+a.name %></li>
+<% end %>
+</ul>
+</li>
+<% end %>
+
+
+<% t.nlinks.each do |n| %>
+<li><%= fa_icon("li newspaper-o")+n.neuigkeit.name %>
+<ul class="fa-ul">
+<% n.neuigkeit.attachments.each do |a| %>
+<li><%= fa_icon("file li")+a.name %></li>
+<% end %>
+</ul>
+</li>
+<% end %>
+
+
+<% t.meetings.each do |m| %>
+<li><%= fa_icon("group li")+m.text %> 
+<ul class="fa-ul">
+<% d = m.agenda %>
+<% unless d.nil? %>
+<li><%= fa_icon("li file-text-o")+d.name %>
+<ul class="fa-ul">
+<% d.attachments.each do |a| %>
+<li><%= fa_icon("file li")+a.name %></li>
+<% end %>
+</ul>
+</li>
+<% end %>
+<% d = m.protocol %>
+<% unless d.nil? %>
+<li><%= fa_icon("li file-text-o")+d.name %>
+<ul class="fa-ul">
+<% d.attachments.each do |a| %>
+<li><%= fa_icon("file li")+a.name %></li>
+<% end %>
+</ul>
+</li>
+<% end %>
+
+</ul>
+
+</li>
+<% end %>
+
+
+</ul>
+</li>
+<% end %></ul>
+ </li>
+<% end %>
+</ul>

@@ -14,7 +14,7 @@
 	<ul> 
 	  <% t.fragen.order(:title).each do |f| %>
 	  <li>
-	    <b> <%= f.title %>?</b>
+	    <b> <%= f.title %></b>
 	    <p> <%= raw(f.text) %></p>
 	  </li>
 	  

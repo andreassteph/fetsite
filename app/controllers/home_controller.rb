@@ -24,6 +24,10 @@ class HomeController < ApplicationController
     t=YAML.load_file("#{::Rails.root.to_s}/config/contact_topic.yml")
     @themen = Thema.where(:id=>t)
   end
+  def treeview 
+    authorize! :doadmin, User
+    @themengruppen = Themengruppe.intern.order(:priority).reverse
+  end
   def intern
     authorize! :seeintern, User
     @neuigkeiten = Neuigkeit.intern.recent

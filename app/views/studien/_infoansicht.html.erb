@@ -3,6 +3,8 @@
   <div class="row-fluid">
        <div class="span12">
 	 <p><%= link_to "Qualifikationsprofil", studium_path( @studium, :ansicht=>"qualifikationsprofil")%> </p>
+	<%= render_attachments_for(@studium) %>
+
 	 <%= raw(@studium.desc) %>
       </div>
   </div>
@@ -15,7 +17,6 @@
 	  <% end %>
 	</ul>
 
-	
       </div>
     </div>  
 </div>

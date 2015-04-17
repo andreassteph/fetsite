@@ -4,6 +4,7 @@
   <% if (!["jpg","png","jpeg"].find_index(data_ext).nil?) %>
   <%= image_tag attachment.datei.thumb.url %>
   <% else %>
+
   <%= image_tag "pdf-logo.jpg" %>
   <% end %>
   <%=  attachment.name  %>    

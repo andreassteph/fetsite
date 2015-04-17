@@ -78,7 +78,7 @@
 
 
 <% unless small.hideattachment %>
-<%= render partial: "themen/attachment_list", object: small.attachments, locals:{editor: false} unless small.attachments.empty? %>
+<%= render partial: "attachments/attachment_list", object: small.attachments, locals:{editor: false, parent: small} unless small.attachments.empty? %>
 <% end %>
 <br/>
 

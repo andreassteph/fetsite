@@ -3,7 +3,7 @@ class AttachmentsController < ApplicationController
   # GET /attachments.json
   load_and_authorize_resource
   def index
-    @attachments = Attachment.all
+#    @attachments = Attachment.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -11,28 +11,43 @@ class AttachmentsController < ApplicationController
     end
   end
 
-  # GET /attachments/1
-  # GET /attachments/1.json
+  # GET 
+  # sets the titlepic flag for one attachment for one parent object
   def set_titlepic
-    @attachment = Attachment.find(params[:id])
-    if @attachment.image?
-      @attachment.flag_titlepic = params[:titlepic]
-      @attachment.thema.titlepics << @attachment
+    @attachment = Attachment.find(params[:id]) 
+    if @attachment.image? # if attachment is an Image set flag
+      @attachment.parent.attachments.update_all("flag_titlepic=0")
+      @attachment.flag_titlepic=true
       @attachment.save
     end
-    redirect_to @attachment.thema
+   respond_to do |format|
+      format.html { 
+        redirect_to @attachment}
+      format.js { 
+        @parent=@attachment.parent
+        @attachments=@parent.attachments
+        render :refresh_list
+      }
+    end
   end
+  # GET refresh_list
+  # refresh the attachment list for a parent object
+  def refresh_list
+    @parent = params[:parent_type].constantize.find(params[:parent_id])
+    @attachments=@parent.attachments
+    respond_to do |format|
+      format.js
+    end   
+  end
+  #get /attachments/ID
   def show
     @attachment = Attachment.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @attachment }
     end
   end
 
   # GET /attachments/new
-  # GET /attachments/new.json
   def new
     @attachment = Attachment.new
     @thema = Thema.find(params[:thema_id])
@@ -58,10 +73,8 @@ class AttachmentsController < ApplicationController
     @thema = Thema.find_by_id(params[:thema_id])
    # logger.info "gg"
     @attachment.thema = @thema
-   @attachment.name=@attachment.datei.filename
-   @action="create"
-
-  
+    @attachment.name=@attachment.datei.filename
+    @action="create"
  #   logger.info "sdf"
     respond_to do |format|
       if  @attachment.save
@@ -86,11 +99,11 @@ class AttachmentsController < ApplicationController
   # PUT /attachments/1.json
   def update
     @attachment = Attachment.find(params[:id])
-	@thema = @attachment.thema
-	
+    @parent= @attachment.parent
+    
     respond_to do |format|
       if @attachment.update_attributes(params[:attachment])
-        format.html { redirect_to @thema, notice: 'Attachment was successfully updated.' }
+        format.html { redirect_to @parent, notice: 'Attachment was successfully updated.' }
         format.json { head :no_content }
         format.js {@attachment=Attachment.new; render action:"create"}
       else

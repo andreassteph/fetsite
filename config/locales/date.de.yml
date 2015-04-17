@@ -53,6 +53,7 @@ de:
     - :day
     - :month
     - :year
+    am: am
   datetime:
     distance_in_words:
       about_x_hours:

@@ -129,6 +129,7 @@
         get :search, :on => :collection
         collection do
           get 'intern'
+          get 'treeview'
           get 'admin'   
           get 'dev'
           get 'startdev'
@@ -158,13 +159,21 @@
           get :documents
           get :meetings
         end
-        resources :attachments do
+      resources :attachments do
           member do 
             get :set_titlepic
           end
         end
+        
       end
-      
+      resources :attachments do
+        member do 
+          get :set_titlepic
+        end
+        collection do
+          get :refresh_list
+        end
+      end
       resources :calendars
       get 'verwalten/calendars', :controller=>:calendars, :action=>:verwalten, :as=>'calendars_verwalten'
       resources :calentries
