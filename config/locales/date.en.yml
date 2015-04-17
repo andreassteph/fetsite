@@ -13,8 +13,8 @@ en:
   time:
     am: am
     formats:
-      default: ! '%d/%m/%Y, %H:%M h'
-      long: ! '%A, %d. %B %Y, %H:%M h'
-      short: ! '%d/%m/%Y, %H:%M h'
-      timeonly: ! '%H:%M Uhr'
+      default: ! '%d/%m/%Y, %H:%M'
+      long: ! '%A, %d. %B %Y, %H:%M'
+      short: ! '%d/%m/%Y, %H:%M'
+      timeonly: ! '%H:%M'
     pm: pm
