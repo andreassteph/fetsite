@@ -35,8 +35,14 @@ class Fetprofile < ActiveRecord::Base
     unless Date.valid_date?((birth_year.nil?) ? Date.today.year : birth_year, birth_month, birth_day)
       errors.add(:birth_month, "Invalides Datum")
       errors.add(:birth_day, "Invalides Datum")
+      v= false
+    else
+      v= true
     end
-end
+    else
+      v= false
+    end
+    v
   end
 
   def title
