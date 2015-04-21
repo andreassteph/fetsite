@@ -1,7 +1,9 @@
 module ApplicationHelper
   def cache_array_key(array)
-    array.map{|c| c.id}.join('')+"_"+array.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s+"_"+I18n.locale.to_s
-  end
+#    array.map{|c| c.id}.join('')+"_"+array.max{|c|c.updated_at.try(:utc)}.updated_at.try(:utc).to_s+"_"+I18n.locale.to_s
+ array.map{|c| c.id}.join('')+"_"+array.map{|c|c.try(:updated_at).try(:utc).to_s}.join('') +"_"+I18n.locale.to_s
+ 
+ end
 
   def clean_calendar(cal)
     cal.rubrik.meetingtyps.each do |mt| 
