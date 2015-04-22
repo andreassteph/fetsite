@@ -1,0 +1,9 @@
+<h2>HTU News</h2>
+<table>
+<% @crawlobjs.each do |co| %>
+<tr> <td> <%= render co %> </td>
+<td>
+<%= link_to "move_to_news",move_to_news_crawler_path(co) %>
+<%= render co.something unless co.something.nil? %>
+</td> </tr><% end %>
+</table>

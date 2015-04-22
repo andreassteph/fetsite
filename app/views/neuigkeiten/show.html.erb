@@ -49,7 +49,9 @@ end
     </div>
     <% unless @neuigkeit.published? %> 
     <div class="sticker sticker-red"> Not Published</div> <% end %>
-    
+    <% unless @neuigkeit.origurl.nil? || @neuigkeit.origurl.empty? %>
+    <div class="alert"><%= link_to "Zitiert von "+ @neuigkeit.origurl, @neuigkeit.origurl %></div>    
+    <% end %>
     <div class="media">
       <% unless @neuigkeit.picture_robust.big_thumb.to_s.empty? %>
       <div class="pull-left" href="#">

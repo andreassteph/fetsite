@@ -1,4 +1,9 @@
-<li><%= link_to crawlobject.url do %> <b> <%= crawlobject.name %> (<%= crawlobject.published_at %>)</b> <%= crawlobject.text %>
+<li><%= link_to crawlobject.url do %> 
+<b> <%= crawlobject.name %> (<%= crawlobject.published_at %>)</b><% end %> 
+<%= (crawlobject.text.html_safe) unless crawlobject.text.nil?%>
+<% if crawlobject.has_attachments? %>
+<%= render_attachments_for(crawlobject) %>
+<%= link_to "load attachments", load_attachments_crawler_path(crawlobject), remote: true %>
 <% end %>
 
   <% if crawlobject.children.count >0  %> 
@@ -8,4 +13,5 @@
 <% end %>
 </ul>
 <% end %>
+
 </li> 
