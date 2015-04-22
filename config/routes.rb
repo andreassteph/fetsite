@@ -18,6 +18,15 @@
     get 'users/:id/add_role/:role', :controller=>:users, :action=>:add_role, :as=>'user_add_role'
     get 'users/:id/do_confirm', :controller=>:users, :action=>:do_confirm, :as=>'user_do_confirm'
     get 'config',:controller=>:config,:action=>:index , :as => 'config'
+    resources :crawler, :only=>[] do
+      collection do
+        get :index
+     end
+      member do
+        get :move_to_news
+        get :load_attachments
+      end
+    end
   end
   devise_for :users , :controllers=>{:omniauth_callbacks=> "users/omniauth_callbacks"}
 
