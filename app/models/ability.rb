@@ -32,8 +32,11 @@ class Ability
       cannot :delete, Studium    
       cannot :delete, Modulgruppe
       cannot :delete, Modul
+  
     end
-
+    if user.has_role?("fetadmin")
+    can [:index, :parse, :show], Crawlobject
+end
     #-----------------------------------------------------
     # Rechteverwaltung fuer Informationen
     can [:show, :index,:faqs], Themengruppe, :public=>true  
