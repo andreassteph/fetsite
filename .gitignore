@@ -1,3 +1,5 @@
+/app/views/neuigkeiten/_compact.bak.html.erb
+/config/crawl_config.yml
 /db/data.yml
 /db/data_*.yml
 /db/.#initdebug.rb
