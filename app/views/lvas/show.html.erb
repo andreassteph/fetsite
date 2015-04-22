@@ -24,6 +24,9 @@
 	  <li>
 	    <%= link_to ffi1_icon("live2")+"ET-Forum", @lva.forumlink, class: :linkbox, itemprop: "discussionUrl" unless @lva.forumlink.nil? or @lva.forumlink.empty?%>
 	  </li>
+	  <li>
+	    <%= link_to "TISS", @lva.tisslink, class: :linkbox %>
+	  </li>
 	</ul>
 	<div itemprop="articleBody">
 	<h2><%= I18n.t('lva.pruefungsinfo')%></h2>

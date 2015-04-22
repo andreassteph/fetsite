@@ -86,6 +86,29 @@ class Lva < ActiveRecord::Base
    url= "https://tiss.tuwien.ac.at/api/course/"+ lvanr.to_s.gsub(".","")+semester
   hash=Hash.from_xml(open(url).read)["tuvienna"]
   end
+
+  def tisslink   
+    urlp="https://tiss.tuwien.ac.at/course/courseDetails.xhtml?courseNr="+ lvanr.to_s.gsub(".","")+"&"
+    urlp1 = "https://tiss.tuwien.ac.at/api/course/"+ lvanr.to_s.gsub(".","")+"-"
+    begin
+      url= urlp+"semester="+Time.now.year.to_s+"W"
+      hash=Hash.from_xml(open(urlp1+Time.now.year.to_s+"W").read)["tuvienna"]
+    rescue OpenURI::HTTPError => e
+      begin
+        url= urlp+"semester="+Time.now.year.to_s+"S"
+        hash=Hash.from_xml(open(urlp1+Time.now.year.to_s+"S").read)["tuvienna"]
+      rescue OpenURI::HTTPError => e
+        begin
+          url= urlp+"semester="+(Time.now.year-1).to_s+"W"
+          hash=Hash.from_xml(open(urlp1+(Time.now.year-1).to_s+"W").read)["tuvienna"]
+        rescue OpenURI::HTTPError => e
+        end 
+      end 
+    end 
+    url
+  end
+
+
   def load_tissdata(semester)
     urlp="https://tiss.tuwien.ac.at/api/course/"+ lvanr.to_s.gsub(".","")+"-"
     begin
