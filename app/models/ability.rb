@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class Ability
   include CanCan::Ability
-  def initialize(user)
+  def initialize(user,request=nil)
     loggedin=!(user.nil?)
     user ||= User.new # guest user (not logged in)
 

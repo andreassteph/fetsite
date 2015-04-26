@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><script>
+function subst() {
+  var vars={};
+  var x=document.location.search.substring(1).split('&');
+  for (var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+  var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+  for (var i in x) {
+    var y = document.getElementsByClassName(x[i]);
+    for (var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+  }
+}b
+</script></head>
+<body  onload="subst()" style="height:60px;overflow:hidden;"><table style="width:100%"> 
+    <tr>
+      
+      <td style="width:100px">
+	<img src="logo2014_64.png" style="float:left"/>
+      </td>
+
+      <td style="valign:bottom; text-align:center"> 
+	Fachschaft Elektrotechnik - Service-Offizielles-Freizeit
+      </td>
+      <td style="text-align:right;width:100px"><span class="page"></span>
+      </td>
+    </tr>
+</table>
+</body>
+</html>

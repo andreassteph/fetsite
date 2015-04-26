@@ -25,6 +25,14 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def show
+    @document = Document.find(params[:id])
+    respond_to do |format|
+       format.pdf { send_file @document.create_pdf.path }
+      format.html
+    end
+  end
+
   def dump_to_etherpad
     @document = Document.find(params[:id])
     @document.dump_to_etherpad

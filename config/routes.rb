@@ -192,7 +192,7 @@
           get :write_etherpad
           get :read_from_etherpad
           get :dump_to_etherpad
-        end
+         end
       end
       resources :meetings do
         member do

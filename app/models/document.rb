@@ -26,6 +26,27 @@ class Document < ActiveRecord::Base
   def self.ether
     EtherpadLite.connect('http://www.fet.at/etherpad', File.new('/srv/etherpad/etherpad-lite/APIKEY.txt'))
   end
+  def create_pdf
+      require "open3"
+    
+    #url=blank_document_url({id: self.id, host: host, port: port})
+  #  url=Rails.application.routes.url_helpers.blank_document_url({id: self.id, host: host, port: port})
+    
+    file = Tempfile.new(['document', '.pdf'])
+    bin=Rails.application.config.pdf_bin
+       sin,sout,serr=Open3.popen3("#{bin}  --header-html \"file://#{Rails.root}/app/views/documents/header.html\" --footer-html \"file://#{Rails.root}/app/views/documents/footer.html\" --replace title1 \"#{self.name}\"  -  #{file.path}")
+#Rails.logger.puts("#{bin}  --header-html \"file://#{Rails.root}/app/views/documents/header.html\" --footer-html \"file://#{Rails.root}/app/views/documents/footer.html\" --replace title1 \"#{self.name}\"  \"#{url}\" \"#{file.path}\" ")
+#    `#{bin}  --header-html "file://#{Rails.root}/app/views/documents/header.html" --footer-html "file://#{Rails.root}/app/views/documents/footer.html" --replace title1 "#{self.name}"  #{url} #{file.path} `
+    sin.puts("<h1>#{self.name}</h1>")
+    t=self.text
+    t.gsub!(/src="[\.\/]*(uploads[^"]*)"/){|s| "src=\"#{Rails.root}/public/"+$1.to_s+'"'}
+    sin.puts(t)
+    sin.close
+    Rails.logger.puts(serr.read)
+    file
+  end
+
+
   def ether
     if @ep.nil?
       @ep=Document.ether

@@ -53,6 +53,10 @@ def get_theme
 "blue1"
 #end
 end
+
+def current_ability
+ @current_ability ||= Ability.new(current_user, request)
+end
   def default_url_options
     {locale: I18n.locale, theme: (theme_name=="blue1") ? nil : theme_name , ansicht: nil}
   end
