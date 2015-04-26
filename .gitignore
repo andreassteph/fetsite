@@ -30,6 +30,7 @@ Gemfile.lock
 /tmp
 /config/initializers/devise.rb
 /app/doc/*
+/bin/*
 
 console
 /server
