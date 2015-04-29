@@ -46,6 +46,11 @@ class Meeting < ActiveRecord::Base
     n.save    
     self.neuigkeit= n
     end
+  end
+  def update_announcement
+      n=self.neuigkeit
+      n.title=self.text
+      n.save
     
   end
   def fix_calentry

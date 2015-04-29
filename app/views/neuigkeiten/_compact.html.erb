@@ -7,7 +7,7 @@
   <div class="media-body">
     <div>
       <small><%= ff_icon(neuigkeit.rubrik.icon) unless neuigkeit.rubrik.icon.nil? or neuigkeit.rubrik.icon.empty? %>&nbsp;<span><%= neuigkeit.rubrik.name %></span></small> 
-      <% unless neuigkeit.has_calentries? %> <small class="pull-right"><% unless neuigkeit.try(:datum).try(:to_date).nil? %> 
+      <% unless neuigkeit.has_calentries? || neuigkeit.has_meeting? %> <small class="pull-right"><% unless neuigkeit.try(:datum).try(:to_date).nil? %> 
 	<%= I18n.t("neuigkeit.am") %>
 	<span  datetime="<%= neuigkeit.try(:datum).to_formatted_s(:iso8601) unless neuigkeit.try(:datum).nil? %>"> <%= I18n.l(neuigkeit.try(:datum).try(:to_date))%> </span>  
 	<% end %> </small> <% else %>  <% end %>
@@ -22,6 +22,12 @@
     <%= fa_icon("calendar 2x")  %>
     <%= neuigkeit.relevant_calentry.text %>
   </div>
+  <% elsif neuigkeit.has_meeting? %>
+  <div class="pull-right" href="#">
+    <%= fa_icon("calendar 2x")  %>
+    <%= neuigkeit.meeting.calentry.text %>
+  </div>
+
   <% end %>
 
 </div>
