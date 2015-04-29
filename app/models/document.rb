@@ -45,7 +45,19 @@ class Document < ActiveRecord::Base
     Rails.logger.puts(serr.read)
     file
   end
+  def sanitize
+    trans_icons= lambda do |env|
+      node=env[:node]
+      node_name=env[:node_name]
+      return if env[:is_whitelisted] || !node.element?
+      return unless node_name == 'span'
+      # return unless node["class"] =~ /.*ffi.*/
+      Sanitize.node!(node,{:elements=>["span"],:attributes=>{"span"=>["class","style"]},:css=>{:properties=>["color"]}})
+      {:node_whitelist=>[node]}
+    end
+    self.text = Sanitize.fragment(self.text, {:elements=>['table','tr','td','p','h1','h2','h3','h4','h5','a','th','img','ul','li','i','b','em','pre','code'],:attributes=>{'p'=>['class'],'table'=>['class'],'a'=>['href','data'],'img'=>['src','width','height'],:all=>['class']},:css=>{:properties=>['float']},:transformers=>[trans_icons]})
 
+  end
 
   def ether
     if @ep.nil?

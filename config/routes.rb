@@ -188,6 +188,7 @@
       resources :calentries
       resources :documents do
         member do
+          get :sanitize
           get :write
           get :write_etherpad
           get :read_from_etherpad

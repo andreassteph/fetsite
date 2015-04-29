@@ -2,6 +2,8 @@
 <%= link_to "Back to parent" , @document.parent, class: "btn" %>
 <div class="btn-group">
 <%= link_to "PDF", document_path(@document, :format=>"pdf"),class: "btn" %>
+<%= link_to "sanitize", document_path(@document),class: "btn" if can? :sanitize, @document %>
+
 <%= link_to ff_icon("icon-pencil") + "Edit", write_document_path(@document), class: "btn" %>
 <%= link_to ff_icon("icon-refresh")+"Refresh from Etherpad", read_from_etherpad_document_path(@document), class: "btn" if @document.is_etherpad? %>
 <%= link_to "Copy Document to Etherpad", dump_to_etherpad_document_path(@document)  , confirm: "Sicher? Löscht alle Änderungen im Etherpad" , class: "btn" %>
@@ -9,11 +11,12 @@
 
 </div>
 </div>
+<div style="background:white; border: thin #ccc solid; padding: 15px;-webkit-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5); -moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5); box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);">
 <h2><%= @document.name %></h2>
 <div id="">
 <%= raw(@document.text) %>
 </div>
-
+</div>
 <% if can?(:edit, @document) %>
 <ul class='breadcrumb hidden-print'>
 <% @document.versions.each do |v| %>

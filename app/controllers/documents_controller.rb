@@ -24,7 +24,12 @@ class DocumentsController < ApplicationController
       format.html
     end
   end
-
+  def sanitize
+    @document = Document.find(params[:id])
+    @document.sanitize
+    @parent=@document.parent
+    render :write
+  end
   def show
     @document = Document.find(params[:id])
     respond_to do |format|
