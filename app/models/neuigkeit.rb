@@ -31,8 +31,8 @@ class Neuigkeit < ActiveRecord::Base
 
   default_scope  order(:cache_order)
   scope :recent, -> { published.limit(10)}
-  scope :unpublished, -> {where("datum > ? OR datum IS NULL", Date.today)}
-  scope :published_scope, ->{where("datum <= ? AND datum IS NOT NULL", Date.today)}
+  scope :unpublished, -> {where("datum > ? OR datum IS NULL", Time.now)}
+  scope :published_scope, ->{where("datum <= ? AND datum IS NOT NULL", Time.now)}
   scope :public, ->{includes(:rubrik).where("rubriken.public"=>true)}
   scope :intern, ->{includes(:rubrik).where("rubriken.public"=>false)}
 
@@ -74,7 +74,7 @@ class Neuigkeit < ActiveRecord::Base
     self.rubrik.public
   end
   def published?
-   self.datum_nilsave<=Time.now.
+   self.datum_nilsave<=Time.now
   end
 
   def publish
