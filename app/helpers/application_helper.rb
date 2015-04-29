@@ -51,7 +51,12 @@ m.save
   def ffi1_list 
     y=YAML.load_file("#{::Rails.root.to_s}/config/flatfeticon1.yml")
     y["ffi1"]
-end
+  end
+  def fa_list 
+    y=YAML.load_file("#{::Rails.root.to_s}/config/fontawesome.yml")
+    y["fa"]
+  end
+
 
   def tinymce_icon_choice 
     s=""

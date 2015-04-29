@@ -1,12 +1,13 @@
 <%= semantic_form_for @themengruppe do |f| %>
   <%= f.inputs do %>
     <%= f.input :title %>
-    <%= f.input :priority %>
+    <% f.input :priority %>
     <%= f.input :public %>
-    <%= f.input :picture, :as => :file %>
+
+    <%= f.input :icon ,:as=>:hidden, :input_html=>{:id=>"iconfield"}%>
+    <i id="icon" style="font-size:2em" class="<%= @themengruppe.icon %>"></i><a href="#" id="openselect" onclick=""> Choose Icon</a>
+    <% f.input :picture, :as => :file %>
     <%= f.input :text %>
-    <%= f.input :icon , :input_html=>{:id=>"iconfield"}%>
-    <i id="icon"></i>
   <% end %>
 
   <%= f.actions do %>
@@ -15,12 +16,25 @@
   <% end %>
 <% end %>
 <script>
-$(document).ready(function(){
-$('#iconfield').on('change', function(){$('#icon').attr("class",$(this).val())})});
+$(
+  function()
+    {$('#iconfield').on('change', function(){$('#icon').attr("class",$(this).val())});
+$("#dialog").dialog({width:'100%', position:'center top', at:'left top',autoOpen: false,closeOnEscape: false});
+$("#openselect").on('click', function(){$('#dialog').dialog('open')});
+});
 </script>
 
-   
-   <% ffi1_list.each do |i| %>
- <a onclick="$('#iconfield').val('ffi1-<%= i %>');$('#icon').attr('class','ffi1-<%= i %>')" href="#"><%=ffi1_icon(i)%>
+<div style="font-size:2em; line-height:1.2em" id ="dialog" title="Icon"><p>
+<% ffi1_list.each do |i| %>
+ <a onclick="$('#iconfield').val('ffi1-<%= i %>');$('#icon').attr('class','ffi1-<%= i %>'); $('#dialog').dialog('close')" href="#"><%=ffi1_icon(i)%>
 </a>
 <% end %> 
+
+</p><p>
+<% fa_list.each do |i| %>
+ <a onclick="$('#iconfield').val('fa <%= i %>');$('#icon').attr('class','fa <%= i %>'); $('#dialog').dialog('close')" href="#"><%=ff_icon('fa '+i)%>
+</a>
+<% end %> 
+
+</p>
+</div>
