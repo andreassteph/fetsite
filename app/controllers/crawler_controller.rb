@@ -3,7 +3,7 @@ class CrawlerController < ApplicationController
   def index
     authorize! :doadmin, User
     
-    @crawlobjs=Crawlobject.where(:objtype=>5)
+    @crawlobjs=Crawlobject.where(:objtype=>5).order(:published_at).reverse_order
   end
   def load_attachments
     authorize! :doadmin, User

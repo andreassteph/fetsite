@@ -112,8 +112,9 @@ class Crawlobject < ActiveRecord::Base
   def json
     JSON.parse(self.raw)
   end
-  def self.crawl_htu
-    res = JSON.parse(`python #{RAILS_ROOT}/bin/#{Rails.config.crawlconfig[5]['bin']} #{Rails.config.crawlconfig[5]['url']}`)
+  def self.crawl_news
+    cfg = Rails.application.config
+    res = JSON.parse(`python #{Rails.root}/bin/#{cfg.crawlconfig[5]['bin']} #{cfg.crawlconfig[5]['url']}`)
     res.each do |r|
       cc=Crawlobject.new(:raw=>r.to_json)
       cc.objtype=5
