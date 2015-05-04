@@ -12,10 +12,10 @@
 </div>
 </div>
 <div style="background:white; border: thin #ccc solid; padding: 15px;-webkit-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5); -moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5); box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);">
-<h2><%= @document.name %></h2>
-<div id="">
-<%= raw(@document.text) %>
-</div>
+  <h1><%= @document.name %></h1>
+  <div>
+    <%= raw(@document.text) %>
+  </div>
 </div>
 <% if can?(:edit, @document) %>
 <ul class='breadcrumb hidden-print'>

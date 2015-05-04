@@ -20,7 +20,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @parent=@document.parent
     respond_to do |format|
-       format.js
+      format.js
       format.html
     end
   end
@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     @document.sanitize
     @parent=@document.parent
-    render :write
+    render :edit
   end
   def show
     @document = Document.find(params[:id])
