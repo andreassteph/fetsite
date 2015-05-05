@@ -101,5 +101,32 @@ class Document < ActiveRecord::Base
       end
     end
   end
-   
+  def maketoc
+    require "open3"
+    require "json"
+    sin,sout,serr=Open3.popen3("python #{Rails.root}/bin/maketoc.py")
+    sin.puts(self.text)
+    sin.close
+    b=sout.read()
+    c=JSON.parse(b)
+    l=2
+    f=true;
+    s="<ul>"
+    c.each do |h| 
+      s=s+ "</li></ul></li>"*(l-h["level"]) if (h["level"]<l) and !f
+      s=s+" </li>" if (h["level"]==l) and !f  
+      if (h["level"]>l)
+        s=s + "<ul><li>" * (h["level"]-l) 
+      else
+        s=s+"<li>"
+      end 
+      s=s+h["text"]
+     
+      l = h["level"]
+      f=false
+    end
+    s=s+"</ul>"*(l-2) if (l>2) 
+    s=s+"</ul>"
+    self.toc=s
+  end
 end
