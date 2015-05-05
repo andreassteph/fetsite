@@ -5,7 +5,7 @@ LOCATION:Vienna
 SUMMARY:<%= calentry.name %>
 DESCRIPTION: <%= link_to calentry.name.to_s, polymorphic_path(calentry.object) %><%= calentry.summary %>
 CLASS:PUBLIC
-DTSTART:<%= calentry.start.strftime "%Y%m%dT%H%M%S" %>
-DTEND:<%= calentry.ende.strftime "%Y%m%dT%H%M%S" %>
-DTSTAMP:<%= calentry.start.strftime "%Y%m%dT%H%M%S" %>
+DTSTART;TZID=Europe/Vienna:<%= calentry.start.strftime "%Y%m%dT%H%M%S" %>
+DTEND;TZID=Europe/Vienna:<%= calentry.ende.strftime "%Y%m%dT%H%M%S" %>
+DTSTAMP;TZID=Europe/Vienna:<%= calentry.start.strftime "%Y%m%dT%H%M%S" %>
 END:VEVENT
