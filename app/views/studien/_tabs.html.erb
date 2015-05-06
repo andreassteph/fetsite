@@ -5,7 +5,7 @@
     <li>
   <% end %>
   <%= link_to I18n.t("studien.allestudien"), studien_path %> </li>
-<% for s in Studium.all %>
+<% for s in @studien %>
   <% if !@studium.nil? && s == @studium %>
  
     <li class="active" title="<%= s.name %>">

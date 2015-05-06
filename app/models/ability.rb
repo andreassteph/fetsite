@@ -8,7 +8,7 @@ class Ability
     
     #-----------------------------------------------------
     # Rechteverwaltung fuer Studien Modul
-    can [:show, :index], Studium
+    can [:show, :index], Studium, :visible=>true
     can [:show], Modulgruppe
     can [:show, :index], Modul
     can [:show, :index, :beispiel_sammlung], Lva

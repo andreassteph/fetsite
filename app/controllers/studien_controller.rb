@@ -3,7 +3,7 @@ class StudienController < ApplicationController
   #  before_filter :authorize, :only => :verwalten
   load_and_authorize_resource
   def index
-    @studien = Studium.all
+    @studien = Studium.accessible_by(current_ability, :show)
     @topbar_elements=[{:hicon=>'icon-list', :text=>I18n.t("studien.allestudien"),:path=>studien_path}]
     @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("modul.list"),:path=>moduls_path}
     @topbar_elements<<{:hicon=>'icon-list', :text=>I18n.t("lva.list"),:path=>lvas_path}
@@ -13,7 +13,7 @@ class StudienController < ApplicationController
 
   def show
     @studium= Studium.find(params[:id])
-
+    @studien = Studium.accessible_by(current_ability, :show)
     @studienphasen=[]
     [1, 2 ,3].each do |ph| 
       modulgruppen_phase=@studium.modulgruppen.where(:phase=>ph)
@@ -49,16 +49,19 @@ class StudienController < ApplicationController
   end
 
   def new
+    @studien = Studium.accessible_by(current_ability, :show)
     @studium = Studium.new
   end
 
   def edit
+    @studien = Studium.accessible_by(current_ability, :show)
     @studium = Studium.find(params[:id])
     @toolbar_elements=[{:text => I18n.t('studien.anzeigen') , :path => url_for(@studium) }]
     @toolbar_elements<<{:text =>I18n.t('studien.allestudien'),:path=>studien_path(@studium)}
   end
 
   def edit_lvas
+    @studien = Studium.accessible_by(current_ability, :show)
     @studium = Studium.find(params[:id])
     @lvas=@studium.lvas.uniq
     @semester=@studium.semester 
@@ -83,6 +86,7 @@ class StudienController < ApplicationController
 
   def update
     @studium = Studium.find(params[:id])
+    @studien = Studium.accessible_by(current_ability, :show)
     logger.info "params: #{params[:studium].inspect}"
     if @studium.update_attributes(params[:studium]) 
       if @studium.lvas.map(&:valid?).all?
@@ -106,7 +110,8 @@ class StudienController < ApplicationController
   def verwalten
     @new_params={:std_verw=>params[:std_verw], :mg_verw=>params[:mg_verw], :m_verw=>params[:m_verw], :lva_verw=>params[:lva_verw], :b_verw=>params[:b_verw], :lec_verw=>params[:lec_verw]}
     if @new_params.values.compact.empty?
-      @studien=Studium.all
+
+
       @modulgruppen=Modulgruppe.all
       @module=Modul.all
       @lvas=Lva.all
