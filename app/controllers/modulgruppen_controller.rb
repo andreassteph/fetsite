@@ -5,6 +5,8 @@ class ModulgruppenController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @studien = Studium.accessible_by(current_ability, :show)
+
     @modulgruppen = Modulgruppe.all
     if !params[:studium_id].nil?
       @studium=Studium.find(params[:studium_id])
@@ -16,6 +18,8 @@ class ModulgruppenController < ApplicationController
   # GET /modulgruppen/1
   def show
     @modulgruppe = Modulgruppe.find(params[:id])
+    @studien = Studium.accessible_by(current_ability, :show)
+
     @studium = Studium.find(@modulgruppe.studium_id)
     if !params[:studium_id].nil?
       @studium=Studium.find(params[:studium_id])
@@ -25,6 +29,8 @@ class ModulgruppenController < ApplicationController
   # GET /modulgruppen/new
 
   def new
+    @studien = Studium.accessible_by(current_ability, :show)
+
     @modulgruppe = Modulgruppe.new
     if !params[:studium_id].nil?
       @modulgruppe.studium_id=(params[:studium_id])
@@ -39,6 +45,8 @@ class ModulgruppenController < ApplicationController
 
   # GET /modulgruppen/1/edit
   def edit
+    @studien = Studium.accessible_by(current_ability, :show)
+
     @modulgruppe = Modulgruppe.find(params[:id])
     if !params[:studium_id].nil?
       @studium=Studium.find(params[:studium_id])
