@@ -3,6 +3,10 @@ class LvasController < ApplicationController
   require 'zip'
   before_filter :load_toolbar, :only => [:verwalten]
   load_and_authorize_resource
+  before_filter :load_studien
+  def load_studien
+        @studien = Studium.accessible_by(current_ability, :show)
+  end
   def index
     @lvas = Lva.all
     @toolbar_elements=[{:hicon=>'icon-plus-sign',:text =>I18n.t('lva.add'),:path => new_lva_path}]

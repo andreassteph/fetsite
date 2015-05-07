@@ -4,6 +4,10 @@ class ModulgruppenController < ApplicationController
   before_filter :load_toolbar_show, :only=>[:show]   # Toolbar für show erstellen
   load_and_authorize_resource
 
+  before_filter :load_studien
+  def load_studien
+        @studien = Studium.accessible_by(current_ability, :show)
+  end
   def index
     @studien = Studium.accessible_by(current_ability, :show)
 

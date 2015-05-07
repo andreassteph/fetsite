@@ -6,7 +6,11 @@ class ModulsController < ApplicationController
   before_filter :load_toolbar_show, :only=>[:show]   # Toolbar für show erstellen
   before_filter :load_toolbar_index, :only=>[:index] # Toolbar für index erstellen
   load_and_authorize_resource
-  
+
+  before_filter :load_studien
+  def load_studien
+        @studien = Studium.accessible_by(current_ability, :show)
+  end  
   def index
     @moduls = Modul.all
     if @moduls
