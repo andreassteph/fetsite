@@ -29,7 +29,7 @@
 <%= link_to themengruppe do %>
 
     <p>
-      <%= if themengruppe.text.split.size > Themengruppe::WORD_COUNT
+      <%= if !themengruppe.text.nil? && themengruppe.text.split.size > Themengruppe::WORD_COUNT
       themengruppe.text.split[0..Themengruppe::WORD_COUNT].join(" ") + " ..."
       else
       themengruppe.text
