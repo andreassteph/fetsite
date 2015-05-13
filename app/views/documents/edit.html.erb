@@ -1,5 +1,5 @@
 <div style="background:white; border: thin #ccc solid; padding: 15px;-webkit-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5); -moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5); box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5);">
-<div id="toolBar"></div>
+<div id="toolBar" style="z-index:100"></div>
   <h1 class="editable_simple" data-target="#document_name"><%= @document.name %></h1>
   <div class="editable" data-target="#document_text">
     <%= raw(@document.text) %>
@@ -13,5 +13,6 @@
 <%= tinymce :inline_div %>
 <%= tinymce :inline_simple %>
 
-<%= link_to 'Show', @lva %> |
-<%= link_to 'Back', lvas_path %>
+<%= link_to 'Show', @document %> 
+<script>
+$(function(){$('#toolBar').stick_in_parent();})</script>
