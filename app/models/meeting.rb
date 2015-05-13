@@ -11,6 +11,7 @@ class Meeting < ActiveRecord::Base
   has_one :calendar, :through=>:meetingtyp
   has_one :rubrik, :through=>:meetingtyp
   scope :upcomming, includes(:calentry).where("calentries.start>?",1.hour.ago)
+  default_scope includes(:calentry).order("calentries.start").reverse_order
   accepts_nested_attributes_for :calentry
 #  validate :agenda, :presence=>true
 #  validate :protocol, :presence=>true
