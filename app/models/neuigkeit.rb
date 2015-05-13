@@ -138,6 +138,9 @@ class Neuigkeit < ActiveRecord::Base
     unless self.published?
       self.update_column(:cache_order, self.cache_order-14)
     end
+    if self.flag_important
+      self.update_column(:cache_order, self.cache_order-10)
+    end
     self.update_column(:cache_is_published, self.published?)
   end
   private
