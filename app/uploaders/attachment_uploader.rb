@@ -21,22 +21,18 @@ end
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-  def cover 
+  def get_cover 
     manipulate! do |frame, index|
-      index== 0 ? frame.convert(:jpg) : nil
-      
+      frame if  index.zero?    
     end
   end 
   version :thumb ,:if=>:image? do
     process :resize_to_fill => [64, 64]
-
   end
-
-
   version :cover  , :if=>:pdf? do
-    process :cover
-    process :resize_to_fit => [64,64]
+    process :get_cover
     process :convert => :jpg
+    process :resize_to_fit => [64,64]
     def full_filename(for_file)
       super.chomp(File.extname(super)) + '.jpg'
     end

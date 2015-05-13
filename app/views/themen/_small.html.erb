@@ -16,6 +16,8 @@
       </li>
       <li><%= link_to "Neues Meeting", new_meeting_path(:parent_id=>small.id, :parent_type=>"Thema"), :remote=>true %>
 </li>
+<li><a href="#" onclick="$('#attachmentdialog_thema_<%= small.id %>').dialog('open')">Attachments</a>
+</li>
 </ul>	  
   </div></div>
 </span>
@@ -92,3 +94,13 @@
 Error
 <% end %>
 </div>
+
+
+<div id="attachmentdialog_thema_<%= small.id %>">	
+<%= render_attachments_for(small) %>	  
+</div>
+<script>
+  $(function() {
+    $( "#attachmentdialog_thema_<%= small.id %>" ).dialog({autoOpen:false});
+  });
+  </script>
