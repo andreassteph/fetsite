@@ -4,13 +4,13 @@ Intern
 <li><%= tg.title %>
 <ul class="fa-ul">
 <% tg.themen.each do |t| %>
-<li><%= fa_icon("folder-open li")+ t.title %>
+<li><%= link_to fa_icon("folder-open li")+ t.title, t %>
 <ul class="fa-ul">
 <% t.attachments.each do |a| %>
 <li><%= fa_icon("file li")+a.name %></li>
 <% end %>
 <% t.documents.each do |d| %>
-<li><%= fa_icon("li file-text-o")+d.name %>
+<li><%= link_to fa_icon("li file-text-o")+d.name, d %>
 <ul class="fa-ul">
 <% d.attachments.each do |a| %>
 <li><%= fa_icon("file li")+a.name %></li>
@@ -21,7 +21,7 @@ Intern
 
 
 <% t.nlinks.each do |n| %>
-<li><%= fa_icon("li newspaper-o")+n.neuigkeit.name %>
+<li><%= link_to fa_icon("li newspaper-o")+n.neuigkeit.name, neuigkeit_path(n) %>
 <ul class="fa-ul">
 <% n.neuigkeit.attachments.each do |a| %>
 <li><%= fa_icon("file li")+a.name %></li>
