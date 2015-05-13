@@ -112,18 +112,18 @@ class Crawlobject < ActiveRecord::Base
   def json
     JSON.parse(self.raw)
   end
-  def self.crawl_news
+  def self.crawl_news(id)
     cfg = Rails.application.config
-    res = JSON.parse(`python #{Rails.root}/bin/#{cfg.crawlconfig[5]['bin']} #{cfg.crawlconfig[5]['url']}`)
+    res = JSON.parse(`python #{Rails.root}/bin/#{cfg.crawlconfig[id]['bin']} #{cfg.crawlconfig[id]['url']}`)
     res.each do |r|
       cc=Crawlobject.new(:raw=>r.to_json)
-      cc.objtype=5
+      cc.objtype=id
       cc.parse_object
       cc.calc_hash
-      if Crawlobject.where(:objhash2=>cc.objhash2, :objtype=>5).count==0
+      if Crawlobject.where(:objhash2=>cc.objhash2, :objtype=>id).count==0
         cc.save
       else
-        cc = Crawlobject.where(:objhash2=>cc.objhash2, :objtype=>5).first
+        cc = Crawlobject.where(:objhash2=>cc.objhash2, :objtype=>id).first
         cc.raw=r.to_json
         cc.parse_object
         cc.calc_hash
