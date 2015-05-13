@@ -49,10 +49,17 @@ end
       can :showdraft , Thema
       can :showintern, Thema
       can :manage, Thema
-      can :manage, Themengruppe
+      can [:index, :faqs, :show,:new,:edit, :verwalten_all, :verwalten, :sort_themengruppen, :sort_themen, :create, :update ], Themengruppe
       can :manage, Attachment
     end
     can [:update,:edit,:verwalten, :showdraft], Thema, :id=>Thema.with_role(:editor, user).pluck(:id)
+    can [:index, :faqs, :show,:new,:edit, :verwalten_all, :verwalten, :sort_themengruppen, :sort_themen, :create, :update, :delete], Thema, :themengruppe_id=>Themengruppe.with_role(:admin,user).pluck(:id)
+    can :delete, Themengruppe, :id=>Themengruppe.with_role(:admin,user).pluck(:id)
+    if user.has_role?("fetadmin")
+      can :delete, Themengruppe
+      can :delete, Thema
+    end
+
     unless user.has_role?("fetadmin")
       cannot :delete, Themengruppe
       cannot :delete, Thema
