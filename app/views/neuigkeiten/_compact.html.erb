@@ -25,7 +25,7 @@
   <% elsif neuigkeit.has_meeting? %>
   <div class="pull-right" href="#">
     <%= fa_icon("calendar 2x")  %>
-    <%= neuigkeit.meeting.calentry.text %>
+    <%= neuigkeit.meeting.calentry.text unless neuigkeit.meeting.calentry.nil? %>
   </div>
 
   <% end %>
