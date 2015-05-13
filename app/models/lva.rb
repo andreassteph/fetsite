@@ -262,7 +262,7 @@ class Lva < ActiveRecord::Base
   def read_et_forum
     lva=self
     url=lva.forumlink
-    ans = JSON.parse(`python ../microdata/downloadlogin.py #{url}`)
+    ans = JSON.parse(`python #{Rails.root}/bin/downloadlogin.py #{url}`)
     ans.each do |a|
       if Crawlobject.where(:objhash=>Digest::SHA512.hexdigest(a.to_json), :objtype=>1).count ==0
         aa = Crawlobject.new(:raw=>a.to_json)
