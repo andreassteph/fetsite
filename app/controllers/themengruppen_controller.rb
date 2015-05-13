@@ -124,9 +124,7 @@ class ThemengruppenController < ApplicationController
         format.json { render json: @themengruppe.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  # DELETE /themengruppen/1
+  end  # DELETE /themengruppen/1
   # DELETE /themengruppen/1.json
   def destroy
     @themengruppe = Themengruppe.find(params[:id])
