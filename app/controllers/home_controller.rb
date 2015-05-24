@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @beispiele = Beispiel.last([Beispiel.count, 3].min)
-    @neuigkeiten = Neuigkeit.recent
+    @neuigkeiten = Neuigkeit.accessible_by(current_ability, :show).limit(10)
     if Thema.count>0
     t=YAML.load_file("#{::Rails.root.to_s}/config/start_topic.yml")
     @rubriken= Rubrik.accessible_by(current_ability, :show)

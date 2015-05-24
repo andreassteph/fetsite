@@ -3,7 +3,7 @@
 
 <%= semantic_fields_for "lvas[#{i}]" do |f| %>
 <%= f.input :lvanr %>
-<%= f.input :sem , :input_html => { "style"=>"width:7em" },:as=>:select, :collection=>["2013S","2013W","2014S","2014W"] %>
+<%= f.input :sem , :input_html => { "style"=>"width:7em" },:as=>:select, :collection=>["2012S", "2012W","2013S","2013W","2014S","2014W","2015S","2015W"] %>
 <% end %>
 
 <% end %>
