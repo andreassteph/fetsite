@@ -41,7 +41,24 @@ class Neuigkeit < ActiveRecord::Base
   accepts_nested_attributes_for :calentries, :allow_destroy=>true , :reject_if=> lambda{|a| a[:start].blank?}
   before_validation :sanitize
   after_save :update_cache
-
+  attr_accessor :no_fallbacks
+  def globalize_fallbacks(locale)
+    if self.no_fallbacks
+    [locale]
+    else
+      super
+    end
+  end
+  def read_attribute(name,options={})
+    if translated?(name)
+      a=super(name,options)      
+      a=self.translation_for(options[:locale] || I18n.locale).read_attribute(name) if self.no_fallbacks 
+      
+      a
+    else 
+      super(name)
+    end
+  end
   def picture_robust
     unless self.picture.url.nil?
       return self.picture

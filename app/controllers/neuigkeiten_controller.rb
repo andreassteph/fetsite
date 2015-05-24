@@ -99,7 +99,7 @@ class NeuigkeitenController < ApplicationController
   end
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
-
+    @neuigkeit.no_fallbacks=true
     @calentries= @neuigkeit.calentries
     @calentries<<  Calentry.new 
 
