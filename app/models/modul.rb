@@ -12,7 +12,7 @@
 #
 
 class Modul < ActiveRecord::Base
-  attr_accessible :desc,:name, :depend, :studium_id, :modulgruppen, :modulgruppe_ids
+  attr_accessible :desc,:name, :depend, :studium_id, :modulgruppen, :modulgruppe_ids, :lva_ids
 
   has_and_belongs_to_many :lvas , :uniq=>true
   has_and_belongs_to_many :modulgruppen

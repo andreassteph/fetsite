@@ -125,13 +125,13 @@ end
 
   def show_tiss
     @lvas=[];
-    @semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).flatten.uniq
+    @semester = @modul.modulgruppen.flatten.map(&:studium).map(&:semester).uniq
     params["lvas"].to_a.each do |l|
      unless l.last["lvanr"].empty?
         l=l.last
        lva=Lva.new
         lva.lvanr=l["lvanr"]
-       lva.load_tissdata("-"+ l["sem"])
+       lva.load_tissdata
        lva.modul<<@modul
        @lvas<<lva # 
       end 

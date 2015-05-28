@@ -77,13 +77,13 @@ class LvasController < ApplicationController
     @lva = Lva.find_by_id(params[:id])
     @lvatiss = Lva.new
     @lvatiss.lvanr=@lva.lvanr
-    @lvatiss.load_tissdata("-2013W")
+    @lvatiss.load_tissdata
  
   end
   
   def load_tiss
     @lva = Lva.find_by_id(params[:id])
-    @lva.load_tissdata("-2013W")
+    @lva.load_tissdata
     if @lva.save
       redirect_to @lva , notice: 'Lva von TISS geladen.'
     else

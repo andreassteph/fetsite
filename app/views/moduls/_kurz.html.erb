@@ -1,7 +1,7 @@
 <li>
 <div class="contentbox">
 <p>
-  <b><%= link_to "Modul "+ modul.name.to_s , modul_path(modul) %> </b>
+  <b><%= link_to "Modul "+ modul.name.to_s , modul_path(modul) %> <%= link_to fa_icon("pencil") , edit_modul_path(modul) %> </b>
 </p>
 <ul>
 <% modul.lvas.each do |lva| %>

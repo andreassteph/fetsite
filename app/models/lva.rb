@@ -109,7 +109,7 @@ class Lva < ActiveRecord::Base
   end
 
 
-  def load_tissdata(semester)
+  def load_tissdata
     urlp="https://tiss.tuwien.ac.at/api/course/"+ lvanr.to_s.gsub(".","")+"-"
     begin
       url= urlp+Time.now.year.to_s+"W"

@@ -40,6 +40,9 @@ inline_simple:
   toolbar:
     - undo redo
   menubar: false
+  setup: function(ed) {
+        ed.on('NodeChange',function(){$($("#"+ed.id).attr("data-target")).val(this.getContent())})
+         }
 inline_div:
   selector: "div.editable"
   inline: true

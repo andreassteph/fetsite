@@ -31,3 +31,5 @@ en:
     bspe: "Examples"
   home:
     newexamples: "Newest Examples"
+  modul:
+    depend: "Voraussetzungen"

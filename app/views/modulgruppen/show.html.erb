@@ -3,7 +3,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>
-  <%= @modulgruppe.name %>
+  <%= @modulgruppe.name %><%= link_to fa_icon("pencil") , edit_modulgruppe_path(@modulgruppe) %>
 </h1>
 <p>
  <!-- <b><%= link_to "Studium: "+@modulgruppe.studium.name, studium_path(@modulgruppe.studium) %></b>-->

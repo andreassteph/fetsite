@@ -113,7 +113,7 @@
     </div>
 
     <% end %>
-
+    <% unless @crawlobjects.nil? %>
     <div class="row-fluid">
       <div class="span12">
 	<% @crawlobjects.each do |co| %>
@@ -121,7 +121,7 @@
 	<% end %>
       </div>
     </div>
-
+    <% end %>
 
   </div>
 </div>

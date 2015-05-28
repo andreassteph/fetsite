@@ -1,6 +1,6 @@
 <div class="modulgruppe_phase_<%= modulgruppe.phase %>" >
-  <h2><%=  link_to modulgruppe.name, modulgruppe_path(modulgruppe) %> 
-  </h2> 
+  <h2><%=  link_to modulgruppe.name, modulgruppe_path(modulgruppe) %> <%= link_to fa_icon("pencil") , edit_modulgruppe_path(modulgruppe) %></h2>
+  
 
   <%= modulgruppe.desc%><ul class="unstyled">
   <%= render :partial=>'moduls/kurz', :collection=>modulgruppe.moduls, :as=>:modul%>

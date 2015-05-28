@@ -6,24 +6,37 @@
       <div class="container-fluid">
 	<div class="row-fluid">
 	  <div class="span12">
-	    <%= f.input :name ,:hint=>true%>
+	    <%= f.input :name , :as=>:hidden %>
+	    <div id="toolBar" style="z-index:100"></div>
+	    <h1 class="editable_simple"  data-target="#modul_name"><%= @modul.name %> </h1>
 	  </div>
 	</div>
 
-	<div class="row-fluid">
+	<div class="row-fluid" >
 	  <div class="span12">
-	    <%= f.input :desc, :as=>:tinymce_text %>
+	<div id="tabs">
+<ul><li><a href="#tab-desc">Beschreibung</a></li><li><a href="#tab-depend">Voraussetzung</a></li></ul>
+	    <div id="tab-desc">	    
+	    	  <div class="editable" data-target="#modul_desc">
+		    <%= raw(@modul.desc) %>
+		  </div>
+		  <%= f.input :desc, :as=>:hidden %>
+	    </div>
+	    <div id="tab-depend">	    
+	      <%= f.input :depend %>
+	    </div>
+	</div>
 	  </div>
 	</div>
-	<div class="row-fluid">
-	  <div class="span12">
-	    <%= f.input :depend %>
-	  </div>
-	</div>
+	
       </div>
     </div>
     <div class="span3">
-      <%= f.input :modulgruppen, :as => :check_boxes, :member_label=>:long_name, :collection => Modulgruppe.all %>
+
+<input id="lva" class="autocomplete-checkbox" data-checkboxdiv="modul_lvas_input" data-checkboxname="modul[lva_ids][]" data-collection="<%= (Lva.all.map{|l| "{\"value\": \""+l.id.to_s + "\", \"label\": " + "\"" +escape_javascript( l.full_name) +  "\"}"}.join("; "))%>"> </input>
+	    <%= f.input :lvas, :as => :check_boxes, :member_label=>:full_name, :collection => @modul.lvas %>
+<input id="modul" class="autocomplete-checkbox" data-checkboxdiv="modul_modulgruppen_input" data-checkboxname="modul[modulgruppe_ids][]" data-collection="<%= (Modulgruppe.all.map{|l| "{\"value\": \""+l.id.to_s + "\", \"label\": " + "\"" +escape_javascript( l.long_name) +  "\"}"}.join("; "))%>"> </input>
+      <%= f.input :modulgruppen, :as => :check_boxes, :member_label=>:long_name, :collection => @modul.modulgruppen %>
     </div>
   </div>
  
@@ -34,5 +47,34 @@
   <% end %>
 
   <% end %>
+
+<script>
+$(function(){
+ $( ".autocomplete-checkbox" ).autocomplete({
+      minLength: 0,
+      source: [],
+      focus: function( event, ui ) {
+        $( this ).val( ui.item.label );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( this ).val( "" );
+        $( "#"+$(this).data("checkboxdiv")).append($("<label>").append($("<div>").attr("class", "checkbox").append($("<input>").attr("type","checkbox").attr("value", ui.item.value).attr("checked","checked").attr("name",$(this).data("checkboxname"))).append(ui.item.label)));
+        return false;
+      }
+    }).each(function() { // Goes through `.autocomplete` elements and sets source
+        $(this).autocomplete("option", "source", $(this).data('collection').split(";").map(function(el){return JSON.parse(el)}));
+    })
+    .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.label +  "</a>" )
+        .appendTo( ul );
+    };
+	$("#tabs").tabs();
+});
+</script>
 </div>
+<%= tinymce :inline_simple %>
+<%= tinymce :inline_div %>
 <%= tinymce %>
+
