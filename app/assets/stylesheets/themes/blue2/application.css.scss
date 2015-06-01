@@ -32,7 +32,6 @@ $color_schema_4_dark: darken($color_schema_4, 10%);
 $color_schema_5_dark: darken($color_schema_5, 10%);
 
 $color_prim: $color_schema_1_dark; // #006599; //071672;
-
 $color_prim_light: lighten($color_prim ,10%);
 $color_prim_vlight: lighten($color_prim ,30%);
 $color_prim_dark: darken($color_prim ,10%);
@@ -44,12 +43,12 @@ $linkColor: $color_prim;
 $linkColorHover: $color_schema_1;
 $white: #FFFFFF;
 
-$bodyBackground: #EEE;
+$bodyBackground: #FEFEFE;
 
 
 
 
-$navbarBackground: #EEE;//$color_prim;
+$navbarBackground:  #FFF; //$color_prim;
 $navbarText: $color_prim; 
 $navbarLinkColor: $color_prim;
 $navbarLinkColorHover: $color_schema_1;
@@ -58,7 +57,7 @@ $navbar-default-brand-color: black;
 $navbarBrandColor:black;
 
 
-$navbarBackgroundHighlight: #EEE;
+$navbarBackgroundHighlight: #FFF;
 //$navbarBackgroundHighlight:#FFFFFF;
 
 
@@ -76,27 +75,27 @@ $sansFontFamily: Helvetica, Arial;
 @import 'neuigkeiten';
 @import 'themengruppen';
 
-div.header { 
+div.header {		
   display: block; 
-//  background: url('../../../../header1.png') no-repeat;
+//  backgro  	      und: url('../../../../header1.png') no-repeat;
 //  background-color:white;// $color_prim;
  // background-position: right; 
   vertical-align:middle;
   float:left;
   color:#000;
   padding-top:0px;
- overflow:visible;
- height:45px;
+  overflow:visible;
+  height:45px;
   margin-bottom: 0 px
 }
 div.header_span {
-background:white
+  background:white
 }
 div.header h1 {
-   padding:0;
-   margin:4px;
-   font-size:20px;
-   line-height:32px;
+  padding:0;
+  margin:4px;
+  font-size:20px;
+  line-height:32px;
 }
 div.header img {
 //top:2px;
@@ -108,9 +107,9 @@ border-bottom: $color_prim solid 3px;
 div.headerrow {
 }
 
-$contentdiv-background:rgba(255,255,255,0.9) ;
+$contentdiv-background:rgba(255,255,255,1) ;
 #contentdiv {
-
+padding:7px;
 }
 $navbar-li-minwidth: 0;
 
@@ -126,6 +125,6 @@ $box-background: white;
 
 @import 'extra';
 body {
-background: $color_schema_1_dark;
+background: #EFEFEF;
 background-size:100%;
 }

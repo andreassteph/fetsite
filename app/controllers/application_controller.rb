@@ -42,16 +42,13 @@
 def get_theme
 
 #  if params[:theme]== "default" || params[:theme]=="2003" || params[:theme].nil?
-
 #    params[:theme]="blue1"
 #    end
-#  if ThemesForRails.available_theme_names.include?(params[:theme])
-#  params[:theme]
-
- 
-#else
-"blue1"
-#end
+  if ThemesForRails.available_theme_names.include?(params[:theme]) and can? :showintern,Thema
+    params[:theme]
+  else
+    "blue1"
+  end
 end
 
 def current_ability
