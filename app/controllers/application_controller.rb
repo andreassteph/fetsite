@@ -37,24 +37,20 @@
     end 
     
   end 
-  
-
-def get_theme
-
-#  if params[:theme]== "default" || params[:theme]=="2003" || params[:theme].nil?
-#    params[:theme]="blue1"
-#    end
-  if ThemesForRails.available_theme_names.include?(params[:theme]) and can? :showintern,Thema
-    params[:theme]
+  def get_theme
+u=current_user
+ if ! u.try(:preferredtheme).nil? and ThemesForRails.available_theme_names.include?(u.preferredtheme) 
+      u.preferredtheme
   else
     "blue1"
   end
-end
+
+  end
 
 def current_ability
  @current_ability ||= Ability.new(current_user, request)
 end
   def default_url_options
-    {locale: I18n.locale, theme: (theme_name=="blue1") ? nil : theme_name , ansicht: nil}
+    {locale: I18n.locale, theme: nil , ansicht: nil}
   end
 end

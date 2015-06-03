@@ -54,7 +54,7 @@
 </div>
 
 <div class="span3">
-<% cache("calendar_" + cache_array_key(@calentries)+params[:month].to_s+params[:year].to_s) do %>
+<% cache("calendar_" + cache_array_key(@calentries)+params[:month].to_s+params[:year].to_s+params[:theme].to_s) do %>
 <%= render 'calendars/calentries', :object=>@calentries %>
 <% end %>
 

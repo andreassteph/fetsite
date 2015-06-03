@@ -113,4 +113,17 @@ m.save
     url.path=path
     return url
   end
+
+  def get_theme_help(u)
+
+#  if params[:theme]== "default" || params[:theme]=="2003" || params[:theme].nil?
+#    params[:theme]="blue1"
+#    end
+    if ! u.try(:preferredtheme).nil? and ThemesForRails.available_theme_names.include?(u.preferredtheme) 
+      u.preferredtheme
+  else
+    "blue1"
+  end
+end
+
 end
