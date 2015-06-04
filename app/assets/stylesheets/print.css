@@ -1,0 +1,19 @@
+@page :first {
+    @bottom-right-corner {
+	content: none
+    }
+}
+@page {
+    @top-center { 
+	content: element(heading); 
+    }
+    @left-top {
+
+    }
+    @bottom-right-corner {
+	content: counter(page)
+    }
+} 
+#rh {
+    position: running(header);
+} 
