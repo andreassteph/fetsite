@@ -21,7 +21,11 @@ class NeuigkeitenController < ApplicationController
       @neuigkeit.assign_attributes(@neuigkeit.translation.versions.reverse[params[:version].to_i].reify.attributes.select{|k,v| @neuigkeit.translated_attribute_names.include? k.to_sym })
     end 
     @calentries1=@neuigkeit.calentries
-
+    respond_to do |format|
+      format.html 
+      format.js
+    end
+    
   end
   
   def new

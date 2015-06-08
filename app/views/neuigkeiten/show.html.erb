@@ -23,7 +23,7 @@ end
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
+				var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/de_DE/sdk.js#xfbml=1&appId=120379864660921&version=v2.0";
@@ -31,14 +31,17 @@ end
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="content-column content-wrap">
+				<%= link_to "Refresh", neuigkeit_path(@neuigkeit), remote: true %>
+
+				<%= link_to "Edit", edit_rubrik_neuigkeit_path(@neuigkeit), remote: true if can? :edit, @neuigkeit %>
   <p id="notice"><%= notice %></p>
-  <div class="contentbox" itemscope itemtype="http://schema.org/Article">
-    <meta itemprop="about" content="<%= @neuigkeit.text_first_words %>"/>
-    <meta itemprop="sameAs" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
-   <meta itemprop="url" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
+  <div id ="neuigkeit_<%= @neuigkeit.id %>"class="contentbox" itemscope itemtype="http://schema.org/Article">
+  <meta itemprop="about" content="<%= @neuigkeit.text_first_words %>"/>
+  <meta itemprop="sameAs" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
+  <meta itemprop="url" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
   
-   <div class="row-fluid">
-      <span itemprop="articleSection">
+  <div class="row-fluid">
+	  <span itemprop="articleSection">
 	<%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
       </span>
       <span class="pull-right">
