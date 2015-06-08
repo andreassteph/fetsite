@@ -3,12 +3,13 @@ class CalendarsController < ApplicationController
   # GET /calendars.json
     load_and_authorize_resource
   def index
-    @calendars = Calendar.all
-    @calentries = Calentry.all
+    @calendars = Calendar.accessible_by(current_ability)
+    @calentries = Calentry.accessible_by(current_ability)
     
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @calendars }
+      format.ics
     end
   end
 

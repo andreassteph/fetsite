@@ -1,9 +1,15 @@
 # -*- coding: utf-8 -*-
 class Ability
   include CanCan::Ability
-  def initialize(user,request=nil)
+  def initialize(user,request=nil,key=nil)
     loggedin=!(user.nil?)
-    user ||= User.new # guest user (not logged in)
+    unless key.nil?
+      k=Key.find_by_uuid(key)
+      if !k.nil? && k.is_valid && k.typ == 0
+        user=k.user
+      end
+    end
+    user ||=  User.new # guest user (not logged in)
 
     
     #-----------------------------------------------------
@@ -103,7 +109,7 @@ end
     can :index, Rubrik
     can [:show], Rubrik, :public=>true
     can [:list], Neuigkeit, :cache_is_published=>true,  :rubrik=>{:public=>true}
-    can :show, Neuigkeit, :rubrik=>{:public=>true}
+    can :show, Neuigkeit, :cache_is_published=>true, :rubrik=>{:public=>true}
 
     if loggedin
     end
@@ -163,7 +169,7 @@ end
     can [:showics], Calendar
     can [:show], Calentry
 
-    if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
+    if( user.has_role?("fetuser") || user.has_role?("fetadmin")|| (!k.nil? && k.typ==1 && (k.user.has_role?("fetuser")||k.user.has_role?("fetadmin"))))
       can [:show,:index], Calendar
       can  [:edit, :update,:new,:create,:verwalten], Calendar
       can  [:edit, :update,:new,:create,:verwalten,:delete], Calentry

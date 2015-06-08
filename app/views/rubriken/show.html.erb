@@ -52,7 +52,7 @@
 <%= render 'calendars/calentries', :object=>@calentries %>
 <% end %>
 <% end %>
-<%= link_to "ics-format", calendar_path(@rubrik.calendar,:format=>:ics) %>
+<%= link_to "ics-format", calendar_path(@rubrik.calendar,:format=>:ics,:key=>current_user.nil? ? nil : Key.where(typ: 1, user_id: current_user.id,is_valid: true).last.try(:uuid)) %>
 </div>
 
 </div>
