@@ -43,7 +43,7 @@ $linkColor: $color_prim;
 $linkColorHover: $color_schema_1;
 $white: #FFFFFF;
 
-$bodyBackground: #FEFEFE;
+$bodyBackground: #FFF; //#FEFEFE;
 
 
 
@@ -116,7 +116,7 @@ $navbar-li-minwidth: 0;
 
 
 $box-border: lightgray solid 1px;
-$box-border-radius:0px;
+$box-border-radius:4px;
 $box-background: white;
 
 @import 'layout';
@@ -125,6 +125,6 @@ $box-background: white;
 
 @import 'extra';
 body {
-background: #EFEFEF;
+background: #FFF; //#EFEFEF;
 background-size:100%;
 }

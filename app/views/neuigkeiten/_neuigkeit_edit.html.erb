@@ -35,7 +35,7 @@
     <% end %>
     <div class="media-body">
 			<h1 itemprop="name" class="editable_simple" data-target="#neuigkeit_title">
-				<%=  @neuigkeit.title%>
+				<%=  raw(@neuigkeit.title) %>
 			</h1>
 			<div itemprop="articleBody" class="editable" data-target="#neuigkeit_text">
 				<%= raw(@neuigkeit.text) %>
@@ -45,13 +45,7 @@
 			
 		</div>
   </div>
-  <div id="calentries">
-		<% unless neuigkeit_edit.calentries.nil? || neuigkeit_edit.calentries.empty? %>
-			<% neuigkeit_edit.calentries.each do |ce|%>
-				<%= render ce , object: ce unless ce.nil? %>
-			<% end %>
-		<% end %>
-	</div>
+
   <%= f.actions do %>
   <%= f.action :submit, :as => :input %>
   <% end %>
@@ -59,18 +53,13 @@
 	<div class="fb-like" data-href"<%= rubrik_neuigkeit_url(@rubrik,@neuigkeit,{themes: nil, locale: nil})%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 	<% unless @neuigkeit.meeting.nil? %>
 		<%= render @neuigkeit.meeting %>
-	<% end%>
-	<div id="calentry_new" ><%= link_to "new Calentry",  new_calentry_path(:object_id=>@neuigkeit.id, :object_type=>"Neuigkeit"), :remote=>true if can? :edit, @neuigkeit  %>
-	</div>
+	<% end%>		
+	<% end%>	
 	
-	
-	<%= render_attachments_for(@neuigkeit) %>
+
+
 	<%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
-	<%= render partial: 'nlink_list_whole', :object=>@neuigkeit.nlinks %>
-	<% if can? :find_link , @neuigkeit %>
-		<a id="findlink-open" href="#"><%= fa_icon("link")%> Neue Verknüpfungen </a>
-	<% end %>
-	<% end %>
+	
 </div>
 <%= tinymce :inline_div %>
 <%= tinymce :inline_simple %>

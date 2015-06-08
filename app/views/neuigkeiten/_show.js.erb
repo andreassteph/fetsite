@@ -1,1 +1,2 @@
-$('#neuigkeit_<%= @neuigkeit.id %>').replaceWith("<%= escape_javascript( render partial:"neuigkeiten/neuigkeit_view", object: @neuigkeit )%>"); 
+<% show = @neuigkeit %>
+$('#neuigkeit_<%= show.id %>').replaceWith("<%= escape_javascript( render partial:"neuigkeiten/neuigkeit_view", object: show )%>"); 
