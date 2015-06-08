@@ -1,5 +1,4 @@
 <div class="contentbox" id="calentry_<%= calentry.id%>">
-  <% image_tag("/iconnavy/time.png")  %>
   <%= calentry.icon_text %>
 <% if !(defined? manage) || manage %>
   <%= link_to "edit", edit_calentry_path(calentry),:remote=>true if can? :edit, calentry %>

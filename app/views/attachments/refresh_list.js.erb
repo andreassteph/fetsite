@@ -1,1 +1,5 @@
 $("#<%= Attachment.parent_attachment_list_id(@parent) %>").replaceWith("<%= escape_javascript ( render partial:"attachments/attachment_list", object:@attachments, locals: {editor: true, parent: @parent} ) %>")
+<% if @parent.is_a?(Neuigkeit) %>
+<% @neuigkeit=@parent; @rubrik=@neuigkeit.rubrik %>
+<%= render "neuigkeiten/show", object: @neuigkeit %>
+<% end %>

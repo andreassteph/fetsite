@@ -1,9 +1,9 @@
-<div id="neuigkeit_<%=  neuigkeit_view.id%>" class="contentbox" itemscope itemtype="http://schema.org/Article">
+<div id="neuigkeit_<%=  neuigkeit_view.id %>" class="contentbox" itemscope itemtype="http://schema.org/Article">
   <meta itemprop="about" content="<%= @neuigkeit.text_first_words %>"/>
   <meta itemprop="sameAs" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
   <meta itemprop="url" content="<%= neuigkeit_url(@neuigkeit,:theme=>nil)%>"/>
   
-  <div class="row-fluid">
+  <div class="media">
 	  <span itemprop="articleSection">
 			<%= ff_icon(@neuigkeit.rubrik.icon) unless @neuigkeit.rubrik.icon.nil? or @neuigkeit.rubrik.icon.empty? %>&nbsp;<%= @neuigkeit.rubrik.name %>
     </span>
@@ -31,30 +31,23 @@
     <% end %>
     <div class="media-body">
 			<h1 itemprop="name">
-				<%=  @neuigkeit.title%>
+				<%=  @neuigkeit.title%>				<%= link_to fa_icon("edit"), edit_rubrik_neuigkeit_path(@neuigkeit), remote: true if can? :edit, @neuigkeit %>
 			</h1>
 			<div itemprop="articleBody">
 				<%= raw(@neuigkeit.text) %>
 			</div>
 		</div>
   </div>
-  <div id="calentries">
-		<% @calentries1.each do |ce|%>
-			<%= render ce unless ce.nil? %>
-		<% end %>
-	</div>
+<%= render_calentries_for(@neuigkeit)%>
+
 	<div class="fb-like" data-href"<%= rubrik_neuigkeit_url(@rubrik,@neuigkeit,{themes: nil, locale: nil})%>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 	<% unless @neuigkeit.meeting.nil? %>
 		<%= render @neuigkeit.meeting %>
 	<% end%>
-	<div id="calentry_new" ><%= link_to "new Calentry",  new_calentry_path(:object_id=>@neuigkeit.id, :object_type=>"Neuigkeit"), :remote=>true if can? :edit, @neuigkeit  %>
-	</div>
+
 	
 	
 	<%= render_attachments_for(@neuigkeit) %>
+
 	<%= render 'layouts/pretty_toolbar', :object=> @toolbar_elements %>
-	<%= render partial: 'nlink_list_whole', :object=>@neuigkeit.nlinks %>
-	<% if can? :find_link , @neuigkeit %>
-		<a id="findlink-open" href="#"><%= fa_icon("link")%> Neue Verknüpfungen </a>
-	<% end %>
 </div>
