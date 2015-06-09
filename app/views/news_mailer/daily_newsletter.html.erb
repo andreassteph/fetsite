@@ -1,9 +1,11 @@
 
 <% @neuigkeiten.each do |n| %>
-<% if n.is_annoncement? || n.is_event? %>
-<%= n.rubrik.icon_name %> |<%= n.relevant_calentry.text %> |
-
-<% end %>
-	<%= render n %>
+	<% if n.is_annoncement? || n.is_event? %>
+		<%= n.rubrik.icon_name %> | <%= n.relevant_calentry.text %> |
+	<% end %>
+	<%= image_tag "http://www.fet.at"+n.picture.big_thumb.url.to_s %>
+	<%= raw(n.text) %>
+	<%= link_to "Auf Fet.at weiterlesen", rubrik_neuigkeit_url(n.rubrik, n,:locale=>:de, :theme=>nil,:host=> "www.fet.at") %> 
+	
 	<hr/>
 <% end %>
