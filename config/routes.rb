@@ -130,8 +130,12 @@
             get 'publish_to_facebook'
             get 'mail_to_fet'
             get 'mail_preview'
+ 
           end
-        end
+          collection do
+            get 'newsletter_preview'
+          end
+       end
       end
       
       resources :home, :only=>[:index] do

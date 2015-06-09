@@ -1,0 +1,9 @@
+
+<% @neuigkeiten.each do |n| %>
+<% if n.is_annoncement? || n.is_event? %>
+<%= n.rubrik.icon_name %> |<%= n.relevant_calentry.text %> |
+
+<% end %>
+	<%= render n %>
+	<hr/>
+<% end %>

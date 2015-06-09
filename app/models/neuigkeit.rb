@@ -132,7 +132,9 @@ class Neuigkeit < ActiveRecord::Base
     self.has_calentries?
   end
   def relevant_calentry
-    self.calentries.min_by{|c| c.days_to_today * 1.3 * ((c.is_past?)? 2:1)}
+    ce = self.calentries.min_by{|c| c.days_to_today * 1.3 * ((c.is_past?)? 2:1)} if self.is_event?
+    ce= self.meeting.calentry if self.has_meeting? 
+    ce
   end
   def update_cache
     if self.has_meeting? && !self.meeting.calentry.nil?

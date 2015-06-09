@@ -101,6 +101,12 @@ class NeuigkeitenController < ApplicationController
     authorize! :publish, @neuigkeit
     render template: "news_mailer/neuigkeit_mail", layout: false
   end
+  def newsletter_preview
+    authorize! :publish, Neuigkeit
+    @neuigkeiten=Neuigkeit.accessible_by(current_ability).where("cache_order<2")
+    render template: "news_mailer/daily_newsletter", layout: false
+ 
+ end
   def edit
     @neuigkeit = Neuigkeit.find(params[:id])
     @neuigkeit.no_fallbacks=true
