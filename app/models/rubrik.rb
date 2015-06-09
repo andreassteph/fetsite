@@ -20,6 +20,9 @@ class Rubrik < ActiveRecord::Base
   has_one :calendar
   validates :calendar , :presence=>true
   before_validation :sanitize
+  def icon_name
+    (ActionController::Base.helpers.content_tag("i","", class: self.icon)) + self.name
+  end
   def moderator
     u=User.with_role(:newsmoderator).first
     if !u.nil? 
