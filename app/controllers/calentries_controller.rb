@@ -7,7 +7,6 @@ class CalentriesController < ApplicationController
 
     respond_to do |format|
       format.html {redirect_to rubriken_path}
-      format.ics 
    end
  end
 

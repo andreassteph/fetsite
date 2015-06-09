@@ -5,4 +5,7 @@ class NewsMailer < ActionMailer::Base
     
     mail(to: email, subject: @neuigkeit.title)
   end
+  def daily_newsletter(user_id)
+    
+  end
 end
