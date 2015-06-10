@@ -160,16 +160,19 @@ end
       cannot :delete, Meeting
     end
     if user.has_role?( "fetadmin")
-   can :manage, Meetingtyp
-   
-end
-
+      can :manage, Meetingtyp
+      
+    end
+    
     # Rechteverwaltung Kalender 
     can [:show, :index], Calendar, :public => true 
     can [:showics], Calendar
-    can [:show], Calentry
+    # can [:show], Calentry
+    if  (!k.nil? && k.typ==1 && (k.user.has_role?("fetuser")||k.user.has_role?("fetadmin")))  
+      can [:show,:index], Calendar
+    end
 
-    if( user.has_role?("fetuser") || user.has_role?("fetadmin")|| (!k.nil? && k.typ==1 && (k.user.has_role?("fetuser")||k.user.has_role?("fetadmin"))))
+    if( user.has_role?("fetuser") || user.has_role?("fetadmin")||)
       can [:show,:index], Calendar
       can  [:edit, :update,:new,:create,:verwalten], Calendar
       can  [:edit, :update,:new,:create,:verwalten,:delete], Calentry

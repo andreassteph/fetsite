@@ -3,8 +3,8 @@ class CalendarsController < ApplicationController
   # GET /calendars.json
     load_and_authorize_resource
   def index
-    @calendars = Calendar.accessible_by(current_ability)
-    @calentries = Calentry.accessible_by(current_ability)
+    @calendars = Calendar.accessible_by(current_ability,:show)
+    @calentries =@calendars.map{|c| c.calentries }.flatten
     
     respond_to do |format|
       format.html # index.html.erb
