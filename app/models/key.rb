@@ -1,5 +1,5 @@
 class Key < ActiveRecord::Base
-  attr_accessible :expire, :is_valid,  :typ, 
+  attr_accessible :expire, :is_valid,  :typ
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   before_create :create_unique_identifier
@@ -16,6 +16,7 @@ class Key < ActiveRecord::Base
         kk.user=user 
         kk.typ = typ 
         kk.is_valid = true
+        kk.save
       end
     else
       kk=Key.where(user_id: user.id, typ: typ, is_valid: true, parent_type: parent.class.to_s, parent_id: parent.id).first
@@ -26,7 +27,7 @@ class Key < ActiveRecord::Base
         kk.typ = typ 
         kk.is_valid = true
 kk.parent=parent
-
+        kk.save
       end
     end
     kk

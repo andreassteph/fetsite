@@ -169,10 +169,14 @@ end
     can [:showics], Calendar
     # can [:show], Calentry
     if  (!k.nil? && k.typ==1 && (k.user.has_role?("fetuser")||k.user.has_role?("fetadmin")))  
-      can [:show,:index], Calendar
+      if k.parent.nil?
+        can [:show,:index], Calendar
+      else
+        can [:show], Calendar, id: k.parent_id
+      end 
     end
 
-    if( user.has_role?("fetuser") || user.has_role?("fetadmin")||)
+    if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can [:show,:index], Calendar
       can  [:edit, :update,:new,:create,:verwalten], Calendar
       can  [:edit, :update,:new,:create,:verwalten,:delete], Calentry
