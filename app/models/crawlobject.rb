@@ -103,10 +103,17 @@ class Crawlobject < ActiveRecord::Base
       self.published_at=Time.parse(self.json["date"].strip)
       self.url="http://www.htu.at"
     end
+    if self.objtype==6
+      self.name=self.json["name"].strip
+      self.text=self.json["text"]
+      self.published_at=Time.parse(self.json["date"].strip)
+      self.url="http://etit.tuwien.ac.at"
+    end
+
   end
   def calc_hash
     self.objhash=Digest::SHA512.hexdigest(self.raw)
-    self.objhash2=Digest::SHA512.hexdigest(self.url.to_s+self.try(:name).to_s+self.schematype.to_s+self.published_at.utc.to_s)
+    self.objhash2=Digest::SHA512.hexdigest(self.url.to_s+self.try(:name).to_s+self.schematype.to_s+self.published_at.try(:utc).to_s)
     
   end
   def json
