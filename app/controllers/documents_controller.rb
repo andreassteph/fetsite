@@ -166,7 +166,7 @@ class DocumentsController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html { redirect_to :intern}
+      format.html { redirect_to action: :intern}
       format.js
     end
   end
