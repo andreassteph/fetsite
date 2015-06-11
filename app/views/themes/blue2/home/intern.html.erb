@@ -9,8 +9,11 @@
 				<li>     
 					<%= link_to "Admin" , admin_home_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
 				</li>
+				<li>     
+					<%= link_to "Treeview" , treeview_home_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
+				</li>
 			</ul>
-			<div>Suche
+			<div>Suche nach Protokollen
 				<%= semantic_form_for :search,:remote=>true, :url=>search_documents_path, :html=>{:id=>"search_form",:class=>"", :method=>'get'} do |f| %>
 					<%= f.input :query, :input_html => { :name => 'query' } , :label=>false, :class=>"search-query" %>
 					<% f.actions do %>

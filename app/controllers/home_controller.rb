@@ -26,7 +26,9 @@ class HomeController < ApplicationController
   end
   def treeview 
     authorize! :doadmin, User
-    @themengruppen = Themengruppe.intern.order(:priority).reverse
+    @themengruppen = Themengruppe.order(:priority).reverse
+    @themengruppen += Themengruppe.intern.order(:priority).reverse
+
   end
   def intern
     authorize! :seeintern, User

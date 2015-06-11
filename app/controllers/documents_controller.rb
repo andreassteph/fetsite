@@ -156,7 +156,8 @@ class DocumentsController < ApplicationController
     unless params['query'].nil? || params['query'].empty?
       @results = Document.search do
         fulltext params['query'] do
-          highlight :name, :text
+          fields :name, :text, :meeting
+          highlight :text
         end
       end
       @res=[]
