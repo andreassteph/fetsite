@@ -40,7 +40,7 @@
 					<%= render 'calendars/calentries', :object=>@calentries %>
 				<% end %>      
 				<% if current_user.has_role?(:fetuser) %>
-				<%= link_to calendars_path(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid) , calendars_path(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid)%>
+				<%= link_to calendars_url(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid) , calendars_path(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid)%>
 					<% end %>
 			</div>
 		</div>
