@@ -7,7 +7,7 @@ class Meeting < ActiveRecord::Base
   belongs_to :neuigkeit, touch: true
   has_one :protocol,  :class_name=>'Document', :conditions=>{:typ=>10}, :as=>:parent
   has_one :agenda , :as=>:parent,:conditions=>{:typ=>11}, :class_name=>'Document'
-  has_one :calentry, as: :object
+  has_one :calentry, as: :object, :dependent=> :destroy
   has_one :calendar, :through=>:meetingtyp
   has_one :rubrik, :through=>:meetingtyp
   scope :upcomming, includes(:calentry).where("calentries.start>?",1.hour.ago)

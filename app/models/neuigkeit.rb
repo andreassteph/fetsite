@@ -17,8 +17,8 @@ class Neuigkeit < ActiveRecord::Base
   belongs_to :author, :class_name =>'User'
   belongs_to :rubrik, :class_name =>'Rubrik', :foreign_key => "rubrik_id"
   has_one :calendar, through: :rubrik  
-  has_many :calentries, as: :object
-  has_many :nlinks   
+  has_many :calentries, as: :object, :dependent=> :destroy
+  has_many :nlinks, :dependent=> :destroy   
   has_one :meeting
   has_many :attachments, :as=>:parent
   

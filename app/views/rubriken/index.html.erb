@@ -1,48 +1,50 @@
 <%= content_for :header do %>
-<title>Fetsite - <%= I18n.t('home.news') %></title>
-<% set_meta_tags :og => {
-:title => "Fetsite - "+I18n.t('home.news'),
-:url=> rubriken_path(:theme=>nil)
-}
-%>
-<%= display_meta_tags %>
+	<title>Fetsite - <%= I18n.t('home.news') %></title>
+	<% set_meta_tags :og => {
+													 :title => "Fetsite - "+I18n.t('home.news'),
+													 :url=> rubriken_path(:theme=>nil)
+													 }
+	%>
+	<%= display_meta_tags %>
 
 <% end %>
 <%= render 'tabs' %>
 <p id="notice"><%= notice %></p>
 <div class="content-wrap content-column">
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span12">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
 
-      <h1><%= I18n.t("rubrik.title")%></h1>
-    </div>
-  </div>
-  <div class="row-fluid">
+				<h1><%= I18n.t("rubrik.title")%></h1>
+			</div>
+		</div>
+		<div class="row-fluid">
 
-    <div class="span9">
+			<div class="span9">
 
-      <ul class="unstyled linkbox-list" style="max-width:70em" id="neuigkeiten">
-	<% @neuigkeiten.each do |n| %>
-	<li><%= render n  %> </li>
-	<% end %>
-      </ul>
+				<ul class="unstyled linkbox-list" style="max-width:70em" id="neuigkeiten">
+					<% @neuigkeiten.each do |n| %>
+						<li><%= render n  %> </li>
+					<% end %>
+				</ul>
 
-<div id="infinite-scrolling">
-<%= paginate @neuigkeiten, theme:'twitter-bootstrap' %>
-</div>
+				<div id="infinite-scrolling">
+					<%= paginate @neuigkeiten, theme:'twitter-bootstrap' %>
+				</div>
 
-    </div>
+			</div>
 
-    <div class="span3">
+			<div class="span3">
 
-<% cache("calendar_" + @calentries.map{|c| c.id}.join('') + @calentries.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s+"_"+I18n.locale.to_s+params[:month].to_s+params[:year].to_s) do %>
-<%= render 'calendars/calentries', :object=>@calentries %>
-<% end %>
-      
-    </div>
-  </div>
-</div>
+				<% cache("calendar_" + @calentries.map{|c| c.id}.join('') + @calentries.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s+"_"+I18n.locale.to_s+params[:month].to_s+params[:year].to_s) do %>
+					<%= render 'calendars/calentries', :object=>@calentries %>
+				<% end %>      
+				<% if current_user.has_role?(:fetuser) %>
+				<%= link_to calendars_path(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid) , calendars_path(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid)%>
+					<% end %>
+			</div>
+		</div>
+	</div>
 </div>
 
 
