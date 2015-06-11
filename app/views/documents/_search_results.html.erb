@@ -1,12 +1,14 @@
+<% unless search_results.nil? %>
 <ul>
-	<% search_results.hits.each do |hit| %>
-		<li>
+	<% search_results.each_hit_with_result  do |hit,result| %>
+		<li> <%= result.name %>
 			<%  hit.highlights(:name).each do |hlgt| %>
-				<%=puts hlgt.format {|word|} "<b>#{word}</b>"  %>
+				<%= hlgt.format{|word|"<b>#{word}</b>" }  %>
 			<% end 	%>
 			<%  hit.highlights(:text).each do |hlgt| %>
-				<%=%>  puts hlgt.format {|word|} "<b>#{word}</b>" %> 
+				<%=  "text:" + raw(hlgt.format {|word| "*#{word}*" })%> 
 			<%  end %>
 		</li>	
 	<% end  %>
 </ul>
+	<% end  %>

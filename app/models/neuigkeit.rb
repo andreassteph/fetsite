@@ -140,11 +140,13 @@ class Neuigkeit < ActiveRecord::Base
     if self.has_meeting? && !self.meeting.calentry.nil?
       self.update_column(:cache_order, (self.meeting.calentry.start.to_date - Date.today).to_i.abs * 1.3)
       self.update_column(:cache_relevant_date, self.meeting.calentry.start.to_date)
+      self.touch
     else 
       if self.is_event? 
         c = self.calentries.min_by{|c| c.days_to_today * 1.3 * ((c.is_past?)? 2:1)}
         self.update_column(:cache_order,  c.days_to_today * 1.3 * ((c.is_past?)? 2:1))
         self.update_column(:cache_relevant_date, (c.is_past?) ? c.ende.to_date : c.start.to_date)
+        self.touch
       else
         unless self.datum.nil?
           self.update_column(:cache_order, (((self.datum.to_date - Date.today).to_i)).abs)
