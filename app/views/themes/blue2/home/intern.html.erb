@@ -1,0 +1,45 @@
+<h1> FET Intern NEU </h1>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+			<ul class="linklist">
+				<li>
+					<%= link_to "Adressliste", internlist_fetprofiles_path ,class: :linkbox %></li>
+				<li>     <%= link_to "Admin" , admin_home_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
+				</li>
+			</ul>
+			<div>
+				<%= semantic_form_for :search,:remote=>true, :url=>search_documents_index_path, :html=>{:id=>"search_form",:class=>"", :method=>'get'} do |f| %>
+					<%= f.input :query, :input_html => { :name => 'query' } , :label=>false, :class=>"search-query" %>
+					<% f.actions do %>
+						<% f.action :submit, :as => :input %>
+					<% end %>
+				<% end %>
+				<div id="searchresults">
+					<%= render :partial=>"documents/search_results" %>
+				</div>
+			</div>
+      <ul class="unstyled linkbox-list">
+				<li>  
+					<% @themengruppen.each do |themengruppe| %>
+						<div class="container-fluid">
+							<%= render themengruppe if can?(:show,themengruppe)%>
+						</div>
+					<% end %>
+				</li>
+      </ul>
+
+      <%= link_to "Users", users_path %>
+    </div>
+    <div class="span6">
+      <h2>Neuigkeiten</h2>
+      <ul class="unstyled linkbox-list">	
+				<% @neuigkeiten.each do |n| %>
+					<li><%= render n if can?(:show, n) %></li>
+				<% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2></h2>

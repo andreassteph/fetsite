@@ -93,10 +93,10 @@ class Document < ActiveRecord::Base
     Document.ether.group(Document::TYPS[t])
   end
   searchable do
-    text :text
-    text :name, :boost=>4.0
+    text :text, stored: true
+    text :name, :boost=>4.0, :stored=> true
     if typ = 10 || typ=11
-      text :meeting do
+      text :meeting, stored: true do
         parent.text unless parent.nil?
       end
     end

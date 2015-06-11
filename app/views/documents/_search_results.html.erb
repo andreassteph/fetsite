@@ -1,0 +1,12 @@
+<ul>
+	<% search_results.hits.each do |hit| %>
+		<li>
+			<%  hit.highlights(:name).each do |hlgt| %>
+				<%=puts hlgt.format {|word|} "<b>#{word}</b>"  %>
+			<% end 	%>
+			<%  hit.highlights(:text).each do |hlgt| %>
+				<%=%>  puts hlgt.format {|word|} "<b>#{word}</b>" %> 
+			<%  end %>
+		</li>	
+	<% end  %>
+</ul>

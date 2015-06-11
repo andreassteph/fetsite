@@ -172,7 +172,7 @@
           get :documents
           get :meetings
         end
-      resources :attachments do
+        resources :attachments do
           member do 
             get :set_titlepic
           end
@@ -198,6 +198,9 @@
           get :read_from_etherpad
           get :dump_to_etherpad
          end
+        collection do
+          get :search
+        end
       end
       resources :meetings do
         member do

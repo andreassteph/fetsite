@@ -151,5 +151,23 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def search
+  
+    unless params['query'].nil? || params['query'].empty?
+      @results = Document.search do
+        fulltext params['query'] do
+          highlight :name, :text
+        end
+      end
+      @res=[]
+      @results.results.each do |r|
+        @res << r if can?(:show,r)
+      end
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
 end
