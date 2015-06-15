@@ -27,6 +27,7 @@ class CrawlerController < ApplicationController
       redirect_to co.something
     end
   end
+
   def do_crawl_news
     Crawlobject.crawl_news(5)
     Crawlobject.crawl_news(6)
