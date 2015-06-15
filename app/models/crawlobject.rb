@@ -15,7 +15,7 @@ class Crawlobject < ActiveRecord::Base
   end
   end
   def move_to_neuigkeit(user,rubrik)
-    if self.objtype == 5 and self.something.nil?
+    if ( self.objtype == 5 || self.objtype == 6 )and self.something.nil?
       n=Neuigkeit.new
       n.title=self.name
       n.text=self.text
@@ -27,7 +27,7 @@ class Crawlobject < ActiveRecord::Base
       self.something=n
       self.save
       return n
-    elsif   self.objtype == 5
+    elsif (   self.objtype == 5 || self.objtype==6)
       n=self.something
       n.title=self.name
       n.text=self.text
