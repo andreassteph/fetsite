@@ -145,7 +145,7 @@ end
     # Calendar
 
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
-      can [:show, :edit, :update,:new,:create,:write, :write_etherpad, :read_from_etherpad, :dump_to_etherpad], Document
+      can [:show, :edit, :update,:new,:create,:write, :write_etherpad, :read_from_etherpad, :dump_to_etherpad, :search], Document
       can :manage, Meeting
       can :manage, Meetingtyp
     end    
