@@ -10,32 +10,32 @@
   </div>
   <div class="row-fluid">
     <div class="span12"><p>
-<div id="toolBar"></div></p>
+			<div id="toolBar"></div></p>
       <div id="tabs">
-	<ul>
-	  <li><a href="#tab-data">Daten</a></li>
-	  <li><a href="#tab-desc">Beschreibung</a></li>
-	  <li><a href="#tab-qual">Qualifikation</a></li>
-	  <li><a href="#tab-struk">Struktur</a></li>
-	  <li><a href="#tab-job">JobMöglichkeiten</a></li>
-	</ul>
-	<div id="tab-data">
-	  <%= f.input :abkuerzung %>
-	  <%= f.input :zahl %>
-	  <%= f.input :typ, :as=>:select, :include_blank=>false, :collection=>["Bachelor","Master"] %>
-	  <label>Bild</label>
-	  <%= image_tag(@studium.picture.thumb.url) unless @studium.picture.nil? %>
-	  <%= f.file_field :picture %>
-	  <%= f.hidden_field :picture_cache %>
-	</div>
-	
-	<div id="tab-desc">
-	  <div class="editable" data-target="#studium_desc">
-	    <%= raw(@studium.desc) %>
-	  </div>
-	  <%= f.input :desc, :as=>:hidden %>
-	</div>
-	
+				<ul>
+					<li><a href="#tab-data">Daten</a></li>
+					<li><a href="#tab-desc">Beschreibung</a></li>
+					<li><a href="#tab-qual">Qualifikation</a></li>
+					<li><a href="#tab-struk">Struktur</a></li>
+					<li><a href="#tab-job">JobMöglichkeiten</a></li>
+				</ul>
+				<div id="tab-data">
+					<%= f.input :abkuerzung %>
+					<%= f.input :zahl %>
+					<%= f.input :typ, :as=>:select, :include_blank=>false, :collection=>["Bachelor","Master"] %>
+					<label>Bild</label>
+					<%= image_tag(@studium.picture.thumb.url) unless @studium.picture.nil? %>
+					<%= f.file_field :picture %>
+					<%= f.hidden_field :picture_cache %>
+				</div>
+				
+				<div id="tab-desc">
+					<div class="editable" data-target="#studium_desc">
+						<%= raw(@studium.desc) %>
+					</div>
+					<%= f.input :desc, :as=>:hidden %>
+				</div>
+				
 	<div id="tab-qual">  
 	  <div class="editable" data-target="#studium_qualifikation">
 	    <%= raw(@studium.qualifikation) %>
@@ -65,7 +65,7 @@
   <%= tinymce :inline_div %>
   <%= f.actions do %>
   <%= f.action :submit, :as => :input %>
-  <%= link_to 'Back', studien_path, :data=>{:locale=>I18n.locale}, class: :btn%>
+  <%= link_to 'Back', studien_path, :data=>{:locale=>I18n.locale}, class: :btn %>
   <% end %>
   <% end %>
 </div>
