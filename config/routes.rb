@@ -21,6 +21,7 @@
     resources :crawler, :only=>[] do
       collection do
         get :index
+        get :do_crawl_news
      end
       member do
         get :move_to_news
