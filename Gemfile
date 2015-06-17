@@ -22,7 +22,7 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
 end
-
+gem 'active_record_query_trace'
 
 gem 'jquery-rails'
 
