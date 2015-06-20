@@ -73,6 +73,7 @@
         member do
           get 'like'
           get 'dislike'
+          get 'flag'
         end
       end
       resources :lvas  do 

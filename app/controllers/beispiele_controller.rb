@@ -3,6 +3,7 @@ class BeispieleController < ApplicationController
   
   load_and_authorize_resource
   include LikeVoteable
+  acts_as_flagable
   def index
     @beispiele = Beispiel.all
     
