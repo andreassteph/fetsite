@@ -15,6 +15,7 @@ class Beispiel < ActiveRecord::Base
   has_paper_trail
   attr_accessible :desc, :name, :lva_id, :beispieldatei, :beispieldatei_cache, :datum
   acts_as_votable
+  acts_as_flagable
   belongs_to :lva
 
   mount_uploader :beispieldatei, AttachmentUploader
