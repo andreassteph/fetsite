@@ -13,7 +13,7 @@
 	<% end %> </small> <% else %>  <% end %>
     </div>
     <h1 > 
-      <%= neuigkeit.title%>
+      <%= raw(neuigkeit.title) %>
     </h1><div>
     <%= raw(neuigkeit.text_first_words) unless neuigkeit.text.nil?%></div>
   </div>
