@@ -1,1 +1,2 @@
-<%=  flag_link(@obj,flag, content_tag("i", "", class: icon")) %>
+<%       fi = {"badquality"=>"fa fa-flag", "delete"=>"fa fa-trash"} %>
+<%=  flag_link(@obj,flag, ff_icon(fi[flag])) %>

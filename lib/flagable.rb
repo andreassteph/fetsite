@@ -11,14 +11,14 @@ module Flagable
       end
     end
     module LocalClassMethods
-       FLAG_ICONS = {"badquality"=>"fa fa-flag", "delete"=>"icon-trash"}
-
+   
     end
     module LocalInstanceMethods
- 
+      
       def flag
+      fi = {"badquality"=>"fa fa-flag", "delete"=>"fa fa-trash"}
  
-       @obj=controller_name.classify.constantize.find(params[:id])
+        @obj=controller_name.classify.constantize.find(params[:id])
         lflag=("flag_"+params[:flag]).to_sym
         unless params[:flag].nil? || params[:flag].empty? || params[:value].nil?
           if @obj.respond_to?(lflag.to_s+"=")
@@ -27,8 +27,8 @@ module Flagable
           end
         end
         respond_to do |format|
-          format.html {render partial: "flags/flaglink", locals: {flag: params[:flag],icon: controller_name.classify.constantize.FLAG_ICONS[params[:flag]]}}
-          format.js {render partial: "flags/flag", locals: {flag: params[:flag],icon:  controller_name.classify.constantize.FLAG_ICONS[params[:flag]]}}
+          format.html {render partial: "flags/flaglink", locals: {flag: params[:flag],icon: fi[params[:flag]]}}
+          format.js {render partial: "flags/flag", locals: {flag: params[:flag], icon: fi[params[:flag]]}}
         end
       end
     end
