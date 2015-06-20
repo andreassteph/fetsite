@@ -16,7 +16,7 @@ module Flagable
     module LocalInstanceMethods
       
       def flag
-      fi = {"badquality"=>"fa fa-flag", "delete"=>"fa fa-trash"}
+      fi = controller_name.classify.constantize::FLAG_ICONS
  
         @obj=controller_name.classify.constantize.find(params[:id])
         lflag=("flag_"+params[:flag]).to_sym
@@ -58,11 +58,12 @@ module Flagable
   end
   module FlagableHelper
 
-    def flag_link(obj, flag, text)
+    def flag_link(obj, flag, text="")
       flag=flag.to_s
+      fi = obj.class::FLAG_ICONS
       value=obj.send("flag_"+flag)
-      color=(value) ? "red" :"grey"
-      link_to text, flag_beispiel_path(obj,{flag: flag, value: !value, theme: nil, locale: nil}), remote: true, style:("color:" +color ), id: obj.flaglinkid(flag)
+      cstyle=(value) ? "true" :"false"
+      link_to ff_icon(fi[flag]), flag_beispiel_path(obj,{flag: flag, value: !value, theme: nil, locale: nil}), remote: true, class:("flag-"+cstyle +" flag-"+flag + "-"+cstyle ), id: obj.flaglinkid(flag)
     end
   end
 end

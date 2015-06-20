@@ -47,6 +47,9 @@ class LvasController < ApplicationController
   def show
     @lva = Lva.find_by_id(params[:id])
     @beispiel=Beispiel.new
+    @beispiele = @lva.beispiele.not_flag_badquality.not_flag_delete.order(:datum).accessible_by(current_ability, :show)
+    @beispiele_badQ = @lva.beispiele.flag_badquality.not_flag_delete.order(:datum).accessible_by(current_ability, :show)
+    @beispiele_deleted = @lva.beispiele.flag_delete.order(:datum).accessible_by(current_ability, :show)
     @toolbar_elements =[]
     @toolbar_elements<<{:hicon=>'icon-pencil', :icon=>:pencil,:text =>I18n.t('common.manage'),:path => verwalten_lva_path(@lva)} if can? :verwalten, @lva
      @crawlobjects = @lva.crawlobjects.roots.accessible_by(current_ability)

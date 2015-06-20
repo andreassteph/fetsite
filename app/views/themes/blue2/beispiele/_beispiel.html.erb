@@ -7,9 +7,10 @@
       <%= (beispiel.beispieldatei.size/1024.0).round(2).to_s  %>KiB   
     </div>
     <div class="span5">
-<%       fi = {"badquality"=>"fa fa-flag", "delete"=>"fa fa-trash"} %>		
-	<%= flag_link(beispiel, "badquality", ff_icon(fi["badquality"]))%>
-			<%= flag_link(beispiel, "delete", ff_icon(fi["delete"]))%>
+			<%= flag_link(beispiel, "goodquality")%>
+
+			<%= flag_link(beispiel, "badquality")%>
+			<%= flag_link(beispiel, "delete")%>
 
 			<%= 
 	 if can?(:like, beispiel)
