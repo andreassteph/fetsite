@@ -13,13 +13,18 @@ module Flagable
     module LocalInstanceMethods
       def flag
          @obj=controller_name.classify.constantize.find(params[:id])
-        text @obj.to_yaml
+        lflag=("flag_"+params[:flag]).to_sym
+        unless params[:flag].nil? || params[:flag].empty? || params[:value].nil?
+          @obj.try(lflag)#=params[:value]
+          @obj.send(lflag.to_s+"=",params[:value])
+        end
+        respond_to do |format|
+          format.html {render :text=>@obj.to_yaml}
+          format.js {render :text => "alert(#{lflag.to_s} #{@obj.to_yaml})"}
+        end
       end
     end
   end
 end
-ActionController::Base.send :include, Flagable::ActsAsFlagable
-ActionController.send :include, Flagable::ActsAsFlagable
 
-ApplicationController.send :include, Flagable::ActsAsFlagable
-BeispielController.send :include, Flagable::ActsAsFlagable
+
