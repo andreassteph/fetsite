@@ -17,6 +17,7 @@ class Beispiel < ActiveRecord::Base
   acts_as_votable
   acts_as_flagable
   belongs_to :lva
+      FLAG_ICONS = {"badquality"=>"fa fa-flag", "delete"=>"icon-trash"}
 
   mount_uploader :beispieldatei, AttachmentUploader
   validates :beispieldatei, :presence => true

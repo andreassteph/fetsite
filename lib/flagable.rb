@@ -7,22 +7,28 @@ module Flagable
     module ClassMethods
       def acts_as_flagable(options={})
         include Flagable::ActsAsFlagableController::LocalInstanceMethods
-        #extend class methods
+        extend Flagable::ActsAsFlagableController::LocalClassMethods
       end
     end
+    module LocalClassMethods
+       FLAG_ICONS = {"badquality"=>"fa fa-flag", "delete"=>"icon-trash"}
+
+    end
     module LocalInstanceMethods
+ 
       def flag
-        @obj=controller_name.classify.constantize.find(params[:id])
+ 
+       @obj=controller_name.classify.constantize.find(params[:id])
         lflag=("flag_"+params[:flag]).to_sym
         unless params[:flag].nil? || params[:flag].empty? || params[:value].nil?
           if @obj.respond_to?(lflag.to_s+"=")
-            @obj.send(lflag.to_s+"=",params[:value])
+            @obj.send(lflag.to_s+"=",params[:value]=="true")
             @obj.save
           end
         end
         respond_to do |format|
-          format.html {render partial: "flags/flaglink", locals: {flag: params[:flag]}}
-          format.js {render :text => "$(\"\##{@obj.flaglinkid(params[:flag])}\").replaceWith("+ActionController::Base.helpers.escape_javascript(render partial: "flags/flaglink", locals: {flag: params[:flag]})+ "); alert('#{lflag.to_s} #{ ActionController::Base.helpers.escape_javascript(@obj.to_yaml.to_s)}');"}
+          format.html {render partial: "flags/flaglink", locals: {flag: params[:flag],icon: controller_name.classify.constantize.FLAG_ICONS[params[:flag]]}}
+          format.js {render partial: "flags/flag", locals: {flag: params[:flag],icon:  controller_name.classify.constantize.FLAG_ICONS[params[:flag]]}}
         end
       end
     end
@@ -53,7 +59,8 @@ module Flagable
   module FlagableHelper
 
     def flag_link(obj, flag, text)
-      value=obj.get_flag(flag)
+      flag=flag.to_s
+      value=obj.send("flag_"+flag)
       color=(value) ? "red" :"grey"
       link_to text, flag_beispiel_path(obj,{flag: flag, value: !value, theme: nil, locale: nil}), remote: true, style:("color:" +color ), id: obj.flaglinkid(flag)
     end
