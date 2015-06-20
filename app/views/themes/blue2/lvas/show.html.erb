@@ -92,17 +92,21 @@
 						<%= render b%>
 					<% end %>
 				<% end %>
+				<% if @beispiele_badQ.count > 0  %>
 				<h3> Bad Quality or Outdated</h3>
 				<% @beispiele_badQ.each do |b| %>
 					<% cache("beispiel_"  +I18n.locale.to_s+b.id.to_s+can?(:delete,b).to_s+"_"+can?(:edit,b).to_s + "_" + b.updated_at.try(:utc).try(:to_s)) do %>
 						<%= render b%>
 					<% end %>
 				<% end %>
+				<% end %>
+				<% if @beispiele_deleted.count > 0  %>
 				<h3> Trash</h3>
 				<% @beispiele_deleted.each do |b| %>
-					<% cache("beispiel_"  +I18n.locale.to_s+b.id.to_s+can?(:delete,b).to_s+"_"+can?(:edit,b).to_s +"_"+ can?(:flag,b).to_s+ "_" + b.updated_at.try(:utc).try(:to_s)) do %>
+					<% cache("beispiel_"  +I18n.locale.to_s+b.id.to_s+can?(:delete,b).to_s+"_"+can?(:edit,b).to_s + "_" + can?(:flag,b).to_s+ "_" + b.updated_at.try(:utc).try(:to_s)) do %>
 						<%= render b%>
 					<% end %>
+				<% end %>				
 				<% end %>				
 	
       </div>

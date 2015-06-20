@@ -14,6 +14,7 @@
  *= require jquery.fileupload-ui
  *= require jquery.datetimepicker	
  *= require jquery.ui.dialog
+ *= require jquery.ui.tabs
  * require 'bootstrap'
 
  * require 'neuigkeiten'
@@ -77,9 +78,9 @@ $sansFontFamily: Helvetica, Arial;
 
 div.header {		
   display: block; 
-//  backgro  	      und: url('../../../../header1.png') no-repeat;
-//  background-color:white;// $color_prim;
- // background-position: right; 
+	//  background: url('../../../../header1.png') no-repeat;
+	// background-color:white;// $color_prim;
+	// background-position: right; 
   vertical-align:middle;
   float:left;
   color:#000;

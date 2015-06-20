@@ -47,6 +47,7 @@ class LvasController < ApplicationController
   def show
     @lva = Lva.find_by_id(params[:id])
     @beispiel=Beispiel.new
+    @beispiele_all=@lva.beispiele.order(:datum).accessible_by(current_ability, :show)
     @beispiele = @lva.beispiele.not_flag_badquality.not_flag_delete.order(:datum).accessible_by(current_ability, :show)
     @beispiele_badQ = @lva.beispiele.flag_badquality.not_flag_delete.order(:datum).accessible_by(current_ability, :show)
     @beispiele_deleted = @lva.beispiele.flag_delete.order(:datum).accessible_by(current_ability, :show)
