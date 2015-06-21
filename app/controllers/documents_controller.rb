@@ -94,7 +94,7 @@ class DocumentsController < ApplicationController
       end
       @parent=@document.parent
       respond_to do |format|
-        format.html
+        format.html {render :edit}
       end
     end
   end

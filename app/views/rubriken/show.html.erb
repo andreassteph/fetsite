@@ -52,7 +52,7 @@
 <%= render 'calendars/calentries', :object=>@calentries %>
 <% end %>
 <% end %>
-<% if current_user.has_role?(:fetuser) %>
+<% if !current_user.nil? and current_user.has_role?(:fetuser) %>
 	<%= link_to calendar_url(@rubrik.calendar,:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid) , calendars_path(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid)%>
 <% end %>
 

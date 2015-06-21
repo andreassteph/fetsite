@@ -82,7 +82,7 @@ class Document < ActiveRecord::Base
     end
   end
   def read_from_etherpad
-    self.text=ApplicationController.helpers.strip_control_chars(self.ep_pad.html)
+    self.text=ApplicationController.helpers.strip_control_chars( self.ep_pad.html)
  
   end
   def ep_pad
@@ -92,13 +92,17 @@ class Document < ActiveRecord::Base
     t= (self.typ.nil? || self.typ ==0) ? 1 : self.typ
     Document.ether.group(Document::TYPS[t])
   end
+  def text_stripped
+ ApplicationController.helpers.strip_control_chars(ApplicationController.helpers.strip_tags(text.to_s.gsub("<"," <").gsub(">","> ").to_s)) 
+  
+ end
   searchable do
-    text :text, stored: true
-    text :name, :boost=>4.0, :stored=> true
-    if typ = 10 || typ=11
-      text :meeting, stored: true do
-        parent.text unless parent.nil?
-      end
+    text :text, stored: true do |d|
+      d.text_stripped
+    end
+    text :name, :boost=>4.0, :stored=> true    
+    text :meeting, stored: true do |d| 
+      (d.parent_type == "Meeting")? d.try(:parent).try(:text).to_s : "" 
     end
   end
   def maketoc

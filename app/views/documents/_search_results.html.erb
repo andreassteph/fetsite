@@ -1,4 +1,5 @@
 <% unless search_results.nil? %>
+<%= search_results  %>
 <ul>
 	<% search_results.each_hit_with_result  do |hit,result| %>
 		<li> <%= link_to result.parent.title+": " + result.name, document_path(result) %>
@@ -7,7 +8,7 @@
 			<% end 	%>
 			<%  %>
 			<%  hit.highlights(:text).each do |hlgt| %>
-				<%=  "text:" + raw(hlgt.format {|word| "*#{word}*" })%> 
+				<%=  "text:" + raw(hlgt.format {|word| raw("<b>#{word}</b>") })%> 
 			<%  end %>
 			<%  hit.highlights(:meeting).each do |hlgt| %>
 				<%=  "text:" + raw(hlgt.format {|word| "*#{word}*" })%> 
