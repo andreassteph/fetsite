@@ -21,6 +21,7 @@
     resources :crawler, :only=>[] do
       collection do
         get :index
+        get :do_crawl_news
      end
       member do
         get :move_to_news
@@ -31,9 +32,11 @@
   devise_for :users , :controllers=>{:omniauth_callbacks=> "users/omniauth_callbacks"}
 
   
-  scope '(:locale)' do
+  scope '(:locale)', constraints: {:locale=>/en|de/i} do
     scope '(t/:theme)' do
-
+      get "" , controller: :home, action: :index
+      get "intern" , controller: :home, action: :intern
+      
       scope '(:ansicht)' do
         resources :studien, :only=>[:new,:edit,:update,:destroy,:show] do
           member do
@@ -70,6 +73,7 @@
         member do
           get 'like'
           get 'dislike'
+          get 'flag'
         end
       end
       resources :lvas  do 
@@ -106,7 +110,8 @@
       resources :fragen, :only =>[:new, :edit, :update, :destroy, :create]
       
 
-        resources :neuigkeiten, :only => [:show]      
+      resources :neuigkeiten, :only => [:show] , constraints: {id: /\d+/i}    
+      get "neuigkeiten", controller: :rubriken, action: :index, as: "neuigkeiten"
       resources :rubriken do
         collection do 
           get 'verwalten' , :action => :alle_verwalten

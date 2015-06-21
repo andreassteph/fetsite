@@ -14,6 +14,7 @@
  *= require jquery.fileupload-ui
  *= require jquery.datetimepicker	
  *= require jquery.ui.dialog
+ *= require jquery.ui.tabs
  * require 'bootstrap'
 
  * require 'neuigkeiten'
@@ -77,9 +78,9 @@ $sansFontFamily: Helvetica, Arial;
 
 div.header {		
   display: block; 
-//  backgro  	      und: url('../../../../header1.png') no-repeat;
-//  background-color:white;// $color_prim;
- // background-position: right; 
+	//  background: url('../../../../header1.png') no-repeat;
+	// background-color:white;// $color_prim;
+	// background-position: right; 
   vertical-align:middle;
   float:left;
   color:#000;
@@ -128,3 +129,29 @@ body {
 background: #FFF; //#EFEFEF;
 background-size:100%;
 }
+
+ul.linklist_block a.linkbox
+{
+max-width:100%;
+padding:0;
+margin:5px;
+width: 6em;
+text-align:center;
+}
+ul.linklist_block a.linkbox:hover
+{background:lighten($color_schema_1,40%);
+}
+ul.linklist_block li
+{text-decoration: none;
+list-style:none;
+margin-bottom:2px;
+float:left;
+}
+ul.linklist_block li a i{
+display:block;
+vertical-align:middle;
+margin-right:6px;
+font-size:5em;
+line-height:70px;
+}
+ul.linklist_block { clear:left; float:none;}

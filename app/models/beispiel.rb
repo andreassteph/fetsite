@@ -15,9 +15,15 @@ class Beispiel < ActiveRecord::Base
   has_paper_trail
   attr_accessible :desc, :name, :lva_id, :beispieldatei, :beispieldatei_cache, :datum
   acts_as_votable
+  acts_as_flagable
   belongs_to :lva
-
-  mount_uploader :beispieldatei, AttachmentUploader
+  FLAG_ICONS = {"badquality"=>"fa fa-flag","goodquality"=>"fa fa-flag", "delete"=>"fa fa-trash"}
+  scope :not_flag_badquality, ->{where("flag_badquality IS NULL OR flag_badquality=?",false)}
+ scope :flag_badquality, ->{where("flag_badquality=?",true)}
+  scope :not_flag_delete, ->{where("flag_delete IS NULL OR flag_delete=?",false)}
+ scope :flag_delete, ->{where("flag_delete=?",true)}
+  
+ mount_uploader :beispieldatei, AttachmentUploader
   validates :beispieldatei, :presence => true
   validates :name, :presence => true
   validates :lva_id, :presence => true

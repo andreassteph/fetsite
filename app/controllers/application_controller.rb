@@ -51,6 +51,6 @@ def current_ability
  @current_ability ||= Ability.new(current_user, request, params[:key])
 end
   def default_url_options
-    {locale: I18n.locale, theme: nil , ansicht: nil}
+    {locale: nil, theme: nil , ansicht: nil} # I18n.locale
   end
 end

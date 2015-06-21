@@ -21,7 +21,7 @@ class Neuigkeit < ActiveRecord::Base
   has_many :nlinks, :dependent=> :destroy   
   has_one :meeting
   has_many :attachments, :as=>:parent
-  
+  has_one :title_pic, :class_name=>"Attachment", :as=>:parent, :conditions=>["attachments.flag_titlepic =?", true]
 
 
   validates :rubrik, :presence=>true
@@ -29,7 +29,7 @@ class Neuigkeit < ActiveRecord::Base
   translates :title,:text, :versioning=>{:gem=>:paper_trail, :options=>{:fallbacks_for_empty_translations => true}}
   mount_uploader :picture, PictureUploader
 
-  default_scope  order(:cache_order)
+  default_scope  order(:cache_order).includes(:calentries).includes(:title_pic)
   scope :recent, -> { published.limit(10)}
   scope :unpublished, -> {where("datum > ? OR datum IS NULL", Time.now)}
   scope :published_scope, ->{where("datum <= ? AND datum IS NOT NULL", Time.now)}
@@ -66,8 +66,9 @@ class Neuigkeit < ActiveRecord::Base
       if self.has_meeting?
        return self.meeting.meetingtyp.picture
       else
-        unless self.attachments.where(flag_titlepic: true).first.nil?
-          return self.attachments.where(flag_titlepic: true).first.datei
+        unless self.title_pic.nil?
+        #  return self.attachments.where(flag_titlepic: true).first.datei
+          return self.title_pic.datei
         else
           return self.picture
         end

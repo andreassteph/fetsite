@@ -2,17 +2,23 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span6">
-			<ul class="linklist">
+			<div>
+			<ul class="linklist_block">
 				<li>
-					<%= link_to "Adressliste", internlist_fetprofiles_path ,class: :linkbox %>
+					<%= link_to fa_icon("list")+"Adressliste", internlist_fetprofiles_path ,class: :linkbox %>
 				</li>
 				<li>     
-					<%= link_to "Admin" , admin_home_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
+					<%= link_to ff_icon("ffi1-setting")+"Admin" , admin_home_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
 				</li>
 				<li>     
-					<%= link_to "Treeview" , treeview_home_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
+					<%= link_to ff_icon("fa-folder")+"Treeview" , treeview_home_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
 				</li>
-			</ul>
+				<li>     
+					<%= link_to ff_icon("ffi1-newspaper9")+"Crawler" , crawler_index_path, class: :linkbox if current_user.has_role?(:fetadmin) %>
+				</li>
+
+			</ul><br>
+		</div>
 			<div>Suche nach Protokollen
 				<%= semantic_form_for :search,:remote=>true, :url=>search_documents_path, :html=>{:id=>"search_form",:class=>"", :method=>'get'} do |f| %>
 					<%= f.input :query, :input_html => { :name => 'query' } , :label=>false, :class=>"search-query" %>
