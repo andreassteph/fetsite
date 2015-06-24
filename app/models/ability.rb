@@ -21,10 +21,11 @@ class Ability
     can [:create, :show], Beispiel
     if loggedin
       can :like, Beispiel
-      can :dislike, Beispiel
-    
+      can :dislike, Beispiel    
     end
-    
+    if (user.has_role?("moderator",Beispiel))
+      can :flag, Beispiel
+    end
     if( user.has_role?("fetuser") || user.has_role?("fetadmin"))
       can :manage, Modulgruppe
       can :manage, Modul
