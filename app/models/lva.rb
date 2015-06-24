@@ -104,6 +104,8 @@ class Lva < ActiveRecord::Base
         rescue OpenURI::HTTPError => e
         end 
       end 
+      rescue => e 
+
     end 
     url
   end

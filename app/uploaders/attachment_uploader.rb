@@ -92,7 +92,8 @@ end
     File.extname(full_filename(file.file)).downcase
   end
   def pdf?(for_file)
-    %w(.pdf).include?(File.extname(full_filename(for_file.file)).downcase) 
+#    %w(.pdf).include?(File.extname(full_filename(for_file.file)).downcase) 
+    false
  end
   def image?(for_file)
     %w(.jpg .png .jpeg).include?(File.extname(full_filename(for_file.file)).downcase)

@@ -39,7 +39,7 @@
 				<% cache("calendar_" + @calentries.map{|c| c.id}.join('') + @calentries.max{|c|c.updated_at.to_i}.updated_at.to_i.to_s+"_"+I18n.locale.to_s+params[:month].to_s+params[:year].to_s) do %>
 					<%= render 'calendars/calentries', :object=>@calentries %>
 				<% end %>      
-				<% if current_user.has_role?(:fetuser) %>
+				<% if !current_user.nil? and current_user.has_role?(:fetuser) %>
 				<%= link_to calendars_url(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid) , calendars_path(:format=>:ics, :key=>Key.find_or_create(current_user,1).uuid)%>
 					<% end %>
 			</div>

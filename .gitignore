@@ -49,3 +49,4 @@ Gemfile.lock
 /config/database.yml
 /config/start_topic.yml
 /config/contact_topic.yml
+.*

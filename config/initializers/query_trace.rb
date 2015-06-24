@@ -1,1 +1,1 @@
-ActiveRecordQueryTrace.enabled=true
+#ActiveRecordQueryTrace.enabled=true

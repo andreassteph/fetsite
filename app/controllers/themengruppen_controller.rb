@@ -3,7 +3,7 @@ class ThemengruppenController < ApplicationController
   # GET /themengruppen.json
   load_and_authorize_resource
   def index
-    @themengruppen = Themengruppe.accessible_by(current_ability, :show).public.order(:priority).reverse_order
+    @themengruppen = Themengruppe.accessible_by(current_ability, :show).public.includes(:themen)
     @toolbar_elements = []
     @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.new'), :path=>new_themengruppe_path()} if can? :new, Themengruppe
     @toolbar_elements << {:icon=>:plus, :hicon=>'icon-plus-sign', :text=>I18n.t('themengruppe.manage_all'), :path=>verwalten_all_themengruppen_path()} if can? :verwalten_all, Themengruppe
