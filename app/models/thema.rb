@@ -43,7 +43,7 @@ class Thema < ActiveRecord::Base
   scope :outdated, -> {includes(:translations).where("thema_translations.updated_at<?",7.month.ago).where("thema_translations.locale"=>I18n.t.locale)}
   scope :public, where(:isdraft=>false).includes(:themengruppe).where("themengruppen.public"=>true)
 
-  default_scope order("themen.priority").reverse_order
+  default_scope includes(:translations).order("themen.priority").reverse_order
   # make topic searchable 
   searchable do
     text :text
